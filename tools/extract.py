@@ -281,7 +281,17 @@ def build_all():
             print(f"{'':9s}  badChoices: {bad[:20]}")
 
 
+def configure_output():
+    """파이프·리다이렉트(cp949)에서도 출력 때문에 죽지 않게 stdout·stderr 를 UTF-8 로 고정한다."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass
+
+
 def main(argv):
+    configure_output()
     if argv and argv[0] == "dump":
         for p in page_text(argv[1], int(argv[2]) if len(argv) > 2 else 1, int(argv[3]) if len(argv) > 3 else None):
             print(p)

@@ -16,7 +16,17 @@ def norm(s):
     return re.sub(r"[\s.,·・()\[\]{}'\"“”‘’…?!~\-]", "", s)
 
 
+def configure_output():
+    """파이프·리다이렉트(cp949)에서도 출력 때문에 죽지 않게 stdout·stderr 를 UTF-8 로 고정한다."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass
+
+
 def main():
+    configure_output()
     rounds = {}
     for f in sorted((DATA / "questions").rglob("*.json")):
         doc = json.loads(f.read_text(encoding="utf-8"))
