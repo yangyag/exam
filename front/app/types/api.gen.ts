@@ -192,6 +192,33 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/sessions/{session_id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * 모의고사 최종 제출(일괄 채점)
+         * @description 모의고사(mode=exam)를 한 트랜잭션에서 채점하고 끝낸다(설계 5.3절).
+         *
+         *     - 미응답 문항은 점수상 오답(0점)이지만 원장(study_attempt)·누계(study_state)에는 남기지 않는다.
+         *       슬롯은 `isCorrect=false`·`choiceNo=null` 로 남아 제출 뒤 문항 조회에서 해설을 볼 수 있다.
+         *     - 이미 제출된 세션에 다시 부르면 아무것도 쓰지 않고 같은 결과를 돌려준다(멱등).
+         *     - `mode=exam` 이 아니면 400 이다 — 연습은 마지막 문항에서 자동 종료되고 `random` 은 `/finish` 를 쓴다.
+         *     - `replaceActive` 로 중단(abandoned)된 모의고사는 409 다(제출된 적이 없어 결과도 없다).
+         *     - 세션 행을 FOR UPDATE 로 먼저 잠가 선택 저장·새로 구성과의 순서를 지킨다(설계 4.6절).
+         */
+        post: operations["submit_session_api_sessions__session_id__submit_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/sessions/{session_id}": {
         parameters: {
             query?: never;
@@ -204,6 +231,7 @@ export interface paths {
          * @description 세션 요약 + 슬롯 목록 + 진행 위치(nextSeq). 슬롯이 없는 랜덤 세션이면 items 가 빈 목록이다.
          *
          *     진행 중인 모의고사는 isCorrect 를 null 로 가린다(제출 전 정답 비공개). 조회는 기록을 남기지 않는다.
+         *     제출(end_reason='finished')된 모의고사는 결과 화면이 쓸 점수 요약을 examResult 에 함께 싣는다.
          */
         get: operations["get_session_api_sessions__session_id__get"];
         put?: never;
@@ -226,6 +254,7 @@ export interface paths {
          * @description 슬롯 문항 1개. 채점된 슬롯이면 result 에 채점 응답과 같은 형식이 붙는다.
          *
          *     채점 전 슬롯은 QuestionOut.state 를 빼서 이전 풀이의 정답 여부가 드러나지 않게 한다.
+         *     제출된 모의고사의 미응답 문항은 `choiceNo=null`·`isCorrect=false` 인 result 를 준다(해설은 그대로 본다).
          *     조회는 원장(study_attempt)을 늘리지 않는다.
          */
         get: operations["get_session_item_api_sessions__session_id__items__seq__get"];
@@ -600,6 +629,49 @@ export interface components {
              */
             figureCount: number;
         };
+        /**
+         * ExamResultOut
+         * @description 모의고사 제출 결과 — 최종 제출·재제출 응답과 세션 조회(`SessionDetailOut.examResult`)가 같은 값을 준다.
+         *
+         *     문항당 5점 기준이고 미응답은 오답과 같이 0점이다. 매 과목 40점 이상이면서
+         *     전 과목 평균 60점 이상일 때만 passed=true 다(정보처리기사 필기 기준).
+         */
+        ExamResultOut: {
+            /** Sessionid */
+            sessionId: number;
+            /** Itemcount */
+            itemCount: number;
+            /** Answeredcount */
+            answeredCount: number;
+            /** Unansweredcount */
+            unansweredCount: number;
+            /** Correctcount */
+            correctCount: number;
+            /** Wrongcount */
+            wrongCount: number;
+            /** Bysubject */
+            bySubject?: components["schemas"]["ExamSubjectScoreOut"][];
+            /** Averagescore */
+            averageScore: number;
+            /** Passed */
+            passed: boolean;
+            /** Submittedat */
+            submittedAt?: string | null;
+        };
+        /**
+         * ExamSubjectScoreOut
+         * @description 모의고사 과목별 점수(문항당 5점, 과목 만점 100점).
+         */
+        ExamSubjectScoreOut: {
+            /** Subjectcode */
+            subjectCode: number;
+            /** Correct */
+            correct: number;
+            /** Score */
+            score: number;
+            /** Passed */
+            passed: boolean;
+        };
         /** FigureOut */
         FigureOut: {
             /**
@@ -628,7 +700,7 @@ export interface components {
             /** Questionid */
             questionId: string;
             /** Choiceno */
-            choiceNo: number;
+            choiceNo?: number | null;
             /** Iscorrect */
             isCorrect: boolean;
             /** Answer */
@@ -939,6 +1011,7 @@ export interface components {
             nextSeq?: number | null;
             /** Items */
             items?: components["schemas"]["SessionItemOut"][];
+            examResult?: components["schemas"]["ExamResultOut"] | null;
         };
         /**
          * SessionItemDetail
@@ -1075,7 +1148,7 @@ export interface components {
             /** Questionid */
             questionId: string;
             /** Choiceno */
-            choiceNo: number;
+            choiceNo?: number | null;
             /** Iscorrect */
             isCorrect: boolean;
             /** Answer */
@@ -1573,6 +1646,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SessionOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    submit_session_api_sessions__session_id__submit_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-Exam-Token"?: string | null;
+            };
+            path: {
+                session_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExamResultOut"];
                 };
             };
             /** @description Validation Error */
