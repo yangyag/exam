@@ -495,8 +495,9 @@ def _content_key_of(item: dict) -> str:
 
 
 def test_random_returns_one_question_per_content_group(live_client, db_conn):
-    """2023-1-001 과 2023-1-023(보기 쉼표 하나 차이)은 같은 그룹이라 한 응답에 함께 나오지 않는다.
+    """2023-1-001 과 2023-1-023(보기 2의 자연어 쉼표 차이)은 같은 그룹이라 한 응답에 함께 나오지 않는다.
 
+    2023-1 은 100문항이되 고유 그룹이 99개다(001·023 이 한 그룹) — count=100 이면 99개만 나온다.
     중복을 제거한 고유 그룹이 count 보다 적으면 가용한 만큼만 돌려준다(부족분 허용).
     """
     first = live_client.get("/api/questions/2023-1-001")
@@ -508,14 +509,14 @@ def test_random_returns_one_question_per_content_group(live_client, db_conn):
     rows = fetch_content_rows(db_conn, where="q.exam_id = %s", params=["2023-1"])
     assert len(rows) == 100, "2023-1 회차 문항 수가 바뀌었다"
     unique_groups = len({content_key(row) for row in rows})
-    assert unique_groups < len(rows), "중복 쌍이 사라지면 이 테스트의 전제를 다시 확인하라"
+    assert unique_groups == 99, "2023-1 의 고유 그룹이 99개가 아니다(중복·키 규칙이 바뀌었는지 확인)"
 
     response = live_client.get("/api/questions/random", params={"examId": "2023-1", "count": 100})
     assert response.status_code == 200
     items = response.json()
     ids = [item["id"] for item in items]
+    assert len(ids) == 99, "중복 제거 결과가 99개가 아니다"
     assert len(ids) == unique_groups, "고유 그룹 수만큼 돌려주지 않았다"
-    assert len(ids) < 100, "count=100 인데 중복 제거로 줄어든 만큼이 반영되지 않았다"
     assert sum(item_id in ids for item_id in ("2023-1-001", "2023-1-023")) == 1
     assert len({_content_key_of(item) for item in items}) == len(items), "같은 내용이 두 번 나왔다"
 
