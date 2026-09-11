@@ -111,16 +111,78 @@ def test_random_route_is_not_shadowed_by_single_question_route(client, fake_db):
     assert isinstance(response.json(), list)
 
 
-def test_content_key_ignores_only_commas():
-    """중복 키는 쉼표만 무시하고 공백·기호는 그대로 본다(I-01)."""
+def test_content_key_ignores_prose_commas_only():
+    """자연어 문장부호 쉼표는 무시하되 공백·기호·코드 쉼표는 그대로 본다(I-01 보완)."""
     base = question_content_row(choice_texts=["가, 나", "다"])
     comma = question_content_row(choice_texts=["가 나", "다"])
     spaced = question_content_row(choice_texts=["가  나", "다"])
     symbol = question_content_row(choice_texts=["가; 나", "다"])
+    code = question_content_row(choice_texts=["print(1,23)", "다"])
+    code_lost = question_content_row(choice_texts=["print(123)", "다"])
 
     assert content_key(base) == content_key(comma)
     assert content_key(base) != content_key(spaced)
     assert content_key(base) != content_key(symbol)
+    assert content_key(code) != content_key(code_lost), "보기의 코드 쉼표가 지워졌다"
+
+    # text 지문의 쉼표는 인쇄 차이로 보고 무시한다(2022-1-015 계열). table 지문의 쉼표는 자료라 보존한다.
+    text_a = question_content_row(passage="기능, 인터페이스 동작", passage_kind="text")
+    text_b = question_content_row(passage="기능, 인터페이스, 동작", passage_kind="text")
+    table_a = question_content_row(passage="JUnit, xUnit | 테스트", passage_kind="table")
+    table_b = question_content_row(passage="JUnit xUnit | 테스트", passage_kind="table")
+
+    assert content_key(text_a) == content_key(text_b)
+    assert content_key(table_a) != content_key(table_b)
+
+
+def test_content_key_keeps_code_comma_questions_apart():
+    """리뷰 반례: passageKind=code 지문 print(1,23) 과 print(12,3) 은 다른 문항이다(I-01 보완)."""
+    stem = "다음 Python 코드의 출력 결과는?"
+    choices = ["1 23", "12 3", "123", "오류"]
+    a = question_content_row(
+        id="코드-A", stem=stem, passage="print(1,23)", passage_kind="code", choice_texts=choices
+    )
+    b = question_content_row(
+        id="코드-B", stem=stem, passage="print(12,3)", passage_kind="code", choice_texts=choices
+    )
+
+    assert content_key(a) != content_key(b), "코드 쉼표가 지워져 서로 다른 두 문항이 합쳐졌다"
+    picked = pick_unique_random_ids([a, b], 2)
+    assert len(picked) == 2, "고유 그룹이 2개인데 하나만 돌려줬다"
+    assert set(picked) == {"코드-A", "코드-B"}
+
+
+def test_content_key_keeps_walkthrough_pair_merged():
+    """2023-1-001 과 2023-1-023(보기 2의 자연어 쉼표 차이)은 계속 같은 그룹이다(단위 사례)."""
+    stem = "다음 중 화이트 박스 테스트의 설명으로 틀린 것은?"
+    shared = [
+        "사용사례를 확장하여 명세하거나 설계 다이어그램, 원시 코드, 테스트 케이스 등에 적용할 수 있다.",
+        "인스펙션(Inspection)과 동일한 의미를 가진다.",
+        "단순한 테스트 케이스를 이용하여 프로덕트를 수작업으로 수행해 보는 것이다.",
+    ]
+    first = question_content_row(
+        id="2023-1-001",
+        stem=stem,
+        choice_texts=[
+            shared[0],
+            "복잡한 알고리즘 또는 반복, 실시간 동작, 병행 처리와 같은 기능이나 동작을 이해하려고 할 때 유용하다.",
+            shared[1],
+            shared[2],
+        ],
+    )
+    duplicate = question_content_row(
+        id="2023-1-023",
+        stem=stem,
+        choice_texts=[
+            shared[0],
+            "복잡한 알고리즘 또는 반복, 실시간, 동작, 병행 처리와 같은 기능이나 동작을 이해하려고 할 때 유용하다.",
+            shared[1],
+            shared[2],
+        ],
+    )
+
+    assert content_key(first) == content_key(duplicate), "쉼표 하나 차이로 같은 문항이 갈라졌다"
+    assert len(pick_unique_random_ids([first, duplicate], 10)) == 1
 
 
 def test_pick_unique_random_ids_chooses_representative_randomly():

@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import random
+import re
 import unicodedata
 from typing import TYPE_CHECKING, Any, Sequence
 
@@ -133,32 +134,58 @@ SELECT q.id, q.stem, q.passage, q.passage_kind,
   ) ch ON true
 """
 
-# 내용 키에서 무시하는 문자는 쉼표뿐이다. 같은 문항이 회차에 따라 쉼표만 다르게 실린 사례가 있다
-# (2023-1-001 과 2023-1-023). 공백·줄바꿈·나머지 기호는 그대로 두어 코드·표의 서식 차이를
-# 다른 문항으로 남긴다 — 기호와 공백까지 지우는 정규화(tools/dups.py 의 norm)는 쓰지 않는다.
-IGNORED_IN_CONTENT_KEY = str.maketrans("", "", ",，、")
+# 내용 키의 쉼표 규칙 (I-01 보완). 회차별 인쇄 차이로 쉼표만 다르게 실린 같은 문항
+# (2023-1-001 과 2023-1-023, 2022-1-052 와 2024-3-058 등)은 계속 한 그룹으로 묶되,
+# 코드·표에서 의미 있는 쉼표는 서로 다른 문항을 가르는 정보라 보존한다.
+#   - 자연어 문장부호 쉼표(한글에 붙거나 공백이 이웃한 쉼표)는 stem·지문·보기 어디서든 무시한다.
+#   - 공백 없이 코드 문자(영문·숫자·밑줄·%·따옴표)에 붙은 쉼표는 코드·수식의 쉼표로 보고
+#     남긴다 — print(1,23) 과 print(12,3) 을 다른 문항으로 가른다.
+#   - code·table 지문은 쉼표가 문법(인자 구분)·자료라 하나도 지우지 않는다(종류가 신호다).
+# 공백·줄바꿈·나머지 기호는 그대로 두어 코드·표의 서식 차이를 다른 문항으로 남긴다 —
+# 기호와 공백까지 지우는 정규화(tools/dups.py 의 norm)는 쓰지 않는다.
+_CODE_CHARS = r"0-9A-Za-z_%'\""
+LOOSE_COMMA = re.compile(rf"(?<![{_CODE_CHARS}])[,，、]|[,，、](?![{_CODE_CHARS}])")
+CODE_PASSAGE_KINDS = ("code", "table")
 CONTENT_KEY_SEPARATOR = "\x1f"
 CHOICE_SEPARATOR = "\x1e"
 
 
 def key_text(text: str | None) -> str:
-    """내용 키에 넣을 문자열. 유니코드는 NFC 로 맞추고 쉼표만 뺀다."""
+    """내용 키에 넣을 자연어 텍스트. NFC 로 맞추고 문장부호 쉼표만 뺀다.
+
+    바로 앞뒤가 공백 없이 코드 문자(영문·숫자·밑줄·%·따옴표)인 쉼표는 코드·수식 기호라
+    남긴다. stem·보기·도식 alt 와 text/null 지문에 쓴다(code/table 지문은 code_key_text).
+    """
     if not text:
         return ""
-    return unicodedata.normalize("NFC", text).translate(IGNORED_IN_CONTENT_KEY)
+    return LOOSE_COMMA.sub("", unicodedata.normalize("NFC", text))
+
+
+def code_key_text(text: str | None) -> str:
+    """내용 키에 넣을 code·table 지문. 쉼표가 문법(인자 구분)·자료라 그대로 둔다(NFC 만)."""
+    if not text:
+        return ""
+    return unicodedata.normalize("NFC", text)
 
 
 def content_key(row: dict) -> str:
     """같은 문항으로 볼 내용 키. stem·지문(kind 포함)·보기 4개·도식 정보를 모두 반영한다.
 
+    쉼표는 자연어 문장부호일 때만 무시한다(key_text). 회차에 따라 쉼표만 다르게 실린
+    자연어 문항(2023-1-001·2023-1-023)을 계속 한 그룹으로 묶기 위해서다. code·table 지문과
+    코드·수식에 붙은 쉼표는 서로 다른 문항을 가르는 정보라 보존한다(리뷰 반례
+    print(1,23) 과 print(12,3) 같은 코드).
+
     회차·문항 번호·정답·해설·태그·난이도·그림 파일 경로는 내용이 아니므로 넣지 않는다
     (같은 문항이 다른 회차에 실리면 그림 경로도 회차 디렉터리로 달라진다).
     """
+    kind = row["passage_kind"] or ""
+    passage = code_key_text(row["passage"]) if kind in CODE_PASSAGE_KINDS else key_text(row["passage"])
     return CONTENT_KEY_SEPARATOR.join(
         [
             key_text(row["stem"]),
-            row["passage_kind"] or "",
-            key_text(row["passage"]),
+            kind,
+            passage,
             CHOICE_SEPARATOR.join(key_text(text) for text in row["choice_texts"]),
             "1" if row["figure_needed"] else "0",
             row["figure_kind"] or "",
