@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2026-1",
+    "year": 2026,
+    "round": 1,
+    "title": "2026년 1회 정보처리기사 필기",
+    "sourcePdf": "2026년1회_기사필기_기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2026-1-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "분산 데이터베이스 목표 중 “데이터베이스의 분산된 물리적 환경에서 특정 지역의 컴퓨터 시스템이나 네트워크에 장애가 발생해도 데이터 무결성이 보장된다.”는 것과 관계있는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "장애 투명성" },
+        { "no": 2, "text": "병행 투명성" },
+        { "no": 3, "text": "위치 투명성" },
+        { "no": 4, "text": "중복 투명성" }
+      ],
+      "answer": 1,
+      "explanation": "장애 투명성(Failure Transparency)은 분산 데이터베이스에서 특정 지역의 컴퓨터 시스템이나 네트워크에 장애가 발생하더라도 사용자가 장애를 인식하지 못하고 데이터의 무결성이 그대로 보장되는 성질입니다. 즉 장애가 발생해도 트랜잭션이 정상적으로 처리되는 것처럼 보이게 하는 목표이므로 제시된 설명과 일치합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "장애가 발생해도 데이터 무결성을 보장한다는 설명은 장애 투명성의 정의에 해당합니다." },
+        { "no": 2, "correct": false, "why": "병행 투명성은 여러 트랜잭션이 동시에 수행되어도 결과가 순차 수행과 같게 유지되는 성질로, 장애 상황과는 직접 관계가 없습니다." },
+        { "no": 3, "correct": false, "why": "위치 투명성은 데이터가 실제로 어디에 저장되어 있는지 사용자가 알지 못해도 접근할 수 있게 하는 성질입니다." },
+        { "no": 4, "correct": false, "why": "중복 투명성은 데이터가 여러 곳에 중복 저장되어도 사용자가 그 사실을 알 필요가 없도록 하는 성질입니다." }
+      ],
+      "keyPoint": "분산 데이터베이스의 투명성(장애·병행·위치·중복)",
+      "tags": ["분산 데이터베이스", "장애 투명성", "투명성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "정규화 과정 중 1NF에서 2NF가 되기 위한 조건은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "1NF를 만족하고 모든 도메인이 원자값이어야 한다." },
+        { "no": 2, "text": "1NF를 만족하고, 키가 아닌 모든 애트리뷰트들이 기본키에 이행적으로 함수 종속되지 않아야 한다." },
+        { "no": 3, "text": "1NF를 만족하고 다치 종속이 제거되어야 한다." },
+        { "no": 4, "text": "1NF를 만족하고 키가 아닌 모든 속성이 기본키에 대하여 완전 함수적 종속 관계를 만족해야 한다." }
+      ],
+      "answer": 4,
+      "explanation": "2NF는 1NF를 만족하면서 키가 아닌 모든 속성이 기본키 전체에 대해 완전 함수적 종속을 만족해야 성립합니다. 기본키의 일부분에만 종속되는 부분 함수 종속을 제거하는 단계이므로 정답은 ④입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모든 도메인이 원자값이어야 한다는 조건은 1NF를 만족하기 위한 조건입니다." },
+        { "no": 2, "correct": false, "why": "이행적 함수 종속을 제거하는 것은 3NF의 조건입니다." },
+        { "no": 3, "correct": false, "why": "다치 종속을 제거하는 것은 4NF의 조건입니다." },
+        { "no": 4, "correct": true, "why": "부분 함수 종속을 제거하여 기본키에 대한 완전 함수적 종속을 만족시키는 것이 2NF의 조건입니다." }
+      ],
+      "keyPoint": "정규화 단계별 조건(1NF~4NF)",
+      "tags": ["정규화", "2NF", "함수 종속"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "뷰(VIEW)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "뷰 위에 또 다른 뷰를 정의할 수 있다." },
+        { "no": 2, "text": "뷰에 대한 조작에서 삽입, 갱신, 삭제 연산은 제약이 따른다." },
+        { "no": 3, "text": "뷰의 정의는 기본 테이블과 같이 ALTER 문을 이용하여 변경한다." },
+        { "no": 4, "text": "뷰가 정의된 기본 테이블이 제거되면 뷰도 자동적으로 제거된다." }
+      ],
+      "answer": 3,
+      "explanation": "뷰는 CREATE VIEW 문으로 정의하며, 정의를 바꿀 때에는 ALTER 문을 사용하지 않고 DROP VIEW로 기존 뷰를 삭제한 뒤 다시 생성해야 합니다. 따라서 '기본 테이블과 같이 ALTER 문을 이용하여 변경한다'는 설명이 틀렸으므로 정답은 ③입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "뷰를 기반으로 또 다른 뷰를 정의할 수 있으므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "뷰에 대한 삽입, 갱신, 삭제 연산은 여러 제약이 따르므로 옳은 설명입니다." },
+        { "no": 3, "correct": true, "why": "뷰 정의 변경은 ALTER 문이 아니라 뷰를 삭제한 후 다시 생성하는 방식으로 처리하므로 틀린 설명입니다." },
+        { "no": 4, "correct": false, "why": "뷰가 정의된 기본 테이블이 제거되면 뷰도 자동으로 제거되므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "뷰(VIEW)의 정의와 변경 방법",
+      "tags": ["뷰", "VIEW", "DDL"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "다음 R과 S 두 릴레이션에 대한 Division 연산의 수행 결과는?",
+      "passage": "R\nD1 | D2 | D3\na | 1 | A\nb | 1 | A\nc | 2 | A\nd | 2 | B\n\nS\nD2 | D3\n1 | A",
+      "passageKind": "table",
+      "choices": [
+        { "no": 1, "text": "[D3]\nA\nB" },
+        { "no": 2, "text": "[D2]\n2\n2" },
+        { "no": 3, "text": "[D3]\nA" },
+        { "no": 4, "text": "[D1]\na\nb" }
+      ],
+      "answer": 4,
+      "explanation": "R÷S는 S의 모든 튜플과 짝을 이루는 R의 튜플을 찾아 나누는 릴레이션에 없는 속성, 즉 D1의 값만 남기는 연산입니다. S에는 (D2, D3) = (1, A) 하나만 있으므로 R에서 (D2, D3)가 (1, A)인 튜플은 a와 b뿐이고, 따라서 결과는 D1 값 a, b를 가진 릴레이션이 되어 정답은 ④입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "S에는 (1, A)만 있으므로 결과의 D3 값은 A뿐이며, D3는 결과 속성으로 남지도 않습니다." },
+        { "no": 2, "correct": false, "why": "D2 값 2는 S에 존재하지 않으므로 2만 나열한 릴레이션은 Division의 결과가 아닙니다." },
+        { "no": 3, "correct": false, "why": "D3는 나누는 릴레이션 S에도 있는 공통 속성이므로 결과 릴레이션의 속성으로 남지 않습니다." },
+        { "no": 4, "correct": true, "why": "R에서 S의 튜플 (1, A)와 짝을 이루는 튜플은 a, b이므로 D1 값 a, b가 Division의 결과입니다." }
+      ],
+      "keyPoint": "관계 대수의 Division(R÷S) 연산",
+      "tags": ["관계 대수", "Division", "릴레이션"],
+      "difficulty": 4,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "데이터웨어하우스의 기본적인 OLAP(On-Line Analytical Processing) 연산이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Translate" },
+        { "no": 2, "text": "Roll-Up" },
+        { "no": 3, "text": "Dicing" },
+        { "no": 4, "text": "Drill-Down" }
+      ],
+      "answer": 1,
+      "explanation": "OLAP의 기본 연산에는 Roll-Up, Drill-Down, Dicing, Slicing, Pivoting 등이 있으며, 다차원 데이터를 요약하거나 세분화하여 분석하는 데 사용됩니다. Translate는 분석 연산이 아니라 데이터 변환을 뜻하는 일반 용어이므로 정답은 ①입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Translate는 OLAP의 기본 분석 연산에 포함되지 않으므로 '아닌 것'의 정답입니다." },
+        { "no": 2, "correct": false, "why": "Roll-Up은 상세 데이터를 요약해 집계 수준을 높이는 OLAP 연산입니다." },
+        { "no": 3, "correct": false, "why": "Dicing은 큐브에서 일부 차원의 범위를 잘라 부분 집합을 보는 OLAP 연산입니다." },
+        { "no": 4, "correct": false, "why": "Drill-Down은 요약된 데이터에서 더 상세한 수준으로 내려가는 OLAP 연산입니다." }
+      ],
+      "keyPoint": "OLAP의 기본 연산",
+      "tags": ["OLAP", "데이터웨어하우스", "Roll-Up"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "다음 중 SQL의 집계 함수(Aggregation Function)가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "AVG" },
+        { "no": 2, "text": "COUNT" },
+        { "no": 3, "text": "SUM" },
+        { "no": 4, "text": "CREATE" }
+      ],
+      "answer": 4,
+      "explanation": "집계 함수는 여러 행의 값을 하나의 결과 값으로 요약하는 함수로 AVG, COUNT, SUM, MAX, MIN 등이 있습니다. CREATE는 테이블이나 뷰 같은 객체를 생성하는 DDL 명령어이므로 집계 함수가 아니며 정답은 ④입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "AVG는 지정한 열의 평균을 구하는 집계 함수입니다." },
+        { "no": 2, "correct": false, "why": "COUNT는 행의 개수를 세는 집계 함수입니다." },
+        { "no": 3, "correct": false, "why": "SUM은 지정한 열의 합계를 구하는 집계 함수입니다." },
+        { "no": 4, "correct": true, "why": "CREATE는 객체를 생성하는 DDL 명령어로 집계 함수가 아닙니다." }
+      ],
+      "keyPoint": "SQL 집계 함수와 DDL 명령의 구분",
+      "tags": ["SQL", "집계 함수", "Aggregation"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "학생 테이블을 생성한 후 성별 필드가 누락되어 이를 추가하려고 한다. 이에 적합한 SQL 명령어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "INSERT" },
+        { "no": 2, "text": "ALTER" },
+        { "no": 3, "text": "DROP" },
+        { "no": 4, "text": "MODIFY" }
+      ],
+      "answer": 2,
+      "explanation": "이미 생성된 테이블에 새로운 열(필드)을 추가할 때는 ALTER TABLE ... ADD 문을 사용하며, 이는 테이블 구조를 변경하는 DDL에 해당합니다. INSERT는 행 데이터 삽입, DROP은 테이블 삭제, MODIFY는 데이터 수정에 사용하는 명령이므로 정답은 ②입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "INSERT는 테이블에 행 데이터를 삽입하는 DML 명령으로 필드 추가와는 다릅니다." },
+        { "no": 2, "correct": true, "why": "ALTER는 기존 테이블에 필드(속성)를 추가하거나 구조를 변경할 때 사용하는 DDL 명령입니다." },
+        { "no": 3, "correct": false, "why": "DROP은 테이블이나 객체 자체를 삭제하는 명령입니다." },
+        { "no": 4, "correct": false, "why": "MODIFY는 데이터를 갱신하는 명령으로, 누락된 필드를 새로 추가하는 기능이 아닙니다." }
+      ],
+      "keyPoint": "테이블 구조 변경 DDL(ALTER TABLE ... ADD)",
+      "tags": ["SQL", "ALTER", "DDL"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "다음 설명과 관련 있는 트랜잭션의 특징은?",
+      "passage": "트랜잭션의 연산은 모두 실행되거나, 모두 실행되지 않아야 한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Durability" },
+        { "no": 2, "text": "Isolation" },
+        { "no": 3, "text": "Consistency" },
+        { "no": 4, "text": "Atomicity" }
+      ],
+      "answer": 4,
+      "explanation": "트랜잭션의 원자성(Atomicity)은 트랜잭션에 속한 연산들이 모두 수행되거나 전혀 수행되지 않아야 한다는 성질입니다. 지문에서 '모두 실행되거나 모두 실행되지 않아야 한다'고 설명하고 있으므로 정답은 ④ Atomicity입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Durability는 완료된 트랜잭션의 결과가 영구적으로 반영되는 지속성입니다." },
+        { "no": 2, "correct": false, "why": "Isolation은 동시에 수행되는 트랜잭션들이 서로 간섭하지 않는 격리성입니다." },
+        { "no": 3, "correct": false, "why": "Consistency는 트랜잭션 수행 전후에 데이터베이스가 일관된 상태를 유지하는 성질입니다." },
+        { "no": 4, "correct": true, "why": "모든 연산이 전부 실행되거나 전혀 실행되지 않아야 한다는 것은 원자성에 대한 설명입니다." }
+      ],
+      "keyPoint": "트랜잭션의 ACID 특성",
+      "tags": ["트랜잭션", "ACID", "원자성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "병행제어의 로킹(Locking) 단위에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "데이터베이스, 파일, 레코드 등은 로킹 단위가 될 수 있다." },
+        { "no": 2, "text": "로킹 단위가 작아지면 로킹 오버헤드가 증가한다." },
+        { "no": 3, "text": "한꺼번에 로킹할 수 있는 단위를 로킹 단위라고 한다." },
+        { "no": 4, "text": "로킹 단위가 작아지면 병행성 수준이 낮아진다." }
+      ],
+      "answer": 4,
+      "explanation": "로킹 단위는 한꺼번에 로킹할 수 있는 데이터의 크기로, 데이터베이스, 파일, 페이지, 레코드 등이 될 수 있습니다. 로킹 단위가 작아지면 로킹 횟수가 늘어 오버헤드는 커지지만 여러 트랜잭션이 서로 다른 부분을 동시에 사용할 수 있어 병행성 수준은 오히려 높아지므로 ④의 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "데이터베이스, 파일, 레코드는 모두 로킹 단위가 될 수 있으므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "로킹 단위가 작아지면 로킹 횟수가 늘어 오버헤드가 증가하므로 옳은 설명입니다." },
+        { "no": 3, "correct": false, "why": "한꺼번에 로킹할 수 있는 단위를 로킹 단위라고 한다는 설명은 옳습니다." },
+        { "no": 4, "correct": true, "why": "로킹 단위가 작아지면 병행성 수준은 높아지므로 이 설명이 틀려서 정답이 됩니다." }
+      ],
+      "keyPoint": "로킹 단위와 병행성·오버헤드의 관계",
+      "tags": ["병행제어", "로킹", "Locking"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "관계 데이터 모델에서 릴레이션(relation)에 관한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "릴레이션의 각 행을 스키마(Schema)라 하며, 예로 도서 릴레이션을 구성하는 스키마에는 도서번호, 도서명, 저자, 가격이 있다." },
+        { "no": 2, "text": "릴레이션의 각 열을 튜플(Tuple)이라 하며, 하나의 튜플은 각 속성에서 정의된 값을 이용하여 구성된다." },
+        { "no": 3, "text": "도메인(Domain)은 하나의 속성이 가질 수 있는 같은 타입의 모든 값의 집합으로 각 속성의 도메인은 원자값을 갖는다." },
+        { "no": 4, "text": "속성(Attribute)은 한 개의 릴레이션의 논리적인 구조를 정의한 것으로 릴레이션의 이름과 릴레이션에 포함된 속성들의 집합을 의미한다." }
+      ],
+      "answer": 3,
+      "explanation": "도메인이란 하나의 속성이 가질 수 있는 같은 타입의 모든 값의 집합이며, 각 속성의 도메인은 더 이상 나눌 수 없는 원자값으로 구성됩니다. 도메인의 정의와 원자값 성질을 정확히 서술한 ③이 옳습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "릴레이션의 각 행은 튜플이고 스키마는 릴레이션의 구조를 정의한 것이므로 틀린 설명입니다." },
+        { "no": 2, "correct": false, "why": "릴레이션의 각 열은 속성이며 튜플은 행을 의미하므로 서로 바뀐 틀린 설명입니다." },
+        { "no": 3, "correct": true, "why": "도메인이 속성이 가질 수 있는 같은 타입의 원자값 집합이라는 설명이 옳습니다." },
+        { "no": 4, "correct": false, "why": "릴레이션의 논리적 구조와 속성 집합을 정의하는 것은 속성이 아니라 스키마이므로 틀린 설명입니다." }
+      ],
+      "keyPoint": "릴레이션의 구성 요소(튜플·속성·도메인·스키마)",
+      "tags": ["관계 데이터 모델", "도메인", "릴레이션"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "소프트웨어 개발 활동을 수행함에 있어서 시스템이 고장(Failure)을 일으키게 하며, 오류(Error)가 있는 경우 발생하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Fault" },
+        { "no": 2, "text": "Testcase" },
+        { "no": 3, "text": "Mistake" },
+        { "no": 4, "text": "Inspection" }
+      ],
+      "answer": 1,
+      "explanation": "소프트웨어에 존재하는 결함(Fault)이 실행 중 오류(Error)를 일으키고, 그 오류가 결과적으로 시스템 고장(Failure)으로 이어집니다. 즉 고장을 일으키는 원인이 되는 결함을 묻는 문제이므로 정답은 ① Fault입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Fault는 시스템 고장의 원인이 되는 소프트웨어 결함을 의미합니다." },
+        { "no": 2, "correct": false, "why": "Testcase는 시험에 사용하는 입력 데이터와 절차를 뜻하며 고장의 원인과는 다른 개념입니다." },
+        { "no": 3, "correct": false, "why": "Mistake는 사람이 범한 실수로, 결함(Fault)을 만들어 내는 선행 원인에 해당합니다." },
+        { "no": 4, "correct": false, "why": "Inspection은 결함을 찾기 위한 정적 테스트 기법으로 고장의 원인 자체를 가리키지 않습니다." }
+      ],
+      "keyPoint": "결함(Fault)·오류(Error)·고장(Failure)의 관계",
+      "tags": ["소프트웨어 테스트", "Fault", "결함"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "병렬 데이터베이스 환경 중 수평 분할에서 활용되는 분할 기법이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "라운드-로빈" },
+        { "no": 2, "text": "범위 분할" },
+        { "no": 3, "text": "예측 분할" },
+        { "no": 4, "text": "해시 분할" }
+      ],
+      "answer": 3,
+      "explanation": "수평 분할은 릴레이션의 행을 여러 조각으로 나누어 저장하는 기법으로 라운드-로빈, 범위 분할, 해시 분할 등이 사용됩니다. 예측 분할은 수평 분할에서 활용되는 기법이 아니므로 정답은 ③입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "라운드-로빈은 행을 순서대로 돌아가며 분할하는 수평 분할 기법입니다." },
+        { "no": 2, "correct": false, "why": "범위 분할은 값의 범위를 기준으로 행을 나누는 수평 분할 기법입니다." },
+        { "no": 3, "correct": true, "why": "예측 분할은 수평 분할에서 사용하는 기법이 아니므로 정답이 됩니다." },
+        { "no": 4, "correct": false, "why": "해시 분할은 해시 함수의 결과를 기준으로 행을 분할하는 기법입니다." }
+      ],
+      "keyPoint": "수평 분할(파티셔닝)의 종류",
+      "tags": ["병렬 데이터베이스", "수평 분할", "파티셔닝"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "SQL 문에서 SELECT에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "FROM 절에는 질의에 의해 검색될 데이터들을 포함하는 테이블명을 기술한다." },
+        { "no": 2, "text": "검색결과에 중복되는 레코드를 없애기 위해서는 WHERE 절에 ‘DISTINCT’ 키워드를 사용한다." },
+        { "no": 3, "text": "HAVING 절은 GROUP BY 절과 함께 사용되며, 그룹에 대한 조건을 지정한다." },
+        { "no": 4, "text": "ORDER BY 절은 특정 속성을 기준으로 정렬하여 검색할 때 사용한다." }
+      ],
+      "answer": 2,
+      "explanation": "SELECT 문에서 중복된 레코드를 제거하는 DISTINCT 키워드는 WHERE 절이 아니라 SELECT 절에 기술합니다. WHERE 절은 검색할 행의 조건을 지정하는 절이므로 ②의 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "FROM 절에 질의 대상이 되는 테이블명을 기술한다는 설명은 옳습니다." },
+        { "no": 2, "correct": true, "why": "DISTINCT는 SELECT 절에 기술하는 키워드이므로 WHERE 절에 쓴다는 설명이 틀려 정답이 됩니다." },
+        { "no": 3, "correct": false, "why": "HAVING 절이 GROUP BY 절과 함께 그룹 조건을 지정한다는 설명은 옳습니다." },
+        { "no": 4, "correct": false, "why": "ORDER BY 절이 특정 속성을 기준으로 정렬한다는 설명은 옳습니다." }
+      ],
+      "keyPoint": "SELECT 문 각 절(FROM·WHERE·HAVING·ORDER BY)의 역할",
+      "tags": ["SQL", "SELECT", "DISTINCT"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "어떤 릴레이션 R에서 X와 Y를 각각 R의 애트리뷰트 집합의 부분 집합이라고 할 경우 애트리뷰트 X의 값 각각에 대해 시간에 관계없이 항상 애트리뷰트 Y의 값이 오직 하나만 연관되어 있을 때 Y는 X에 함수 종속이라고 한다. 이 함수 종속의 표기로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Y → X" },
+        { "no": 2, "text": "Y ⊂ X" },
+        { "no": 3, "text": "X → Y" },
+        { "no": 4, "text": "X ⊂ Y" }
+      ],
+      "answer": 3,
+      "explanation": "함수 종속 X → Y는 애트리뷰트 X의 값이 정해지면 애트리뷰트 Y의 값이 오직 하나로 결정된다는 의미입니다. 문제에서 Y가 X에 함수 종속이라고 했으므로 X → Y로 표기하며 정답은 ③입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Y → X는 Y가 X를 결정하는 관계로, 제시된 종속 방향과 반대입니다." },
+        { "no": 2, "correct": false, "why": "⊂ 기호는 부분 집합을 나타내는 집합 기호이며 함수 종속의 표기가 아닙니다." },
+        { "no": 3, "correct": true, "why": "X가 Y를 결정하는 함수 종속은 X → Y로 표기하는 것이 옳습니다." },
+        { "no": 4, "correct": false, "why": "X ⊂ Y는 X가 Y의 부분 집합이라는 의미일 뿐 함수 종속 표기가 아닙니다." }
+      ],
+      "keyPoint": "함수 종속의 표기 X → Y",
+      "tags": ["함수 종속", "정규화", "애트리뷰트"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "데이터의 중복으로 인하여 관계 연산을 처리할 때 예기치 못한 곤란한 현상이 발생하는 것을 무엇이라 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "이상(Anomaly)" },
+        { "no": 2, "text": "제한(Restriction)" },
+        { "no": 3, "text": "종속성(Dependency)" },
+        { "no": 4, "text": "변환(Translation)" }
+      ],
+      "answer": 1,
+      "explanation": "데이터의 중복 저장으로 인해 삽입, 삭제, 갱신 시 예기치 못한 곤란한 현상이 나타나는 것을 이상(Anomaly)이라고 합니다. 삽입 이상, 삭제 이상, 갱신 이상이 있으며 정규화를 통해 제거할 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Anomaly는 데이터 중복으로 발생하는 삽입·삭제·갱신 이상 현상을 뜻합니다." },
+        { "no": 2, "correct": false, "why": "Restriction은 질의나 작업에 가해지는 제한 조건을 뜻하는 용어로 이상 현상과 무관합니다." },
+        { "no": 3, "correct": false, "why": "Dependency는 속성 간의 종속 관계를 뜻하며 이상 현상 자체를 가리키지 않습니다." },
+        { "no": 4, "correct": false, "why": "Translation은 변환을 의미하는 일반 용어로 데이터베이스 이상 현상과 관계가 없습니다." }
+      ],
+      "keyPoint": "이상(Anomaly)의 개념과 종류",
+      "tags": ["정규화", "이상", "Anomaly"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "학적 테이블에서 전화번호가 Null 값이 아닌 학생명을 모두 검색할 때, SQL 구문으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 DON’T NULL;" },
+        { "no": 2, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 !=NOT NULL;" },
+        { "no": 3, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 IS NOT NULL;" },
+        { "no": 4, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 IS NULL;" }
+      ],
+      "answer": 3,
+      "explanation": "NULL은 값이 없음을 의미하므로 =이나 != 같은 비교 연산자로는 판단할 수 없고 IS NULL 또는 IS NOT NULL을 사용해야 합니다. 전화번호가 NULL이 아닌 학생을 검색해야 하므로 WHERE 전화번호 IS NOT NULL이 옳습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DON’T NULL이라는 연산자는 SQL에 존재하지 않는 잘못된 문법입니다." },
+        { "no": 2, "correct": false, "why": "!=NOT NULL은 잘못된 문법이며 NULL은 비교 연산자로 판단할 수 없습니다." },
+        { "no": 3, "correct": true, "why": "IS NOT NULL은 NULL이 아닌 값을 가진 행을 검색하는 올바른 조건식입니다." },
+        { "no": 4, "correct": false, "why": "IS NULL은 전화번호가 NULL인 학생을 검색하므로 문제에서 요구한 조건과 반대입니다." }
+      ],
+      "keyPoint": "NULL 비교와 IS NOT NULL",
+      "tags": ["SQL", "NULL", "IS NOT NULL"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "다음 중 기본키는 NULL 값을 가져서는 안 되며, 릴레이션 내에 오직 하나의 값만 존재해야 한다는 조건을 무엇이라 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "개체 무결성 제약 조건" },
+        { "no": 2, "text": "참조 무결성 제약 조건" },
+        { "no": 3, "text": "도메인 무결성 제약 조건" },
+        { "no": 4, "text": "속성 무결성 제약 조건" }
+      ],
+      "answer": 1,
+      "explanation": "개체 무결성 제약 조건은 기본키를 구성하는 속성이 NULL 값을 가지지 않고 릴레이션 내에서 유일한 값을 가져야 한다는 규칙입니다. 기본키의 NULL 금지와 유일성을 보장하는 조건이므로 정답은 ①입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "개체 무결성은 기본키가 NULL을 허용하지 않고 유일해야 한다는 조건입니다." },
+        { "no": 2, "correct": false, "why": "참조 무결성은 외래키 값이 참조 릴레이션의 기본키 값과 일치하거나 NULL이어야 한다는 조건입니다." },
+        { "no": 3, "correct": false, "why": "도메인 무결성은 속성 값이 정의된 도메인 범위 안에 있어야 한다는 조건입니다." },
+        { "no": 4, "correct": false, "why": "속성 무결성은 속성 값이 원자값이어야 한다는 성질을 뜻하는 것으로 기본키의 유일성 규칙과는 다릅니다." }
+      ],
+      "keyPoint": "개체 무결성 제약 조건과 기본키",
+      "tags": ["무결성 제약 조건", "기본키", "개체 무결성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "데이터 제어어(DCL)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ROLLBACK : 데이터의 보안과 무결성을 정의한다." },
+        { "no": 2, "text": "COMMIT : 데이터베이스 사용자의 사용 권한을 취소한다." },
+        { "no": 3, "text": "GRANT : 데이터베이스 사용자의 사용 권한을 부여한다." },
+        { "no": 4, "text": "REVOKE : 데이터베이스 조작 작업이 비정상적으로 종료되었을 때 원래 상태로 복구한다." }
+      ],
+      "answer": 3,
+      "explanation": "DCL은 데이터베이스 사용 권한을 부여·취소하거나 트랜잭션을 확정·복구하는 명령어로 GRANT, REVOKE, COMMIT, ROLLBACK이 있습니다. GRANT는 사용자에게 사용 권한을 부여하는 명령이므로 정답은 ③입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ROLLBACK은 트랜잭션을 원래 상태로 복구하는 명령으로 보안과 무결성을 정의하는 기능이 아닙니다." },
+        { "no": 2, "correct": false, "why": "COMMIT은 트랜잭션 결과를 확정하는 명령으로 사용 권한 취소와는 관계가 없습니다." },
+        { "no": 3, "correct": true, "why": "GRANT는 데이터베이스 사용자에게 사용 권한을 부여하는 명령입니다." },
+        { "no": 4, "correct": false, "why": "REVOKE는 권한을 취소하는 명령이며, 비정상 종료 시 원래 상태로 복구하는 것은 ROLLBACK입니다." }
+      ],
+      "keyPoint": "DCL 명령(GRANT·REVOKE·COMMIT·ROLLBACK)",
+      "tags": ["SQL", "DCL", "GRANT"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "정규화 과정에서 함수 종속이 A → B이고 B → C일 때 A → C인 관계를 제거하는 단계는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "1NF → 2NF" },
+        { "no": 2, "text": "2NF → 3NF" },
+        { "no": 3, "text": "3NF → BCNF" },
+        { "no": 4, "text": "BCNF → 4NF" }
+      ],
+      "answer": 2,
+      "explanation": "A → B이고 B → C일 때 A → C가 성립하는 관계를 이행적 함수 종속이라고 하며, 이를 제거하는 단계가 3NF입니다. 따라서 2NF에서 3NF로 가는 과정이 정답입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "1NF → 2NF 단계에서는 기본키의 일부에만 종속되는 부분 함수 종속을 제거합니다." },
+        { "no": 2, "correct": true, "why": "이행적 함수 종속(A → B, B → C이면 A → C)을 제거하는 단계는 2NF → 3NF입니다." },
+        { "no": 3, "correct": false, "why": "3NF → BCNF 단계에서는 모든 결정자가 후보키가 되도록 릴레이션을 분해합니다." },
+        { "no": 4, "correct": false, "why": "BCNF → 4NF 단계에서는 다치 종속을 제거합니다." }
+      ],
+      "keyPoint": "정규화 단계별 제거 대상(부분·이행·다치 종속)",
+      "tags": ["정규화", "3NF", "이행적 함수 종속"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "데이터베이스 설계 단계 중 물리적 설계 시 고려 사항으로 적절하지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "스키마의 평가 및 정제" },
+        { "no": 2, "text": "응답 시간" },
+        { "no": 3, "text": "저장 공간의 효율화" },
+        { "no": 4, "text": "트랜잭션 처리량" }
+      ],
+      "answer": 1,
+      "explanation": "물리적 설계 단계에서는 저장 구조와 접근 경로를 결정하기 위해 응답 시간, 저장 공간의 효율화, 트랜잭션 처리량 등을 고려합니다. 스키마의 평가 및 정제는 논리적 설계 단계에서 수행하는 작업이므로 물리적 설계 고려 사항이 아니며 정답은 ①입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "스키마의 평가 및 정제는 논리적 설계 단계의 작업이므로 물리적 설계 고려 사항이 아닙니다." },
+        { "no": 2, "correct": false, "why": "응답 시간은 물리적 설계에서 반드시 고려해야 하는 성능 요인입니다." },
+        { "no": 3, "correct": false, "why": "저장 공간의 효율화는 물리적 설계에서 고려하는 대표적인 요소입니다." },
+        { "no": 4, "correct": false, "why": "트랜잭션 처리량은 물리적 설계 시 고려해야 하는 성능 목표입니다." }
+      ],
+      "keyPoint": "데이터베이스 설계 단계(논리적 설계와 물리적 설계의 구분)",
+      "tags": ["데이터베이스 설계", "물리적 설계", "트랜잭션 처리량"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

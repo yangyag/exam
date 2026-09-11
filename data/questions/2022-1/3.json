@@ -1,0 +1,1499 @@
+{
+ "exam": {
+  "id": "2022-1",
+  "year": 2022,
+  "round": 1,
+  "title": "2022년 1회 정보처리기사 필기",
+  "sourcePdf": "2022년1회_기사필기 기출문제.pdf"
+ },
+ "subject": {
+  "code": 3,
+  "name": "데이터베이스 구축"
+ },
+ "questions": [
+  {
+   "id": "2022-1-041",
+   "number": 41,
+   "subjectCode": 3,
+   "stem": "데이터베이스 설계 단계 중 물리적 설계 시 고려 사항으로 적절하지 않은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "스키마의 평가 및 정제"
+    },
+    {
+     "no": 2,
+     "text": "응답 시간"
+    },
+    {
+     "no": 3,
+     "text": "저장 공간의 효율화"
+    },
+    {
+     "no": 4,
+     "text": "트랜잭션 처리량"
+    }
+   ],
+   "answer": 1,
+   "explanation": "물리적 설계는 논리적 설계에서 만든 논리적 스키마를 특정 DBMS에 맞는 물리적 저장 구조로 변환하는 단계로, 응답 시간과 저장 공간의 효율화, 트랜잭션 처리량 같은 성능 요소를 주로 고려합니다. 스키마의 평가 및 정제는 개념적 설계 결과를 검토하고 다듬는 논리적 설계 단계의 작업입니다. 따라서 물리적 설계의 고려 사항이 아닙니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "스키마의 평가 및 정제는 논리적 설계 단계의 작업으로 물리적 설계의 고려 사항이 아닙니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "응답 시간은 물리적 설계에서 접근 경로와 저장 구조를 정할 때 고려하는 대표적인 성능 요소입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "저장 공간의 효율화는 물리적 설계에서 저장 구조와 파일 조직을 결정할 때 고려하는 요소입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "트랜잭션 처리량은 물리적 설계에서 동시성과 성능을 좌우하는 고려 요소입니다."
+    }
+   ],
+   "keyPoint": "물리적 설계는 논리적 스키마를 DBMS에 맞는 저장 구조로 변환하며 응답 시간·저장 공간·트랜잭션 처리량을 고려한다.",
+   "tags": [
+    "물리적 설계",
+    "데이터베이스 설계 단계"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-042",
+   "number": 42,
+   "subjectCode": 3,
+   "stem": "DELETE 명령에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "테이블의 행을 삭제할 때 사용한다."
+    },
+    {
+     "no": 2,
+     "text": "WHERE 조건절이 없는 DELETE 명령을 수행하면 DROP TABLE 명령을 수행했을 때와 동일한 효과를 얻을 수 있다."
+    },
+    {
+     "no": 3,
+     "text": "SQL을 사용 용도에 따라 분류할 경우 DML에 해당한다."
+    },
+    {
+     "no": 4,
+     "text": "기본 사용 형식은 “DELETE FROM 테이블 [WHERE 조건];” 이다."
+    }
+   ],
+   "answer": 2,
+   "explanation": "DELETE는 테이블의 행(튜플)을 삭제하는 DML 명령으로, 기본 형식은 “DELETE FROM 테이블 [WHERE 조건];”입니다. WHERE 절 없이 수행하면 모든 행이 삭제되지만 테이블의 정의와 구조는 그대로 남고 롤백으로 되돌릴 수도 있습니다. 반면 DROP TABLE은 테이블 자체와 스키마 정의를 함께 제거합니다. 따라서 두 명령이 동일한 효과를 낸다는 설명이 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "DELETE는 테이블에서 행을 삭제할 때 사용하는 DML 명령이므로 옳은 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "WHERE 절이 없으면 모든 행이 삭제될 뿐 테이블 구조는 남으므로 DROP TABLE과 같은 효과가 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "DELETE는 데이터 조작어(DML)에 속하므로 옳은 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "DELETE의 기본 형식은 “DELETE FROM 테이블 [WHERE 조건];”이므로 옳은 설명입니다."
+    }
+   ],
+   "keyPoint": "DELETE는 행만 삭제하는 DML이고, DROP은 테이블 구조까지 제거하는 DDL이다.",
+   "tags": [
+    "DELETE",
+    "DROP TABLE",
+    "DML"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-043",
+   "number": 43,
+   "subjectCode": 3,
+   "stem": "어떤 릴레이션 R의 모든 조인 종속성의 만족이 R의 후보키를 통해서만 만족될 때, 이 릴레이션 R이 해당하는 정규형은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "제5정규형"
+    },
+    {
+     "no": 2,
+     "text": "제4정규형"
+    },
+    {
+     "no": 3,
+     "text": "제3정규형"
+    },
+    {
+     "no": 4,
+     "text": "제1정규형"
+    }
+   ],
+   "answer": 1,
+   "explanation": "제5정규형(PJNF)은 릴레이션에 존재하는 모든 조인 종속성이 그 릴레이션의 후보키를 통해서만 만족되는 정규형입니다. 후보키가 아닌 속성 때문에 조인이 발생하지 않도록 분해하는 단계로, 조인 종속성을 제거합니다. 제4정규형은 다치 종속성을, 제3정규형은 이행적 함수 종속을 제거하는 단계이므로 해당하지 않습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "조인 종속성이 후보키를 통해서만 만족되는 정규형은 제5정규형(PJNF)입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "제4정규형은 다치 종속성을 제거한 정규형으로 조인 종속성과는 다른 개념입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "제3정규형은 이행적 함수 종속을 제거한 정규형입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "제1정규형은 모든 속성이 원자값만 갖도록 한 정규형입니다."
+    }
+   ],
+   "keyPoint": "제5정규형(PJNF)은 모든 조인 종속성이 후보키를 통해서만 만족되는 정규형이다.",
+   "tags": [
+    "제5정규형",
+    "조인 종속성",
+    "PJNF"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-044",
+   "number": 44,
+   "subjectCode": 3,
+   "stem": "E-R 모델에서 다중값 속성의 표기법은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "마름모(◇) 모양의 기호"
+    },
+    {
+     "no": 2,
+     "text": "직사각형(□) 모양의 기호"
+    },
+    {
+     "no": 3,
+     "text": "이중 타원(◎) 모양의 기호"
+    },
+    {
+     "no": 4,
+     "text": "굵은 가로선(▬) 모양의 기호"
+    }
+   ],
+   "answer": 3,
+   "explanation": "E-R 모델에서 다중값 속성은 한 속성이 여러 값을 가질 수 있는 속성으로, 타원을 두 겹으로 겹친 이중 타원으로 표기합니다. 개체는 사각형, 관계는 마름모, 속성은 타원, 키 속성은 밑줄 그은 타원으로 나타내며 다중값 속성만 이중 타원을 사용합니다. 따라서 보기 중 이중 타원 모양이 정답입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "마름모는 개체와 개체 사이의 관계를 나타내는 기호입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "직사각형은 개체(엔터티)를 나타내는 기호입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "이중 타원은 한 속성이 여러 값을 가질 수 있는 다중값 속성을 나타내는 기호입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "밑줄(굵은 가로선)은 키 속성을 나타내는 표기입니다."
+    }
+   ],
+   "keyPoint": "E-R 표기 - 사각형은 개체, 마름모는 관계, 타원은 속성, 이중 타원은 다중값 속성, 밑줄은 키 속성",
+   "tags": [
+    "E-R 다이어그램",
+    "다중값 속성",
+    "데이터 모델링"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": true,
+    "kind": "diagram",
+    "image": "figures/2022-1/044.png",
+    "alt": "E-R 모델 표기 기호가 2행 2열로 제시되어 있고, ①은 마름모, ②는 직사각형, ③은 이중 타원, ④는 굵은 가로선 모양이다",
+    "page": 3,
+    "col": 1,
+    "box": [
+     318.5,
+     649.6,
+     463.6,
+     682.5
+    ]
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-045",
+   "number": 45,
+   "subjectCode": 3,
+   "stem": "다른 릴레이션의 기본키를 참조하는 키를 의미하는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "필드키"
+    },
+    {
+     "no": 2,
+     "text": "슈퍼키"
+    },
+    {
+     "no": 3,
+     "text": "외래키"
+    },
+    {
+     "no": 4,
+     "text": "후보키"
+    }
+   ],
+   "answer": 3,
+   "explanation": "외래키는 한 릴레이션의 속성 중 다른 릴레이션의 기본키를 참조하는 속성으로, 두 릴레이션 사이의 참조 관계를 표현하고 참조 무결성을 보장합니다. 슈퍼키는 유일성만 만족하는 속성 집합이고, 후보키는 유일성과 최소성을 모두 만족하여 기본키로 선택될 수 있는 속성 집합입니다. 필드키는 데이터베이스 이론에서 사용하는 정식 키의 종류가 아닙니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "필드키는 관계형 데이터베이스 이론에서 정의하는 정식 키의 종류가 아닙니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "슈퍼키는 유일성은 만족하지만 최소성은 만족하지 않아도 되는 속성 집합입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "외래키는 다른 릴레이션의 기본키를 참조하여 릴레이션 간 관계를 맺는 속성입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "후보키는 유일성과 최소성을 모두 만족하여 기본키가 될 수 있는 속성 집합입니다."
+    }
+   ],
+   "keyPoint": "외래키는 다른 릴레이션의 기본키를 참조하는 속성으로 참조 무결성을 보장한다.",
+   "tags": [
+    "외래키",
+    "키의 종류",
+    "참조 무결성"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-046",
+   "number": 46,
+   "subjectCode": 3,
+   "stem": "관계해석에서 ‘모든 것에 대하여’의 의미를 나타내는 논리 기호는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "∃"
+    },
+    {
+     "no": 2,
+     "text": "∈"
+    },
+    {
+     "no": 3,
+     "text": "∀"
+    },
+    {
+     "no": 4,
+     "text": "⊂"
+    }
+   ],
+   "answer": 3,
+   "explanation": "관계해석에서 ∀는 ‘모든 것에 대하여’를 뜻하는 전칭 정량자이고, ∃는 ‘존재하는 것이 적어도 하나 있다’를 뜻하는 존재 정량자입니다. ∈는 어떤 원소가 집합에 속한다는 것을 나타내는 기호이며, ⊂는 한 집합이 다른 집합의 부분집합임을 나타냅니다. 따라서 ‘모든 것에 대하여’에 해당하는 기호는 ∀입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "∃는 ‘존재한다’를 나타내는 존재 정량자입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "∈는 어떤 원소가 집합에 속한다는 것을 나타내는 집합 연산자입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "∀는 ‘모든 것에 대하여’를 나타내는 전칭 정량자입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "⊂는 한 집합이 다른 집합의 부분집합임을 나타내는 기호입니다."
+    }
+   ],
+   "keyPoint": "관계해석의 정량자 - ∀는 전칭(모든 것에 대하여), ∃는 존재(존재하는 것이 있다)",
+   "tags": [
+    "관계해석",
+    "전칭 정량자",
+    "논리 기호"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-047",
+   "number": 47,
+   "subjectCode": 3,
+   "stem": "다음 릴레이션의 Degree와 Cardinality는?",
+   "passage": "학번 | 이름 | 학년 | 학과\n13001 | 홍길동 | 3학년 | 전기\n13002 | 이순신 | 4학년 | 기계\n13003 | 강감찬 | 2학년 | 컴퓨터",
+   "passageKind": "table",
+   "choices": [
+    {
+     "no": 1,
+     "text": "Degree : 4, Cardinality : 3"
+    },
+    {
+     "no": 2,
+     "text": "Degree : 3, Cardinality : 4"
+    },
+    {
+     "no": 3,
+     "text": "Degree : 3, Cardinality : 12"
+    },
+    {
+     "no": 4,
+     "text": "Degree : 12, Cardinality : 3"
+    }
+   ],
+   "answer": 1,
+   "explanation": "Degree(차수)는 릴레이션이 가진 속성(열)의 개수를 말하며, 제시된 릴레이션은 학번·이름·학년·학과의 4개 속성을 가집니다. Cardinality(기수)는 릴레이션에 들어 있는 튜플(행)의 개수로 3개입니다. 따라서 Degree는 4, Cardinality는 3입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "속성이 학번·이름·학년·학과로 4개, 튜플이 3개이므로 Degree 4, Cardinality 3이 맞습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "3은 속성 수가 아니라 튜플의 수이고 4는 튜플 수가 아니라 속성 수라서 서로 뒤바뀐 값입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "12는 속성 수와 튜플 수를 곱한 값으로 Degree나 Cardinality가 아닙니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "Degree와 Cardinality의 값을 서로 바꾸어 놓은 설명입니다."
+    }
+   ],
+   "keyPoint": "Degree는 속성(열)의 수, Cardinality는 튜플(행)의 수이다.",
+   "tags": [
+    "Degree",
+    "Cardinality",
+    "릴레이션"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-048",
+   "number": 48,
+   "subjectCode": 3,
+   "stem": "뷰(View)에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "뷰 위에 또 다른 뷰를 정의할 수 있다."
+    },
+    {
+     "no": 2,
+     "text": "DBA는 보안성 측면에서 뷰를 활용할 수 있다."
+    },
+    {
+     "no": 3,
+     "text": "사용자가 필요한 정보를 요구에 맞게 가공하여 뷰로 만들 수 있다."
+    },
+    {
+     "no": 4,
+     "text": "SQL을 사용하면 뷰에 대한 삽입, 갱신, 삭제 연산 시 제약 사항이 없다."
+    }
+   ],
+   "answer": 4,
+   "explanation": "뷰는 하나 이상의 테이블을 조인해 만든 가상 테이블로, 정의만 저장되고 데이터 자체는 저장되지 않습니다. 뷰 위에 또 다른 뷰를 정의할 수 있고, DBA는 보안성 측면에서 뷰를 활용하며, 사용자는 필요한 정보를 요구에 맞게 가공해 뷰를 만들 수 있습니다. 다만 뷰에 대한 삽입·갱신·삭제는 뷰 정의 조건에 따라 제약을 받으므로 제약 사항이 없다는 설명은 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "뷰 위에 또 다른 뷰를 정의할 수 있으므로 옳은 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "DBA는 뷰를 통해 접근 가능한 데이터를 제한할 수 있어 보안성 측면에서 활용합니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "사용자가 필요한 정보를 요구에 맞게 가공하여 뷰로 만들 수 있습니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "뷰에 대한 삽입·갱신·삭제는 뷰 정의 조건에 따라 제약을 받으므로 제약 사항이 없다는 설명이 틀렸습니다."
+    }
+   ],
+   "keyPoint": "뷰는 정의만 저장되는 가상 테이블이며 삽입·갱신·삭제에 제약이 따른다.",
+   "tags": [
+    "뷰",
+    "가상 테이블",
+    "View"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-049",
+   "number": 49,
+   "subjectCode": 3,
+   "stem": "관계 대수식을 SQL 질의로 옳게 표현한 것은?",
+   "passage": "π이름(σ학과=‘교육’(학생))",
+   "passageKind": "text",
+   "choices": [
+    {
+     "no": 1,
+     "text": "SELECT 학생 FROM 이름 WHERE 학과 = ‘교육’;"
+    },
+    {
+     "no": 2,
+     "text": "SELECT 이름 FROM 학생 WHERE 학과 = ‘교육’;"
+    },
+    {
+     "no": 3,
+     "text": "SELECT 교육 FROM 학과 WHERE 이름 = ‘학생’;"
+    },
+    {
+     "no": 4,
+     "text": "SELECT 학과 FROM 학생 WHERE 이름 = ‘교육’;"
+    }
+   ],
+   "answer": 2,
+   "explanation": "관계 대수에서 π는 지정한 속성만 추출하는 프로젝션, σ는 조건을 만족하는 튜플만 고르는 셀렉션 연산입니다. π이름(σ학과='교육'(학생))은 학생 릴레이션에서 학과가 ‘교육’인 튜플을 먼저 고른 뒤 그중 이름 속성만 추출하라는 뜻입니다. 따라서 이를 SQL로 표현하면 SELECT 이름 FROM 학생 WHERE 학과 = ‘교육’;이 됩니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "SELECT 절에 추출할 속성이 아니라 테이블 이름이 들어가 있어 관계 대수식과 다릅니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "학생 테이블에서 학과가 ‘교육’인 행의 이름 속성을 추출하므로 관계 대수식과 일치합니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "테이블 이름과 속성, 조건 값이 모두 뒤바뀐 구문입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "추출할 속성이 이름이 아니라 학과로 되어 있고 조건 값도 반대로 되어 있습니다."
+    }
+   ],
+   "keyPoint": "π는 프로젝션(속성 추출), σ는 셀렉션(조건에 맞는 튜플 선택)을 나타낸다.",
+   "tags": [
+    "관계 대수",
+    "프로젝션",
+    "셀렉션"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-050",
+   "number": 50,
+   "subjectCode": 3,
+   "stem": "정규화 과정에서 함수 종속이 A → B이고 B → C일 때 A → C인 관계를 제거하는 단계는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "1NF → 2NF"
+    },
+    {
+     "no": 2,
+     "text": "2NF → 3NF"
+    },
+    {
+     "no": 3,
+     "text": "3NF → BCNF"
+    },
+    {
+     "no": 4,
+     "text": "BCNF → 4NF"
+    }
+   ],
+   "answer": 2,
+   "explanation": "A → B이고 B → C일 때 A → C가 성립하는 관계를 이행적 함수 종속이라고 하며, 이를 제거하는 단계가 제2정규형에서 제3정규형으로 가는 과정입니다. 1NF → 2NF는 기본키의 일부에만 종속되는 부분 함수 종속을 제거하는 단계이고, 3NF → BCNF는 모든 결정자가 후보키가 되도록 분해하는 단계입니다. 따라서 정답은 2NF → 3NF입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "1NF → 2NF는 기본키의 일부에만 종속되는 부분 함수 종속을 제거하는 단계입니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "이행적 함수 종속을 제거하는 단계는 제2정규형에서 제3정규형으로 가는 과정입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "3NF → BCNF는 후보키가 아닌 결정자가 존재하는 관계를 분해하는 단계입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "BCNF → 4NF는 다치 종속을 제거하는 단계입니다."
+    }
+   ],
+   "keyPoint": "2NF는 부분 함수 종속, 3NF는 이행적 함수 종속, BCNF는 결정자 문제를 해결한다.",
+   "tags": [
+    "정규화",
+    "이행적 함수 종속",
+    "제3정규형"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-051",
+   "number": 51,
+   "subjectCode": 3,
+   "stem": "CREATE TABLE문에 포함되지 않는 기능은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "속성 타입 변경"
+    },
+    {
+     "no": 2,
+     "text": "속성의 NOT NULL 여부 지정"
+    },
+    {
+     "no": 3,
+     "text": "기본키를 구성하는 속성 지정"
+    },
+    {
+     "no": 4,
+     "text": "CHECK 제약조건의 정의"
+    }
+   ],
+   "answer": 1,
+   "explanation": "CREATE TABLE은 테이블을 새로 정의하는 DDL로, 속성의 데이터 타입과 NOT NULL 여부, 기본키를 구성하는 속성, CHECK 제약조건 등을 함께 지정할 수 있습니다. 반면 이미 만들어진 테이블의 속성 타입을 변경하는 작업은 ALTER TABLE로 수행합니다. 따라서 속성 타입 변경은 CREATE TABLE문에 포함되지 않는 기능입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "속성 타입 변경은 이미 생성된 테이블을 수정하는 ALTER TABLE의 기능입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "CREATE TABLE 문에서 속성별로 NOT NULL 여부를 지정할 수 있습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "PRIMARY KEY 절로 기본키를 구성하는 속성을 지정할 수 있습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "CHECK 제약조건도 CREATE TABLE 문에서 함께 정의할 수 있습니다."
+    }
+   ],
+   "keyPoint": "CREATE TABLE은 테이블 정의, 이미 만든 테이블의 속성 변경은 ALTER TABLE이 담당한다.",
+   "tags": [
+    "CREATE TABLE",
+    "ALTER TABLE",
+    "DDL"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-052",
+   "number": 52,
+   "subjectCode": 3,
+   "stem": "SQL과 관련한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "REVOKE 키워드를 사용하여 열 이름을 다시 부여할 수 있다."
+    },
+    {
+     "no": 2,
+     "text": "데이터 정의어는 기본 테이블, 뷰 테이블, 또는 인덱스 등을 생성, 변경, 제거하는데 사용되는 명령어이다."
+    },
+    {
+     "no": 3,
+     "text": "DISTINCT를 활용하여 중복 값을 제거할 수 있다."
+    },
+    {
+     "no": 4,
+     "text": "JOIN을 통해 여러 테이블의 레코드를 조합하여 표현할 수 있다."
+    }
+   ],
+   "answer": 1,
+   "explanation": "REVOKE는 사용자에게 부여한 권한을 취소하는 DCL 명령이며, 열 이름을 다시 부여하는 것은 ALTER TABLE ... RENAME COLUMN으로 수행합니다. 데이터 정의어는 테이블·뷰·인덱스 등을 생성, 변경, 제거하는 명령이고, DISTINCT로 중복 값을 제거할 수 있으며 JOIN으로 여러 테이블의 레코드를 조합할 수 있습니다. 따라서 REVOKE로 열 이름을 부여할 수 있다는 설명이 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "열 이름 변경은 ALTER TABLE의 기능이고 REVOKE는 부여한 권한을 취소하는 명령입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "데이터 정의어에 대한 설명으로 옳습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "DISTINCT를 사용하면 중복 값이 제거되어 한 번만 출력됩니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "JOIN은 여러 테이블의 레코드를 조합하여 하나의 결과로 표현합니다."
+    }
+   ],
+   "keyPoint": "REVOKE는 권한 취소(DCL), 열 이름 변경은 ALTER TABLE이다.",
+   "tags": [
+    "REVOKE",
+    "DCL",
+    "ALTER TABLE"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-053",
+   "number": 53,
+   "subjectCode": 3,
+   "stem": "다음 SQL문의 실행결과로 생성되는 튜플 수는?",
+   "passage": "SELECT 급여 FROM 사원;\n\n<사원> 테이블\n사원ID | 사원명 | 급여 | 부서ID\n101 | 박철수 | 30000 | 1\n102 | 한나라 | 35000 | 2\n103 | 김감동 | 40000 | 3\n104 | 이구수 | 35000 | 2\n105 | 최초록 | 40000 | 3",
+   "passageKind": "table",
+   "choices": [
+    {
+     "no": 1,
+     "text": "1"
+    },
+    {
+     "no": 2,
+     "text": "3"
+    },
+    {
+     "no": 3,
+     "text": "4"
+    },
+    {
+     "no": 4,
+     "text": "5"
+    }
+   ],
+   "answer": 4,
+   "explanation": "DISTINCT를 사용하지 않은 SELECT 문은 조건에 맞는 모든 행을 그대로 반환하므로, 급여 값이 중복되더라도 중복이 제거되지 않습니다. <사원> 테이블에는 5개의 행이 있으므로 급여 30000, 35000, 40000, 35000, 40000의 5개 튜플이 생성됩니다. 따라서 실행결과로 생성되는 튜플 수는 5입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "1은 사원 테이블의 행 수와 맞지 않습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "3은 중복을 제거했을 때 남는 급여 값의 종류이며 튜플 수가 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "4는 실제 결과 행의 수와 다릅니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "사원 테이블에 5개의 행이 있으므로 급여가 중복되어도 5개의 튜플이 생성됩니다."
+    }
+   ],
+   "keyPoint": "DISTINCT가 없으면 중복을 제거하지 않으므로 결과 튜플 수는 검색 대상이 된 행의 수와 같다.",
+   "tags": [
+    "SELECT",
+    "DISTINCT",
+    "튜플 수"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-054",
+   "number": 54,
+   "subjectCode": 3,
+   "stem": "다음 SQL문에서 사용된 BETWEEN 연산의 의미와 동일한 것은?",
+   "passage": "SELECT *\nFROM 성적\nWHERE (점수 BETWEEN 90 AND 95)\n    AND 학과 = ‘컴퓨터공학과’;",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "점수 ＞= 90 AND 점수 ＜= 95"
+    },
+    {
+     "no": 2,
+     "text": "점수 ＞ 90 AND 점수 ＜ 95"
+    },
+    {
+     "no": 3,
+     "text": "점수 ＞ 90 AND 점수 ＜= 95"
+    },
+    {
+     "no": 4,
+     "text": "점수 ＞= 90 AND 점수 ＜ 95"
+    }
+   ],
+   "answer": 1,
+   "explanation": "BETWEEN A AND B는 두 경계값 A와 B를 모두 포함하는 범위 조건으로, 점수 >= A AND 점수 <= B와 같은 의미입니다. 따라서 점수 BETWEEN 90 AND 95는 점수 >= 90 AND 점수 <= 95와 동일합니다. 경계값을 제외하는 >, < 조합으로 표현한 보기들은 BETWEEN과 의미가 다릅니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "BETWEEN은 양쪽 경계값 90과 95를 모두 포함하므로 >= 와 <= 를 함께 쓴 조건과 같습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "양쪽 경계값을 모두 제외한 조건으로 BETWEEN과 다릅니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "아래쪽 경계값 90을 포함하지 않아 BETWEEN과 다릅니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "위쪽 경계값 95를 포함하지 않아 BETWEEN과 다릅니다."
+    }
+   ],
+   "keyPoint": "BETWEEN A AND B는 A 이상 B 이하로, 양쪽 경계값을 모두 포함한다.",
+   "tags": [
+    "BETWEEN",
+    "SQL 연산자",
+    "WHERE"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-055",
+   "number": 55,
+   "subjectCode": 3,
+   "stem": "트랜잭션의 상태 중 트랜잭션의 수행이 실패하여 Rollback 연산을 실행한 상태는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "철회(Aborted)"
+    },
+    {
+     "no": 2,
+     "text": "부분 완료(Partially Committed)"
+    },
+    {
+     "no": 3,
+     "text": "완료(Commit)"
+    },
+    {
+     "no": 4,
+     "text": "실패(Fail)"
+    }
+   ],
+   "answer": 1,
+   "explanation": "트랜잭션은 활동 상태에서 수행되다가 마지막 연산까지 마치면 부분 완료 상태가 되고, 이후 Commit을 수행하면 완료 상태가 됩니다. 수행 중 장애가 발생하면 실패 상태가 되어 Rollback을 수행하게 되며, Rollback 연산이 끝난 상태를 철회(Aborted) 상태라고 합니다. 따라서 Rollback 연산을 실행한 상태는 철회입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "Rollback 연산을 실행하여 트랜잭션이 이전 상태로 되돌아간 상태를 철회(Aborted)라고 합니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "부분 완료는 마지막 연산까지 실행되었지만 Commit은 아직 수행하지 않은 상태입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "완료는 Commit 연산까지 성공적으로 마친 상태입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "실패는 트랜잭션 수행 중 오류가 발생하여 더 진행할 수 없는 상태로, Rollback을 수행하기 전 단계입니다."
+    }
+   ],
+   "keyPoint": "트랜잭션 상태는 활동, 부분 완료, 완료, 실패, 철회(Aborted)로 구분된다.",
+   "tags": [
+    "트랜잭션 상태",
+    "철회",
+    "Rollback"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-056",
+   "number": 56,
+   "subjectCode": 3,
+   "stem": "데이터 제어어(DCL)에 대한 설명으로 옳은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "ROLLBACK : 데이터의 보안과 무결성을 정의한다."
+    },
+    {
+     "no": 2,
+     "text": "COMMIT : 데이터베이스 사용자의 사용 권한을 취소한다."
+    },
+    {
+     "no": 3,
+     "text": "GRANT : 데이터베이스 사용자의 사용 권한을 부여한다."
+    },
+    {
+     "no": 4,
+     "text": "REVOKE : 데이터베이스 조작 작업이 비정상적으로 종료되었을 때 원래 상태로 복구한다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "데이터 제어어(DCL)는 데이터의 보안, 무결성, 회복, 병행 제어 등을 정의하는 명령으로 GRANT, REVOKE, COMMIT, ROLLBACK이 있습니다. GRANT는 사용자에게 사용 권한을 부여하고, REVOKE는 부여한 권한을 취소합니다. COMMIT은 트랜잭션 결과를 데이터베이스에 반영하며, 비정상 종료 시 원래 상태로 되돌리는 것은 ROLLBACK입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "ROLLBACK은 트랜잭션의 변경 내용을 취소하여 이전 상태로 되돌리는 명령이고, 보안과 무결성 정의는 DCL 전체의 목적 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "COMMIT은 트랜잭션 결과를 데이터베이스에 반영하는 명령이며, 권한 취소는 REVOKE입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "GRANT는 데이터베이스 사용자에게 사용 권한을 부여하는 명령입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "REVOKE는 부여한 권한을 취소하는 명령이고, 비정상 종료 시 복구는 ROLLBACK이 담당합니다."
+    }
+   ],
+   "keyPoint": "GRANT는 권한 부여, REVOKE는 권한 취소, COMMIT은 반영, ROLLBACK은 되돌리기",
+   "tags": [
+    "DCL",
+    "GRANT",
+    "REVOKE"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-057",
+   "number": 57,
+   "subjectCode": 3,
+   "stem": "테이블 R과 S에 대한 SQL문이 실행되었을 때, 실행 결과로 옳은 것은?",
+   "passage": "R\nA | B\n1 | A\n3 | B\n\nS\nA | B\n1 | A\n2 | B\n\nSELECT A FROM R\nUNION ALL\nSELECT A FROM S;",
+   "passageKind": "table",
+   "choices": [
+    {
+     "no": 1,
+     "text": "[A]\n1"
+    },
+    {
+     "no": 2,
+     "text": "[A]\n3\n2"
+    },
+    {
+     "no": 3,
+     "text": "[A]\n1\n3"
+    },
+    {
+     "no": 4,
+     "text": "[A]\n1\n3\n1\n2"
+    }
+   ],
+   "answer": 4,
+   "explanation": "UNION ALL은 두 SELECT 결과를 중복을 제거하지 않고 순서대로 이어 붙이는 집합 연산자입니다. R의 A 속성 값은 1, 3이고 S의 A 속성 값은 1, 2이므로 결과는 1, 3, 1, 2의 4개 행이 됩니다. UNION을 사용하면 중복이 제거되어 1, 3, 2가 되지만 UNION ALL은 중복을 그대로 유지합니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "A 값이 하나만 남는 결과는 UNION ALL의 결과가 아닙니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "3과 2만 출력되는 것은 R과 S의 값이 모두 반영되지 않은 결과입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "1과 3만 출력되는 것은 중복 제거 여부와 관계없이 S의 A 값 1, 2 중 1이 누락된 결과입니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "R의 1, 3 뒤에 S의 1, 2가 이어져 1, 3, 1, 2가 출력되며 중복도 제거되지 않습니다."
+    }
+   ],
+   "keyPoint": "UNION ALL은 중복을 제거하지 않고 두 SELECT 결과를 그대로 이어 붙인다.",
+   "tags": [
+    "UNION ALL",
+    "집합 연산자",
+    "SQL"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-058",
+   "number": 58,
+   "subjectCode": 3,
+   "stem": "분산 데이터베이스 시스템(Distributed Database System)에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "분산 데이터베이스는 논리적으로는 하나의 시스템에 속하지만 물리적으로는 여러 개의 컴퓨터 사이트에 분산되어 있다."
+    },
+    {
+     "no": 2,
+     "text": "위치 투명성, 중복 투명성, 병행 투명성, 장애 투명성을 목표로 한다."
+    },
+    {
+     "no": 3,
+     "text": "데이터베이스의 설계가 비교적 어렵고, 개발 비용과 처리 비용이 증가한다는 단점이 있다."
+    },
+    {
+     "no": 4,
+     "text": "분산 데이터베이스 시스템의 주요 구성 요소는 분산 처리기, P2P 시스템, 단일 데이터베이스 등이 있다."
+    }
+   ],
+   "answer": 4,
+   "explanation": "분산 데이터베이스 시스템은 논리적으로는 하나의 시스템이지만 물리적으로 여러 사이트에 분산되어 있으며, 위치·중복·병행·장애 투명성을 목표로 합니다. 설계가 어렵고 개발 비용과 처리 비용이 증가하는 단점도 있습니다. 주요 구성 요소는 분산 처리기, 분산 데이터베이스, 통신 네트워크이므로 P2P 시스템이나 단일 데이터베이스라는 설명은 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "논리적으로는 단일 시스템, 물리적으로는 분산이라는 설명은 옳습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "위치·중복·병행·장애 투명성은 분산 데이터베이스의 목표로 옳은 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "설계가 어렵고 개발 비용과 처리 비용이 증가한다는 단점 설명도 옳습니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "주요 구성 요소는 분산 처리기, 분산 데이터베이스, 통신 네트워크이므로 P2P 시스템과 단일 데이터베이스라는 설명은 틀렸습니다."
+    }
+   ],
+   "keyPoint": "분산 데이터베이스 시스템의 구성 요소는 분산 처리기, 분산 데이터베이스, 통신 네트워크이다.",
+   "tags": [
+    "분산 데이터베이스",
+    "투명성",
+    "구성 요소"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-059",
+   "number": 59,
+   "subjectCode": 3,
+   "stem": "테이블 두 개를 조인하여 뷰 V_1을 정의하고, V_1을 이용하여 뷰 V_2를 정의하였다. 다음 명령 수행 후 결과로 옳은 것은?",
+   "passage": "DROP VIEW V_1 CASCADE;",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "V_1만 삭제된다."
+    },
+    {
+     "no": 2,
+     "text": "V_2만 삭제된다."
+    },
+    {
+     "no": 3,
+     "text": "V_1과 V_2 모두 삭제된다."
+    },
+    {
+     "no": 4,
+     "text": "V_1과 V_2 모두 삭제되지 않는다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "DROP VIEW 문에 CASCADE를 지정하면 삭제하려는 뷰를 참조하는 다른 뷰나 제약조건까지 함께 삭제합니다. V_2는 V_1을 이용해 정의되었으므로 V_1을 CASCADE로 삭제하면 V_2도 함께 삭제됩니다. 참조하는 객체가 있으면 삭제를 중단하는 옵션은 RESTRICT이므로 CASCADE와 구분해야 합니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "CASCADE는 참조하는 뷰까지 함께 삭제하므로 V_1만 삭제되지 않습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "V_2는 V_1에 종속되어 있으므로 V_1이 남은 채 V_2만 삭제될 수 없습니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "CASCADE를 지정하면 참조 관계에 있는 V_1과 V_2가 함께 삭제됩니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "삭제를 중단하는 것은 CASCADE가 아니라 RESTRICT 옵션을 사용했을 때입니다."
+    }
+   ],
+   "keyPoint": "DROP VIEW ... CASCADE는 그 뷰를 참조하는 종속된 뷰까지 함께 삭제한다.",
+   "tags": [
+    "DROP VIEW",
+    "CASCADE",
+    "뷰"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-1-060",
+   "number": 60,
+   "subjectCode": 3,
+   "stem": "데이터베이스에서 병행제어의 목적으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "시스템 활용도 최대화"
+    },
+    {
+     "no": 2,
+     "text": "사용자에 대한 응답시간 최소화"
+    },
+    {
+     "no": 3,
+     "text": "데이터베이스 공유 최소화"
+    },
+    {
+     "no": 4,
+     "text": "데이터베이스 일관성 유지"
+    }
+   ],
+   "answer": 3,
+   "explanation": "병행제어는 여러 트랜잭션이 동시에 수행될 때 데이터베이스의 일관성을 유지하기 위한 기법입니다. 시스템 활용도를 최대화하고 사용자에 대한 응답 시간을 최소화하며 데이터베이스 일관성을 유지하는 것이 목적입니다. 데이터베이스 공유를 최소화하는 것은 병행제어의 목적이 아니며, 오히려 여러 트랜잭션이 데이터를 공유하도록 하면서 일관성을 지키는 것이 목표입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "시스템 활용도 최대화는 병행제어의 목적으로 옳습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "사용자에 대한 응답 시간 최소화도 병행제어의 목적으로 옳습니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "병행제어는 데이터 공유를 최대한 활용하면서 일관성을 지키는 것이 목적이므로 공유 최소화는 틀렸습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "데이터베이스 일관성 유지는 병행제어의 가장 핵심적인 목적입니다."
+    }
+   ],
+   "keyPoint": "병행제어의 목적은 데이터베이스 일관성 유지, 시스템 활용도 최대화, 사용자 응답 시간 최소화이다.",
+   "tags": [
+    "병행제어",
+    "일관성",
+    "동시성 제어"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년1회_기사필기 기출문제.pdf",
+    "page": 4
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  }
+ ]
+}

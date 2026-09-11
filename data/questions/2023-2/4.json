@@ -1,0 +1,575 @@
+{
+ "exam": {
+  "id": "2023-2",
+  "year": 2023,
+  "round": 2,
+  "title": "2023년 2회 정보처리기사 필기",
+  "sourcePdf": "2023년2회_정보처리기사필기기출문제.pdf"
+ },
+ "subject": {
+  "code": 4,
+  "name": "프로그래밍 언어 활용"
+ },
+ "questions": [
+  {
+   "id": "2023-2-061",
+   "number": 61,
+   "subjectCode": 4,
+   "stem": "정보 시스템 개발 단계에서 프로그래밍 언어 선택 시 고려할 사항으로 가장 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "개발 정보 시스템의 특성"},
+    {"no": 2, "text": "사용자의 요구사항"},
+    {"no": 3, "text": "컴파일러의 가용성"},
+    {"no": 4, "text": "컴파일러의 독창성"}
+   ],
+   "answer": 4,
+   "explanation": "프로그래밍 언어를 선택할 때에는 개발하려는 정보 시스템의 특성, 사용자의 요구사항, 컴파일러의 가용성(보편성과 이식성), 개발자의 언어 숙련도와 생산성을 종합적으로 검토합니다. 컴파일러의 독창성은 언어의 기능이나 개발 생산성과 관계가 없는 항목이므로 고려 사항이 될 수 없습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "개발하려는 시스템의 특성에 맞는 언어를 골라야 하므로 중요한 고려 사항입니다."},
+    {"no": 2, "correct": false, "why": "사용자의 요구사항을 충족할 수 있는지가 언어 선택의 기본 기준이 됩니다."},
+    {"no": 3, "correct": false, "why": "컴파일러를 여러 환경에서 사용할 수 있는지(가용성)는 이식성과 직결되는 고려 사항입니다."},
+    {"no": 4, "correct": true, "why": "컴파일러가 독창적인지는 언어 선택의 판단 기준이 되지 않습니다."}
+   ],
+   "keyPoint": "프로그래밍 언어 선택 시 고려 사항",
+   "tags": ["프로그래밍 언어", "언어 선택 기준"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-062",
+   "number": 62,
+   "subjectCode": 4,
+   "stem": "C Class에 속하는 IP address는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "200.168.30.1"},
+    {"no": 2, "text": "10.3.2.14"},
+    {"no": 3, "text": "225.2.4.1"},
+    {"no": 4, "text": "172.16.98.3"}
+   ],
+   "answer": 1,
+   "explanation": "IP 주소는 첫 번째 옥텟 값으로 클래스를 구분하며, 192~223 범위가 클래스 C에 해당합니다. 200.168.30.1은 첫 옥텟이 200이므로 클래스 C입니다. 10.3.2.14는 클래스 A, 172.16.98.3은 클래스 B, 225.2.4.1은 클래스 D(멀티캐스트) 주소입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "첫 옥텟이 200으로 192~223 범위에 속하는 클래스 C 주소입니다."},
+    {"no": 2, "correct": false, "why": "첫 옥텟이 10으로 1~126 범위에 속하는 클래스 A 주소입니다."},
+    {"no": 3, "correct": false, "why": "첫 옥텟이 225로 224~239 범위에 속하는 클래스 D(멀티캐스트) 주소입니다."},
+    {"no": 4, "correct": false, "why": "첫 옥텟이 172로 128~191 범위에 속하는 클래스 B 주소입니다."}
+   ],
+   "keyPoint": "IP 주소 클래스별 첫 옥텟 범위",
+   "tags": ["IP 주소", "클래스 C"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-063",
+   "number": 63,
+   "subjectCode": 4,
+   "stem": "다음 Python 프로그램이 실행되었을 때, 실행 결과는?",
+   "passage": "a = 100\nlist_data = ['a','b','c']\ndict_data = {'a':90, 'b':95}\nprint(list_data[0])\nprint(dict_data['a'])",
+   "passageKind": "code",
+   "choices": [
+    {"no": 1, "text": "a\n90"},
+    {"no": 2, "text": "100\n90"},
+    {"no": 3, "text": "100\n100"},
+    {"no": 4, "text": "a\na"}
+   ],
+   "answer": 1,
+   "explanation": "list_data[0]은 리스트의 첫 번째 요소인 'a'를 출력하고, dict_data['a']는 딕셔너리에서 키 'a'에 대응하는 값 90을 출력합니다. 따라서 실행 결과는 첫 줄에 a, 둘째 줄에 90이 차례대로 표시됩니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "리스트의 0번 요소 'a'와 딕셔너리 키 'a'의 값 90이 순서대로 출력되므로 옳습니다."},
+    {"no": 2, "correct": false, "why": "변수 a의 값 100은 출력 대상이 아니고 첫 출력은 리스트의 0번 요소인 'a'입니다."},
+    {"no": 3, "correct": false, "why": "두 번째 출력은 딕셔너리 키 'a'의 값 90이며 첫 요소 'a'가 아닙니다."},
+    {"no": 4, "correct": false, "why": "두 번째 출력은 딕셔너리에서 꺼낸 값 90이므로 'a'가 아닙니다."}
+   ],
+   "keyPoint": "파이썬 리스트 인덱싱과 딕셔너리 키 조회 결과",
+   "tags": ["Python", "리스트", "딕셔너리"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-064",
+   "number": 64,
+   "subjectCode": 4,
+   "stem": "파이썬의 변수 작성 규칙 설명으로 옳지 않은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "첫 자리에 숫자를 사용할 수 없다."},
+    {"no": 2, "text": "영문 대문자/소문자, 숫자, 밑줄(_)의 사용이 가능하다."},
+    {"no": 3, "text": "변수 이름의 중간에 공백을 사용할 수 있다."},
+    {"no": 4, "text": "이미 사용되고 있는 예약어는 사용할 수 없다."}
+   ],
+   "answer": 3,
+   "explanation": "파이썬 변수 이름에는 영문 대소문자, 숫자, 밑줄(_)을 사용할 수 있지만 첫 자리에 숫자가 올 수 없고 예약어도 이름으로 쓸 수 없습니다. 변수 이름 중간에 공백을 넣으면 두 개의 이름으로 나뉘어 해석되므로 공백은 사용할 수 없습니다. 따라서 ③의 설명이 옳지 않습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "첫 자리에 숫자가 오면 숫자와 이름을 구분할 수 없으므로 맞는 설명입니다."},
+    {"no": 2, "correct": false, "why": "영문 대소문자와 숫자, 밑줄(_)은 변수 이름에 사용할 수 있으므로 맞는 설명입니다."},
+    {"no": 3, "correct": true, "why": "변수 이름 중간에 공백을 넣을 수 없으므로 이 설명이 옳지 않습니다."},
+    {"no": 4, "correct": false, "why": "이미 사용되고 있는 예약어는 변수 이름으로 쓸 수 없으므로 맞는 설명입니다."}
+   ],
+   "keyPoint": "파이썬 변수 이름 작성 규칙",
+   "tags": ["Python", "변수 명명 규칙"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-065",
+   "number": 65,
+   "subjectCode": 4,
+   "stem": "다음 C언어 프로그램에서 밑줄 친 부분과 동일한 의미를 가지는 것은 어떤것인가?",
+   "passage": "#include <stdio.h>\nmain() {\n    int a, b;\n    for (a = 0; a < 2; a++)\n        for (b = 0; b < 2; b++)\n            printf(\"%d\", !a && !b);\n}",
+   "passageKind": "code",
+   "choices": [
+    {"no": 1, "text": "!a || !b"},
+    {"no": 2, "text": "!(a || b)"},
+    {"no": 3, "text": "a && b"},
+    {"no": 4, "text": "a || b"}
+   ],
+   "answer": 2,
+   "explanation": "프로그램에서 밑줄 친 !a && !b는 드모르간 법칙에 따라 !(a || b)와 같은 의미입니다. a와 b가 모두 0(거짓)일 때만 참이 되며 !(a || b)도 a나 b 중 하나라도 참이면 거짓이 되어 같은 결과를 냅니다. ① !a || !b는 a, b가 모두 참일 때만 거짓이 되는 형태이므로 부정의 범위가 다릅니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "!a || !b는 a와 b가 모두 참일 때만 거짓이 되어 !a && !b와 결과가 다릅니다."},
+    {"no": 2, "correct": true, "why": "드모르간 법칙에 따라 !a && !b와 !(a || b)는 같은 값을 가집니다."},
+    {"no": 3, "correct": false, "why": "a && b는 두 값이 모두 참일 때 참이 되어 부정 연산이 빠져 있습니다."},
+    {"no": 4, "correct": false, "why": "a || b는 둘 중 하나만 참이어도 참이 되어 결과가 반대로 나옵니다."}
+   ],
+   "keyPoint": "드모르간 법칙과 논리 연산자의 관계",
+   "tags": ["C언어", "드모르간 법칙", "논리 연산자"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-066",
+   "number": 66,
+   "subjectCode": 4,
+   "stem": "다음 중 페이지 교체(Page Replacement) 알고리즘이 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "FIFO(First-In-First-Out)"},
+    {"no": 2, "text": "LUF(Least Used First)"},
+    {"no": 3, "text": "Optimal"},
+    {"no": 4, "text": "LRU(Least Recently Used)"}
+   ],
+   "answer": 2,
+   "explanation": "페이지 교체 알고리즘에는 FIFO, Optimal, LRU, LFU, NUR, SCR 등이 있습니다. 보기의 LUF(Least Used First)는 사용 빈도가 가장 낮은 페이지를 교체하는 LFU(Least Frequently Used)를 잘못 적은 이름으로, 페이지 교체 알고리즘의 정식 명칭이 아닙니다. 나머지 세 가지는 모두 대표적인 페이지 교체 알고리즘입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "FIFO는 가장 먼저 적재된 페이지를 교체하는 페이지 교체 알고리즘입니다."},
+    {"no": 2, "correct": true, "why": "LUF는 LFU(Least Frequently Used)를 잘못 적은 이름으로 페이지 교체 알고리즘이 아닙니다."},
+    {"no": 3, "correct": false, "why": "Optimal은 앞으로 가장 오랫동안 사용되지 않을 페이지를 교체하는 알고리즘입니다."},
+    {"no": 4, "correct": false, "why": "LRU는 가장 오랫동안 사용되지 않은 페이지를 교체하는 알고리즘입니다."}
+   ],
+   "keyPoint": "페이지 교체 알고리즘의 종류와 LFU의 정확한 명칭",
+   "tags": ["페이지 교체 알고리즘", "LFU", "LRU"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-067",
+   "number": 67,
+   "subjectCode": 4,
+   "stem": "HRN 방식으로 스케줄링 할 경우, 입력된 작업이 다음과 같을 때 처리되는 작업 순서로 옳은 것은?",
+   "passage": "작업 | 대기 시간 | 서비스(실행)시간\nA | 5 | 20\nB | 40 | 20\nC | 15 | 45\nD | 20 | 2",
+   "passageKind": "table",
+   "choices": [
+    {"no": 1, "text": "A → B → C → D"},
+    {"no": 2, "text": "A → C → B → D"},
+    {"no": 3, "text": "D → B → C → A"},
+    {"no": 4, "text": "D → A → B → C"}
+   ],
+   "answer": 3,
+   "explanation": "HRN의 우선순위는 (대기 시간 + 서비스 시간) / 서비스 시간으로 계산하며 값이 클수록 먼저 처리됩니다. A는 25/20=1.25, B는 60/20=3, C는 60/45≈1.33, D는 22/2=11이므로 우선순위가 높은 순서는 D, B, C, A입니다. 따라서 처리되는 작업 순서는 D → B → C → A입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "우선순위가 가장 낮은 A를 맨 앞에 둔 순서이므로 틀립니다."},
+    {"no": 2, "correct": false, "why": "우선순위가 가장 높은 D를 맨 뒤에 둔 순서이므로 틀립니다."},
+    {"no": 3, "correct": true, "why": "우선순위 값이 11인 D를 먼저, 이어서 B(3), C(1.33), A(1.25) 순으로 처리하므로 옳습니다."},
+    {"no": 4, "correct": false, "why": "A(1.25)보다 C(1.33)의 우선순위가 높으므로 A를 C보다 앞에 둔 순서는 틀립니다."}
+   ],
+   "keyPoint": "HRN 스케줄링의 우선순위 계산식",
+   "tags": ["HRN", "스케줄링", "우선순위"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-068",
+   "number": 68,
+   "subjectCode": 4,
+   "stem": "UNIX에서 새로운 프로세스를 생성하는 명령어는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "ls"},
+    {"no": 2, "text": "cat"},
+    {"no": 3, "text": "fork"},
+    {"no": 4, "text": "chmod"}
+   ],
+   "answer": 3,
+   "explanation": "fork는 현재 실행 중인 프로세스를 복제하여 새로운 자식 프로세스를 생성하는 UNIX 시스템 호출입니다. ls는 디렉터리 안의 파일 목록을 보여주고, cat은 파일 내용을 출력하며, chmod는 파일의 접근 권한을 변경하는 명령어입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "ls는 디렉터리의 파일 목록을 출력하는 명령어입니다."},
+    {"no": 2, "correct": false, "why": "cat은 파일의 내용을 화면에 출력하거나 이어 붙이는 명령어입니다."},
+    {"no": 3, "correct": true, "why": "fork는 프로세스를 복제해 새로운 자식 프로세스를 생성하는 명령어입니다."},
+    {"no": 4, "correct": false, "why": "chmod는 파일이나 디렉터리의 접근 권한을 변경하는 명령어입니다."}
+   ],
+   "keyPoint": "UNIX 프로세스 생성 명령어 fork",
+   "tags": ["UNIX", "fork", "프로세스 생성"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-069",
+   "number": 69,
+   "subjectCode": 4,
+   "stem": "시간 구역성(Temporal Locality)과 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "루프"},
+    {"no": 2, "text": "서브루틴"},
+    {"no": 3, "text": "배열 순회"},
+    {"no": 4, "text": "스택"}
+   ],
+   "answer": 3,
+   "explanation": "시간 구역성은 한 번 참조된 기억장소가 가까운 시일 안에 다시 참조되는 성질로 루프, 서브루틴, 스택, 카운팅 등이 대표적인 예입니다. 배열 순회는 서로 인접한 주소를 연속해서 참조하는 경우이므로 공간 구역성(Locality of Space)에 해당합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "루프는 같은 명령과 변수를 반복해서 참조하므로 시간 구역성의 예입니다."},
+    {"no": 2, "correct": false, "why": "서브루틴은 호출될 때마다 같은 코드를 다시 참조하므로 시간 구역성의 예입니다."},
+    {"no": 3, "correct": true, "why": "배열 순회는 인접한 주소를 차례로 참조하므로 공간 구역성의 예입니다."},
+    {"no": 4, "correct": false, "why": "스택은 최근에 사용한 위치를 다시 참조하므로 시간 구역성의 예입니다."}
+   ],
+   "keyPoint": "시간 구역성과 공간 구역성의 구분",
+   "tags": ["지역성", "시간 구역성", "공간 구역성"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-070",
+   "number": 70,
+   "subjectCode": 4,
+   "stem": "TCP 헤더와 관련한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "순서 번호(Sequence Number)는 전달하는 바이트마다 번호가 부여된다."},
+    {"no": 2, "text": "수신 번호 확인(Acknowledgement Number)은 상대편 호스트에서 받으려는 바이트의 번호를 정의한다."},
+    {"no": 3, "text": "체크섬(Checksum)은 데이터를 포함한 세그먼트의 오류를 검사한다."},
+    {"no": 4, "text": "윈도우 크기는 송수신 측의 버퍼 크기로 최대 크기는 32767bit이다."}
+   ],
+   "answer": 4,
+   "explanation": "TCP 헤더의 윈도우 크기 필드는 16비트이므로 최대 65535바이트까지 표현할 수 있어 32767비트라는 설명은 틀렸습니다. 순서 번호는 전달하는 바이트마다 부여되고, 확인 응답 번호는 상대편 호스트에서 다음에 받으려는 바이트의 번호를 정의하며, 체크섬은 헤더를 포함한 세그먼트의 오류를 검사합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "순서 번호는 세그먼트가 전달하는 바이트마다 부여되므로 옳은 설명입니다."},
+    {"no": 2, "correct": false, "why": "확인 응답 번호는 상대편에서 다음에 받으려는 바이트 번호를 정의하므로 옳은 설명입니다."},
+    {"no": 3, "correct": false, "why": "체크섬은 데이터를 포함한 세그먼트의 오류를 검사하므로 옳은 설명입니다."},
+    {"no": 4, "correct": true, "why": "윈도우 크기는 16비트로 최대 65535바이트까지 표현할 수 있으므로 32767비트라는 설명이 틀렸습니다."}
+   ],
+   "keyPoint": "TCP 헤더의 윈도우 크기 필드(16비트)",
+   "tags": ["TCP 헤더", "윈도우 크기", "체크섬"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-071",
+   "number": 71,
+   "subjectCode": 4,
+   "stem": "OSI 7계층 모델에서 전송에 필요한 장치 간의 실제 접속과 절단 등 기계적, 전기적, 기능적, 절차적 특성을 정의한 계층은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "물리 계층"},
+    {"no": 2, "text": "데이터 링크 계층"},
+    {"no": 3, "text": "네트워크 계층"},
+    {"no": 4, "text": "전송 계층"}
+   ],
+   "answer": 1,
+   "explanation": "OSI 7계층에서 장치 간의 실제 접속과 절단 등 기계적, 전기적, 기능적, 절차적 특성을 정의하는 계층은 물리 계층입니다. 물리 계층은 비트를 전기적 신호로 변환해 전송하고, 데이터 링크 계층은 오류 제어와 흐름 제어, 네트워크 계층은 경로 설정, 전송 계층은 종단 간 신뢰성 있는 전송을 담당합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "접속과 절단의 기계적·전기적·기능적·절차적 특성을 정의하는 계층입니다."},
+    {"no": 2, "correct": false, "why": "데이터 링크 계층은 인접 노드 간 프레임 전송과 오류·흐름 제어를 담당합니다."},
+    {"no": 3, "correct": false, "why": "네트워크 계층은 패킷의 경로 설정과 중계를 담당합니다."},
+    {"no": 4, "correct": false, "why": "전송 계층은 종단 간 연결과 신뢰성 있는 데이터 전송을 담당합니다."}
+   ],
+   "keyPoint": "OSI 7계층 중 물리 계층의 기능",
+   "tags": ["OSI 7계층", "물리 계층"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-072",
+   "number": 72,
+   "subjectCode": 4,
+   "stem": "192.168.1.0/24 네트워크를 FLSM 방식을 이용하여 4개의 Subnet으로 나누고 IP Subnet-zero를 적용했다. 이 때 Subnetting된 네트워크 중 4번째 네트워크의 4번째 사용 가능한 IP는 무엇인가?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "192.168.1.192"},
+    {"no": 2, "text": "192.168.1.195"},
+    {"no": 3, "text": "192.168.1.196"},
+    {"no": 4, "text": "192.168.1.198"}
+   ],
+   "answer": 3,
+   "explanation": "192.168.1.0/24를 4개의 서브넷으로 나누면 서브넷 마스크가 /26이 되어 각 서브넷이 64개의 주소를 갖습니다. Subnet-zero를 적용하면 0번 서브넷부터 사용하므로 네 번째 네트워크는 192.168.1.192~192.168.1.255가 되고 사용 가능한 주소는 .193부터 시작합니다. 네 번째 사용 가능한 IP는 .193, .194, .195 다음인 192.168.1.196입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "192.168.1.192는 네 번째 네트워크 자체를 가리키는 네트워크 주소입니다."},
+    {"no": 2, "correct": false, "why": "192.168.1.195는 네 번째 네트워크에서 세 번째로 사용 가능한 IP입니다."},
+    {"no": 3, "correct": true, "why": "192.168.1.193부터 세어 네 번째가 되는 사용 가능한 IP입니다."},
+    {"no": 4, "correct": false, "why": "192.168.1.198은 네 번째 네트워크의 여섯 번째 사용 가능한 IP입니다."}
+   ],
+   "keyPoint": "FLSM 서브넷팅과 사용 가능한 IP 주소 계산",
+   "tags": ["서브넷팅", "FLSM", "서브넷 마스크"],
+   "difficulty": 4,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-073",
+   "number": 73,
+   "subjectCode": 4,
+   "stem": "UNIX에 대한 설명으로 옳지 않은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "상당 부분 C 언어를 사용하여 작성되었으며, 이식성이 우수하다."},
+    {"no": 2, "text": "사용자는 하나 이상의 작업을 백그라운드에서 수행할 수 있어 여러 개의 작업을 병행 처리할 수 있다."},
+    {"no": 3, "text": "쉘(shell)은 프로세스 관리, 기억장치 관리, 입출력 관리 등의 기능을 수행한다."},
+    {"no": 4, "text": "두 사람 이상의 사용자가 동시에 시스템을 사용할 수 있어 정보와 유틸리티들을 공유하는 편리한 작업 환경을 제공한다."}
+   ],
+   "answer": 3,
+   "explanation": "쉘(shell)은 사용자가 입력한 명령을 해석해 커널에 전달하는 명령어 해석기이며, 프로세스 관리와 기억장치 관리, 입출력 관리는 커널이 담당합니다. UNIX는 대부분 C 언어로 작성되어 이식성이 뛰어나고, 백그라운드 작업을 통한 다중 작업과 여러 사용자가 동시에 사용하는 다중 사용자 환경을 지원합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "UNIX는 C 언어로 작성되어 다른 기종으로 옮기기 쉬우므로 옳은 설명입니다."},
+    {"no": 2, "correct": false, "why": "백그라운드 작업을 통해 여러 작업을 병행 처리할 수 있으므로 옳은 설명입니다."},
+    {"no": 3, "correct": true, "why": "쉘은 명령어 해석기이고 프로세스·기억장치·입출력 관리는 커널의 기능이므로 틀린 설명입니다."},
+    {"no": 4, "correct": false, "why": "여러 사용자가 동시에 시스템을 사용하며 정보를 공유할 수 있으므로 옳은 설명입니다."}
+   ],
+   "keyPoint": "쉘과 커널의 역할 구분",
+   "tags": ["UNIX", "쉘", "커널"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-074",
+   "number": 74,
+   "subjectCode": 4,
+   "stem": "빈 기억공간의 크기가 20KB, 16KB, 8KB, 40KB 일 때 기억장치 배치 전략으로 “Best Fit”을 사용하여 17KB의 프로그램을 적재할 경우 내부 단편화의 크기는 얼마인가?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "3KB"},
+    {"no": 2, "text": "23KB"},
+    {"no": 3, "text": "64KB"},
+    {"no": 4, "text": "67KB"}
+   ],
+   "answer": 1,
+   "explanation": "Best Fit(최적 적합)은 프로그램을 수용할 수 있는 빈 공간 중에서 가장 작은 공간을 선택하는 배치 전략입니다. 17KB를 적재할 수 있는 공간은 20KB와 40KB이고 이 중 작은 20KB를 선택하므로, 남는 공간인 20KB-17KB=3KB가 내부 단편화로 발생합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "20KB 공간에 17KB를 적재하고 남은 3KB가 내부 단편화이므로 옳습니다."},
+    {"no": 2, "correct": false, "why": "23KB는 내부 단편화의 크기가 아닙니다."},
+    {"no": 3, "correct": false, "why": "64KB는 빈 공간의 크기와도 맞지 않아 단편화 크기가 아닙니다."},
+    {"no": 4, "correct": false, "why": "67KB는 어떤 빈 공간의 크기와도 맞지 않아 단편화 크기가 아닙니다."}
+   ],
+   "keyPoint": "Best Fit 배치 전략과 내부 단편화 계산",
+   "tags": ["Best Fit", "내부 단편화", "기억장치 배치"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-075",
+   "number": 75,
+   "subjectCode": 4,
+   "stem": "C언어에서 두 개의 논리 값 중 하나라도 참이면 1을, 모두 거짓이면 0을 반환하는 연산자는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "||"},
+    {"no": 2, "text": "&&"},
+    {"no": 3, "text": "**"},
+    {"no": 4, "text": "!="}
+   ],
+   "answer": 1,
+   "explanation": "||는 논리합(OR) 연산자로 두 논리 값 중 하나라도 참이면 1을, 모두 거짓일 때만 0을 반환합니다. &&는 논리곱 연산자로 두 값이 모두 참일 때만 1을 반환하고, **는 C 언어에 없는 연산자이며, !=는 두 값이 다르면 참을 반환하는 관계 연산자입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "||는 하나라도 참이면 1을 반환하는 논리합 연산자입니다."},
+    {"no": 2, "correct": false, "why": "&&는 두 값이 모두 참일 때만 1을 반환하는 논리곱 연산자입니다."},
+    {"no": 3, "correct": false, "why": "**는 C 언어에 존재하지 않는 연산자입니다."},
+    {"no": 4, "correct": false, "why": "!=는 두 값이 서로 다른지 비교하는 관계 연산자입니다."}
+   ],
+   "keyPoint": "C 언어 논리합 연산자 ||의 동작",
+   "tags": ["C언어", "논리 연산자"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-076",
+   "number": 76,
+   "subjectCode": 4,
+   "stem": "결합도(Coupling) 단계를 약한 순서에서 강한 순서로 가장 옳게 표시한 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Stamp → Data → Control → Common → Content"},
+    {"no": 2, "text": "Control → Data → Stamp → Common → Content"},
+    {"no": 3, "text": "Content → Stamp → Control → Common → Data"},
+    {"no": 4, "text": "Data → Stamp → Control → Common → Content"}
+   ],
+   "answer": 4,
+   "explanation": "결합도는 모듈 사이의 의존 정도를 나타내며 자료(Data), 스탬프(Stamp), 제어(Control), 외부(External), 공통(Common), 내용(Content) 결합도 순으로 강해집니다. 보기 중에서는 Data → Stamp → Control → Common → Content로 배열한 ④가 가장 약한 결합도에서 강한 결합도 순으로 옳게 나열한 것입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "가장 약한 결합도인 Data보다 Stamp를 앞에 두어 순서가 바뀌었습니다."},
+    {"no": 2, "correct": false, "why": "Data 다음에 Stamp가 아니라 Control을 둔 순서이므로 틀립니다."},
+    {"no": 3, "correct": false, "why": "가장 강한 결합도인 Content를 맨 앞에 두어 순서가 정반대입니다."},
+    {"no": 4, "correct": true, "why": "Data → Stamp → Control → Common → Content 순으로 약한 것부터 강한 것 순으로 옳게 배열했습니다."}
+   ],
+   "keyPoint": "결합도의 약한 순서(자료-스탬프-제어-공통-내용)",
+   "tags": ["결합도", "Coupling", "모듈 독립성"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-077",
+   "number": 77,
+   "subjectCode": 4,
+   "stem": "다음 자바 프로그램 조건문에 대해 삼항 조건 연산자를 사용하여 옳게 나타낸 것은?",
+   "passage": "int i = 7, j = 9;\nint k;\nif (i > j)\n    k = i - j;\nelse\n    k = i + j;",
+   "passageKind": "code",
+   "choices": [
+    {"no": 1, "text": "int i = 7, j = 9;\nint k;\nk = (i>j) ? (i - j) : (i + j);"},
+    {"no": 2, "text": "int i = 7, j = 9;\nint k;\nk = (i<j) ? (i - j) : (i + j);"},
+    {"no": 3, "text": "int i = 7, j = 9;\nint k;\nk = (i>j) ? (i + j) : (i - j);"},
+    {"no": 4, "text": "int i = 7, j = 9;\nint k;\nk = (i<j) ? (i + j) : (i - j);"}
+   ],
+   "answer": 1,
+   "explanation": "제시된 조건문은 i가 j보다 크면 k에 i-j를, 그렇지 않으면 k에 i+j를 대입하는 구조입니다. 이를 삼항 조건 연산자로 표현하면 조건식 (i>j), 참일 때의 값 (i - j), 거짓일 때의 값 (i + j) 순서가 그대로 유지되어야 하므로 k = (i>j) ? (i - j) : (i + j); 가 됩니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "조건식과 참·거짓일 때의 식이 원래 if-else의 흐름과 일치하므로 옳습니다."},
+    {"no": 2, "correct": false, "why": "조건식이 (i<j)로 뒤바뀌어 참일 때 i-j를 선택하는 흐름이 원래 조건문과 다릅니다."},
+    {"no": 3, "correct": false, "why": "조건식은 맞지만 참일 때 i+j, 거짓일 때 i-j를 대입해 두 식이 서로 뒤바뀌었습니다."},
+    {"no": 4, "correct": false, "why": "조건식과 대입되는 식이 모두 뒤바뀌어 원래 조건문과 결과가 달라집니다."}
+   ],
+   "keyPoint": "삼항 조건 연산자를 이용한 if-else 변환",
+   "tags": ["삼항 조건 연산자", "Java", "조건문"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-078",
+   "number": 78,
+   "subjectCode": 4,
+   "stem": "다음 내용이 설명하는 소프트웨어 취약점은?",
+   "passage": "메모리를 다루는 데 오류가 발생하여 잘못된 동작을 하는 프로그램 취약점",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "FTP 바운스 공격"},
+    {"no": 2, "text": "SQL 삽입"},
+    {"no": 3, "text": "버퍼 오버플로"},
+    {"no": 4, "text": "디렉토리 접근 공격"}
+   ],
+   "answer": 3,
+   "explanation": "설명은 메모리를 다루는 과정에서 오류가 생겨 프로그램이 잘못 동작하는 취약점을 가리키므로 버퍼 오버플로입니다. 버퍼 오버플로는 할당된 버퍼 크기를 넘는 데이터가 입력되어 인접한 메모리 영역이 덮여 오동작이나 보안 침해로 이어지는 취약점입니다. FTP 바운스 공격, SQL 삽입, 디렉토리 접근 공격은 각각 FTP 서버, 데이터베이스, 웹 서버의 경로를 노린 공격입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "FTP 바운스 공격은 FTP 서버를 경유해 다른 호스트를 공격하는 기법입니다."},
+    {"no": 2, "correct": false, "why": "SQL 삽입은 입력값에 SQL 문을 넣어 데이터베이스를 조작하는 공격입니다."},
+    {"no": 3, "correct": true, "why": "메모리 처리 오류로 잘못 동작하는 취약점을 가리키는 설명입니다."},
+    {"no": 4, "correct": false, "why": "디렉토리 접근 공격은 웹 서버의 디렉터리 경로를 우회해 파일에 접근하는 공격입니다."}
+   ],
+   "keyPoint": "버퍼 오버플로 취약점의 정의",
+   "tags": ["버퍼 오버플로", "소프트웨어 취약점"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-079",
+   "number": 79,
+   "subjectCode": 4,
+   "stem": "배치 프로그램의 필수 요소에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "자동화는 심각한 오류 상황 외에는 사용자의 개입 없이 동작해야 한다."},
+    {"no": 2, "text": "안정성은 어떤 문제가 생겼는지, 언제 발생했는지 등을 추적할 수 있어야 한다."},
+    {"no": 3, "text": "대용량 데이터는 대용량의 데이터를 처리할 수 있어야 한다."},
+    {"no": 4, "text": "무결성은 주어진 시간 내에 처리를 완료할 수 있어야 하고, 동시에 동작하고 있는 다른 애플리케이션을 방해하지 말아야 한다."}
+   ],
+   "answer": 4,
+   "explanation": "주어진 시간 안에 처리를 완료하고 다른 애플리케이션을 방해하지 않아야 한다는 설명은 배치 프로그램의 필수 요소 중 성능에 해당합니다. 무결성은 데이터의 정확성과 일관성을 보장하는 요소이므로 ④의 설명이 틀렸습니다. 자동화, 안정성, 대용량 데이터 처리에 대한 설명은 모두 배치 프로그램의 필수 요소로 옳습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "자동화는 심각한 오류 상황 외에는 사용자 개입 없이 동작해야 하므로 옳은 설명입니다."},
+    {"no": 2, "correct": false, "why": "안정성은 문제의 원인과 발생 시점을 추적할 수 있어야 하므로 옳은 설명입니다."},
+    {"no": 3, "correct": false, "why": "대용량 데이터 처리는 배치 프로그램의 필수 요소이므로 옳은 설명입니다."},
+    {"no": 4, "correct": true, "why": "설명은 성능에 해당하며 무결성은 데이터의 정확성과 일관성을 보장하는 요소이므로 틀렸습니다."}
+   ],
+   "keyPoint": "배치 프로그램의 필수 요소(자동화·안정성·성능·무결성)",
+   "tags": ["배치 프로그램", "필수 요소"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2023-2-080",
+   "number": 80,
+   "subjectCode": 4,
+   "stem": "C언어에서 정수 자료형으로 옳은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "int"},
+    {"no": 2, "text": "float"},
+    {"no": 3, "text": "char"},
+    {"no": 4, "text": "double"}
+   ],
+   "answer": 1,
+   "explanation": "C 언어에서 정수를 저장하기 위한 대표적인 정수형은 int이며, 크기에 따라 short, long, long long 등이 사용됩니다. float과 double은 소수점이 있는 실수를 저장하는 실수형이고, char는 문자 하나를 저장하는 문자형으로 분류됩니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "int는 정수를 저장하는 기본 정수형이므로 옳습니다."},
+    {"no": 2, "correct": false, "why": "float은 단정도 실수를 저장하는 실수형입니다."},
+    {"no": 3, "correct": false, "why": "char는 문자 하나를 저장하는 문자형으로 분류됩니다."},
+    {"no": 4, "correct": false, "why": "double은 배정도 실수를 저장하는 실수형입니다."}
+   ],
+   "keyPoint": "C 언어의 정수형 int와 실수형·문자형의 구분",
+   "tags": ["C언어", "자료형", "int"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  }
+ ]
+}

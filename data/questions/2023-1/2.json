@@ -1,0 +1,1415 @@
+{
+  "exam": {
+    "id": "2023-1",
+    "year": 2023,
+    "round": 1,
+    "title": "2023년 1회 정보처리기사 필기",
+    "sourcePdf": "2023년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2023-1-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "공학적으로 잘된 소프트웨어(Well Engineered Software)의 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "소프트웨어는 유지보수가 용이해야 한다."
+        },
+        {
+          "no": 2,
+          "text": "소프트웨어는 신뢰성이 높아야 한다."
+        },
+        {
+          "no": 3,
+          "text": "소프트웨어는 사용자 수준에 무관하게 일관된 인터페이스를 제공해야 한다."
+        },
+        {
+          "no": 4,
+          "text": "소프트웨어는 충분한 테스팅을 거쳐야 한다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "공학적으로 잘된 소프트웨어란 유지보수가 용이하고 신뢰성이 높으며 충분한 테스팅을 거쳐 오류를 최소화한 소프트웨어를 말합니다. 인터페이스는 사용자의 수준과 특성에 맞게 제공되어야 하므로, 사용자 수준을 고려하지 않은 채 일관된 인터페이스만 제공하면 된다는 설명은 잘된 소프트웨어의 조건이 아닙니다. 사용자 수준을 무시한 인터페이스는 오히려 사용성을 떨어뜨립니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "유지보수가 용이해야 한다는 것은 공학적으로 잘된 소프트웨어의 대표적인 조건이므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "신뢰성이 높아야 한다는 것도 오류 없이 안정적으로 동작하기 위한 조건이므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "인터페이스는 사용자 수준에 맞게 제공되어야 하므로, 사용자 수준에 무관하게 일관된 인터페이스를 제공한다는 설명은 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "충분한 테스팅을 거쳐야 한다는 것 역시 품질 확보를 위한 조건이므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "공학적으로 잘된 소프트웨어의 조건과 사용자 수준을 고려한 인터페이스",
+      "tags": ["소프트웨어 공학", "품질 특성"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "소프트웨어 품질 측정을 위해 개발자 관점에서 고려해야 할 항목으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "정확성"
+        },
+        {
+          "no": 2,
+          "text": "무결성"
+        },
+        {
+          "no": 3,
+          "text": "사용성"
+        },
+        {
+          "no": 4,
+          "text": "간결성"
+        }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 품질을 개발자 관점에서 측정할 때는 정확성, 무결성, 사용성, 효율성, 신뢰성, 유연성, 재사용성, 상호운용성, 이식성, 유지보수성 등의 품질 요소를 고려합니다. 간결성은 이러한 표준 품질 측정 항목에 포함되지 않으므로 거리가 먼 항목입니다. 품질 요소는 요구사항을 얼마나 정확하고 안정적으로 수행하는지를 기준으로 정의됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "정확성은 요구 기능을 오류 없이 정확히 수행하는 정도를 나타내는 개발자 관점의 품질 요소입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "무결성은 허용되지 않은 사용이나 변경으로부터 시스템을 보호하는 정도를 나타내는 품질 요소입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "사용성은 사용자가 소프트웨어를 쉽게 배우고 사용할 수 있는 정도로 품질 측정 항목에 포함됩니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "간결성은 소프트웨어 품질 요소 목록에 없는 항목이므로 개발자 관점의 품질 측정 항목과 거리가 멉니다."
+        }
+      ],
+      "keyPoint": "개발자 관점의 소프트웨어 품질 측정 항목",
+      "tags": ["소프트웨어 품질", "품질 요소"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "소프트웨어 공학에서 워크스루(Walkthrough)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "사용사례를 확장하여 명세하거나 설계 다이어그램, 원시 코드, 테스트 케이스 등에 적용할 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "복잡한 알고리즘 또는 반복, 실시간, 동작, 병행 처리와 같은 기능이나 동작을 이해하려고 할 때 유용하다."
+        },
+        {
+          "no": 3,
+          "text": "인스펙션(Inspection)과 동일한 의미를 가진다."
+        },
+        {
+          "no": 4,
+          "text": "단순한 테스트 케이스를 이용하여 프로덕트를 수작업으로 수행해 보는 것이다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "워크스루는 개발자들이 모여 산출물을 검토하며 오류를 찾는 비공식 정적 검토 기법이고, 인스펙션은 훈련된 검토자와 체크리스트를 이용해 절차에 따라 진행하는 공식 검토 회의입니다. 두 기법 모두 정적 분석에 속하지만 진행 방식과 엄격함의 정도가 다르므로, 같은 의미라는 설명은 틀렸습니다. 워크스루는 복잡한 알고리즘이나 반복·실시간·동작·병행 처리 같은 기능을 이해할 때 유용하게 활용됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "워크스루는 요구사항 명세, 설계 다이어그램, 원시 코드, 테스트 케이스 등 다양한 산출물에 적용할 수 있습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "복잡한 알고리즘이나 반복, 실시간, 동작, 병행 처리와 같은 기능을 이해할 때 워크스루가 유용하다는 설명은 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "인스펙션은 워크스루보다 공식적이고 엄격하게 진행되는 검토 기법이므로 두 기법을 동일한 의미로 본 설명은 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "단순한 테스트 케이스를 이용해 산출물을 수작업으로 수행해 보는 것도 워크스루의 특징입니다."
+        }
+      ],
+      "keyPoint": "워크스루와 인스펙션의 차이",
+      "tags": ["워크스루", "인스펙션", "정적 분석"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "순서가 A, B, C, D로 정해진 입력 자료를 스택에 입력하였다가 출력할 때, 가능한 출력 순서의 결과가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "A, B, C, D"
+        },
+        {
+          "no": 2,
+          "text": "D, A, B, C"
+        },
+        {
+          "no": 3,
+          "text": "A, B, D, C"
+        },
+        {
+          "no": 4,
+          "text": "B, C, D, A"
+        }
+      ],
+      "answer": 2,
+      "explanation": "스택은 가장 나중에 삽입한 자료가 가장 먼저 출력되는 후입선출(LIFO) 구조입니다. D를 가장 먼저 출력하려면 A, B, C, D를 차례로 모두 push한 뒤 D를 pop해야 하는데, 이때 스택의 top은 C이므로 A를 두 번째로 출력할 수 없습니다. 나머지 순서들은 push와 pop을 적절히 섞으면 만들어 낼 수 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "A를 push한 뒤 바로 pop하는 과정을 반복하면 A, B, C, D 순서로 출력할 수 있습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "D를 먼저 출력하면 A, B, C가 스택에 남아 top이 C가 되므로 두 번째에 A를 출력할 수 없습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "A, B를 push·pop하고 C와 D를 push한 뒤 D, C를 pop하면 A, B, D, C 순서를 만들 수 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "A를 push한 채 나머지를 각각 push·pop하고 마지막에 A를 pop하면 B, C, D, A 순서를 만들 수 있습니다."
+        }
+      ],
+      "keyPoint": "스택의 후입선출(LIFO) 특성에 따른 출력 순서 판단",
+      "tags": ["스택", "LIFO", "자료구조"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "다음 트리의 차수(Degree)와 단말 노드(Terminal Node)의 수는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "차수 : 4, 단말 노드 : 4"
+        },
+        {
+          "no": 2,
+          "text": "차수 : 2, 단말 노드 : 4"
+        },
+        {
+          "no": 3,
+          "text": "차수 : 4, 단말 노드 : 8"
+        },
+        {
+          "no": 4,
+          "text": "차수 : 2, 단말 노드 : 8"
+        }
+      ],
+      "answer": 2,
+      "explanation": "트리의 차수는 노드가 가진 자식 노드 수 중 가장 큰 값입니다. 제시된 트리에서 A는 B, C를, C는 E, F를, E는 G, H를 자식으로 두고 있으므로 최대 자식 수는 2이고 차수는 2가 됩니다. 자식이 없는 단말 노드는 D, F, G, H로 모두 4개입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "단말 노드 수 4는 맞지만 차수는 2이며, 4가 되는 노드는 존재하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "자식이 가장 많은 노드의 자식 수가 2이고 단말 노드는 D, F, G, H로 4개이므로 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "차수는 자식 수의 최댓값인 2이고, 8은 전체 노드의 수이므로 단말 노드 수가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "차수 2는 맞지만 단말 노드는 D, F, G, H의 4개이므로 8이라는 설명은 틀렸습니다."
+        }
+      ],
+      "keyPoint": "트리의 차수와 단말 노드 수 계산",
+      "tags": ["트리", "차수", "단말 노드"],
+      "difficulty": 2,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2023-1/025.png",
+        "alt": "A를 루트로 B와 C가 갈라지고, B 아래에 D가, C 아래에 E와 F가 붙으며 E 아래에 G와 H가 붙은 트리",
+        "page": 2,
+        "col": 1,
+        "box": [319.7, 360.4, 427.4, 441.3]
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "다음 Postfix로 표현된 연산식의 연산 결과로 옳은 것은?",
+      "passage": "3 4 * 5 6 * +",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "35"
+        },
+        {
+          "no": 2,
+          "text": "42"
+        },
+        {
+          "no": 3,
+          "text": "81"
+        },
+        {
+          "no": 4,
+          "text": "360"
+        }
+      ],
+      "answer": 2,
+      "explanation": "후위(Postfix) 표기법은 연산자를 피연산자 뒤에 놓는 방식으로, 수식을 왼쪽부터 읽으면서 스택에 피연산자를 쌓고 연산자를 만나면 두 값을 꺼내 계산합니다. 주어진 식에서는 3과 4를 곱해 12를, 5와 6을 곱해 30을 만든 뒤 마지막 덧셈으로 두 값을 더하므로 결과는 42가 됩니다. 즉 (3×4)+(5×6)을 계산하는 식입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "3과 4를 곱하지 않고 더한 값을 사용해 계산한 결과로, 후위 표기의 올바른 계산 결과가 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "3×4=12와 5×6=30을 구한 뒤 두 값을 더하면 42가 되므로 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "두 곱셈의 결과인 12와 30을 어떤 순서로 계산해도 81이 되지 않으므로 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "360은 12와 30을 곱한 값으로, 마지막 연산자가 덧셈(+)이므로 옳지 않습니다."
+        }
+      ],
+      "keyPoint": "후위(Postfix) 표기식의 스택 계산",
+      "tags": ["후위 표기법", "스택"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "테스트와 디버그의 목적으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "테스트는 오류를 찾는 작업이고 디버깅은 오류를 수정하는 작업이다."
+        },
+        {
+          "no": 2,
+          "text": "테스트는 오류를 수정하는 작업이고 디버깅은 오류를 찾는 작업이다."
+        },
+        {
+          "no": 3,
+          "text": "둘 다 소프트웨어의 오류를 찾는 작업으로 오류 수정은 하지 않는다."
+        },
+        {
+          "no": 4,
+          "text": "둘 다 소프트웨어 오류의 발견, 수정과 무관하다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "테스트는 프로그램을 실행하여 요구사항대로 동작하는지 확인하고 오류가 있는지를 찾아내는 작업입니다. 디버깅은 테스트에서 발견된 오류의 원인을 추적하여 프로그램을 수정하는 작업이므로, 오류를 찾는 것은 테스트이고 오류를 수정하는 것은 디버깅입니다. 두 활동은 오류를 제거한다는 공통 목표를 가지고 순차적으로 이어집니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "테스트는 오류를 찾고 디버깅은 오류를 수정한다는 설명으로 두 작업의 목적을 정확히 구분했습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "테스트와 디버깅의 역할이 서로 뒤바뀐 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "테스트는 오류를 찾는 데 그치지만 디버깅은 원인을 찾아 수정까지 수행합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "테스트와 디버깅 모두 소프트웨어 오류의 발견과 수정에 직접 관련된 활동입니다."
+        }
+      ],
+      "keyPoint": "테스트(오류 검출)와 디버깅(오류 수정)의 역할 차이",
+      "tags": ["테스트", "디버깅"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "DRM(Digital Rights Management)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "디지털 콘텐츠와 디바이스의 사용을 제한하기 위해 하드웨어 제조업자, 저작권자, 출판업자 등이 사용할 수 있는 접근 제어 기술을 의미한다."
+        },
+        {
+          "no": 2,
+          "text": "디지털 미디어의 생명 주기 동안 발생하는 사용 권한 관리, 과금, 유통 단계를 관리하는 기술로도 볼 수 있다."
+        },
+        {
+          "no": 3,
+          "text": "클리어링 하우스(Clearing House)는 사용자에게 콘텐츠 라이센스를 발급하고 권한을 부여해주는 시스템을 말한다."
+        },
+        {
+          "no": 4,
+          "text": "원본을 안전하게 유통하기 위한 전자적 보안은 고려하지 않기 때문에 불법 유통과 복제의 방지는 불가능하다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "DRM은 디지털 콘텐츠의 저작권을 보호하기 위해 콘텐츠를 암호화하고 사용 권한을 통제하는 기술로, 원본의 안전한 유통을 위한 전자적 보안과 불법 유통·복제 방지가 핵심 목적입니다. 따라서 전자적 보안을 고려하지 않아 불법 유통과 복제 방지가 불가능하다는 설명은 DRM의 목적과 정반대이므로 틀렸습니다. 콘텐츠 사용 권한을 관리하고 라이선스를 발급하는 클리어링 하우스는 DRM을 구성하는 요소입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "DRM이 하드웨어 제조업자, 저작권자, 출판업자 등이 활용하는 접근 제어 기술이라는 설명은 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "사용 권한 관리와 과금, 유통 단계를 관리하는 기술이라는 설명도 DRM의 역할에 부합합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "클리어링 하우스가 콘텐츠 라이선스를 발급하고 권한을 부여하는 시스템이라는 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "DRM은 원본의 안전한 유통을 위한 전자적 보안을 핵심으로 하므로, 이를 고려하지 않는다는 설명은 틀렸습니다."
+        }
+      ],
+      "keyPoint": "DRM의 개념과 클리어링 하우스의 역할",
+      "tags": ["DRM", "저작권 보호", "클리어링 하우스"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "소프트웨어 형상 관리에서 관리 항목에 포함되지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "프로젝트 요구 분석서"
+        },
+        {
+          "no": 2,
+          "text": "소스 코드"
+        },
+        {
+          "no": 3,
+          "text": "운영 및 설치 지침서"
+        },
+        {
+          "no": 4,
+          "text": "프로젝트 개발 비용"
+        }
+      ],
+      "answer": 4,
+      "explanation": "형상 관리(Configuration Management)는 소프트웨어 개발 과정에서 생산되는 산출물의 변경을 식별하고 통제하며 기록하는 활동입니다. 관리 대상인 형상 항목에는 요구 분석서 같은 문서, 소스 코드, 운영 및 설치 지침서 등 개발 결과물이 포함됩니다. 프로젝트 개발 비용은 산출물이 아니라 프로젝트 관리 차원의 항목이므로 형상 관리 대상이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "요구 분석서는 개발 과정에서 작성되는 대표적인 산출물 문서로 형상 관리 대상에 포함됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "소스 코드는 변경이 빈번해 형상 관리의 핵심 대상이 되는 항목입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "운영 및 설치 지침서도 개발 결과물인 문서이므로 형상 관리 대상입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "개발 비용은 형상 관리 대상 산출물이 아니라 프로젝트 관리 항목이므로 포함되지 않습니다."
+        }
+      ],
+      "keyPoint": "형상 관리 대상이 되는 산출물과 형상 항목",
+      "tags": ["형상 관리", "산출물"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "다음과 같이 레코드가 구성되어 있을 때, 이진 검색 방법으로 14를 찾을 경우 비교되는 횟수는?",
+      "passage": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "2"
+        },
+        {
+          "no": 2,
+          "text": "3"
+        },
+        {
+          "no": 3,
+          "text": "4"
+        },
+        {
+          "no": 4,
+          "text": "5"
+        }
+      ],
+      "answer": 2,
+      "explanation": "이진 검색은 정렬된 자료의 중간값과 찾는 값을 비교하여 검색 범위를 절반씩 줄여 나가는 방법입니다. 1~15의 중간값인 8과 14를 비교하고, 9~15의 중간값인 12와 비교한 뒤, 13~15의 중간값인 14에서 값을 찾게 되므로 모두 3번 비교합니다. 비교할 때마다 범위가 절반으로 줄어들어 순차 검색보다 빠릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "8, 12, 14를 차례로 비교하므로 2번이 아니라 3번 비교합니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "중간값 8, 12, 14와 차례로 비교하여 3번 만에 14를 찾습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "세 번째 비교에서 14를 찾으므로 4번 비교한다는 설명은 옳지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "5번까지 비교하기 전에 14를 찾게 되므로 틀렸습니다."
+        }
+      ],
+      "keyPoint": "이진 검색의 중간값 비교 횟수 계산",
+      "tags": ["이진 검색", "검색 알고리즘"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "빌드 자동화 도구에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Gradle은 실행할 처리 명령들을 모아 태스크로 만든 후 태스크 단위로 실행한다."
+        },
+        {
+          "no": 2,
+          "text": "빌드 자동화 도구는 지속적인 통합 개발 환경에서 유용하게 활용된다."
+        },
+        {
+          "no": 3,
+          "text": "빌드 자동화 도구에는 Ant, Gradle, Jenkins 등이 있다."
+        },
+        {
+          "no": 4,
+          "text": "Jenkins는 Groovy를 기반으로 한 오픈 소스로 안드로이드 앱 개발 환경에서 사용된다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "빌드 자동화 도구는 소스 코드를 컴파일하고 테스트·배포하는 과정을 자동화하여 지속적인 통합 환경을 지원합니다. Groovy를 기반으로 한 오픈 소스 빌드 도구는 Gradle이며, Jenkins는 Java로 개발된 오픈 소스로 지속적인 통합 서버를 구성할 때 사용하는 도구입니다. 따라서 Jenkins를 Groovy 기반이라고 설명한 보기가 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Gradle이 처리 명령을 태스크로 묶어 태스크 단위로 실행한다는 설명은 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "빌드 자동화 도구가 지속적인 통합 개발 환경에서 유용하게 활용된다는 설명도 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Ant, Gradle, Jenkins가 대표적인 빌드 자동화 도구라는 설명도 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Groovy 기반 오픈 소스 빌드 도구는 Gradle이고 Jenkins는 Java 기반이므로 이 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "빌드 자동화 도구 Gradle과 Jenkins의 특징",
+      "tags": ["빌드 자동화", "Gradle", "Jenkins"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "화이트박스 테스트와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "화이트박스 테스트의 이해를 위해 논리 흐름도(Logic-Flow Diagram)를 이용할 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "테스트 데이터를 이용해 실제 프로그램을 실행함으로써 오류를 찾는 동적 테스트(Dynamic Test)에 해당한다."
+        },
+        {
+          "no": 3,
+          "text": "프로그램의 구조를 고려하지 않기 때문에 테스트 케이스는 프로그램 또는 모듈의 요구나 명세를 기초로 결정한다."
+        },
+        {
+          "no": 4,
+          "text": "테스트 데이터를 선택하기 위하여 검증 기준(Test Coverage)을 정한다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "화이트박스 테스트는 프로그램의 내부 구조와 논리 흐름을 살펴보며 테스트 데이터를 선정하는 기법으로, 검증 기준(테스트 커버리지)을 만족하도록 데이터를 선택하고 논리 흐름도를 참고합니다. 프로그램 구조를 고려하지 않고 요구나 명세만을 근거로 테스트 케이스를 정하는 것은 블랙박스 테스트의 특징이므로 보기 ③이 틀렸습니다. 화이트박스 테스트는 실제 프로그램을 실행하는 동적 테스트에 해당합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "화이트박스 테스트에서 논리 흐름도를 이용해 내부 구조를 파악하는 것은 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "테스트 데이터로 프로그램을 실행해 오류를 찾는 동적 테스트에 해당한다는 설명도 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "프로그램 내부 구조를 고려하는 것이 화이트박스 테스트이므로, 구조를 고려하지 않는다는 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "테스트 데이터 선택을 위해 검증 기준(테스트 커버리지)을 정한다는 설명은 맞습니다."
+        }
+      ],
+      "keyPoint": "화이트박스 테스트와 블랙박스 테스트의 구분",
+      "tags": ["화이트박스 테스트", "테스트 커버리지"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "알파, 베타 테스트와 가장 밀접한 연관이 있는 테스트 단계는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "단위 테스트"
+        },
+        {
+          "no": 2,
+          "text": "인수 테스트"
+        },
+        {
+          "no": 3,
+          "text": "통합 테스트"
+        },
+        {
+          "no": 4,
+          "text": "시스템 테스트"
+        }
+      ],
+      "answer": 2,
+      "explanation": "인수 테스트는 개발을 마친 소프트웨어가 사용자의 요구를 만족하는지 사용자 입장에서 확인하는 단계입니다. 알파 테스트는 개발자 환경에서 사용자가 개발자와 함께 검사하고, 베타 테스트는 실제 사용 환경에서 사용자가 직접 사용해 보는 검사로 둘 다 인수 테스트에 속합니다. 따라서 인수 테스트가 알파·베타 테스트와 가장 밀접한 단계입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "단위 테스트는 개별 모듈이나 컴포넌트 단위로 내부 구조를 검사하는 단계입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "알파 테스트와 베타 테스트는 모두 사용자가 참여해 완성된 소프트웨어를 검사하는 인수 테스트 단계에 속합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "통합 테스트는 모듈을 결합해 인터페이스와 결합 시 발생하는 오류를 확인하는 단계입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "시스템 테스트는 전체 시스템이 요구사항을 만족하는지 확인하는 단계이지만, 사용자 검사인 알파·베타 테스트는 인수 테스트로 분류됩니다."
+        }
+      ],
+      "keyPoint": "알파·베타 테스트와 인수 테스트의 관계",
+      "tags": ["인수 테스트", "알파 테스트", "베타 테스트"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "다음 중 테스트 오라클에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "샘플링 오라클 : 특정한 몇몇 테스트 케이스의 입력 값들에 대해서만 기대하는 결과를 제공하는 오라클이다."
+        },
+        {
+          "no": 2,
+          "text": "토탈 오라클 : 모든 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하는 오라클이다."
+        },
+        {
+          "no": 3,
+          "text": "휴리스틱 오라클 : 특정 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하고, 나머지 입력 값들에 대해서는 추정으로 처리하는 오라클이다."
+        },
+        {
+          "no": 4,
+          "text": "일관성 검사 오라클 : 애플리케이션의 변경이 있을 경우 테스트 케이스의 수행 전과 후의 결과 값이 동일한지를 확인하는 오라클이다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "테스트 오라클은 테스트 결과가 참인지 거짓인지 판단하는 기준으로, 참(True) 오라클, 샘플링 오라클, 휴리스틱 오라클, 일관성 검사 오라클로 분류됩니다. 모든 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하는 오라클은 참 오라클이므로, 이를 토탈 오라클이라고 부른 보기 ②의 명칭이 옳지 않습니다. 샘플링 오라클과 휴리스틱 오라클은 일부 입력 값에 대해서만 기대 결과를 제공하거나 나머지를 추정으로 처리합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "특정한 몇몇 테스트 케이스의 입력 값에 대해서만 기대 결과를 제공한다는 샘플링 오라클의 설명은 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "모든 입력 값에 대해 기대 결과를 제공하는 오라클은 참(True) 오라클이므로 토탈 오라클이라는 명칭이 옳지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "일부는 기대 결과를 제공하고 나머지는 추정으로 처리한다는 휴리스틱 오라클의 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "변경 전후의 수행 결과가 동일한지 확인한다는 일관성 검사 오라클의 설명은 맞습니다."
+        }
+      ],
+      "keyPoint": "테스트 오라클의 종류와 참 오라클의 정의",
+      "tags": ["테스트 오라클", "참 오라클"],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "EAI(Enterprise Application Integration)의 구축 유형으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Tree"
+        },
+        {
+          "no": 2,
+          "text": "Hub & Spoke"
+        },
+        {
+          "no": 3,
+          "text": "Message Bus"
+        },
+        {
+          "no": 4,
+          "text": "Point-to-Point"
+        }
+      ],
+      "answer": 1,
+      "explanation": "EAI는 기업 내 서로 다른 애플리케이션을 하나로 통합하는 기술로, 구축 유형에는 Point-to-Point, Hub & Spoke, Message Bus(ESB), Hybrid 방식이 있습니다. Tree는 EAI 구축 유형에 포함되지 않는 용어이므로 옳지 않은 보기입니다. 각 유형은 애플리케이션을 직접 연결하거나 미들웨어를 매개로 연결하는 방식에서 차이가 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "Tree는 EAI의 구축 유형에 포함되지 않는 용어로, 이 보기가 정답입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Hub & Spoke는 중앙 집중형 허브를 통해 애플리케이션을 통합하는 대표적인 EAI 유형입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Message Bus는 미들웨어를 통해 데이터를 전달하는 EAI 구축 유형입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Point-to-Point는 애플리케이션을 1:1로 직접 연결하는 EAI 구축 유형입니다."
+        }
+      ],
+      "keyPoint": "EAI 구축 유형(Point-to-Point, Hub & Spoke, Message Bus, Hybrid)",
+      "tags": ["EAI", "Hub & Spoke", "Message Bus"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "다음 트리를 Preorder 운행법으로 운행할 경우 다섯 번째로 탐색되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "C"
+        },
+        {
+          "no": 2,
+          "text": "E"
+        },
+        {
+          "no": 3,
+          "text": "G"
+        },
+        {
+          "no": 4,
+          "text": "H"
+        }
+      ],
+      "answer": 2,
+      "explanation": "Preorder(전위) 운행법은 노드를 방문한 뒤 왼쪽 서브트리, 오른쪽 서브트리 순으로 순회하는 방식입니다. 제시된 트리를 순서대로 방문하면 A → B → D → C → E → G → H → F가 되므로 다섯 번째로 탐색되는 노드는 E입니다. 루트를 가장 먼저 방문하는 것이 전위 순회의 특징입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "C는 A, B, D를 방문한 뒤인 네 번째에 탐색됩니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "A, B, D, C를 방문한 다음 E를 탐색하므로 다섯 번째 탐색 노드는 E입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "G는 E 다음인 여섯 번째에 탐색됩니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "H는 G 다음인 일곱 번째에 탐색됩니다."
+        }
+      ],
+      "keyPoint": "이진 트리의 Preorder(전위) 순회 순서",
+      "tags": ["트리 순회", "Preorder"],
+      "difficulty": 3,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2023-1/036.png",
+        "alt": "A를 루트로 B와 C가 갈라지고, B 아래에 D가, C 아래에 E와 F가 붙으며 E 아래에 G와 H가 붙은 이진 트리",
+        "page": 3,
+        "col": 0,
+        "box": [57.5, 686.4, 151.3, 772.2]
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "다음 초기 자료에 대하여 삽입 정렬(Insertion Sort)을 이용하여 오름차순 정렬할 경우 1회전 후의 결과는?",
+      "passage": "초기 자료 : 8, 3, 4, 9, 7",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "3, 4, 8, 7, 9"
+        },
+        {
+          "no": 2,
+          "text": "3, 4, 9, 7, 8"
+        },
+        {
+          "no": 3,
+          "text": "7, 8, 3, 4, 9"
+        },
+        {
+          "no": 4,
+          "text": "3, 8, 4, 9, 7"
+        }
+      ],
+      "answer": 4,
+      "explanation": "삽입 정렬은 두 번째 자료부터 시작하여 이미 정렬된 앞부분의 자료들과 비교하며 자신의 위치를 찾아 삽입하는 정렬 방법입니다. 1회전에서는 두 번째 자료 3을 앞의 8과 비교하는데, 3이 8보다 작으므로 8을 한 칸 뒤로 밀고 3을 맨 앞에 삽입하여 3, 8, 4, 9, 7이 됩니다. 이후 회전을 거듭하면서 나머지 자료들이 제자리를 찾아갑니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "3, 4, 8, 7, 9는 여러 회전을 수행한 뒤의 모습으로 1회전 결과가 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "3, 4, 9, 7, 8도 자료가 여러 번 이동한 결과이므로 1회전 결과가 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "7이 맨 앞으로 이동하는 것은 1회전 단계에서 일어날 수 없는 변화입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "1회전에서 3을 8 앞에 삽입하면 3, 8, 4, 9, 7이 되므로 옳습니다."
+        }
+      ],
+      "keyPoint": "삽입 정렬의 회전별 정렬 과정",
+      "tags": ["삽입 정렬", "정렬 알고리즘"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "다음 중 단위 테스트 도구로 사용될 수 없는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "CppUnit"
+        },
+        {
+          "no": 2,
+          "text": "JUnit"
+        },
+        {
+          "no": 3,
+          "text": "HttpUnit"
+        },
+        {
+          "no": 4,
+          "text": "IgpUnit"
+        }
+      ],
+      "answer": 4,
+      "explanation": "단위 테스트 도구는 xUnit 계열로 언어별로 여러 가지가 제공되며, CppUnit은 C++, JUnit은 Java, HttpUnit은 웹 애플리케이션을 대상으로 하는 테스트 도구입니다. IgpUnit은 실제로 존재하지 않는 이름이므로 단위 테스트 도구로 사용할 수 없습니다. 단위 테스트는 모듈 단위로 코드를 검증하여 결함을 조기에 발견하는 데 목적이 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CppUnit은 C++ 프로그램의 단위 테스트에 사용하는 xUnit 계열 도구입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "JUnit은 Java 프로그램의 단위 테스트에 널리 사용되는 도구입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "HttpUnit은 웹 애플리케이션을 대상으로 하는 단위 테스트 도구입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "IgpUnit은 존재하지 않는 도구 이름이므로 단위 테스트 도구로 사용할 수 없습니다."
+        }
+      ],
+      "keyPoint": "xUnit 계열 단위 테스트 도구의 종류",
+      "tags": ["단위 테스트", "xUnit", "JUnit"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "소프트웨어 재공학이 소프트웨어의 재개발에 비해 갖는 장점으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "위험부담 감소"
+        },
+        {
+          "no": 2,
+          "text": "비용 절감"
+        },
+        {
+          "no": 3,
+          "text": "시스템 명세의 오류억제"
+        },
+        {
+          "no": 4,
+          "text": "개발 시간의 증가"
+        }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 재공학은 기존 소프트웨어를 분석하고 변환하여 다시 사용함으로써 위험 부담을 줄이고 비용을 절감하며 시스템 명세의 오류를 억제하는 효과를 줍니다. 개발 시간의 증가는 재공학의 장점이 아니라 오히려 부담으로 작용하는 요소이므로 거리가 먼 항목입니다. 재공학은 기존 자산을 활용해 생산성과 품질을 높이는 데 목적이 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "기존 시스템을 활용하므로 새로 개발할 때보다 위험 부담이 줄어드는 것은 재공학의 장점입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "기존 자산을 재사용하므로 개발 비용을 절감할 수 있다는 것도 재공학의 장점입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "시스템 명세의 오류를 억제하는 효과도 재공학의 장점에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "개발 시간의 증가는 장점이 아니라 부담이므로 재공학의 장점과 거리가 멉니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 재공학의 장점",
+      "tags": ["소프트웨어 재공학", "재개발"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "알고리즘 설계 기법으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Divide and Conquer"
+        },
+        {
+          "no": 2,
+          "text": "Greedy"
+        },
+        {
+          "no": 3,
+          "text": "Static Block"
+        },
+        {
+          "no": 4,
+          "text": "Backtracking"
+        }
+      ],
+      "answer": 3,
+      "explanation": "알고리즘 설계 기법에는 문제를 작은 문제로 나누어 해결하는 분할 정복(Divide and Conquer), 매 단계에서 최선의 선택을 하는 탐욕법(Greedy), 해를 찾다가 막히면 되돌아가는 백트래킹(Backtracking) 등이 있습니다. Static Block은 자바에서 클래스가 로드될 때 한 번 실행되는 초기화 문법 요소이므로 알고리즘 설계 기법이 아닙니다. 설계 기법은 문제 해결 절차를 구조화하는 전략을 뜻합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "분할 정복은 문제를 작은 단위로 나누어 해결하는 대표적인 알고리즘 설계 기법입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "탐욕법(Greedy)은 각 단계에서 최선의 선택을 반복하는 알고리즘 설계 기법입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "Static Block은 자바의 클래스 초기화 문법으로 알고리즘 설계 기법이 아니므로 정답입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "백트래킹(Backtracking)은 조건에 맞지 않으면 되돌아가며 해를 찾는 알고리즘 설계 기법입니다."
+        }
+      ],
+      "keyPoint": "알고리즘 설계 기법의 종류",
+      "tags": ["알고리즘 설계 기법", "분할 정복", "백트래킹"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

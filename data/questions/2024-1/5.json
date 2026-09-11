@@ -1,0 +1,575 @@
+{
+ "exam": {
+  "id": "2024-1",
+  "year": 2024,
+  "round": 1,
+  "title": "2024년 1회 정보처리기사 필기",
+  "sourcePdf": "1. 2024년1회_정보처리기사필기기출문제.pdf"
+ },
+ "subject": {
+  "code": 5,
+  "name": "정보시스템 구축 관리"
+ },
+ "questions": [
+  {
+   "id": "2024-1-081",
+   "number": 81,
+   "subjectCode": 5,
+   "stem": "침입탐지 시스템(IDS : Intrusion Detection System)과 관련한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "이상 탐지 기법(Anomaly Detection)은 Signature Base나 Knowledge Base라고도 불리며 이미 발견되고 정립된 공격 패턴을 입력해두었다가 탐지 및 차단한다."},
+    {"no": 2, "text": "HIDS(Host-Based Intrusion Detection)는 운영체제에 설정된 사용자 계정에 따라 어떤 사용자가 어떤 접근을 시도하고 어떤 작업을 했는지에 대한 기록을 남기고 추적한다."},
+    {"no": 3, "text": "NIDS(Network-Based Intrusion Detection System)로는 대표적으로 Snort가 있다."},
+    {"no": 4, "text": "외부 인터넷에 서비스를 제공하는 서버가 위치하는 네트워크인 DMZ(Demilitarized Zone)에는 IDS가 설치될 수 있다."}
+   ],
+   "answer": 1,
+   "explanation": "이상 탐지 기법(Anomaly Detection)은 평균적인 시스템의 정상 상태를 기준으로 삼고, 여기서 벗어난 비정상적인 행위나 자원 사용을 감지해 알려주는 방식입니다. 그런데 ①번은 이미 발견되고 정립된 공격 패턴을 입력해 두고 대조한다고 설명하고 있는데, 이는 Signature Base나 Knowledge Base라고 불리는 오용 탐지 기법(Misuse Detection)의 설명이므로 틀렸습니다. HIDS는 호스트의 사용자 계정과 접근·작업 기록을 추적하고, NIDS는 네트워크 트래픽을 분석하며 Snort가 대표적인 도구입니다. IDS는 외부 서비스를 제공하는 서버가 놓이는 DMZ에도 설치할 수 있습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "정상 상태에서 벗어난 행위를 찾는 이상 탐지와 달리, 알려진 공격 패턴을 등록해 대조하는 방식은 오용 탐지(Misuse Detection)이므로 설명이 틀렸습니다."},
+    {"no": 2, "correct": false, "why": "HIDS는 운영체제의 사용자 계정을 기준으로 어떤 사용자가 어떤 접근과 작업을 했는지 기록하고 추적하는 호스트 기반 침입탐지 방식이므로 맞는 설명입니다."},
+    {"no": 3, "correct": false, "why": "NIDS는 네트워크 기반 침입탐지 시스템이며 대표적인 오픈 소스 제품이 Snort이므로 맞는 설명입니다."},
+    {"no": 4, "correct": false, "why": "DMZ는 외부 인터넷에 공개된 서버가 위치하는 망으로, 이곳에 IDS를 설치해 침입을 감시할 수 있으므로 맞는 설명입니다."}
+   ],
+   "keyPoint": "이상 탐지(Anomaly)와 오용 탐지(Misuse)의 차이, HIDS·NIDS의 특징",
+   "tags": ["침입탐지 시스템", "오용 탐지", "Snort"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-082",
+   "number": 82,
+   "subjectCode": 5,
+   "stem": "정보시스템과 관련한 다음 설명에 해당하는 것은?",
+   "passage": "ㆍ각 시스템 간에 공유 디스크를 중심으로 클러스터링으로 엮어 다수의 시스템을 동시에 연결할 수 있다.\nㆍ조직, 기업의 기간 업무 서버 안정성을 높이기 위해 사용될 수 있다.\nㆍ여러 가지 방식으로 구현되며 2개의 서버를 연결하는 것으로 2개의 시스템이 각각 업무를 수행하도록 구현하는 방식이 널리 사용된다.",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "고가용성 솔루션(HACMP)"},
+    {"no": 2, "text": "점대점 연결 방식(Point-to-Point Mode)"},
+    {"no": 3, "text": "스턱스넷(Stuxnet)"},
+    {"no": 4, "text": "루팅(Rooting)"}
+   ],
+   "answer": 1,
+   "explanation": "지문은 공유 디스크를 중심으로 클러스터링하여 다수의 시스템을 동시에 연결하는 고가용성 솔루션(HACMP)에 대한 설명입니다. HACMP는 조직이나 기업의 기간 업무 서버 안정성을 높이기 위해 사용되며, 2개의 서버를 연결해 각각 업무를 수행하도록 구현하는 방식이 널리 쓰입니다. 점대점 연결 방식은 연결된 두 단말이 동등하게 클라이언트도 서버도 될 수 있는 통신 방식이고, 스턱스넷은 산업시설을 감시·파괴하기 위해 만들어진 악성 소프트웨어이며, 루팅은 스마트폰의 보안 기능을 해제하는 행위입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "공유 디스크 기반 클러스터링으로 서버의 가용성과 안정성을 높이는 고가용성 솔루션이 지문의 설명에 해당합니다."},
+    {"no": 2, "correct": false, "why": "점대점 연결 방식은 두 단말이 동등하게 연결되어 각각 클라이언트나 서버 역할을 할 수 있는 통신 방식으로, 공유 디스크 클러스터링과는 다릅니다."},
+    {"no": 3, "correct": false, "why": "스턱스넷은 독일의 산업시설을 감시하고 파괴하기 위해 만들어진 악성 소프트웨어이므로 지문과 무관합니다."},
+    {"no": 4, "correct": false, "why": "루팅은 스마트폰의 보안 기능을 해제해 허용되지 않은 기능을 사용하도록 변경하는 행위이므로 지문과 무관합니다."}
+   ],
+   "keyPoint": "고가용성 솔루션(HACMP)과 클러스터링의 목적",
+   "tags": ["고가용성", "HACMP", "클러스터링"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-083",
+   "number": 83,
+   "subjectCode": 5,
+   "stem": "기기를 키오스크에 갖다 대면 원하는 데이터를 바로 가져올 수 있는 기술로 10㎝ 이내 근접 거리에서 기가급 속도로 데이터 전송이 가능한 초고속 근접무선통신(NFC; Near Field Communication) 기술은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "BcN(Broadband Convergence Network)"},
+    {"no": 2, "text": "Zing"},
+    {"no": 3, "text": "Marine Navi"},
+    {"no": 4, "text": "C-V2X(Cellular Vehicle To Everything)"}
+   ],
+   "answer": 2,
+   "explanation": "10㎝ 이내의 근접 거리에서 3.5Gbps 속도의 데이터 전송이 가능한 초고속 근접무선통신(NFC)을 징(Zing)이라고 합니다. BcN은 음성, 데이터, 유선, 무선, 통신, 방송 등 다양한 멀티미디어 서비스를 장소와 시간에 관계없이 일정한 품질로 이용할 수 있게 하는 차세대 네트워크이고, 마린내비(Marine Navi)는 KT가 만든 선박 안전 솔루션입니다. C-V2X는 이동통신망을 이용해 차량 대 차량, 차량 대 보행자, 차량 대 인프라 간 정보를 공유하는 기술입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "BcN은 통신·방송·인터넷을 하나로 통합한 광대역 통합망으로, 근접 거리 초고속 무선 전송 기술이 아닙니다."},
+    {"no": 2, "correct": true, "why": "10㎝ 이내 거리에서 3.5Gbps 속도로 데이터를 전송하는 초고속 근접무선통신(NFC)을 징(Zing)이라고 합니다."},
+    {"no": 3, "correct": false, "why": "마린내비는 소형 선박의 충돌사고 예방을 위해 KT가 만든 GPS 기반 선박 안전 솔루션으로, NFC 기술과는 무관합니다."},
+    {"no": 4, "correct": false, "why": "C-V2X는 이동통신망을 이용한 차량·사물 간 통신 기술로, 키오스크용 근접무선통신과는 거리가 있습니다."}
+   ],
+   "keyPoint": "초고속 근접무선통신(NFC)과 징(Zing)의 개념",
+   "tags": ["NFC", "Zing", "근접무선통신"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-084",
+   "number": 84,
+   "subjectCode": 5,
+   "stem": "세션 하이재킹을 탐지하는 방법으로 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "FTP SYN SEGMENT 탐지"},
+    {"no": 2, "text": "비동기화 상태 탐지"},
+    {"no": 3, "text": "ACK STORM 탐지"},
+    {"no": 4, "text": "패킷의 유실 및 재전송 증가 탐지"}
+   ],
+   "answer": 1,
+   "explanation": "세션 하이재킹은 정상적인 세션을 가로채는 공격으로, 탐지 방법에는 비동기화 상태 탐지, ACK Storm 탐지, 패킷의 유실과 재전송 증가 탐지, 예상치 못한 접속의 리셋 탐지 등이 있습니다. FTP SYN SEGMENT 탐지는 세션 하이재킹 탐지 기법으로 분류되지 않으므로 정답과 거리가 먼 항목입니다. 나머지 세 가지는 모두 세션의 비정상적인 상태 변화를 관찰해 하이재킹을 찾아내는 방법입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "FTP SYN SEGMENT 탐지는 세션 하이재킹 탐지 방법에 포함되지 않으므로 거리가 먼 항목입니다."},
+    {"no": 2, "correct": false, "why": "비동기화 상태 탐지는 세션의 시퀀스 번호가 어긋나는 것을 관찰해 하이재킹을 찾는 대표적인 탐지 방법입니다."},
+    {"no": 3, "correct": false, "why": "ACK Storm 탐지는 하이재킹으로 ACK 패킷이 서로 계속 오가는 현상을 이용해 공격을 탐지하는 방법입니다."},
+    {"no": 4, "correct": false, "why": "패킷의 유실 및 재전송 증가 탐지는 세션 탈취 후 통신이 꼬이면서 재전송이 늘어나는 현상을 이용한 탐지 방법입니다."}
+   ],
+   "keyPoint": "세션 하이재킹의 탐지 기법(비동기화, ACK Storm 등)",
+   "tags": ["세션 하이재킹", "ACK Storm", "비동기화 탐지"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-085",
+   "number": 85,
+   "subjectCode": 5,
+   "stem": "소프트웨어 생명 주기 모형 중 Spiral Model에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "비교적 대규모 시스템에 적합하다."},
+    {"no": 2, "text": "개발 순서는 계획 및 정의, 위험 분석, 공학적 개발, 고객 평가 순으로 진행된다."},
+    {"no": 3, "text": "소프트웨어를 개발하면서 발생할 수 있는 위험을 관리하고 최소화하는 것을 목적으로 한다."},
+    {"no": 4, "text": "계획, 설계, 개발, 평가의 개발 주기가 한 번만 수행된다."}
+   ],
+   "answer": 4,
+   "explanation": "나선형 모델(Spiral Model)은 계획 수립, 위험 분석, 개발 및 검증, 고객 평가의 과정을 나선을 그리며 반복 수행하면서 점진적으로 시스템을 완성하는 개발 방법론입니다. 가장 큰 특징이 위험 분석을 중심으로 위험을 관리하고 최소화하는 것이며, 규모가 큰 시스템에 적합합니다. 따라서 개발 주기가 한 번만 수행된다는 ④의 설명은 나선형 모델의 반복(Iterative) 특성과 정반대이므로 틀렸습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "나선형 모델은 위험 분석을 통해 대규모·고위험 시스템에 적합한 모형이므로 맞는 설명입니다."},
+    {"no": 2, "correct": false, "why": "계획 및 정의, 위험 분석, 공학적 개발, 고객 평가 순으로 진행되는 것이 나선형 모델의 개발 순서이므로 맞는 설명입니다."},
+    {"no": 3, "correct": false, "why": "나선형 모델은 개발 중 발생할 수 있는 위험을 관리하고 최소화하는 것을 목적으로 하므로 맞는 설명입니다."},
+    {"no": 4, "correct": true, "why": "나선형 모델은 계획·설계·개발·평가 주기를 여러 번 반복하며 점진적으로 완성하는 모형이므로 '한 번만 수행된다'는 설명이 틀렸습니다."}
+   ],
+   "keyPoint": "나선형(Spiral) 모델의 반복 수행과 위험 분석 중심 개발",
+   "tags": ["나선형 모델", "소프트웨어 생명주기", "위험 분석"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-086",
+   "number": 86,
+   "subjectCode": 5,
+   "stem": "다음이 설명하는 용어로 옳은 것은?",
+   "passage": "ㆍ오픈 소스를 기반으로 한 분산 컴퓨팅 플랫폼이다.\nㆍ일반 PC급 컴퓨터들로 가상화된 대형 스토리지를 형성한다.\nㆍ다양한 소스를 통해 생성된 빅데이터를 효율적으로 저장하고 처리한다.",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "하둡(Hadoop)"},
+    {"no": 2, "text": "비컨(Beacon)"},
+    {"no": 3, "text": "포스퀘어(Foursquare)"},
+    {"no": 4, "text": "맴리스터(Memristor)"}
+   ],
+   "answer": 1,
+   "explanation": "지문은 오픈 소스를 기반으로 한 분산 컴퓨팅 플랫폼인 하둡(Hadoop)에 대한 설명입니다. 하둡은 일반 PC급 컴퓨터들을 묶어 가상화된 대형 스토리지를 형성하고, 다양한 소스에서 생성된 빅데이터를 효율적으로 저장하고 처리합니다. 비컨은 무선 통신에서 신호 동기를 맞추고 시스템 정보를 전달하는 기술, 포스퀘어는 위치 기반 소셜 네트워크 서비스, 맴리스터는 전류의 방향과 양을 기억하는 소자입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "오픈 소스 기반 분산 컴퓨팅 플랫폼이자 빅데이터 저장·처리 기술인 하둡이 지문의 설명에 해당합니다."},
+    {"no": 2, "correct": false, "why": "비컨은 전파를 이용한 무선 통신에서 주기적으로 신호 동기를 맞추고 시스템 정보를 전달하는 신호 기술이므로 지문과 다릅니다."},
+    {"no": 3, "correct": false, "why": "포스퀘어는 방문 장소를 지도에 표시하고 정보를 남기는 위치 기반 SNS로, 분산 컴퓨팅 플랫폼이 아닙니다."},
+    {"no": 4, "correct": false, "why": "맴리스터는 메모리와 레지스터의 합성어로 전원이 끊겨도 직전 상태를 기억하는 소자이므로 지문과 무관합니다."}
+   ],
+   "keyPoint": "하둡(Hadoop)의 분산 컴퓨팅·빅데이터 처리 특징",
+   "tags": ["하둡", "빅데이터", "분산 컴퓨팅"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-087",
+   "number": 87,
+   "subjectCode": 5,
+   "stem": "컴퓨터 사용자의 키보드 움직임을 탐지해 ID, 패스워드 등 개인의 중요한 정보를 몰래 빼가는 해킹 공격은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Key Logger Attack"},
+    {"no": 2, "text": "Worm"},
+    {"no": 3, "text": "Rollback"},
+    {"no": 4, "text": "Zombie Worm"}
+   ],
+   "answer": 1,
+   "explanation": "컴퓨터 사용자의 키보드 움직임을 탐지해 ID, 패스워드 등 개인의 중요한 정보를 몰래 빼가는 해킹 공격은 키로거 공격(Key Logger Attack)입니다. 웜(Worm)은 네트워크를 통해 연속적으로 자신을 복제해 시스템 부하를 높여 결국 시스템을 다운시키는 악성코드입니다. 롤백(Rollback)은 데이터베이스 조작 작업이 비정상적으로 종료되었을 때 원래 상태로 복구하는 기능이고, 좀비 PC는 악성코드에 감염되어 C&C 서버의 제어를 받으며 주로 DDoS 공격에 이용되는 컴퓨터입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "키보드 입력을 가로채 ID와 패스워드 등 중요 정보를 빼가는 공격이 키로거 공격(Key Logger Attack)입니다."},
+    {"no": 2, "correct": false, "why": "웜은 네트워크를 통해 스스로를 복제해 시스템 부하를 높이는 악성코드로, 키보드 입력 탈취와는 목적이 다릅니다."},
+    {"no": 3, "correct": false, "why": "롤백은 데이터베이스 작업이 비정상 종료되었을 때 원래 상태로 되돌리는 복구 기능이지 해킹 공격이 아닙니다."},
+    {"no": 4, "correct": false, "why": "좀비 웜은 감염된 PC를 조종 가능한 상태로 만드는 악성코드 계열로, 키보드 움직임을 탐지해 정보를 빼가는 공격과는 다릅니다."}
+   ],
+   "keyPoint": "키로거(Key Logger) 공격의 개념과 웜·롤백·좀비 PC와의 구분",
+   "tags": ["키로거", "해킹 공격", "악성코드"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-088",
+   "number": 88,
+   "subjectCode": 5,
+   "stem": "COCOMO 모델의 프로젝트 유형으로 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Organic"},
+    {"no": 2, "text": "Semi-detached"},
+    {"no": 3, "text": "Embedded"},
+    {"no": 4, "text": "Sequential"}
+   ],
+   "answer": 4,
+   "explanation": "COCOMO 모델은 소프트웨어 개발 비용을 산정하는 모델로, 프로젝트 유형을 Organic(조직형), Semi-detached(반분리형), Embedded(내장형)의 세 가지로 구분합니다. Sequential이라는 유형은 COCOMO 모델에 존재하지 않으므로 정답과 거리가 먼 항목입니다. Organic은 소규모·친숙한 환경, Semi-detached는 중간 규모, Embedded는 하드웨어·운영체제 등 제약이 큰 대규모 프로젝트에 적용합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "Organic은 소규모이고 개발 경험이 있는 친숙한 환경의 프로젝트에 적용하는 COCOMO 유형이므로 맞는 항목입니다."},
+    {"no": 2, "correct": false, "why": "Semi-detached는 경험이 어느 정도 있고 규모가 중간 정도인 프로젝트에 적용하는 COCOMO 유형이므로 맞는 항목입니다."},
+    {"no": 3, "correct": false, "why": "Embedded는 하드웨어나 운영체제 등 제약 조건이 많은 대규모 프로젝트에 적용하는 COCOMO 유형이므로 맞는 항목입니다."},
+    {"no": 4, "correct": true, "why": "COCOMO의 프로젝트 유형에는 Organic, Semi-detached, Embedded만 있고 Sequential은 존재하지 않습니다."}
+   ],
+   "keyPoint": "COCOMO 모델의 프로젝트 유형 3가지(Organic, Semi-detached, Embedded)",
+   "tags": ["COCOMO", "비용 산정", "프로젝트 유형"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-089",
+   "number": 89,
+   "subjectCode": 5,
+   "stem": "다음은 정보의 접근통제 정책에 대한 설명이다. (ㄱ)에 들어갈 내용으로 옳은 것은?",
+   "passage": "정책 | ( ㄱ ) | DAC | RBAC\n권한 부여 | 시스템 | 데이터 소유자 | 중앙 관리자\n접근 결정 | 보안등급(Label) | 신분(Identity) | 역할(Role)\n정책 변경 | 고정적(변경 어려움) | 변경 용이 | 변경 용이\n장점 | 안정적, 중앙 집중적 | 구현 용이, 유연함 | 관리 용이",
+   "passageKind": "table",
+   "choices": [
+    {"no": 1, "text": "NAC"},
+    {"no": 2, "text": "MAC"},
+    {"no": 3, "text": "SDAC"},
+    {"no": 4, "text": "AAC"}
+   ],
+   "answer": 2,
+   "explanation": "표에서 (ㄱ) 정책은 권한 부여를 시스템이 담당하고, 접근 결정을 보안등급(Label)으로 하며, 정책 변경이 고정적이어서 어렵고 안정적·중앙 집중적이라는 장점을 가집니다. 이는 등급을 정해두면 시스템이 권한을 부여하는 강제 접근통제(MAC; Mandatory Access Control)의 특징입니다. DAC는 데이터 소유자가 권한을 부여하고 신분(Identity)을 기준으로 접근을 결정하며, RBAC는 중앙 관리자가 역할(Role)을 기준으로 권한을 부여해 관리가 용이합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "NAC은 네트워크에 접속하는 내부 PC의 MAC 주소를 등록해 보안 관리를 제공하는 솔루션으로 접근통제 정책의 한 종류가 아닙니다."},
+    {"no": 2, "correct": true, "why": "권한 부여를 시스템이 하고 보안등급(Label)으로 접근을 결정하며 정책 변경이 고정적인 방식은 강제 접근통제(MAC)입니다."},
+    {"no": 3, "correct": false, "why": "SDAC이라는 접근통제 정책은 존재하지 않으며, 표의 (ㄱ)이 가진 특징과도 맞지 않습니다."},
+    {"no": 4, "correct": false, "why": "AAC라는 접근통제 정책은 존재하지 않고, 표에 제시된 시스템 중심 권한 부여 설명과도 부합하지 않습니다."}
+   ],
+   "keyPoint": "MAC·DAC·RBAC 접근통제 정책의 권한 부여·접근 결정 기준 비교",
+   "tags": ["접근통제", "MAC", "RBAC"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-090",
+   "number": 90,
+   "subjectCode": 5,
+   "stem": "정보 보안의 3 요소에 해당하지 않는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "기밀성"},
+    {"no": 2, "text": "무결성"},
+    {"no": 3, "text": "가용성"},
+    {"no": 4, "text": "휘발성"}
+   ],
+   "answer": 4,
+   "explanation": "소프트웨어 개발에서 충족시켜야 할 정보 보안의 3대 요소는 기밀성(Confidentiality), 무결성(Integrity), 가용성(Availability)입니다. 기밀성은 시스템 내의 정보와 자원이 인가된 사용자에게만 접근이 허용되는 성질이고, 무결성은 인가된 사용자만 정보를 수정할 수 있는 성질이며, 가용성은 인가받은 사용자가 언제라도 자원을 사용할 수 있는 성질입니다. 휘발성은 전원이 끊기면 내용이 사라지는 메모리 특성 등을 가리키는 용어로 보안 3요소에 포함되지 않습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "기밀성은 인가된 사용자만 정보에 접근하도록 하는 정보 보안 3요소 중 하나이므로 해당합니다."},
+    {"no": 2, "correct": false, "why": "무결성은 인가된 사용자만 정보를 수정할 수 있도록 보장하는 정보 보안 3요소 중 하나이므로 해당합니다."},
+    {"no": 3, "correct": false, "why": "가용성은 인가받은 사용자가 언제라도 시스템과 자원을 사용할 수 있게 하는 정보 보안 3요소 중 하나이므로 해당합니다."},
+    {"no": 4, "correct": true, "why": "휘발성은 메모리나 저장 매체의 특성을 나타내는 용어로, 기밀성·무결성·가용성과 달리 정보 보안 3요소에 해당하지 않습니다."}
+   ],
+   "keyPoint": "정보 보안의 3대 요소(기밀성, 무결성, 가용성)",
+   "tags": ["정보 보안 3요소", "기밀성", "가용성"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-091",
+   "number": 91,
+   "subjectCode": 5,
+   "stem": "CBD(Component Based Development) SW 개발 표준 산출물 중 분석 단계에 해당하는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "클래스 설계서"},
+    {"no": 2, "text": "통합시험 결과서"},
+    {"no": 3, "text": "프로그램 코드"},
+    {"no": 4, "text": "사용자 요구사항 정의서"}
+   ],
+   "answer": 4,
+   "explanation": "CBD(컴포넌트 기반 개발) SW 개발 표준 산출물에서 분석 단계에 해당하는 것은 사용자 요구사항 정의서입니다. 분석 단계에서는 사용자의 요구사항을 정의해 이후 설계와 구현의 기준으로 삼습니다. 클래스 설계서는 설계 단계, 프로그램 코드는 구현 단계, 통합시험 결과서는 시험 단계에서 만들어지는 산출물입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "클래스 설계서는 컴포넌트를 설계하는 설계 단계의 산출물이므로 분석 단계에 해당하지 않습니다."},
+    {"no": 2, "correct": false, "why": "통합시험 결과서는 구현된 컴포넌트를 통합해 시험한 결과를 정리한 시험 단계의 산출물입니다."},
+    {"no": 3, "correct": false, "why": "프로그램 코드는 설계를 바탕으로 실제 컴포넌트를 작성하는 구현 단계의 산출물입니다."},
+    {"no": 4, "correct": true, "why": "사용자 요구사항 정의서는 사용자의 요구를 정리하는 분석 단계의 대표적인 산출물입니다."}
+   ],
+   "keyPoint": "CBD 개발 단계별 산출물(분석 단계 = 사용자 요구사항 정의서)",
+   "tags": ["CBD", "산출물", "요구사항 정의서"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-092",
+   "number": 92,
+   "subjectCode": 5,
+   "stem": "구글의 구글 브레인 팀이 제작하여 공개한 기계 학습(Machine Leaming)을 위한 오픈 소스 소프트웨어 라이브러리는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "타조(Tajo)"},
+    {"no": 2, "text": "원 세그(One Seg)"},
+    {"no": 3, "text": "포스퀘어(Foursquare)"},
+    {"no": 4, "text": "텐서플로(TensorFlow)"}
+   ],
+   "answer": 4,
+   "explanation": "구글의 구글 브레인 팀이 제작하여 공개한 기계 학습용 오픈 소스 소프트웨어 라이브러리는 텐서플로(TensorFlow)입니다. 타조(Tajo)는 아파치 하둡 기반의 분산 데이터 웨어하우스 프로젝트이고, 원 세그(One Seg)는 일본의 디지털 휴대 이동 방송 서비스입니다. 포스퀘어(Foursquare)는 자신의 위치를 지도에 표시하고 방문 정보를 남기는 위치 기반 소셜 네트워크 서비스입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "타조는 하둡 기반의 분산 데이터 웨어하우스 프로젝트로, 기계 학습 라이브러리가 아닙니다."},
+    {"no": 2, "correct": false, "why": "원 세그는 일본의 지상파 디지털 휴대 이동 방송 서비스로, 기계 학습과는 관련이 없습니다."},
+    {"no": 3, "correct": false, "why": "포스퀘어는 위치 기반 소셜 네트워크 서비스로, 구글이 만든 기계 학습 라이브러리가 아닙니다."},
+    {"no": 4, "correct": true, "why": "텐서플로는 구글 브레인 팀이 공개한 기계 학습용 오픈 소스 라이브러리이므로 정답입니다."}
+   ],
+   "keyPoint": "구글이 공개한 기계 학습 오픈 소스 라이브러리 TensorFlow",
+   "tags": ["TensorFlow", "기계 학습", "오픈 소스"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-093",
+   "number": 93,
+   "subjectCode": 5,
+   "stem": "Secure 코딩에서 입력 데이터의 보안 약점과 관련한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "SQL 삽입 : 사용자의 입력 값 등 외부 입력 값이 SQL 쿼리에 삽입되어 공격"},
+    {"no": 2, "text": "크로스사이트 스크립트 : 검증되지 않은 외부 입력 값에 의해 브라우저에서 악의적인 코드가 실행"},
+    {"no": 3, "text": "운영체제 명령어 삽입 : 운영체제 명령어 파라미터 입력 값이 적절한 사전검증을 거치지 않고 사용되어 공격자가 운영체제 명령어를 조작"},
+    {"no": 4, "text": "자원 삽입 : 사용자가 내부 입력 값을 통해 시스템 내에 사용이 불가능한 자원을 지속적으로 입력함으로써 시스템에 과부하 발생"}
+   ],
+   "answer": 4,
+   "explanation": "자원 삽입은 데이터 입·출력 경로를 조작하여 서버 자원을 수정 및 삭제할 수 있게 하는 보안 약점입니다. 그런데 ④번은 자원 삽입을 '내부 입력 값을 통해 사용이 불가능한 자원을 지속적으로 입력해 시스템에 과부하를 발생시키는 것'으로 설명하고 있어 정의가 잘못되었습니다. SQL 삽입은 외부 입력 값이 SQL 쿼리에 삽입되어 DB 데이터를 유출·변조하고 관리자 인증을 우회하는 약점이며, 크로스사이트 스크립트와 운영체제 명령어 삽입도 모두 외부 입력 값 검증 부족으로 발생하는 대표적인 입력 데이터 보안 약점입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "SQL 삽입은 사용자의 입력 값 등 외부 입력 값이 SQL 쿼리에 삽입되어 공격에 이용되는 대표적인 입력 데이터 보안 약점이므로 맞는 설명입니다."},
+    {"no": 2, "correct": false, "why": "크로스사이트 스크립트는 검증되지 않은 외부 입력 값 때문에 브라우저에서 악의적인 코드가 실행되는 보안 약점이므로 맞는 설명입니다."},
+    {"no": 3, "correct": false, "why": "운영체제 명령어 삽입은 외부 입력 값이 적절한 사전 검증 없이 명령어 파라미터로 사용되어 공격자가 명령어를 조작하는 보안 약점이므로 맞는 설명입니다."},
+    {"no": 4, "correct": true, "why": "자원 삽입은 데이터 입·출력 경로를 조작해 서버 자원을 수정·삭제할 수 있게 하는 약점이므로, 과부하를 유발한다는 ④의 설명은 틀렸습니다."}
+   ],
+   "keyPoint": "입력 데이터 검증 부족으로 발생하는 보안 약점(SQL 삽입, XSS, 자원 삽입)",
+   "tags": ["Secure 코딩", "자원 삽입", "SQL 삽입"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-094",
+   "number": 94,
+   "subjectCode": 5,
+   "stem": "두 명의 개발자가 5개월에 걸쳐 10000 라인의 코드를 개발하였을 때, 월별(man-month) 생산성 측정을 위한 계산 방식으로 가장 적합한 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "10000／2"},
+    {"no": 2, "text": "10000／(5×2)"},
+    {"no": 3, "text": "10000／5"},
+    {"no": 4, "text": "(2×10000)／5"}
+   ],
+   "answer": 2,
+   "explanation": "생산성을 구하는 공식은 '원시 코드 라인 수 ÷ 노력'이고, 노력(man-month)은 '개발 기간 × 투입 인원'으로 계산합니다. 개발 기간이 5개월이고 투입 인원이 2명이므로 노력은 5×2=10 M/M이 되고, 생산성은 10000÷(5×2)가 됩니다. 10000÷5는 투입 인원을 반영하지 못하고, 10000÷2는 기간을 반영하지 못하며, (2×10000)÷5는 노력의 정의와 맞지 않습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "10000÷2는 투입 인원만 나눈 식으로, 개발 기간을 노력에 반영하지 못해 생산성 계산이 아닙니다."},
+    {"no": 2, "correct": true, "why": "노력이 개발 기간 5개월 × 투입 인원 2명 = 10 M/M이므로 10000÷(5×2)가 올바른 생산성 계산식입니다."},
+    {"no": 3, "correct": false, "why": "10000÷5는 개발 기간만 나눈 식으로, 투입 인원을 노력에 반영하지 못합니다."},
+    {"no": 4, "correct": false, "why": "(2×10000)÷5는 코드 라인 수에 인원을 곱한 뒤 기간으로 나눈 식으로, 생산성 공식과 맞지 않습니다."}
+   ],
+   "keyPoint": "생산성 = 원시 코드 라인 수 ÷ 노력(개발 기간 × 투입 인원)",
+   "tags": ["생산성", "맨먼스", "비용 산정"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-095",
+   "number": 95,
+   "subjectCode": 5,
+   "stem": "소프트웨어 재공학의 주요 활동 중 기존 소프트웨어를 다른 운영체제나 하드웨어 환경에서 사용할 수 있도록 변환하는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "역공학"},
+    {"no": 2, "text": "분석"},
+    {"no": 3, "text": "재구성"},
+    {"no": 4, "text": "이식"}
+   ],
+   "answer": 4,
+   "explanation": "이식(Migration)은 기존 소프트웨어를 다른 운영체제나 하드웨어 환경에서 사용할 수 있도록 변환하는 재공학 활동입니다. 역공학(Reverse Engineering)은 기존 소프트웨어를 분석해 개발 과정과 데이터 처리 과정을 설명하는 설계 정보를 재발견하거나 다시 만들어 내는 활동이고, 분석(Analysis)은 기존 소프트웨어의 명세서를 확인해 동작을 이해하고 재공할 대상을 선정하는 활동입니다. 재구성(Restructuring)은 같은 추상적 수준에서 하나의 표현을 다른 표현 형태로 바꾸는 활동입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "역공학은 기존 소프트웨어를 분석해 설계 정보를 재발견하거나 다시 만들어 내는 활동이므로 환경 변환과 다릅니다."},
+    {"no": 2, "correct": false, "why": "분석은 기존 소프트웨어의 동작을 이해하고 재공학 대상을 선정하는 활동으로, 다른 환경으로의 변환이 아닙니다."},
+    {"no": 3, "correct": false, "why": "재구성은 같은 추상적 수준에서 표현 형태를 바꾸는 활동으로, 운영체제나 하드웨어 환경을 바꾸는 것이 아닙니다."},
+    {"no": 4, "correct": true, "why": "이식(Migration)은 기존 소프트웨어를 다른 운영체제나 하드웨어 환경에서 사용할 수 있도록 변환하는 활동입니다."}
+   ],
+   "keyPoint": "소프트웨어 재공학 활동 중 이식(Migration)의 정의",
+   "tags": ["소프트웨어 재공학", "이식", "역공학"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-096",
+   "number": 96,
+   "subjectCode": 5,
+   "stem": "전자 칩과 같은 소프트웨어 부품, 즉 블록(모듈)을 만들어서 끼워 맞추는 방법으로 소프트웨어를 완성시키는 재사용 방법은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "합성 중심"},
+    {"no": 2, "text": "생성 중심"},
+    {"no": 3, "text": "분리 중심"},
+    {"no": 4, "text": "구조 중심"}
+   ],
+   "answer": 1,
+   "explanation": "소프트웨어 재사용 방법 중 합성 중심(Composition-Based)은 전자 칩과 같은 소프트웨어 부품, 즉 블록(모듈)을 만들어서 끼워 맞추는 방법으로 소프트웨어를 완성시키는 기법입니다. 생성 중심(Generation-Based)은 추상화 형태로 쓰여진 명세를 구체화하여 프로그램을 만드는 방법으로, 패턴 구성 방법이라고도 합니다. 분리 중심과 구조 중심은 재사용 방법의 분류에 존재하지 않는 용어입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "블록(모듈)을 만들어 끼워 맞추는 방식으로 소프트웨어를 완성하는 재사용 방법은 합성 중심입니다."},
+    {"no": 2, "correct": false, "why": "생성 중심은 추상화된 명세를 구체화해 프로그램을 만드는 방법으로, 블록을 조립하는 방식과 다릅니다."},
+    {"no": 3, "correct": false, "why": "분리 중심은 소프트웨어 재사용 방법의 분류에 존재하지 않는 용어입니다."},
+    {"no": 4, "correct": false, "why": "구조 중심은 소프트웨어 재사용 방법의 분류에 존재하지 않는 용어입니다."}
+   ],
+   "keyPoint": "소프트웨어 재사용 방법(합성 중심, 생성 중심)",
+   "tags": ["재사용", "합성 중심", "생성 중심"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-097",
+   "number": 97,
+   "subjectCode": 5,
+   "stem": "다음 내용이 설명하는 것은?",
+   "passage": "ㆍ네트워크상에 광채널 스위치의 이점인 고속 전송과 장거리 연결 및 멀티 프로토콜 기능을 활용\nㆍ각기 다른 운영체제를 가진 여러 기종들이 네트워크상에서 동일 저장장치의 데이터를 공유하게 함으로써, 여러 개의 저장장치나 백업 장비를 단일화시킨 시스템",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "SAN"},
+    {"no": 2, "text": "MBR"},
+    {"no": 3, "text": "NAC"},
+    {"no": 4, "text": "NIC"}
+   ],
+   "answer": 1,
+   "explanation": "지문은 SAN(Storage Area Network)에 대한 설명입니다. SAN은 광채널 스위치의 고속 전송, 장거리 연결, 멀티 프로토콜 기능을 활용해 서로 다른 운영체제를 가진 여러 기종이 네트워크상에서 동일 저장장치의 데이터를 공유하도록 하며, 여러 개의 저장장치나 백업 장비를 단일화시킵니다. MBR은 기억장치를 출입하는 데이터가 잠시 기억되는 메모리 버퍼 레지스터, NAC는 내부 PC의 MAC 주소를 등록해 보안 관리를 제공하는 솔루션, NIC는 컴퓨터와 네트워크를 연결하는 네트워크 인터페이스 카드입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "광채널 스위치를 이용해 이기종 기종들이 저장장치를 공유하도록 만든 시스템은 SAN(Storage Area Network)입니다."},
+    {"no": 2, "correct": false, "why": "MBR은 기억장치를 출입하는 데이터가 잠시 기억되는 메모리 버퍼 레지스터로, 저장장치 공유 시스템이 아닙니다."},
+    {"no": 3, "correct": false, "why": "NAC는 네트워크에 접속하는 내부 PC의 MAC 주소를 등록해 일관된 보안 관리를 제공하는 보안 솔루션입니다."},
+    {"no": 4, "correct": false, "why": "NIC는 컴퓨터와 컴퓨터 또는 컴퓨터와 네트워크를 연결하는 네트워크 인터페이스 카드입니다."}
+   ],
+   "keyPoint": "SAN(Storage Area Network)의 개념과 저장장치 단일화",
+   "tags": ["SAN", "스토리지", "광채널 스위치"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-098",
+   "number": 98,
+   "subjectCode": 5,
+   "stem": "크래커가 침입하여 백도어를 만들어 놓거나, 설정 파일을 변경했을 때 분석하는 도구는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "trace"},
+    {"no": 2, "text": "tripwire"},
+    {"no": 3, "text": "udpdump"},
+    {"no": 4, "text": "cron"}
+   ],
+   "answer": 2,
+   "explanation": "tripwire는 파일 변경 및 인터페이스 취약점을 분석하는 데이터 무결성 검사 도구입니다. 크래커가 침입해 백도어를 만들어 놓거나 설정 파일을 변경했을 때 파일의 무결성을 점검하여 침입 흔적을 찾아낼 수 있으며, 같은 종류의 도구로 AIDE, Samhain, Claymore, Slipwire, Fcheck 등이 있습니다. trace, udpdump, cron은 무결성 검사 도구가 아닙니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "trace는 네트워크나 프로그램의 실행 경로를 추적하는 도구로, 파일 변경 여부를 분석하는 무결성 검사 도구가 아닙니다."},
+    {"no": 2, "correct": true, "why": "tripwire는 파일의 무결성을 검사해 백도어 설치나 설정 파일 변경 같은 침입 흔적을 분석하는 데이터 무결성 검사 도구입니다."},
+    {"no": 3, "correct": false, "why": "udpdump는 UDP 패킷을 수집·출력하는 네트워크 도구로, 파일 변경 분석과는 관련이 없습니다."},
+    {"no": 4, "correct": false, "why": "cron은 UNIX에서 정해진 시간에 작업을 자동 실행하는 스케줄러이지 무결성 검사 도구가 아닙니다."}
+   ],
+   "keyPoint": "데이터 무결성 검사 도구 tripwire의 용도",
+   "tags": ["무결성 검사", "tripwire", "보안 도구"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-099",
+   "number": 99,
+   "subjectCode": 5,
+   "stem": "실무적으로 검증된 개발보안 방법론 중 하나로, SW보안의 모범 사례를 SDLC(Software Development Life Cycle)에 통합한 소프트웨어 개발 보안 생명주기 방법론은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "CLASP"},
+    {"no": 2, "text": "CWE"},
+    {"no": 3, "text": "PIMS"},
+    {"no": 4, "text": "Seven Touchpoints"}
+   ],
+   "answer": 4,
+   "explanation": "Seven Touchpoints는 실무적으로 검증된 개발보안 방법론으로, SW보안의 모범 사례를 SDLC에 통합한 소프트웨어 개발 보안 생명주기 방법론입니다. CLASP(Comprehensive Lightweight Application Security Process)는 Secure Software 사가 개발한 방법론으로 생명주기 초기 단계의 보안 강화를 목적으로 하며, CWE는 프로그램을 실행시키지 않고 결함을 분석할 수 있도록 결함의 종류와 유형을 정리한 목록입니다. PIMS는 정보통신망에서 개인정보보호를 위한 관리체계 인증제도입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "CLASP는 Secure Software 사가 개발한 개발보안 방법론이지만, SW보안 모범 사례를 SDLC에 통합한 방법론으로 특정되는 것은 아닙니다."},
+    {"no": 2, "correct": false, "why": "CWE는 결함의 종류와 유형을 체계적으로 정리한 목록으로, 개발 보안 생명주기 방법론이 아닙니다."},
+    {"no": 3, "correct": false, "why": "PIMS는 개인정보보호 관리체계에 대한 인증제도로, 소프트웨어 개발 보안 방법론과는 다릅니다."},
+    {"no": 4, "correct": true, "why": "Seven Touchpoints는 SW보안의 모범 사례를 SDLC에 통합한 소프트웨어 개발 보안 생명주기 방법론입니다."}
+   ],
+   "keyPoint": "개발 보안 방법론 Seven Touchpoints와 CLASP·CWE의 구분",
+   "tags": ["Seven Touchpoints", "개발 보안", "SDLC"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  },
+  {
+   "id": "2024-1-100",
+   "number": 100,
+   "subjectCode": 5,
+   "stem": "소프트웨어 프로세스에 대한 개선 및 능력 측정 기준에 대한 국제 표준은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "ISO 14001"},
+    {"no": 2, "text": "IEEE 802.5"},
+    {"no": 3, "text": "IEEE 488"},
+    {"no": 4, "text": "SPICE"}
+   ],
+   "answer": 4,
+   "explanation": "SPICE(ISO/IEC 15504)는 소프트웨어 품질 및 생산성 향상을 위해 소프트웨어 프로세스를 평가하고 개선하는 국제 표준입니다. ISO 14001은 기업의 환경경영 시스템에 대한 국제 표준이고, IEEE 802.5는 토큰 링 방식 LAN 표준, IEEE 488은 계측기 인터페이스(GPIB) 표준입니다. 따라서 소프트웨어 프로세스 평가·개선 기준에 해당하는 것은 SPICE입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "ISO 14001은 환경경영 시스템에 관한 국제 표준으로, 소프트웨어 프로세스 평가 기준이 아닙니다."},
+    {"no": 2, "correct": false, "why": "IEEE 802.5는 토큰 링 방식 근거리 통신망(LAN) 표준으로 소프트웨어 프로세스와 관련이 없습니다."},
+    {"no": 3, "correct": false, "why": "IEEE 488은 계측기와 컴퓨터를 연결하는 GPIB 인터페이스 표준으로 소프트웨어 프로세스 평가와 무관합니다."},
+    {"no": 4, "correct": true, "why": "SPICE는 소프트웨어 프로세스의 평가와 개선 및 능력 측정 기준을 정의한 국제 표준입니다."}
+   ],
+   "keyPoint": "소프트웨어 프로세스 평가·개선 국제 표준 SPICE",
+   "tags": ["SPICE", "프로세스 평가", "국제 표준"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "pdf"}
+  }
+ ]
+}

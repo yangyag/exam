@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2025-1",
+    "year": 2025,
+    "round": 1,
+    "title": "2025년 1회 정보처리기사 필기",
+    "sourcePdf": "2025년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 1,
+    "name": "소프트웨어 설계"
+  },
+  "questions": [
+    {
+      "id": "2025-1-001",
+      "number": 1,
+      "subjectCode": 1,
+      "stem": "소프트웨어 공학에서 워크스루(Walkthrough)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "사용사례를 확장하여 명세하거나 설계 다이어그램, 원시코드, 테스트 케이스 등에 적용할 수 있다."},
+        {"no": 2, "text": "복잡한 알고리즘 또는 반복, 실시간 동작, 병행 처리와 같은 기능이나 동작을 이해하려고 할 때 유용하다."},
+        {"no": 3, "text": "인스펙션(Inspection)과 동일한 의미를 가진다."},
+        {"no": 4, "text": "단순한 테스트 케이스를 이용하여 프로덕트를 수작업으로 수행해 보는 것이다."}
+      ],
+      "answer": 3,
+      "explanation": "워크스루는 검토 자료를 사전에 배포한 뒤 짧은 회의를 통해 결함을 발견하는 비공식적 검토 기법으로, 사용사례를 확장한 명세나 설계 다이어그램, 원시코드, 테스트 케이스 등에 폭넓게 적용할 수 있습니다. 복잡한 알고리즘이나 실시간·병행 처리처럼 이해하기 어려운 기능을 파악할 때 유용하고, 테스트 케이스를 이용해 산출물을 수작업으로 수행해 보는 방식으로 진행됩니다. 반면 인스펙션은 워크스루를 발전시켜 역할 분담과 절차, 점검 항목을 갖춘 공식적인 검사 기법이므로 두 기법을 같은 의미로 볼 수 없습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "워크스루는 사용사례 확장, 설계 다이어그램, 원시코드, 테스트 케이스 등 다양한 산출물에 적용할 수 있으므로 옳은 설명입니다."},
+        {"no": 2, "correct": false, "why": "복잡한 알고리즘과 반복·실시간 동작, 병행 처리처럼 이해하기 어려운 기능을 파악할 때 유용하므로 옳은 설명입니다."},
+        {"no": 3, "correct": true, "why": "인스펙션은 워크스루를 발전시킨 공식 검사 기법으로 역할 분담과 체크리스트를 사용하므로, 두 기법이 동일한 의미라는 설명이 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "워크스루는 단순한 테스트 케이스를 이용해 프로덕트를 수작업으로 수행해 보는 검토 기법이므로 옳은 설명입니다."}
+      ],
+      "keyPoint": "워크스루(비공식 검토)와 인스펙션(공식 검사)의 차이",
+      "tags": ["워크스루", "인스펙션", "소프트웨어 검토"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-002",
+      "number": 2,
+      "subjectCode": 1,
+      "stem": "애자일 방법론에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "기능 중심 개발"},
+        {"no": 2, "text": "개발 및 검증"},
+        {"no": 3, "text": "익스트림 프로그래밍"},
+        {"no": 4, "text": "칸반"}
+      ],
+      "answer": 2,
+      "explanation": "애자일 방법론은 짧은 반복 주기로 개발과 검증을 되풀이하면서 변화하는 요구에 유연하게 대응하는 방법론으로, 익스트림 프로그래밍(XP), 스크럼, 칸반, 크리스탈, 기능 중심 개발(FDD) 등이 대표적인 예입니다. 기능 중심 개발은 FDD라는 이름으로 애자일 계열에 포함되지만, 개발 및 검증은 소프트웨어를 만들고 확인한다는 일반적인 활동을 가리키는 표현일 뿐 방법론의 이름이 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "기능 중심 개발(FDD)은 짧은 반복과 점진적 개발을 강조하는 애자일 방법론에 해당하므로 답이 될 수 없습니다."},
+        {"no": 2, "correct": true, "why": "개발 및 검증은 소프트웨어 개발과 확인이라는 일반적인 작업을 뜻하는 말로, 애자일 방법론의 명칭이 아니므로 정답입니다."},
+        {"no": 3, "correct": false, "why": "익스트림 프로그래밍(XP)은 애자일 방법론의 대표적인 예이므로 답이 될 수 없습니다."},
+        {"no": 4, "correct": false, "why": "칸반은 작업 흐름을 시각화해 병목을 관리하는 애자일 계열 방법론이므로 답이 될 수 없습니다."}
+      ],
+      "keyPoint": "애자일 방법론의 종류(XP, 스크럼, 칸반, FDD)",
+      "tags": ["애자일", "익스트림 프로그래밍", "칸반"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-003",
+      "number": 3,
+      "subjectCode": 1,
+      "stem": "익스트림 프로그래밍에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "대표적인 구조적 방법론 중 하나이다."},
+        {"no": 2, "text": "소규모 개발 조직이 불확실하고 변경이 많은 요구를 접하였을 때 적절한 방법이다."},
+        {"no": 3, "text": "익스트림 프로그래밍을 구동시키는 원리는 상식적인 원리와 경험을 최대한 끌어 올리는 것이다."},
+        {"no": 4, "text": "구체적인 실천 방법을 정의하고 있으며, 개발 문서 보다는 소스 코드에 중점을 둔다."}
+      ],
+      "answer": 1,
+      "explanation": "익스트림 프로그래밍(XP)은 짧은 반복 주기와 잦은 릴리스를 통해 변화에 빠르게 대응하는 애자일(경량) 방법론으로, 구조적 방법론과는 계열이 다릅니다. 소규모 개발 조직이 불확실하고 변경이 많은 요구를 다룰 때 적합하며, 상식적인 원리와 경험을 최대한 끌어올리는 것을 구동 원리로 삼고 문서보다 소스 코드를 중시하는 구체적인 실천 방법을 정의합니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "익스트림 프로그래밍은 애자일 방법론에 속하며 구조적 방법론이 아니므로 이 설명이 틀렸습니다."},
+        {"no": 2, "correct": false, "why": "소규모 개발 조직이 불확실하고 변경이 많은 요구를 접했을 때 적절한 방법이므로 옳은 설명입니다."},
+        {"no": 3, "correct": false, "why": "상식적인 원리와 경험을 최대한 끌어올리는 것이 XP의 구동 원리이므로 옳은 설명입니다."},
+        {"no": 4, "correct": false, "why": "구체적인 실천 방법을 정의하고 개발 문서보다 소스 코드를 중시하므로 옳은 설명입니다."}
+      ],
+      "keyPoint": "익스트림 프로그래밍(XP)의 성격과 구동 원리",
+      "tags": ["익스트림 프로그래밍", "애자일"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-004",
+      "number": 4,
+      "subjectCode": 1,
+      "stem": "럼바우(Rumbaugh) 분석 기법에서 정보 모델링이라고도 하며, 시스템에서 요구되는 객체를 찾아내어 속성과 연산 식별 및 객체들 간의 관계를 규정하여 다이어그램을 표시하는 모델링은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Object"},
+        {"no": 2, "text": "Dynamic"},
+        {"no": 3, "text": "Function"},
+        {"no": 4, "text": "Static"}
+      ],
+      "answer": 1,
+      "explanation": "럼바우의 객체지향 분석 기법은 객체 모델링, 동적 모델링, 기능 모델링으로 나뉘며 이 중 객체 모델링은 정보 모델링이라고도 합니다. 객체 모델링은 시스템에서 요구되는 객체를 찾아 속성과 연산을 식별하고 객체들 간의 관계를 규정해 객체 다이어그램으로 표시합니다. 동적 모델링은 상태 다이어그램으로 객체의 상태 변화를, 기능 모델링은 자료 흐름도로 자료의 처리 과정을 표현합니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "정보 모델링은 객체 모델링의 다른 이름으로, 객체를 찾아 속성·연산과 관계를 규정해 다이어그램으로 표시하므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "동적 모델링은 객체의 상태 변화와 제어 흐름을 상태 다이어그램으로 표현하는 모델링입니다."},
+        {"no": 3, "correct": false, "why": "기능 모델링은 자료 흐름도(DFD)를 이용해 자료의 처리 과정을 표현하는 모델링입니다."},
+        {"no": 4, "correct": false, "why": "럼바우 분석 기법의 모델링에는 정적(Static) 모델링이라는 구분이 없습니다."}
+      ],
+      "keyPoint": "럼바우 분석 기법의 객체(정보)·동적·기능 모델링",
+      "tags": ["럼바우", "객체지향 분석", "객체 모델링"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-005",
+      "number": 5,
+      "subjectCode": 1,
+      "stem": "설계 기법 중 하향식 설계 방법과 상향식 설계 방법에 대한 비교 설명으로 가장 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "하향식 설계에서는 통합 검사 시 인터페이스가 이미 정의되어 있어 통합이 간단하다."},
+        {"no": 2, "text": "하향식 설계에서 레벨이 낮은 데이터 구조의 세부 사항은 설계 초기 단계에서 필요하다."},
+        {"no": 3, "text": "상향식 설계는 최하위 수준에서 각각의 모듈들을 설계하고 이러한 모듈이 완성되면 이들을 결합하여 검사한다."},
+        {"no": 4, "text": "상향식 설계에서는 인터페이스가 이미 성립되어 있지 않더라도 기능 추가가 쉽다."}
+      ],
+      "answer": 4,
+      "explanation": "하향식 설계는 최상위 수준에서 하위 수준으로 내려가면서 설계하므로 인터페이스가 초기에 정의되어 통합 검사가 간단하고, 레벨이 낮은 데이터 구조의 세부 사항까지 설계 초기 단계에서 파악해야 합니다. 상향식 설계는 최하위 수준의 모듈부터 설계해 완성된 모듈을 결합해 검사하는 방식으로, 인터페이스가 아직 성립되어 있지 않아 기능 추가가 어렵다는 것이 단점입니다. 따라서 인터페이스가 성립되어 있지 않더라도 기능 추가가 쉽다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "하향식 설계는 인터페이스가 이미 정의되어 있어 통합 검사가 간단하므로 옳은 설명입니다."},
+        {"no": 2, "correct": false, "why": "하향식 설계는 레벨이 낮은 데이터 구조의 세부 사항까지 설계 초기 단계에서 필요로 하므로 옳은 설명입니다."},
+        {"no": 3, "correct": false, "why": "상향식 설계는 최하위 수준의 모듈을 각각 설계하고 완성되면 결합해 검사하므로 옳은 설명입니다."},
+        {"no": 4, "correct": true, "why": "상향식 설계는 인터페이스가 성립되어 있지 않아 기능 추가가 어려우므로, 쉽다는 설명이 틀렸습니다."}
+      ],
+      "keyPoint": "하향식·상향식 설계의 특징과 장단점 비교",
+      "tags": ["하향식 설계", "상향식 설계"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-006",
+      "number": 6,
+      "subjectCode": 1,
+      "stem": "요구사항 명세에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "분석된 요구사항을 바탕으로 모델을 작성하고 문서화하는 것이다."},
+        {"no": 2, "text": "기능 요구사항은 빠짐없이 완전하고 명확하게 기술해야 한다."},
+        {"no": 3, "text": "잘못된 부분이 확인될 경우 그 내용을 요구사항 정의서에서 추적할 수 있어야 한다."},
+        {"no": 4, "text": "구체적인 명세를 위해 자료 사전(DD)가 사용될 수 있다."}
+      ],
+      "answer": 4,
+      "explanation": "요구사항 명세는 분석된 요구사항을 바탕으로 모델을 작성하고 문서화하는 과정이며, 기능 요구사항은 빠짐없이 완전하고 명확하게 기술하고 잘못된 부분은 요구사항 정의서에서 추적할 수 있어야 합니다. 자료 사전(DD)은 자료 흐름도에 나타나는 자료를 정의하고 기록하는 요구사항 분석 도구이고, 요구사항을 구체적이고 상세하게 명세하는 역할은 소단위 명세서(Mini-Spec)가 담당합니다. 따라서 구체적인 명세를 위해 자료 사전이 사용된다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "요구사항 명세는 분석된 요구사항을 바탕으로 모델을 작성하고 문서화하는 작업이므로 옳은 설명입니다."},
+        {"no": 2, "correct": false, "why": "기능 요구사항은 빠짐없이 완전하고 명확하게 기술해야 하므로 옳은 설명입니다."},
+        {"no": 3, "correct": false, "why": "잘못된 부분이 확인되면 요구사항 정의서에서 추적할 수 있어야 하므로 옳은 설명입니다."},
+        {"no": 4, "correct": true, "why": "자료 사전(DD)은 DFD에 나타난 자료를 정의하는 분석 도구이며, 구체적인 명세에는 소단위 명세서가 사용되므로 틀렸습니다."}
+      ],
+      "keyPoint": "요구사항 명세의 정의와 자료 사전(DD)·소단위 명세서의 역할",
+      "tags": ["요구사항 명세", "자료 사전", "소단위 명세서"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-007",
+      "number": 7,
+      "subjectCode": 1,
+      "stem": "바람직한 소프트웨어 설계 지침이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "결합도를 최소화하고 응집도를 최대화한다."},
+        {"no": 2, "text": "복잡도와 중복성을 줄이고 일관성을 유지시킨다."},
+        {"no": 3, "text": "하나의 입구와 하나의 출구를 갖도록 해야 한다."},
+        {"no": 4, "text": "모듈의 크기를 가능한 작게 구성하여 병행성 수준을 높여야 한다."}
+      ],
+      "answer": 4,
+      "explanation": "바람직한 소프트웨어 설계 지침은 결합도를 최소화하고 응집도를 최대화하는 것, 복잡도와 중복성을 줄여 일관성을 유지하는 것, 모듈의 입구와 출구를 하나로 유지하는 것입니다. 모듈은 지나치게 작게 나누면 모듈 사이의 인터페이스와 결합이 늘어나 오히려 유지보수가 어려워지므로, 기능을 기준으로 적정한 크기로 구성해야 합니다. 따라서 모듈의 크기를 가능한 작게 구성해 병행성 수준을 높여야 한다는 설명은 설계 지침으로 보기 어렵습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "결합도 최소화와 응집도 최대화는 바람직한 설계 지침이므로 답이 될 수 없습니다."},
+        {"no": 2, "correct": false, "why": "복잡도와 중복성을 줄이고 일관성을 유지하는 것은 옳은 설계 지침입니다."},
+        {"no": 3, "correct": false, "why": "하나의 입구와 하나의 출구를 갖도록 하는 것은 옳은 설계 지침입니다."},
+        {"no": 4, "correct": true, "why": "모듈을 무조건 작게 분할하면 인터페이스와 결합도가 늘어나 바람직하지 않으므로 틀렸습니다."}
+      ],
+      "keyPoint": "소프트웨어 설계 지침(결합도·응집도·모듈 크기)",
+      "tags": ["설계 지침", "결합도", "응집도"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-008",
+      "number": 8,
+      "subjectCode": 1,
+      "stem": "UML(Unified Modeling Language)에 대한 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "기능적 모델은 사용자 측면에서 본 시스템 기능이며, UML에서는 Use Case Diagram을 사용한다."},
+        {"no": 2, "text": "정적 모델은 객체, 속성, 연관관계, 오퍼레이션의 시스템의 구조를 나타내며, UML에서는 Class Diagram을 사용한다."},
+        {"no": 3, "text": "동적 모델은 시스템의 내부 동작을 말하며, UML에서는 Sequence Diagram, State Diagram, Activity Diagram을 사용한다."},
+        {"no": 4, "text": "State Diagram은 객체들 사이의 메시지 교환을 나타내며, Sequence Diagram은 하나의 객체가 가진 상태와 그 상태의 변화에 의한 동작 순서를 나타낸다."}
+      ],
+      "answer": 4,
+      "explanation": "UML의 상태 다이어그램(State Diagram)은 하나의 객체가 가진 상태와 그 상태 변화에 따른 동작 순서를 표현하고, 시퀀스 다이어그램(Sequence Diagram)은 객체들 사이의 메시지 교환을 시간 순서에 따라 표현합니다. 두 다이어그램의 설명을 서로 바꾸어 놓은 보기가 있으므로 해당 설명이 틀렸습니다. 기능적 모델은 Use Case Diagram, 정적 모델은 Class Diagram, 동적 모델은 Sequence·State·Activity Diagram을 사용한다는 설명은 모두 옳습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "기능적 모델은 사용자 측면에서 본 시스템 기능을 나타내고 Use Case Diagram을 사용하므로 옳은 설명입니다."},
+        {"no": 2, "correct": false, "why": "정적 모델은 객체·속성·연관관계·오퍼레이션으로 시스템 구조를 나타내고 Class Diagram을 사용하므로 옳은 설명입니다."},
+        {"no": 3, "correct": false, "why": "동적 모델은 시스템 내부 동작을 다루고 Sequence·State·Activity Diagram을 사용하므로 옳은 설명입니다."},
+        {"no": 4, "correct": true, "why": "State Diagram은 상태 변화를, Sequence Diagram은 메시지 교환을 나타내므로 두 설명을 바꾼 이 보기가 틀렸습니다."}
+      ],
+      "keyPoint": "UML 상태 다이어그램과 시퀀스 다이어그램의 역할 구분",
+      "tags": ["UML", "상태 다이어그램", "시퀀스 다이어그램"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-009",
+      "number": 9,
+      "subjectCode": 1,
+      "stem": "코드 설계에서 일정한 일련번호를 부여하는 방식의 코드는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "연상 코드"},
+        {"no": 2, "text": "블록 코드"},
+        {"no": 3, "text": "순차 코드"},
+        {"no": 4, "text": "표의 숫자 코드"}
+      ],
+      "answer": 3,
+      "explanation": "순차 코드는 자료의 발생 순서나 일정한 순서에 따라 일련번호를 차례대로 부여하는 방식으로, 가장 단순하고 이해하기 쉬운 코드입니다. 연상 코드는 코드만 보고 대상의 명칭이나 내용을 연상할 수 있게 만든 코드이고, 블록 코드는 공통성이 있는 항목을 블록으로 묶어 구분한 뒤 그 안에 일련번호를 부여하는 코드입니다. 표의 숫자 코드는 코드화 대상 항목의 중량·면적·길이 등 물리적 수치를 그대로 사용하는 코드이므로 일련번호 부여 방식과는 다릅니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "연상 코드는 대상의 명칭이나 특성을 연상할 수 있게 부여하는 코드로 일련번호 방식이 아닙니다."},
+        {"no": 2, "correct": false, "why": "블록 코드는 공통 항목을 묶은 블록별로 구분한 뒤 일련번호를 부여하는 코드입니다."},
+        {"no": 3, "correct": true, "why": "순차 코드는 일정한 순서에 따라 일련번호를 차례대로 부여하는 방식이므로 정답입니다."},
+        {"no": 4, "correct": false, "why": "표의 숫자 코드는 중량·면적 등 물리적 수치를 그대로 코드로 사용하는 방식입니다."}
+      ],
+      "keyPoint": "순차 코드의 정의와 다른 코드 유형과의 비교",
+      "tags": ["코드 설계", "순차 코드"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-010",
+      "number": 10,
+      "subjectCode": 1,
+      "stem": "시스템의 구성 요소로 볼 수 없는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Process"},
+        {"no": 2, "text": "Feedback"},
+        {"no": 3, "text": "Maintenance"},
+        {"no": 4, "text": "Control"}
+      ],
+      "answer": 3,
+      "explanation": "일반적인 시스템의 구성 요소는 입력(Input), 처리(Process), 출력(Output), 제어(Control), 피드백(Feedback)입니다. 피드백은 처리 결과를 평가해 목표에 맞도록 시스템을 조정하는 과정으로 시스템의 기본 구성 요소에 포함되지만, 유지보수(Maintenance)는 개발된 시스템을 관리하고 개선하는 활동으로 시스템 자체를 이루는 구성 요소가 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Process(처리)는 입력된 자료를 목적에 맞게 변환하는 시스템의 구성 요소입니다."},
+        {"no": 2, "correct": false, "why": "Feedback(피드백)은 처리 결과를 평가해 시스템을 조정하는 구성 요소입니다."},
+        {"no": 3, "correct": true, "why": "Maintenance(유지보수)는 시스템 운영 이후의 관리 활동으로 기본 구성 요소가 아니므로 정답입니다."},
+        {"no": 4, "correct": false, "why": "Control(제어)은 시스템이 목표대로 동작하도록 조정하는 구성 요소입니다."}
+      ],
+      "keyPoint": "시스템의 기본 구성 요소(입력·처리·출력·제어·피드백)",
+      "tags": ["시스템 구성 요소", "피드백"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-011",
+      "number": 11,
+      "subjectCode": 1,
+      "stem": "파이프 필터 형태의 소프트웨어 아키텍처에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "노드와 간선으로 구성된다."},
+        {"no": 2, "text": "서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브시스템으로 넘겨주는 과정을 반복한다."},
+        {"no": 3, "text": "계층 모델이라고도 한다."},
+        {"no": 4, "text": "3개의 서브시스템(모델, 뷰, 제어)으로 구성되어 있다."}
+      ],
+      "answer": 2,
+      "explanation": "파이프 필터 아키텍처는 각 서브시스템이 필터 역할을 하여 입력 데이터를 받아 처리한 뒤 그 결과를 다음 서브시스템으로 넘겨주고, 이 과정을 반복해 최종 결과를 만들어 내는 구조입니다. 노드와 간선으로 구성되는 것은 데이터를 중심에 두는 저장소 구조이고, 계층 모델이라고도 하는 것은 계층 구조이며, 모델·뷰·제어로 구성되는 것은 MVC 구조입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "노드와 간선으로 구성되는 것은 데이터를 중심에 둔 저장소 구조이므로 파이프 필터 설명이 아닙니다."},
+        {"no": 2, "correct": true, "why": "서브시스템이 데이터를 받아 처리하고 결과를 다음 서브시스템으로 넘겨주는 과정을 반복하는 것이 파이프 필터 구조이므로 정답입니다."},
+        {"no": 3, "correct": false, "why": "계층 모델이라고도 하는 것은 상위·하위 계층으로 구성되는 계층 구조입니다."},
+        {"no": 4, "correct": false, "why": "모델·뷰·제어 세 부분으로 구성되는 것은 MVC 구조입니다."}
+      ],
+      "keyPoint": "파이프 필터 아키텍처의 데이터 처리 흐름",
+      "tags": ["파이프 필터", "소프트웨어 아키텍처"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-012",
+      "number": 12,
+      "subjectCode": 1,
+      "stem": "데이터 흐름도(DFD)의 구성 요소에 포함되지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Data Flow"},
+        {"no": 2, "text": "Data Dictionary"},
+        {"no": 3, "text": "Process"},
+        {"no": 4, "text": "Data Store"}
+      ],
+      "answer": 2,
+      "explanation": "데이터 흐름도(DFD)는 자료의 흐름을 표현하는 도구로, 구성 요소는 Process(처리), Data Flow(자료 흐름), Data Store(자료 저장소), Terminator(단말 또는 외부 실체)입니다. 자료 사전(DD)은 DFD에 나타나는 자료를 정의하고 기록하는 별도의 분석 도구로, DFD를 이루는 구성 요소가 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Data Flow는 자료의 이동을 나타내는 DFD의 구성 요소입니다."},
+        {"no": 2, "correct": true, "why": "Data Dictionary는 DFD에 사용되는 자료를 정의하는 도구로 DFD의 구성 요소가 아니므로 정답입니다."},
+        {"no": 3, "correct": false, "why": "Process는 입력 자료를 목적에 맞게 변환하는 DFD의 구성 요소입니다."},
+        {"no": 4, "correct": false, "why": "Data Store는 자료가 저장되는 곳을 나타내는 DFD의 구성 요소입니다."}
+      ],
+      "keyPoint": "데이터 흐름도(DFD)의 구성 요소와 자료 사전의 역할",
+      "tags": ["DFD", "자료 흐름도", "자료 사전"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 1},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-013",
+      "number": 13,
+      "subjectCode": 1,
+      "stem": "사용자 인터페이스의 설계 지침에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "조작 방법을 가능한 다양화하여 많은 기능이 들어갈 수 있도록 구성해야 한다."},
+        {"no": 2, "text": "버튼이나 조작 방법 등을 일관성 있게 제공해야 한다."},
+        {"no": 3, "text": "작동시킬 기능만 보고도 결과를 미리 예측할 수 있게 설계해야 한다."},
+        {"no": 4, "text": "사용자가 쉽게 이해하고 편리하게 사용할 수 있는 환경을 제공해야 한다."}
+      ],
+      "answer": 1,
+      "explanation": "사용자 인터페이스 설계 지침은 조작 방법을 일관성 있게 제공하고, 기능만 보고도 결과를 예측할 수 있게 하며, 사용자가 쉽게 이해하고 편리하게 사용할 수 있는 환경을 제공하는 것입니다. 조작 방법을 다양화하면 화면마다 다른 방식을 익혀야 해 사용자가 혼란을 겪고 학습 부담이 커지므로, 가능한 한 일관되고 단순하게 구성해야 합니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "조작 방법을 다양화하면 일관성이 깨져 사용자가 혼란을 겪게 되므로 옳지 않은 설명입니다."},
+        {"no": 2, "correct": false, "why": "버튼이나 조작 방법을 일관성 있게 제공하는 것은 올바른 설계 지침입니다."},
+        {"no": 3, "correct": false, "why": "작동시킬 기능만 보고도 결과를 예측할 수 있게 설계하는 것은 올바른 지침입니다."},
+        {"no": 4, "correct": false, "why": "사용자가 쉽게 이해하고 편리하게 사용할 환경을 제공하는 것은 올바른 지침입니다."}
+      ],
+      "keyPoint": "사용자 인터페이스 설계 지침의 일관성과 예측 가능성",
+      "tags": ["UI 설계", "사용자 인터페이스"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-014",
+      "number": 14,
+      "subjectCode": 1,
+      "stem": "UI 설계 원칙에서 누구나 쉽게 이해하고 사용할 수 있어야 한다는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "유효성"},
+        {"no": 2, "text": "직관성"},
+        {"no": 3, "text": "학습성"},
+        {"no": 4, "text": "유연성"}
+      ],
+      "answer": 2,
+      "explanation": "UI 설계 원칙에서 직관성은 누구나 쉽게 이해하고 사용할 수 있어야 한다는 원칙을 뜻합니다. 유효성은 사용자의 목적을 정확하고 완벽하게 달성해야 하는 것, 학습성은 누구나 쉽게 배우고 익힐 수 있어야 하는 것, 유연성은 사용자의 요구사항을 최대한 수용하고 실수를 줄여야 하는 것을 의미합니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "유효성은 사용자의 목적을 정확하고 완벽하게 달성해야 한다는 원칙입니다."},
+        {"no": 2, "correct": true, "why": "누구나 쉽게 이해하고 사용할 수 있어야 한다는 것은 직관성에 대한 설명입니다."},
+        {"no": 3, "correct": false, "why": "학습성은 누구나 쉽게 배우고 익힐 수 있어야 한다는 원칙입니다."},
+        {"no": 4, "correct": false, "why": "유연성은 사용자의 요구사항을 최대한 수용하고 오류를 방지해야 한다는 원칙입니다."}
+      ],
+      "keyPoint": "UI 설계 원칙(직관성·유효성·학습성·유연성)의 구분",
+      "tags": ["UI 설계 원칙", "직관성"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-015",
+      "number": 15,
+      "subjectCode": 1,
+      "stem": "디자인 패턴 사용의 장단점에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "소프트웨어 구조 파악이 용이하다."},
+        {"no": 2, "text": "초기 투자 비용 및 개발 시간이 절약된다."},
+        {"no": 3, "text": "재사용을 위한 개발 시간이 단축된다."},
+        {"no": 4, "text": "객체지향 설계 및 구현의 생산성을 높이는데 적합하다."}
+      ],
+      "answer": 2,
+      "explanation": "디자인 패턴은 설계 과정에서 자주 발생하는 문제에 대한 검증된 해결 방식을 재사용할 수 있게 해 주므로 소프트웨어 구조 파악이 쉬워지고 개발 시간이 단축되며 객체지향 설계와 구현의 생산성을 높여 줍니다. 다만 패턴을 익히고 적용하는 데 초기 투자 비용과 노력이 추가로 들기 때문에, 초기 투자 비용과 개발 시간이 절약된다는 설명은 장점으로 보기 어렵습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "디자인 패턴을 적용하면 구조가 명확해져 파악이 용이해지는 것이 장점입니다."},
+        {"no": 2, "correct": true, "why": "디자인 패턴은 초기에 학습과 적용 비용이 추가로 들기 때문에 개발 시간이 절약된다는 설명은 틀렸습니다."},
+        {"no": 3, "correct": false, "why": "검증된 해결 방식을 재사용하므로 개발 시간이 단축되는 것이 장점입니다."},
+        {"no": 4, "correct": false, "why": "객체지향 설계 및 구현의 생산성을 높이는 것은 디자인 패턴의 장점입니다."}
+      ],
+      "keyPoint": "디자인 패턴의 장점과 초기 적용 비용",
+      "tags": ["디자인 패턴", "재사용"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-016",
+      "number": 16,
+      "subjectCode": 1,
+      "stem": "UML에서 시퀀스 다이어그램의 구성 항목에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "생명선"},
+        {"no": 2, "text": "실행"},
+        {"no": 3, "text": "확장"},
+        {"no": 4, "text": "메시지"}
+      ],
+      "answer": 3,
+      "explanation": "시퀀스 다이어그램은 객체들 사이의 상호작용을 시간 순서에 따라 표현하는 다이어그램으로, 구성 항목에는 객체(Object), 생명선(Lifeline), 실행(Activation), 메시지(Message), 회귀 메시지(Return Message) 등이 있습니다. 확장(Extension)은 시퀀스 다이어그램의 구성 항목이 아니며, 조건에 따른 흐름을 표현할 때 사용되는 다른 UML 요소입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "생명선은 객체가 존재하는 기간을 나타내는 시퀀스 다이어그램의 구성 항목입니다."},
+        {"no": 2, "correct": false, "why": "실행(활성 상자)은 객체가 연산을 수행하는 기간을 나타내는 구성 항목입니다."},
+        {"no": 3, "correct": true, "why": "확장은 시퀀스 다이어그램의 구성 항목이 아니므로 정답입니다."},
+        {"no": 4, "correct": false, "why": "메시지는 객체들 사이에 주고받는 신호로 시퀀스 다이어그램의 핵심 구성 항목입니다."}
+      ],
+      "keyPoint": "시퀀스 다이어그램의 구성 항목(생명선·실행·메시지)",
+      "tags": ["시퀀스 다이어그램", "UML"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-017",
+      "number": 17,
+      "subjectCode": 1,
+      "stem": "소프트웨어 설계에서 각 모듈의 세분화된 역할이나 모듈들 간의 인터페이스와 같은 코드를 작성하는 수준의 세부적인 구현 방안을 설계할 때 참조할 수 있는 전형적인 해결 방식 또는 예제를 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "모듈 분해"},
+        {"no": 2, "text": "클래스 도출"},
+        {"no": 3, "text": "연관 관계"},
+        {"no": 4, "text": "디자인 패턴"}
+      ],
+      "answer": 4,
+      "explanation": "디자인 패턴은 소프트웨어 설계에서 각 모듈의 세분화된 역할이나 모듈들 간의 인터페이스처럼 코드를 작성하는 수준의 세부적인 구현 방안을 설계할 때 참조할 수 있는 전형적인 해결 방식 또는 예제를 의미합니다. 모듈 분해는 기능을 작은 모듈로 나누는 작업, 클래스 도출은 요구사항에서 클래스를 찾아내는 작업, 연관 관계는 클래스나 객체 사이의 관계를 정의하는 개념으로, 모두 검증된 해결 방식을 재사용하는 패턴 자체와는 구분됩니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "모듈 분해는 시스템을 작은 단위로 나누는 작업으로 전형적인 해결 방식을 뜻하지 않습니다."},
+        {"no": 2, "correct": false, "why": "클래스 도출은 요구사항에서 클래스를 식별하는 과정입니다."},
+        {"no": 3, "correct": false, "why": "연관 관계는 클래스나 객체 사이의 구조적 관계를 나타내는 개념입니다."},
+        {"no": 4, "correct": true, "why": "세부 구현 방안 설계 시 참조할 수 있는 전형적인 해결 방식이나 예제는 디자인 패턴입니다."}
+      ],
+      "keyPoint": "디자인 패턴의 정의",
+      "tags": ["디자인 패턴", "모듈 설계"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-018",
+      "number": 18,
+      "subjectCode": 1,
+      "stem": "소프트웨어 모델링과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "모델링 작업의 결과물은 다른 모델링 작업에 영향을 줄 수 없다."},
+        {"no": 2, "text": "구조적 방법론에서는 DFD(Data Flow Diagram), DD(Data Dictionary) 등을 사용하여 요구사항의 결과를 표현한다."},
+        {"no": 3, "text": "객체지향 방법론에서는 UML 표기법을 사용한다."},
+        {"no": 4, "text": "소프트웨어 모델을 사용할 경우 개발될 소프트웨어에 대한 이해도 및 이해 당사자 간의 의사소통 향상에 도움이 된다."}
+      ],
+      "answer": 1,
+      "explanation": "소프트웨어 모델링은 대상 시스템을 추상화한 모델을 만들어 개발될 소프트웨어에 대한 이해도를 높이고 이해 당사자 간의 의사소통을 돕습니다. 모델링 작업의 결과물은 이후 다른 모델링 작업의 입력과 기준으로 사용되므로 서로 영향을 주고받으며, 구조적 방법론에서는 DFD와 DD를, 객체지향 방법론에서는 UML 표기법을 사용합니다. 따라서 결과물이 다른 모델링 작업에 영향을 줄 수 없다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "모델링 결과물은 다른 모델링 작업의 입력과 기준으로 활용되므로 영향을 줄 수 없다는 설명이 틀렸습니다."},
+        {"no": 2, "correct": false, "why": "구조적 방법론에서 DFD와 DD로 요구사항의 결과를 표현하는 것은 옳은 설명입니다."},
+        {"no": 3, "correct": false, "why": "객체지향 방법론에서 UML 표기법을 사용하는 것은 옳은 설명입니다."},
+        {"no": 4, "correct": false, "why": "모델을 사용하면 이해도와 의사소통이 향상되므로 옳은 설명입니다."}
+      ],
+      "keyPoint": "소프트웨어 모델링의 목적과 방법론별 표기법",
+      "tags": ["소프트웨어 모델링", "UML", "DFD"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-019",
+      "number": 19,
+      "subjectCode": 1,
+      "stem": "UML 모델에서 사용하는 구조적 다이어그램에 속하지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "State Diagram"},
+        {"no": 2, "text": "Object Diagram"},
+        {"no": 3, "text": "Component Diagram"},
+        {"no": 4, "text": "Class Diagram"}
+      ],
+      "answer": 1,
+      "explanation": "UML 다이어그램은 구조적(정적) 다이어그램과 행위적(동적) 다이어그램으로 나뉘며, 구조적 다이어그램에는 클래스 다이어그램, 객체 다이어그램, 컴포넌트 다이어그램, 배치 다이어그램, 패키지 다이어그램 등이 있습니다. 상태 다이어그램(State Diagram)은 객체가 가진 상태와 상태 변화에 따른 동작을 표현하는 행위적 다이어그램이므로 구조적 다이어그램에 속하지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "State Diagram은 행위적 다이어그램에 속하므로 구조적 다이어그램이 아니라는 이 보기가 정답입니다."},
+        {"no": 2, "correct": false, "why": "Object Diagram은 객체와 그 관계를 표현하는 구조적 다이어그램입니다."},
+        {"no": 3, "correct": false, "why": "Component Diagram은 컴포넌트 구성과 의존 관계를 나타내는 구조적 다이어그램입니다."},
+        {"no": 4, "correct": false, "why": "Class Diagram은 클래스와 그 관계를 표현하는 대표적인 구조적 다이어그램입니다."}
+      ],
+      "keyPoint": "UML 구조적 다이어그램과 행위적 다이어그램의 구분",
+      "tags": ["UML", "구조적 다이어그램", "상태 다이어그램"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-020",
+      "number": 20,
+      "subjectCode": 1,
+      "stem": "객체 지향 개념 중 하나 이상의 유사한 객체들을 묶어 공통된 특성을 표현한 데이터 추상화를 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Method"},
+        {"no": 2, "text": "Class"},
+        {"no": 3, "text": "Field"},
+        {"no": 4, "text": "Message"}
+      ],
+      "answer": 2,
+      "explanation": "객체지향에서 클래스(Class)는 하나 이상의 유사한 객체들을 묶어 공통된 특성을 표현한 데이터 추상화로, 객체가 가진 속성과 연산(메서드)을 정의합니다. 메서드는 객체의 동작을 정의한 연산, 필드는 객체가 가지는 데이터인 속성, 메시지는 객체들이 상호 작용하기 위해 주고받는 신호를 뜻하므로 데이터 추상화 자체를 가리키지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "메서드는 클래스에 정의되어 객체의 동작을 나타내는 연산입니다."},
+        {"no": 2, "correct": true, "why": "유사한 객체들을 묶어 공통된 특성을 표현한 데이터 추상화는 클래스이므로 정답입니다."},
+        {"no": 3, "correct": false, "why": "필드는 객체가 가지는 데이터인 속성을 뜻합니다."},
+        {"no": 4, "correct": false, "why": "메시지는 객체들 사이에 주고받는 신호를 뜻합니다."}
+      ],
+      "keyPoint": "클래스의 정의(데이터 추상화)",
+      "tags": ["클래스", "객체지향", "데이터 추상화"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    }
+  ]
+}

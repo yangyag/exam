@@ -1,0 +1,575 @@
+{
+ "exam": {
+  "id": "2025-3",
+  "year": 2025,
+  "round": 3,
+  "title": "2025년 3회 정보처리기사 필기",
+  "sourcePdf": "2025년3회_정보처리기사 필기_기출문제.pdf"
+ },
+ "subject": {
+  "code": 5,
+  "name": "정보시스템 구축 관리"
+ },
+ "questions": [
+  {
+   "id": "2025-3-081",
+   "number": 81,
+   "subjectCode": 5,
+   "stem": "다음 내용이 설명하는 기술로 가장 적절한 것은?",
+   "passage": "• 다른 국을 향하는 호출이 중계에 의하지 않고 직접 접속되는 그물 모양의 네트워크이다.\n• 통신량이 많은 비교적 소수의 국 사이에 구성될 경우 경제적이며 간편하지만, 다수의 국 사이에는 회선이 세분화되어 비경제적일 수도 있다.\n• 해당 형태의 무선 네트워크의 경우 대용량을 빠르고 안전하게 전달할 수 있어 행사장이나 군 등에서 많이 활용된다.",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "Virtual Local Area Network"},
+    {"no": 2, "text": "Simple Station Network"},
+    {"no": 3, "text": "Mesh Network"},
+    {"no": 4, "text": "Modem Network"}
+   ],
+   "answer": 3,
+   "explanation": "메시(Mesh) 네트워크는 여러 국이 중계 장치를 거치지 않고 서로 직접 연결되어 그물 모양을 이루는 망 구성 방식입니다. 일부 회선에 장애가 생겨도 다른 경로로 우회할 수 있어 신뢰성이 높지만, 연결할 국이 많아질수록 회선이 세분화되어 설치 비용이 급격히 늘어납니다. 그래서 통신량이 많은 소수의 국을 묶거나, 대용량을 안정적으로 전달해야 하는 행사장과 군 통신에서 주로 활용됩니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "VLAN은 하나의 물리적 네트워크를 논리적으로 분리하는 기술로 그물 모양의 망 구성 방식과 다릅니다."},
+    {"no": 2, "correct": false, "why": "Simple Station Network는 여러 국이 직접 연결되는 그물형 망을 가리키는 용어가 아닙니다."},
+    {"no": 3, "correct": true, "why": "모든 국이 중계 없이 직접 연결되어 그물 모양을 이루는 망 구성 방식이 메시 네트워크입니다."},
+    {"no": 4, "correct": false, "why": "모뎀 네트워크는 전화선 등에서 신호 변환 장치를 사용하는 구성을 가리키는 말로 제시된 설명과 거리가 있습니다."}
+   ],
+   "keyPoint": "메시(Mesh) 네트워크의 그물형 구성과 비용 특성",
+   "tags": ["메시 네트워크", "네트워크 구성"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-082",
+   "number": 82,
+   "subjectCode": 5,
+   "stem": "DoS(Denial of Service) 공격과 관련한 내용으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Ping of Death 공격은 정상 크기보다 큰 ICMP 패킷을 작은 조각(Fragment)으로 쪼개어 공격 대상이 조각화된 패킷을 처리하게 만드는 공격 방법이다."},
+    {"no": 2, "text": "Smurf 공격은 멀티캐스트(Multicast)를 활용하여 공격 대상이 네트워크의 임의의 시스템에 패킷을 보내게 만드는 공격이다."},
+    {"no": 3, "text": "SYN Flooding은 존재하지 않는 클라이언트가 서버별로 한정된 접속 가능 공간에 접속한 것처럼 속여 다른 사용자가 서비스를 이용하지 못하게 하는 것이다."},
+    {"no": 4, "text": "Land 공격은 패킷 전송 시 출발지 IP 주소와 목적지 IP 주소 값을 똑같이 만들어서 공격 대상에게 보내는 공격 방법이다."}
+   ],
+   "answer": 2,
+   "explanation": "Smurf 공격은 출발지 IP 주소를 공격 대상의 주소로 위조한 ICMP Echo Request를 브로드캐스트 주소로 보내, 그 망에 연결된 수많은 호스트가 공격 대상에게 Echo Reply를 보내도록 만드는 증폭 공격입니다. 따라서 멀티캐스트를 활용한다는 설명은 실제 동작 방식과 맞지 않습니다. Ping of Death는 허용 크기를 넘는 ICMP 패킷을 조각내어 보내는 공격이고, SYN Flooding은 접속 대기 공간(백로그 큐)을 가득 채우는 공격이며, Land 공격은 출발지와 목적지 주소를 같게 위조해 보내는 공격입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "Ping of Death는 최대 허용 크기를 넘는 ICMP 패킷을 조각내어 보내 대상 시스템이 재조립 과정에서 자원을 소진하게 하는 공격이므로 옳은 설명입니다."},
+    {"no": 2, "correct": true, "why": "Smurf는 멀티캐스트가 아니라 브로드캐스트 주소로 ICMP Echo Request를 보내 다수의 호스트가 공격 대상에게 응답하게 만드는 공격이므로 설명이 틀렸습니다."},
+    {"no": 3, "correct": false, "why": "SYN Flooding은 위조된 출발지 주소로 SYN을 계속 보내 접속 대기 테이블을 채워 정상 사용자의 접속을 막는 공격이므로 옳은 설명입니다."},
+    {"no": 4, "correct": false, "why": "Land 공격은 출발지 주소와 목적지 주소를 동일하게 만들어 대상이 자기 자신에게 응답하게 하는 공격이므로 옳은 설명입니다."}
+   ],
+   "keyPoint": "DoS 공격 유형 - Smurf는 브로드캐스트를 악용한 증폭 공격",
+   "tags": ["DoS 공격", "Smurf", "SYN Flooding"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-083",
+   "number": 83,
+   "subjectCode": 5,
+   "stem": "비대칭 암호화 방식으로 소수를 활용한 암호화 알고리즘은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "DES"},
+    {"no": 2, "text": "AES"},
+    {"no": 3, "text": "SMT"},
+    {"no": 4, "text": "RSA"}
+   ],
+   "answer": 4,
+   "explanation": "RSA는 큰 소수 두 개를 곱한 값은 쉽게 구할 수 있지만 그 곱을 다시 소인수분해하기는 어렵다는 수학적 성질을 이용한 공개키(비대칭) 암호 알고리즘입니다. 암호화에 쓰는 공개키와 복호화에 쓰는 개인키가 서로 달라 키를 나누어 관리할 수 있습니다. DES와 AES는 암호화와 복호화에 같은 키를 쓰는 대칭키 알고리즘이고, SMT는 널리 쓰이는 암호 알고리즘이 아닙니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "DES는 56비트 키를 쓰는 대칭키 블록 암호로 소수를 활용한 비대칭 방식이 아닙니다."},
+    {"no": 2, "correct": false, "why": "AES는 DES를 대체한 대칭키 블록 암호로 비대칭 방식이 아닙니다."},
+    {"no": 3, "correct": false, "why": "SMT는 소수를 활용한 비대칭 암호 알고리즘으로 쓰이는 표준 명칭이 아닙니다."},
+    {"no": 4, "correct": true, "why": "RSA는 소인수분해의 어려움을 근거로 만든 비대칭 키 암호 알고리즘입니다."}
+   ],
+   "keyPoint": "RSA - 소인수분해 문제에 기반한 비대칭 키 암호",
+   "tags": ["비대칭 암호화", "RSA"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-084",
+   "number": 84,
+   "subjectCode": 5,
+   "stem": "다음 내용이 설명하는 것은?",
+   "passage": "• 네트워크상에 광채널 스위치의 이점인 고속 전송과 장거리 연결 및 멀티 프로토콜 기능을 활용\n• 각기 다른 운영체제를 가진 여러 기종들이 네트워크상에서 동일 저장장치의 데이터를 공유하게 함으로써, 여러 개의 저장장치나 백업 장비를 단일화시킨 시스템",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "SAN"},
+    {"no": 2, "text": "MBR"},
+    {"no": 3, "text": "NAC"},
+    {"no": 4, "text": "NIC"}
+   ],
+   "answer": 1,
+   "explanation": "SAN(Storage Area Network)은 광채널 스위치를 이용해 서버와 저장장치를 별도의 고속 네트워크로 묶은 저장 전용 네트워크입니다. 서로 다른 운영체제를 쓰는 여러 기종이 하나의 대형 저장장치를 함께 사용할 수 있어 저장장치와 백업 장비를 단일화할 수 있습니다. MBR은 디스크의 파티션 정보를 담는 부트 레코드, NAC는 네트워크에 접속하는 단말의 인가 여부를 통제하는 기술, NIC는 네트워크 인터페이스 카드이므로 제시된 설명과 관련이 없습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "광채널 스위치로 저장장치 전용 고속 네트워크를 구성해 여러 기종이 저장장치를 공유하는 시스템이 SAN입니다."},
+    {"no": 2, "correct": false, "why": "MBR은 하드디스크의 첫 부분에 기록되는 파티션 정보 영역으로 저장장치 공유 시스템이 아닙니다."},
+    {"no": 3, "correct": false, "why": "NAC는 네트워크 접근을 통제해 보안을 강화하는 기술로 저장장치 단일화와는 무관합니다."},
+    {"no": 4, "correct": false, "why": "NIC는 컴퓨터를 네트워크에 연결해 주는 하드웨어 장치입니다."}
+   ],
+   "keyPoint": "SAN - 광채널 기반 저장 전용 네트워크",
+   "tags": ["SAN", "저장장치"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-085",
+   "number": 85,
+   "subjectCode": 5,
+   "stem": "정보 보안을 위한 접근통제 정책 종류에 해당하지 않는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "임의적 접근 통제"},
+    {"no": 2, "text": "데이터 전환 접근 통제"},
+    {"no": 3, "text": "강제적 접근 통제"},
+    {"no": 4, "text": "역할 기반 접근 통제"}
+   ],
+   "answer": 2,
+   "explanation": "접근통제 정책은 주체에게 권한을 부여하는 기준에 따라 임의적 접근 통제(DAC), 강제적 접근 통제(MAC), 역할 기반 접근 통제(RBAC)로 구분합니다. 임의적 통제는 자원 소유자가, 강제적 통제는 보안 등급이, 역할 기반 통제는 조직에서 맡은 역할이 권한을 결정합니다. 데이터 전환 접근 통제라는 정책 유형은 존재하지 않습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "임의적 접근 통제는 자원 소유자가 권한을 지정하는 대표적인 접근통제 정책입니다."},
+    {"no": 2, "correct": true, "why": "데이터 전환 접근 통제는 접근통제 정책의 종류로 존재하지 않는 명칭입니다."},
+    {"no": 3, "correct": false, "why": "강제적 접근 통제는 보안 등급과 같은 규칙에 따라 강제로 권한을 부여하는 정책입니다."},
+    {"no": 4, "correct": false, "why": "역할 기반 접근 통제는 조직 내 역할에 따라 권한을 부여하는 정책입니다."}
+   ],
+   "keyPoint": "접근통제 정책 - DAC, MAC, RBAC의 세 가지 유형",
+   "tags": ["접근통제", "보안 정책"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-086",
+   "number": 86,
+   "subjectCode": 5,
+   "stem": "다음 내용이 설명하는 것은?",
+   "passage": "• 사물통신, 사물인터넷과 같이 대역폭이 제한된 통신환경에 최적화하여 개발된 푸시기술 기반의 경량 메시지 전송 프로토콜\n• 메시지 매개자(Broker)를 통해 송신자가 특정 메시지를 발행하고 수신자가 메시지를 구독하는 방식\n• IBM이 주도하여 개발",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "GRID"},
+    {"no": 2, "text": "TELNET"},
+    {"no": 3, "text": "GPN"},
+    {"no": 4, "text": "MQTT"}
+   ],
+   "answer": 4,
+   "explanation": "MQTT(Message Queuing Telemetry Transport)는 대역폭이 좁은 사물인터넷 환경을 위해 만든 경량 메시지 전송 프로토콜입니다. 송신자는 특정 주제로 메시지를 발행하고 수신자는 필요한 주제를 구독하며, 두 주체는 브로커(Broker)를 통해 간접적으로 메시지를 주고받습니다. IBM이 주도해 개발해 저전력·저대역폭 장치에서 널리 쓰이며, GRID는 분산 컴퓨팅 환경, TELNET은 원격 접속 프로토콜이므로 제시된 설명과 다릅니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "GRID는 네트워크로 연결된 여러 컴퓨터를 하나의 가상 컴퓨터처럼 활용하는 분산 컴퓨팅 개념입니다."},
+    {"no": 2, "correct": false, "why": "TELNET은 원격지 서버에 접속해 터미널을 사용하는 프로토콜로 메시지 발행·구독 방식이 아닙니다."},
+    {"no": 3, "correct": false, "why": "GPN은 발행과 구독 구조를 사용하는 경량 메시지 전송 프로토콜이 아닙니다."},
+    {"no": 4, "correct": true, "why": "IBM이 주도해 만든 발행·구독 기반 경량 메시지 전송 프로토콜이 MQTT입니다."}
+   ],
+   "keyPoint": "MQTT - 발행/구독 구조의 IoT 경량 메시지 프로토콜",
+   "tags": ["MQTT", "사물인터넷"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-087",
+   "number": 87,
+   "subjectCode": 5,
+   "stem": "다음이 설명하는 용어로 옳은 것은?",
+   "passage": "• 오픈 소스를 기반으로 한 분산 컴퓨팅 플랫폼이다.\n• 일반 PC급 컴퓨터들로 가상화된 대형 스토리지를 형성한다.\n• 다양한 소스를 통해 생성된 빅데이터를 효율적으로 저장하고 처리한다.",
+   "passageKind": "text",
+   "choices": [
+    {"no": 1, "text": "하둡(Hadoop)"},
+    {"no": 2, "text": "비컨(Beacon)"},
+    {"no": 3, "text": "포스퀘어(Foursquare)"},
+    {"no": 4, "text": "맴리스터(Memristor)"}
+   ],
+   "answer": 1,
+   "explanation": "하둡(Hadoop)은 오픈 소스 기반의 분산 컴퓨팅 플랫폼으로, HDFS를 이용해 일반 PC급 컴퓨터 여러 대의 저장공간을 묶어 대형 스토리지를 만들고 맵리듀스로 데이터를 나누어 처리합니다. 덕분에 여러 곳에서 모은 대용량 빅데이터를 저렴한 비용으로 저장하고 분석할 수 있습니다. 비컨은 매장 안에서 위치 정보를 알려 주는 근거리 신호 장치, 포스퀘어는 위치 기반 소셜 네트워킹 서비스, 맴리스터는 저항값을 기억하는 전자 소자입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "오픈 소스 기반으로 일반 PC를 묶어 대형 스토리지를 만들고 빅데이터를 분산 처리하는 플랫폼이 하둡입니다."},
+    {"no": 2, "correct": false, "why": "비컨은 블루투스 신호를 이용해 실내 위치를 파악하는 장치로 분산 컴퓨팅 플랫폼이 아닙니다."},
+    {"no": 3, "correct": false, "why": "포스퀘어는 위치 기반 소셜 네트워킹 서비스로 빅데이터 분산 처리 플랫폼과 다릅니다."},
+    {"no": 4, "correct": false, "why": "맴리스터는 인가 전력의 이력을 저항값으로 기억하는 소자입니다."}
+   ],
+   "keyPoint": "하둡 - HDFS와 맵리듀스 기반 빅데이터 분산 처리 플랫폼",
+   "tags": ["하둡", "빅데이터", "분산 컴퓨팅"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-088",
+   "number": 88,
+   "subjectCode": 5,
+   "stem": "COCOMO 모델에 의한 비용 산정에 대한 설명으로 옳지 않은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "보헴이 제안한 원시 프로그램의 규모에 의한 비용 예측 모형이다."},
+    {"no": 2, "text": "같은 규모의 소프트웨어라도 그 유형에 따라 비용이 다르게 산정된다."},
+    {"no": 3, "text": "비용 산정 유형으로 Organic Mode, Embedded Mode, Semi-Detached Mode가 있다."},
+    {"no": 4, "text": "UFP(Unadjusted Function Point)를 계산한다."}
+   ],
+   "answer": 4,
+   "explanation": "COCOMO는 보헴(Boehm)이 제안한 모형으로, 원시 프로그램의 규모(코드 라인 수)를 기준으로 개발 비용을 예측합니다. 프로젝트를 Organic, Semi-Detached, Embedded 모드로 구분하고, 같은 규모라도 모드별로 다른 계수를 적용해 비용을 다르게 산정합니다. UFP를 계산하는 방식은 기능 점수(Function Point)에 기반한 비용 산정 기법에 해당하므로 COCOMO에 대한 설명으로 옳지 않습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "COCOMO는 보헴이 원시 프로그램의 규모를 근거로 제안한 비용 예측 모형이므로 옳은 설명입니다."},
+    {"no": 2, "correct": false, "why": "같은 규모라도 적용 모드에 따라 계수가 달라 비용이 다르게 산정되므로 옳은 설명입니다."},
+    {"no": 3, "correct": false, "why": "Organic, Embedded, Semi-Detached는 COCOMO가 구분하는 세 가지 유형이므로 옳은 설명입니다."},
+    {"no": 4, "correct": true, "why": "UFP 계산은 기능 점수 기반 비용 산정 기법에 속하므로 COCOMO 설명으로는 옳지 않습니다."}
+   ],
+   "keyPoint": "COCOMO - 코드 라인 수 기반 비용 산정과 세 가지 유형",
+   "tags": ["COCOMO", "비용 산정"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-089",
+   "number": 89,
+   "subjectCode": 5,
+   "stem": "세션 하이재킹을 탐지하는 방법으로 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "FTP SYN SEGMENT 탐지"},
+    {"no": 2, "text": "비동기화 상태 탐지"},
+    {"no": 3, "text": "ACK STORM 탐지"},
+    {"no": 4, "text": "패킷의 유실 및 재전송 증가 탐지"}
+   ],
+   "answer": 1,
+   "explanation": "세션 하이재킹은 이미 인증을 마친 정상 세션을 공격자가 가로채는 공격이므로, 정상적인 흐름이 깨지는 징후를 관찰해 탐지합니다. 비동기화 상태 탐지는 시퀀스 번호가 서버의 기대값과 어긋나는 순간을 찾아내고, ACK STORM 탐지는 짧은 시간에 ACK 패킷이 몰려오는 현상을, 패킷의 유실 및 재전송 증가 탐지는 비정상적인 재전송 급증을 이용합니다. FTP SYN SEGMENT 탐지는 세션 하이재킹 탐지 기법으로 쓰이는 명칭이 아닙니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "FTP SYN SEGMENT 탐지는 세션 하이재킹 탐지 기법으로 사용되지 않는 명칭입니다."},
+    {"no": 2, "correct": false, "why": "세션의 동기화가 깨진 상태를 찾아내는 비동기화 상태 탐지는 대표적인 하이재킹 탐지 방법입니다."},
+    {"no": 3, "correct": false, "why": "ACK STORM 탐지는 ACK 패킷이 비정상적으로 폭주하는 현상으로 세션 탈취를 판별하는 방법입니다."},
+    {"no": 4, "correct": false, "why": "패킷의 유실과 재전송이 갑자기 늘어나는 것을 보고 하이재킹을 의심하는 탐지 방법입니다."}
+   ],
+   "keyPoint": "세션 하이재킹 탐지 - 비동기화, ACK STORM, 재전송 증가",
+   "tags": ["세션 하이재킹", "침입 탐지"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-090",
+   "number": 90,
+   "subjectCode": 5,
+   "stem": "다음 중 프로토타입 모형을 선택하는 것이 가장 적합한 경우는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "구축하고자 하는 시스템의 요구사항이 불분명할 때"},
+    {"no": 2, "text": "고객이 완성된 제품만을 보기 원할 때"},
+    {"no": 3, "text": "고객이 개발 과정에 참여하지 않을 때"},
+    {"no": 4, "text": "소프트웨어 개발 과정에서 발생할 수 있는 위험을 최소화하고자 할 때"}
+   ],
+   "answer": 1,
+   "explanation": "프로토타입 모형은 실제로 동작하는 시제품을 먼저 만들어 사용자에게 확인받고, 그 결과를 반영해 요구사항을 구체화해 나가는 개발 방식입니다. 따라서 사용자가 원하는 기능이 명확하지 않아 요구사항이 불분명할 때 가장 적합하며, 사용자가 개발 과정에 적극적으로 참여할수록 효과가 큽니다. 완성된 제품만 보여 주기를 바라거나 위험을 최소화하려는 목적에는 폭포수 모형이나 나선형 모형이 더 어울립니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "요구사항이 불분명할 때 시제품으로 확인받으며 요구를 구체화하는 프로토타입 모형이 적합합니다."},
+    {"no": 2, "correct": false, "why": "완성된 제품만을 보기 원하는 고객에게는 중간 시제품을 반복해서 보여 주는 방식이 맞지 않습니다."},
+    {"no": 3, "correct": false, "why": "프로토타입 모형은 사용자 참여와 피드백이 핵심이므로 참여하지 않는 경우에는 적합하지 않습니다."},
+    {"no": 4, "correct": false, "why": "위험을 줄이려면 위험 분석을 반복하는 나선형 모형이 더 적합합니다."}
+   ],
+   "keyPoint": "프로토타입 모형 - 요구사항이 불분명할 때 적합한 개발 모형",
+   "tags": ["프로토타입 모형", "소프트웨어 개발 모형"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 6},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-091",
+   "number": 91,
+   "subjectCode": 5,
+   "stem": "인증의 유형 중에서 패스워드를 사용하는 경우에 해당하는 인증 유형은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Something You Have"},
+    {"no": 2, "text": "Something You Are"},
+    {"no": 3, "text": "Something You Know"},
+    {"no": 4, "text": "Somewhere You Are"}
+   ],
+   "answer": 3,
+   "explanation": "인증 수단은 사용자가 기억하는 것(Something You Know), 소지한 것(Something You Have), 신체적으로 지닌 것(Something You Are) 등으로 나뉩니다. 패스워드는 사용자가 머릿속에 기억해 두고 입력하는 정보이므로 Something You Know에 해당합니다. Something You Have는 스마트카드나 OTP 토큰처럼 가지고 다니는 물건, Something You Are는 지문·홍채 같은 생체 정보, Somewhere You Are는 접속 위치를 이용하는 인증입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "Something You Have는 스마트카드나 보안 토큰처럼 소지한 물건을 이용하는 인증 유형입니다."},
+    {"no": 2, "correct": false, "why": "Something You Are는 지문이나 홍채 등 신체 특징을 이용하는 생체 인증 유형입니다."},
+    {"no": 3, "correct": true, "why": "패스워드는 사용자가 기억하는 정보이므로 Something You Know에 해당합니다."},
+    {"no": 4, "correct": false, "why": "Somewhere You Are는 특정 위치에서의 접속인지 확인하는 위치 기반 인증입니다."}
+   ],
+   "keyPoint": "인증 유형 - 패스워드는 Something You Know",
+   "tags": ["인증 유형", "패스워드"],
+   "difficulty": 1,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-092",
+   "number": 92,
+   "subjectCode": 5,
+   "stem": "취약점 관리를 위한 응용 프로그램의 보안 설정과 가장 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "서버 관리실 출입 통제"},
+    {"no": 2, "text": "실행 프로세스 권한 설정"},
+    {"no": 3, "text": "운영체제의 접근 제한"},
+    {"no": 4, "text": "운영체제의 정보 수집 제한"}
+   ],
+   "answer": 1,
+   "explanation": "취약점 관리를 위한 보안 설정은 응용 프로그램과 운영체제 수준에서 권한을 제한하고 불필요한 정보가 노출되지 않도록 조정하는 활동입니다. 실행 프로세스 권한 설정, 운영체제의 접근 제한, 운영체제의 정보 수집 제한은 모두 시스템 안에서 이루어지는 논리적 보안 설정입니다. 서버 관리실 출입 통제는 사람의 출입을 막는 물리적 보안 대책이므로 응용 프로그램 보안 설정과 가장 거리가 멉니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "출입 통제는 물리적 보안에 속하므로 응용 프로그램의 보안 설정과 가장 거리가 먼 항목입니다."},
+    {"no": 2, "correct": false, "why": "실행 프로세스 권한 설정은 불필요한 권한을 줄이는 대표적인 논리적 보안 설정입니다."},
+    {"no": 3, "correct": false, "why": "운영체제의 접근 제한은 계정과 자원에 대한 접근을 통제하는 보안 설정입니다."},
+    {"no": 4, "correct": false, "why": "정보 수집 제한도 불필요한 정보 노출을 막는 시스템 보안 설정에 해당합니다."}
+   ],
+   "keyPoint": "논리적 보안 설정과 물리적 보안의 구분",
+   "tags": ["취약점 관리", "보안 설정"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-093",
+   "number": 93,
+   "subjectCode": 5,
+   "stem": "다음에 제시된 프로토콜과 포트의 연결이 잘못된 것은 ?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "UTP 53 포트 - SNMP"},
+    {"no": 2, "text": "TCP 23 포트 - Telnet"},
+    {"no": 3, "text": "UDP 69 포트 - TFTP"},
+    {"no": 4, "text": "UTP 111 포트 – RFC"}
+   ],
+   "answer": 1,
+   "explanation": "53번 포트는 도메인 이름을 IP 주소로 변환해 주는 DNS가 사용하는 포트이고, SNMP는 161번 포트를 사용합니다. 따라서 53번 포트와 SNMP를 연결한 설명은 잘못되었습니다. 23번 포트는 Telnet, 69번 포트는 TFTP, 111번 포트는 RPC(포트매퍼)가 사용하므로 나머지 연결은 모두 옳습니다. 지문에 적힌 UTP와 RFC는 각각 UDP와 RPC를 잘못 적은 표기로 보아야 합니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "53번 포트는 DNS가 사용하고 SNMP는 161번 포트를 사용하므로 연결이 잘못되었습니다."},
+    {"no": 2, "correct": false, "why": "23번 포트는 원격 접속에 쓰이는 Telnet의 포트이므로 올바른 연결입니다."},
+    {"no": 3, "correct": false, "why": "69번 포트는 간이 파일 전송 프로토콜인 TFTP가 사용하는 포트이므로 올바른 연결입니다."},
+    {"no": 4, "correct": false, "why": "111번 포트는 원격 프로시저 호출(RPC)에 쓰이는 포트이므로 올바른 연결입니다."}
+   ],
+   "keyPoint": "프로토콜별 Well-Known 포트 번호",
+   "tags": ["포트 번호", "프로토콜"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-094",
+   "number": 94,
+   "subjectCode": 5,
+   "stem": "프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 이를 관리하는 활동으로서, 프로젝트를 성공시키기 위하여 위험 요소를 사전에 예측, 대비하는 모든 기술과 활동을 포함하는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Critical Path Method"},
+    {"no": 2, "text": "Risk Analysis"},
+    {"no": 3, "text": "Work Breakdown Structure"},
+    {"no": 4, "text": "Waterfall Model"}
+   ],
+   "answer": 2,
+   "explanation": "위험 분석(Risk Analysis)은 프로젝트에 잠재된 위험 요소를 미리 찾아내고 그 영향도를 평가해 대응 방안을 마련하는 관리 활동입니다. 위험을 사전에 예측하고 대비함으로써 프로젝트가 일정과 목표를 지켜 완수하도록 돕는 것이 목적입니다. Critical Path Method는 임계 경로를 찾아 일정을 관리하는 기법, WBS는 수행할 작업을 세분화해 나열하는 기법, Waterfall Model은 단계를 순차적으로 진행하는 개발 모형입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "Critical Path Method는 가장 긴 작업 경로를 찾아 일정을 관리하는 기법으로 위험 관리 활동과 다릅니다."},
+    {"no": 2, "correct": true, "why": "위험 요소를 인식·분석하고 사전에 대비하는 모든 활동을 포함하는 것은 위험 분석입니다."},
+    {"no": 3, "correct": false, "why": "Work Breakdown Structure는 프로젝트 작업을 세분화하는 구조화 기법입니다."},
+    {"no": 4, "correct": false, "why": "Waterfall Model은 분석부터 유지보수까지 단계를 순차적으로 진행하는 개발 모형입니다."}
+   ],
+   "keyPoint": "위험 분석(Risk Analysis) - 위험 예측과 대비 활동",
+   "tags": ["위험 분석", "프로젝트 관리"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-095",
+   "number": 95,
+   "subjectCode": 5,
+   "stem": "입력 데이터 검증 및 표현과 관련된 설명으로 옳지 않은 것은 ?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "SQL 삽입 : 웹 응용 프로그램에 SQL을 삽입하여 내부 데이터베이스(DB) 서버의 데이터를 유출 및 변조하고, 관리자 인증을 우회한다."},
+    {"no": 2, "text": "크로스사이트 스크립트 : 웹페이지에 악의적인 스크립트를 삽입하여 방문자들의 정보를 탈취한다."},
+    {"no": 3, "text": "자원 삽입 : 악의적인 명령어가 포함된 스크립트 파일을 업로드 함으로써 시스템에 손상을 준다."},
+    {"no": 4, "text": "운영체제 명령어 삽입 : 외부 입력값을 통해 시스템 명령어의 실행을 유도함으로써 권한을 탈취하거나 시스템 장애를 유발한다."}
+   ],
+   "answer": 3,
+   "explanation": "자원 삽입(Resource Injection)은 입력값을 조작해 서버의 파일이나 포트처럼 개발자가 의도하지 않은 시스템 자원을 사용하게 만드는 약점입니다. 악의적인 명령이 담긴 스크립트 파일을 업로드해 시스템을 손상시키는 것은 위험한 파일 업로드(파일 업로드 취약점)에 대한 설명이므로 자원 삽입 설명으로는 옳지 않습니다. SQL 삽입, 크로스사이트 스크립트, 운영체제 명령어 삽입에 대한 설명은 모두 옳습니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "SQL 삽입은 입력값에 SQL을 넣어 데이터베이스의 데이터를 빼내거나 조작하고 인증을 우회하는 공격이므로 옳은 설명입니다."},
+    {"no": 2, "correct": false, "why": "크로스사이트 스크립트는 웹페이지에 악성 스크립트를 심어 방문자의 정보를 탈취하는 약점이므로 옳은 설명입니다."},
+    {"no": 3, "correct": true, "why": "악성 스크립트 파일을 업로드해 시스템을 손상시키는 것은 위험한 파일 업로드에 대한 설명이므로 틀렸습니다."},
+    {"no": 4, "correct": false, "why": "운영체제 명령어 삽입은 외부 입력으로 시스템 명령 실행을 유도해 권한을 탈취하는 약점이므로 옳은 설명입니다."}
+   ],
+   "keyPoint": "자원 삽입과 위험한 파일 업로드의 구분",
+   "tags": ["입력 데이터 검증", "자원 삽입", "보안 약점"],
+   "difficulty": 4,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-096",
+   "number": 96,
+   "subjectCode": 5,
+   "stem": "어떤 외부 컴퓨터가 접속되면 접속 인가 여부를 점검해서 인가된 경우에는 접속이 허용되고, 그 반대의 경우에는 거부할 수 있는 접근제어 유틸리티는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "tcp wrapper"},
+    {"no": 2, "text": "trace checker"},
+    {"no": 3, "text": "token finder"},
+    {"no": 4, "text": "change detector"}
+   ],
+   "answer": 1,
+   "explanation": "tcp wrapper는 외부 호스트가 특정 네트워크 서비스에 접속을 시도할 때 그 접속을 허용할지 판단해 주는 접근제어 유틸리티입니다. 허용할 호스트 목록을 적은 hosts.allow 파일과 차단할 호스트 목록을 적은 hosts.deny 파일을 두고, 인가되지 않은 접속은 서비스에 도달하기 전에 거부합니다. trace checker, token finder, change detector는 이런 접속 인가 판단 기능을 제공하는 유틸리티가 아닙니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": true, "why": "접속을 시도한 호스트의 인가 여부를 검사해 허용하거나 거부하는 접근제어 유틸리티가 tcp wrapper입니다."},
+    {"no": 2, "correct": false, "why": "trace checker는 접속 인가를 판단하는 접근제어 유틸리티가 아닙니다."},
+    {"no": 3, "correct": false, "why": "token finder는 접속 허용 여부를 결정하는 유틸리티로 쓰이지 않습니다."},
+    {"no": 4, "correct": false, "why": "change detector는 파일이나 시스템의 변경 여부를 확인하는 도구로 접속 통제와 다릅니다."}
+   ],
+   "keyPoint": "tcp wrapper - hosts.allow/hosts.deny 기반 접속 제어",
+   "tags": ["tcp wrapper", "접근제어"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-097",
+   "number": 97,
+   "subjectCode": 5,
+   "stem": "위조된 매체 접근 제어(MAC) 주소를 지속적으로 네트워크로 흘려보내, 스위치 MAC 주소 테이블의 저장 기능을 혼란시켜 더미 허브(Dummy Hub)처럼 작동하게 하는 공격은 ?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "Parsing"},
+    {"no": 2, "text": "LAN Tapping"},
+    {"no": 3, "text": "Switch Jamming"},
+    {"no": 4, "text": "FTP Flooding"}
+   ],
+   "answer": 3,
+   "explanation": "스위치 재밍(Switch Jamming)은 위조하거나 존재하지 않는 MAC 주소를 담은 프레임을 계속 보내 스위치의 MAC 주소 테이블을 가득 채우는 공격입니다. 테이블이 넘치면 스위치는 목적지 포트를 찾지 못해 들어온 프레임을 모든 포트로 흘려보내는데, 이때 스위치가 더미 허브처럼 동작해 다른 노드의 통신 내용을 엿볼 수 있게 됩니다. Parsing은 구문 분석, LAN Tapping은 케이블에 직접 접속해 데이터를 가로채는 행위, FTP Flooding은 FTP 서비스에 과도한 접속을 유발하는 공격입니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "Parsing은 데이터의 구조를 해석하는 처리 과정으로 네트워크 공격 이름이 아닙니다."},
+    {"no": 2, "correct": false, "why": "LAN Tapping은 네트워크 케이블에 물리적으로 접속해 데이터를 몰래 가로채는 행위입니다."},
+    {"no": 3, "correct": true, "why": "위조한 MAC 주소를 계속 보내 MAC 주소 테이블을 넘치게 해 허브처럼 동작시키는 공격이 스위치 재밍입니다."},
+    {"no": 4, "correct": false, "why": "FTP Flooding은 FTP 서비스에 대량 접속을 시도해 서비스를 마비시키는 공격입니다."}
+   ],
+   "keyPoint": "스위치 재밍 - MAC 주소 테이블 오버플로를 이용한 스니핑",
+   "tags": ["Switch Jamming", "MAC 주소 테이블"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-098",
+   "number": 98,
+   "subjectCode": 5,
+   "stem": "국내 IT 서비스 경쟁력 강화를 목표로 개발되었으며 인프라 제어 및 관리 환경, 실행 환경, 개발 환경, 서비스 환경, 운영 환경으로 구성되어 있는 개방형 클라우드 컴퓨팅 플랫폼은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "N2OS"},
+    {"no": 2, "text": "PaaS-TA"},
+    {"no": 3, "text": "KAWS"},
+    {"no": 4, "text": "Metaverse"}
+   ],
+   "answer": 2,
+   "explanation": "PaaS-TA는 국내 IT 서비스 경쟁력 강화를 목표로 개발된 개방형 클라우드 컴퓨팅 플랫폼입니다. 인프라 제어 및 관리 환경, 실행 환경, 개발 환경, 서비스 환경, 운영 환경으로 구성되어 있어 응용 프로그램을 개발하고 배포하는 데 필요한 환경을 서비스 형태로 제공합니다. N2OS, KAWS, Metaverse는 제시된 설명에 해당하는 개방형 클라우드 플랫폼이 아닙니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "N2OS는 제시된 구성 요소를 가진 개방형 클라우드 컴퓨팅 플랫폼이 아닙니다."},
+    {"no": 2, "correct": true, "why": "국내에서 개발되어 다섯 가지 환경으로 구성된 개방형 클라우드 플랫폼이 PaaS-TA입니다."},
+    {"no": 3, "correct": false, "why": "KAWS는 제시된 설명에 해당하는 클라우드 컴퓨팅 플랫폼이 아닙니다."},
+    {"no": 4, "correct": false, "why": "Metaverse는 3차원 가상 세계를 뜻하는 개념으로 클라우드 플랫폼 이름이 아닙니다."}
+   ],
+   "keyPoint": "PaaS-TA - 국내 개발 개방형 클라우드 컴퓨팅 플랫폼",
+   "tags": ["PaaS-TA", "클라우드 컴퓨팅"],
+   "difficulty": 3,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-099",
+   "number": 99,
+   "subjectCode": 5,
+   "stem": "Secure OS 의 보안 기능으로 거리가 먼 것은 ?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "식별 및 인증"},
+    {"no": 2, "text": "임의적 접근 통제"},
+    {"no": 3, "text": "고가용성 지원"},
+    {"no": 4, "text": "강제적 접근 통제"}
+   ],
+   "answer": 3,
+   "explanation": "Secure OS는 운영체제에 이식되어 보안 기능을 강화하는 보안 커널로, 식별 및 인증, 임의적 접근 통제, 강제적 접근 통제, 감사와 로그 기록, 암호화 같은 기능을 제공합니다. 임의적 접근 통제와 강제적 접근 통제는 대표적인 접근 통제 기능이고 식별 및 인증도 기본 기능에 속합니다. 고가용성 지원은 시스템을 중단 없이 운영하기 위한 가용성 확보 기능이므로 Secure OS의 보안 기능과는 거리가 멉니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "식별 및 인증은 사용자를 확인하는 Secure OS의 기본 보안 기능입니다."},
+    {"no": 2, "correct": false, "why": "임의적 접근 통제는 자원 소유자의 권한 지정에 따라 접근을 통제하는 Secure OS 기능입니다."},
+    {"no": 3, "correct": true, "why": "고가용성 지원은 가용성을 높이는 기능으로 Secure OS의 보안 기능에 해당하지 않습니다."},
+    {"no": 4, "correct": false, "why": "강제적 접근 통제는 보안 등급에 따라 접근을 강제로 제한하는 Secure OS 기능입니다."}
+   ],
+   "keyPoint": "Secure OS의 보안 기능 - 식별·인증, 접근 통제, 감사",
+   "tags": ["Secure OS", "보안 커널"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  },
+  {
+   "id": "2025-3-100",
+   "number": 100,
+   "subjectCode": 5,
+   "stem": "다음 암호 알고리즘 중 성격이 다른 하나는 ?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {"no": 1, "text": "MD4"},
+    {"no": 2, "text": "MD5"},
+    {"no": 3, "text": "SHA-1"},
+    {"no": 4, "text": "AES"}
+   ],
+   "answer": 4,
+   "explanation": "MD4, MD5, SHA-1은 모두 임의 길이의 데이터를 고정된 길이의 값으로 바꾸는 해시 함수로, 무결성 검사와 전자 서명 등에 사용됩니다. 이들은 한쪽 방향으로만 계산되도록 설계되어 원래 데이터를 되돌릴 수 없습니다. 반면 AES는 암호화와 복호화에 같은 키를 사용하는 대칭키 블록 암호로, 키를 가진 사람은 원문을 복원할 수 있으므로 성격이 다릅니다.",
+   "choicesAnalysis": [
+    {"no": 1, "correct": false, "why": "MD4는 임의 길이의 입력을 128비트 해시값으로 만드는 해시 함수입니다."},
+    {"no": 2, "correct": false, "why": "MD5도 128비트 해시값을 생성하는 해시 함수입니다."},
+    {"no": 3, "correct": false, "why": "SHA-1은 160비트 해시값을 생성하는 해시 함수입니다."},
+    {"no": 4, "correct": true, "why": "AES는 해시 함수가 아니라 암호화와 복호화에 같은 키를 쓰는 대칭키 블록 암호입니다."}
+   ],
+   "keyPoint": "해시 함수(MD4·MD5·SHA-1)와 대칭키 암호(AES)의 구분",
+   "tags": ["해시 함수", "AES", "대칭키 암호"],
+   "difficulty": 2,
+   "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+   "source": {"pdf": "2025년3회_정보처리기사 필기_기출문제.pdf", "page": 7},
+   "provenance": {"answer": "pdf", "explanation": "generated"}
+  }
+ ]
+}

@@ -1,0 +1,1500 @@
+{
+  "exam": {
+    "id": "2025-2",
+    "year": 2025,
+    "round": 2,
+    "title": "2025년 2회 정보처리기사 필기",
+    "sourcePdf": "2025년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2025-2-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "EAI(Enterprise Application Integration)의 구축 유형으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Point-to-Point"
+        },
+        {
+          "no": 2,
+          "text": "Hub & Spoke"
+        },
+        {
+          "no": 3,
+          "text": "Message Bus"
+        },
+        {
+          "no": 4,
+          "text": "Tree"
+        }
+      ],
+      "answer": 4,
+      "explanation": "EAI는 기업 내에 흩어져 있는 서로 다른 애플리케이션과 시스템을 하나로 통합하는 솔루션으로, 구축 유형에는 Point-to-Point, Hub & Spoke, Message Bus, Hybrid 네 가지가 있습니다. Point-to-Point는 애플리케이션끼리 1:1로 직접 연결하고, Hub & Spoke는 중앙 허브를 거쳐 데이터를 교환하며, Message Bus는 미들웨어 버스를 통해 연결합니다. Tree는 이처럼 정해진 EAI 구축 유형에 포함되지 않는 용어로, 시스템을 트리 구조로 묶어 통합하는 방식은 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Point-to-Point는 애플리케이션을 1:1로 직접 연결하는 가장 기본적인 EAI 구축 유형이므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Hub & Spoke는 중앙의 허브 시스템을 통해 각 애플리케이션의 데이터를 교환하는 EAI 구축 유형입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Message Bus는 애플리케이션 사이에 미들웨어 버스를 두고 메시지를 교환하는 EAI 구축 유형입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Tree는 EAI 구축 유형으로 제시되지 않는 용어로, 트리 형태의 계층 구조로 통합하는 방식은 없으므로 옳지 않은 설명입니다."
+        }
+      ],
+      "keyPoint": "EAI 구축 유형(Point-to-Point, Hub & Spoke, Message Bus, Hybrid)",
+      "tags": [
+        "EAI",
+        "구축 유형",
+        "애플리케이션 통합"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "소프트웨어 형상 관리의 의미로 적절한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "비용에 관한 사항을 효율적으로 관리하는 것"
+        },
+        {
+          "no": 2,
+          "text": "개발 과정의 변경 사항을 관리하는 것"
+        },
+        {
+          "no": 3,
+          "text": "테스트 과정에서 소프트웨어를 통합하는 것"
+        },
+        {
+          "no": 4,
+          "text": "개발 인력을 관리하는 것"
+        }
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 형상 관리는 개발 과정에서 만들어지는 요구사항 명세서, 설계서, 소스 코드, 테스트 케이스와 같은 산출물을 형상 항목으로 식별하고 그 변경을 통제·기록하는 활동입니다. 즉 개발 과정에서 발생하는 변경 사항을 체계적으로 관리하여 산출물의 일관성과 추적성을 유지하는 것이 핵심입니다. 비용 관리나 인력 관리는 프로젝트 관리의 다른 영역이고, 테스트 과정에서 소프트웨어를 통합하는 것은 통합 테스트에 해당하므로 형상 관리의 의미와 거리가 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "비용에 관한 사항을 관리하는 것은 프로젝트 관리 영역으로, 산출물의 변경을 통제하는 형상 관리와는 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "개발 과정에서 생기는 산출물의 변경 사항을 식별·통제·기록하는 것이 형상 관리의 핵심이므로 적절한 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "테스트 과정에서 소프트웨어를 통합하는 것은 통합 테스트의 목적이며 형상 관리의 정의가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "개발 인력을 관리하는 것은 인적 자원 관리에 해당하며 형상 관리와 무관합니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 형상 관리는 개발 과정의 변경 사항을 관리하는 활동",
+      "tags": [
+        "형상 관리",
+        "변경 관리",
+        "SCM"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "소프트웨어 품질 측정을 위해 개발자 관점에서 고려해야 할 항목으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "정확성"
+        },
+        {
+          "no": 2,
+          "text": "무결성"
+        },
+        {
+          "no": 3,
+          "text": "사용성"
+        },
+        {
+          "no": 4,
+          "text": "간결성"
+        }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 품질을 측정할 때 개발자 관점에서 고려하는 항목으로는 정확성, 무결성, 사용성 등이 제시됩니다. 정확성은 요구된 기능을 오류 없이 정확한 결과로 산출하는 정도, 무결성은 허용되지 않은 접근이나 변경으로부터 시스템과 데이터를 보호하는 정도, 사용성은 사용자가 쉽게 익히고 사용할 수 있는 정도를 뜻합니다. 간결성은 이렇게 정립된 품질 측정 항목에 포함되지 않는 표현이므로 개발자 관점에서 고려해야 할 항목과 거리가 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "정확성은 시스템이 요구대로 정확한 결과를 산출하는 정도를 나타내는 품질 측정 항목으로 고려 대상입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "무결성은 부적절한 접근이나 오류로부터 데이터와 프로그램을 보호하는 정도로 품질 측정 항목에 포함됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "사용성은 사용자가 소프트웨어를 쉽게 이해하고 사용할 수 있는 정도를 나타내는 품질 측정 항목입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "간결성은 표준적으로 제시되는 품질 측정 항목이 아니어서 개발자 관점의 고려 항목과 거리가 있습니다."
+        }
+      ],
+      "keyPoint": "품질 측정 항목(정확성·무결성·사용성)과 간결성의 구분",
+      "tags": [
+        "소프트웨어 품질",
+        "품질 측정 항목",
+        "개발자 관점"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "알파, 베타 테스트와 가장 밀접한 연관이 있는 테스트 단계는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "단위 테스트"
+        },
+        {
+          "no": 2,
+          "text": "인수 테스트"
+        },
+        {
+          "no": 3,
+          "text": "통합 테스트"
+        },
+        {
+          "no": 4,
+          "text": "시스템 테스트"
+        }
+      ],
+      "answer": 2,
+      "explanation": "알파 테스트와 베타 테스트는 완성된 소프트웨어가 사용자의 요구를 만족하는지 실제 사용 환경에서 확인하는 인수 테스트 단계의 검사 기법입니다. 알파 테스트는 개발자의 장소에서 개발자가 지켜보는 가운데 사용자가 통제된 환경에서 수행하고, 베타 테스트는 개발자가 없는 실제 사용 환경에서 사용자가 직접 수행합니다. 단위 테스트는 모듈 단위 검증, 통합 테스트는 모듈 간 인터페이스 검증, 시스템 테스트는 전체 시스템 관점의 검증이므로 알파·베타 테스트와 가장 밀접한 단계는 인수 테스트입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "단위 테스트는 개별 모듈의 기능을 검증하는 단계로, 사용자가 참여하는 알파·베타 테스트와는 단계가 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "알파 테스트와 베타 테스트는 사용자 관점에서 인수 여부를 판단하는 인수 테스트 단계에서 수행하는 검사 방법입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "통합 테스트는 모듈 간 인터페이스와 결합을 검증하는 단계이므로 알파·베타 테스트와 거리가 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "시스템 테스트는 전체 시스템의 요구사항 충족 여부를 검증하는 단계로, 사용자 검사인 알파·베타 테스트와 구분됩니다."
+        }
+      ],
+      "keyPoint": "알파·베타 테스트가 속한 인수 테스트 단계",
+      "tags": [
+        "인수 테스트",
+        "알파 테스트",
+        "베타 테스트"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "제품 소프트웨어 패키징 도구 활용 시 고려사항이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "제품 소프트웨어의 종류에 적합한 암호화 알고리즘을 고려한다."
+        },
+        {
+          "no": 2,
+          "text": "추가로 다양한 이기종 연동을 고려한다."
+        },
+        {
+          "no": 3,
+          "text": "사용자 편의성을 위한 복잡성 및 비효율성 문제를 고려한다."
+        },
+        {
+          "no": 4,
+          "text": "내부 콘텐츠에 대한 보안은 고려하지 않는다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "제품 소프트웨어 패키징 도구를 활용할 때에는 제품 종류에 적합한 암호화 알고리즘, 다양한 이기종 연동, 사용자 편의성을 위한 복잡성 및 비효율성 문제 해결, 내부 콘텐츠에 대한 보안, 저작권 보호 등을 함께 고려해야 합니다. 패키징 과정에서 내부 콘텐츠의 보안은 반드시 확보해야 할 항목이므로, 이를 고려하지 않아도 된다는 설명은 패키징 도구 활용 시 고려사항으로 적절하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "제품 소프트웨어의 종류에 적합한 암호화 알고리즘을 선택하는 것은 패키징 도구 활용 시 고려사항입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "다양한 이기종 시스템과의 연동을 함께 고려하는 것도 패키징 도구 활용 시 고려사항에 해당합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "사용자 편의성을 위해 복잡성과 비효율성 문제를 해결하는 것도 고려사항에 포함됩니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "내부 콘텐츠에 대한 보안은 패키징 시 반드시 고려해야 할 항목이므로, 고려하지 않는다는 설명이 옳지 않습니다."
+        }
+      ],
+      "keyPoint": "제품 소프트웨어 패키징 도구 활용 시 고려사항",
+      "tags": [
+        "소프트웨어 패키징",
+        "패키징 도구",
+        "콘텐츠 보안"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "다음 트리를 Preorder 운행법으로 운행할 경우 가장 먼저 탐색되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "A"
+        },
+        {
+          "no": 2,
+          "text": "B"
+        },
+        {
+          "no": 3,
+          "text": "D"
+        },
+        {
+          "no": 4,
+          "text": "G"
+        }
+      ],
+      "answer": 1,
+      "explanation": "Preorder(전위) 운행법은 루트 노드를 가장 먼저 방문한 뒤 왼쪽 서브트리, 오른쪽 서브트리 순으로 탐색하는 방법입니다. 제시된 트리의 루트는 A이므로 전위 운행에서는 A가 가장 먼저 탐색됩니다. 이어서 B, D, C, E, G, H, F 순으로 탐색되며, 가장 먼저 탐색되는 값은 A입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "전위 운행은 루트를 가장 먼저 방문하므로 이 트리의 루트 노드인 A가 처음 탐색되는 값입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "B는 루트 A의 왼쪽 자식으로, 루트인 A를 방문한 뒤에 탐색되는 노드입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "D는 B의 왼쪽 자식으로 A와 B 다음에 탐색되므로 가장 먼저 탐색되는 값이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "G는 E의 왼쪽 자식으로 탐색 순서상 뒤쪽에 위치하므로 가장 먼저 탐색되지 않습니다."
+        }
+      ],
+      "keyPoint": "이진 트리 전위 순회(Preorder)는 루트 → 왼쪽 → 오른쪽 순서",
+      "tags": [
+        "트리",
+        "전위 순회",
+        "Preorder"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2025-2/026.png",
+        "alt": "A를 루트로 왼쪽에 B, 오른쪽에 C가 붙고, B 아래에 D가, C 아래에 E와 F가 붙으며 E 아래에 G와 H가 붙은 이진 트리",
+        "page": 2,
+        "col": 1,
+        "box": [
+          319.7,
+          344.4,
+          425.5,
+          431.8
+        ]
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "인터페이스 보안을 위해 네트워크 영역에 적용될 수 있는 솔루션과 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "IPSec"
+        },
+        {
+          "no": 2,
+          "text": "SSL"
+        },
+        {
+          "no": 3,
+          "text": "SMTP"
+        },
+        {
+          "no": 4,
+          "text": "S-HTTP"
+        }
+      ],
+      "answer": 3,
+      "explanation": "네트워크 영역의 인터페이스 보안에는 IPSec, SSL, S-HTTP 같은 보안 솔루션이 적용됩니다. IPSec은 네트워크 계층에서 IP 패킷을 암호화하고 인증하며, SSL은 전송 계층에서 클라이언트와 서버 간 통신을 암호화하고, S-HTTP는 응용 계층에서 웹 문서를 안전하게 교환하도록 합니다. SMTP는 전자우편을 전송하기 위한 프로토콜로, 암호화나 인증을 목적으로 하는 보안 솔루션이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "IPSec은 IP 계층에서 패킷을 암호화하고 인증하는 네트워크 보안 솔루션으로 적용 대상입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "SSL은 전송 계층에서 웹 서버와 클라이언트 간 데이터를 암호화하는 보안 솔루션으로 적용 대상입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "SMTP는 전자우편 전송 프로토콜이며 암호화와 인증을 위한 보안 솔루션이 아니므로 거리가 먼 것입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "S-HTTP는 응용 계층에서 웹 문서를 안전하게 교환하기 위한 보안 솔루션으로 적용 대상입니다."
+        }
+      ],
+      "keyPoint": "네트워크 영역 인터페이스 보안 솔루션(IPSec·SSL·S-HTTP)",
+      "tags": [
+        "인터페이스 보안",
+        "IPSec",
+        "SSL"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "저작권 관리 구성 요소에 대한 설명이 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "콘텐츠 제공자(Contents Provider) : 콘텐츠를 제공하는 저작권자"
+        },
+        {
+          "no": 2,
+          "text": "콘텐츠 분배자(Contents Distributor) : 콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는 기능"
+        },
+        {
+          "no": 3,
+          "text": "클리어링 하우스(Clearing House) : 키 관리 및 라이선스 발급 관리"
+        },
+        {
+          "no": 4,
+          "text": "DRM 컨트롤러 : 배포된 콘텐츠의 이용 권한을 통제"
+        }
+      ],
+      "answer": 2,
+      "explanation": "저작권 관리 구성 요소에서 콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는 기능은 콘텐츠 분배자가 아니라 패키저(Packager)의 역할입니다. 콘텐츠 분배자는 패키징된 콘텐츠를 쇼핑몰 등과 같은 유통 경로를 통해 최종 사용자에게 전달하는 주체입니다. 콘텐츠 제공자는 콘텐츠를 제공하는 저작권자, 클리어링 하우스는 키 관리와 라이선스 발급 관리, DRM 컨트롤러는 배포된 콘텐츠의 이용 권한 통제를 담당하므로 나머지 설명은 바릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "콘텐츠 제공자를 콘텐츠를 제공하는 저작권자로 설명한 것은 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "메타 데이터와 함께 배포 가능한 단위로 묶는 기능은 패키저의 역할이므로, 콘텐츠 분배자의 기능으로 설명한 것은 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "클리어링 하우스가 키 관리와 라이선스 발급을 담당한다는 것은 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "DRM 컨트롤러가 배포된 콘텐츠의 이용 권한을 통제한다는 것도 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "저작권 관리 구성 요소별 역할(패키저와 콘텐츠 분배자의 구분)",
+      "tags": [
+        "저작권 관리",
+        "DRM",
+        "패키저"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "소프트웨어 설치 매뉴얼에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "설치 과정에서 표시될 수 있는 예외상황에 관련 내용을 별도로 구분하여 설명한다."
+        },
+        {
+          "no": 2,
+          "text": "설치 시작부터 완료할 때까지의 전 과정을 빠짐없이 순서대로 설명한다."
+        },
+        {
+          "no": 3,
+          "text": "설치 매뉴얼은 개발자 기준으로 작성한다."
+        },
+        {
+          "no": 4,
+          "text": "설치 매뉴얼에는 목차, 개요, 기본사항 등이 기본적으로 포함되어야 한다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "소프트웨어 설치 매뉴얼은 설치 과정에서 표시될 수 있는 예외 상황을 별도로 구분해 설명하고, 설치 시작부터 완료까지의 전 과정을 빠짐없이 순서대로 설명하며, 목차와 개요, 기본사항 등을 기본적으로 포함해야 합니다. 다만 매뉴얼은 개발자가 아니라 실제로 설치 작업을 수행하는 사용자(운영자)를 기준으로 작성해야 합니다. 따라서 개발자 기준으로 작성한다는 설명은 설치 매뉴얼에 대한 설명으로 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "설치 중 발생할 수 있는 예외 상황을 별도로 구분해 설명하는 것은 설치 매뉴얼의 올바른 작성 방법입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "설치 시작부터 완료까지의 전 과정을 순서대로 설명해야 한다는 것도 올바른 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "설치 매뉴얼은 개발자가 아니라 설치를 수행하는 사용자 기준으로 작성해야 하므로 설명이 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "목차, 개요, 기본사항 등을 기본적으로 포함해야 한다는 것도 올바른 설명입니다."
+        }
+      ],
+      "keyPoint": "설치 매뉴얼은 개발자가 아닌 사용자 기준으로 작성",
+      "tags": [
+        "설치 매뉴얼",
+        "소프트웨어 패키징",
+        "사용자 매뉴얼"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "다음 중 블랙박스 검사 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "경계값 분석"
+        },
+        {
+          "no": 2,
+          "text": "조건 검사"
+        },
+        {
+          "no": 3,
+          "text": "기초 경로 검사"
+        },
+        {
+          "no": 4,
+          "text": "루프 검사"
+        }
+      ],
+      "answer": 1,
+      "explanation": "블랙박스 검사 기법은 프로그램의 내부 구조를 보지 않고 입력과 출력 값에 따라 기능을 검증하는 방식으로, 동치 분할 검사, 경계값 분석, 원인-효과 그래프 검사, 오류 예측 검사 등이 있습니다. 경계값 분석은 입력 값의 경계 부근에서 오류가 자주 발생한다는 점을 이용해 최소값과 최대값 주변을 테스트 데이터로 선택하는 대표적인 블랙박스 검사 기법입니다. 조건 검사, 기초 경로 검사, 루프 검사는 프로그램의 논리 구조를 분석하는 화이트박스 검사 기법입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "경계값 분석은 입력 값의 경계 부근을 시험하는 대표적인 블랙박스 검사 기법입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "조건 검사는 조건문의 참과 거짓을 모두 수행해 보는 화이트박스 검사 기법입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "기초 경로 검사는 제어 흐름 그래프의 독립적인 경로를 모두 수행하는 화이트박스 검사 기법입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "루프 검사는 반복 구조에 초점을 두고 수행하는 화이트박스 검사 기법입니다."
+        }
+      ],
+      "keyPoint": "블랙박스 검사와 화이트박스 검사 기법의 구분",
+      "tags": [
+        "블랙박스 테스트",
+        "경계값 분석",
+        "화이트박스 테스트"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "스택에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "입출력이 한쪽 끝으로만 제한된 리스트이다."
+        },
+        {
+          "no": 2,
+          "text": "Head(front)와 Tail(rear)의 2개 포인터를 갖고 있다."
+        },
+        {
+          "no": 3,
+          "text": "LIFO 구조이다."
+        },
+        {
+          "no": 4,
+          "text": "더 이상 삭제할 데이터가 없는 상태에서 데이터를 삭제하면 언더플로(Underflow)가 발생한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "스택은 삽입과 삭제가 한쪽 끝(top)에서만 이루어지는 제한된 리스트로, 마지막에 삽입된 데이터가 먼저 삭제되는 LIFO 구조이며 빈 상태에서 삭제를 시도하면 언더플로가 발생합니다. Head(front)와 Tail(rear) 두 개의 포인터를 사용해 양쪽 끝에서 삽입과 삭제가 이루어지는 자료 구조는 큐(Queue)입니다. 스택은 top 포인터 하나로 삽입과 삭제 위치를 관리하므로 2개 포인터를 갖고 있다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "스택은 삽입과 삭제가 한쪽 끝에서만 이루어지는 제한된 리스트이므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "front와 rear 두 개의 포인터를 사용하는 것은 큐이며, 스택은 top 포인터 하나만 사용하므로 틀린 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "스택은 나중에 삽입된 데이터가 먼저 삭제되는 LIFO 구조이므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "빈 스택에서 데이터를 삭제하려 하면 언더플로가 발생하므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "스택(top 포인터·LIFO)과 큐(front·rear)의 차이",
+      "tags": [
+        "스택",
+        "큐",
+        "LIFO"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "디지털 저작권 관리(DRM)에 사용되는 기술 요소가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "키 관리"
+        },
+        {
+          "no": 2,
+          "text": "방화벽"
+        },
+        {
+          "no": 3,
+          "text": "암호화"
+        },
+        {
+          "no": 4,
+          "text": "크랙방지"
+        }
+      ],
+      "answer": 2,
+      "explanation": "디지털 저작권 관리(DRM)의 기술 요소에는 암호화, 키 관리, 암호화 파일 생성, 식별자 기술, 저작권 표현, 크랙 방지, 정책 관리, 인증 등이 있습니다. 이들은 콘텐츠를 암호화하고 사용 권한을 통제하여 불법 복제와 무단 이용을 막는 데 사용됩니다. 방화벽은 네트워크 경계에서 외부의 불법 접근을 차단하는 보안 시스템으로, 저작권 보호를 위한 DRM의 기술 요소에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "키 관리는 콘텐츠 암호화에 사용되는 키를 생성하고 관리하는 DRM 기술 요소입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "방화벽은 네트워크 접근을 통제하는 보안 시스템으로 DRM 기술 요소가 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "암호화는 콘텐츠를 암호문으로 변환해 무단 이용을 막는 DRM의 핵심 기술 요소입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "크랙방지는 불법적인 복제와 변조 시도를 차단하는 DRM 기술 요소입니다."
+        }
+      ],
+      "keyPoint": "DRM 기술 요소와 방화벽의 성격 차이",
+      "tags": [
+        "DRM",
+        "디지털 저작권 관리",
+        "방화벽"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "버전 관리 항목 중 저장소에 새로운 버전의 파일로 갱신하는 것을 의미하는 용어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "형상 감사(Configuration Audit)"
+        },
+        {
+          "no": 2,
+          "text": "롤백(Rollback)"
+        },
+        {
+          "no": 3,
+          "text": "단위 테스트(Unit Test)"
+        },
+        {
+          "no": 4,
+          "text": "체크인(Check-In)"
+        }
+      ],
+      "answer": 4,
+      "explanation": "체크인(Check-In)은 개발자가 수정한 파일을 형상 관리 저장소(Repository)에 등록하여 새로운 버전으로 갱신하는 작업을 뜻합니다. 반대로 저장소에 있는 파일을 작업 공간으로 받아오는 작업은 체크아웃(Check-Out)이라고 합니다. 형상 감사는 형상 관리 활동의 결과가 요구사항을 제대로 반영했는지 확인하는 활동이고, 롤백은 변경 사항을 이전 상태로 되돌리는 작업이므로 저장소를 새 버전으로 갱신하는 것과는 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "형상 감사는 형상 관리가 요구대로 수행되었는지 검토·확인하는 활동으로 저장소 갱신과는 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "롤백은 문제가 생겼을 때 이전 버전의 상태로 되돌리는 작업이므로 새 버전으로 갱신하는 것과 반대입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "단위 테스트는 개별 모듈의 기능을 검증하는 테스트로 버전 관리 용어가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "체크인은 수정한 파일을 저장소에 등록해 새로운 버전으로 갱신하는 작업을 의미합니다."
+        }
+      ],
+      "keyPoint": "체크인(Check-In)과 체크아웃(Check-Out)의 의미",
+      "tags": [
+        "버전 관리",
+        "체크인",
+        "형상 관리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "정렬된 N개의 데이터를 처리하는 데 O(Nlog₂N)의 시간이 소요되는 정렬 알고리즘은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "합병 정렬"
+        },
+        {
+          "no": 2,
+          "text": "버블 정렬"
+        },
+        {
+          "no": 3,
+          "text": "선택 정렬"
+        },
+        {
+          "no": 4,
+          "text": "삽입 정렬"
+        }
+      ],
+      "answer": 1,
+      "explanation": "합병 정렬은 데이터를 절반씩 분할한 뒤 정렬된 부분들을 다시 병합하는 분할 정복 방식으로, 분할 단계가 log₂N이고 각 단계에서 N개의 데이터를 비교하므로 평균과 최악의 경우 모두 O(Nlog₂N)의 시간이 소요됩니다. 버블 정렬, 선택 정렬, 삽입 정렬은 이중 반복문으로 원소를 비교하고 교환하는 단순 정렬로 모두 O(N²)의 시간이 걸립니다. 따라서 O(Nlog₂N)에 해당하는 정렬 알고리즘은 합병 정렬입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "합병 정렬은 분할 정복으로 데이터를 나누고 병합하며 정렬하므로 평균과 최악 모두 O(Nlog₂N)이 소요됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "버블 정렬은 인접한 두 원소를 반복해서 비교·교환하는 방식으로 O(N²)의 시간이 걸립니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "선택 정렬은 최솟값을 찾아 앞쪽부터 자리를 바꾸는 과정을 반복하므로 O(N²)의 시간이 걸립니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "삽입 정렬은 정렬된 부분에 원소를 끼워 넣는 방식으로 최악의 경우 O(N²)의 시간이 걸립니다."
+        }
+      ],
+      "keyPoint": "정렬 알고리즘별 시간복잡도(O(Nlog₂N)과 O(N²)의 구분)",
+      "tags": [
+        "정렬 알고리즘",
+        "합병 정렬",
+        "시간복잡도"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "클린 코드 작성 원칙에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "코드의 중복을 최소화한다."
+        },
+        {
+          "no": 2,
+          "text": "코드가 다른 모듈에 미치는 영향을 최대화하도록 작성한다."
+        },
+        {
+          "no": 3,
+          "text": "누구든지 코드를 쉽게 읽을 수 있도록 작성한다."
+        },
+        {
+          "no": 4,
+          "text": "간단하게 코드를 작성한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "클린 코드는 누구나 쉽게 읽고 이해할 수 있도록 간결하게 작성하는 것을 목표로 하며, 코드의 중복을 최소화하고 다른 모듈에 미치는 영향을 최소화하는 방향으로 작성해야 합니다. 다른 모듈에 대한 영향과 의존성이 커지면 결합도가 높아져 일부를 수정할 때 파급 효과가 커지고 유지보수가 어려워집니다. 따라서 다른 모듈에 미치는 영향을 최대화하도록 작성한다는 설명은 클린 코드 작성 원칙에 어긋납니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "중복 코드를 최소화하는 것은 유지보수성을 높이는 클린 코드 작성 원칙에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "결합도를 낮추려면 다른 모듈에 미치는 영향을 최소화해야 하므로 최대화한다는 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "누구든지 코드를 쉽게 읽을 수 있도록 작성하는 것은 가독성을 높이는 클린 코드 원칙입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "간단하게 코드를 작성하는 것도 클린 코드 작성 원칙에 해당합니다."
+        }
+      ],
+      "keyPoint": "클린 코드 작성 원칙(중복 최소화·영향 최소화·가독성)",
+      "tags": [
+        "클린 코드",
+        "결합도",
+        "유지보수성"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "테스트 케이스 자동 생성 도구를 이용하여 테스트 데이터를 찾아내는 방법이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "스터브(Stub)와 드라이버(Driver)"
+        },
+        {
+          "no": 2,
+          "text": "입력 도메인 분석"
+        },
+        {
+          "no": 3,
+          "text": "랜덤(Random) 테스트"
+        },
+        {
+          "no": 4,
+          "text": "자료 흐름도"
+        }
+      ],
+      "answer": 1,
+      "explanation": "테스트 케이스 자동 생성 도구를 이용해 테스트 데이터를 찾아내는 방법에는 입력 도메인 분석, 랜덤 테스트, 자료 흐름도 등이 있습니다. 입력 도메인 분석은 입력 값이 가질 수 있는 영역을 분석해 테스트 데이터를 선정하고, 랜덤 테스트는 난수를 이용해 임의의 데이터를 만들어 내며, 자료 흐름도는 데이터의 정의와 사용 관계를 따라 테스트 데이터를 추출합니다. 스터브와 드라이버는 통합 테스트에서 아직 완성되지 않은 모듈을 대신하는 가짜 모듈로, 테스트 데이터를 생성하는 방법이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "스터브와 드라이버는 통합 테스트에서 미완성 모듈을 대신하는 더미 모듈이며 테스트 데이터를 찾아내는 방법이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "입력 도메인 분석은 입력 값의 영역을 분석해 테스트 데이터를 선정하는 자동 생성 방법입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "랜덤 테스트는 난수를 이용해 임의의 테스트 데이터를 만들어 내는 방법입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "자료 흐름도는 데이터의 정의와 사용 관계를 분석해 테스트 데이터를 찾아내는 방법입니다."
+        }
+      ],
+      "keyPoint": "테스트 데이터 자동 생성 방법과 스터브·드라이버 역할의 구분",
+      "tags": [
+        "테스트 케이스",
+        "테스트 데이터",
+        "스터브"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "순서가 A, B, C, D로 정해진 입력 자료를 스택에 입력한 후 출력한 결과로 불가능한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "D, C, B, A"
+        },
+        {
+          "no": 2,
+          "text": "B, C, D, A"
+        },
+        {
+          "no": 3,
+          "text": "C, B, A, D"
+        },
+        {
+          "no": 4,
+          "text": "D, B, C, A"
+        }
+      ],
+      "answer": 4,
+      "explanation": "스택은 마지막에 삽입된 데이터가 먼저 출력되는 LIFO 구조이므로, A, B, C, D 순서로 삽입할 때 출력 순서는 삽입과 삭제를 어떻게 섞는지에 따라 달라집니다. D, C, B, A는 네 데이터를 모두 삽입한 뒤 꺼내는 경우이고, B, C, D, A와 C, B, A, D는 삽입과 삭제를 중간에 섞으면 만들 수 있습니다. 반면 D, B, C, A는 D를 가장 먼저 출력하기 위해 A, B, C, D를 모두 삽입해야 하는데, 그 상태에서 스택에는 D 아래에 C, B, A가 쌓여 있으므로 D 다음에는 반드시 C가 출력되어야 하므로 불가능합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "A, B, C, D를 모두 삽입한 뒤 D, C, B, A 순으로 꺼내면 되므로 가능한 결과입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "A와 B를 삽입해 B를 먼저 꺼내고, C와 D를 삽입해 차례로 꺼낸 뒤 A를 마지막에 꺼내면 가능합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "A, B, C를 삽입해 C, B, A를 꺼낸 뒤 D를 삽입해 꺼내면 만들 수 있는 결과입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "D를 먼저 출력하면 스택에 C, B, A가 남아 다음에는 C가 출력되어야 하므로 D, B, C, A는 불가능합니다."
+        }
+      ],
+      "keyPoint": "스택의 LIFO 특성으로 가능한 출력 순서 판별",
+      "tags": [
+        "스택",
+        "LIFO",
+        "자료구조"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 이를 관리하는 활동으로서, 프로젝트를 성공시키기 위하여 위험 요소를 사전에 예측, 대비하는 모든 기술과 활동을 포함하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Critical Path Method"
+        },
+        {
+          "no": 2,
+          "text": "Risk Analysis"
+        },
+        {
+          "no": 3,
+          "text": "Work Breakdown Structure"
+        },
+        {
+          "no": 4,
+          "text": "Waterfall Model"
+        }
+      ],
+      "answer": 2,
+      "explanation": "위험 분석(Risk Analysis)은 프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 관리하는 활동으로, 위험을 사전에 예측하고 대비하는 모든 기술과 활동을 포함합니다. 위험을 조기에 식별해 대응 방안을 마련하면 일정 지연이나 비용 초과 같은 문제를 줄일 수 있습니다. Critical Path Method는 임계 경로를 찾아 일정을 관리하는 기법이고, Work Breakdown Structure는 업무를 세분화한 작업 분류 체계이며, Waterfall Model은 순차적으로 진행하는 개발 모형이므로 위험 관리 활동과는 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Critical Path Method는 프로젝트 일정에서 가장 긴 경로인 임계 경로를 산출해 일정을 관리하는 기법입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Risk Analysis는 위험 요소를 인식·분석하고 사전에 예측, 대비하는 활동을 포함하므로 설명과 일치합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Work Breakdown Structure는 프로젝트 업무를 계층적으로 분류·세분화한 작업 분류 체계입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Waterfall Model은 요구 분석부터 유지보수까지 단계를 순차적으로 진행하는 소프트웨어 개발 모형입니다."
+        }
+      ],
+      "keyPoint": "위험 분석(Risk Analysis)의 정의와 목적",
+      "tags": [
+        "위험 관리",
+        "Risk Analysis",
+        "프로젝트 관리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "인터페이스 간의 통신을 위해 이용되는 데이터 포맷이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "AJTML"
+        },
+        {
+          "no": 2,
+          "text": "JSON"
+        },
+        {
+          "no": 3,
+          "text": "XML"
+        },
+        {
+          "no": 4,
+          "text": "YAML"
+        }
+      ],
+      "answer": 1,
+      "explanation": "JSON, XML, YAML은 인터페이스 사이에서 데이터를 주고받을 때 사용하는 대표적인 데이터 포맷입니다. JSON은 이름과 값의 쌍으로 데이터를 표현해 가볍고 처리 속도가 빠르며, XML은 태그로 데이터의 구조와 의미를 표현하고, YAML은 들여쓰기로 계층을 표현해 사람이 읽기 쉽습니다. 보기 ①의 AJTML은 원문에 표기된 그대로이며, 이처럼 표준적으로 사용되는 데이터 교환 포맷이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "AJTML은 인터페이스 통신에 사용되는 표준 데이터 교환 포맷이 아니므로 데이터 포맷이 아닌 것입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "JSON은 이름과 값의 쌍으로 데이터를 표현하는 경량 데이터 교환 포맷입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "XML은 태그를 이용해 데이터의 구조와 의미를 표현하는 데이터 교환 포맷입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "YAML은 들여쓰기를 기반으로 사람이 읽기 쉬운 형태로 데이터를 표현하는 포맷입니다."
+        }
+      ],
+      "keyPoint": "인터페이스 데이터 교환 포맷(JSON·XML·YAML)",
+      "tags": [
+        "데이터 포맷",
+        "JSON",
+        "XML"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "정형 기술 검토(FTR)의 지침으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "의제를 제한한다."
+        },
+        {
+          "no": 2,
+          "text": "논쟁과 반박을 제한한다."
+        },
+        {
+          "no": 3,
+          "text": "문제 영역을 명확히 표현한다."
+        },
+        {
+          "no": 4,
+          "text": "참가자의 수를 제한하지 않는다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "정형 기술 검토(FTR)의 지침에는 의제를 제한하고, 논쟁과 반박을 제한하며, 문제 영역을 명확히 표현하고, 참가자의 수를 3~5명 정도로 제한한다는 내용이 포함됩니다. 참가자가 지나치게 많으면 검토가 산만해지고 결함을 찾아내기 어려우므로 인원을 최소화하는 것이 원칙입니다. 따라서 참가자의 수를 제한하지 않는다는 설명은 정형 기술 검토의 지침으로 적절하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "검토 범위를 분명히 하기 위해 의제를 제한하는 것은 FTR의 지침에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "논쟁과 반박을 제한해 결함 발견에 집중하도록 하는 것도 FTR의 지침입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "문제 영역을 명확히 표현하는 것도 FTR의 지침에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "FTR에서는 검토 효율을 위해 참가자를 3~5명 정도로 제한하므로, 제한하지 않는다는 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "정형 기술 검토(FTR)의 지침과 참가자 수 제한",
+      "tags": [
+        "FTR",
+        "정형 기술 검토",
+        "품질 관리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

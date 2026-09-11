@@ -1,0 +1,735 @@
+{
+  "exam": {
+    "id": "2023-3",
+    "year": 2023,
+    "round": 3,
+    "title": "2023년 3회 정보처리기사 필기",
+    "sourcePdf": "2023년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 1,
+    "name": "소프트웨어 설계"
+  },
+  "questions": [
+    {
+      "id": "2023-3-001",
+      "number": 1,
+      "subjectCode": 1,
+      "stem": "럼바우(Rumbaugh)의 객체지향 분석 절차를 가장 바르게 나열한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "객체 모형 → 동적 모형 → 기능 모형" },
+        { "no": 2, "text": "객체 모형 → 기능 모형 → 동적 모형" },
+        { "no": 3, "text": "기능 모형 → 동적 모형 → 객체 모형" },
+        { "no": 4, "text": "기능 모형 → 객체 모형 → 동적 모형" }
+      ],
+      "answer": 1,
+      "explanation": "럼바우(Rumbaugh)의 객체지향 분석은 OMT(Object Modeling Technique) 기법을 사용하여 객체 모형, 동적 모형, 기능 모형을 차례로 작성합니다. 객체 모형에서는 객체와 클래스, 속성, 연산, 관계를 정의하고, 동적 모형에서는 상태 변화와 사건을 표현하며, 기능 모형에서는 자료 흐름과 처리 과정을 나타냅니다. 따라서 분석 절차는 객체 모형 → 동적 모형 → 기능 모형 순서가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "객체 모형, 동적 모형, 기능 모형 순으로 진행하는 것이 럼바우 분석 기법의 올바른 절차입니다." },
+        { "no": 2, "correct": false, "why": "객체 모형 다음에는 기능 모형이 아니라 동적 모형이 와야 하므로 순서가 잘못되었습니다." },
+        { "no": 3, "correct": false, "why": "객체 모형이 가장 먼저 작성되어야 하는데 기능 모형을 맨 앞에 두어 순서가 뒤바뀌었습니다." },
+        { "no": 4, "correct": false, "why": "객체 모형이 먼저 나오고 동적 모형이 기능 모형보다 앞서야 하므로 순서가 맞지 않습니다." }
+      ],
+      "keyPoint": "럼바우 분석 절차: 객체 모형 → 동적 모형 → 기능 모형",
+      "tags": ["럼바우", "객체지향 분석", "OMT"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-002",
+      "number": 2,
+      "subjectCode": 1,
+      "stem": "XP(eXtreme Programing)의 5가지 가치로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "용기" },
+        { "no": 2, "text": "의사소통" },
+        { "no": 3, "text": "정형 분석" },
+        { "no": 4, "text": "피드백" }
+      ],
+      "answer": 3,
+      "explanation": "XP(eXtreme Programming)는 의사소통, 단순성, 용기, 존중, 피드백을 다섯 가지 핵심 가치로 삼는 애자일 방법론입니다. 정형 분석은 요구사항을 수학적·형식적 기법으로 명세하는 전통적인 개발 방식에 가까운 개념으로, XP가 추구하는 가치와는 거리가 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "용기는 어려운 문제에 맞서고 잘못된 설계를 과감히 고치는 XP의 핵심 가치입니다." },
+        { "no": 2, "correct": false, "why": "의사소통은 고객과 개발자, 팀원 사이의 활발한 대화를 강조하는 XP의 가치입니다." },
+        { "no": 3, "correct": true, "why": "정형 분석은 XP의 5가지 가치에 포함되지 않으며, XP는 오히려 형식적인 문서화를 줄이는 것을 지향합니다." },
+        { "no": 4, "correct": false, "why": "피드백은 짧은 주기의 반복 개발과 테스트로 결과를 확인받는 XP의 가치입니다." }
+      ],
+      "keyPoint": "XP의 5가지 가치: 의사소통, 단순성, 용기, 존중, 피드백",
+      "tags": ["XP", "애자일", "익스트림 프로그래밍"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-003",
+      "number": 3,
+      "subjectCode": 1,
+      "stem": "애자일 기법에 대한 설명으로 맞지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "절차와 도구보다 개인과 소통을 중요하게 생각한다." },
+        { "no": 2, "text": "계획에 중점을 두어 변경 대응이 난해하다." },
+        { "no": 3, "text": "소프트웨어가 잘 실행되는데 가치를 둔다." },
+        { "no": 4, "text": "고객과의 피드백을 중요하게 생각한다." }
+      ],
+      "answer": 2,
+      "explanation": "애자일은 계획을 고수하기보다 변화에 빠르게 대응하는 것을 중시하는 개발 방법론입니다. 절차와 도구보다 개인과 소통, 방대한 문서보다 실행되는 소프트웨어, 계약 협상보다 고객과의 협력을 중요하게 여기므로, 변경 대응이 난해하다는 설명은 애자일의 특성과 정반대입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "절차와 도구보다 개인과 소통을 중시하는 것은 애자일 선언의 핵심 내용입니다." },
+        { "no": 2, "correct": true, "why": "애자일은 계획 변경에 유연하게 대응하는 방법론이므로 변경 대응이 난해하다는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "동작하는 소프트웨어에 가치를 두는 것은 애자일의 대표적인 원칙입니다." },
+        { "no": 4, "correct": false, "why": "고객과의 지속적인 피드백과 협력을 중시하는 것도 애자일의 원칙입니다." }
+      ],
+      "keyPoint": "애자일: 변화 대응과 고객 협력 중시",
+      "tags": ["애자일", "소프트웨어 개발 방법론"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-004",
+      "number": 4,
+      "subjectCode": 1,
+      "stem": "UML에서 활용되는 다이어그램 중, 시스템의 동작을 표현하는 행위(Behavioral) 다이어그램에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "유스케이스 다이어그램(Use Case Diagram)" },
+        { "no": 2, "text": "시퀀스 다이어그램(Sequence Diagram)" },
+        { "no": 3, "text": "활동 다이어그램(Activity Diagram)" },
+        { "no": 4, "text": "배치 다이어그램(Deployment Diagram)" }
+      ],
+      "answer": 4,
+      "explanation": "UML 다이어그램은 사물 간의 정적인 구조를 표현하는 구조(Structural) 다이어그램과 시스템의 동작과 상호 작용을 표현하는 행위(Behavioral) 다이어그램으로 나뉩니다. 유스케이스, 시퀀스, 활동, 상태, 커뮤니케이션 다이어그램은 행위 다이어그램에 속하지만, 배치 다이어그램은 컴포넌트의 물리적 배치를 표현하는 구조 다이어그램입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "유스케이스 다이어그램은 사용자와 시스템의 상호 작용을 표현하는 행위 다이어그램입니다." },
+        { "no": 2, "correct": false, "why": "시퀀스 다이어그램은 객체 사이의 메시지 흐름을 시간 순으로 표현하는 행위 다이어그램입니다." },
+        { "no": 3, "correct": false, "why": "활동 다이어그램은 업무의 흐름과 처리 순서를 표현하는 행위 다이어그램입니다." },
+        { "no": 4, "correct": true, "why": "배치 다이어그램은 노드와 컴포넌트의 물리적 배치를 표현하는 구조 다이어그램이므로 행위 다이어그램이 아닙니다." }
+      ],
+      "keyPoint": "UML 행위 다이어그램과 구조 다이어그램의 구분",
+      "tags": ["UML", "행위 다이어그램", "배치 다이어그램"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-005",
+      "number": 5,
+      "subjectCode": 1,
+      "stem": "디자인 패턴 사용의 장·단점에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "소프트웨어 구조 파악이 용이하다." },
+        { "no": 2, "text": "객체지향 설계 및 구현의 생산성을 높이는데 적합하다." },
+        { "no": 3, "text": "재사용을 위한 개발 시간이 단축된다." },
+        { "no": 4, "text": "절차형 언어와 함께 이용될 때 효율이 극대화된다." }
+      ],
+      "answer": 4,
+      "explanation": "디자인 패턴은 소프트웨어 개발 과정에서 자주 발생하는 설계 문제를 재사용 가능한 형태로 정리한 해법입니다. 구조 파악이 쉬워지고 설계 및 구현의 생산성이 높아지며 재사용으로 개발 시간이 단축되는 것이 장점입니다. 다만 객체지향 언어를 전제로 만들어졌기 때문에 절차형 언어와 함께 사용할 때 효율이 극대화된다는 설명은 적절하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "패턴을 이용하면 전체 구조를 빠르게 파악할 수 있다는 것은 디자인 패턴의 장점입니다." },
+        { "no": 2, "correct": false, "why": "설계와 구현의 생산성을 높인다는 설명도 디자인 패턴의 장점입니다." },
+        { "no": 3, "correct": false, "why": "재사용 덕분에 개발 시간이 단축되는 것도 디자인 패턴의 장점입니다." },
+        { "no": 4, "correct": true, "why": "디자인 패턴은 객체지향 설계를 위한 것이므로 절차형 언어와 함께 쓸 때 효율이 극대화된다는 설명은 틀렸습니다." }
+      ],
+      "keyPoint": "디자인 패턴의 장단점과 객체지향 전제",
+      "tags": ["디자인 패턴", "GoF"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-006",
+      "number": 6,
+      "subjectCode": 1,
+      "stem": "클라이언트와 서버 간의 통신을 담당하는 시스템 소프트웨어를 무엇이라고 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "웨어러블" },
+        { "no": 2, "text": "하이웨어" },
+        { "no": 3, "text": "미들웨어" },
+        { "no": 4, "text": "응용 소프트웨어" }
+      ],
+      "answer": 3,
+      "explanation": "미들웨어는 서로 다른 기종의 하드웨어나 프로토콜, 애플리케이션 사이에서 클라이언트와 서버 간의 통신을 중계하고 데이터 교환을 돕는 시스템 소프트웨어입니다. 웨어러블은 몸에 착용하는 컴퓨터 관련 기기를, 하이웨어는 하드웨어와 소프트웨어를 결합한 고성능 장비를 가리키는 용어이며, 응용 소프트웨어는 사용자가 특정 업무를 처리하기 위해 사용하는 프로그램입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "웨어러블은 몸에 착용하는 컴퓨터 관련 기기를 뜻하는 용어로 통신 중계와는 관계가 없습니다." },
+        { "no": 2, "correct": false, "why": "하이웨어는 하드웨어와 소프트웨어의 장점을 결합한 고성능 장비를 뜻하는 용어입니다." },
+        { "no": 3, "correct": true, "why": "미들웨어는 클라이언트와 서버 사이에서 통신과 데이터 교환을 중개하는 시스템 소프트웨어입니다." },
+        { "no": 4, "correct": false, "why": "응용 소프트웨어는 사용자 업무를 직접 처리하는 프로그램으로, 통신 중계를 담당하지는 않습니다." }
+      ],
+      "keyPoint": "미들웨어: 클라이언트와 서버 사이의 통신 중계 소프트웨어",
+      "tags": ["미들웨어", "시스템 소프트웨어"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-007",
+      "number": 7,
+      "subjectCode": 1,
+      "stem": "CASE(Computer Aided Software Engineering)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "소프트웨어 모듈의 재사용성이 향상된다." },
+        { "no": 2, "text": "자동화된 기법을 통해 소프트웨어 품질이 향상된다." },
+        { "no": 3, "text": "소프트웨어 사용자들에게 사용 방법을 신속히 숙지시키기 위해 사용된다." },
+        { "no": 4, "text": "소프트웨어 유지보수를 간편하게 수행할 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "CASE는 소프트웨어 개발 과정의 여러 작업을 자동화 도구로 지원하여 생산성과 품질을 높이는 기법입니다. 모듈 재사용성 향상, 자동화된 기법을 통한 품질 향상, 유지보수 편의 향상이 대표적인 효과입니다. 사용자에게 소프트웨어 사용 방법을 신속히 숙지시키는 것은 사용자 교육이나 매뉴얼의 역할이지 CASE의 목적이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모듈 재사용성 향상은 CASE 도구가 가져오는 대표적인 효과입니다." },
+        { "no": 2, "correct": false, "why": "자동화된 기법을 통한 품질 향상도 CASE의 효과입니다." },
+        { "no": 3, "correct": true, "why": "사용자 교육을 신속히 하는 것은 CASE에 대한 설명으로 볼 수 없으므로 이 보기가 틀린 설명입니다." },
+        { "no": 4, "correct": false, "why": "표준화된 산출물 관리로 유지보수가 쉬워지는 것도 CASE의 장점입니다." }
+      ],
+      "keyPoint": "CASE의 목적과 기대 효과",
+      "tags": ["CASE", "소프트웨어 개발 자동화"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-008",
+      "number": 8,
+      "subjectCode": 1,
+      "stem": "다음은 어떤 프로그램 구조를 나타낸다. 모듈 F에서의 fan-in과 fan-out의 수는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "fan-in : 2, fan-out : 3" },
+        { "no": 2, "text": "fan-in : 3, fan-out : 2" },
+        { "no": 3, "text": "fan-in : 1, fan-out : 2" },
+        { "no": 4, "text": "fan-in : 2, fan-out : 1" }
+      ],
+      "answer": 2,
+      "explanation": "fan-in은 특정 모듈을 호출하는 상위 모듈의 수이고, fan-out은 특정 모듈이 호출하는 하위 모듈의 수입니다. 제시된 프로그램 구조도에서 모듈 F는 B, C, D 세 모듈의 호출을 받고 G, H 두 모듈을 호출하므로 fan-in은 3, fan-out은 2가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "fan-in과 fan-out의 값을 서로 바꾸어 놓아 F의 구조와 맞지 않습니다." },
+        { "no": 2, "correct": true, "why": "F를 호출하는 상위 모듈이 B, C, D로 3개이고, F가 호출하는 하위 모듈이 G, H로 2개입니다." },
+        { "no": 3, "correct": false, "why": "F를 호출하는 모듈이 B, C, D로 3개이므로 fan-in이 1이 될 수 없습니다." },
+        { "no": 4, "correct": false, "why": "F가 호출하는 하위 모듈이 G, H로 2개이므로 fan-out이 1이 될 수 없습니다." }
+      ],
+      "keyPoint": "fan-in(상위 호출 수)과 fan-out(하위 호출 수)의 계산",
+      "tags": ["fan-in", "fan-out", "프로그램 구조도"],
+      "difficulty": 2,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2023-3/008.png",
+        "alt": "A를 루트로 B, C, D가 연결되고, B 아래에 E가, B·C·D 아래에 F가 모이며 F 아래에 G, H가 붙은 프로그램 구조도",
+        "page": 1,
+        "col": 1,
+        "box": [321.8, 272.6, 477.6, 375.3]
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-009",
+      "number": 9,
+      "subjectCode": 1,
+      "stem": "요구사항 개발 프로세스의 순서로 옳은 것은?",
+      "passage": "㉠ 도출(Elicitation)\n㉡ 분석(Analysis)\n㉢ 명세(Specification)\n㉣ 확인(Validation)",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉠ → ㉡ → ㉢ → ㉣" },
+        { "no": 2, "text": "㉠ → ㉢ → ㉡ → ㉣" },
+        { "no": 3, "text": "㉠ → ㉣ → ㉡ → ㉢" },
+        { "no": 4, "text": "㉠ → ㉡ → ㉣ → ㉢" }
+      ],
+      "answer": 1,
+      "explanation": "요구사항 개발 프로세스는 요구사항을 끌어내는 도출, 이해하고 구조화하는 분석, 문서로 명확히 기술하는 명세, 정의된 요구사항이 타당한지 검토하는 확인 순서로 진행됩니다. 즉 도출 → 분석 → 명세 → 확인의 순서를 따라야 하며, 확인은 명세가 끝난 뒤에 수행됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "도출, 분석, 명세, 확인 순서가 요구사항 개발 프로세스의 바른 순서입니다." },
+        { "no": 2, "correct": false, "why": "분석보다 명세를 먼저 하는 것은 순서가 뒤바뀐 것입니다." },
+        { "no": 3, "correct": false, "why": "확인은 명세가 끝난 뒤에 수행해야 하므로 이 순서는 적절하지 않습니다." },
+        { "no": 4, "correct": false, "why": "명세가 완료된 후에 확인을 수행해야 하므로 순서가 맞지 않습니다." }
+      ],
+      "keyPoint": "요구사항 개발 프로세스: 도출 → 분석 → 명세 → 확인",
+      "tags": ["요구사항 개발", "요구사항 공학"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-010",
+      "number": 10,
+      "subjectCode": 1,
+      "stem": "시스템의 구성 요소로 볼 수 없는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Process" },
+        { "no": 2, "text": "Feedback" },
+        { "no": 3, "text": "Maintenance" },
+        { "no": 4, "text": "Control" }
+      ],
+      "answer": 3,
+      "explanation": "일반적으로 시스템은 입력(Input), 처리(Process), 출력(Output), 제어(Control), 피드백(Feedback)의 구성 요소로 설명됩니다. 유지보수(Maintenance)는 개발이 끝난 소프트웨어를 관리하고 개선하는 활동으로, 시스템을 이루는 구성 요소에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Process는 입력을 출력으로 바꾸는 처리 요소로 시스템의 구성 요소입니다." },
+        { "no": 2, "correct": false, "why": "Feedback은 출력을 평가해 다시 입력에 반영하는 시스템 구성 요소입니다." },
+        { "no": 3, "correct": true, "why": "Maintenance는 시스템을 구성하는 요소가 아니라 개발 이후의 유지 관리 활동입니다." },
+        { "no": 4, "correct": false, "why": "Control은 시스템의 동작을 목표에 맞게 조절하는 구성 요소입니다." }
+      ],
+      "keyPoint": "시스템의 구성 요소: 입력·처리·출력·제어·피드백",
+      "tags": ["시스템 구성 요소", "시스템 분석"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-011",
+      "number": 11,
+      "subjectCode": 1,
+      "stem": "UML 모델에서 한 사물의 명세가 바뀌면 다른 사물에 영향을 주며, 일반적으로 한 클래스가 다른 클래스를 오퍼레이션의 매개 변수로 사용하는 경우에 나타나는 관계는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Association" },
+        { "no": 2, "text": "Dependency" },
+        { "no": 3, "text": "Realization" },
+        { "no": 4, "text": "Generalization" }
+      ],
+      "answer": 2,
+      "explanation": "의존(Dependency) 관계는 한 사물의 명세가 바뀌면 다른 사물에 영향을 주는 관계로, 한 클래스가 다른 클래스를 오퍼레이션의 매개 변수나 지역 변수로 사용할 때 나타납니다. 연관은 클래스 사이의 지속적인 연결, 일반화는 상속, 실체화는 인터페이스 구현을 나타내므로 설명과 다릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Association은 두 클래스가 서로 연결되어 있음을 나타내는 관계입니다." },
+        { "no": 2, "correct": true, "why": "한 클래스가 다른 클래스를 매개 변수 등으로 사용하면서 변경의 영향을 주고받는 관계는 Dependency입니다." },
+        { "no": 3, "correct": false, "why": "Realization은 인터페이스와 이를 구현한 클래스 사이의 관계입니다." },
+        { "no": 4, "correct": false, "why": "Generalization은 상위 클래스와 하위 클래스 사이의 상속 관계입니다." }
+      ],
+      "keyPoint": "UML 관계: Dependency, Association, Realization, Generalization의 차이",
+      "tags": ["UML", "Dependency", "클래스 관계"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-012",
+      "number": 12,
+      "subjectCode": 1,
+      "stem": "순차 다이어그램(Sequence Diagram)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "객체들의 상호 작용을 나타내기 위해 사용한다." },
+        { "no": 2, "text": "시간의 흐름에 따라 객체들이 주고 받는 메시지의 전달 과정을 강조한다." },
+        { "no": 3, "text": "동적 다이어그램보다는 정적 다이어그램에 가깝다." },
+        { "no": 4, "text": "교류 다이어그램(Interaction Diagram)의 한 종류로 볼 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "순차 다이어그램은 객체들이 주고받는 메시지를 시간의 흐름에 따라 표현하는 대표적인 행위(동적) 다이어그램입니다. 교류 다이어그램의 한 종류로 객체 간 상호 작용을 나타내므로, 정적 다이어그램에 가깝다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "객체들의 상호 작용을 표현한다는 설명은 순차 다이어그램의 특징입니다." },
+        { "no": 2, "correct": false, "why": "시간 흐름에 따른 메시지 전달 과정을 강조한다는 설명도 맞습니다." },
+        { "no": 3, "correct": true, "why": "순차 다이어그램은 대표적인 동적 다이어그램이므로 정적 다이어그램에 가깝다는 설명이 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "교류 다이어그램의 한 종류라는 설명도 옳습니다." }
+      ],
+      "keyPoint": "순차 다이어그램은 동적(행위) 다이어그램",
+      "tags": ["시퀀스 다이어그램", "UML"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-013",
+      "number": 13,
+      "subjectCode": 1,
+      "stem": "User Interface 설계 시 오류 메시지나 경고에 관한 지침으로 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "메시지는 이해하기 쉬워야 한다." },
+        { "no": 2, "text": "오류로부터 회복을 위한 구체적인 설명이 제공되어야 한다." },
+        { "no": 3, "text": "오류로 인해 발생될 수 있는 부정적인 내용을 적극적으로 사용자들에게 알려야 한다." },
+        { "no": 4, "text": "소리나 색의 사용을 줄이고 텍스트로만 전달하도록 한다." }
+      ],
+      "answer": 4,
+      "explanation": "사용자 인터페이스의 오류 메시지는 이해하기 쉬운 문장으로 작성하고, 오류에서 회복할 수 있는 구체적인 해결 방법을 함께 안내해야 합니다. 문제가 될 수 있는 부정적인 결과도 사용자에게 분명히 알려야 하며, 색이나 소리 같은 다양한 매체를 적절히 활용하는 것이 바람직합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "메시지를 이해하기 쉽게 작성하는 것은 오류 메시지의 기본 지침입니다." },
+        { "no": 2, "correct": false, "why": "오류 회복을 위한 구체적인 설명 제공도 올바른 지침입니다." },
+        { "no": 3, "correct": false, "why": "발생 가능한 부정적인 결과를 사용자에게 알리는 것도 필요한 지침입니다." },
+        { "no": 4, "correct": true, "why": "색과 소리를 줄이고 텍스트로만 전달하라는 설명은 매체를 활용한 가독성 향상과 배치되므로 거리가 멉니다." }
+      ],
+      "keyPoint": "오류 메시지 설계 지침: 이해 용이성, 회복 안내, 다양한 매체 활용",
+      "tags": ["UI 설계", "오류 메시지"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-014",
+      "number": 14,
+      "subjectCode": 1,
+      "stem": "자료 흐름도(DFD)의 각 요소별 표기 형태의 연결이 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Process : 원" },
+        { "no": 2, "text": "Data Flow : 화살표" },
+        { "no": 3, "text": "Data Store : 삼각형" },
+        { "no": 4, "text": "Terminator : 사각형" }
+      ],
+      "answer": 3,
+      "explanation": "자료 흐름도(DFD)에서 프로세스는 원, 자료 흐름은 화살표, 단말(Terminator)은 사각형, 자료 저장소는 열린 사각형(평행선)으로 표기합니다. 삼각형은 자료 저장소의 표기 기호가 아니므로 이 연결이 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Process를 원으로 표기하는 것은 올바른 연결입니다." },
+        { "no": 2, "correct": false, "why": "Data Flow를 화살표로 표기하는 것도 올바릅니다." },
+        { "no": 3, "correct": true, "why": "Data Store는 열린 사각형(평행선)으로 표기하며 삼각형을 사용하지 않습니다." },
+        { "no": 4, "correct": false, "why": "Terminator(단말)를 사각형으로 표기하는 것은 올바른 연결입니다." }
+      ],
+      "keyPoint": "DFD 구성 요소 표기법: 프로세스(원), 자료 저장소(열린 사각형)",
+      "tags": ["자료 흐름도", "DFD"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-015",
+      "number": 15,
+      "subjectCode": 1,
+      "stem": "정보공학 방법론에서 데이터베이스 설계의 표현으로 사용하는 모델링 언어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Package Diagram" },
+        { "no": 2, "text": "State Transition Diagram" },
+        { "no": 3, "text": "Deployment Diagram" },
+        { "no": 4, "text": "Entity-Relationship Diagram" }
+      ],
+      "answer": 4,
+      "explanation": "정보공학 방법론은 데이터베이스 설계를 표현하는 도구로 개체-관계 다이어그램(ERD, Entity-Relationship Diagram)을 사용하며, 개체와 개체 간의 관계를 도형으로 표현합니다. 나머지 보기는 UML 다이어그램으로, 소프트웨어의 구조나 상태, 물리적 배치를 표현할 때 사용합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Package Diagram은 UML에서 패키지 단위로 구조를 표현하는 다이어그램입니다." },
+        { "no": 2, "correct": false, "why": "State Transition Diagram은 객체의 상태 변화를 표현하는 UML 다이어그램입니다." },
+        { "no": 3, "correct": false, "why": "Deployment Diagram은 컴포넌트의 물리적 배치를 표현하는 UML 다이어그램입니다." },
+        { "no": 4, "correct": true, "why": "Entity-Relationship Diagram(ERD)이 정보공학 방법론에서 데이터베이스 설계 표현에 사용하는 모델링 언어입니다." }
+      ],
+      "keyPoint": "정보공학 방법론의 데이터베이스 설계 표현: ERD",
+      "tags": ["ERD", "정보공학 방법론", "데이터 모델링"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-016",
+      "number": 16,
+      "subjectCode": 1,
+      "stem": "GoF(Gang of Four) 디자인 패턴을 생성, 구조, 행동 패턴의 세 그룹으로 분류할 때, 구조 패턴이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Adapter 패턴" },
+        { "no": 2, "text": "Bridge 패턴" },
+        { "no": 3, "text": "Builder 패턴" },
+        { "no": 4, "text": "Proxy 패턴" }
+      ],
+      "answer": 3,
+      "explanation": "GoF 디자인 패턴은 생성, 구조, 행동 패턴으로 분류되며, 구조 패턴에는 Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy가 속합니다. Builder는 객체 생성 과정을 분리하여 동일한 생성 절차로 다른 표현을 만들 수 있게 하는 생성(Creational) 패턴이므로 구조 패턴이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Adapter는 인터페이스 변환을 다루는 구조 패턴입니다." },
+        { "no": 2, "correct": false, "why": "Bridge는 구현부와 추상부를 분리하는 구조 패턴입니다." },
+        { "no": 3, "correct": true, "why": "Builder는 객체 생성을 다루는 생성 패턴으로 구조 패턴이 아닙니다." },
+        { "no": 4, "correct": false, "why": "Proxy는 객체 접근을 제어하는 구조 패턴입니다." }
+      ],
+      "keyPoint": "GoF 구조 패턴 목록과 생성 패턴(Builder)의 구분",
+      "tags": ["GoF", "구조 패턴", "Builder 패턴"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-017",
+      "number": 17,
+      "subjectCode": 1,
+      "stem": "모바일 기기에서 사용하는 NUI 인터페이스에 속하지 않는 것은 무엇인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Pinch" },
+        { "no": 2, "text": "Press" },
+        { "no": 3, "text": "Flow" },
+        { "no": 4, "text": "Flick" }
+      ],
+      "answer": 3,
+      "explanation": "NUI(자연 사용자 인터페이스)는 사용자가 별도의 학습 없이 자연스럽게 기기를 조작할 수 있도록 하는 인터페이스로, Tap, Press, Pinch, Flick, Drag, Rotate 등의 손가락 제스처를 활용합니다. Flow는 화면이나 업무의 흐름을 뜻하는 용어로 NUI 제스처에 포함되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Pinch는 두 손가락으로 화면을 확대·축소하는 NUI 제스처입니다." },
+        { "no": 2, "correct": false, "why": "Press는 화면을 일정 시간 누르는 NUI 제스처입니다." },
+        { "no": 3, "correct": true, "why": "Flow는 NUI 제스처가 아니라 화면이나 업무의 흐름을 가리키는 용어입니다." },
+        { "no": 4, "correct": false, "why": "Flick은 화면을 빠르게 튕겨 넘기는 NUI 제스처입니다." }
+      ],
+      "keyPoint": "NUI 제스처: Tap, Press, Pinch, Flick 등",
+      "tags": ["NUI", "사용자 인터페이스"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-018",
+      "number": 18,
+      "subjectCode": 1,
+      "stem": "소프트웨어 공학에서 워크스루(Walkthrough)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "사용사례를 확장하여 명세하거나 설계 다이어그램, 원시코드, 테스트 케이스 등에 적용할 수 있다." },
+        { "no": 2, "text": "복잡한 알고리즘 또는 반복, 실시간 동작, 병행 처리와 같은 기능이나 동작을 이해하려고 할 때 유용하다." },
+        { "no": 3, "text": "인스펙션(Inspection)과 동일한 의미를 가진다." },
+        { "no": 4, "text": "단순한 테스트 케이스를 이용하여 프로덕트를 수작업으로 수행해 보는 것이다." }
+      ],
+      "answer": 3,
+      "explanation": "워크스루는 개발자가 작성한 산출물을 동료들이 함께 검토하고 의견을 나누는 비공식적인 검토 기법으로, 단순한 테스트 케이스를 이용해 제품을 수작업으로 수행해 보는 방법입니다. 인스펙션은 역할 분담과 절차, 기록을 갖춘 공식적인 정형 검토 기법이므로 두 기법을 같은 의미로 보는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "설계 다이어그램, 원시코드, 테스트 케이스 등에 적용할 수 있다는 설명은 워크스루의 특징입니다." },
+        { "no": 2, "correct": false, "why": "복잡한 알고리즘이나 실시간·병행 처리 기능을 이해할 때 유용하다는 설명도 맞습니다." },
+        { "no": 3, "correct": true, "why": "워크스루는 비공식 검토, 인스펙션은 공식 검토 기법이므로 동일한 의미라는 설명이 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "수작업으로 제품을 검토한다는 설명도 워크스루에 대한 올바른 설명입니다." }
+      ],
+      "keyPoint": "워크스루(비공식 검토)와 인스펙션(공식 검토)의 차이",
+      "tags": ["워크스루", "인스펙션", "검토 기법"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-019",
+      "number": 19,
+      "subjectCode": 1,
+      "stem": "다음 내용이 설명하는 객체지향 설계 원칙은?",
+      "passage": "ㆍ클라이언트는 자신이 사용하지 않는 메소드와 의존관계를 맺으면 안 된다.\nㆍ클라이언트가 사용하지 않는 인터페이스 때문에 영향을 받아서는 안 된다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "인터페이스 분리 원칙" },
+        { "no": 2, "text": "단일 책임 원칙" },
+        { "no": 3, "text": "개방 폐쇄의 원칙" },
+        { "no": 4, "text": "리스코프 교체의 원칙" }
+      ],
+      "answer": 1,
+      "explanation": "인터페이스 분리 원칙(ISP)은 클라이언트가 자신이 사용하지 않는 메소드나 인터페이스에 의존하지 않도록 인터페이스를 작고 구체적으로 분리하라는 설계 원칙입니다. 사용하지 않는 기능 때문에 클라이언트가 영향을 받지 않게 하는 것이 핵심입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "사용하지 않는 인터페이스에 의존하지 않도록 분리하라는 설명은 인터페이스 분리 원칙에 해당합니다." },
+        { "no": 2, "correct": false, "why": "단일 책임 원칙은 하나의 클래스가 하나의 책임만 갖도록 하는 원칙입니다." },
+        { "no": 3, "correct": false, "why": "개방 폐쇄 원칙은 확장에는 열려 있고 변경에는 닫혀 있어야 한다는 원칙입니다." },
+        { "no": 4, "correct": false, "why": "리스코프 교체 원칙은 자식 클래스가 부모 클래스를 대체할 수 있어야 한다는 원칙입니다." }
+      ],
+      "keyPoint": "인터페이스 분리 원칙(ISP)의 정의",
+      "tags": ["객체지향 설계 원칙", "인터페이스 분리 원칙", "SOLID"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-020",
+      "number": 20,
+      "subjectCode": 1,
+      "stem": "HIPO(Hierarchy Input Process Output)에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "상향식 소프트웨어 개발을 위한 문서화 도구이다." },
+        { "no": 2, "text": "HIPO 차트 종류에는 가시적 도표, 총체적 도표, 세부적 도표가 있다." },
+        { "no": 3, "text": "기능과 자료의 의존 관계를 동시에 표현할 수 있다." },
+        { "no": 4, "text": "보기 쉽고 이해하기 쉽다." }
+      ],
+      "answer": 1,
+      "explanation": "HIPO는 시스템의 기능을 계층적으로 표현하고 각 기능의 입력과 출력을 함께 보여 주는 하향식(Top-Down) 문서화 도구입니다. 가시적 도표, 총체적 도표, 세부적 도표의 세 가지 차트로 구성되며, 상향식 소프트웨어 개발을 위한 도구라는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "HIPO는 하향식 소프트웨어 개발을 위한 문서화 도구이므로 상향식이라는 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "HIPO의 도표 종류로 가시적 도표, 총체적 도표, 세부적 도표가 있다는 설명은 옳습니다." },
+        { "no": 3, "correct": false, "why": "기능과 자료의 의존 관계를 동시에 표현할 수 있다는 설명도 옳습니다." },
+        { "no": 4, "correct": false, "why": "보기 쉽고 이해하기 쉽다는 설명도 HIPO의 특징입니다." }
+      ],
+      "keyPoint": "HIPO: 하향식 문서화 도구와 3가지 도표",
+      "tags": ["HIPO", "문서화 도구"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

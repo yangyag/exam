@@ -1,0 +1,1479 @@
+{
+  "exam": {
+    "id": "2024-2",
+    "year": 2024,
+    "round": 2,
+    "title": "2024년 2회 정보처리기사 필기",
+    "sourcePdf": "2. 2024년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 1,
+    "name": "소프트웨어 설계"
+  },
+  "questions": [
+    {
+      "id": "2024-2-001",
+      "number": 1,
+      "subjectCode": 1,
+      "stem": "요구공학(Requirements Engineering)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "무엇을 개발해야 하는지 요구사항을 정의하고, 분석 및 관리하는 프로세스를 연구하는 학문이다."
+        },
+        {
+          "no": 2,
+          "text": "사용자 요구사항이 더욱 복잡해지고 잦은 변경이 발생하자 이를 적절하게 관리하기 위해 등장하였다."
+        },
+        {
+          "no": 3,
+          "text": "요구사항 개발의 한 요소이다."
+        },
+        {
+          "no": 4,
+          "text": "품질 개선과 프로젝트 실패의 최소화를 목적으로 한다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "요구공학은 무엇을 개발해야 하는지 요구사항을 정의하고, 분석 및 관리하는 프로세스를 연구하는 학문으로 품질 개선과 프로젝트 실패의 최소화를 목적으로 합니다. 요구공학은 요구사항 개발과 요구사항 관리 두 축으로 이루어지는 상위 개념이므로, 이를 요구사항 개발의 한 요소라고 설명하는 것은 포함 관계를 거꾸로 뒤집은 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "요구공학이 요구사항을 정의·분석·관리하는 프로세스를 연구하는 학문이라는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "요구사항이 복잡해지고 잦은 변경이 발생하면서 이를 관리하기 위해 등장했다는 설명도 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "요구공학은 요구사항 개발과 요구사항 관리를 포함하는 상위 개념이므로, 요구사항 개발의 한 요소라는 설명은 관계가 뒤바뀌어 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "품질 개선과 프로젝트 실패 최소화를 목적으로 한다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "요구공학의 정의와 요구사항 개발·요구사항 관리의 관계",
+      "tags": [
+        "요구공학",
+        "요구사항 개발"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-002",
+      "number": 2,
+      "subjectCode": 1,
+      "stem": "XP(eXtreme Programming)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "릴리즈 기간을 짧게 반복하여 고객의 요구 변화에 빠르게 대응한다."
+        },
+        {
+          "no": 2,
+          "text": "코드들은 하나의 작업이 마무리될 때마다 지속적으로 통합한다."
+        },
+        {
+          "no": 3,
+          "text": "테스트가 지속적으로 진행될 수 있도록 테스트 자동화 도구를 사용한다."
+        },
+        {
+          "no": 4,
+          "text": "개발 책임자가 모든 책임을 가지므로 팀원들은 책임 없이 자유로운 개발이 가능하다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "XP는 릴리즈 기간을 짧게 반복하고 코드를 지속적으로 통합하며 테스트 자동화 도구를 사용하는 애자일 방법론으로, 고객의 요구 변화에 빠르게 대응하는 것을 목표로 합니다. XP는 고객·개발자·관리자가 함께 책임을 지는 전체 팀(Whole Team) 원칙을 따르므로, 개발 책임자 한 사람이 모든 책임을 지고 팀원은 책임이 없다는 설명은 XP의 원칙에 어긋납니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "릴리즈 기간을 짧게 반복해 요구 변화에 대응한다는 설명은 XP의 실천 방법으로 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "작업이 마무리될 때마다 코드를 지속적으로 통합한다는 설명은 XP의 지속적 통합 원칙으로 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "테스트 자동화 도구를 사용해 테스트를 지속한다는 설명도 XP의 실천 방법으로 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "XP에서는 팀 전체가 책임을 공유하므로, 개발 책임자만 책임을 지고 팀원은 책임이 없다는 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "XP의 실천 방법과 전체 팀 원칙",
+      "tags": [
+        "XP",
+        "애자일",
+        "익스트림 프로그래밍"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-003",
+      "number": 3,
+      "subjectCode": 1,
+      "stem": "UML에서 활용되는 다이어그램의 이름과 설명의 연결이 올바르지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "클래스 다이어그램 : 시퀀스 다이어그램과 같이 동작에 참여하는 객체들이 주고받는 메시지를 표현하는데, 메시지뿐만 아니라 객체들 간의 연관까지 표현한다."
+        },
+        {
+          "no": 2,
+          "text": "배치 다이어그램 : 결과물, 프로세스, 컴포넌트 등 물리적 요소들의 위치를 표현한다."
+        },
+        {
+          "no": 3,
+          "text": "유스케이스 다이어그램 : 사용자의 요구를 분석하는 것으로, 기능 모델링 작업에 사용한다."
+        },
+        {
+          "no": 4,
+          "text": "활동 다이어그램 : 시스템이 어떤 기능을 수행하는지 객체의 처리 로직이나 조건에 따른 처리의 흐름을 순서에 따라 표현한다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "동작에 참여하는 객체들이 주고받는 메시지와 객체들 간의 연관을 표현하는 다이어그램은 커뮤니케이션 다이어그램입니다. 클래스 다이어그램은 클래스의 속성과 연산, 클래스 사이의 연관·집합·의존 관계처럼 시스템의 정적인 구조를 표현하므로, 이름과 설명이 서로 어긋난 ①이 연결이 올바르지 않은 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "메시지와 객체 간 연관을 표현하는 것은 커뮤니케이션 다이어그램이므로, 클래스 다이어그램에 대한 설명으로는 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "배치 다이어그램이 결과물·프로세스·컴포넌트 등 물리적 요소의 위치를 표현한다는 설명은 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "유스케이스 다이어그램이 사용자 요구를 분석해 기능 모델링에 사용된다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "활동 다이어그램이 처리 로직과 조건에 따른 흐름을 순서대로 표현한다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "UML 다이어그램별 특징(클래스·배치·유스케이스·활동)",
+      "tags": [
+        "UML",
+        "클래스 다이어그램",
+        "커뮤니케이션 다이어그램"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-004",
+      "number": 4,
+      "subjectCode": 1,
+      "stem": "다음 설명에 해당하는 도표는?",
+      "passage": "시스템의 기능을 여러 개의 고유 모듈들로 분할하여 이들 간의 인터페이스를 계층 구조로 표현한 것으로, 가시적 도표(Visual Table of Contents), 총체적 도표(Overview Diagram), 세부적 도표(Detail Diagram)가 있다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "Flow Chart"
+        },
+        {
+          "no": 2,
+          "text": "Burn-down Chart"
+        },
+        {
+          "no": 3,
+          "text": "Visual Diagram"
+        },
+        {
+          "no": 4,
+          "text": "HIPO Chart"
+        }
+      ],
+      "answer": 4,
+      "explanation": "HIPO는 시스템의 기능을 여러 개의 고유 모듈로 분할하고 모듈 간 인터페이스를 계층 구조로 표현하는 하향식 문서화 도구로, 가시적 도표·총체적 도표·세부적 도표로 구성됩니다. 순서도(Flow Chart)는 처리 과정을 기호로 나타내고, Burn-down Chart는 애자일에서 남은 작업량의 추이를 보여주며, Visual Diagram은 HIPO를 이루는 도표의 이름일 뿐 독립된 도표가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Flow Chart는 처리 과정과 순서를 기호로 표현하는 순서도이므로 제시된 설명과 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Burn-down Chart는 애자일 프로젝트에서 남은 작업량의 추이를 보여주는 차트이므로 해당하지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Visual Diagram은 HIPO를 구성하는 가시적 도표의 이름으로, 제시된 설명 전체를 가리키는 도구가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "가시적·총체적·세부적 도표를 갖는 계층 구조 문서화 도구는 HIPO Chart이므로 맞습니다."
+        }
+      ],
+      "keyPoint": "HIPO 차트의 정의와 세 가지 도표",
+      "tags": [
+        "HIPO",
+        "문서화 도구"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-005",
+      "number": 5,
+      "subjectCode": 1,
+      "stem": "불필요한 메모리의 낭비를 최소화하기 위해 여러 프로세스가 동시에 참조할 수는 없지만 어디서든 참조할 수 있는 객체를 생성하는 디자인 패턴은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "싱글톤(Singleton) 패턴"
+        },
+        {
+          "no": 2,
+          "text": "옵서버(Observer) 패턴"
+        },
+        {
+          "no": 3,
+          "text": "프로토타입(Prototype) 패턴"
+        },
+        {
+          "no": 4,
+          "text": "상태(State) 패턴"
+        }
+      ],
+      "answer": 1,
+      "explanation": "싱글톤 패턴은 클래스의 인스턴스를 오직 하나만 생성해 어디서든 그 객체를 공유하도록 만드는 생성 패턴으로, 객체를 중복해서 만들지 않기 때문에 메모리 낭비를 줄일 수 있습니다. 옵서버 패턴은 상태 변화를 여러 객체에 통지하는 패턴, 프로토타입 패턴은 객체를 복제해 생성하는 패턴, 상태 패턴은 객체의 상태에 따라 행위를 바꾸는 패턴입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "인스턴스를 하나만 만들어 전역에서 공유하도록 하는 패턴은 싱글톤 패턴이므로 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "옵서버 패턴은 객체의 상태 변화를 관찰자들에게 통지하는 패턴이므로 해당하지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "프로토타입 패턴은 기존 객체를 복제해 새로운 객체를 만드는 패턴이므로 해당하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "상태 패턴은 객체의 내부 상태에 따라 행위를 변경하는 패턴이므로 해당하지 않습니다."
+        }
+      ],
+      "keyPoint": "싱글톤 패턴의 정의와 메모리 절약 효과",
+      "tags": [
+        "디자인 패턴",
+        "싱글톤"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-006",
+      "number": 6,
+      "subjectCode": 1,
+      "stem": "객체지향 기법에서 객체가 메시지를 받아 실행해야 할 객체의 구체적인 연산을 정의한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Entity"
+        },
+        {
+          "no": 2,
+          "text": "Method"
+        },
+        {
+          "no": 3,
+          "text": "Instance"
+        },
+        {
+          "no": 4,
+          "text": "Class"
+        }
+      ],
+      "answer": 2,
+      "explanation": "메서드(Method)는 객체가 메시지를 받아 실행해야 할 구체적인 연산과 동작을 정의한 것입니다. 클래스는 속성과 메서드를 묶어 놓은 틀, 인스턴스는 클래스로부터 만들어진 실제 객체, Entity는 정보 공학에서 다루는 개체를 가리키므로 연산의 정의와는 거리가 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Entity는 정보 공학에서 관리 대상이 되는 개체를 뜻하므로 해당하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "객체가 메시지를 받아 수행할 구체적인 연산을 정의한 것은 메서드이므로 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Instance는 클래스로부터 생성된 실제 객체를 뜻하므로 해당하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Class는 속성과 메서드를 정의한 틀로, 연산 자체를 정의한 요소는 아닙니다."
+        }
+      ],
+      "keyPoint": "객체지향 요소(클래스·인스턴스·메서드)의 구분",
+      "tags": [
+        "객체지향",
+        "메서드"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-007",
+      "number": 7,
+      "subjectCode": 1,
+      "stem": "바람직한 소프트웨어 설계 지침이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "결합도를 최소화하고 응집도를 최대화한다."
+        },
+        {
+          "no": 2,
+          "text": "복잡도와 중복성을 줄이고 일관성을 유지시킨다."
+        },
+        {
+          "no": 3,
+          "text": "하나의 입구와 하나의 출구를 갖도록 해야 한다."
+        },
+        {
+          "no": 4,
+          "text": "모듈의 크기를 가능한 작게 구성하여 병행성 수준을 높여야 한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "바람직한 설계 지침은 결합도를 낮추고 응집도를 높이며, 복잡도와 중복성을 줄이고 일관성을 유지하는 것입니다. 모듈의 크기는 무조건 작게 만드는 것이 아니라 기능을 기준으로 적절하게 유지해야 하며, 지나치게 작은 모듈이 많아지면 모듈 간 인터페이스가 늘어나 오히려 통합과 유지보수가 어려워집니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "결합도를 최소화하고 응집도를 최대화하는 것은 대표적인 설계 지침이므로 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "복잡도와 중복성을 줄이고 일관성을 유지하라는 설명도 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "하나의 입구와 하나의 출구를 갖도록 하는 것은 모듈 독립성을 높이는 지침으로 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "모듈 크기를 무조건 작게 만들라는 지침은 인터페이스 증가로 유지보수를 어렵게 하므로 바람직하지 않습니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 설계 지침(결합도·응집도·모듈 크기)",
+      "tags": [
+        "설계 지침",
+        "모듈화"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-008",
+      "number": 8,
+      "subjectCode": 1,
+      "stem": "객체지향 설계 원칙에 대한 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "OCP : 기존의 코드를 변경하지 않고 기능을 추가할 수 있도록 설계해야 한다는 원칙"
+        },
+        {
+          "no": 2,
+          "text": "LSP : 자식 클래스는 최소한 자신의 부모 클래스에서 가능한 행위는 수행할 수 있어야 한다는 설계 원칙"
+        },
+        {
+          "no": 3,
+          "text": "DIP : 각 객체들 간의 의존 관계가 성립될 때, 추상성이 낮은 클래스보다 추상성이 높은 클래스와 의존 관계를 맺어야 한다는 원칙"
+        },
+        {
+          "no": 4,
+          "text": "ISP : 객체는 단 하나의 책임만 가져야 한다는 원칙"
+        }
+      ],
+      "answer": 4,
+      "explanation": "ISP(인터페이스 분리 원칙)는 자신이 사용하지 않는 인터페이스나 메서드에 의존하지 않도록 인터페이스를 작게 분리하라는 원칙입니다. 객체가 단 하나의 책임만 가져야 한다는 것은 SRP(단일 책임 원칙)의 설명이므로 ④가 틀렸고, OCP·LSP·DIP에 대한 설명은 모두 옳습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "OCP가 기존 코드를 변경하지 않고 기능을 추가하도록 설계하는 원칙이라는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "LSP가 자식 클래스가 부모 클래스의 행위를 수행할 수 있어야 한다는 원칙이라는 설명은 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "DIP가 추상성이 높은 클래스와 의존 관계를 맺어야 한다는 원칙이라는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "ISP는 인터페이스 분리 원칙이며, 단 하나의 책임을 말하는 것은 SRP이므로 이 보기가 틀렸습니다."
+        }
+      ],
+      "keyPoint": "SOLID 객체지향 설계 원칙의 구분",
+      "tags": [
+        "SOLID",
+        "ISP",
+        "설계 원칙"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-009",
+      "number": 9,
+      "subjectCode": 1,
+      "stem": "객체지향 분석 방법론 중 미시적(Micro) 개발 프로세스와 거시적(Macro) 개발 프로세스를 모두 사용하는 분석 방법으로, 클래스와 객체들을 분석 및 식별하고 클래스의 속성과 연산을 정의하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Coad와 Yourdon 방법"
+        },
+        {
+          "no": 2,
+          "text": "Booch 방법"
+        },
+        {
+          "no": 3,
+          "text": "Jacobson 방법"
+        },
+        {
+          "no": 4,
+          "text": "Wirfs-Brocks 방법"
+        }
+      ],
+      "answer": 2,
+      "explanation": "Booch 방법은 미시적(Micro) 개발 프로세스와 거시적(Macro) 개발 프로세스를 모두 사용하면서 클래스와 객체들을 분석·식별하고 클래스의 속성과 연산을 정의하는 분석 방법입니다. Coad와 Yourdon 방법은 E-R 다이어그램을 이용한 객체 모델링을, Jacobson 방법은 Use Case를 중심으로 한 분석을 강조하며, Wirfs-Brocks 방법은 분석과 설계를 구분하지 않고 하나의 연속된 표현으로 다룹니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Coad와 Yourdon 방법은 E-R 다이어그램을 이용해 객체의 행위를 모델링하는 방법이므로 해당하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "미시적·거시적 프로세스를 모두 사용해 클래스와 객체를 식별하고 속성과 연산을 정의하는 방법은 Booch 방법이므로 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Jacobson 방법은 Use Case를 강조하는 분석 방법이므로 해당하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Wirfs-Brocks 방법은 분석과 설계의 구분 없이 연속적으로 수행하는 방법이므로 해당하지 않습니다."
+        }
+      ],
+      "keyPoint": "객체지향 분석 방법론(Booch·Coad와 Yourdon·Jacobson)의 특징",
+      "tags": [
+        "객체지향 분석",
+        "Booch 방법"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-010",
+      "number": 10,
+      "subjectCode": 1,
+      "stem": "HIPO Chart에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "HIPO 차트 종류에는 가시적 도표, 총체적 도표, 세부적 도표가 있다."
+        },
+        {
+          "no": 2,
+          "text": "충분한 사전 지식과 학습이 없으면 이해하기 어렵다."
+        },
+        {
+          "no": 3,
+          "text": "기능과 자료의 의존 관계를 동시에 표현할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "하향식 소프트웨어 개발을 위한 문서화 도구이다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "HIPO는 하향식 소프트웨어 개발을 위한 문서화 도구로, 가시적 도표·총체적 도표·세부적 도표를 통해 기능과 자료의 의존 관계를 동시에 표현합니다. 기호와 도표를 사용해 내용을 이해하기 쉬운 도구이므로, 사전 지식과 학습이 충분하지 않으면 이해하기 어렵다는 설명은 HIPO의 특징으로 볼 수 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "HIPO 차트의 종류가 가시적 도표, 총체적 도표, 세부적 도표라는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "HIPO는 도표와 기호로 표현되어 이해하기 쉬운 도구이므로, 사전 지식이 없으면 이해하기 어렵다는 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "기능과 자료의 의존 관계를 동시에 표현할 수 있다는 설명은 HIPO의 장점으로 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "하향식 소프트웨어 개발을 위한 문서화 도구라는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "HIPO 차트의 특징과 장점",
+      "tags": [
+        "HIPO",
+        "하향식 개발"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-011",
+      "number": 11,
+      "subjectCode": 1,
+      "stem": "코드 설계에서 코드화 대상 항목의 성질 즉, 길이, 넓이, 부피, 지름, 높이 등의 물리적 수치를 그대로 코드에 적용시키는 방식의 코드는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "연상 코드"
+        },
+        {
+          "no": 2,
+          "text": "블록 코드"
+        },
+        {
+          "no": 3,
+          "text": "순차 코드"
+        },
+        {
+          "no": 4,
+          "text": "표의 숫자 코드"
+        }
+      ],
+      "answer": 4,
+      "explanation": "표의 숫자 코드(유효 숫자 코드)는 길이, 넓이, 부피, 지름, 높이처럼 코드화 대상 항목의 물리적 수치를 그대로 코드값으로 사용하는 방식입니다. 연상 코드는 명칭이나 약호에서 의미를 연상할 수 있게 만든 코드, 블록 코드는 구분 항목별로 블록을 나누어 부여하는 코드, 순차 코드는 일정한 순서에 따라 일련번호를 부여하는 코드입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "연상 코드는 항목의 명칭·약호 등으로 의미를 연상하게 하는 코드이므로 해당하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "블록 코드는 대상 항목을 구분해 블록별로 코드를 부여하는 방식이므로 해당하지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "순차 코드는 발생 순서나 일정 순서대로 일련번호를 부여하는 방식이므로 해당하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "물리적 수치를 그대로 코드에 적용하는 방식은 표의 숫자 코드이므로 맞습니다."
+        }
+      ],
+      "keyPoint": "코드의 종류(순차·블록·연상·표의 숫자 코드)",
+      "tags": [
+        "코드 설계",
+        "표의 숫자 코드"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 1
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-012",
+      "number": 12,
+      "subjectCode": 1,
+      "stem": "애자일 소프트웨어 개발 기법의 가치가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "계획을 따르기보다는 변화에 대응하는 것에 더 가치를 둔다.."
+        },
+        {
+          "no": 2,
+          "text": "실제 작동하는 소프트웨어보다는 이해하기 좋은 문서에 더 가치를 둔다."
+        },
+        {
+          "no": 3,
+          "text": "계약 협상보다는 고객과의 협업에 더 가치를 둔다."
+        },
+        {
+          "no": 4,
+          "text": "프로세스의 도구보다는 개인과 상호작용에 더 가치를 둔다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "애자일 선언에서는 개인과의 상호작용, 실제 작동하는 소프트웨어, 고객과의 협업, 변화에 대한 대응을 더 중요한 가치로 내세웁니다. 따라서 문서보다는 실제 작동하는 소프트웨어에 더 가치를 두어야 하므로, ②는 애자일의 가치를 반대로 서술한 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "계획을 따르기보다 변화에 대응하는 것에 가치를 둔다는 설명은 애자일의 가치로 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "애자일은 문서보다 실제 작동하는 소프트웨어에 더 가치를 두므로, 문서에 더 가치를 둔다는 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "계약 협상보다 고객과의 협업에 가치를 둔다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "프로세스 도구보다 개인과 상호작용에 가치를 둔다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "애자일 선언의 4가지 가치",
+      "tags": [
+        "애자일",
+        "선언문"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-013",
+      "number": 13,
+      "subjectCode": 1,
+      "stem": "Rayleigh-Norden 곡선의 노력 분포도를 이용한 프로젝트 비용 산정 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Putnam 모형"
+        },
+        {
+          "no": 2,
+          "text": "델파이 모형"
+        },
+        {
+          "no": 3,
+          "text": "COCOMO 모형"
+        },
+        {
+          "no": 4,
+          "text": "기능점수 모형"
+        }
+      ],
+      "answer": 1,
+      "explanation": "Putnam 모형은 Rayleigh-Norden 곡선이 보여주는 노력 분포도를 이용해 개발 기간과 투입 인력으로부터 생산성과 비용을 산정하는 기법입니다. 델파이 모형은 전문가들의 의견을 반복 수렴해 비용을 추정하고, COCOMO 모형은 원시 코드 라인 수(LOC)를, 기능점수 모형은 소프트웨어의 기능 수를 기준으로 규모와 비용을 산정합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "Rayleigh-Norden 곡선의 노력 분포도를 이용하는 비용 산정 기법은 Putnam 모형이므로 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "델파이 모형은 전문가 의견을 반복 수렴해 추정하는 기법이므로 해당하지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "COCOMO 모형은 원시 코드 라인 수를 기준으로 비용을 산정하는 모형이므로 해당하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "기능점수 모형은 기능 수를 기준으로 규모를 산정하는 기법이므로 해당하지 않습니다."
+        }
+      ],
+      "keyPoint": "Rayleigh-Norden 곡선을 이용한 Putnam 모형",
+      "tags": [
+        "비용 산정",
+        "Putnam 모형"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-014",
+      "number": 14,
+      "subjectCode": 1,
+      "stem": "객체지향의 주요 개념에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "상속은 상위 클래스에서 속성이나 연산을 전달받아 새로운 형태의 클래스로 확장하여 사용하는 것을 의미한다."
+        },
+        {
+          "no": 2,
+          "text": "객체는 실세계에 존재하거나 생각할 수 있는 것을 말한다."
+        },
+        {
+          "no": 3,
+          "text": "캡슐화는 두 개 이상의 객체(클래스)들이 상호 참조하는 관계이다."
+        },
+        {
+          "no": 4,
+          "text": "다형성은 상속받은 여러 개의 하위 객체들이 다른 형태의 특성을 갖는 객체로 이용될 수 있는 성질이다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "캡슐화는 데이터(속성)와 그 데이터를 처리하는 연산을 하나로 묶고 외부에서의 직접 접근을 제한하는 개념입니다. 두 개 이상의 객체(클래스)들이 서로 참조하는 관계는 연관(Association)에 대한 설명이므로 ③이 틀렸고, 나머지는 상속·객체·다형성에 대한 올바른 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "상위 클래스의 속성이나 연산을 물려받아 클래스를 확장하는 것이 상속이라는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "객체가 실세계에 존재하거나 생각할 수 있는 것을 말한다는 설명은 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "캡슐화는 속성과 연산을 하나로 묶고 접근을 제한하는 개념이므로, 상호 참조 관계를 설명한 이 보기가 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "다형성이 하위 객체들이 여러 형태의 특성으로 이용될 수 있는 성질이라는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "객체지향 개념(상속·캡슐화·다형성·연관)",
+      "tags": [
+        "캡슐화",
+        "연관",
+        "객체지향 개념"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-015",
+      "number": 15,
+      "subjectCode": 1,
+      "stem": "웹 애플리케이션 서버(WAS; Web Application Server)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "정적인 콘텐츠를 처리하기 위해 사용되는 미들웨어이다."
+        },
+        {
+          "no": 2,
+          "text": "클라이언트/서버 환경보다는 웹 환경을 구현하기 위한 미들웨어이다."
+        },
+        {
+          "no": 3,
+          "text": "미션-크리티컬한 기업 업무도 JAVA, EJB 컴포넌트 기반으로 구현이 가능하다."
+        },
+        {
+          "no": 4,
+          "text": "대표적인 WAS의 종류에는 오라클의 WebLogic, IBM의 WebSphere 등이 있다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "WAS는 데이터베이스 조회나 트랜잭션 처리처럼 사용자 요청에 따라 결과가 달라지는 동적인 콘텐츠를 처리하는 미들웨어이고, 정적인 콘텐츠는 웹 서버가 담당합니다. 따라서 ①이 틀렸으며, 클라이언트/서버 환경을 웹 환경으로 구현하기 위해 사용된다는 설명과 JAVA·EJB 기반 구현, WebLogic·WebSphere 같은 대표 제품에 대한 설명은 옳습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "WAS는 동적인 콘텐츠를 처리하는 미들웨어이므로, 정적인 콘텐츠를 처리한다는 이 보기가 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "클라이언트/서버 환경보다 웹 환경 구현에 사용되는 미들웨어라는 설명은 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "미션-크리티컬한 기업 업무도 JAVA, EJB 컴포넌트 기반으로 구현할 수 있다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "WebLogic과 WebSphere가 대표적인 WAS라는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "WAS의 개념과 동적 콘텐츠 처리 역할",
+      "tags": [
+        "WAS",
+        "미들웨어"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-016",
+      "number": 16,
+      "subjectCode": 1,
+      "stem": "다음 중 유스케이스 다이어그램(Use Case Diagram)의 구성 요소가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "System"
+        },
+        {
+          "no": 2,
+          "text": "Actor"
+        },
+        {
+          "no": 3,
+          "text": "Operation"
+        },
+        {
+          "no": 4,
+          "text": "UseCase"
+        }
+      ],
+      "answer": 3,
+      "explanation": "유스케이스 다이어그램은 시스템(System), 행위자(Actor), 유스케이스(UseCase)와 이들 사이의 연관·포함·확장 관계로 구성됩니다. Operation은 클래스(객체)가 수행하는 연산을 나타내는 요소로, 유스케이스 다이어그램의 구성 요소가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "System은 유스케이스 다이어그램에서 시스템의 경계를 나타내는 구성 요소이므로 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Actor는 시스템 외부에서 시스템과 상호작용하는 구성 요소이므로 해당합니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "Operation은 클래스가 수행하는 연산을 나타내는 요소로, 유스케이스 다이어그램의 구성 요소가 아니므로 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "UseCase는 시스템이 제공하는 기능 단위로 유스케이스 다이어그램의 핵심 구성 요소입니다."
+        }
+      ],
+      "keyPoint": "유스케이스 다이어그램의 구성 요소",
+      "tags": [
+        "유스케이스 다이어그램",
+        "UML"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-017",
+      "number": 17,
+      "subjectCode": 1,
+      "stem": "폭포수 모형의 특징으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "순차적인 접근방법을 이용한다."
+        },
+        {
+          "no": 2,
+          "text": "나선형 모형의 단점을 보완하기 위한 모형이다."
+        },
+        {
+          "no": 3,
+          "text": "단계적 정의와 산출물이 명확하다."
+        },
+        {
+          "no": 4,
+          "text": "모형의 적용 경험과 성공사례가 많다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "폭포수 모형은 각 단계를 순차적으로 수행하고 단계별 정의와 산출물이 명확하며, 오래 사용되어 적용 경험과 성공 사례가 많은 전통적 모형입니다. 나선형 모형은 폭포수 모형에서 요구 변경을 반영하기 어렵다는 단점을 보완하기 위해 등장한 모형이므로, ②는 폭포수 모형의 특징과 거리가 멉니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "폭포수 모형이 순차적인 접근방법을 이용한다는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "나선형 모형이 폭포수 모형의 단점을 보완하기 위해 등장했으므로, 관계를 반대로 설명한 이 보기가 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "단계적 정의와 산출물이 명확하다는 설명은 폭포수 모형의 특징으로 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "적용 경험과 성공사례가 많다는 설명도 폭포수 모형의 특징으로 옳습니다."
+        }
+      ],
+      "keyPoint": "폭포수 모형과 나선형 모형의 관계",
+      "tags": [
+        "폭포수 모형",
+        "나선형 모형"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-018",
+      "number": 18,
+      "subjectCode": 1,
+      "stem": "송수신 데이터의 처리 방식 중 대량의 데이터를 처리할 때 사용하는 방식은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "실시간 방식"
+        },
+        {
+          "no": 2,
+          "text": "분산 처리 방식"
+        },
+        {
+          "no": 3,
+          "text": "배치 방식"
+        },
+        {
+          "no": 4,
+          "text": "지연 처리 방식"
+        }
+      ],
+      "answer": 3,
+      "explanation": "배치 방식은 대량의 데이터를 일정 시점에 모아 한꺼번에 처리하는 방식으로, 급여 계산이나 정산 업무처럼 대량 처리가 필요한 경우에 적합합니다. 실시간 방식은 데이터가 발생하는 즉시 처리하고, 분산 처리 방식은 여러 시스템에 업무를 나누어 처리하며, 지연 처리 방식은 처리를 일정 시점까지 미루는 방식입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "실시간 방식은 데이터 발생 즉시 처리하는 방식이므로 대량 처리에 적합하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "분산 처리 방식은 여러 시스템에 업무를 분담해 처리하는 방식으로, 대량 데이터 처리 방식 자체를 가리키지는 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "대량의 데이터를 모아 한꺼번에 처리하는 방식은 배치 방식이므로 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "지연 처리 방식은 처리를 뒤로 미루는 방식이므로 해당하지 않습니다."
+        }
+      ],
+      "keyPoint": "데이터 처리 방식(실시간·배치·분산 처리)",
+      "tags": [
+        "배치 처리",
+        "데이터 처리 방식"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-019",
+      "number": 19,
+      "subjectCode": 1,
+      "stem": "결합도(Coupling)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "데이터 결합도(Data Coupling)는 두 모듈이 매개 변수로 자료를 전달할 때 자료 구조 형태로 전달되어 이용될 때 데이터가 결합되어 있다고 한다."
+        },
+        {
+          "no": 2,
+          "text": "내용 결합도(Content Coupling)는 하나의 모듈이 직접적으로 다른 모듈의 내용을 참조할 때 두 모듈은 내용적으로 결합되어 있다고 한다."
+        },
+        {
+          "no": 3,
+          "text": "공통 결합도(Common Coupling)는 두 모듈이 동일한 전역 데이터를 접근한다면 공통 결합되어 있다고 한다."
+        },
+        {
+          "no": 4,
+          "text": "결합도(Coupling)는 두 모듈 간의 상호작용, 또는 의존 정도를 나타내는 것이다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "데이터 결합도는 두 모듈이 매개 변수로 단순한 자료(값)를 주고받을 때 성립하고, 자료 구조 형태로 전달되어 이용될 때는 스탬프(자료 구조) 결합도라고 합니다. ①은 자료 구조 결합도의 설명을 데이터 결합도로 잘못 옮긴 것이므로 틀렸고, 내용·공통 결합도와 결합도의 정의에 대한 설명은 옳습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "자료 구조 형태로 전달되는 경우는 스탬프 결합도이므로, 이를 데이터 결합도로 설명한 이 보기가 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "내용 결합도가 다른 모듈의 내용을 직접 참조하는 경우라는 설명은 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "공통 결합도가 동일한 전역 데이터를 접근하는 경우라는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "결합도가 두 모듈 간 상호작용과 의존 정도를 나타낸다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "결합도의 종류와 데이터·스탬프 결합도의 구분",
+      "tags": [
+        "결합도",
+        "스탬프 결합도"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-020",
+      "number": 20,
+      "subjectCode": 1,
+      "stem": "CASE(Computer Aided Software Engineering)의 주요 기능으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "S/W 라이프 사이클 전 단계의 연결"
+        },
+        {
+          "no": 2,
+          "text": "그래픽 지원"
+        },
+        {
+          "no": 3,
+          "text": "다양한 소프트웨어 개발 모형 지원"
+        },
+        {
+          "no": 4,
+          "text": "언어 번역"
+        }
+      ],
+      "answer": 4,
+      "explanation": "CASE의 주요 기능에는 소프트웨어 생명 주기 전 단계의 연결, 그래픽 지원, 다양한 소프트웨어 개발 모형 지원, 모델들 사이의 검증, 자료 흐름도 작성 등이 있습니다. 언어 번역은 컴파일러나 인터프리터가 담당하는 기능이므로 CASE의 주요 기능으로 보지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "소프트웨어 라이프 사이클 전 단계를 연결하는 것은 CASE의 주요 기능으로 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "그래픽 지원도 CASE의 주요 기능으로 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "다양한 소프트웨어 개발 모형을 지원하는 것도 CASE의 주요 기능으로 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "언어 번역은 컴파일러·인터프리터의 역할이므로 CASE의 주요 기능이 아니어서 맞습니다."
+        }
+      ],
+      "keyPoint": "CASE의 주요 기능",
+      "tags": [
+        "CASE",
+        "자동화 도구"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

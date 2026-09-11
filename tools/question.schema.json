@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://exam.local/question.schema.json",
+  "title": "기출문제 문항 묶음 (회차 x 과목)",
+  "type": "object",
+  "required": ["exam", "subject", "questions"],
+  "additionalProperties": false,
+  "properties": {
+    "exam": {
+      "type": "object",
+      "required": ["id", "year", "round", "title", "sourcePdf"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[0-9]{4}-[0-9]$" },
+        "year": { "type": "integer" },
+        "round": { "type": "integer", "minimum": 1, "maximum": 4 },
+        "title": { "type": "string" },
+        "sourcePdf": { "type": "string" }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "required": ["code", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "name": { "type": "string" }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "number",
+          "subjectCode",
+          "stem",
+          "passage",
+          "passageKind",
+          "choices",
+          "answer",
+          "explanation",
+          "choicesAnalysis",
+          "keyPoint",
+          "tags",
+          "difficulty",
+          "figure",
+          "source",
+          "provenance"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[0-9]{4}-[0-9]-[0-9]{3}$" },
+          "number": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "subjectCode": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "stem": { "type": "string", "minLength": 5 },
+          "passage": {
+            "type": ["string", "null"],
+            "description": "stem 위에 제시되는 자료(코드/표/지문). 탭이나 | 로 구분한 표, 코드는 줄바꿈 유지"
+          },
+          "passageKind": {
+            "type": ["string", "null"],
+            "enum": ["code", "table", "text", null],
+            "description": "앱이 passage 를 어떻게 렌더할지. passage 가 null 이면 null"
+          },
+          "choices": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "required": ["no", "text"],
+              "additionalProperties": false,
+              "properties": {
+                "no": { "type": "integer", "minimum": 1, "maximum": 4 },
+                "text": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "answer": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "explanation": { "type": "string", "minLength": 40 },
+          "choicesAnalysis": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "required": ["no", "correct", "why"],
+              "additionalProperties": false,
+              "properties": {
+                "no": { "type": "integer", "minimum": 1, "maximum": 4 },
+                "correct": { "type": "boolean" },
+                "why": { "type": "string", "minLength": 5 }
+              }
+            }
+          },
+          "keyPoint": { "type": "string", "minLength": 2 },
+          "tags": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "figure": {
+            "type": "object",
+            "required": ["needed", "kind", "image", "alt", "page", "col", "box"],
+            "additionalProperties": false,
+            "properties": {
+              "needed": { "type": "boolean" },
+              "kind": {
+                "type": ["string", "null"],
+                "enum": ["diagram", "screen", null]
+              },
+              "image": {
+                "type": ["string", "null"],
+                "pattern": "^figures/[0-9]{4}-[0-9]/[0-9]{3}\\.png$",
+                "description": "data/ 기준 상대경로. 순수 도식일 때만 채우고, 표/코드는 텍스트로 복원하므로 null"
+              },
+              "alt": { "type": ["string", "null"], "description": "그림 설명(접근성/폴백/검색용)" },
+              "page": { "type": ["integer", "null"] },
+              "col": { "type": ["integer", "null"], "enum": [0, 1, null] },
+              "box": {
+                "type": ["array", "null"],
+                "items": { "type": "number" },
+                "minItems": 4,
+                "maxItems": 4,
+                "description": "원본 PDF 좌표 [x0,y0,x1,y1]. 재크롭/디버깅용"
+              }
+            }
+          },
+          "source": {
+            "type": "object",
+            "required": ["pdf", "page"],
+            "additionalProperties": false,
+            "properties": {
+              "pdf": { "type": "string" },
+              "page": { "type": "integer", "minimum": 1 }
+            }
+          },
+          "provenance": {
+            "type": "object",
+            "required": ["answer", "explanation"],
+            "additionalProperties": false,
+            "properties": {
+              "answer": { "type": "string", "enum": ["pdf", "derived"] },
+              "explanation": { "type": "string", "enum": ["pdf", "generated"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

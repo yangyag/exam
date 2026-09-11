@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2024-3",
+    "year": 2024,
+    "round": 3,
+    "title": "2024년 3회 정보처리기사 필기",
+    "sourcePdf": "3. 2024년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2024-3-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "반정규화(Denormalization) 유형 중 중복 테이블을 추가하는 방법에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "빌드 테이블의 추가"},
+        {"no": 2, "text": "집계 테이블의 추가"},
+        {"no": 3, "text": "진행 테이블의 추가"},
+        {"no": 4, "text": "특정 부분만을 포함하는 테이블 추가"}
+      ],
+      "answer": 1,
+      "explanation": "반정규화에서 중복 테이블을 추가하는 방법에는 집계 테이블 추가, 진행 테이블 추가, 부분 테이블 추가가 있습니다. 집계 테이블은 합계나 평균 같은 통계 데이터를 미리 계산해 두는 테이블이고, 진행 테이블은 이력 관리처럼 진행 상황을 별도로 저장하는 테이블이며, 특정 부분만을 포함하는 테이블 추가는 부분 테이블 추가라고 합니다. 빌드 테이블의 추가는 이 세 가지 방법에 포함되지 않는 유형입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "빌드 테이블의 추가는 중복 테이블을 추가하는 방법(집계·진행·부분 테이블)에 포함되지 않으므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "집계 테이블 추가는 통계 데이터를 미리 계산해 두는 대표적인 중복 테이블 추가 방법입니다."},
+        {"no": 3, "correct": false, "why": "진행 테이블 추가는 이력 관리 등 진행 상황을 저장하기 위한 중복 테이블 추가 방법입니다."},
+        {"no": 4, "correct": false, "why": "특정 부분만을 포함하는 테이블 추가는 부분 테이블 추가라고 하며 중복 테이블 추가 방법에 해당합니다."}
+      ],
+      "keyPoint": "반정규화의 중복 테이블 추가 방법",
+      "tags": ["반정규화", "중복 테이블", "데이터베이스 튜닝"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "외계인 코드(Alien Code)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "프로그램의 로직이 복잡하여 이해하기 어려운 프로그램을 의미한다."},
+        {"no": 2, "text": "아주 오래되거나 참고문서 또는 개발자가 없어 유지보수 작업이 어려운 프로그램을 의미한다."},
+        {"no": 3, "text": "오류가 없어 디버깅 과정이 필요 없는 프로그램을 의미한다."},
+        {"no": 4, "text": "사용자가 직접 작성한 프로그램을 의미한다."}
+      ],
+      "answer": 2,
+      "explanation": "외계인 코드는 아주 오래되었거나 참고 문서와 개발자가 없어서 유지보수 작업이 어려운 프로그램을 말합니다. 프로그램의 논리 자체가 어려운 것이 아니라 관련 자료와 담당자가 사라져 분석과 수정이 어려운 상태를 뜻합니다. 로직이 복잡해 읽기 어려운 코드는 스파게티 코드에 가까운 설명으로, 외계인 코드와는 구분되는 개념입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "로직이 복잡해 이해하기 어려운 프로그램은 스파게티 코드에 가까운 설명으로 외계인 코드의 정의가 아닙니다."},
+        {"no": 2, "correct": true, "why": "오래되어 참고 문서나 개발자가 없어 유지보수 작업이 어려운 프로그램이라는 설명이 외계인 코드의 정의와 일치합니다."},
+        {"no": 3, "correct": false, "why": "외계인 코드는 오류 파악과 유지보수가 어려운 코드이므로 디버깅이 필요 없다는 설명은 반대입니다."},
+        {"no": 4, "correct": false, "why": "사용자가 직접 작성한 프로그램이라는 설명은 외계인 코드의 정의와 관계가 없습니다."}
+      ],
+      "keyPoint": "외계인 코드의 정의",
+      "tags": ["외계인 코드", "유지보수", "소프트웨어 개발"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "디지털 저작권 관리(DRM)의 기술 요소가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "크랙 방지 기술"},
+        {"no": 2, "text": "정책 관리 기술"},
+        {"no": 3, "text": "암호화 기술"},
+        {"no": 4, "text": "방화벽 기술"}
+      ],
+      "answer": 4,
+      "explanation": "DRM의 기술 요소에는 암호화 기술, 키 관리 기술, 식별 기술, 저작권 표현 기술, 크랙 방지 기술, 정책 관리 기술, 인증 기술 등이 있습니다. 이들은 콘텐츠를 암호화하고 사용 권한을 관리하며 불법 복제를 막는 데 초점을 둡니다. 방화벽 기술은 외부의 침입을 차단하는 네트워크 보안 기술로 DRM의 기술 요소에 포함되지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "크랙 방지 기술은 불법 복제와 권한 우회를 막기 위한 DRM 기술 요소에 해당합니다."},
+        {"no": 2, "correct": false, "why": "정책 관리 기술은 콘텐츠의 사용 규칙과 권한을 관리하는 DRM 기술 요소입니다."},
+        {"no": 3, "correct": false, "why": "암호화 기술은 콘텐츠를 암호화해 무단 사용을 차단하는 DRM의 핵심 기술 요소입니다."},
+        {"no": 4, "correct": true, "why": "방화벽 기술은 네트워크 접근을 통제하는 보안 장비 기술로 DRM의 기술 요소가 아니므로 정답입니다."}
+      ],
+      "keyPoint": "DRM의 기술 요소",
+      "tags": ["DRM", "디지털 저작권 관리", "보안 기술"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "다음 트리의 차수(Degree)와 단말 노드(Terminal Node)의 수는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "차수 : 4, 단말 노드 : 4"},
+        {"no": 2, "text": "차수 : 2, 단말 노드 : 4"},
+        {"no": 3, "text": "차수 : 4, 단말 노드 : 8"},
+        {"no": 4, "text": "차수 : 2, 단말 노드 : 8"}
+      ],
+      "answer": 2,
+      "explanation": "트리의 차수는 노드가 가질 수 있는 자식 노드 수의 최댓값으로, 제시된 트리에서는 A와 C가 각각 자식 2개를 가지므로 차수가 2입니다. 단말 노드는 자식이 없는 노드로 D, F, G, H 네 개입니다. 따라서 차수는 2이고 단말 노드의 수는 4입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "차수는 최대 자식 수인 2이고 단말 노드도 8개가 아니라 4개이므로 차수와 단말 노드 수가 모두 틀렸습니다."},
+        {"no": 2, "correct": true, "why": "차수가 2이고 자식이 없는 단말 노드가 D, F, G, H로 4개이므로 정답입니다."},
+        {"no": 3, "correct": false, "why": "차수 4는 각 노드의 자식 수와 맞지 않고 단말 노드 수도 4개이므로 옳지 않습니다."},
+        {"no": 4, "correct": false, "why": "차수는 2로 맞지만 단말 노드는 8개가 아니라 4개이므로 옳지 않습니다."}
+      ],
+      "keyPoint": "트리의 차수와 단말 노드의 정의",
+      "tags": ["트리", "차수", "단말 노드"],
+      "difficulty": 2,
+      "figure": {"needed": true, "kind": "diagram", "image": "figures/2024-3/024.png", "alt": "A를 루트로 B와 C가 갈라지고, B 아래에 D, C 아래에 E와 F가 붙으며 E 아래에 G와 H가 붙은 트리", "page": 2, "col": 1, "box": [319.7, 341.8, 427.4, 422.7]},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "물리데이터 저장소의 파티션 설계에서 파티션 유형으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "범위 분할(Range Partitioning)"},
+        {"no": 2, "text": "해시 분할(Hash Partitioning)"},
+        {"no": 3, "text": "조합 분할(Composite Partitioning)"},
+        {"no": 4, "text": "유닛 분할(Unit Partitioning)"}
+      ],
+      "answer": 4,
+      "explanation": "파티션 유형에는 범위 분할, 해시 분할, 조합 분할, 목록 분할, 라운드 로빈 분할 등이 있습니다. 범위 분할은 날짜나 번호 같은 값의 구간을, 해시 분할은 해시 함수의 결과값을, 조합 분할은 두 가지 이상의 기준을 결합해 데이터를 나눕니다. 유닛 분할(Unit Partitioning)은 이러한 파티션 유형에 존재하지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "범위 분할은 날짜나 번호 구간처럼 특정 범위를 기준으로 데이터를 나누는 대표적인 파티션 유형입니다."},
+        {"no": 2, "correct": false, "why": "해시 분할은 해시 함수를 적용한 결과값에 따라 파티션을 배정하는 유형입니다."},
+        {"no": 3, "correct": false, "why": "조합 분할은 범위 분할과 해시 분할 등 두 가지 이상의 기준을 결합한 파티션 유형입니다."},
+        {"no": 4, "correct": true, "why": "유닛 분할은 실제로 사용되는 파티션 유형이 아니므로 옳지 않은 것에 해당합니다."}
+      ],
+      "keyPoint": "파티션 분할 유형",
+      "tags": ["파티션", "물리 데이터 저장소", "데이터베이스"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "형상 관리 도구의 주요 기능으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "정규화(Normalization)"},
+        {"no": 2, "text": "체크인(Check-in)"},
+        {"no": 3, "text": "체크아웃(Check-out)"},
+        {"no": 4, "text": "커밋(commit)"}
+      ],
+      "answer": 1,
+      "explanation": "형상 관리 도구는 저장소에 변경 내용을 등록하는 체크인, 저장소의 파일을 작업 공간으로 가져오는 체크아웃, 변경 사항을 확정해 기록하는 커밋 기능을 제공합니다. 정규화(Normalization)는 관계형 데이터베이스에서 중복을 줄이고 이상 현상을 제거하기 위한 데이터 모델링 기법입니다. 따라서 형상 관리 도구의 기능과 거리가 먼 것은 정규화입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "정규화는 데이터베이스 설계에서 중복을 제거하는 기법으로 형상 관리 도구의 기능이 아니므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "체크인은 수정한 파일을 저장소에 등록하는 형상 관리 도구의 기본 기능입니다."},
+        {"no": 3, "correct": false, "why": "체크아웃은 저장소의 파일을 작업 공간으로 가져오는 형상 관리 도구의 기능입니다."},
+        {"no": 4, "correct": false, "why": "커밋은 변경 내용을 저장소에 확정해 기록하는 형상 관리 도구의 기능입니다."}
+      ],
+      "keyPoint": "형상 관리 도구의 주요 기능",
+      "tags": ["형상 관리", "체크인", "체크아웃"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "패키지 소프트웨어의 일반적인 제품 품질 요구사항 및 테스트를 위한 국제 표준은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "ISO/IEC 2196"},
+        {"no": 2, "text": "IEEE 19554"},
+        {"no": 3, "text": "ISO/IEC 12119"},
+        {"no": 4, "text": "ISO/IEC 14959"}
+      ],
+      "answer": 3,
+      "explanation": "ISO/IEC 12119는 패키지 소프트웨어의 품질 요구사항과 테스트 방법을 규정한 국제 표준입니다. 소프트웨어 제품에 대한 요구사항 정의와 사용 설명서, 테스트 절차 등을 다루어 소프트웨어 품질 보증의 기준으로 사용됩니다. 나머지 보기들은 패키지 소프트웨어의 제품 품질 요구사항 및 테스트를 규정한 표준이 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "ISO/IEC 2196은 패키지 소프트웨어의 품질 요구사항과 테스트를 규정한 표준이 아닙니다."},
+        {"no": 2, "correct": false, "why": "IEEE 19554는 패키지 소프트웨어 품질 요구사항을 다루는 국제 표준에 해당하지 않습니다."},
+        {"no": 3, "correct": true, "why": "ISO/IEC 12119가 패키지 소프트웨어의 제품 품질 요구사항과 테스트를 다루는 국제 표준이므로 정답입니다."},
+        {"no": 4, "correct": false, "why": "ISO/IEC 14959는 패키지 소프트웨어 품질 요구사항 및 테스트 표준이 아닙니다."}
+      ],
+      "keyPoint": "패키지 소프트웨어 품질 표준 ISO/IEC 12119",
+      "tags": ["ISO/IEC 12119", "소프트웨어 품질", "국제 표준"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "블랙박스 테스트 기법으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "기초 경로 검사"},
+        {"no": 2, "text": "동치 클래스 분해"},
+        {"no": 3, "text": "경계값 분석"},
+        {"no": 4, "text": "원인 결과 그래프"}
+      ],
+      "answer": 1,
+      "explanation": "블랙박스 테스트는 프로그램의 내부 구조를 보지 않고 입력과 출력의 관계로 기능을 검사하는 기법으로, 동치 클래스 분해, 경계값 분석, 원인-결과 그래프 검사, 오류 추정 등이 있습니다. 기초 경로 검사는 흐름 그래프를 이용해 모듈 내부의 논리적 경로를 검사하는 화이트박스 테스트 기법입니다. 따라서 블랙박스 테스트 기법과 거리가 먼 것은 기초 경로 검사입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "기초 경로 검사는 흐름 그래프로 내부 경로를 확인하는 화이트박스 테스트 기법이므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "동치 클래스 분해는 입력 값을 동등한 클래스로 나누어 대표값을 시험하는 블랙박스 테스트 기법입니다."},
+        {"no": 3, "correct": false, "why": "경계값 분석은 입력 범위의 경계에서 오류가 발생하기 쉽다는 점을 이용하는 블랙박스 테스트 기법입니다."},
+        {"no": 4, "correct": false, "why": "원인 결과 그래프는 입력 원인과 출력 결과의 관계를 그래프로 표현해 시험하는 블랙박스 테스트 기법입니다."}
+      ],
+      "keyPoint": "블랙박스 테스트와 화이트박스 테스트의 기법 구분",
+      "tags": ["블랙박스 테스트", "기초 경로 검사", "동치 클래스 분해"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 검증 도구가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "ESB"},
+        {"no": 2, "text": "xUnit"},
+        {"no": 3, "text": "STAF"},
+        {"no": 4, "text": "NTAF"}
+      ],
+      "answer": 1,
+      "explanation": "인터페이스 구현 검증 도구에는 xUnit, STAF, FitNesse, NTAF, Selenium, watir 등이 있습니다. 이들은 단위 테스트, 분산 환경 테스트, 웹 기반 테스트 등으로 인터페이스의 동작을 자동 검증합니다. ESB(Enterprise Service Bus)는 서비스들을 느슨하게 결합해 통합하는 인터페이스 구현 기술로 검증 도구가 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "ESB는 서비스 통합을 위한 미들웨어로 인터페이스 구현 검증 도구가 아니므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "xUnit은 언어별 단위 테스트를 지원하는 인터페이스 구현 검증 도구입니다."},
+        {"no": 3, "correct": false, "why": "STAF는 분산 환경에서 테스트를 수행하고 통합 자동화하는 검증 도구입니다."},
+        {"no": 4, "correct": false, "why": "NTAF는 테스트 자동화 프레임워크로 인터페이스 구현 검증 도구에 해당합니다."}
+      ],
+      "keyPoint": "인터페이스 구현 검증 도구의 종류",
+      "tags": ["인터페이스 검증 도구", "ESB", "NTAF"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "다음 Postfix 연산식에 대한 연산결과로 옳은 것은?",
+      "passage": "3 4 * 5 6 * +",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "35"},
+        {"no": 2, "text": "42"},
+        {"no": 3, "text": "77"},
+        {"no": 4, "text": "360"}
+      ],
+      "answer": 2,
+      "explanation": "후위(Postfix) 표기식은 피연산자를 먼저 쓰고 연산자를 뒤에 쓰므로, 스택을 이용해 앞에서부터 읽으면서 연산자를 만나면 두 값을 꺼내 계산합니다. 3 4 * 는 3×4=12이고 5 6 * 는 5×6=30이며, 마지막 + 에서 12+30=42가 됩니다. 따라서 연산 결과는 42입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "35는 제시된 식의 연산 결과가 아니며 12와 30을 더한 값과도 다릅니다."},
+        {"no": 2, "correct": true, "why": "3 4 * 가 12, 5 6 * 가 30이므로 두 값을 더한 42가 정답입니다."},
+        {"no": 3, "correct": false, "why": "77은 3+4=7과 5+6=11을 이어 붙인 값으로 후위 연산 결과가 아닙니다."},
+        {"no": 4, "correct": false, "why": "360은 모든 수를 곱했을 때 나오는 값으로 후위 연산식의 계산 결과가 아닙니다."}
+      ],
+      "keyPoint": "후위 표기식의 스택 연산",
+      "tags": ["후위 표기식", "스택", "연산"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "테스트 케이스에 일반적으로 포함되는 항목이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "테스트 조건"},
+        {"no": 2, "text": "테스트 데이터"},
+        {"no": 3, "text": "테스트 비용"},
+        {"no": 4, "text": "예상 결과"}
+      ],
+      "answer": 3,
+      "explanation": "테스트 케이스는 특정 요구사항을 검증하기 위한 테스트 조건과 입력 값, 그리고 그에 대한 예상 결과를 담은 문서입니다. 일반적으로 테스트 조건, 테스트 데이터, 예상 결과, 테스트 절차 등이 포함됩니다. 테스트 비용은 테스트 수행에 드는 인력과 시간, 비용을 나타내는 관리 지표로 테스트 케이스의 구성 항목이 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "테스트 조건은 테스트 케이스에 포함되는 기본 항목입니다."},
+        {"no": 2, "correct": false, "why": "테스트 데이터는 테스트에 사용할 입력 값으로 테스트 케이스에 반드시 포함되는 항목입니다."},
+        {"no": 3, "correct": true, "why": "테스트 비용은 테스트 케이스의 구성 항목이 아니라 테스트 관리 지표이므로 정답입니다."},
+        {"no": 4, "correct": false, "why": "예상 결과는 테스트 수행 후 기대되는 출력 값으로 테스트 케이스에 반드시 포함되는 항목입니다."}
+      ],
+      "keyPoint": "테스트 케이스의 구성 항목",
+      "tags": ["테스트 케이스", "예상 결과", "테스트 조건"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "이진 검색 알고리즘에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "탐색 효율이 좋고 탐색 시간이 적게 소요된다."},
+        {"no": 2, "text": "검색할 데이터가 정렬되어 있어야 한다."},
+        {"no": 3, "text": "피보나치 수열에 따라 다음에 비교할 대상을 선정하여 검색한다."},
+        {"no": 4, "text": "비교횟수를 거듭할 때마다 검색 대상이 되는 데이터의 수가 절반으로 줄어든다."}
+      ],
+      "answer": 3,
+      "explanation": "이진 검색은 정렬된 데이터에서 중간값과 비교해 탐색 범위를 절반씩 줄여 나가는 알고리즘으로, 탐색 시간이 O(log₂N)이라 효율이 좋습니다. 다음에 비교할 대상을 가운데 값으로 선정하는 것이 이진 검색이며, 피보나치 수열을 이용해 비교 대상을 정하는 것은 피보나치 검색입니다. 따라서 피보나치 수열에 따라 대상을 선정한다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "탐색 범위를 절반씩 줄이므로 효율이 좋고 시간이 적게 걸린다는 설명은 옳습니다."},
+        {"no": 2, "correct": false, "why": "중간값을 기준으로 범위를 나누므로 데이터가 미리 정렬되어 있어야 한다는 설명은 옳습니다."},
+        {"no": 3, "correct": true, "why": "피보나치 수열로 비교 대상을 정하는 것은 피보나치 검색이므로 이진 검색 설명으로는 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "비교할 때마다 탐색 대상이 절반으로 줄어든다는 설명은 이진 검색의 동작과 일치합니다."}
+      ],
+      "keyPoint": "이진 검색의 원리와 전제 조건",
+      "tags": ["이진 검색", "정렬", "탐색 알고리즘"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "여러 개의 선택 항목 중 하나의 선택만 가능한 경우 사용하는 사용자 인터페이스(UI) 요소는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "텍스트 박스"},
+        {"no": 2, "text": "체크 박스"},
+        {"no": 3, "text": "토글 버튼"},
+        {"no": 4, "text": "라디오 버튼"}
+      ],
+      "answer": 4,
+      "explanation": "라디오 버튼은 여러 후보 중에서 하나만 선택할 수 있는 상호 배타적인 선택을 표현하는 UI 요소로, 하나를 선택하면 같은 그룹의 다른 항목은 자동으로 해제됩니다. 체크 박스는 여러 항목을 동시에 선택할 수 있고, 텍스트 박스는 값을 직접 입력받으며, 토글 버튼은 켜짐과 꺼짐 두 상태를 전환합니다. 따라서 하나만 선택하는 경우에 사용하는 요소는 라디오 버튼입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "텍스트 박스는 문자열을 직접 입력받는 요소로 하나만 선택하는 용도가 아닙니다."},
+        {"no": 2, "correct": false, "why": "체크 박스는 여러 항목을 중복 선택할 수 있어 하나만 선택하는 요소가 아닙니다."},
+        {"no": 3, "correct": false, "why": "토글 버튼은 하나의 기능을 켜고 끄는 두 가지 상태만 표현합니다."},
+        {"no": 4, "correct": true, "why": "라디오 버튼은 여러 항목 중 하나만 선택할 수 있으므로 정답입니다."}
+      ],
+      "keyPoint": "하나만 선택하는 UI 요소인 라디오 버튼",
+      "tags": ["라디오 버튼", "UI 요소", "사용자 인터페이스"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "다음 중 스택을 이용한 연산과 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "선택 정렬"},
+        {"no": 2, "text": "재귀 호출"},
+        {"no": 3, "text": "후위 표현(Post-Fix Expression)의 연산"},
+        {"no": 4, "text": "깊이 우선 탐색"}
+      ],
+      "answer": 1,
+      "explanation": "스택은 후입선출(LIFO) 구조로, 재귀 호출에서 복귀 주소와 지역 변수를 저장하거나 후위 표현식을 계산하고 깊이 우선 탐색에서 되돌아갈 경로를 기억하는 데 사용됩니다. 선택 정렬은 남은 원소에서 최솟값을 찾아 앞쪽 원소와 교환하는 과정을 반복하는 정렬로, 스택의 후입선출 특성과 직접적인 관련이 없습니다. 따라서 스택을 이용한 연산과 거리가 먼 것은 선택 정렬입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "선택 정렬은 최솟값을 반복 탐색하는 정렬로 후입선출 구조인 스택과 관련이 없으므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "재귀 호출은 호출 정보를 스택에 쌓아 복귀 지점을 관리하므로 스택을 이용하는 대표적인 예입니다."},
+        {"no": 3, "correct": false, "why": "후위 표현식의 연산은 피연산자를 스택에 넣고 꺼내 계산하므로 스택을 이용합니다."},
+        {"no": 4, "correct": false, "why": "깊이 우선 탐색은 방문한 경로를 되돌아가기 위해 스택을 사용합니다."}
+      ],
+      "keyPoint": "스택을 이용하는 대표적인 연산",
+      "tags": ["스택", "재귀 호출", "깊이 우선 탐색"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "소프트웨어 테스트와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "화이트박스 테스트는 모듈의 논리적인 구조를 체계적으로 점검할 수 있다."},
+        {"no": 2, "text": "블랙박스 테스트는 프로그램의 구조를 고려하지 않는다."},
+        {"no": 3, "text": "테스트 케이스에는 일반적으로 시험 조건, 테스트 데이터, 예상 결과가 포함되어야 한다."},
+        {"no": 4, "text": "화이트박스 테스트에서 기본 경로(Basis Path)란 흐름 그래프의 시작 노드에서 종료 노드까지의 서로 독립된 경로로 싸이클을 허용하지 않는 경로를 말한다."}
+      ],
+      "answer": 4,
+      "explanation": "기본 경로(Basis Path)는 흐름 그래프의 시작 노드에서 종료 노드까지 이르는 서로 독립적인 경로들의 집합으로, 각 경로는 최소한 하나의 새로운 간선을 포함합니다. 그래프에 순환(싸이클)이 있으면 그 순환을 지나는 경로도 기본 경로에 포함될 수 있으므로 싸이클을 허용하지 않는다는 서술은 옳지 않습니다. 나머지 보기는 화이트박스 테스트, 블랙박스 테스트, 테스트 케이스 구성 항목에 대한 바른 설명입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "화이트박스 테스트는 모듈의 논리 구조와 경로를 체계적으로 점검하므로 옳은 설명입니다."},
+        {"no": 2, "correct": false, "why": "블랙박스 테스트는 내부 구조를 고려하지 않고 입출력만 확인하므로 옳은 설명입니다."},
+        {"no": 3, "correct": false, "why": "테스트 케이스에 시험 조건, 테스트 데이터, 예상 결과가 포함된다는 설명은 옳습니다."},
+        {"no": 4, "correct": true, "why": "기본 경로는 순환을 지나는 경로도 포함할 수 있으므로 싸이클을 허용하지 않는다는 설명이 틀렸습니다."}
+      ],
+      "keyPoint": "기본 경로(Basis Path)의 개념",
+      "tags": ["기본 경로", "화이트박스 테스트", "테스트 케이스"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "애플리케이션의 처리량, 응답 시간, 경과 시간, 자원 사용률에 대해 가상의 사용자를 생성하고 테스트를 수행함으로써 성능 목표를 달성하였는지를 확인하는 테스트 자동화 도구는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "명세 기반 테스트 설계 도구"},
+        {"no": 2, "text": "코드 기반 테스트 설계 도구"},
+        {"no": 3, "text": "기능 테스트 수행 도구"},
+        {"no": 4, "text": "성능 테스트 도구"}
+      ],
+      "answer": 4,
+      "explanation": "성능 테스트 도구는 가상의 사용자를 만들어 부하를 발생시키고 처리량, 응답 시간, 경과 시간, 자원 사용률 같은 성능 지표를 측정해 성능 목표의 달성 여부를 확인합니다. 명세 기반과 코드 기반 테스트 설계 도구는 테스트 케이스를 생성하는 도구이고, 기능 테스트 수행 도구는 기능의 정상 동작 여부를 확인하는 도구입니다. 따라서 제시된 설명에 해당하는 것은 성능 테스트 도구입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "명세 기반 테스트 설계 도구는 요구사항 명세를 바탕으로 테스트 케이스를 설계하고 생성하는 도구입니다."},
+        {"no": 2, "correct": false, "why": "코드 기반 테스트 설계 도구는 소스 코드를 분석해 테스트 케이스를 생성하는 도구입니다."},
+        {"no": 3, "correct": false, "why": "기능 테스트 수행 도구는 애플리케이션의 기능 동작 여부를 확인하는 도구로 성능 지표 측정이 목적이 아닙니다."},
+        {"no": 4, "correct": true, "why": "가상 사용자로 부하를 주고 처리량과 응답 시간 같은 성능 목표를 확인하는 도구는 성능 테스트 도구이므로 정답입니다."}
+      ],
+      "keyPoint": "성능 테스트 도구의 역할",
+      "tags": ["성능 테스트 도구", "테스트 자동화", "가상 사용자"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "소스 코드 정적 분석(Static Analysis)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "소스 코드를 실행시키지 않고 분석한다."},
+        {"no": 2, "text": "코드에 있는 오류나 잠재적인 오류를 찾아내기 위한 활동이다."},
+        {"no": 3, "text": "하드웨어적인 방법으로만 코드 분석이 가능하다."},
+        {"no": 4, "text": "자료 흐름이나 논리 흐름을 분석하여 비정상적인 패턴을 찾을 수 있다."}
+      ],
+      "answer": 3,
+      "explanation": "정적 분석은 소스 코드를 실행하지 않고 프로그램을 분석해 오류와 잠재적인 결함, 코딩 규칙 위반을 찾아내는 활동입니다. 자료 흐름과 논리 흐름을 분석해 비정상적인 패턴을 발견할 수 있으며, 주로 소프트웨어 도구를 이용해 수행합니다. 하드웨어적인 방법으로만 코드 분석이 가능하다는 설명은 정적 분석의 수행 방법과 맞지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "정적 분석은 프로그램을 실행하지 않고 소스 코드만 분석하므로 옳은 설명입니다."},
+        {"no": 2, "correct": false, "why": "코드의 오류와 잠재적인 오류를 찾아내는 활동이라는 설명은 옳습니다."},
+        {"no": 3, "correct": true, "why": "정적 분석은 대부분 분석 도구를 이용한 소프트웨어적인 방법으로 수행되므로 하드웨어적인 방법으로만 가능하다는 설명이 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "자료 흐름과 논리 흐름을 분석해 비정상적인 패턴을 찾을 수 있다는 설명은 옳습니다."}
+      ],
+      "keyPoint": "정적 분석의 정의와 수행 방법",
+      "tags": ["정적 분석", "소스 코드", "결함 검출"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "형상 관리의 개념과 절차에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "형상 식별은 형상 관리 계획을 근거로 형상 관리의 대상이 무엇인지 식별하는 과정이다."},
+        {"no": 2, "text": "형상 관리를 통해 가시성과 추적성을 보장함으로써 소프트웨어의 생산성과 품질을 높일 수 있다."},
+        {"no": 3, "text": "형상 통제 과정에서는 형상 목록의 변경 요구를 즉시 수용 및 반영해야 한다."},
+        {"no": 4, "text": "형상 감사는 형상 관리 계획대로 형상 관리가 진행되고 있는지, 형상 항목의 변경이 요구사항에 맞도록 제대로 이뤄졌는지 등을 살펴보는 활동이다."}
+      ],
+      "answer": 3,
+      "explanation": "형상 통제는 변경 요구가 들어왔을 때 형상 통제 위원회(CCB)의 심의와 승인을 거쳐 변경 여부를 결정하고, 승인된 변경만 기준선에 반영하는 절차입니다. 따라서 변경 요구를 즉시 수용해 반영한다는 설명은 틀렸습니다. 형상 식별은 관리 대상을 식별하는 단계이고, 형상 감사는 계획대로 형상 관리가 진행되었는지와 변경이 요구사항에 맞는지 확인하는 활동입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "형상 식별이 형상 관리 대상을 식별하는 과정이라는 설명은 옳습니다."},
+        {"no": 2, "correct": false, "why": "형상 관리가 가시성과 추적성을 보장해 생산성과 품질을 높인다는 설명은 옳습니다."},
+        {"no": 3, "correct": true, "why": "변경 요구는 형상 통제 위원회의 심의와 승인을 거쳐 반영해야 하므로 즉시 수용해 반영한다는 설명이 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "형상 감사에 대한 설명으로, 계획대로 관리가 되었는지와 변경이 요구사항에 맞는지 살펴보는 활동이 맞습니다."}
+      ],
+      "keyPoint": "형상 관리 절차와 형상 통제",
+      "tags": ["형상 관리", "형상 통제", "형상 감사"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "다음 그래프에서 정점 A를 선택하여 깊이 우선 탐색(DFS)으로 운행한 결과는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "ABECDFG"},
+        {"no": 2, "text": "ABECFDG"},
+        {"no": 3, "text": "ABCDEFG"},
+        {"no": 4, "text": "ABEFGCD"}
+      ],
+      "answer": 4,
+      "explanation": "깊이 우선 탐색은 현재 정점에서 방문하지 않은 인접 정점이 있으면 그곳으로 깊이 들어가고, 더 갈 곳이 없을 때만 되돌아와 다른 경로를 찾는 방식입니다. A에서 B, B에서 E, E에서 F, F에서 G로 이어지는 경로를 따라 이동한 뒤 G에서는 갈 곳이 없어 되돌아오고, F에서 아직 방문하지 않은 C를 거쳐 D로 이동합니다. 따라서 정점 A에서 시작한 깊이 우선 탐색의 방문 순서는 ABEFGCD입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "ABECDFG는 E에서 아직 방문하지 않은 인접 정점 F를 두고 C로 건너뛰는 순서이므로 깊이 우선 탐색의 진행 방식과 맞지 않습니다."},
+        {"no": 2, "correct": false, "why": "ABECFDG도 E 다음에 C를 방문하는 순서로, E와 연결된 F를 먼저 탐색해야 하는 깊이 우선 탐색과 다릅니다."},
+        {"no": 3, "correct": false, "why": "ABCDEFG는 D의 미방문 인접 정점이 F뿐인데도 E로 건너뛰는 순서이므로 옳지 않습니다."},
+        {"no": 4, "correct": true, "why": "A→B→E→F→G로 깊이 들어간 뒤 되돌아와 F에서 C, C에서 D를 방문하는 순서로 그래프의 간선만을 따라 완성되므로 정답입니다."}
+      ],
+      "keyPoint": "깊이 우선 탐색의 방문 순서",
+      "tags": ["깊이 우선 탐색", "DFS", "그래프"],
+      "difficulty": 3,
+      "figure": {"needed": true, "kind": "diagram", "image": "figures/2024-3/039.png", "alt": "정점 A, B, C, D, E, F, G로 이루어진 무방향 그래프로, A는 B·C·D와, B는 C·E와, C는 D·F와, D는 F와, E는 F와, F는 G와 연결되어 있다", "page": 3, "col": 1, "box": [319.7, 137.4, 416.0, 240.9]},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2024-3-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "분할 정복(Divide and Conquer)에 기반한 알고리즘으로 피봇(pivot)을 사용하며 최악의 경우 n(n-1)/2회의 비교를 수행해야 하는 정렬(Sort)은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Selection Sort"},
+        {"no": 2, "text": "Bubble Sort"},
+        {"no": 3, "text": "Insert Sort"},
+        {"no": 4, "text": "Quick Sort"}
+      ],
+      "answer": 4,
+      "explanation": "퀵 정렬은 피봇을 기준으로 데이터를 작은 값과 큰 값으로 분할한 뒤 각 부분을 재귀적으로 정렬하는 분할 정복 알고리즘입니다. 피봇이 항상 최솟값이나 최댓값으로 선택되어 분할이 한쪽으로 치우치면 비교 횟수가 n(n-1)/2에 이르러 최악의 시간복잡도 O(n²)이 됩니다. 따라서 제시된 조건에 해당하는 정렬은 퀵 정렬입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "선택 정렬은 최솟값을 찾아 교환하는 방식으로 분할 정복이나 피봇을 사용하지 않습니다."},
+        {"no": 2, "correct": false, "why": "버블 정렬은 인접한 두 원소를 비교해 교환하는 방식으로 피봇을 사용하지 않습니다."},
+        {"no": 3, "correct": false, "why": "삽입 정렬은 정렬된 부분에 원소를 끼워 넣는 방식으로 분할 정복과 피봇을 사용하지 않습니다."},
+        {"no": 4, "correct": true, "why": "퀵 정렬은 피봇을 이용하는 분할 정복 정렬로 최악의 경우 n(n-1)/2회 비교가 필요하므로 정답입니다."}
+      ],
+      "keyPoint": "퀵 정렬의 분할 정복 방식과 최악의 시간복잡도",
+      "tags": ["퀵 정렬", "분할 정복", "피봇"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    }
+  ]
+}

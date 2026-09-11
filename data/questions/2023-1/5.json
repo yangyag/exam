@@ -1,0 +1,1491 @@
+{
+  "exam": {
+    "id": "2023-1",
+    "year": 2023,
+    "round": 1,
+    "title": "2023년 1회 정보처리기사 필기",
+    "sourcePdf": "2023년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2023-1-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "TCP/IP 기반 네트워크에서 동작하는 발행-구독 기반의 메시징 프로토콜로 최근 IoT 환경에서 자주 사용되고 있는 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "MLFQ"
+        },
+        {
+          "no": 2,
+          "text": "MQTT"
+        },
+        {
+          "no": 3,
+          "text": "Zigbee"
+        },
+        {
+          "no": 4,
+          "text": "MTSP"
+        }
+      ],
+      "answer": 2,
+      "explanation": "MQTT(Message Queuing Telemetry Transport)는 TCP/IP 위에서 동작하는 발행-구독(Publish-Subscribe) 기반의 경량 메시징 프로토콜로, 브로커를 매개로 토픽을 구독한 다수의 장치가 메시지를 주고받습니다. 헤더가 작고 대역폭과 전력 소모가 적어 저사양 센서와 네트워크가 불안정한 IoT 환경에 적합합니다. MLFQ는 운영체제의 다단계 피드백 큐 스케줄링 기법, Zigbee는 저전력 근거리 무선 통신 규격, MTSP는 여러 순회 판매원 문제로 알려진 조합 최적화 문제입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "MLFQ(Multi Level Feedback Queue)는 프로세스 우선순위를 여러 단계로 나누어 스케줄링하는 운영체제 기법으로 메시징 프로토콜이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "브로커를 중심으로 발행-구독 방식의 메시지를 교환하는 TCP/IP 기반 경량 프로토콜로 IoT 환경에서 널리 사용됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Zigbee는 IEEE 802.15.4 기반의 저전력·저속 근거리 무선 통신 규격으로, 발행-구독 메시징 프로토콜이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "MTSP(Multiple Traveling Salesman Problem)는 여러 순회 판매원 문제를 다루는 조합 최적화 문제이며 프로토콜이 아닙니다."
+        }
+      ],
+      "keyPoint": "MQTT = TCP/IP 기반 발행-구독 경량 메시징 프로토콜",
+      "tags": [
+        "MQTT",
+        "IoT",
+        "발행-구독"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "악성코드의 유형 중 다른 컴퓨터의 취약점을 이용하여 스스로 전파하거나 메일로 전파되며 스스로를 증식하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Worm"
+        },
+        {
+          "no": 2,
+          "text": "Rogue Ware"
+        },
+        {
+          "no": 3,
+          "text": "Adware"
+        },
+        {
+          "no": 4,
+          "text": "Reflection Attack"
+        }
+      ],
+      "answer": 1,
+      "explanation": "웜(Worm)은 사용자의 실행이나 다른 프로그램의 도움 없이 네트워크를 통해 스스로 복제·전파되는 악성코드입니다. 다른 컴퓨터의 취약점을 스캔해 침투하고 메일을 통해 스스로를 증식시키며, 대량 트래픽을 유발해 네트워크를 마비시킬 수 있습니다. 로그웨어는 백신이나 최적화 프로그램으로 위장해 결제를 유도하는 가짜 보안 프로그램, 애드웨어는 광고를 강제 노출해 수익을 얻는 프로그램, 리플렉션 공격은 출발지 주소를 위조해 반사 트래픽으로 공격하는 기법입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "웜은 숙주 프로그램 없이 스스로 전파되고 증식하는 대표적인 자기 복제형 악성코드입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "로그웨어는 백신·정리 프로그램처럼 보이지만 실제로 악성 행위를 하거나 결제를 유도하는 가짜 소프트웨어로, 자기 복제와 무관합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "애드웨어는 사용자에게 원치 않는 광고를 지속적으로 노출해 광고 수익을 얻는 프로그램입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "리플렉션 공격은 정상 서버의 응답을 악용해 공격 대상에게 트래픽을 집중시키는 방식이지 자기 증식형 악성코드가 아닙니다."
+        }
+      ],
+      "keyPoint": "웜(Worm)은 숙주 없이 스스로 복제·전파되는 악성코드",
+      "tags": [
+        "웜",
+        "악성코드",
+        "자기 복제"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "시스템 내의 정보는 오직 인가된 사용자만 수정할 수 있는 보안 요소는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "기밀성"
+        },
+        {
+          "no": 2,
+          "text": "부인방지"
+        },
+        {
+          "no": 3,
+          "text": "가용성"
+        },
+        {
+          "no": 4,
+          "text": "무결성"
+        }
+      ],
+      "answer": 4,
+      "explanation": "무결성(Integrity)은 정보가 인가된 사용자에 의해서만 변경·수정될 수 있고 전송·저장 과정에서 위·변조되지 않았음이 보장되는 보안 요소입니다. 기밀성은 인가된 사용자만 정보를 열람할 수 있게 하는 성질, 가용성은 인가된 사용자가 필요할 때 언제든 정보와 자원을 사용할 수 있게 하는 성질입니다. 부인방지는 송신자나 수신자가 행위 사실을 부인하지 못하게 하는 요소로, 수정 권한에 대한 보장과는 다른 개념입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "기밀성은 정보의 열람을 인가된 사용자로 제한하는 성질이므로 수정 권한에 대한 보장이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "부인방지는 전자서명 등을 통해 송·수신 사실을 부인하지 못하게 하는 보안 요소입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "가용성은 필요할 때 정보와 시스템 자원을 정상적으로 사용할 수 있도록 보장하는 성질입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "무결성은 정보를 인가된 사용자만 수정할 수 있고 위·변조되지 않았음을 보장하는 보안 요소입니다."
+        }
+      ],
+      "keyPoint": "무결성 = 인가된 사용자만 정보를 수정할 수 있도록 보장",
+      "tags": [
+        "무결성",
+        "보안 3요소"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "취약점 관리를 위한 응용 프로그램의 보안 설정과 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "서버 관리실 출입 통제"
+        },
+        {
+          "no": 2,
+          "text": "실행 프로세스 권한 설정"
+        },
+        {
+          "no": 3,
+          "text": "운영체제의 접근 제한"
+        },
+        {
+          "no": 4,
+          "text": "운영체제의 정보 수집 제한"
+        }
+      ],
+      "answer": 1,
+      "explanation": "응용 프로그램의 보안 설정은 실행 프로세스의 권한을 최소화하고, 운영체제 자원에 대한 접근을 제한하며, 불필요한 정보 수집과 노출을 차단하는 방식으로 취약점을 줄이는 활동입니다. 반면 서버 관리실 출입 통제는 인가되지 않은 사람의 물리적 접근을 막는 물리적 보안 대책이므로 소프트웨어 설정과는 층위가 다릅니다. 따라서 응용 프로그램의 보안 설정과 가장 거리가 먼 항목입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "서버 관리실 출입 통제는 장비에 대한 물리적 접근을 제한하는 물리적 보안 대책으로, 응용 프로그램 보안 설정과 거리가 가장 멉니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "실행 프로세스의 권한을 필요한 최소 범위로 설정하는 것은 응용 프로그램 취약점을 줄이는 대표적인 보안 설정입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "운영체제 자원에 대한 접근을 제한하는 것은 권한 상승과 정보 유출을 막는 보안 설정입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "운영체제가 불필요한 정보를 수집하거나 노출하지 않도록 제한하는 것도 응용 프로그램 보안 설정에 해당합니다."
+        }
+      ],
+      "keyPoint": "응용 프로그램 보안 설정과 물리적 접근 통제의 구분",
+      "tags": [
+        "취약점 관리",
+        "보안 설정"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "COCOMO model 중 기관 내부에서 개발된 중소 규모의 소프트웨어로 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용으로 5만 라인 이하의 소프트웨어를 개발하는 유형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Embeded"
+        },
+        {
+          "no": 2,
+          "text": "Organic"
+        },
+        {
+          "no": 3,
+          "text": "Semi-detached"
+        },
+        {
+          "no": 4,
+          "text": "Semi-embeded"
+        }
+      ],
+      "answer": 2,
+      "explanation": "COCOMO(Constructive Cost Model)는 소프트웨어 규모를 추정해 개발 비용을 산정하는 모델로, 개발 환경과 규모에 따라 Organic, Semi-detached, Embedded의 세 유형으로 나뉩니다. 이 중 Organic 유형은 기관 내부에서 개발된 중소 규모 소프트웨어, 즉 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용 등 5만 라인 이하의 소프트웨어를 개발하는 경우에 해당합니다. Semi-detached는 30만 라인 이하의 중간 규모, Embedded는 대규모이거나 하드웨어·규제 등 제약이 큰 프로젝트에 적용합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Embedded는 개발 규모가 크고 하드웨어나 운영 환경의 제약이 많은 복잡한 프로젝트에 적용하는 유형입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Organic은 기관 내부에서 개발하는 5만 라인 이하의 중소 규모 소프트웨어에 해당하는 유형입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Semi-detached는 5만 라인을 넘고 30만 라인 이하인 중간 규모 프로젝트에 적용하는 유형입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Semi-embeded는 COCOMO에 없는 유형으로 Embedded를 잘못 표기한 보기입니다."
+        }
+      ],
+      "keyPoint": "COCOMO 유형: Organic(5만 라인 이하) / Semi-detached / Embedded",
+      "tags": [
+        "COCOMO",
+        "Organic",
+        "비용 산정"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "소프트웨어 생명 주기 모델 중 V 모델과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "요구 분석 및 설계 단계를 거치지 않으며 항상 통합 테스트를 중심으로 V 형태를 이룬다."
+        },
+        {
+          "no": 2,
+          "text": "Perry에 의해 제안되었으며 세부적인 테스트 과정으로 구성되어 신뢰도 높은 시스템을 개발하는데 효과적이다."
+        },
+        {
+          "no": 3,
+          "text": "개발 작업과 검증 작업 사이의 관계를 명확히 들어내 놓은 폭포수 모델의 변형이라고 볼 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "폭포수 모델이 산출물 중심이라면 V 모델은 작업과 결과의 검증에 초점을 둔다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "V 모델은 폭포수 모델의 변형으로, 요구 분석 → 설계 → 구현으로 이어지는 개발 단계와 단위·통합·시스템·인수 테스트의 검증 단계를 V자 형태로 서로 대응시킨 모델입니다. 따라서 요구 분석과 설계 단계를 거치지 않는다거나 통합 테스트만을 중심으로 한다는 설명은 사실이 아니며, 각 개발 단계에 대응하는 테스트 단계가 모두 존재합니다. Perry가 제안했다는 점, 개발과 검증의 관계를 명확히 했다는 점, 폭포수 모델과 달리 검증에 초점을 둔다는 점은 모두 V 모델의 특징입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "V 모델은 요구 분석·설계 단계를 거치고 각 단계에 대응하는 단위·통합·시스템·인수 테스트를 배치하므로, 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "V 모델이 Perry에 의해 제안되었고 세부적인 테스트 과정으로 구성되어 신뢰도를 높이는 데 효과적이라는 설명은 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "폭포수 모델을 변형해 개발 작업과 검증 작업의 대응 관계를 명확히 한 모델이라는 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "폭포수 모델이 산출물 중심이고 V 모델이 작업과 결과의 검증에 초점을 둔다는 비교는 맞습니다."
+        }
+      ],
+      "keyPoint": "V 모델: 개발 단계와 테스트 단계를 V자로 대응시킨 모델",
+      "tags": [
+        "V 모델",
+        "소프트웨어 생명 주기",
+        "테스트"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "다음이 설명하는 용어로 옳은 것은?",
+      "passage": "ㆍ오픈 소스를 기반으로 한 분산 컴퓨팅 플랫폼이다.\nㆍ일반 PC급 컴퓨터들로 가상화된 대형 스토리지를 형성한다.\nㆍ다양한 소스를 통해 생성된 빅데이터를 효율적으로 저장하고 처리한다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "하둡(Hadoop)"
+        },
+        {
+          "no": 2,
+          "text": "비컨(Beacon)"
+        },
+        {
+          "no": 3,
+          "text": "포스퀘어(Foursquare)"
+        },
+        {
+          "no": 4,
+          "text": "맴리스터(Memristor)"
+        }
+      ],
+      "answer": 1,
+      "explanation": "지문은 오픈 소스를 기반으로 한 분산 컴퓨팅 플랫폼인 하둡(Hadoop)에 대한 설명입니다. 하둡은 일반 PC급 컴퓨터들을 묶어 가상화된 대형 스토리지를 형성하고, 다양한 소스에서 생성된 빅데이터를 효율적으로 저장하고 처리합니다. 비컨은 무선 통신에서 주기적으로 신호를 보내 동기를 맞추고 시스템 정보를 전달하는 기술, 포스퀘어는 위치 기반 소셜 네트워크 서비스, 맴리스터는 전원이 끊겨도 직전 상태를 기억하는 소자입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "오픈 소스 기반 분산 컴퓨팅 플랫폼이자 빅데이터 저장·처리 기술인 하둡이 지문의 설명에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "비컨은 무선 통신에서 주기적으로 신호를 보내 동기를 맞추고 시스템 정보를 전달하는 기술이므로 지문과 다릅니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "포스퀘어는 방문 장소를 지도에 표시하고 정보를 남기는 위치 기반 SNS로, 분산 컴퓨팅 플랫폼이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "맴리스터는 메모리와 레지스터의 합성어로 전원이 끊겨도 직전 상태를 기억하는 소자이므로 지문과 무관합니다."
+        }
+      ],
+      "keyPoint": "하둡(Hadoop)의 분산 컴퓨팅·빅데이터 처리 특징",
+      "tags": [
+        "하둡",
+        "빅데이터",
+        "분산 컴퓨팅"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "SQL Injection 공격과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "SQL Injection은 임의로 작성한 SQL 구문을 애플리케이션에 삽입하는 공격 방식이다."
+        },
+        {
+          "no": 2,
+          "text": "SQL Injection 취약점이 발생하는 곳은 주로 웹 애플리케이션과 데이터베이스가 연동되는 부분이다."
+        },
+        {
+          "no": 3,
+          "text": "DBMS의 종류와 관계없이 SQL Injection 공격 기법은 모두 동일하다."
+        },
+        {
+          "no": 4,
+          "text": "로그인과 같이 웹에서 사용자의 입력 값을 받아 데이터베이스 SQL문으로 데이터를 요청하는 경우 SQL Injection을 수행할 수 있다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "SQL Injection은 응용 프로그램이 사용자 입력값을 검증하지 않고 그대로 SQL문에 넣을 때, 공격자가 임의의 SQL 구문을 삽입해 데이터베이스의 데이터를 조회하거나 변조하는 공격입니다. 주로 웹 애플리케이션과 데이터베이스가 연동되는 부분, 특히 로그인처럼 사용자 입력을 받아 SQL문으로 데이터를 요청하는 곳에서 발생합니다. 다만 DBMS마다 SQL 문법과 함수, 오류 처리 방식이 달라 공격 기법도 동일하지 않으므로, 종류와 관계없이 기법이 모두 같다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "임의로 작성한 SQL 구문을 애플리케이션에 삽입하는 공격이라는 설명은 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "웹 애플리케이션과 데이터베이스가 연동되는 부분이 주된 취약점 발생 지점이라는 설명은 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "DBMS의 종류에 따라 SQL 문법과 오류 처리 방식이 달라 공격 기법도 달라지므로, 모두 동일하다는 설명이 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "로그인 등 사용자 입력값이 SQL문으로 전달되는 경우에도 SQL Injection이 가능하므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "SQL Injection: 입력값 미검증으로 임의 SQL 삽입, DBMS별 기법 상이",
+      "tags": [
+        "SQL Injection",
+        "입력값 검증",
+        "웹 보안"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "소프트웨어 생명 주기 모형 중 Spiral Model에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "비교적 대규모 시스템에 적합하다."
+        },
+        {
+          "no": 2,
+          "text": "개발 순서는 계획 및 정의, 위험 분석, 공학적 개발, 고객 평가 순으로 진행된다."
+        },
+        {
+          "no": 3,
+          "text": "소프트웨어를 개발하면서 발생할 수 있는 위험을 관리하고 최소화하는 것을 목적으로 한다."
+        },
+        {
+          "no": 4,
+          "text": "계획, 설계, 개발, 평가의 개발 주기가 한 번만 수행된다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "나선형(Spiral) 모델은 계획 및 정의 → 위험 분석 → 공학적 개발 → 고객 평가의 네 단계를 나선을 그리며 반복 수행하는 점진적 개발 모델입니다. 비교적 대규모 시스템에 적합하고, 개발 과정에서 발생할 수 있는 위험을 관리하고 최소화하는 것을 목적으로 합니다. 계획·설계·개발·평가의 개발 주기를 한 번만 수행한다는 설명은 단계를 한 번씩만 거치는 폭포수 모델에 가까운 서술로, 주기를 반복하며 점진적으로 완성해 나가는 나선형 모델의 특징과 맞지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "나선형 모델이 비교적 대규모 시스템에 적합하다는 설명은 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "계획 및 정의, 위험 분석, 공학적 개발, 고객 평가 순으로 진행된다는 설명은 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "개발 중 발생할 수 있는 위험을 관리하고 최소화하는 것을 목적으로 한다는 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "나선형 모델은 개발 주기를 반복 수행하며 점진적으로 완성해 나가므로, 한 번만 수행된다는 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "나선형 모델: 위험 분석을 포함한 4단계를 반복 수행하는 점진적 모델",
+      "tags": [
+        "나선형 모델",
+        "위험 분석",
+        "점진적 개발"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 것은?",
+      "passage": "ㆍ네트워크상에 광채널 스위치의 이점인 고속 전송과 장거리 연결 및 멀티 프로토콜 기능을 활용\nㆍ각기 다른 운영체제를 가진 여러 기종들이 네트워크상에서 동일 저장장치의 데이터를 공유하게 함으로써, 여러 개의 저장장치나 백업 장비를 단일화시킨 시스템",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "SAN"
+        },
+        {
+          "no": 2,
+          "text": "MBR"
+        },
+        {
+          "no": 3,
+          "text": "NAC"
+        },
+        {
+          "no": 4,
+          "text": "NIC"
+        }
+      ],
+      "answer": 1,
+      "explanation": "지문은 SAN(Storage Area Network)에 대한 설명입니다. SAN은 광채널 스위치의 고속 전송·장거리 연결·멀티 프로토콜 기능을 활용해 서버와 저장장치를 전용 네트워크로 연결하고, 서로 다른 운영체제를 사용하는 여러 기종이 동일한 저장장치의 데이터를 공유하게 함으로써 여러 개의 저장장치와 백업 장비를 단일화합니다. MBR은 디스크의 파티션 정보와 부팅 코드를 담는 부트 레코드, NAC은 접속 단말의 보안 상태를 검사해 접근을 통제하는 솔루션, NIC은 컴퓨터를 네트워크에 연결하는 인터페이스 카드입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "광채널 스위치로 저장장치를 전용 네트워크에 묶어 여러 기종이 데이터를 공유하도록 단일화하는 시스템은 SAN입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "MBR(Master Boot Record)은 디스크 첫 섹터에 위치한 부팅·파티션 정보 영역으로 저장장치 통합 시스템과 무관합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "NAC(Network Access Control)은 단말의 보안 정책 준수 여부를 검사해 네트워크 접속을 통제하는 보안 솔루션입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "NIC(Network Interface Card)는 컴퓨터를 네트워크에 연결해 주는 하드웨어 장치입니다."
+        }
+      ],
+      "keyPoint": "SAN: 광채널 기반 저장장치 전용 네트워크로 스토리지 단일화",
+      "tags": [
+        "SAN",
+        "스토리지",
+        "광채널 스위치"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "각 사용자 인증의 유형에 대한 설명으로 가장 적절하지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "지식: 주체는 ‘그가 알고 있는 것을’ 보여주며 예시로는 패스워드, PIN 등이 있다."
+        },
+        {
+          "no": 2,
+          "text": "소유: 주체는 ‘그가 가지고 있는 것을’ 보여주며 예시로는 토큰, 스마트카드 등이 있다."
+        },
+        {
+          "no": 3,
+          "text": "존재: 주체는 ‘그를 대체하는 것을’ 보여주며 예시로는 패턴, QR 등이 있다."
+        },
+        {
+          "no": 4,
+          "text": "행위: 주체는 ‘그가 하는 것을’ 보여주며 예시로는 서명, 움직임, 음성 등이 있다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "사용자 인증은 인증 요인에 따라 지식(Knowledge), 소유(Possession), 존재(Existence), 행위(Behavior) 유형으로 나뉩니다. 지식은 주체가 ‘그가 알고 있는 것을’ 제시하는 방식으로 패스워드·PIN이, 소유는 ‘그가 가지고 있는 것을’ 제시하는 방식으로 토큰·스마트카드가 사용됩니다. 존재는 지문·홍채처럼 주체의 존재 자체를 확인하는 생체 정보를 사용하고, 행위는 서명·움직임·음성처럼 ‘그가 하는 것’을 제시하는 방식입니다. 따라서 존재 유형을 ‘그를 대체하는 것’으로 설명하고 패턴·QR을 예로 든 ③이 적절하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "지식 유형은 ‘그가 알고 있는 것을’ 제시하는 방식이며 패스워드와 PIN이 대표적이므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "소유 유형은 ‘그가 가지고 있는 것을’ 제시하는 방식이며 토큰과 스마트카드가 예시이므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "존재 유형은 지문·홍채 등 주체의 존재 자체를 확인하는 생체 정보를 사용하므로, ‘그를 대체하는 것’과 패턴·QR을 예로 든 설명이 적절하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "행위 유형은 ‘그가 하는 것’을 제시하는 방식이며 서명, 움직임, 음성이 예시이므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "인증 유형: 지식·소유·존재(생체)·행위",
+      "tags": [
+        "사용자 인증",
+        "생체 인증",
+        "인증 유형"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "소프트웨어 비용 산정 기법 중 개발 유형으로 Organic, Semi-Detach, Embedded로 구분되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "PUTNAM"
+        },
+        {
+          "no": 2,
+          "text": "COCOMO"
+        },
+        {
+          "no": 3,
+          "text": "FP"
+        },
+        {
+          "no": 4,
+          "text": "SLIM"
+        }
+      ],
+      "answer": 2,
+      "explanation": "COCOMO는 원시 코드 라인 수를 기준으로 소프트웨어 개발 비용을 산정하는 모델로, 프로젝트의 규모와 복잡도에 따라 Organic, Semi-detached, Embedded의 세 가지 개발 유형으로 구분하고 유형별로 다른 계수를 적용합니다. PUTNAM과 SLIM은 대형 프로젝트에서 개발 기간과 노력의 분포를 추정하는 생명 주기 모형이고, FP(Function Point)는 기능의 수와 복잡도로 규모를 산정하는 기법이므로 개발 유형 구분과 관련이 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "PUTNAM 모형은 Rayleigh-Norden 곡선을 이용해 개발 기간과 노력의 분포를 추정하는 생명 주기 모형입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "COCOMO는 Organic, Semi-detached, Embedded의 개발 유형 구분을 사용하는 비용 산정 모델입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "FP(Function Point) 기법은 입력·출력·질의·파일·인터페이스의 수와 가중치로 기능 규모를 산정하는 기법입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "SLIM은 Putnam 모형을 기초로 한 자동화 추정 도구로, 개발 유형 구분과는 무관합니다."
+        }
+      ],
+      "keyPoint": "COCOMO: Organic / Semi-detached / Embedded 유형별 비용 산정",
+      "tags": [
+        "COCOMO",
+        "비용 산정",
+        "개발 유형"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "정보시스템과 관련한 다음 설명에 해당하는 것은?",
+      "passage": "ㆍ각 시스템 간에 공유 디스크를 중심으로 클러스터링으로 엮어 다수의 시스템을 동시에 연결할 수 있다.\nㆍ조직, 기업의 기간 업무 서버 안정성을 높이기 위해 사용될 수 있다.\nㆍ여러 가지 방식으로 구현되며 2개의 서버를 연결하는 것으로 2개의 시스템이 각각 업무를 수행하도록 구현하는 방식이 널리 사용된다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "고가용성 솔루션(HACMP)"
+        },
+        {
+          "no": 2,
+          "text": "점대점 연결 방식(Point-to-Point Mode)"
+        },
+        {
+          "no": 3,
+          "text": "스턱스넷(Stuxnet)"
+        },
+        {
+          "no": 4,
+          "text": "루팅(Rooting)"
+        }
+      ],
+      "answer": 1,
+      "explanation": "지문은 고가용성 솔루션인 HACMP(High Availability Cluster Multi-Processing)에 대한 설명입니다. HACMP는 공유 디스크를 중심으로 여러 시스템을 클러스터로 엮어 동시에 연결하고, 조직·기업의 기간 업무 서버 안정성을 높이기 위해 사용되며, 2개의 서버를 연결해 각각 업무를 수행하도록 구현하는 점대점 방식이 널리 쓰입니다. 점대점 연결 방식은 두 지점을 직접 연결하는 통신 방식, 스턱스넷은 산업 제어 시스템을 공격한 악성 웜, 루팅은 최고 관리자 권한을 얻는 행위로 지문과 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "공유 디스크 기반 클러스터링으로 서버의 가용성과 안정성을 높이는 고가용성 솔루션이 지문의 설명에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "점대점 연결 방식은 두 지점을 전용 회선으로 직접 연결하는 통신 방식으로, 클러스터링을 통한 가용성 확보와는 다른 개념입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "스턱스넷(Stuxnet)은 산업 설비 제어 시스템을 감염시킨 악성 웜으로 고가용성 솔루션과 무관합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "루팅(Rooting)은 시스템의 최고 관리자 권한을 획득하는 행위를 말합니다."
+        }
+      ],
+      "keyPoint": "HACMP: 공유 디스크 클러스터링 기반 고가용성 솔루션",
+      "tags": [
+        "HACMP",
+        "고가용성",
+        "클러스터링"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "웹페이지에 악의적인 스크립트를 포함시켜 사용자 측에서 실행되게 유도함으로써, 정보 유출 등의 공격을 유발할 수 있는 취약점은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Ransomware"
+        },
+        {
+          "no": 2,
+          "text": "Pharming"
+        },
+        {
+          "no": 3,
+          "text": "Phishing"
+        },
+        {
+          "no": 4,
+          "text": "XSS"
+        }
+      ],
+      "answer": 4,
+      "explanation": "XSS(Cross Site Scripting)는 게시판·댓글처럼 사용자의 입력이 반영되는 웹페이지에 악의적인 스크립트를 삽입해, 그 페이지를 열람한 사용자의 브라우저에서 스크립트가 실행되도록 만드는 취약점입니다. 이를 통해 쿠키나 세션 정보, 개인정보를 탈취할 수 있습니다. 랜섬웨어는 파일을 암호화하고 복구 대가를 요구하는 악성코드, 파밍은 정상 주소를 입력해도 가짜 사이트로 접속하게 만드는 공격, 피싱은 금융기관 등을 사칭해 정보를 빼내는 공격입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "랜섬웨어는 파일을 암호화해 인질로 삼고 금전을 요구하는 악성코드로, 스크립트 삽입 취약점이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "파밍은 DNS나 호스트 파일을 조작해 사용자가 정상 주소를 입력해도 가짜 사이트로 접속하게 만드는 공격입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "피싱은 금융기관 등을 사칭한 이메일이나 링크로 사용자의 정보를 빼내는 사회공학적 공격입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "XSS는 웹페이지에 악성 스크립트를 삽입해 사용자 브라우저에서 실행되게 함으로써 정보 유출을 유발하는 취약점입니다."
+        }
+      ],
+      "keyPoint": "XSS: 사용자 입력을 통한 악성 스크립트 삽입·실행",
+      "tags": [
+        "XSS",
+        "웹 취약점",
+        "스크립트 삽입"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "상향식 비용 산정 기법 중 LOC(원시 코드 라인 수) 기법에서 예측치를 구하기 위해 사용하는 항목이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "낙관치"
+        },
+        {
+          "no": 2,
+          "text": "기대치"
+        },
+        {
+          "no": 3,
+          "text": "비관치"
+        },
+        {
+          "no": 4,
+          "text": "모형치"
+        }
+      ],
+      "answer": 4,
+      "explanation": "LOC 기법은 완성될 소프트웨어의 원시 코드 라인 수를 추정해 비용을 산정하는 상향식 기법으로, 낙관치·기대치·비관치의 세 값을 이용해 예측치를 계산합니다. 일반적으로 (낙관치 + 4×기대치 + 비관치) / 6 의 식으로 가중 평균을 구해 예측치를 산출합니다. 모형치는 이 계산식에 사용되지도 않고 LOC 기법의 추정 항목으로 분류되지도 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "낙관치는 최선의 경우를 가정한 코드 라인 수로 예측치 계산에 사용하는 항목입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "기대치는 가장 가능성이 높은 경우를 가정한 값으로 가중치 4를 적용해 사용하는 항목입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "비관치는 최악의 경우를 가정한 코드 라인 수로 예측치 계산에 사용하는 항목입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "모형치는 LOC 기법의 예측치 산출식과 추정 항목에 포함되지 않습니다."
+        }
+      ],
+      "keyPoint": "LOC 기법 예측치 = (낙관치 + 4×기대치 + 비관치) / 6",
+      "tags": [
+        "LOC",
+        "비용 산정",
+        "상향식 기법"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "전자 칩과 같은 소프트웨어 부품, 즉 블록(모듈)을 만들어서 끼워 맞추는 방법으로 소프트웨어를 완성시키는 재사용 방법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "합성 중심"
+        },
+        {
+          "no": 2,
+          "text": "생성 중심"
+        },
+        {
+          "no": 3,
+          "text": "분리 중심"
+        },
+        {
+          "no": 4,
+          "text": "구조 중심"
+        }
+      ],
+      "answer": 1,
+      "explanation": "소프트웨어 재사용 방법은 합성 중심(Composition-Based)과 생성 중심(Generation-Based)으로 나뉩니다. 합성 중심은 전자 칩과 같은 소프트웨어 부품, 즉 블록(모듈)을 만들어 끼워 맞추는 방식으로 소프트웨어를 완성하는 방법이고, 생성 중심은 추상화 수준이 높은 명세를 입력하면 전용 도구가 프로그램을 자동으로 생성하는 방법입니다. 분리 중심과 구조 중심은 재사용 방법의 분류에 없는 용어입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "블록(모듈) 단위의 부품을 조립하듯 끼워 맞춰 소프트웨어를 완성하는 방식은 합성 중심 재사용입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "생성 중심은 명세를 입력해 프로그램을 자동 생성하는 방식이므로 설명과 다릅니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "분리 중심은 소프트웨어 재사용 방법의 분류에 없는 용어입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "구조 중심은 재사용 방법의 분류가 아니며 구조적 방법론과 혼동한 보기입니다."
+        }
+      ],
+      "keyPoint": "재사용 방법: 합성 중심(블록 조립) vs 생성 중심(자동 생성)",
+      "tags": [
+        "소프트웨어 재사용",
+        "합성 중심"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 방법론의 테일러링(Tailoring)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "프로젝트 수행 시 예상되는 변화를 배제하고 신속히 진행하여야 한다."
+        },
+        {
+          "no": 2,
+          "text": "프로젝트에 최적화된 개발 방법론을 적용하기 위해 절차, 산출물 등을 적절히 변경하는 활동이다."
+        },
+        {
+          "no": 3,
+          "text": "관리 측면에서의 목적 중 하나는 최단 기간에 안정적인 프로젝트 진행을 위한 사전 위험을 식별하고 제거하는 것이다."
+        },
+        {
+          "no": 4,
+          "text": "기술적 측면에서의 목적 중 하나는 프로젝트에 최적화된 기술 요소를 도입하여 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것이다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "테일러링은 프로젝트의 규모와 특성, 환경에 맞게 개발 방법론의 절차와 산출물, 기법과 도구를 적절히 변경하는 활동입니다. 관리 측면에서는 최단 기간에 안정적으로 프로젝트를 진행하기 위한 사전 위험을 식별하고 제거하는 것을, 기술적 측면에서는 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것을 목적으로 합니다. 따라서 예상되는 변화를 배제하고 신속히 진행해야 한다는 설명은 변화를 수용하고 위험을 관리하려는 테일러링의 취지와 반대입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "테일러링은 예상되는 변화를 수용하고 위험을 관리하는 활동이므로, 변화를 배제한다는 설명이 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "프로젝트에 최적화된 방법론을 적용하기 위해 절차와 산출물을 변경하는 활동이라는 설명은 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "관리 측면의 목적으로 사전 위험을 식별하고 제거해 안정적으로 진행하는 것을 든 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "기술적 측면에서 최적의 기법과 도구를 사용하도록 하는 것을 목적으로 한다는 설명은 맞습니다."
+        }
+      ],
+      "keyPoint": "테일러링: 프로젝트 특성에 맞게 절차·산출물·기법을 조정",
+      "tags": [
+        "테일러링",
+        "개발 방법론"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "크래커가 침입하여 백도어를 만들어 놓거나, 설정 파일을 변경했을 때 분석하는 도구는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "trace"
+        },
+        {
+          "no": 2,
+          "text": "tripwire"
+        },
+        {
+          "no": 3,
+          "text": "udpdump"
+        },
+        {
+          "no": 4,
+          "text": "cron"
+        }
+      ],
+      "answer": 2,
+      "explanation": "트립와이어(tripwire)는 시스템의 주요 파일과 설정 파일에 대한 체크섬(해시) 정보를 데이터베이스로 보관하고 주기적으로 대조해, 침입자가 파일을 변경하거나 백도어를 심었는지 탐지하는 무결성 검사 도구입니다. trace는 프로그램 실행 경로를 추적하는 디버깅 도구, udpdump는 UDP 패킷을 캡처해 출력하는 도구, cron은 정해진 시각에 명령을 반복 실행하는 스케줄러입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "trace는 프로그램의 실행 흐름이나 시스템 호출을 추적해 디버깅에 사용하는 도구로, 파일 변조 탐지 도구가 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "tripwire는 파일의 해시값을 주기적으로 검사해 설정 파일 변조와 백도어 설치를 탐지하는 무결성 검사 도구입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "udpdump는 UDP 트래픽을 캡처해 보여주는 패킷 분석 도구입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "cron은 지정한 시각에 명령을 자동 실행하는 유닉스 스케줄러입니다."
+        }
+      ],
+      "keyPoint": "tripwire: 파일 해시 대조로 변조·백도어를 탐지하는 무결성 검사 도구",
+      "tags": [
+        "tripwire",
+        "무결성 검사",
+        "백도어"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "SSH(Secure Shell)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "SSH의 기본 네트워크 포트는 25번을 사용한다."
+        },
+        {
+          "no": 2,
+          "text": "전송되는 데이터는 암호화 된다."
+        },
+        {
+          "no": 3,
+          "text": "키를 통한 인증은 클라이언트의 공개키를 서버에 등록해야 한다."
+        },
+        {
+          "no": 4,
+          "text": "서로 연결되어 있는 컴퓨터 간 원격 명령 실행이나 셀 서비스 등을 수행한다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "SSH는 텔넷이나 FTP처럼 데이터를 평문으로 주고받던 원격 접속을 대체하기 위해 만들어진 보안 프로토콜로, 전송되는 데이터를 암호화하고 기본적으로 22번 포트를 사용합니다. 키 기반 인증에서는 클라이언트의 공개키를 서버에 등록해 두고, 서버가 클라이언트의 개인키로 서명된 값을 검증해 인증합니다. 원격 명령 실행과 셸 서비스, 파일 전송 등도 SSH를 통해 안전하게 수행할 수 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "SSH의 기본 포트는 22번이므로 25번이라는 설명이 틀렸습니다. 25번은 SMTP가 사용하는 포트입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "SSH는 전송 구간의 데이터를 암호화해 도청과 변조를 막으므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "공개키 인증에서는 클라이언트의 공개키를 서버에 등록해 두고 개인키로 서명을 검증하므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "SSH는 원격 명령 실행과 셸 서비스, 파일 전송 등을 안전하게 수행할 수 있게 해 주므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "SSH: 22번 포트, 전송 데이터 암호화, 공개키 기반 인증",
+      "tags": [
+        "SSH",
+        "22번 포트",
+        "공개키 인증"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "클라우드 기반 HSM(Cloud-based Hardware Security Module)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "클라우드(데이터센터) 기반 암호화 키 생성, 처리, 저장 등을 하는 보안 기기이다."
+        },
+        {
+          "no": 2,
+          "text": "국내에서는 공인인증제의 폐지와 전자서명법 개정을 추진하면서 클라우드 HSM 용어가 자주 등장하였다."
+        },
+        {
+          "no": 3,
+          "text": "클라우드에 인증서를 저장하므로 기존 HSM 기기나 휴대폰에 인증서를 저장해 다닐 필요가 없다."
+        },
+        {
+          "no": 4,
+          "text": "하드웨어가 아닌 소프트웨어적으로만 구현되기 때문에 소프트웨어식 암호 기술에 내재된 보안 취약점을 해결할 수 없다는 것이 주요 단점이다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "클라우드 기반 HSM은 암호화 키의 생성·처리·저장과 암호 연산을 클라우드 데이터센터에서 수행하는 보안 기기이자 서비스로, 국내에서도 공인인증제의 폐지와 전자서명법 개정을 추진하면서 그 용어가 자주 등장했습니다. 인증서를 클라우드에 저장하므로 기존 HSM 장비나 휴대폰에 인증서를 넣어 다닐 필요가 없습니다. ④는 클라우드 HSM을 소프트웨어로만 구현된 것으로 단정했는데, 클라우드 HSM은 하드웨어 보안 모듈의 기능을 클라우드 서비스 형태로 제공해 키를 안전하게 보호하는 것이 목적이므로 이 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "클라우드(데이터센터) 기반으로 암호화 키의 생성·처리·저장을 담당하는 보안 기기라는 설명은 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "공인인증제 폐지와 전자서명법 개정 논의와 함께 클라우드 HSM이라는 용어가 자주 등장했다는 설명은 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "인증서를 클라우드에 저장하므로 기존 HSM 기기나 휴대폰에 인증서를 저장해 다닐 필요가 없다는 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "클라우드 HSM은 하드웨어 보안 모듈의 기능을 클라우드 서비스로 제공해 키를 안전하게 보호하므로, 소프트웨어적으로만 구현되어 취약점을 해결할 수 없다는 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "클라우드 HSM: 암호화 키 생성·저장·처리를 클라우드에서 수행하는 보안 기기·서비스",
+      "tags": [
+        "클라우드 HSM",
+        "전자서명법",
+        "암호 키 관리"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

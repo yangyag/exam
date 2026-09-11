@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2025-2",
+    "year": 2025,
+    "round": 2,
+    "title": "2025년 2회 정보처리기사 필기",
+    "sourcePdf": "2025년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2025-2-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "트랜잭션의 특성 중 다음 설명에 해당하는 것은?",
+      "passage": "트랜잭션의 연산은 데이터베이스에 모두 반영되든지 아니면 전혀 반영되지 않아야 한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Durability" },
+        { "no": 2, "text": "Share" },
+        { "no": 3, "text": "Consistency" },
+        { "no": 4, "text": "Atomicity" }
+      ],
+      "answer": 4,
+      "explanation": "제시된 설명은 트랜잭션의 원자성(Atomicity)에 해당합니다. 원자성은 트랜잭션의 연산이 데이터베이스에 전부 반영되거나 전혀 반영되지 않아야 하는 특성으로, 흔히 all or nothing이라고 하며 수행 도중 장애가 발생하면 이미 처리한 내용까지 모두 취소됩니다. 지속성(Durability)은 완료된 트랜잭션의 결과가 영구적으로 보존되는 특성이고, 일관성(Consistency)은 수행 전후에 데이터베이스가 일관된 상태를 유지하는 특성입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "지속성은 커밋된 트랜잭션의 결과가 시스템 고장이 발생해도 영구적으로 보존되는 특성입니다." },
+        { "no": 2, "correct": false, "why": "Share는 트랜잭션의 ACID 특성에 포함되지 않는 용어로 제시된 설명과 관계가 없습니다." },
+        { "no": 3, "correct": false, "why": "일관성은 트랜잭션 수행 전후에 데이터베이스가 하나의 일관된 상태를 유지하는 특성입니다." },
+        { "no": 4, "correct": true, "why": "원자성은 연산이 모두 반영되거나 전혀 반영되지 않아야 하는 특성으로 제시된 설명과 일치합니다." }
+      ],
+      "keyPoint": "트랜잭션의 원자성(Atomicity) - 모두 반영되거나 전혀 반영되지 않음",
+      "tags": ["트랜잭션", "원자성", "ACID"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "애트리뷰트가 가질 수 있는 원자값들의 집합을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "도메인" },
+        { "no": 2, "text": "튜플" },
+        { "no": 3, "text": "엔티티" },
+        { "no": 4, "text": "다형성" }
+      ],
+      "answer": 1,
+      "explanation": "도메인(Domain)은 하나의 애트리뷰트가 가질 수 있는 원자값들의 집합을 의미합니다. 예를 들어 성별 애트리뷰트의 도메인은 남과 여이고, 도메인에 속한 값은 더 이상 논리적으로 쪼갤 수 없는 원자값이어야 합니다. 튜플은 릴레이션의 한 행을, 엔티티는 독립적으로 식별되는 개체를 가리키므로 값의 집합이라는 정의와는 다릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "애트리뷰트가 가질 수 있는 원자값들의 집합을 도메인이라고 합니다." },
+        { "no": 2, "correct": false, "why": "튜플은 릴레이션을 구성하는 각 행으로 애트리뷰트 값들의 모임입니다." },
+        { "no": 3, "correct": false, "why": "엔티티는 독립적으로 식별되는 개체를 뜻하며 값의 집합 자체를 가리키지 않습니다." },
+        { "no": 4, "correct": false, "why": "다형성은 객체지향 프로그래밍의 개념으로 애트리뷰트의 값 집합과는 무관합니다." }
+      ],
+      "keyPoint": "도메인 - 애트리뷰트가 가질 수 있는 원자값들의 집합",
+      "tags": ["도메인", "애트리뷰트", "릴레이션"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "데이터베이스 시스템에서 삽입, 갱신, 삭제 등의 이벤트가 발생할 때마다 관련 작업이 자동으로 수행되는 절차형 SQL은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "트리거(Trigger)" },
+        { "no": 2, "text": "무결성(Integrity)" },
+        { "no": 3, "text": "잠금(Lock)" },
+        { "no": 4, "text": "복귀(Rollback)" }
+      ],
+      "answer": 1,
+      "explanation": "트리거(Trigger)는 테이블에 삽입, 갱신, 삭제 이벤트가 발생할 때마다 자동으로 실행되는 절차형 SQL입니다. 데이터 변경 시 연쇄 작업을 수행하거나 무결성 규칙을 검사하는 용도로 사용됩니다. 무결성은 데이터 값이 정확하고 일관되도록 보장하는 제약 조건이고, 잠금은 동시 접근을 통제하는 병행 제어 기법이며, 복귀는 트랜잭션의 변경 내용을 취소하고 이전 상태로 되돌리는 연산입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "트리거는 특정 이벤트 발생 시 자동 수행되는 절차형 SQL로 제시된 설명과 일치합니다." },
+        { "no": 2, "correct": false, "why": "무결성은 데이터 값이 정확하고 일관되도록 유지하는 제약 조건을 가리킵니다." },
+        { "no": 3, "correct": false, "why": "잠금은 동시에 같은 데이터를 사용하지 못하도록 통제하는 병행 제어 기법입니다." },
+        { "no": 4, "correct": false, "why": "복귀는 트랜잭션의 변경 내용을 무효화하고 이전 상태로 되돌리는 작업입니다." }
+      ],
+      "keyPoint": "트리거(Trigger) - 삽입·갱신·삭제 이벤트 시 자동 실행되는 절차형 SQL",
+      "tags": ["트리거", "이벤트", "절차형 SQL"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "STUDENT 테이블에 독일어과 학생 50명, 중국어과 학생 30명, 영어영문학과 학생 50명의 정보가 저장되어 있을 때, 다음 두 SQL문의 실행 결과 튜플 수는? (단, DEPT 컬럼은 학과명)",
+      "passage": "ⓐ SELECT DEPT FROM STUDENT;\nⓑ SELECT DISTINCT DEPT FROM STUDENT;",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "ⓐ 3, ⓑ 3" },
+        { "no": 2, "text": "ⓐ 50, ⓑ 3" },
+        { "no": 3, "text": "ⓐ 130, ⓑ 3" },
+        { "no": 4, "text": "ⓐ 130, ⓑ 130" }
+      ],
+      "answer": 3,
+      "explanation": "ⓐ는 DISTINCT 없이 DEPT 컬럼의 모든 값을 검색하므로 저장된 학생 수인 50+30+50=130개의 튜플이 반환됩니다. ⓑ는 DISTINCT를 사용해 중복된 학과명을 하나로 합치므로 독일어과, 중국어과, 영어영문학과의 3개 튜플만 반환됩니다. 따라서 실행 결과 튜플 수는 ⓐ 130, ⓑ 3입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ⓐ에는 DISTINCT가 없어 중복이 제거되지 않으므로 3개가 될 수 없습니다." },
+        { "no": 2, "correct": false, "why": "저장된 학생 수가 130명이므로 중복을 제거하지 않는 ⓐ의 결과가 50일 수 없습니다." },
+        { "no": 3, "correct": true, "why": "중복을 허용한 ⓐ는 130개, DISTINCT를 적용한 ⓑ는 3개의 튜플을 반환합니다." },
+        { "no": 4, "correct": false, "why": "ⓑ는 DISTINCT로 중복 학과명을 제거하므로 3개가 반환되어 130이 될 수 없습니다." }
+      ],
+      "keyPoint": "DISTINCT를 통한 중복 제거와 SELECT 결과 튜플 수 계산",
+      "tags": ["DISTINCT", "SELECT", "SQL"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "관계대수의 순수 관계 연산자가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Select" },
+        { "no": 2, "text": "Cartesian Product" },
+        { "no": 3, "text": "Division" },
+        { "no": 4, "text": "Project" }
+      ],
+      "answer": 2,
+      "explanation": "관계대수는 일반 집합 연산과 순수 관계 연산으로 나뉘며, 순수 관계 연산자에는 Select, Project, Join, Division이 있습니다. 이들은 릴레이션의 구조를 다루기 위해 고안된 연산입니다. Cartesian Product는 합집합, 교집합, 차집합과 함께 일반 집합 연산에 속하므로 순수 관계 연산자가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Select는 조건을 만족하는 튜플만 추출하는 순수 관계 연산자입니다." },
+        { "no": 2, "correct": true, "why": "카티션 프로덕트는 두 릴레이션의 모든 조합을 만드는 일반 집합 연산에 속합니다." },
+        { "no": 3, "correct": false, "why": "Division은 순수 관계 연산자에 포함되는 연산입니다." },
+        { "no": 4, "correct": false, "why": "Project는 지정한 애트리뷰트만 추출하는 순수 관계 연산자입니다." }
+      ],
+      "keyPoint": "순수 관계 연산자(Select, Project, Join, Division)와 일반 집합 연산의 구분",
+      "tags": ["관계대수", "순수 관계 연산", "카티션 프로덕트"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "다음에 해당하는 함수 종속의 추론 규칙은?",
+      "passage": "X → Y이고 Y → Z이면 X → Z이다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "분해 규칙" },
+        { "no": 2, "text": "이행 규칙" },
+        { "no": 3, "text": "반사 규칙" },
+        { "no": 4, "text": "결합 규칙" }
+      ],
+      "answer": 2,
+      "explanation": "X → Y와 Y → Z로부터 X → Z를 이끌어내는 추론 규칙은 이행 규칙(Transitivity)입니다. 암스트롱의 공리에 속하는 규칙으로, 함수 종속을 연쇄적으로 연결해 새로운 종속을 추론할 수 있게 해 줍니다. 분해 규칙은 X → YZ로부터 X → Y와 X → Z를 유도하고, 결합 규칙은 그 반대 방향의 유도를 담당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "분해 규칙은 X → YZ이면 X → Y, X → Z가 성립한다는 규칙입니다." },
+        { "no": 2, "correct": true, "why": "X → Y와 Y → Z로부터 X → Z를 유도하는 규칙이 이행 규칙입니다." },
+        { "no": 3, "correct": false, "why": "반사 규칙은 Y가 X의 부분집합이면 X → Y가 성립한다는 규칙입니다." },
+        { "no": 4, "correct": false, "why": "결합 규칙은 X → Y와 X → Z이면 X → YZ가 성립한다는 규칙입니다." }
+      ],
+      "keyPoint": "암스트롱의 공리 - 이행 규칙(Transitivity)",
+      "tags": ["함수 종속", "이행 규칙", "암스트롱"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "뷰(View)의 장점이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "뷰 자체로 인덱스를 가짐" },
+        { "no": 2, "text": "데이터 보안 용이" },
+        { "no": 3, "text": "논리적 독립성 제공" },
+        { "no": 4, "text": "사용자 데이터 관리 용이" }
+      ],
+      "answer": 1,
+      "explanation": "뷰는 사용자에게 필요한 데이터만 보여 주어 보안을 강화하고, 논리적 독립성을 제공하며, 사용자별 데이터 관리를 쉽게 해 주는 장점이 있습니다. 그러나 뷰는 기본 테이블의 데이터를 저장하지 않는 가상 테이블이므로 자체적으로 인덱스를 가질 수 없습니다. 인덱스는 기본 테이블이나 클러스터에 생성합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "뷰는 가상 테이블이라 인덱스를 가질 수 없으므로 장점에 해당하지 않습니다." },
+        { "no": 2, "correct": false, "why": "필요한 열과 행만 노출하므로 데이터 보안에 유리하다는 설명이 맞습니다." },
+        { "no": 3, "correct": false, "why": "기본 테이블 구조가 바뀌어도 응용 프로그램의 영향을 줄이는 논리적 독립성을 제공합니다." },
+        { "no": 4, "correct": false, "why": "사용자마다 필요한 뷰를 정의해 데이터 관리를 단순화할 수 있습니다." }
+      ],
+      "keyPoint": "뷰는 저장 공간을 차지하지 않아 인덱스를 가질 수 없음",
+      "tags": ["뷰", "VIEW", "논리적 독립성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "데이터베이스 설계 시 물리적 설계 단계에서 수행하는 사항이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "저장 레코드 양식 설계" },
+        { "no": 2, "text": "레코드 집중의 분석 및 설계" },
+        { "no": 3, "text": "접근 경로 설계" },
+        { "no": 4, "text": "목표 DBMS에 맞는 스키마 설계" }
+      ],
+      "answer": 4,
+      "explanation": "물리적 설계 단계에서는 저장 레코드 양식 설계, 레코드 집중의 분석 및 설계, 접근 경로 설계처럼 실제 저장 구조와 관련된 작업을 수행합니다. 목표 DBMS에 맞는 스키마 설계는 논리적 설계 단계의 작업으로, 개념 스키마를 특정 DBMS가 지원하는 논리적 데이터 모델로 변환하는 과정입니다. 따라서 보기 4번은 물리적 설계 단계의 작업이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "저장 레코드 양식 설계는 물리적 설계 단계에서 수행하는 대표적인 작업입니다." },
+        { "no": 2, "correct": false, "why": "레코드 집중의 분석 및 설계는 물리적 설계 단계의 작업입니다." },
+        { "no": 3, "correct": false, "why": "접근 경로 설계는 저장 구조와 함께 다루는 물리적 설계 단계의 작업입니다." },
+        { "no": 4, "correct": true, "why": "목표 DBMS에 맞는 스키마 설계는 논리적 설계 단계에 해당하므로 물리적 설계 작업이 아닙니다." }
+      ],
+      "keyPoint": "논리적 설계(목표 DBMS 스키마 변환)와 물리적 설계(저장 구조·접근 경로)의 구분",
+      "tags": ["물리적 설계", "논리적 설계", "데이터베이스 설계"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "릴레이션에 있는 모든 튜플에 대해 유일성은 만족시키지만 최소성은 만족시키지 못하는 키는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "후보키" },
+        { "no": 2, "text": "기본키" },
+        { "no": 3, "text": "슈퍼키" },
+        { "no": 4, "text": "외래키" }
+      ],
+      "answer": 3,
+      "explanation": "슈퍼키는 튜플을 유일하게 식별할 수 있는 속성들의 집합이지만 불필요한 속성이 포함될 수 있어 최소성은 만족하지 못합니다. 후보키는 유일성과 최소성을 모두 만족하는 속성들의 집합이고, 기본키는 후보키 중에서 대표로 선택된 키입니다. 외래키는 다른 릴레이션의 기본키를 참조하는 속성으로 유일성·최소성과는 다른 개념입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "후보키는 유일성과 최소성을 모두 만족하므로 최소성을 만족하지 못한다는 설명과 다릅니다." },
+        { "no": 2, "correct": false, "why": "기본키는 후보키 중에서 선택되므로 최소성도 함께 만족합니다." },
+        { "no": 3, "correct": true, "why": "슈퍼키는 유일성만 만족하고 최소성은 만족하지 못하는 키입니다." },
+        { "no": 4, "correct": false, "why": "외래키는 다른 릴레이션의 기본키를 참조하는 속성으로 제시된 정의에 해당하지 않습니다." }
+      ],
+      "keyPoint": "슈퍼키(유일성만)와 후보키(유일성+최소성)의 차이",
+      "tags": ["슈퍼키", "후보키", "키의 종류"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "정규화의 필요성으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "데이터 구조의 안정성 최대화" },
+        { "no": 2, "text": "중복 데이터의 활성화" },
+        { "no": 3, "text": "수정, 삭제 시 이상 현상의 최소화" },
+        { "no": 4, "text": "테이블 불일치 위험의 최소화" }
+      ],
+      "answer": 2,
+      "explanation": "정규화는 중복을 제거해 데이터 구조의 안정성을 높이고, 삽입·삭제·갱신 시 발생하는 이상 현상과 테이블 불일치 위험을 최소화하는 것을 목적으로 합니다. 중복 데이터를 활성화하는 것은 정규화의 목적과 정반대이므로, 정규화는 오히려 중복 데이터를 제거합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "데이터 구조의 안정성을 최대화하는 것은 정규화의 목적에 해당합니다." },
+        { "no": 2, "correct": true, "why": "정규화는 중복 데이터를 제거하는 기법이므로 중복을 활성화한다는 설명은 목적과 반대입니다." },
+        { "no": 3, "correct": false, "why": "삽입·삭제·갱신 이상 현상을 최소화하는 것은 정규화의 대표적인 목적입니다." },
+        { "no": 4, "correct": false, "why": "테이블 간 불일치 위험을 줄이는 것도 정규화의 목적입니다." }
+      ],
+      "keyPoint": "정규화는 중복 제거를 통해 이상 현상과 불일치 위험을 줄인다",
+      "tags": ["정규화", "이상 현상", "중복 제거"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "릴레이션 R1에 속한 애튜리뷰트의 조합인 외래키를 변경하려면 이를 참조하고 있는 릴레이션 R2의 기본키도 변경해야 하는데 이를 무엇이라 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "정보 무결성" },
+        { "no": 2, "text": "고유 무결성" },
+        { "no": 3, "text": "널 제약성" },
+        { "no": 4, "text": "참조 무결성" }
+      ],
+      "answer": 4,
+      "explanation": "참조 무결성은 외래키 값이 참조하는 릴레이션의 기본키 값과 일치하거나 널이어야 한다는 제약 조건입니다. 외래키를 변경할 때 이를 참조하는 릴레이션의 값도 함께 변경해야 하는 것이 바로 참조 무결성이 요구하는 관계입니다. 널 제약성은 특정 속성에 널 값을 허용하지 않는 제약이고, 정보 무결성과 고유 무결성은 무결성 제약 조건의 공식 분류에 포함되지 않는 용어입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "정보 무결성은 무결성 제약 조건의 분류에 포함되지 않는 용어입니다." },
+        { "no": 2, "correct": false, "why": "고유 무결성 역시 무결성 제약 조건의 분류에 포함되지 않는 용어입니다." },
+        { "no": 3, "correct": false, "why": "널 제약성은 속성에 널 값을 허용하지 않는 제약으로 외래키 참조 관계와는 다릅니다." },
+        { "no": 4, "correct": true, "why": "외래키와 이를 참조하는 릴레이션 값의 일치를 요구하는 제약이 참조 무결성입니다." }
+      ],
+      "keyPoint": "참조 무결성 - 외래키 값은 참조 대상 릴레이션의 기본키 값과 일치하거나 널",
+      "tags": ["참조 무결성", "외래키", "무결성 제약 조건"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "정규화를 거치지 않아 발생하게 되는 이상(anomaly) 현상의 종류에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "삭제 이상이란 릴레이션에서 한 튜플을 삭제할 때 의도와는 상관없는 값들로 함께 삭제되는 연쇄 삭제 현상이다." },
+        { "no": 2, "text": "삽입 이상이란 릴레이션에서 데이터를 삽입할 때 의도와는 상관없이 원하지 않는 값들로 함께 삽입되는 현상이다." },
+        { "no": 3, "text": "갱신 이상이란 릴레이션에서 튜플에 있는 속성값을 갱신할 때 일부 튜플의 정보만 갱신되어 정보에 모순이 생기는 현상이다." },
+        { "no": 4, "text": "종속 이상이란 하나의 릴레이션에 하나 이상의 함수적 종속성이 존재하는 현상이다." }
+      ],
+      "answer": 4,
+      "explanation": "이상 현상에는 튜플을 삭제할 때 발생하는 삭제 이상, 데이터를 삽입할 때 발생하는 삽입 이상, 속성값을 갱신할 때 발생하는 갱신 이상이 있습니다. 세 가지 모두 함수 종속으로 인해 생기는 문제입니다. 함수적 종속성이 존재하는 것 자체는 정규화의 대상이 되는 조건일 뿐 이상 현상의 종류가 아니므로, '종속 이상'이라는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "튜플 삭제 시 의도와 무관한 값까지 삭제되는 연쇄 삭제 현상이 삭제 이상이 맞습니다." },
+        { "no": 2, "correct": false, "why": "데이터 삽입 시 원하지 않는 값까지 함께 삽입되는 현상이 삽입 이상이 맞습니다." },
+        { "no": 3, "correct": false, "why": "속성값 갱신 시 일부 튜플만 갱신되어 정보에 모순이 생기는 현상이 갱신 이상이 맞습니다." },
+        { "no": 4, "correct": true, "why": "이상 현상의 종류는 삭제·삽입·갱신 이상 세 가지뿐이므로 종속 이상이라는 설명은 틀렸습니다." }
+      ],
+      "keyPoint": "이상 현상의 종류 - 삭제 이상, 삽입 이상, 갱신 이상",
+      "tags": ["이상 현상", "anomaly", "정규화"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "개체-관계 모델(E-R)의 그래픽 표현으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "개체 타입 - 사각형" },
+        { "no": 2, "text": "속성 - 원형" },
+        { "no": 3, "text": "관계 타입 - 마름모" },
+        { "no": 4, "text": "연결 - 삼각형" }
+      ],
+      "answer": 4,
+      "explanation": "E-R 다이어그램에서는 개체 타입을 사각형, 관계 타입을 마름모, 속성을 원(타원)으로 표현합니다. 개체와 관계, 속성을 잇는 연결에는 선을 사용하므로 연결을 삼각형으로 표현한다는 설명은 옳지 않습니다. 속성 중에서 기본키에 해당하는 속성은 타원 안의 이름에 밑줄을 그어 구분합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "개체 타입을 사각형으로 표현하는 것은 올바른 표기법입니다." },
+        { "no": 2, "correct": false, "why": "속성을 원형으로 표현하는 것은 올바른 표기법입니다." },
+        { "no": 3, "correct": false, "why": "관계 타입을 마름모로 표현하는 것은 올바른 표기법입니다." },
+        { "no": 4, "correct": true, "why": "연결은 삼각형이 아니라 선으로 표현하므로 이 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "E-R 다이어그램 표기법 - 사각형(개체), 마름모(관계), 원(속성), 선(연결)",
+      "tags": ["E-R 모델", "E-R 다이어그램", "개체-관계"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "DDL(Data Define Language)의 명령어 중 스키마, 도메인, 인덱스 등을 정의할 때 사용하는 SQL문은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ALTER" },
+        { "no": 2, "text": "SELECT" },
+        { "no": 3, "text": "CREATE" },
+        { "no": 4, "text": "INSERT" }
+      ],
+      "answer": 3,
+      "explanation": "DDL은 CREATE, ALTER, DROP 등으로 구성되며, 그중 CREATE는 스키마, 도메인, 테이블, 뷰, 인덱스 같은 데이터베이스 객체를 새로 정의할 때 사용합니다. ALTER는 이미 정의된 객체의 구조를 변경하는 명령이고, SELECT와 INSERT는 데이터를 조회하거나 삽입하는 데이터 조작어(DML)에 속합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ALTER는 기존 객체의 구조를 변경하는 명령으로 새로운 정의에는 사용하지 않습니다." },
+        { "no": 2, "correct": false, "why": "SELECT는 데이터를 검색하는 DML 명령으로 객체 정의와는 관계가 없습니다." },
+        { "no": 3, "correct": true, "why": "CREATE는 스키마, 도메인, 인덱스 등의 객체를 새로 정의하는 DDL 명령입니다." },
+        { "no": 4, "correct": false, "why": "INSERT는 테이블에 행을 추가하는 DML 명령입니다." }
+      ],
+      "keyPoint": "DDL의 CREATE - 스키마, 도메인, 테이블, 뷰, 인덱스 정의",
+      "tags": ["DDL", "CREATE", "스키마"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "로킹 단위(Locking Granularity)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "로킹 단위가 크면 병행성 수준이 낮아진다." },
+        { "no": 2, "text": "로킹 단위가 크면 병행 제어 기법이 복잡해진다." },
+        { "no": 3, "text": "로킹 단위가 작으면 로크(lock)의 수가 적어진다." },
+        { "no": 4, "text": "로킹은 파일 단위로 이루어지며, 레코드와 필드는 로킹 단위가 될 수 없다." }
+      ],
+      "answer": 1,
+      "explanation": "로킹 단위는 한 번에 잠글 수 있는 데이터의 크기를 의미합니다. 로킹 단위가 커지면 한 트랜잭션이 잠그는 범위가 넓어져 동시에 접근할 수 있는 트랜잭션이 줄어들므로 병행성 수준이 낮아지고, 대신 로크의 수가 줄어 병행 제어는 단순해집니다. 반대로 로킹 단위가 작아지면 병행성 수준은 높아지지만 로크의 수가 많아져 제어가 복잡해집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "로킹 단위가 커지면 동시 접근이 제한되어 병행성 수준이 낮아집니다." },
+        { "no": 2, "correct": false, "why": "로킹 단위가 커지면 로크의 수가 줄어 병행 제어 기법은 오히려 단순해집니다." },
+        { "no": 3, "correct": false, "why": "로킹 단위가 작아지면 로크의 수는 오히려 많아집니다." },
+        { "no": 4, "correct": false, "why": "로킹 단위는 데이터베이스, 파일, 레코드, 필드 등 여러 수준으로 설정할 수 있습니다." }
+      ],
+      "keyPoint": "로킹 단위가 커지면 병행성 수준은 낮아지고 로크 수는 줄어든다",
+      "tags": ["로킹 단위", "병행 제어", "Locking Granularity"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "테이블 R과 S에 대한 SQL문이 실행되었을 때, 실행 결과로 옳은 것은?",
+      "passage": "<테이블 R>\nA | B\n1 | A\n3 | B\n\n<테이블 S>\nA | B\n1 | A\n2 | B\n\nSELECT A FROM R\nUNION ALL\nSELECT A FROM S;",
+      "passageKind": "table",
+      "choices": [
+        { "no": 1, "text": "1" },
+        { "no": 2, "text": "3\n2" },
+        { "no": 3, "text": "1\n3" },
+        { "no": 4, "text": "1\n3\n1\n2" }
+      ],
+      "answer": 4,
+      "explanation": "UNION ALL은 두 SELECT 결과를 중복을 제거하지 않고 순서대로 이어 붙이는 집합 연산자입니다. R의 A 속성 값은 1, 3이고 S의 A 속성 값은 1, 2이므로 실행 결과는 1, 3, 1, 2의 네 개 튜플이 됩니다. 만약 UNION을 사용했다면 중복된 1이 제거되어 1, 3, 2의 세 개 튜플만 남습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "R과 S의 A 값 1, 3, 1, 2 가운데 하나만 남는 결과는 나올 수 없습니다." },
+        { "no": 2, "correct": false, "why": "R의 A 값 1이 누락되고 3, 2만 남은 결과이므로 옳지 않습니다." },
+        { "no": 3, "correct": false, "why": "S의 A 값 2가 빠져 있고 중복된 1이 그대로 남아 있어 옳지 않습니다." },
+        { "no": 4, "correct": true, "why": "R의 1, 3 뒤에 S의 1, 2가 이어져 1, 3, 1, 2가 출력되며 중복도 제거되지 않습니다." }
+      ],
+      "keyPoint": "UNION ALL은 중복을 제거하지 않고 두 SELECT 결과를 그대로 이어 붙인다",
+      "tags": ["UNION ALL", "집합 연산자", "SQL"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "관계해석에서 ‘모든 것에 대하여’의 의미를 나타내는 논리 기호는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "∃" },
+        { "no": 2, "text": "∈" },
+        { "no": 3, "text": "∀" },
+        { "no": 4, "text": "⊂" }
+      ],
+      "answer": 3,
+      "explanation": "∀는 ‘모든 것에 대하여’를 뜻하는 전칭 정량자로, 관계해석에서 모든 튜플이 주어진 조건을 만족함을 나타낼 때 사용합니다. ∃는 ‘존재하는 것이 있다’를 뜻하는 존재 정량자이고, ∈은 어떤 값이 집합의 원소임을, ⊂는 부분집합 관계를 나타내는 기호입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "∃는 ‘존재한다’를 뜻하는 존재 정량자로 모든 것에 대한 의미가 아닙니다." },
+        { "no": 2, "correct": false, "why": "∈은 값이 집합의 원소임을 나타내는 기호입니다." },
+        { "no": 3, "correct": true, "why": "∀가 ‘모든 것에 대하여’를 나타내는 전칭 정량자입니다." },
+        { "no": 4, "correct": false, "why": "⊂는 부분집합 관계를 나타내는 기호입니다." }
+      ],
+      "keyPoint": "전칭 정량자 ∀(모든 것에 대하여)와 존재 정량자 ∃(존재한다)",
+      "tags": ["관계해석", "전칭 정량자", "∀"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "DELETE 명령에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "테이블의 행을 삭제할 때 사용한다." },
+        { "no": 2, "text": "WHERE 조건절이 없는 DELETE 명령을 수행하면 DROP TABLE 명령을 수행했을 때와 동일한 효과를 얻을 수 있다." },
+        { "no": 3, "text": "SQL을 사용 용도에 따라 분류할 경우 DML에 해당한다." },
+        { "no": 4, "text": "기본 사용 형식은 “DELETE FROM 테이블 [WHERE 조건];” 이다." }
+      ],
+      "answer": 2,
+      "explanation": "DELETE는 WHERE 조건절이 없으면 테이블의 모든 행을 삭제하지만 테이블의 구조는 그대로 남습니다. DROP TABLE은 테이블의 정의와 구조까지 모두 제거하며 삭제 후 ROLLBACK으로 복구할 수 없다는 점에서 DELETE와 분명히 다릅니다. 따라서 두 명령이 동일한 효과를 얻는다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DELETE는 테이블의 행을 삭제하는 명령이라는 설명이 맞습니다." },
+        { "no": 2, "correct": true, "why": "조건 없는 DELETE도 테이블 구조는 남으므로 DROP TABLE과 동일한 효과가 아닙니다." },
+        { "no": 3, "correct": false, "why": "DELETE는 데이터를 조작하는 DML에 해당한다는 설명이 맞습니다." },
+        { "no": 4, "correct": false, "why": "DELETE는 FROM 절과 선택적인 WHERE 조건절을 사용하는 형식이 맞습니다." }
+      ],
+      "keyPoint": "DELETE는 행만 삭제하고 테이블 구조는 남기므로 DROP TABLE과 다르다",
+      "tags": ["DELETE", "DROP TABLE", "DML"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "관계 데이터 모델에서 릴레이션(Relation)에 포함되어 있는 튜플(Tuple)의 수를 무엇이라고 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Degree" },
+        { "no": 2, "text": "Cardinality" },
+        { "no": 3, "text": "Attribute" },
+        { "no": 4, "text": "Cartesian product" }
+      ],
+      "answer": 2,
+      "explanation": "릴레이션에 포함된 튜플의 수는 카디널리티(Cardinality)라고 합니다. 디그리(Degree)는 릴레이션을 구성하는 애트리뷰트의 수를 의미하며, 애트리뷰트는 릴레이션의 열에 해당하는 속성입니다. 카티션 프로덕트는 두 릴레이션의 모든 튜플 조합을 만드는 연산으로 튜플 수와는 다른 개념입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Degree는 릴레이션을 구성하는 애트리뷰트의 수를 나타냅니다." },
+        { "no": 2, "correct": true, "why": "릴레이션에 포함된 튜플의 수를 카디널리티라고 합니다." },
+        { "no": 3, "correct": false, "why": "Attribute는 릴레이션의 열에 해당하는 속성을 가리킵니다." },
+        { "no": 4, "correct": false, "why": "카티션 프로덕트는 두 릴레이션의 모든 조합을 만드는 연산입니다." }
+      ],
+      "keyPoint": "카디널리티(튜플 수)와 디그리(애트리뷰트 수)의 구분",
+      "tags": ["카디널리티", "Degree", "릴레이션"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-2-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "SQL의 명령을 사용 용도에 따라 DDL, DML, DCL로 구분할 경우, 그 성격이 나머지 셋과 다른 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SELECT" },
+        { "no": 2, "text": "UPDATE" },
+        { "no": 3, "text": "INSERT" },
+        { "no": 4, "text": "GRANT" }
+      ],
+      "answer": 4,
+      "explanation": "SELECT, UPDATE, INSERT는 데이터를 조회·수정·삽입하는 데이터 조작어(DML)에 속하는 명령입니다. 반면 GRANT는 데이터베이스 사용자에게 권한을 부여하거나 회수하는 데이터 제어어(DCL)에 속하므로 성격이 다릅니다. DCL에는 GRANT와 REVOKE가 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SELECT는 데이터를 검색하는 DML에 해당합니다." },
+        { "no": 2, "correct": false, "why": "UPDATE는 데이터를 변경하는 DML에 해당합니다." },
+        { "no": 3, "correct": false, "why": "INSERT는 데이터를 삽입하는 DML에 해당합니다." },
+        { "no": 4, "correct": true, "why": "GRANT는 권한을 부여하는 DCL로 나머지 세 명령과 성격이 다릅니다." }
+      ],
+      "keyPoint": "DML(SELECT·INSERT·UPDATE·DELETE)과 DCL(GRANT·REVOKE)의 구분",
+      "tags": ["DCL", "GRANT", "DML"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

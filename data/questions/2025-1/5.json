@@ -1,0 +1,1475 @@
+{
+  "exam": {
+    "id": "2025-1",
+    "year": 2025,
+    "round": 1,
+    "title": "2025년 1회 정보처리기사 필기",
+    "sourcePdf": "2025년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2025-1-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "데이터의 송수신 사실을 증명할 수 있도록 송수신 증거를 제공하는 보안 요소는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "기밀성"
+        },
+        {
+          "no": 2,
+          "text": "무결성"
+        },
+        {
+          "no": 3,
+          "text": "가용성"
+        },
+        {
+          "no": 4,
+          "text": "부인 방지"
+        }
+      ],
+      "answer": 4,
+      "explanation": "부인 방지는 데이터의 송수신 사실을 증명할 수 있는 증거를 제공하여, 송신자나 수신자가 나중에 자신의 행위를 부인하지 못하게 막는 보안 요소입니다. 기밀성은 인가된 사용자만 정보 내용을 볼 수 있도록 하고, 무결성은 인가된 사용자만 데이터를 수정할 수 있도록 하며, 가용성은 인가된 사용자가 필요할 때 정보와 자원을 사용할 수 있도록 보장합니다. 따라서 송수신 사실의 증명, 즉 부인 방지와 관련된 요구사항을 만족하는 것은 ④번입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "무결성은 데이터가 인가된 사용자에 의해서만 수정되도록 보장하는 요소로, 송수신 사실의 증명과는 직접 관련이 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "무결성은 데이터의 정확성과 완전성을 보장하는 요소이므로 송수신 증거 제공과는 거리가 있습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "가용성은 인가된 사용자가 필요할 때 정보 자원을 사용할 수 있게 하는 요소로, 부인 방지와는 다른 개념입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "부인 방지는 송수신 사실을 증명하는 증거를 제공하여 발신자나 수신자가 행위를 부인하지 못하게 하므로 정답입니다."
+        }
+      ],
+      "keyPoint": "부인 방지(Non-repudiation)의 정의",
+      "tags": [
+        "부인 방지",
+        "보안 요소"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "악성코드의 유형 중 다른 컴퓨터의 취약점을 이용하여 스스로 전파되거나 메일로 전파되며 스스로를 증식하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Worm"
+        },
+        {
+          "no": 2,
+          "text": "Rogue Ware"
+        },
+        {
+          "no": 3,
+          "text": "Adware"
+        },
+        {
+          "no": 4,
+          "text": "Reflection Attack"
+        }
+      ],
+      "answer": 1,
+      "explanation": "웜(Worm)은 네트워크로 연결된 다른 컴퓨터의 취약점을 이용해 스스로를 복제하고 전파하며, 메일 등을 통해서도 퍼져 나가는 자기 복제형 악성코드입니다. 로그웨어(Rogue Ware)는 유용한 프로그램으로 위장해 설치를 유도한 뒤 금품을 요구하는 가짜 소프트웨어이고, 애드웨어(Adware)는 사용자에게 광고를 지속적으로 노출하는 프로그램입니다. 리플렉션 공격(Reflection Attack)은 제3자의 시스템을 반사체로 악용해 공격 대상에게 대량의 트래픽을 보내는 서비스 거부 공격 기법이므로 자기 증식과는 무관합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "웜은 다른 컴퓨터의 취약점을 이용해 스스로 복제·전파하며 스스로를 증식하므로 정답입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "로그웨어는 정상 프로그램으로 위장해 설치를 유도하는 가짜 소프트웨어로, 스스로 증식하지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "애드웨어는 광고를 강제로 노출하는 프로그램으로 자기 복제 기능이 없습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "리플렉션 공격은 반사체를 이용한 서비스 거부 공격 기법이지 악성코드의 자기 증식 방식이 아닙니다."
+        }
+      ],
+      "keyPoint": "웜(Worm)의 자기 복제·전파 특성",
+      "tags": [
+        "웜",
+        "악성코드"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "다음 중 소프트웨어 비용 산정에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "소프트웨어의 규모, 인력 등의 요소를 기반으로 개발에 필요한 비용을 예측하는 것이다."
+        },
+        {
+          "no": 2,
+          "text": "소프트웨어 비용 산정 기법에는 상향식, 하향식, 혼합식 기법이 있다."
+        },
+        {
+          "no": 3,
+          "text": "소프트웨어 비용을 높게 산정할 경우 예산 낭비와 일의 효율성 저하를 초래할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "소프트웨어 비용 결정 요소에는 프로젝트 요소, 자원 요소, 생산성 요소가 있다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 비용 산정은 개발 규모와 인력, 자원 등의 요소를 근거로 개발에 필요한 비용을 예측하는 활동이며, 비용을 과대 산정하면 예산 낭비와 인력의 효율성 저하가 생깁니다. 비용 결정 요소는 프로젝트 요소(제품 복잡도, 신뢰도, 데이터 크기), 자원 요소, 생산성 요소로 구분되므로 ①·③·④는 옳은 설명입니다. 다만 상향식·하향식·혼합식은 산정 기법의 종류를 나눈 것이 아니라 산정을 진행하는 방식(접근)을 구분한 표현으로, 실제 비용 산정 기법에는 전문가 감정·델파이 기법과 LOC, 기능 점수(FP), COCOMO, Putnam 모형 등이 있으므로 ②가 옳지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "규모와 인력 등의 요소로 개발에 필요한 비용을 예측한다는 설명은 비용 산정의 정의에 부합합니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "상향식·하향식·혼합식은 비용 산정을 진행하는 방식의 구분이고, 실제 기법으로는 델파이·LOC·기능 점수·COCOMO·Putnam 등이 있으므로 기법의 종류를 잘못 제시한 이 설명이 옳지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "비용을 과대 산정하면 예산 낭비와 일의 효율성 저하를 초래할 수 있다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "프로젝트 요소, 자원 요소, 생산성 요소는 소프트웨어 비용 결정 요소의 표준적인 분류이므로 옳습니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 비용 산정 기법과 비용 결정 요소",
+      "tags": [
+        "비용 산정",
+        "비용 결정 요소"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 이를 관리하는 활동으로서, 프로젝트를 성공시키기 위하여 위험 요소를 사전에 예측, 대비하는 모든 기술과 활동을 포함하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Critical Path Method"
+        },
+        {
+          "no": 2,
+          "text": "Risk Analysis"
+        },
+        {
+          "no": 3,
+          "text": "Work Breakdown Structure"
+        },
+        {
+          "no": 4,
+          "text": "Waterfall Model"
+        }
+      ],
+      "answer": 2,
+      "explanation": "위험 분석(Risk Analysis)은 프로젝트에 내재된 위험 요소를 미리 인식하고 그 영향을 분석해 대응 방안을 세우는 위험 관리 활동을 가리킵니다. 즉 위험 요소를 사전에 예측하고 대비하는 모든 기술과 활동을 포함하므로 프로젝트 성공 가능성을 높이는 핵심 관리 기법입니다. CPM은 임계 경로를 구해 일정을 관리하는 기법, WBS는 업무를 계층적으로 분해해 정의하는 작업 분류 체계, 폭포수 모형은 개발 생명주기 모형이므로 위험 관리 활동과는 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CPM은 임계 경로를 계산해 프로젝트 일정을 관리하는 기법으로 위험 관리 활동이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "위험 분석은 위험 요소를 인식·분석하고 사전에 예측·대비하는 활동을 통칭하므로 정답입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "WBS는 프로젝트 업무를 계층적으로 분해하는 작업 분류 체계로 위험 관리와는 다릅니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "폭포수 모형은 요구 분석부터 유지보수까지 단계를 순차적으로 진행하는 개발 생명주기 모형입니다."
+        }
+      ],
+      "keyPoint": "위험 관리(Risk Analysis)의 개념",
+      "tags": [
+        "위험 분석",
+        "프로젝트 관리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "국내 IT 서비스 경쟁력 강화를 목표로 개발되었으며 인프라 제어 및 관리 환경, 실행 환경, 개발 환경, 서비스 환경, 운영 환경으로 구성되어 있는 개방형 클라우드 컴퓨팅 플랫폼은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "N2OS"
+        },
+        {
+          "no": 2,
+          "text": "PaaS-TA"
+        },
+        {
+          "no": 3,
+          "text": "KAWS"
+        },
+        {
+          "no": 4,
+          "text": "Metaverse"
+        }
+      ],
+      "answer": 2,
+      "explanation": "PaaS-TA는 국내에서 주도해 개발한 개방형 클라우드 컴퓨팅 플랫폼(PaaS)으로, 인프라 제어 및 관리 환경, 실행 환경, 개발 환경, 서비스 환경, 운영 환경의 다섯 가지 환경으로 구성되어 있습니다. 애플리케이션 개발과 배포, 운영에 필요한 플랫폼 기능을 개방형으로 제공해 국내 IT 서비스 경쟁력 강화를 목표로 합니다. 나머지 보기는 클라우드 인프라 관리 도구나 가상 공간 서비스에 해당하므로 국내에서 개발된 개방형 클라우드 플랫폼을 가리키지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "N2OS는 클라우드 인프라 자원 관리 도구로, 제시된 다섯 가지 환경 구성을 갖춘 개방형 클라우드 플랫폼이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "PaaS-TA는 국내에서 개발된 개방형 클라우드 컴퓨팅 플랫폼으로 인프라 제어·관리, 실행, 개발, 서비스, 운영 환경으로 구성되므로 정답입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "KAWS는 국내 클라우드 관련 인프라·서비스 요소로, 문제에서 설명하는 개방형 PaaS 플랫폼을 지칭하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "메타버스는 현실과 가상이 결합된 3차원 가상 공간 서비스로 클라우드 컴퓨팅 플랫폼과는 다른 개념입니다."
+        }
+      ],
+      "keyPoint": "개방형 클라우드 플랫폼 PaaS-TA의 구성",
+      "tags": [
+        "PaaS-TA",
+        "클라우드 컴퓨팅"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "다음 암호 알고리즘 중 성격이 다른 하나는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "MD4"
+        },
+        {
+          "no": 2,
+          "text": "MD5"
+        },
+        {
+          "no": 3,
+          "text": "SHA-1"
+        },
+        {
+          "no": 4,
+          "text": "AES"
+        }
+      ],
+      "answer": 4,
+      "explanation": "MD4, MD5, SHA-1은 임의 길이의 입력을 고정된 길이의 값으로 압축해 무결성 검증에 사용하는 해시(단방향) 알고리즘입니다. 반면 AES는 128비트 블록을 처리하는 대칭키 블록 암호 알고리즘으로, 암호화와 복호화에 같은 키를 사용해 데이터를 실제로 암호화합니다. 따라서 해시 알고리즘이 아닌 AES가 성격이 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "MD4는 대표적인 해시 알고리즘으로 다른 보기들과 같은 성격입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "MD5는 128비트 해시값을 생성하는 해시 알고리즘으로 다른 보기들과 같은 성격입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "SHA-1은 160비트 해시값을 생성하는 해시 알고리즘으로 다른 보기들과 같은 성격입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "AES는 대칭키 블록 암호 알고리즘이므로 해시 알고리즘인 나머지 보기와 성격이 다릅니다."
+        }
+      ],
+      "keyPoint": "해시 알고리즘과 대칭키 블록 암호의 구분",
+      "tags": [
+        "해시 함수",
+        "AES"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "최대 홉수를 15로 제한한 라우팅 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "RIP"
+        },
+        {
+          "no": 2,
+          "text": "OSPF"
+        },
+        {
+          "no": 3,
+          "text": "Static"
+        },
+        {
+          "no": 4,
+          "text": "EIGRP"
+        }
+      ],
+      "answer": 1,
+      "explanation": "RIP은 거리 벡터 알고리즘을 사용하는 라우팅 프로토콜로, 목적지까지 거쳐 가는 라우터 수인 홉 카운트를 메트릭으로 삼습니다. 홉 카운트를 최대 15까지로 제한하고 16은 도달할 수 없는 경로로 간주해, 라우팅 루프를 방지합니다. OSPF는 링크 상태 알고리즘을 사용하는 프로토콜이고 EIGRP는 하이브리드 방식이며, Static은 관리자가 직접 경로를 지정하는 정적 라우팅입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "RIP은 홉 카운트를 메트릭으로 사용하며 최대 홉수를 15로 제한하므로 정답입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "OSPF는 링크 상태 알고리즘을 사용하는 프로토콜로 홉 수 제한 방식이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Static은 관리자가 수동으로 경로를 설정하는 정적 라우팅으로 라우팅 프로토콜이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "EIGRP는 거리 벡터와 링크 상태를 결합한 하이브리드 프로토콜로 홉 수 15 제한과는 무관합니다."
+        }
+      ],
+      "keyPoint": "RIP의 홉 카운트 제한(최대 15)",
+      "tags": [
+        "RIP",
+        "라우팅"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "COCOMO 모델의 프로젝트 유형으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Organic"
+        },
+        {
+          "no": 2,
+          "text": "Semi-detached"
+        },
+        {
+          "no": 3,
+          "text": "Embedded"
+        },
+        {
+          "no": 4,
+          "text": "Sequential"
+        }
+      ],
+      "answer": 4,
+      "explanation": "COCOMO 모델은 Boehm이 제안한 원시 코드 라인 수 기반의 비용 산정 모형으로, 프로젝트 규모와 복잡도에 따라 조직형(Organic), 중간형(Semi-detached), 내장형(Embedded)으로 유형을 구분합니다. 따라서 Organic, Semi-detached, Embedded는 모두 COCOMO의 프로젝트 유형입니다. Sequential은 개발 단계를 순차적으로 진행한다는 의미의 표현일 뿐 COCOMO에서 정의한 프로젝트 유형이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Organic은 소규모·단순한 프로젝트를 가리키는 COCOMO의 프로젝트 유형입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Semi-detached는 중간 규모 프로젝트를 가리키는 COCOMO의 프로젝트 유형입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Embedded는 대규모·복잡한 프로젝트를 가리키는 COCOMO의 프로젝트 유형입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Sequential은 COCOMO에서 정의한 프로젝트 유형이 아니므로 거리가 먼 항목입니다."
+        }
+      ],
+      "keyPoint": "COCOMO 모델의 프로젝트 유형 3가지",
+      "tags": [
+        "COCOMO",
+        "비용 산정"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "개인키 암호화 기법으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "DES"
+        },
+        {
+          "no": 2,
+          "text": "ARIA"
+        },
+        {
+          "no": 3,
+          "text": "SEED"
+        },
+        {
+          "no": 4,
+          "text": "RSA"
+        }
+      ],
+      "answer": 4,
+      "explanation": "개인키(대칭키) 암호화 기법은 암호화와 복호화에 같은 비밀키를 사용하는 방식으로, DES와 ARIA, SEED가 여기에 해당합니다. RSA는 소인수분해의 어려움을 이용해 공개키와 개인키를 한 쌍으로 사용하는 공개키(비대칭키) 암호 알고리즘입니다. 따라서 개인키 암호화 기법으로 옳지 않은 것은 RSA입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "DES는 56비트 키를 사용하는 대칭키 블록 암호이므로 개인키 암호화 기법입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "ARIA는 국내에서 개발된 128비트 블록 대칭키 암호 알고리즘입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "SEED는 국내에서 개발된 128비트 블록 대칭키 암호 알고리즘입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "RSA는 공개키와 개인키를 함께 사용하는 비대칭키 암호 알고리즘이므로 개인키 암호화 기법이 아닙니다."
+        }
+      ],
+      "keyPoint": "대칭키(개인키) 암호와 비대칭키(공개키) 암호의 구분",
+      "tags": [
+        "개인키 암호",
+        "RSA"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "다음 중 소프트웨어 개발 보안 생명주기 방법론이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "CLASP"
+        },
+        {
+          "no": 2,
+          "text": "SDL"
+        },
+        {
+          "no": 3,
+          "text": "PIMS"
+        },
+        {
+          "no": 4,
+          "text": "Seven Touchpoints"
+        }
+      ],
+      "answer": 3,
+      "explanation": "소프트웨어 개발 보안 생명주기 방법론은 개발 전 과정에 보안 활동을 접목해 취약점을 줄이는 방법론으로, CLASP, SDL, Seven Touchpoints가 대표적입니다. CLASP는 활동 중심의 개발 보안 방법론이고, SDL은 마이크로소프트가 제시한 보안 개발 생명주기이며, Seven Touchpoints는 일곱 가지 보안 실천 항목을 개발 단계에 적용하는 방법론입니다. PIMS는 개인정보보호 관리체계 인증 제도로 개인정보를 안전하게 관리하기 위한 관리적·기술적 기준을 제시할 뿐, 개발 보안 생명주기 방법론이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CLASP는 개발 단계별 보안 활동을 정의한 소프트웨어 개발 보안 방법론입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "SDL은 마이크로소프트의 보안 개발 생명주기 방법론으로 대표적인 개발 보안 방법론입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "PIMS는 개인정보보호 관리체계 인증 제도이므로 개발 보안 생명주기 방법론이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Seven Touchpoints는 일곱 가지 보안 실천 항목으로 구성된 개발 보안 방법론입니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 개발 보안 생명주기 방법론의 종류",
+      "tags": [
+        "개발 보안",
+        "PIMS"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "간트 차트(Gantt Chart)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "프로젝트를 이루는 소작업 별로 언제 시작되고 언제 끝나야 하는지를 한 눈에 볼 수 있도록 도와준다."
+        },
+        {
+          "no": 2,
+          "text": "자원 배치 계획에 유용하게 사용된다."
+        },
+        {
+          "no": 3,
+          "text": "CPM 네트워크로부터 만드는 것이 가능하다."
+        },
+        {
+          "no": 4,
+          "text": "수평 막대의 길이는 각 작업(Task)에 필요한 인원수를 나타낸다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "간트 차트는 프로젝트를 구성하는 작업별 일정을 수평 막대 형태로 나열해 각 작업의 시작 시점과 종료 시점을 한눈에 파악할 수 있게 해 주는 일정 관리 도구입니다. 자원 배치 계획에 유용하고 CPM 네트워크로부터 작성할 수 있으며, 이정표(마일스톤)를 표시해 진행 상황을 관리하기도 합니다. 수평 막대의 길이는 각 작업에 필요한 기간(소요 시간)을 나타내는 것이지 투입 인원수를 나타내는 것이 아니므로 ④가 틀린 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "작업별 시작과 종료 시점을 한눈에 볼 수 있게 한다는 설명은 간트 차트의 기능에 부합합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "간트 차트는 자원 배치 계획과 일정 조정에 유용하게 사용됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "간트 차트는 CPM 네트워크를 바탕으로 작성할 수 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "수평 막대의 길이는 작업에 소요되는 기간을 나타내며 인원수를 나타내지 않으므로 틀린 설명입니다."
+        }
+      ],
+      "keyPoint": "간트 차트 막대 길이의 의미(기간)",
+      "tags": [
+        "간트 차트",
+        "일정 관리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "다음에서 설명하는 소프트웨어 정의 기술(SDx)는?",
+      "passage": "ㆍ가상화를 적용하여 필요한 공간만큼 나눠 사용할 수 있도록 하며 서버 가상화와 유사함\nㆍ컴퓨팅 소프트웨어로 규정하는 데이터 스토리지 체계이며, 일정 조직 내 여러 스토리지를 하나처럼 관리하고 운용하는 컴퓨터 이용 환경\nㆍ스토리지 자원을 효율적으로 나누어 쓰는 방법으로 이해할 수 있음",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "Software Defined Storage"
+        },
+        {
+          "no": 2,
+          "text": "Distribution Oriented Storage"
+        },
+        {
+          "no": 3,
+          "text": "Network Architected Storage"
+        },
+        {
+          "no": 4,
+          "text": "Systematic Network Storage"
+        }
+      ],
+      "answer": 1,
+      "explanation": "제시된 설명은 가상화를 적용해 필요한 만큼 스토리지 공간을 나눠 쓰고, 조직 내 여러 스토리지를 하나처럼 관리·운용하는 기술을 가리킵니다. 이는 스토리지 자원을 소프트웨어로 제어하는 소프트웨어 정의 스토리지(SDS, Software Defined Storage)의 개념입니다. 나머지 보기는 소프트웨어 정의 기술 계열의 표준 명칭이 아니며, SDx에는 스토리지 외에도 SDN(네트워크), SDC(컴퓨팅), SDDC(데이터센터) 등이 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "Software Defined Storage는 스토리지 자원을 소프트웨어로 가상화해 유연하게 관리하는 기술로 정답입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Distribution Oriented Storage는 소프트웨어 정의 기술 계열의 표준 명칭이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Network Architected Storage는 소프트웨어 정의 스토리지를 가리키는 명칭이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Systematic Network Storage은 스토리지 자원을 소프트웨어로 정의하는 기술의 명칭이 아닙니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 정의 스토리지(SDS)의 개념",
+      "tags": [
+        "소프트웨어 정의 기술",
+        "SDS"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "대칭 암호 알고리즘과 비대칭 암호 알고리즘에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "대칭 암호 알고리즘은 비교적 실행 속도가 빠르기 때문에 다양한 암호의 핵심 함수로 사용될 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "대칭 암호 알고리즘은 비밀키 전달을 위한 키 교환이 필요하지 않아 암호화 및 복호화의 속도가 빠르다."
+        },
+        {
+          "no": 3,
+          "text": "비대칭 암호 알고리즘은 자신만이 보관하는 비밀키를 이용하여 인증, 전자서명 등에 적용이 가능하다."
+        },
+        {
+          "no": 4,
+          "text": "대표적인 대칭키 암호 알고리즘으로는 AES, IDEA 등이 있다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "대칭 암호 알고리즘은 암호화와 복호화에 같은 비밀키를 사용하므로 연산이 단순해 속도가 빠르지만, 송신자와 수신자가 같은 키를 공유해야 하므로 키를 안전하게 전달하기 위한 키 교환 대책이 반드시 필요합니다. 따라서 비밀키 전달을 위한 키 교환이 필요하지 않다는 ②의 설명은 틀렸습니다. 비대칭 암호 알고리즘은 자신만이 보관하는 개인키로 전자서명과 인증에 활용할 수 있고, AES와 IDEA는 대표적인 대칭키 암호 알고리즘입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "대칭 암호 알고리즘은 속도가 빠르고 해시·난수 생성 등 다른 암호의 핵심 함수로 활용되므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "대칭 암호 알고리즘도 송수신자가 같은 키를 공유해야 하므로 안전한 키 교환이 필요하므로 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "비대칭 암호 알고리즘은 개인키로 전자서명과 인증에 적용할 수 있으므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "AES와 IDEA는 대표적인 대칭키 암호 알고리즘이므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "대칭키 암호의 키 교환 필요성",
+      "tags": [
+        "대칭키 암호",
+        "비대칭키 암호"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "나선형(Spiral) 모형의 주요 태스크에 해당되지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "버전 관리"
+        },
+        {
+          "no": 2,
+          "text": "위험 분석"
+        },
+        {
+          "no": 3,
+          "text": "개발"
+        },
+        {
+          "no": 4,
+          "text": "평가"
+        }
+      ],
+      "answer": 1,
+      "explanation": "나선형 모형은 Boehm이 제안한 점진적 개발 모형으로, 계획 수립, 위험 분석, 개발 및 검증, 고객 평가의 네 가지 주요 태스크를 나선을 따라 반복 수행합니다. 위험 분석을 각 반복마다 수행해 위험이 큰 부분을 먼저 해결하는 것이 이 모형의 핵심 특징입니다. 버전 관리는 산출물의 변경 이력을 관리하는 형상 관리 활동에 해당하므로 나선형 모형의 주요 태스크가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "버전 관리는 형상 관리 활동으로 나선형 모형의 주요 태스크가 아니므로 정답입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "위험 분석은 나선형 모형의 네 가지 주요 태스크 중 하나입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "개발(개발 및 검증)은 나선형 모형의 주요 태스크 중 하나입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "평가(고객 평가)는 나선형 모형의 주요 태스크 중 하나입니다."
+        }
+      ],
+      "keyPoint": "나선형 모형의 4대 주요 태스크",
+      "tags": [
+        "나선형 모형",
+        "위험 분석"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "소프트웨어 재공학의 주요 활동 중 기존 소프트웨어를 다른 운영체제나 하드웨어 환경에서 사용할 수 있도록 변환하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "역공학"
+        },
+        {
+          "no": 2,
+          "text": "분석"
+        },
+        {
+          "no": 3,
+          "text": "재구성"
+        },
+        {
+          "no": 4,
+          "text": "이식"
+        }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 재공학은 기존 소프트웨어를 개선하거나 재사용하기 위한 활동으로, 분석, 재구성, 역공학, 이식 등이 있습니다. 이식(Migration)은 기존 소프트웨어를 다른 운영체제나 하드웨어 환경에서도 사용할 수 있도록 변환하는 활동입니다. 역공학은 실행 코드로부터 설계 정보를 추출하는 활동, 분석은 대상 소프트웨어를 이해하고 개선점을 파악하는 활동, 재구성은 내부 구조를 개선해 유지보수성을 높이는 활동입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "역공학은 소스 코드나 실행 코드로부터 설계 정보를 복원하는 활동입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "분석은 재공학 대상 소프트웨어를 이해하고 개선점을 도출하는 활동입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "재구성은 코드의 내부 구조를 개선해 유지보수성을 높이는 활동입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "이식은 소프트웨어를 다른 운영체제나 하드웨어 환경에서 사용할 수 있도록 변환하는 활동이므로 정답입니다."
+        }
+      ],
+      "keyPoint": "재공학 활동 중 이식(Migration)의 정의",
+      "tags": [
+        "소프트웨어 재공학",
+        "이식"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "강제 접근통제(MAC)의 보안 모델 중 서로 이해 충돌 관계에 있는 객체 간의 정보 접근을 통제하는 모델은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "벨 라파듈라 모델(Bell-LaPadula Model)"
+        },
+        {
+          "no": 2,
+          "text": "만리장성 모델(Chinese Wall Model)"
+        },
+        {
+          "no": 3,
+          "text": "비바 무결성 모델(Biba Integrity Model)"
+        },
+        {
+          "no": 4,
+          "text": "클락-윌슨 무결성 모델(Clark-Wilson Integrity Model)"
+        }
+      ],
+      "answer": 2,
+      "explanation": "만리장성 모델은 서로 경쟁 관계에 놓인 조직이나 객체처럼 이해 충돌(Conflict of Interest) 관계에 있는 정보 간의 접근을 차단하는 보안 모델입니다. 한 회사의 정보에 접근한 사용자는 경쟁사 정보에 접근할 수 없도록 통제해 상업적 정보의 이해 충돌을 방지합니다. 벨 라파듈라 모델은 기밀성 보장을 위한 모델, 비바 모델과 클락-윌슨 모델은 데이터 무결성 보장을 위한 모델로 이해 충돌 통제와는 목적이 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "벨 라파듈라 모델은 기밀성 보호를 목적으로 하며 이해 충돌 관계의 접근 통제와는 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "만리장성 모델은 이해 충돌 관계에 있는 객체 간의 정보 접근을 통제하는 모델이므로 정답입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "비바 무결성 모델은 데이터의 무결성 보장을 목적으로 하는 모델입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "클락-윌슨 무결성 모델은 상업적 환경에서 데이터 무결성을 보장하기 위한 모델입니다."
+        }
+      ],
+      "keyPoint": "만리장성 모델과 이해 충돌 방지",
+      "tags": [
+        "만리장성 모델",
+        "강제 접근통제"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 방법론의 테일러링(Tailoring)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "프로젝트 수행 시 예상되는 변화를 배제하고 신속히 진행하여야 한다."
+        },
+        {
+          "no": 2,
+          "text": "프로젝트에 최적화된 개발 방법론을 적용하기 위해 절차, 산출물 등을 적절히 변경하는 활동이다."
+        },
+        {
+          "no": 3,
+          "text": "관리 측면에서의 목적 중 하나는 최단 기간에 안정적인 프로젝트 진행을 위한 사전 위험을 식별하고 제거하는 것이다."
+        },
+        {
+          "no": 4,
+          "text": "기술적 측면에서의 목적 중 하나는 프로젝트에 최적화된 기술 요소를 도입하여 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것이다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "테일러링은 프로젝트의 규모·특성·환경에 맞추어 개발 방법론의 절차와 산출물, 기법, 도구를 적절히 변경해 최적화하는 활동입니다. 관리 측면에서는 최단 기간에 안정적으로 프로젝트를 진행하기 위한 사전 위험 식별과 제거를 목적으로 하고, 기술적 측면에서는 프로젝트 특성에 맞는 최적의 기법과 도구를 쓰는 것을 목적으로 합니다. 따라서 예상되는 변화를 배제하고 신속히 진행해야 한다는 ①은 테일러링의 목적과 정반대이므로 틀린 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "테일러링은 변화를 배제하는 것이 아니라 예상되는 변화를 수용하고 대응하도록 방법론을 조정하는 활동이므로 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "적용할 방법론의 절차와 산출물을 프로젝트에 맞게 변경한다는 설명은 테일러링의 정의에 부합합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "사전 위험을 식별·제거해 안정적으로 프로젝트를 진행하는 것은 테일러링의 관리 측면 목적입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "프로젝트 특성에 맞는 최적의 기법과 도구를 도입하는 것은 테일러링의 기술적 측면 목적입니다."
+        }
+      ],
+      "keyPoint": "테일러링의 목적(관리·기술 측면)",
+      "tags": [
+        "테일러링",
+        "개발 방법론"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "Public 메소드로부터 Private 배열이 반환될 경우 발생하는 문제점으로 가장 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "메소드로의 접근이 불가능해진다."
+        },
+        {
+          "no": 2,
+          "text": "배열의 주소가 외부로 공개되어 외부에서 접근할 수 있게 된다."
+        },
+        {
+          "no": 3,
+          "text": "시스템의 내부 정보가 노출된다."
+        },
+        {
+          "no": 4,
+          "text": "동기화 오류가 발생한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "배열은 참조형 객체이므로 public 메소드가 private 배열을 그대로 반환하면 배열의 주소(참조)가 외부에 공개됩니다. 외부에서는 반환받은 참조를 통해 배열의 각 요소를 읽고 수정할 수 있으므로, private으로 선언해 정보 은닉을 의도한 캡슐화가 무너집니다. 이를 막으려면 배열의 복사본(방어적 복사)을 만들어 반환해야 하며, 메소드 접근이 불가능해지거나 동기화 오류가 생기는 것은 이 상황의 문제점이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "public 메소드는 외부에서 호출할 수 있으므로 접근이 불가능해진다는 설명은 옳지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "반환된 배열의 참조가 외부에 공개되어 외부에서 요소를 변경할 수 있게 되므로 정답입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "내부 정보 노출은 결과적으로 생길 수 있는 부수적 문제이며, 배열 참조가 그대로 공개된다는 점이 핵심 문제입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "이 상황은 다중 스레드 동기화와 무관하므로 동기화 오류가 발생한다는 설명은 옳지 않습니다."
+        }
+      ],
+      "keyPoint": "참조형 필드 반환 시 캡슐화 훼손",
+      "tags": [
+        "캡슐화",
+        "정보 은닉"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "해쉬(Hash) 기법에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "임의의 길이의 입력 데이터를 받아 고정된 길이의 해쉬값으로 변환한다."
+        },
+        {
+          "no": 2,
+          "text": "주로 공개키 암호화 방식에서 키 생성을 위해 사용한다."
+        },
+        {
+          "no": 3,
+          "text": "대표적인 해쉬 알고리즘으로 HAVAL, SHA-1 등이 있다."
+        },
+        {
+          "no": 4,
+          "text": "해쉬 함수는 일방향 함수(One-way function)이다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "해시 함수는 임의 길이의 입력 데이터를 고정된 길이의 해시값으로 변환하며, 출력에서 입력을 되돌릴 수 없는 일방향 함수입니다. 이러한 특성 때문에 데이터의 무결성 검증과 메시지 인증, 전자서명 등에 사용되고 HAVAL, SHA-1 등이 대표적인 알고리즘입니다. 공개키 암호 방식의 키 생성은 소인수분해나 이산대수의 어려움을 이용하는 비대칭키 알고리즘이 담당하므로, 해시가 주로 키 생성을 위해 쓰인다는 ②가 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "임의 길이 입력을 고정 길이 해시값으로 변환한다는 설명은 해시 함수의 정의에 부합합니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "해시는 무결성 검증과 전자서명 등에 사용되고, 키 생성은 RSA 같은 공개키 암호 알고리즘이 담당하므로 틀린 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "HAVAL과 SHA-1은 대표적인 해시 알고리즘입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "해시 함수는 출력으로부터 입력을 알아내기 어려운 일방향 함수입니다."
+        }
+      ],
+      "keyPoint": "해시 함수의 일방향성과 용도",
+      "tags": [
+        "해시 함수",
+        "일방향 함수"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-1-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "DoS(Denial of Service) 공격과 관련한 내용으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Ping of Death 공격은 정상 크기보다 큰 ICMP 패킷을 작은 조각(Fragment)으로 쪼개어 공격 대상이 조각화된 패킷을 처리하게 만드는 공격 방법이다."
+        },
+        {
+          "no": 2,
+          "text": "Smurf 공격은 멀티캐스트(Multicast)를 활용하여 공격 대상이 네트워크의 임의의 시스템에 패킷을 보내게 만드는 공격이다."
+        },
+        {
+          "no": 3,
+          "text": "SYN Flooding은 존재하지 않는 클라이언트가 서버별로 한정된 접속 가능 공간에 접속한 것처럼 속여 다른 사용자가 서비스를 이용하지 못하게 하는 것이다."
+        },
+        {
+          "no": 4,
+          "text": "Land 공격은 패킷 전송 시 출발지 IP 주소와 목적지 IP 주소 값을 똑같이 만들어서 공격 대상에게 보내는 공격 방법이다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "Smurf 공격은 출발지 IP 주소를 공격 대상의 주소로 위장한 ICMP 에코 요청을 네트워크의 브로드캐스트 주소로 보내, 다수의 호스트가 공격 대상에게 응답 패킷을 한꺼번에 보내게 만드는 공격입니다. 즉 멀티캐스트를 활용하는 것이 아니라 브로드캐스트를 악용하므로 ②가 틀린 설명입니다. Ping of Death는 규정 크기보다 큰 ICMP 패킷을 조각내어 대상을 마비시키고, SYN Flooding은 접속 대기 큐를 소진시키며, Land 공격은 출발지와 목적지 IP 주소를 같게 위조해 보내는 공격입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Ping of Death는 큰 ICMP 패킷을 조각화해 공격 대상이 조각난 패킷을 처리하도록 만드는 공격이므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Smurf 공격은 멀티캐스트가 아니라 브로드캐스트 주소를 악용해 다수의 응답을 유도하는 공격이므로 틀린 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "SYN Flooding은 존재하지 않는 클라이언트로 위장해 접속 대기 공간을 소진시켜 정상 사용자의 접속을 막는 공격입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Land 공격은 출발지와 목적지 IP 주소를 동일하게 만들어 공격 대상에게 보내는 공격입니다."
+        }
+      ],
+      "keyPoint": "Smurf 공격의 브로드캐스트 악용",
+      "tags": [
+        "DoS 공격",
+        "Smurf"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년1회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

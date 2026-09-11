@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2025-1",
+    "year": 2025,
+    "round": 1,
+    "title": "2025년 1회 정보처리기사 필기",
+    "sourcePdf": "2025년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2025-1-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "IP 주소체계와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "IPv6의 패킷 헤더는 32 octet의 고정된 길이를 가진다." },
+        { "no": 2, "text": "IPv6는 주소 자동설정(Auto Configuration) 기능을 통해 손쉽게 이용자의 단말을 네트워크에 접속시킬 수 있다." },
+        { "no": 3, "text": "IPv4는 호스트 주소를 자동으로 설정하며 유니캐스트(Unicast)를 지원한다." },
+        { "no": 4, "text": "IPv4는 클래스별로 네트워크와 호스트 주소의 길이가 다르다." }
+      ],
+      "answer": 1,
+      "explanation": "IPv6의 기본 헤더는 40 octet의 고정된 길이를 가지며, 32 octet은 IPv4 헤더의 기본 길이입니다. IPv6는 주소 자동설정 기능으로 이용자의 단말을 손쉽게 네트워크에 접속시킬 수 있고, IPv4는 클래스별로 네트워크 주소와 호스트 주소의 길이가 달라지며 유니캐스트 전송을 지원합니다. 따라서 IPv6의 헤더 길이를 32 octet으로 본 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "IPv6 헤더는 40 octet 고정 길이이고 32 octet은 IPv4 헤더의 기본 길이이므로 이 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "IPv6는 주소 자동설정 기능을 제공해 단말을 손쉽게 네트워크에 연결할 수 있으므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "IPv4도 호스트 주소를 자동으로 설정할 수 있고 유니캐스트 전송을 지원하므로 맞는 설명입니다." },
+        { "no": 4, "correct": false, "why": "IPv4는 A~E 클래스로 나뉘어 네트워크와 호스트 주소의 길이가 클래스마다 다르므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "IPv4와 IPv6의 헤더 길이 및 주소 체계 비교",
+      "tags": ["IPv6", "IP 주소체계"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "효과적인 모듈 설계를 위한 유의사항으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "모듈 간의 결합도를 강하게 하면 모듈 독립성이 향상된다." },
+        { "no": 2, "text": "복잡도와 중복성을 줄이고 일관성을 유지시킨다." },
+        { "no": 3, "text": "모듈의 기능은 예측이 가능해야 한다." },
+        { "no": 4, "text": "유지보수가 용이해야 한다." }
+      ],
+      "answer": 1,
+      "explanation": "모듈의 독립성을 높이려면 결합도는 약하게, 응집도는 강하게 설계해야 합니다. 결합도를 강하게 하면 모듈 사이의 의존 관계가 커져 독립성이 오히려 낮아지므로 ①은 유의사항과 거리가 있습니다. 나머지는 복잡도 감소, 기능의 예측 가능성, 유지보수 용이성이라는 바람직한 모듈 설계 원칙에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "결합도를 강하게 하면 모듈 간 의존도가 높아져 독립성이 낮아지므로 유의사항과 거리가 있습니다." },
+        { "no": 2, "correct": false, "why": "복잡도와 중복성을 줄이고 일관성을 유지하는 것은 바람직한 설계 원칙입니다." },
+        { "no": 3, "correct": false, "why": "모듈의 기능이 예측 가능해야 재사용과 유지보수가 쉬워지므로 바람직한 원칙입니다." },
+        { "no": 4, "correct": false, "why": "유지보수가 용이하도록 설계하는 것은 모듈화의 대표적인 목적입니다." }
+      ],
+      "keyPoint": "모듈 독립성을 위한 약한 결합도와 강한 응집도",
+      "tags": ["모듈 설계", "결합도"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\nstruct st {\n    int a;\n    int c[10];\n};\nint main(int argc, char* argv[]) {\n    int i = 0;\n    struct st ob1;\n    struct st ob2;\n    ob1.a = 0;\n    ob2.a = 0;\n    for (i = 0; i < 10; i++) {\n        ob1.c[i] = i;\n        ob2.c[i] = ob1.c[i] + i;\n    }\n    for (i = 0; i < 10; i = i + 2) {\n        ob1.a = ob1.a + ob1.c[i];\n        ob2.a = ob2.a + ob2.c[i];\n    }\n    printf(\"%d\", ob1.a + ob2.a);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "30" },
+        { "no": 2, "text": "60" },
+        { "no": 3, "text": "80" },
+        { "no": 4, "text": "120" }
+      ],
+      "answer": 2,
+      "explanation": "첫 번째 반복문에서 ob1.c[i]에는 i가, ob2.c[i]에는 ob1.c[i]+i인 2i가 저장됩니다. 두 번째 반복문은 i가 0, 2, 4, 6, 8일 때만 누적하므로 ob1.a는 0+2+4+6+8=20, ob2.a는 0+4+8+12+16=40이 됩니다. 따라서 두 값을 더한 60이 출력됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "30은 짝수 인덱스만 더한 두 합의 계산을 잘못한 값으로 실제 출력값과 다릅니다." },
+        { "no": 2, "correct": true, "why": "ob1.a는 20, ob2.a는 40이 되어 두 값의 합 60이 출력되므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "80은 누적 합을 중복해서 계산한 경우로 실제 출력값과 다릅니다." },
+        { "no": 4, "correct": false, "why": "120은 i = i + 2 조건을 적용하지 않은 경우로 실제 출력값과 다릅니다." }
+      ],
+      "keyPoint": "구조체 배열에서 증감식(i = i + 2)에 따른 누적 합 계산",
+      "tags": ["C언어", "구조체 배열", "for문"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "다음 중 C 언어에서 우선 순위가 가장 높은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "비트 연산자" },
+        { "no": 2, "text": "시프트 연산자" },
+        { "no": 3, "text": "관계 연산자" },
+        { "no": 4, "text": "산술 연산자" }
+      ],
+      "answer": 4,
+      "explanation": "C 언어의 연산자 우선순위는 산술 연산자, 시프트 연산자, 관계 연산자, 비트 연산자 순으로 낮아집니다. 산술 연산자가 가장 먼저 계산되고 비트 연산자가 가장 나중에 계산되므로 우선순위가 가장 높은 것은 산술 연산자입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "비트 연산자(&, |, ^)는 제시된 연산자 중 우선순위가 가장 낮습니다." },
+        { "no": 2, "correct": false, "why": "시프트 연산자(<<, >>)는 산술 연산자보다 우선순위가 낮습니다." },
+        { "no": 3, "correct": false, "why": "관계 연산자(<, >)는 산술 연산자와 시프트 연산자보다 우선순위가 낮습니다." },
+        { "no": 4, "correct": true, "why": "산술 연산자(+, -, *, /)가 제시된 연산자 중 우선순위가 가장 높으므로 정답입니다." }
+      ],
+      "keyPoint": "C 언어 연산자 우선순위(산술 > 시프트 > 관계 > 비트)",
+      "tags": ["C언어", "연산자 우선순위"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "다음 파이썬 코드에서 ‘53t44’를 입력했을 때 출력 결과는?",
+      "passage": "a, b = map(int, input().split(\"t\"));\nprint(a, b)",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "53 t 44" },
+        { "no": 2, "text": "53t44" },
+        { "no": 3, "text": "53 44" },
+        { "no": 4, "text": "53, 44" }
+      ],
+      "answer": 3,
+      "explanation": "input()으로 받은 ‘53t44’를 구분자 t로 분리하면 ‘53’과 ‘44’가 되고, map(int, ...)가 두 값을 정수로 바꾸어 a와 b에 각각 저장합니다. print(a, b)는 두 값을 공백으로 구분해 출력하므로 결과는 53 44가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "split으로 t를 기준으로 나누었으므로 구분자 t 자체는 출력되지 않습니다." },
+        { "no": 2, "correct": false, "why": "나눈 뒤 정수로 변환했으므로 입력 문자열이 그대로 출력되지 않습니다." },
+        { "no": 3, "correct": true, "why": "a에는 53, b에는 44가 저장되고 print가 공백으로 구분해 출력하므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "print(a, b)는 쉼표 없이 공백으로 두 값을 구분해 출력합니다." }
+      ],
+      "keyPoint": "split()과 map(int, ...)를 이용한 입력 분리 및 print 출력 형식",
+      "tags": ["파이썬", "split", "map"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "흐름 제어(Flow Control)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "정지-대기는 수신 측의 확인 신호(ACK)를 받은 후에 다음 패킷을 전송하는 방식이다." },
+        { "no": 2, "text": "확인 신호를 이용하여 송신 데이터의 양을 조절하는 방식은 슬라이딩 윈도우이다." },
+        { "no": 3, "text": "확인 신호 없이 보낼 수 있는 패킷의 최대치가 윈도우 크기이다." },
+        { "no": 4, "text": "이전에 송신한 패킷에 대한 부정 수신 응답(NAK)이 전달된 경우 윈도우 크기가 증가한다." }
+      ],
+      "answer": 4,
+      "explanation": "흐름 제어는 수신 측이 처리할 수 있는 양만큼만 데이터를 보내도록 송신량을 조절하는 기능입니다. 부정 수신 응답(NAK)이 전달되면 손실되거나 오류가 난 패킷을 재전송하고 윈도우 크기는 줄어들므로, 크기가 증가한다는 설명은 옳지 않습니다. 정지-대기는 ACK를 받은 뒤 다음 패킷을 보내는 방식이고 슬라이딩 윈도우는 ACK를 이용해 윈도우 크기를 조절합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "정지-대기는 수신 측의 ACK를 받은 후 다음 패킷을 전송하는 방식이므로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "슬라이딩 윈도우는 확인 신호를 이용해 송신 데이터의 양을 조절하므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "윈도우 크기는 확인 신호 없이 연속으로 보낼 수 있는 패킷의 최대치를 의미하므로 맞는 설명입니다." },
+        { "no": 4, "correct": true, "why": "NAK을 받으면 해당 패킷을 재전송하고 윈도우 크기는 감소하므로 이 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "흐름 제어 방식과 윈도우 크기 변화(NAK 수신 시 감소)",
+      "tags": ["흐름 제어", "슬라이딩 윈도우"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때의 결과는?",
+      "passage": "#include <stdio.h>\nint main(void) {\n    int n = 4;\n    int* pt = NULL;\n    pt = &n;\n    printf(\"%d\", &n + *pt - *&pt + n);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "0" },
+        { "no": 2, "text": "4" },
+        { "no": 3, "text": "8" },
+        { "no": 4, "text": "12" }
+      ],
+      "answer": 3,
+      "explanation": "n에 4가 저장되고 pt에는 n의 주소가 저장되므로 *pt와 *&pt는 모두 n의 값인 4를 나타냅니다. 따라서 &n + *pt - *&pt + n은 4+4-4+4로 계산되어 8이 됩니다. 다만 주소값을 %d로 출력하는 코드이므로 실제 컴파일 환경에서는 주소값이 출력될 수도 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "0은 각 항을 서로 상쇄한 값으로 실제 계산 결과와 다릅니다." },
+        { "no": 2, "correct": false, "why": "4는 n의 값에 해당할 뿐 식 전체의 계산 결과가 아닙니다." },
+        { "no": 3, "correct": true, "why": "4+4-4+4=8로 계산되므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "12는 n의 값을 중복해서 반영한 값으로 실제 출력값과 다릅니다." }
+      ],
+      "keyPoint": "포인터 연산자(&, *)가 포함된 C 산술식의 결과",
+      "tags": ["C언어", "포인터"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "커널의 버전을 확인할 때 사용하는 리눅스 명령어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ls" },
+        { "no": 2, "text": "chmod" },
+        { "no": 3, "text": "rm" },
+        { "no": 4, "text": "uname" }
+      ],
+      "answer": 4,
+      "explanation": "uname은 커널 이름과 버전, 호스트명, 하드웨어 정보 등 시스템 정보를 출력하는 명령어로, -a 옵션을 사용하면 모든 정보를 한 번에 확인할 수 있습니다. ls는 파일 목록 확인, chmod는 접근 권한 변경, rm은 파일 삭제 명령어이므로 커널 버전 확인과는 관계가 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ls는 디렉터리에 있는 파일 목록을 출력하는 명령어입니다." },
+        { "no": 2, "correct": false, "why": "chmod는 파일이나 디렉터리의 접근 권한을 변경하는 명령어입니다." },
+        { "no": 3, "correct": false, "why": "rm은 파일이나 디렉터리를 삭제하는 명령어입니다." },
+        { "no": 4, "correct": true, "why": "uname은 커널 이름과 버전 등 시스템 정보를 출력하는 명령어이므로 정답입니다." }
+      ],
+      "keyPoint": "uname 명령어를 이용한 커널 버전 확인",
+      "tags": ["리눅스", "uname"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "시간 구역성(Temporal Locality)과 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "루프" },
+        { "no": 2, "text": "서브루틴" },
+        { "no": 3, "text": "배열 순회" },
+        { "no": 4, "text": "스택" }
+      ],
+      "answer": 3,
+      "explanation": "시간 구역성은 최근에 참조한 기억 장소를 가까운 시점에 다시 참조하려는 성질로 루프, 서브루틴, 스택이 대표적인 예입니다. 배열 순회는 서로 인접한 주소를 차례로 참조하는 것으로 공간 구역성에 해당하므로 시간 구역성과 거리가 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "루프는 같은 명령을 반복 실행하므로 시간 구역성의 대표적인 예입니다." },
+        { "no": 2, "correct": false, "why": "서브루틴은 반복 호출될 때 같은 코드를 다시 참조하므로 시간 구역성의 예입니다." },
+        { "no": 3, "correct": true, "why": "배열 순회는 인접한 주소를 차례로 참조하므로 공간 구역성의 예이며 정답입니다." },
+        { "no": 4, "correct": false, "why": "스택은 최근에 사용한 데이터를 다시 참조하므로 시간 구역성의 예입니다." }
+      ],
+      "keyPoint": "시간 구역성(루프·서브루틴·스택)과 공간 구역성(배열 순회)의 구분",
+      "tags": ["지역성", "시간 구역성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때의 결과는?",
+      "passage": "#include <stdio.h>\nmain() {\n    char* s = \"Sinagong\";\n    for (int i = 5; i > 0; i--)\n        printf(\"%c\", *(s + i));\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "inago" },
+        { "no": 2, "text": "ogani" },
+        { "no": 3, "text": "sinagong" },
+        { "no": 4, "text": "gnoganis" }
+      ],
+      "answer": 2,
+      "explanation": "문자열 “Sinagong”에서 S는 s[0], o는 s[5]에 있고, *(s + i)는 s[i]와 같은 문자를 가리킵니다. for 문이 i를 5부터 1까지 감소시키며 출력하므로 o, g, a, n, i가 차례로 출력되어 ogani가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "inago는 i가 1부터 5까지 증가할 때의 출력 결과입니다." },
+        { "no": 2, "correct": true, "why": "i가 5에서 1로 감소하며 출력되므로 ogani가 정답입니다." },
+        { "no": 3, "correct": false, "why": "sinagong은 문자열 전체를 처음부터 끝까지 출력했을 때의 결과입니다." },
+        { "no": 4, "correct": false, "why": "gnoganis는 문자열 전체를 거꾸로 출력했을 때의 결과로 이 코드와 다릅니다." }
+      ],
+      "keyPoint": "포인터 *(s+i)와 감소하는 for 문에 의한 부분 문자열 출력",
+      "tags": ["C언어", "포인터", "문자열"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 모델에서 전송에 필요한 장치 간의 실제 접속과 절단 등 기계적, 전기적, 기능적, 절차적 특성을 정의한 계층은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "물리 계층" },
+        { "no": 2, "text": "데이터 링크 계층" },
+        { "no": 3, "text": "네트워크 계층" },
+        { "no": 4, "text": "전송 계층" }
+      ],
+      "answer": 1,
+      "explanation": "물리 계층은 장치 간의 실제 접속과 절단 등 전송에 필요한 기계적, 전기적, 기능적, 절차적 특성을 정의하고 비트를 전기적 신호로 변환해 전달합니다. 데이터 링크 계층은 인접 노드 사이의 오류·흐름 제어를, 네트워크 계층은 경로 선택을, 전송 계층은 종단 간 신뢰성 있는 전송을 담당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "장치 간 실제 접속과 절단 등 물리적 특성을 정의하는 계층이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "데이터 링크 계층은 인접한 노드 사이의 프레임 전송과 오류 제어를 담당합니다." },
+        { "no": 3, "correct": false, "why": "네트워크 계층은 패킷의 경로 선택(라우팅)과 논리 주소 지정을 담당합니다." },
+        { "no": 4, "correct": false, "why": "전송 계층은 종단 간 연결 설정과 신뢰성 있는 데이터 전송을 담당합니다." }
+      ],
+      "keyPoint": "OSI 7계층 중 물리 계층의 역할",
+      "tags": ["OSI 7계층", "물리 계층"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음 자바 코드를 실행한 결과는?",
+      "passage": "int x=1, y=6;\nwhile (y--) {\n    x++;\n}\nSystem.out.println(\"x= \" x +\"y= \" y);",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "x=7 y=0" },
+        { "no": 2, "text": "x=6 y=-1" },
+        { "no": 3, "text": "x=7 y=-1" },
+        { "no": 4, "text": "Unresolved compilation problem 오류 발생" }
+      ],
+      "answer": 4,
+      "explanation": "System.out.println(\"x= \" x +\"y= \" y)에는 문자열과 변수를 이어 주는 + 연산자가 x 앞과 y 앞에 빠져 있어 자바 컴파일 단계에서 문법 오류가 발생합니다. 따라서 프로그램이 실행되지 못하고 Unresolved compilation problem 오류가 나타납니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "컴파일 오류로 프로그램이 실행되지 않으므로 출력될 수 없는 값입니다." },
+        { "no": 2, "correct": false, "why": "while 문이 y를 감소시키지만 컴파일 자체가 실패해 실행되지 않습니다." },
+        { "no": 3, "correct": false, "why": "y가 -1까지 감소하는 코드이지만 컴파일 오류 때문에 결과가 출력되지 않습니다." },
+        { "no": 4, "correct": true, "why": "문자열 연결 연산자 +가 빠져 문법 오류가 발생하므로 정답입니다." }
+      ],
+      "keyPoint": "자바 문자열 연결 연산자(+) 누락으로 인한 컴파일 오류",
+      "tags": ["자바", "컴파일 오류"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "UNIX에서 새로운 프로세스를 생성하는 명령어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ls" },
+        { "no": 2, "text": "cat" },
+        { "no": 3, "text": "fork" },
+        { "no": 4, "text": "chmod" }
+      ],
+      "answer": 3,
+      "explanation": "fork는 유닉스에서 현재 실행 중인 프로세스를 복제해 새로운 자식 프로세스를 만드는 시스템 호출입니다. ls는 파일 목록 확인, cat은 파일 내용 출력, chmod는 접근 권한 변경 명령어로 프로세스 생성과는 관련이 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ls는 디렉터리의 파일 목록을 출력하는 명령어입니다." },
+        { "no": 2, "correct": false, "why": "cat은 파일의 내용을 화면에 출력하는 명령어입니다." },
+        { "no": 3, "correct": true, "why": "fork는 새로운 프로세스를 생성하는 명령어이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "chmod는 파일의 접근 권한을 변경하는 명령어입니다." }
+      ],
+      "keyPoint": "유닉스 프로세스 생성 명령어 fork",
+      "tags": ["UNIX", "fork"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "128.107.176.0/22 네트워크에서 호스트에 의해 사용될 수 있는 서브넷 마스크는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "255.0.0.0" },
+        { "no": 2, "text": "255.248.0.0" },
+        { "no": 3, "text": "255.255.252.0" },
+        { "no": 4, "text": "255.255.255.255" }
+      ],
+      "answer": 3,
+      "explanation": "/22는 서브넷 마스크의 앞쪽 22비트가 1이라는 뜻이므로 255.255.252.0이 됩니다. 앞 16비트가 255.255로 채워지고 남은 6비트가 세 번째 옥텟에 더해져 11111100(252)이 만들어집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "255.0.0.0은 /8에 해당하는 서브넷 마스크입니다." },
+        { "no": 2, "correct": false, "why": "255.248.0.0은 /13에 해당하는 서브넷 마스크입니다." },
+        { "no": 3, "correct": true, "why": "/22는 255.255.252.0에 해당하므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "255.255.255.255는 /32로 호스트를 한 개만 지정하는 값이며 호스트 주소로 사용할 수 없습니다." }
+      ],
+      "keyPoint": "CIDR 표기 /22에 해당하는 서브넷 마스크 계산",
+      "tags": ["서브넷 마스크", "CIDR"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\n#include <stdlib.h>\nint main(int argc, char* argv[]) {\n    char str1[20] = \"KOREA\";\n    char str2[20] = \"LOVE\";\n    char* p1 = NULL;\n    char* p2 = NULL;\n    p1 = str1;\n    p2 = str2;\n    str1[1] = p2[2];\n    str2[3] = p1[4];\n    strcat(str1, str2);\n    printf(\"%c\", *(p1 + 2));\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "E" },
+        { "no": 2, "text": "V" },
+        { "no": 3, "text": "R" },
+        { "no": 4, "text": "O" }
+      ],
+      "answer": 3,
+      "explanation": "str1[1]에 str2[2]의 값인 V를 넣어 str1은 KVREA가 되고, str2[3]에 str1[4]의 값인 A를 넣어 str2는 LOVA가 됩니다. 이어 strcat으로 두 문자열을 연결하면 str1은 KVREALOVA가 되므로, *(p1+2) 즉 str1[2]에 있는 R이 출력됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "E는 str1[4]의 문자로 출력 대상인 str1[2]가 아닙니다." },
+        { "no": 2, "correct": false, "why": "V는 str1[1]에 대입된 문자로 출력 위치가 다릅니다." },
+        { "no": 3, "correct": true, "why": "대입과 strcat 수행 후 str1[2]가 R이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "O는 대입 연산으로 값이 바뀌기 전 str1의 문자입니다." }
+      ],
+      "keyPoint": "문자열 배열 원소 대입과 strcat 이후 포인터로 문자 출력",
+      "tags": ["C언어", "strcat", "포인터"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "다음과 같은 세그먼트 테이블을 가지는 시스템에서 논리 주소(2, 176)에 대한 물리 주소는?",
+      "passage": "세그먼트번호 | 시작주소 | 길이(바이트)\n0 | 670 | 248\n1 | 1752 | 422\n2 | 222 | 198\n3 | 996 | 604",
+      "passageKind": "table",
+      "choices": [
+        { "no": 1, "text": "398" },
+        { "no": 2, "text": "400" },
+        { "no": 3, "text": "1928" },
+        { "no": 4, "text": "1930" }
+      ],
+      "answer": 1,
+      "explanation": "논리 주소 (2, 176)은 세그먼트 번호가 2이고 변위가 176이라는 뜻이므로, 세그먼트 2의 시작 주소 222에 변위 176을 더한 398이 물리 주소가 됩니다. 이때 세그먼트 2의 길이는 198바이트이므로 변위 176은 세그먼트 범위 안에 있어 정상적으로 접근할 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "222+176=398이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "400은 시작 주소에 변위를 잘못 더한 값입니다." },
+        { "no": 3, "correct": false, "why": "1928은 세그먼트 1의 시작 주소 1752에 176을 더한 값으로 세그먼트 번호가 다릅니다." },
+        { "no": 4, "correct": false, "why": "1930은 세그먼트 1에 변위를 잘못 적용한 값입니다." }
+      ],
+      "keyPoint": "세그먼테이션에서 물리 주소 = 세그먼트 시작 주소 + 변위",
+      "tags": ["세그먼테이션", "물리 주소"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "스크립트(Script) 언어가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "PHP" },
+        { "no": 2, "text": "Fortran" },
+        { "no": 3, "text": "Basic" },
+        { "no": 4, "text": "Python" }
+      ],
+      "answer": 2,
+      "explanation": "스크립트 언어는 별도의 컴파일 과정 없이 소스 코드를 실행 시점에 해석해 수행하는 언어로 PHP, Basic, Python이 이에 해당합니다. Fortran은 과학·기술 계산을 목적으로 만들어진 컴파일 방식의 고급 언어이므로 스크립트 언어가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "PHP는 웹 서버에서 해석되어 실행되는 대표적인 서버 스크립트 언어입니다." },
+        { "no": 2, "correct": true, "why": "Fortran은 컴파일 방식의 프로그래밍 언어로 스크립트 언어가 아니므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "Basic은 인터프리터 방식으로 실행되는 스크립트 언어로 분류됩니다." },
+        { "no": 4, "correct": false, "why": "Python은 대표적인 스크립트(인터프리터) 언어입니다." }
+      ],
+      "keyPoint": "스크립트 언어의 정의와 Fortran의 성격",
+      "tags": ["스크립트 언어", "Fortran"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 참조하는 경우의 결합도는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "내용 결합도(Content Coupling)" },
+        { "no": 2, "text": "제어 결합도(Control Coupling)" },
+        { "no": 3, "text": "공통 결합도(Common Coupling)" },
+        { "no": 4, "text": "스탬프 결합도(Stamp Coupling)" }
+      ],
+      "answer": 1,
+      "explanation": "내용 결합도는 한 모듈이 다른 모듈의 내부 기능이나 내부 자료를 직접 참조할 때 발생하는 결합도로 결합도 중에서 가장 강합니다. 제어 결합도는 제어 신호를 전달할 때, 공통 결합도는 전역 변수를 함께 사용할 때, 스탬프 결합도는 배열이나 레코드 같은 자료 구조를 전달할 때 나타납니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "다른 모듈의 내부 기능과 내부 자료를 참조하는 경우는 내용 결합도이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "제어 결합도는 한 모듈이 다른 모듈에 제어 신호(플래그)를 전달할 때의 결합도입니다." },
+        { "no": 3, "correct": false, "why": "공통 결합도는 여러 모듈이 같은 전역 변수를 사용할 때의 결합도입니다." },
+        { "no": 4, "correct": false, "why": "스탬프 결합도는 모듈 사이에 배열이나 레코드 같은 자료 구조를 전달할 때의 결합도입니다." }
+      ],
+      "keyPoint": "결합도 종류별 정의와 내용 결합도의 특징",
+      "tags": ["결합도", "내용 결합도"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "파일 디스크립터(File Descriptor)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "파일 관리를 위해 시스템이 필요로 하는 정보를 가지고 있다." },
+        { "no": 2, "text": "파일 제어 블록(File Control Block)이라고도 한다." },
+        { "no": 3, "text": "사용자가 파일 디스크립터를 직접 참조할 수 없다." },
+        { "no": 4, "text": "주기억장치에 저장되어 있다가 파일이 개방(open)되면 보조기억장치로 이동된다." }
+      ],
+      "answer": 4,
+      "explanation": "파일 디스크립터는 시스템이 파일을 관리하기 위해 필요한 정보를 담은 자료 구조로 파일 제어 블록(FCB)이라고도 하며, 사용자가 직접 참조할 수 없고 주기억장치에 상주합니다. 파일이 개방되어도 보조기억장치로 이동한다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "파일 관리를 위해 시스템이 필요로 하는 정보를 담고 있으므로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "파일 제어 블록(FCB)이라고도 하므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "사용자가 직접 참조할 수 없고 시스템 호출을 통해서만 사용되므로 맞는 설명입니다." },
+        { "no": 4, "correct": true, "why": "파일 디스크립터는 주기억장치에 상주하므로 보조기억장치로 이동한다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "파일 디스크립터(FCB)의 정의와 주기억장치 상주 특성",
+      "tags": ["파일 디스크립터", "FCB"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2025-1-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "C 언어 라이브러리 중 stdlib.h에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "문자열을 수치 데이터로 바꾸는 문자 변환 함수와 수치를 문자열로 바꿔주는 변환 함수 등이 있다." },
+        { "no": 2, "text": "문자열 처리 함수로 strlen()이 포함되어 있다." },
+        { "no": 3, "text": "표준 입출력 라이브러리이다." },
+        { "no": 4, "text": "삼각 함수, 제곱근, 지수 등 수학적인 함수를 내장하고 있다." }
+      ],
+      "answer": 1,
+      "explanation": "stdlib.h는 문자열을 수치로 바꾸는 atoi, 수치를 문자열로 바꾸는 itoa 같은 자료 변환 함수와 메모리 할당, 난수 생성 함수를 제공하는 헤더입니다. 문자열 처리 함수는 string.h, 표준 입출력은 stdio.h, 삼각 함수·제곱근·지수 함수는 math.h에 포함되어 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "문자열과 수치 사이의 자료 변환 함수를 제공하므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "strlen()은 string.h에 포함된 문자열 처리 함수입니다." },
+        { "no": 3, "correct": false, "why": "표준 입출력 라이브러리는 stdio.h입니다." },
+        { "no": 4, "correct": false, "why": "삼각 함수, 제곱근, 지수 함수는 math.h에 포함되어 있습니다." }
+      ],
+      "keyPoint": "C 표준 헤더 stdlib.h의 자료 변환·메모리 할당 기능",
+      "tags": ["C언어", "stdlib.h"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

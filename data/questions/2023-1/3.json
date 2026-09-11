@@ -1,0 +1,1495 @@
+{
+  "exam": {
+    "id": "2023-1",
+    "year": 2023,
+    "round": 1,
+    "title": "2023년 1회 정보처리기사 필기",
+    "sourcePdf": "2023년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2023-1-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "CREATE TABLE문에 포함되지 않는 기능은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "속성 타입 변경"
+        },
+        {
+          "no": 2,
+          "text": "속성의 NOT NULL 여부 지정"
+        },
+        {
+          "no": 3,
+          "text": "기본키를 구성하는 속성 지정"
+        },
+        {
+          "no": 4,
+          "text": "CHECK 제약조건의 정의"
+        }
+      ],
+      "answer": 1,
+      "explanation": "CREATE TABLE문은 새로운 테이블을 정의하는 DDL로, 속성의 데이터 타입과 NOT NULL 여부, 기본키를 구성하는 속성, CHECK 제약조건 등을 함께 선언할 수 있습니다. 이미 만들어진 테이블의 속성 타입을 변경하는 작업은 ALTER TABLE문이 담당합니다. 따라서 CREATE TABLE문의 기능이 아닌 것은 속성 타입 변경입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "속성마다 NOT NULL 또는 NULL을 지정해 널 값 허용 여부를 정할 수 있습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "PRIMARY KEY 절을 이용해 기본키를 구성하는 속성을 지정할 수 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "CHECK 절을 이용해 속성 값이 만족해야 하는 제약조건을 정의할 수 있습니다."
+        }
+      ],
+      "keyPoint": "CREATE TABLE문과 ALTER TABLE문의 기능 구분",
+      "tags": [
+        "CREATE TABLE",
+        "DDL",
+        "ALTER TABLE"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "테이블 두 개를 조인하여 뷰 V_1을 정의하고, V_1을 이용하여 뷰 V_2를 정의하였다. 다음 명령 수행 후 결과로 옳은 것은?",
+      "passage": "DROP VIEW V_1 CASCADE;",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "V_1만 삭제된다."
+        },
+        {
+          "no": 2,
+          "text": "V_2만 삭제된다."
+        },
+        {
+          "no": 3,
+          "text": "V_1과 V_2 모두 삭제된다."
+        },
+        {
+          "no": 4,
+          "text": "V_1과 V_2 모두 삭제되지 않는다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "CASCADE 옵션은 뷰를 삭제할 때 그 뷰를 참조하여 정의된 종속 뷰까지 연쇄적으로 삭제하도록 지정하는 옵션입니다. V_2는 V_1을 이용해 정의된 종속 뷰이므로 V_1을 CASCADE로 삭제하면 V_2도 함께 삭제됩니다. 만약 RESTRICT를 사용했다면 종속 뷰가 존재할 때 삭제가 거부됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CASCADE를 지정하면 V_1에 종속된 뷰까지 함께 삭제되므로 옳지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "V_1이 삭제되면 그에 종속된 V_2도 함께 삭제되므로 V_2만 남을 수 없습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "CASCADE는 종속 뷰가 있어도 삭제를 수행하므로 이 설명은 옳지 않습니다."
+        }
+      ],
+      "keyPoint": "DROP VIEW의 CASCADE와 RESTRICT 옵션",
+      "tags": [
+        "뷰",
+        "DROP VIEW",
+        "CASCADE"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "관계해석에서 ‘모든 것에 대하여’의 의미를 나타내는 논리 기호는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "∃"
+        },
+        {
+          "no": 2,
+          "text": "∈"
+        },
+        {
+          "no": 3,
+          "text": "∀"
+        },
+        {
+          "no": 4,
+          "text": "⊂"
+        }
+      ],
+      "answer": 3,
+      "explanation": "관계해석에서 ‘모든 것에 대하여’를 뜻하는 전칭 정량자는 ∀이고, ‘존재한다’를 뜻하는 존재 정량자는 ∃입니다. ∈는 어떤 값이 집합의 원소임을, ⊂는 부분집합 관계를 나타내는 기호입니다. 따라서 정답은 ∀입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "∃는 ‘존재한다’를 의미하는 존재 정량자입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "∈는 값이 집합에 속함을 나타내는 원소 기호입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "⊂는 부분집합 관계를 나타내는 기호입니다."
+        }
+      ],
+      "keyPoint": "관계해석의 전칭 정량자 ∀와 존재 정량자 ∃",
+      "tags": [
+        "관계해석",
+        "전칭 정량자",
+        "∀"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "다음 SQL문의 실행결과로 생성되는 튜플 수는?",
+      "passage": "SELECT 급여 FROM 사원;\n\n<사원> 테이블\n사원ID | 사원명 | 급여 | 부서ID\n101 | 박철수 | 30000 | 1\n102 | 한나라 | 35000 | 2\n103 | 김감동 | 40000 | 3\n104 | 이구수 | 35000 | 2\n105 | 최초록 | 40000 | 3",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "1"
+        },
+        {
+          "no": 2,
+          "text": "3"
+        },
+        {
+          "no": 3,
+          "text": "4"
+        },
+        {
+          "no": 4,
+          "text": "5"
+        }
+      ],
+      "answer": 4,
+      "explanation": "SELECT 급여 FROM 사원;은 조건절 없이 사원 테이블의 모든 행에서 급여 속성만을 추출합니다. DISTINCT를 사용하지 않았으므로 35000이나 40000처럼 값이 중복되어도 튜플이 합쳐지지 않습니다. 따라서 사원 테이블의 튜플 5개가 그대로 결과로 생성됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "결과는 튜플 단위로 만들어지므로 1개일 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "급여가 중복되더라도 DISTINCT가 없으면 합쳐지지 않으므로 3개가 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "사원 테이블의 튜플 수는 5개이므로 4개가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "SELECT문의 튜플 수와 DISTINCT에 의한 중복 제거",
+      "tags": [
+        "SELECT",
+        "DISTINCT",
+        "튜플"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "데이터베이스에서 개념적 설계 단계에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "산출물로 E-R Diagram을 만들 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "DBMS에 독립적인 개념 스키마를 설계한다."
+        },
+        {
+          "no": 3,
+          "text": "트랜잭션 인터페이스를 설계 및 작성한다."
+        },
+        {
+          "no": 4,
+          "text": "논리적 설계 단계의 앞 단계에서 수행된다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "개념적 설계는 요구사항 분석 결과를 바탕으로 DBMS에 독립적인 개념 스키마를 설계하고 E-R 다이어그램을 산출물로 만드는 단계이며, 논리적 설계보다 앞서 수행됩니다. 트랜잭션 인터페이스의 설계 및 작성은 논리적 설계 단계에서 수행되는 작업입니다. 따라서 이를 개념적 설계의 설명으로 제시한 보기가 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "E-R Diagram은 개념적 설계 단계의 대표적인 산출물입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "개념적 설계는 특정 DBMS에 종속되지 않는 개념 스키마를 설계합니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "개념적 설계는 논리적 설계의 앞 단계에서 수행됩니다."
+        }
+      ],
+      "keyPoint": "개념적 설계와 논리적 설계의 산출물 및 작업 범위",
+      "tags": [
+        "개념적 설계",
+        "논리적 설계",
+        "E-R 다이어그램"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "테이블 R과 S에 대한 SQL문이 실행되었을 때, 실행결과로 옳은 것은?",
+      "passage": "<테이블 R>\nA | B\n1 | A\n3 | B\n\n<테이블 S>\nA | B\n1 | A\n2 | B\n\nSELECT A FROM R\nUNION ALL\nSELECT A FROM S;",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "1"
+        },
+        {
+          "no": 2,
+          "text": "3\n2"
+        },
+        {
+          "no": 3,
+          "text": "1\n3"
+        },
+        {
+          "no": 4,
+          "text": "1\n3\n1\n2"
+        }
+      ],
+      "answer": 4,
+      "explanation": "UNION ALL은 두 SELECT 결과를 중복을 제거하지 않고 그대로 이어 붙이는 집합 연산자입니다. R의 A 속성 값은 1, 3이고 S의 A 속성 값은 1, 2이므로 결과는 1, 3, 1, 2의 네 개 튜플이 됩니다. 만약 UNION을 사용했다면 중복된 1이 제거되어 1, 3, 2의 세 개 튜플만 남습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "두 테이블의 A 값 1, 3, 1, 2 중 하나만 남을 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "R의 값 1이 누락된 결과이므로 옳지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "S의 값 2가 빠져 있고 중복 제거도 적용되지 않아 옳지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "UNION ALL과 UNION의 중복 처리 차이",
+      "tags": [
+        "UNION ALL",
+        "집합 연산자",
+        "SQL"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "제3정규형(3NF)에서 BCNF(Boyce-Codd Normal Form)가 되기 위한 조건은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "결정자가 후보키가 아닌 함수 종속 제거"
+        },
+        {
+          "no": 2,
+          "text": "이행적 함수 종속 제거"
+        },
+        {
+          "no": 3,
+          "text": "부분적 함수 종속 제거"
+        },
+        {
+          "no": 4,
+          "text": "원자값이 아닌 도메인 분해"
+        }
+      ],
+      "answer": 1,
+      "explanation": "BCNF는 제3정규형을 만족하면서 모든 결정자가 후보키인 릴레이션을 말합니다. 따라서 제3정규형에서 BCNF가 되려면 후보키가 아닌 결정자에 의한 함수 종속을 제거해야 합니다. 이행적 함수 종속 제거는 제2정규형에서 제3정규형으로, 부분적 함수 종속 제거는 제1정규형에서 제2정규형으로 가기 위한 조건입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "이행적 함수 종속 제거는 제2정규형을 제3정규형으로 만들기 위한 조건입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "부분적 함수 종속 제거는 제1정규형을 제2정규형으로 만들기 위한 조건입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "원자값이 아닌 도메인의 분해는 제1정규형의 조건입니다."
+        }
+      ],
+      "keyPoint": "정규형별 제거 조건과 BCNF의 결정자 조건",
+      "tags": [
+        "BCNF",
+        "정규화",
+        "함수 종속"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "관계 데이터 모델의 무결성 제약 중 기본키 값의 속성 값이 널(Null) 값이 아닌 원자 값을 갖는 성질은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "개체 무결성"
+        },
+        {
+          "no": 2,
+          "text": "참조 무결성"
+        },
+        {
+          "no": 3,
+          "text": "도메인 무결성"
+        },
+        {
+          "no": 4,
+          "text": "튜플의 유일성"
+        }
+      ],
+      "answer": 1,
+      "explanation": "개체 무결성은 기본키를 구성하는 속성이 널 값이나 중복 값을 가질 수 없고 유일한 원자 값을 가져야 한다는 제약입니다. 참조 무결성은 외래키 값이 참조하는 릴레이션의 기본키 값과 같거나 널이어야 한다는 제약이고, 도메인 무결성은 속성 값이 정의된 도메인에 속해야 한다는 제약입니다. 따라서 기본키의 널 금지와 원자값 조건을 설명하는 것은 개체 무결성입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "참조 무결성은 외래키와 관련된 제약입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "도메인 무결성은 속성 값의 허용 범위와 관련된 제약입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "튜플의 유일성은 같은 튜플이 중복되지 않는다는 릴레이션의 성질을 가리키는 표현입니다."
+        }
+      ],
+      "keyPoint": "개체 무결성과 참조 무결성, 도메인 무결성의 구분",
+      "tags": [
+        "개체 무결성",
+        "무결성 제약",
+        "기본키"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "병행제어의 로킹(Locking) 단위에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "데이터베이스, 파일, 레코드 등은 로킹 단위가 될 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "로킹 단위가 작아지면 로킹 오버헤드가 증가한다."
+        },
+        {
+          "no": 3,
+          "text": "한꺼번에 로킹할 수 있는 단위를 로킹 단위라고 한다."
+        },
+        {
+          "no": 4,
+          "text": "로킹 단위가 작아지면 병행성 수준이 낮아진다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "로킹 단위는 한꺼번에 로킹할 수 있는 데이터의 단위로, 데이터베이스 전체, 파일, 레코드 등이 될 수 있습니다. 로킹 단위가 작아지면 여러 트랜잭션이 동시에 서로 다른 데이터를 다룰 수 있어 병행성 수준은 높아지고, 대신 로킹 횟수가 늘어나 오버헤드가 증가합니다. 따라서 로킹 단위가 작아지면 병행성 수준이 낮아진다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "데이터베이스, 파일, 레코드 등은 모두 로킹 단위가 될 수 있습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "로킹 단위가 작아지면 로킹 횟수가 늘어 오버헤드가 증가합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "한꺼번에 로킹할 수 있는 단위를 로킹 단위라고 합니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "로킹 단위의 크기와 병행성 수준·오버헤드의 관계",
+      "tags": [
+        "로킹",
+        "병행제어",
+        "병행성"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "트랜잭션의 상태 중 트랜잭션의 마지막 연산이 실행된 직후의 상태로, 모든 연산의 처리는 끝났지만 트랜잭션이 수행한 최종 결과를 데이터베이스에 반영하지 않은 상태는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Active"
+        },
+        {
+          "no": 2,
+          "text": "Partially Committed"
+        },
+        {
+          "no": 3,
+          "text": "Committed"
+        },
+        {
+          "no": 4,
+          "text": "Aborted"
+        }
+      ],
+      "answer": 2,
+      "explanation": "부분 완료(Partially Committed) 상태는 트랜잭션의 마지막 연산이 실행된 직후로, 모든 연산은 끝났지만 그 결과가 아직 데이터베이스에 반영되지 않은 상태입니다. 이 상태에서 COMMIT을 수행하면 완료(Committed) 상태가 되고, 오류가 발생하면 실패(Failed)를 거쳐 철회(Aborted) 상태가 됩니다. Active는 트랜잭션이 연산을 수행하고 있는 실행 상태입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Active는 트랜잭션이 실행을 시작해 연산을 수행 중인 상태입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Committed는 부분 완료 상태에서 COMMIT이 수행되어 결과가 데이터베이스에 반영된 상태입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Aborted는 트랜잭션이 실패하여 수행한 연산을 취소한 상태입니다."
+        }
+      ],
+      "keyPoint": "트랜잭션의 상태 전이와 부분 완료(Partially Committed)",
+      "tags": [
+        "트랜잭션",
+        "부분 완료",
+        "COMMIT"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "테이블의 기본키(Primary Key)로 지정된 속성에 관한 설명으로 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "NOT NULL로 널 값을 가지지 않는다."
+        },
+        {
+          "no": 2,
+          "text": "릴레이션에서 튜플을 구별할 수 있다."
+        },
+        {
+          "no": 3,
+          "text": "외래키로 참조될 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "검색할 때 반드시 필요하다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "기본키는 릴레이션에서 각 튜플을 유일하게 식별하는 속성으로, 널 값을 가질 수 없고 다른 릴레이션의 외래키로 참조될 수 있습니다. 검색은 조건절에 어떤 속성을 사용하더라도 수행할 수 있으므로 기본키가 반드시 있어야 하는 것은 아닙니다. 따라서 검색할 때 반드시 필요하다는 설명이 기본키의 성질과 가장 거리가 멉니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "기본키는 개체 무결성에 따라 널 값을 가질 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "기본키는 속성 값이 유일하여 튜플을 구별하는 기준이 됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "기본키는 다른 릴레이션의 외래키에 의해 참조될 수 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "기본키의 제약 조건과 외래키 참조 관계",
+      "tags": [
+        "기본키",
+        "개체 무결성",
+        "외래키"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "DELETE 명령에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "테이블의 행을 삭제할 때 사용한다."
+        },
+        {
+          "no": 2,
+          "text": "WHERE 조건절이 없는 DELETE 명령을 수행하면 DROP TABLE 명령을 수행했을 때와 동일한 효과를 얻을 수 있다."
+        },
+        {
+          "no": 3,
+          "text": "SQL을 사용 용도에 따라 분류할 경우 DML에 해당한다."
+        },
+        {
+          "no": 4,
+          "text": "기본 사용 형식은 “DELETE FROM 테이블 [WHERE 조건];”이다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "DELETE는 테이블의 행을 삭제하는 DML 명령으로, WHERE 절이 없으면 테이블의 모든 행을 삭제합니다. 그러나 테이블의 구조와 정의는 그대로 남아 있으므로 테이블 자체를 제거하는 DROP TABLE과는 효과가 다릅니다. 따라서 WHERE 절이 없는 DELETE가 DROP TABLE과 동일한 효과를 얻는다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "DELETE는 테이블의 행을 삭제할 때 사용하는 DML 명령입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "DELETE는 데이터를 조작하는 DML에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "기본 형식은 DELETE FROM 테이블 [WHERE 조건];이 맞습니다."
+        }
+      ],
+      "keyPoint": "DELETE와 DROP TABLE의 차이",
+      "tags": [
+        "DELETE",
+        "DROP TABLE",
+        "DML"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "관계 대수식을 SQL 질의로 옳게 표현한 것은?",
+      "passage": "π이름(σ학과='교육'(학생))",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "SELECT 학생 FROM 이름 WHERE 학과 = ‘교육’;"
+        },
+        {
+          "no": 2,
+          "text": "SELECT 이름 FROM 학생 WHERE 학과 = ‘교육’;"
+        },
+        {
+          "no": 3,
+          "text": "SELECT 교육 FROM 학과 WHERE 이름 = ‘학생’;"
+        },
+        {
+          "no": 4,
+          "text": "SELECT 학과 FROM 학생 WHERE 이름 = ‘교육’;"
+        }
+      ],
+      "answer": 2,
+      "explanation": "관계 대수식 π이름(σ학과='교육'(학생))은 학생 릴레이션에서 학과가 ‘교육’인 튜플을 선택(σ)한 뒤 이름 속성만을 추출(π)하라는 의미입니다. 이를 SQL로 표현하면 SELECT 이름 FROM 학생 WHERE 학과 = ‘교육’;이 됩니다. SELECT 절에는 추출할 속성, FROM 절에는 대상 테이블, WHERE 절에는 선택 조건이 들어갑니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "SELECT 절의 속성과 FROM 절의 테이블이 서로 뒤바뀌어 있습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "‘교육’을 속성으로, ‘학생’을 조건 값으로 사용해 대수식과 반대가 되었습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "추출할 속성을 학과로, 조건 값을 이름으로 사용해 대수식과 다릅니다."
+        }
+      ],
+      "keyPoint": "관계 대수의 선택 σ·추출 π와 SQL 문의 대응",
+      "tags": [
+        "관계 대수",
+        "SELECT",
+        "σ·π"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "분산 데이터베이스의 특징에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "지역 서버의 고유 데이터에 대한 작업은 중앙 서버의 통제 없이 자유롭게 수행할 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "새로운 지역 서버를 추가하거나 장비를 추가하는 등의 작업이 용이하다."
+        },
+        {
+          "no": 3,
+          "text": "위치 투명성, 중복 투명성, 병행 투명성, 장애 투명성을 목표로 한다."
+        },
+        {
+          "no": 4,
+          "text": "데이터베이스 설계 및 소프트웨어 개발이 쉽고, 전반적인 시스템의 성능이 향상된다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "분산 데이터베이스는 지역 서버가 자치성을 가지고, 서버나 장비를 추가하기 용이하며, 위치·중복·병행·장애 투명성을 목표로 합니다. 반면 데이터가 여러 지역에 분산되어 있어 설계와 소프트웨어 개발이 더 복잡해지고, 통신 비용 증가로 성능이 오히려 저하될 수 있습니다. 따라서 설계와 개발이 쉽고 성능이 향상된다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "중앙 서버의 통제 없이 지역 서버가 고유 데이터를 처리하는 자치성에 대한 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "서버나 장비를 추가하기 쉬운 확장성에 대한 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "분산 데이터베이스가 추구하는 네 가지 투명성에 대한 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "분산 데이터베이스의 자치성·확장성·투명성과 단점",
+      "tags": [
+        "분산 데이터베이스",
+        "투명성",
+        "자치성"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "다음 관계형 데이터 모델에 대한 설명으로 옳은 것은?",
+      "passage": "고객ID | 고객이름 | 거주도시\nS1 | 홍길동 | 서울\nS2 | 이정재 | 인천\nS3 | 신보라 | 인천\nS4 | 김흥국 | 서울\nS5 | 도요새 | 용인",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "Relation 3개, Attribute 3개, Tuple 5개"
+        },
+        {
+          "no": 2,
+          "text": "Relation 3개, Attribute 5개, Tuple 3개"
+        },
+        {
+          "no": 3,
+          "text": "Relation 1개, Attribute 5개, Tuple 3개"
+        },
+        {
+          "no": 4,
+          "text": "Relation 1개, Attribute 3개, Tuple 5개"
+        }
+      ],
+      "answer": 4,
+      "explanation": "제시된 표는 고객ID, 고객이름, 거주도시 세 개의 속성을 가진 하나의 릴레이션이고, S1부터 S5까지 다섯 개의 튜플로 구성되어 있습니다. 표의 열 개수가 속성 수, 행 개수가 튜플 수에 해당합니다. 따라서 Relation 1개, Attribute 3개, Tuple 5개라는 설명이 옳습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "릴레이션은 1개이고 속성도 5개가 아니므로 옳지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "속성 5개, 튜플 3개가 아니라 속성 3개, 튜플 5개입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "속성은 5개가 아니라 3개이므로 옳지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "릴레이션·속성·튜플의 개수 판별",
+      "tags": [
+        "릴레이션",
+        "속성",
+        "튜플"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "SQL의 분류 중 DDL에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "UPDATE"
+        },
+        {
+          "no": 2,
+          "text": "ALTER"
+        },
+        {
+          "no": 3,
+          "text": "DROP"
+        },
+        {
+          "no": 4,
+          "text": "CREATE"
+        }
+      ],
+      "answer": 1,
+      "explanation": "DDL(데이터 정의어)은 데이터베이스의 구조를 정의하거나 변경하는 명령으로 CREATE, ALTER, DROP, TRUNCATE 등이 이에 해당합니다. UPDATE는 테이블의 데이터를 변경하는 DML(데이터 조작어)이므로 DDL에 속하지 않습니다. 따라서 DDL에 해당하지 않는 것은 UPDATE입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "ALTER는 테이블 구조를 변경하는 DDL입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "DROP은 테이블이나 객체를 제거하는 DDL입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "CREATE는 테이블이나 객체를 생성하는 DDL입니다."
+        }
+      ],
+      "keyPoint": "DDL과 DML의 명령 분류",
+      "tags": [
+        "DDL",
+        "DML",
+        "UPDATE"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "데이터의 중복으로 인하여 관계 연산을 처리할 때 예기치 못한 곤란한 현상이 발생하는 것을 무엇이라 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "이상(Anomaly)"
+        },
+        {
+          "no": 2,
+          "text": "제한(Restriction)"
+        },
+        {
+          "no": 3,
+          "text": "종속성(Dependency)"
+        },
+        {
+          "no": 4,
+          "text": "변환(Translation)"
+        }
+      ],
+      "answer": 1,
+      "explanation": "이상(Anomaly)은 데이터의 중복으로 인해 삽입, 삭제, 갱신 연산을 수행할 때 예기치 못한 곤란한 현상이 발생하는 것을 말합니다. 삽입 이상, 삭제 이상, 갱신 이상으로 나뉘며 정규화를 통해 제거할 수 있습니다. 종속성은 속성 간의 함수적 관계를, 제한은 조건에 의해 데이터 범위를 한정하는 개념을 가리킵니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "제한(Restriction)은 조건을 걸어 데이터 범위를 한정하는 개념입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "종속성(Dependency)은 속성들 사이의 함수적 관계를 나타내는 개념입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "변환(Translation)은 데이터의 형태를 바꾸는 작업을 가리키는 용어입니다."
+        }
+      ],
+      "keyPoint": "이상(Anomaly)의 개념과 정규화의 목적",
+      "tags": [
+        "이상",
+        "정규화",
+        "데이터 중복"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "학적 테이블에서 전화번호가 Null 값이 아닌 학생명을 모두 검색할 때, SQL 구문으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 DON’T NULL;"
+        },
+        {
+          "no": 2,
+          "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 !=NOT NULL;"
+        },
+        {
+          "no": 3,
+          "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 IS NOT NULL;"
+        },
+        {
+          "no": 4,
+          "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 <> NULL;"
+        }
+      ],
+      "answer": 3,
+      "explanation": "NULL은 값이 없음을 의미하므로 =이나 <> 같은 비교 연산자로는 판단할 수 없고, IS NULL 또는 IS NOT NULL을 사용해야 합니다. 전화번호가 널 값이 아닌 학생을 검색하려면 WHERE 전화번호 IS NOT NULL로 작성해야 합니다. 나머지 보기는 SQL에 없는 문법을 쓰거나 NULL을 <>로 비교하여 원하는 결과를 얻을 수 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "DON’T NULL은 SQL에 존재하지 않는 문법입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "!=NOT NULL 역시 올바른 연산자 조합이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": null
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "NULL은 <>와 같은 비교 연산자로 판단할 수 없습니다."
+        }
+      ],
+      "keyPoint": "NULL 값 비교와 IS NOT NULL의 사용",
+      "tags": [
+        "NULL",
+        "IS NOT NULL",
+        "SQL"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "릴레이션의 특징으로 옳은 내용 모두를 나열한 것은?",
+      "passage": "㉠ 모든 튜플은 서로 다른 값을 갖는다.\n㉡ 각 속성은 릴레이션 내에서 유일한 이름을 가진다.\n㉢ 하나의 릴레이션에서 튜플의 순서는 없다.\n㉣ 모든 속성 값은 원자 값이다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "㉠, ㉢"
+        },
+        {
+          "no": 2,
+          "text": "㉠, ㉡, ㉣"
+        },
+        {
+          "no": 3,
+          "text": "㉡, ㉢, ㉣"
+        },
+        {
+          "no": 4,
+          "text": "㉠, ㉡, ㉢, ㉣"
+        }
+      ],
+      "answer": 4,
+      "explanation": "릴레이션은 모든 튜플이 서로 다른 값을 갖는 튜플의 유일성, 각 속성이 릴레이션 내에서 유일한 이름을 갖는 속성 이름의 유일성, 튜플 사이에 순서가 없는 무순서성, 모든 속성 값이 원자 값이라는 원자성을 특징으로 합니다. 제시된 ㉠부터 ㉣까지 모두 릴레이션의 특징에 해당합니다. 따라서 네 가지를 모두 나열한 보기가 옳습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "㉠과 ㉢만 나열되어 속성 이름의 유일성과 원자성 조건이 빠졌습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "㉠, ㉡, ㉣만 나열되어 튜플의 무순서성 조건이 빠졌습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "㉡, ㉢, ㉣만 나열되어 튜플의 유일성 조건이 빠졌습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "릴레이션의 네 가지 특징(유일성·무순서성·원자성)",
+      "tags": [
+        "릴레이션",
+        "튜플",
+        "속성"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-1-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "뷰(View)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "뷰는 독자적인 인덱스를 가질 수 없다."
+        },
+        {
+          "no": 2,
+          "text": "뷰는 논리적 독립성을 제공한다."
+        },
+        {
+          "no": 3,
+          "text": "뷰로 구성된 내용에 대한 삽입, 갱신, 삭제 연산에는 제약이 따른다."
+        },
+        {
+          "no": 4,
+          "text": "뷰가 정의된 기본 테이블이 삭제되더라도 뷰는 자동적으로 삭제되지 않는다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "뷰는 하나 이상의 기본 테이블로부터 유도된 가상 테이블로, 논리적 독립성을 제공하고 독자적인 인덱스를 가질 수 없으며 삽입·갱신·삭제 연산에 제약이 따릅니다. 또한 뷰가 정의된 기본 테이블이 삭제되면 뷰도 자동적으로 삭제됩니다. 따라서 기본 테이블이 삭제되어도 뷰가 삭제되지 않는다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "뷰는 물리적으로 저장되지 않으므로 독자적인 인덱스를 가질 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "뷰를 이용하면 기본 테이블 구조가 바뀌어도 응용 프로그램에 영향을 덜 주는 논리적 독립성을 얻을 수 있습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "뷰에 대한 삽입, 갱신, 삭제는 기본 테이블의 제약에 따라 제한을 받습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": null
+        }
+      ],
+      "keyPoint": "뷰의 특징과 기본 테이블 삭제 시 동작",
+      "tags": [
+        "뷰",
+        "논리적 독립성",
+        "기본 테이블"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

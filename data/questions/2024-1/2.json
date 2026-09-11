@@ -1,0 +1,735 @@
+{
+  "exam": {
+    "id": "2024-1",
+    "year": 2024,
+    "round": 1,
+    "title": "2024년 1회 정보처리기사 필기",
+    "sourcePdf": "1. 2024년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2024-1-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "EAI(Enterprise Application Integration)의 구축 유형으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Point-to-Point" },
+        { "no": 2, "text": "Hub & Spoke" },
+        { "no": 3, "text": "Message Bus" },
+        { "no": 4, "text": "Tree" }
+      ],
+      "answer": 4,
+      "explanation": "EAI의 구축 유형에는 Point-to-Point, Hub & Spoke, Message Bus(ESB), Hybrid 네 가지가 있습니다. Tree는 EAI 구축 유형이 아니라 자료 구조를 가리키는 용어이므로 옳지 않은 보기입니다. Point-to-Point는 애플리케이션을 1:1로 직접 연결하고, Hub & Spoke는 중앙 허브를 매개로 연결하며, Message Bus는 미들웨어 버스를 통해 표준 인터페이스로 연계하는 방식입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Point-to-Point는 애플리케이션을 1:1로 직접 연결하는 EAI 구축 유형이므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "Hub & Spoke는 중앙 허브를 통해 각 애플리케이션을 연결하는 EAI 구축 유형이므로 옳은 설명입니다." },
+        { "no": 3, "correct": false, "why": "Message Bus는 미들웨어 버스를 이용해 애플리케이션을 연계하는 EAI 구축 유형이므로 옳은 설명입니다." },
+        { "no": 4, "correct": true, "why": "Tree는 자료 구조의 하나일 뿐 EAI 구축 유형에 포함되지 않으므로 틀린 설명입니다." }
+      ],
+      "keyPoint": "EAI 구축 유형 4가지(Point-to-Point, Hub & Spoke, Message Bus, Hybrid)",
+      "tags": ["EAI", "인터페이스 구현"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "검증 검사 기법 중 개발자의 장소에서 사용자가 개발자 앞에서 행하는 기법이며, 일반적으로 통제된 환경에서 사용자와 개발자가 함께 확인하면서 수행되는 검사는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "동치 분할 검사" },
+        { "no": 2, "text": "형상 검사" },
+        { "no": 3, "text": "알파 검사" },
+        { "no": 4, "text": "베타 검사" }
+      ],
+      "answer": 3,
+      "explanation": "알파 검사(Alpha Test)는 개발자의 장소에서 사용자가 개발자 앞에서 행하는 검사로, 통제된 환경에서 사용자와 개발자가 함께 확인하며 수행합니다. 베타 검사는 선정된 최종 사용자가 여러 명의 사용자 앞에서 수행하는 검사라는 점에서 알파 검사와 구분됩니다. 동치 분할 검사는 입력값을 동등한 클래스로 나누어 대표값을 시험하는 블랙박스 테스트 기법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "동치 분할 검사는 입력값을 여러 동등 클래스로 나누어 대표값만 시험하는 블랙박스 테스트 기법이라 해당하지 않습니다." },
+        { "no": 2, "correct": false, "why": "형상 검사는 형상 관리 항목의 변경과 구성을 점검하는 검사로, 사용자 참여 검사 기법이 아닙니다." },
+        { "no": 3, "correct": true, "why": "알파 검사는 개발자 장소에서 사용자가 개발자 앞에서 함께 확인하는 검사이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "베타 검사는 개발자가 아닌 선정된 최종 사용자가 여러 사용자 앞에서 수행하는 검사라 장소와 주체가 다릅니다." }
+      ],
+      "keyPoint": "알파 검사와 베타 검사의 수행 주체·장소 차이",
+      "tags": ["알파 검사", "검증 검사"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "다음 트리의 차수(degree)는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "2" },
+        { "no": 2, "text": "3" },
+        { "no": 3, "text": "4" },
+        { "no": 4, "text": "5" }
+      ],
+      "answer": 2,
+      "explanation": "트리의 차수는 각 노드가 가진 자식 노드 수 중 가장 큰 값을 말합니다. 주어진 트리에서 A의 차수는 2, B의 차수는 3(D, E, F), C의 차수는 1(G), F의 차수는 2(H, I)이므로 가장 큰 값인 B의 차수 3이 트리 전체의 차수가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "2는 루트 A나 F 노드의 차수일 뿐 트리 전체의 최대 차수가 아닙니다." },
+        { "no": 2, "correct": true, "why": "자식이 3개인 B 노드가 가장 큰 차수를 가지므로 트리의 차수는 3입니다." },
+        { "no": 3, "correct": false, "why": "자식이 4개인 노드는 트리에 존재하지 않습니다." },
+        { "no": 4, "correct": false, "why": "자식이 5개인 노드는 트리에 존재하지 않습니다." }
+      ],
+      "keyPoint": "트리의 차수는 가장 많은 자식을 가진 노드의 차수",
+      "tags": ["트리", "차수"],
+      "difficulty": 2,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2024-1/023.png",
+        "alt": "A를 루트로 B와 C가 갈라지고, B 아래에 D, E, F가 붙으며 F 아래에 H, I가, C 아래에 G가 붙은 트리",
+        "page": 2,
+        "col": 1,
+        "box": [317.5, 81.9, 432.8, 165.6]
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 시 사용하는 기술 중 다음 내용이 설명하는 것은?",
+      "passage": "JavaScript를 사용한 비동기 통신기술로, 클라이언트와 서버 간에 XML 데이터를 주고받는 기술",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Procedure" },
+        { "no": 2, "text": "Trigger" },
+        { "no": 3, "text": "Greedy" },
+        { "no": 4, "text": "AJAX" }
+      ],
+      "answer": 4,
+      "explanation": "제시된 설명은 AJAX(Asynchronous JavaScript and XML)에 대한 것입니다. JavaScript의 비동기 통신 객체를 이용해 화면 전체를 다시 불러오지 않고 필요한 데이터만 서버와 XML 형식으로 주고받는 기술입니다. Procedure와 Trigger는 데이터베이스에서 동작하는 절차형 SQL이고, Greedy는 알고리즘 설계 기법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "프로시저(Procedure)는 절차형 SQL로 특정 기능을 수행하는 데이터베이스 객체라 비동기 통신 기술이 아닙니다." },
+        { "no": 2, "correct": false, "why": "트리거(Trigger)는 데이터의 삽입·갱신·삭제 이벤트가 발생할 때 자동 수행되는 절차형 SQL입니다." },
+        { "no": 3, "correct": false, "why": "탐욕(Greedy) 알고리즘은 상황에 맞는 해결책을 즉석에서 모색하는 알고리즘 설계 기법입니다." },
+        { "no": 4, "correct": true, "why": "AJAX는 JavaScript를 사용해 클라이언트와 서버가 비동기로 XML 데이터를 주고받는 기술입니다." }
+      ],
+      "keyPoint": "AJAX의 정의와 비동기 통신 방식",
+      "tags": ["AJAX", "인터페이스 구현"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "해싱 함수 중 레코드 키를 여러 부분으로 나누고, 나눈 부분의 각 숫자를 더하거나 XOR한 값을 홈 주소로 사용하는 방식은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "제산법" },
+        { "no": 2, "text": "폴딩법" },
+        { "no": 3, "text": "기수 변환법" },
+        { "no": 4, "text": "숫자 분석법" }
+      ],
+      "answer": 2,
+      "explanation": "폴딩법(Folding)은 레코드 키를 여러 부분으로 나눈 뒤 각 부분의 숫자를 더하거나 XOR한 값을 홈 주소로 사용하는 해싱 함수입니다. 제산법은 키를 해시표 크기보다 큰 수 중 가장 작은 소수 Q로 나눈 나머지(h(K) = K mod Q)를 홈 주소로 삼고, 기수 변환법은 키의 진수를 변환해 주소 범위에 맞게 조정합니다. 숫자 분석법(계수 분석법)은 키 값의 숫자 분포를 분석해 고른 자리를 홈 주소로 택하는 방식입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "제산법은 키를 소수로 나눈 나머지를 홈 주소로 사용하는 방식이라 키를 나누어 더하는 설명과 다릅니다." },
+        { "no": 2, "correct": true, "why": "키를 여러 부분으로 나누어 각 숫자를 더하거나 XOR한 값을 홈 주소로 쓰는 방식은 폴딩법입니다." },
+        { "no": 3, "correct": false, "why": "기수 변환법은 키 숫자의 진수를 다른 진수로 변환해 주소 범위에 맞추는 방식입니다." },
+        { "no": 4, "correct": false, "why": "숫자 분석법은 키 값의 숫자 분포를 분석해 비교적 고른 자리를 택하는 방식입니다." }
+      ],
+      "keyPoint": "폴딩법(Folding) 해싱 함수의 동작",
+      "tags": ["해싱 함수", "폴딩법"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "다음 자료에 대하여 선택(Selection) 정렬을 이용하여 오름차순으로 정렬하고자 한다. 3회전 후의 결과로 옳은 것은?",
+      "passage": "37, 14, 17, 40, 35",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "14, 17, 37, 40, 35" },
+        { "no": 2, "text": "14, 37, 17, 40, 35" },
+        { "no": 3, "text": "17, 14, 37, 35, 40" },
+        { "no": 4, "text": "14, 17, 35, 40, 37" }
+      ],
+      "answer": 4,
+      "explanation": "선택 정렬은 남아 있는 레코드 중 최솟값을 찾아 맨 앞 자리와 교환하는 과정을 반복합니다. 1회전에서는 전체에서 최솟값 14를 첫 자리로 옮겨 14, 37, 17, 40, 35가 되고, 2회전에서는 남은 값 중 최솟값 17을 두 번째 자리로 옮겨 14, 17, 37, 40, 35가 됩니다. 3회전에서는 37, 40, 35 중 최솟값 35를 세 번째 자리로 옮기므로 결과는 14, 17, 35, 40, 37입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "14, 17, 37, 40, 35는 3회전의 교환이 일어나기 전인 2회전까지의 결과입니다." },
+        { "no": 2, "correct": false, "why": "14, 37, 17, 40, 35는 1회전까지만 수행한 결과입니다." },
+        { "no": 3, "correct": false, "why": "17, 14, 37, 35, 40은 최솟값을 찾아 앞자리와 교환한다는 선택 정렬의 과정과 맞지 않습니다." },
+        { "no": 4, "correct": true, "why": "3회전에서 최솟값 35가 세 번째 자리로 이동한 결과이므로 정답입니다." }
+      ],
+      "keyPoint": "선택 정렬의 회전별 최솟값 교환 과정",
+      "tags": ["선택 정렬", "정렬 알고리즘"],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "소스 코드 품질 분석 도구 중 정적 분석 도구가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "pmd" },
+        { "no": 2, "text": "checkstyle" },
+        { "no": 3, "text": "valance" },
+        { "no": 4, "text": "cppcheck" }
+      ],
+      "answer": 3,
+      "explanation": "정적 분석 도구는 소스 코드를 실행하지 않고 코드의 구조와 규칙 위반 여부를 점검하는 도구로 pmd, cppcheck, checkstyle, SonarQube, ccm, cobertura 등이 있습니다. valance는 프로그램을 실행한 상태에서 메모리 사용이나 동작을 점검하는 동적 분석 도구에 해당하므로 정적 분석 도구가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "pmd는 소스 코드를 실행하지 않고 규칙 위반을 찾아내는 정적 분석 도구입니다." },
+        { "no": 2, "correct": false, "why": "checkstyle은 자바 코드의 문법과 스타일 규칙을 점검하는 정적 분석 도구입니다." },
+        { "no": 3, "correct": true, "why": "valance는 실행 중인 프로그램의 동작을 점검하는 동적 분석 도구이므로 정적 분석 도구가 아닙니다." },
+        { "no": 4, "correct": false, "why": "cppcheck는 C/C++ 소스 코드를 정적으로 분석하는 도구입니다." }
+      ],
+      "keyPoint": "정적 분석 도구와 동적 분석 도구의 구분",
+      "tags": ["정적 분석 도구", "소스 코드 품질"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "다음 트리에 대한 중위 순회 운행 결과는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ABDCEF" },
+        { "no": 2, "text": "ABCDEF" },
+        { "no": 3, "text": "DBECFA" },
+        { "no": 4, "text": "DBAECF" }
+      ],
+      "answer": 4,
+      "explanation": "중위 순회(Inorder)는 왼쪽 서브트리 → 루트 → 오른쪽 서브트리 순으로 노드를 방문합니다. 루트 A의 왼쪽 서브트리는 D를 왼쪽 자식으로 둔 B이므로 'D B'가 되고, 오른쪽 서브트리는 E와 F를 자식으로 둔 C이므로 'E C F'가 됩니다. 따라서 전체 방문 순서는 D B A E C F가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ABDCEF는 루트를 먼저 방문하는 전위 순회(Preorder)의 결과입니다." },
+        { "no": 2, "correct": false, "why": "ABCDEF는 같은 레벨의 노드를 왼쪽부터 차례로 방문하는 레벨 순회(층 순회)의 결과입니다." },
+        { "no": 3, "correct": false, "why": "DBECFA는 후위 순회 결과(DBEFCA)와도 다르게 C와 E의 위치가 뒤바뀐 값입니다." },
+        { "no": 4, "correct": true, "why": "D B A E C F 순으로 방문한 중위 순회의 결과이므로 정답입니다." }
+      ],
+      "keyPoint": "이진 트리 중위 순회(Left → Root → Right) 결과 구하기",
+      "tags": ["이진 트리", "중위 순회"],
+      "difficulty": 3,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2024-1/028.png",
+        "alt": "A를 루트로 B와 C가 갈라지고, B 아래에 D가, C 아래에 E와 F가 붙은 이진 트리",
+        "page": 2,
+        "col": 1,
+        "box": [317.5, 469.0, 431.8, 544.9]
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "소프트웨어 테스트와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "화이트박스 테스트는 모듈의 논리적인 구조를 체계적으로 점검할 수 있다." },
+        { "no": 2, "text": "블랙박스 테스트는 프로그램의 구조를 고려하지 않는다." },
+        { "no": 3, "text": "테스트 케이스에는 일반적으로 시험 조건, 테스트 데이터, 예상 결과가 포함되어야 한다." },
+        { "no": 4, "text": "화이트박스 테스트에서 기본 경로(Basis Path)란 흐름 그래프의 시작 노드에서 종료 노드까지의 서로 독립된 경로로 싸이클을 허용하지 않는 경로를 말한다." }
+      ],
+      "answer": 4,
+      "explanation": "기초 경로(Base Path = Basis Path)는 흐름 그래프에서 수행 가능한 모든 경로를 의미하며 반복 구조인 싸이클을 포함할 수 있습니다. 따라서 싸이클을 허용하지 않는다고 설명한 ④가 틀렸습니다. 화이트박스 테스트는 모듈의 논리적 구조를 체계적으로 점검하고, 블랙박스 테스트는 내부 구조를 고려하지 않으며, 테스트 케이스에는 시험 조건·테스트 데이터·예상 결과가 포함됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "화이트박스 테스트는 소스 코드의 논리적 구조를 체계적으로 점검할 수 있다는 설명이 맞습니다." },
+        { "no": 2, "correct": false, "why": "블랙박스 테스트는 기능만 확인하고 프로그램의 내부 구조는 고려하지 않는다는 설명이 맞습니다." },
+        { "no": 3, "correct": false, "why": "테스트 케이스에 시험 조건, 테스트 데이터, 예상 결과가 포함된다는 설명이 맞습니다." },
+        { "no": 4, "correct": true, "why": "기본 경로는 수행 가능한 모든 경로로 싸이클을 허용하므로, 싸이클을 허용하지 않는다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "기본 경로(Basis Path)의 정의와 화이트박스·블랙박스 테스트 특성",
+      "tags": ["화이트박스 테스트", "기본 경로"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "소프트웨어 형상 관리에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "소프트웨어에 가해지는 변경을 제어하고 관리한다." },
+        { "no": 2, "text": "프로젝트 계획, 분석서, 설계서, 프로그램, 테스트 케이스 모두 관리 대상이다." },
+        { "no": 3, "text": "대표적인 형상 관리 도구로 Ant, Maven, Gradle 등이 있다." },
+        { "no": 4, "text": "유지 보수 단계뿐만 아니라 개발 단계에도 적용할 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "형상 관리는 소프트웨어 개발 과정에서 발생하는 변경을 식별·통제·관리하고, 프로젝트 계획서·분석서·설계서·프로그램·테스트 케이스 등을 관리 대상으로 삼으며 개발 단계부터 유지보수 단계까지 적용됩니다. 반면 Ant, Maven, Gradle은 소스 코드를 컴파일하고 패키징·배포하는 빌드 자동화 도구이므로 형상 관리 도구에 대한 설명으로 거리가 멉니다. 대표적인 형상 관리 도구로는 Git, CVS, Subversion, Mercurial 등이 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "형상 관리가 소프트웨어의 변경을 제어·관리한다는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "계획서, 분석서, 설계서, 프로그램, 테스트 케이스가 모두 형상 관리 대상이라는 설명은 맞습니다." },
+        { "no": 3, "correct": true, "why": "Ant, Maven, Gradle은 빌드 자동화 도구이므로 형상 관리 도구라는 설명이 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "형상 관리는 개발 단계와 유지보수 단계 모두에 적용할 수 있다는 설명이 맞습니다." }
+      ],
+      "keyPoint": "형상 관리 도구와 빌드 자동화 도구의 구분",
+      "tags": ["형상 관리", "빌드 자동화 도구"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "다음 중 최악의 경우 검색 효율이 가장 나쁜 트리 구조는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "이진 탐색 트리" },
+        { "no": 2, "text": "AVL 트리" },
+        { "no": 3, "text": "2-3 트리" },
+        { "no": 4, "text": "레드-블랙 트리" }
+      ],
+      "answer": 1,
+      "explanation": "이진 탐색 트리는 평균적으로 O(logN)의 검색 성능을 보이지만, 값이 정렬된 순서로 삽입되어 트리가 한쪽으로 치우치면 검색 시간이 O(N)까지 나빠집니다. AVL 트리, 2-3 트리, 레드-블랙 트리는 높이를 O(logN)으로 유지하는 균형 트리이므로 최악의 경우에도 검색 효율이 보장됩니다. 따라서 최악의 검색 효율이 가장 나쁜 구조는 이진 탐색 트리입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "이진 탐색 트리는 편향될 수 있어 최악의 경우 검색 시간이 O(N)이 되므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "AVL 트리는 좌우 서브트리 높이 차를 1 이하로 유지하는 균형 트리라 최악에도 O(logN)입니다." },
+        { "no": 3, "correct": false, "why": "2-3 트리는 노드가 2~3개의 자식을 갖도록 균형을 유지하므로 탐색 효율이 보장됩니다." },
+        { "no": 4, "correct": false, "why": "레드-블랙 트리는 색상 규칙으로 균형을 유지하는 트리라 최악에도 O(logN)입니다." }
+      ],
+      "keyPoint": "이진 탐색 트리와 균형 트리(AVL, 2-3, 레드-블랙)의 최악 성능 비교",
+      "tags": ["이진 탐색 트리", "균형 트리"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "다음 중 선형 구조로만 묶인 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "스택, 트리" },
+        { "no": 2, "text": "큐, 데크" },
+        { "no": 3, "text": "큐, 그래프" },
+        { "no": 4, "text": "리스트, 그래프" }
+      ],
+      "answer": 2,
+      "explanation": "선형 구조는 자료를 일렬로 나열해 앞뒤 관계가 1:1로 이어지는 구조로 배열, 선형 리스트, 스택, 큐, 데크가 이에 속합니다. 트리는 1:N, 그래프는 N:M 관계를 갖는 비선형 구조입니다. 따라서 큐와 데크로만 묶인 ②가 선형 구조로만 이루어진 보기입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "스택은 선형 구조이지만 트리는 비선형 구조라 함께 묶일 수 없습니다." },
+        { "no": 2, "correct": true, "why": "큐와 데크는 둘 다 선형 구조이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "큐는 선형 구조지만 그래프는 비선형 구조입니다." },
+        { "no": 4, "correct": false, "why": "리스트는 선형 구조지만 그래프는 비선형 구조입니다." }
+      ],
+      "keyPoint": "선형 구조와 비선형 구조의 분류",
+      "tags": ["선형 구조", "자료 구조"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "화이트박스 검사 기법에 해당하는 것으로만 짝지어진 것은?",
+      "passage": "㉠ 데이터 흐름 검사\n㉡ 루프 검사\n㉢ 동등 분할 검사\n㉣ 경계값 분석\n㉤ 원인 결과 그래프 기법\n㉥ 오류예측 기법",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉠, ㉡" },
+        { "no": 2, "text": "㉠, ㉣" },
+        { "no": 3, "text": "㉡, ㉤" },
+        { "no": 4, "text": "㉢, ㉥" }
+      ],
+      "answer": 1,
+      "explanation": "화이트박스 검사 기법은 프로그램의 내부 논리 구조를 확인하는 기법으로 데이터 흐름 검사(㉠), 루프 검사(㉡), 조건 검사, 기초 경로 검사, 문장 검사 등이 있습니다. 동등 분할 검사(㉢), 경계값 분석(㉣), 원인-결과 그래프 기법(㉤), 오류 예측 기법(㉥)은 입력과 출력만 확인하는 블랙박스 검사 기법입니다. 따라서 화이트박스 검사끼리 짝지어진 것은 ㉠, ㉡입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "데이터 흐름 검사와 루프 검사는 모두 화이트박스 검사 기법이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "경계값 분석(㉣)은 블랙박스 검사 기법이므로 화이트박스끼리의 짝이 아닙니다." },
+        { "no": 3, "correct": false, "why": "원인-결과 그래프 기법(㉤)은 블랙박스 검사 기법이라 해당하지 않습니다." },
+        { "no": 4, "correct": false, "why": "동등 분할 검사(㉢)와 오류 예측 기법(㉥)은 모두 블랙박스 검사 기법입니다." }
+      ],
+      "keyPoint": "화이트박스 검사 기법과 블랙박스 검사 기법의 분류",
+      "tags": ["화이트박스 검사", "블랙박스 검사"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "단위 테스트에서 테스트의 대상이 되는 하위 모듈을 호출하고, 파라미터를 전달하는 가상의 모듈로 상향식 테스트에 필요한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "테스트 스텁(Test Stub)" },
+        { "no": 2, "text": "테스트 드라이버(Test Driver)" },
+        { "no": 3, "text": "테스트 슈트(Test Suites)" },
+        { "no": 4, "text": "테스트 케이스(Test Case)" }
+      ],
+      "answer": 2,
+      "explanation": "테스트 드라이버(Test Driver)는 상향식 통합 테스트에서 아직 완성되지 않은 상위 모듈을 대신해 테스트 대상 하위 모듈을 호출하고 파라미터를 전달하는 가상의 모듈입니다. 반대로 테스트 스텁(Test Stub)은 하향식 테스트에서 상위 모듈이 호출하는 하위 모듈의 기능을 단순히 흉내 내는 모듈입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "테스트 스텁은 하향식 테스트에서 하위 모듈을 대신하는 모듈로, 하위 모듈을 호출하는 역할이 아닙니다." },
+        { "no": 2, "correct": true, "why": "테스트 드라이버는 상향식 테스트에서 하위 모듈을 호출하고 파라미터를 전달하는 가상의 모듈이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "테스트 슈트는 테스트 케이스들의 집합을 의미할 뿐 실행을 대신하는 모듈이 아닙니다." },
+        { "no": 4, "correct": false, "why": "테스트 케이스는 입력 값, 실행 조건, 기대 결과를 정리한 명세서입니다." }
+      ],
+      "keyPoint": "상향식 테스트의 테스트 드라이버와 하향식 테스트의 테스트 스텁",
+      "tags": ["테스트 드라이버", "단위 테스트"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 시 사용하는 기술로 속성-값 쌍(Attribute-Value Pairs)으로 이루어진 데이터 오브젝트를 전달하기 위해 사용하는 개방형 표준 포맷은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "JSON" },
+        { "no": 2, "text": "HTML" },
+        { "no": 3, "text": "AVPN" },
+        { "no": 4, "text": "DOF" }
+      ],
+      "answer": 1,
+      "explanation": "JSON(JavaScript Object Notation)은 이름과 값이 쌍을 이루는 속성-값 쌍(Attribute-Value Pairs) 구조로 데이터 오브젝트를 표현해 시스템 사이에서 전달하는 개방형 표준 포맷입니다. HTML은 웹 문서의 구조를 표현하는 마크업 언어이고, AVPN과 DOF는 속성-값 쌍 데이터를 전달하기 위한 개방형 표준 포맷이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "JSON은 속성-값 쌍으로 데이터 오브젝트를 표현하는 개방형 표준 포맷이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "HTML은 웹 페이지의 구조와 내용을 표현하는 마크업 언어로 데이터 교환 포맷이 아닙니다." },
+        { "no": 3, "correct": false, "why": "AVPN은 속성-값 쌍으로 데이터 오브젝트를 전달하는 개방형 표준 포맷이 아닙니다." },
+        { "no": 4, "correct": false, "why": "DOF는 속성-값 쌍으로 데이터 오브젝트를 전달하는 개방형 표준 포맷이 아닙니다." }
+      ],
+      "keyPoint": "JSON의 속성-값 쌍 구조와 데이터 교환 포맷",
+      "tags": ["JSON", "인터페이스 구현"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "DRM(Digital Rights Management)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "디지털 콘텐츠와 디바이스의 사용을 제한하기 위해 하드웨어 제조업자, 저작권자, 출판업자 등이 사용할 수 있는 접근 제어 기술을 의미한다." },
+        { "no": 2, "text": "디지털 미디어의 생명 주기 동안 발생하는 사용 권한 관리, 과금, 유통 단계를 관리하는 기술로도 볼 수 있다." },
+        { "no": 3, "text": "클리어링 하우스(Clearing House)는 사용자에게 콘텐츠 라이센스를 발급하고 권한을 부여해주는 시스템을 말한다." },
+        { "no": 4, "text": "원본을 안전하게 유통하기 위한 전자적 보안은 고려하지 않기 때문에 불법 유통과 복제의 방지는 불가능하다." }
+      ],
+      "answer": 4,
+      "explanation": "DRM은 콘텐츠를 안전하게 유통하기 위한 전자적 보안 장치인 보안 컨테이너(Security Container)를 사용해 불법 유통과 복제를 방지하는 기술입니다. 따라서 전자적 보안을 고려하지 않아 불법 유통과 복제 방지가 불가능하다는 ④의 설명이 틀렸습니다. DRM은 콘텐츠와 디바이스의 사용을 제한하는 접근 제어 기술이며, 클리어링 하우스가 라이센스를 발급하고 권한을 부여합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DRM이 콘텐츠와 디바이스 사용을 제한하는 접근 제어 기술이라는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "디지털 미디어의 사용 권한 관리, 과금, 유통 단계를 관리하는 기술이라는 설명은 맞습니다." },
+        { "no": 3, "correct": false, "why": "클리어링 하우스가 사용자에게 콘텐츠 라이센스를 발급하고 권한을 부여한다는 설명은 맞습니다." },
+        { "no": 4, "correct": true, "why": "DRM은 보안 컨테이너로 불법 유통과 복제를 방지하므로, 전자적 보안을 고려하지 않는다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "DRM의 보안 컨테이너와 불법 유통·복제 방지 기능",
+      "tags": ["DRM", "저작권 관리"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "다음 중 테스트 오라클에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "샘플링 오라클 : 특정한 몇몇 테스트 케이스의 입력 값들에 대해서만 기대하는 결과를 제공하는 오라클이다." },
+        { "no": 2, "text": "토탈 오라클 : 모든 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하는 오라클이다." },
+        { "no": 3, "text": "휴리스틱 오라클 : 특정 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하고, 나머지 입력 값들에 대해서는 추정으로 처리하는 오라클이다." },
+        { "no": 4, "text": "일관성 검사 오라클 : 애플리케이션의 변경이 있을 경우 테스트 케이스의 수행 전과 후의 결과 값이 동일한지를 확인하는 오라클이다." }
+      ],
+      "answer": 2,
+      "explanation": "모든 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하는 오라클은 참(True) 오라클입니다. ②는 같은 기능을 하는 오라클을 '토탈 오라클'이라고 이름 붙여 설명했으므로 옳지 않습니다. 샘플링 오라클은 일부 입력 값에 대해서만 기대 결과를 제공하고, 휴리스틱 오라클은 일부는 기대 결과를 제공하고 나머지는 추정으로 처리하며, 일관성 검사 오라클은 변경 전후의 수행 결과가 동일한지 확인합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "샘플링 오라클이 특정 몇몇 테스트 케이스의 입력 값에 대해서만 기대 결과를 제공한다는 설명은 맞습니다." },
+        { "no": 2, "correct": true, "why": "모든 테스트 케이스의 입력 값에 대해 기대 결과를 제공하는 오라클은 참(True) 오라클이므로 '토탈 오라클'이라는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "휴리스틱 오라클이 일부는 기대 결과를 제공하고 나머지는 추정으로 처리한다는 설명은 맞습니다." },
+        { "no": 4, "correct": false, "why": "일관성 검사 오라클이 변경 전과 후의 결과 값이 동일한지 확인한다는 설명은 맞습니다." }
+      ],
+      "keyPoint": "테스트 오라클의 종류(참, 샘플링, 휴리스틱, 일관성 검사)",
+      "tags": ["테스트 오라클", "테스트 케이스"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 검증 도구가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ESB" },
+        { "no": 2, "text": "xUnit" },
+        { "no": 3, "text": "STAF" },
+        { "no": 4, "text": "NTAF" }
+      ],
+      "answer": 1,
+      "explanation": "ESB(Enterprise Service Bus)는 애플리케이션 간 연계, 데이터 변환, 웹 서비스 지원 등 표준 기반의 인터페이스를 제공하는 연계 솔루션이므로 인터페이스 구현 검증 도구가 아닙니다. 인터페이스 구현 검증 도구로는 xUnit, STAF, NTAF, FitNesse, Selenium 등이 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "ESB는 인터페이스를 제공하는 연계 솔루션으로, 구현 검증 도구가 아니므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "xUnit은 단위 테스트와 검증을 지원하는 인터페이스 구현 검증 도구입니다." },
+        { "no": 3, "correct": false, "why": "STAF는 서비스와 테스트 자동화 프레임워크를 제공하는 구현 검증 도구입니다." },
+        { "no": 4, "correct": false, "why": "NTAF는 STAF와 FitNesse를 통합한 인터페이스 구현 검증 도구입니다." }
+      ],
+      "keyPoint": "인터페이스 구현 검증 도구의 종류",
+      "tags": ["인터페이스 검증 도구", "ESB"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "정점이 5개인 방향 그래프가 가질 수 있는 최대 간선 수는? (단, 자기 간선과 중복 간선은 배제한다.)",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "7개" },
+        { "no": 2, "text": "10개" },
+        { "no": 3, "text": "20개" },
+        { "no": 4, "text": "27개" }
+      ],
+      "answer": 3,
+      "explanation": "정점이 n개인 방향 그래프에서 자기 간선과 중복 간선을 허용하지 않을 때 최대 간선 수는 n(n-1)입니다. 정점이 5개이므로 5 × (5 - 1) = 20개가 최대 간선 수입니다. 참고로 같은 조건의 무방향 그래프라면 최대 간선 수는 n(n-1)/2인 10개입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "7개는 방향 그래프의 최대 간선 수 공식 n(n-1)로 계산한 값이 아닙니다." },
+        { "no": 2, "correct": false, "why": "10개는 무방향 그래프일 때의 최대 간선 수 n(n-1)/2입니다." },
+        { "no": 3, "correct": true, "why": "방향 그래프의 최대 간선 수는 n(n-1)이므로 5 × 4 = 20개입니다." },
+        { "no": 4, "correct": false, "why": "27개는 자기 간선을 포함해 계산한 값으로, 자기 간선을 배제하는 조건에 어긋납니다." }
+      ],
+      "keyPoint": "방향 그래프의 최대 간선 수 n(n-1)",
+      "tags": ["그래프", "간선 수"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    },
+    {
+      "id": "2024-1-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "물리데이터 저장소의 파티션 설계에서 파티션 유형으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "범위 분할(Range Partitioning)" },
+        { "no": 2, "text": "해시 분할(Hash Partitioning)" },
+        { "no": 3, "text": "조합 분할(Composite Partitioning)" },
+        { "no": 4, "text": "유닛 분할(Unit Partitioning)" }
+      ],
+      "answer": 4,
+      "explanation": "파티션 유형에는 범위 분할(Range Partitioning), 해시 분할(Hash Partitioning), 조합 분할(Composite Partitioning), 목록 분할(List Partitioning), 라운드 로빈 분할(Round Robin Partitioning)이 있습니다. 유닛 분할(Unit Partitioning)은 파티션 유형에 포함되지 않으므로 옳지 않은 보기입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "범위 분할은 값의 범위를 기준으로 파티션을 나누는 대표적인 파티션 유형입니다." },
+        { "no": 2, "correct": false, "why": "해시 분할은 해시 함수의 결과값을 기준으로 파티션을 나누는 유형입니다." },
+        { "no": 3, "correct": false, "why": "조합 분할은 범위 분할 후 해시 분할을 적용하는 등 여러 방식을 결합한 유형입니다." },
+        { "no": 4, "correct": true, "why": "유닛 분할은 파티션 유형에 존재하지 않으므로 옳지 않은 보기입니다." }
+      ],
+      "keyPoint": "파티션 유형(범위, 해시, 조합, 목록, 라운드 로빈 분할)",
+      "tags": ["파티션 설계", "물리 데이터 저장소"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": { "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "pdf" }
+    }
+  ]
+}

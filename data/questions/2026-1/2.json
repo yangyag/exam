@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2026-1",
+    "year": 2026,
+    "round": 1,
+    "title": "2026년 1회 정보처리기사 필기",
+    "sourcePdf": "2026년1회_기사필기_기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2026-1-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "정렬된 N개의 데이터를 처리하는데 O(Nlog₂N)의 시간이 소요되는 정렬 알고리즘은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "선택 정렬"},
+        {"no": 2, "text": "삽입 정렬"},
+        {"no": 3, "text": "버블 정렬"},
+        {"no": 4, "text": "합병 정렬"}
+      ],
+      "answer": 4,
+      "explanation": "합병 정렬은 데이터를 절반씩 나누어 각각을 정렬한 뒤 다시 합치는 분할 정복 방식으로, 분할 단계가 log₂N이고 각 단계의 병합 비용이 N이므로 평균과 최악의 경우 모두 O(Nlog₂N)의 시간이 걸립니다. 반면 선택 정렬, 삽입 정렬, 버블 정렬은 모두 이중 반복문으로 원소를 비교하고 교환하므로 O(N²)의 시간이 소요됩니다. 따라서 O(Nlog₂N)에 해당하는 정렬 알고리즘은 합병 정렬입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "선택 정렬은 최솟값을 찾아 앞쪽부터 자리를 바꾸는 과정을 N번 반복하므로 평균과 최악 모두 O(N²)이 걸려 조건에 맞지 않습니다."},
+        {"no": 2, "correct": false, "why": "삽입 정렬은 정렬된 부분에 다음 원소를 끼워 넣는 방식으로, 최악의 경우 O(N²)이 걸려 O(Nlog₂N)에 해당하지 않습니다."},
+        {"no": 3, "correct": false, "why": "버블 정렬은 인접한 두 원소를 반복해서 비교·교환하므로 O(N²)의 시간이 걸려 조건을 만족하지 않습니다."},
+        {"no": 4, "correct": true, "why": "합병 정렬은 분할 정복으로 데이터를 나누고 병합하며 정렬하므로 평균·최악 모두 O(Nlog₂N)이 소요되어 정답입니다."}
+      ],
+      "keyPoint": "정렬 알고리즘별 시간복잡도 비교",
+      "tags": ["정렬 알고리즘", "합병 정렬", "시간복잡도"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 검증 도구 중 아래에서 설명하는 것은?",
+      "passage": "ㆍ서비스 호출, 컴포넌트 재사용 등 다양한 환경을 지원하는 테스트 프레임워크\nㆍ각 테스트 대상 분산 환경에 데몬을 사용하여 테스트 대상 프로그램을 통해 테스트를 수행하고, 통합하여 자동화하는 검증 도구",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "xUnit"},
+        {"no": 2, "text": "STAF"},
+        {"no": 3, "text": "FitNesse"},
+        {"no": 4, "text": "RubyNode"}
+      ],
+      "answer": 2,
+      "explanation": "STAF(Software Test Automation Framework)는 서비스 호출, 컴포넌트 재사용 등 다양한 환경을 지원하는 테스트 프레임워크로, 각 테스트 대상 분산 환경에 데몬을 두고 테스트 대상 프로그램을 통해 테스트를 수행한 뒤 통합하여 자동화합니다. xUnit은 언어별 단위 테스트를 지원하는 프레임워크이고, FitNesse는 웹 기반으로 테스트 케이스를 설계·실행·확인하는 도구입니다. 설명에 나온 데몬 기반 분산 테스트 자동화 특징과 일치하는 검증 도구는 STAF입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "xUnit은 JUnit, NUnit, CppUnit처럼 언어별 단위 테스트를 지원하는 프레임워크로, 분산 환경 데몬 기반 통합 자동화 설명과 맞지 않습니다."},
+        {"no": 2, "correct": true, "why": "STAF는 다양한 환경을 지원하고 데몬을 이용해 분산 환경의 테스트를 수행·통합·자동화하는 검증 도구로 설명과 일치합니다."},
+        {"no": 3, "correct": false, "why": "FitNesse는 웹 기반으로 테스트 케이스를 설계하고 실행 결과를 확인하는 도구로, 데몬을 이용한 분산 테스트 수행 설명과 다릅니다."},
+        {"no": 4, "correct": false, "why": "RubyNode는 분산 환경에 데몬을 두고 테스트를 통합 자동화한다는 설명의 특징을 갖는 검증 도구가 아니므로 틀렸습니다."}
+      ],
+      "keyPoint": "인터페이스 구현 검증 도구의 종류와 특징",
+      "tags": ["인터페이스 검증 도구", "STAF", "테스트 자동화"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "검증 검사 기법 중 개발자의 장소에서 사용자가 개발자 앞에서 행하는 기법이며, 일반적으로 통제된 환경에서 사용자와 개발자가 함께 확인하면서 수행되는 검사는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "동치 분할 검사"},
+        {"no": 2, "text": "형상 검사"},
+        {"no": 3, "text": "알파 검사"},
+        {"no": 4, "text": "베타 검사"}
+      ],
+      "answer": 3,
+      "explanation": "알파 검사는 개발자의 장소에서 사용자가 개발자 앞에서 통제된 환경에서 소프트웨어를 사용해 보고 결함을 확인하는 인수 테스트 기법입니다. 베타 검사는 사용자가 개발자 없이 실제 사용 환경에서 직접 소프트웨어를 사용해 본다는 점에서 알파 검사와 구분됩니다. 동치 분할 검사는 입력 데이터를 결과가 같은 그룹으로 나누는 블랙박스 테스트 설계 기법이고, 형상 검사는 형상 관리 대상 항목을 점검하는 활동이므로 인수 테스트 기법에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "동치 분할 검사는 입력값을 동등한 클래스로 나누어 테스트 케이스를 줄이는 블랙박스 테스트 설계 기법으로, 사용자가 수행하는 인수 테스트가 아닙니다."},
+        {"no": 2, "correct": false, "why": "형상 검사는 형상 관리 항목의 변경과 상태를 점검하는 활동으로, 개발자 앞에서 사용자가 수행하는 인수 테스트 기법과는 다릅니다."},
+        {"no": 3, "correct": true, "why": "알파 검사는 개발자의 장소에서 개발자가 지켜보는 가운데 사용자가 통제된 환경에서 수행하는 검사로 설명과 일치합니다."},
+        {"no": 4, "correct": false, "why": "베타 검사는 개발자가 아닌 실제 사용자가 자신의 환경에서 직접 수행하는 검사이므로, 개발자 앞에서 진행된다는 설명과 맞지 않습니다."}
+      ],
+      "keyPoint": "알파 검사와 베타 검사의 차이",
+      "tags": ["인수 테스트", "알파 검사", "베타 검사"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 시 사용하는 기술 중 다음 내용이 설명하는 것은?",
+      "passage": "JavaScript를 사용한 비동기 통신기술로, 클라이언트와 서버 간에 XML 데이터를 주고받는 기술",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "Procedure"},
+        {"no": 2, "text": "Trigger"},
+        {"no": 3, "text": "Greedy"},
+        {"no": 4, "text": "AJAX"}
+      ],
+      "answer": 4,
+      "explanation": "AJAX(Asynchronous JavaScript and XML)는 JavaScript를 사용해 웹 페이지 전체를 다시 불러오지 않고 클라이언트와 서버가 XML 데이터를 비동기로 주고받는 인터페이스 구현 기술입니다. 화면의 필요한 부분만 갱신할 수 있어 응답 속도와 사용자 편의성이 향상됩니다. Procedure와 Trigger는 데이터베이스에 저장되어 사용되는 객체이고, Greedy는 단계마다 최적의 선택을 하는 알고리즘 설계 기법입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Procedure는 데이터베이스에서 일련의 처리를 모아 놓은 저장 프로시저로, 비동기 통신 기술이 아닙니다."},
+        {"no": 2, "correct": false, "why": "Trigger는 데이터베이스에 특정 이벤트가 발생했을 때 자동으로 실행되는 객체로, 클라이언트와 서버 간 통신 기술과 무관합니다."},
+        {"no": 3, "correct": false, "why": "Greedy는 그 순간 가장 좋은 해를 선택해 나가는 알고리즘 설계 기법으로, 인터페이스 구현 기술이 아닙니다."},
+        {"no": 4, "correct": true, "why": "AJAX는 JavaScript로 서버와 비동기 통신을 하며 XML 데이터를 주고받는 기술로 설명과 정확히 일치합니다."}
+      ],
+      "keyPoint": "AJAX의 개념과 동작 방식",
+      "tags": ["인터페이스 구현", "AJAX", "비동기 통신"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "알고리즘 설계 기법으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Divide and Conquer"},
+        {"no": 2, "text": "Greedy"},
+        {"no": 3, "text": "Static Block"},
+        {"no": 4, "text": "Backtracking"}
+      ],
+      "answer": 3,
+      "explanation": "Divide and Conquer(분할 정복), Greedy(탐욕법), Backtracking(되추적)은 문제를 효율적으로 해결하기 위한 대표적인 알고리즘 설계 기법입니다. Static Block은 Java에서 클래스가 로딩될 때 한 번만 실행되는 정적 초기화 블록을 가리키는 문법 요소로, 알고리즘 설계 기법과는 관련이 없습니다. 따라서 알고리즘 설계 기법으로 거리가 먼 것은 Static Block입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Divide and Conquer는 문제를 작은 부분 문제로 나누어 해결한 뒤 결합하는 대표적인 알고리즘 설계 기법입니다."},
+        {"no": 2, "correct": false, "why": "Greedy는 매 단계에서 최선의 선택을 반복해 해를 구하는 알고리즘 설계 기법으로, 거리가 먼 보기가 아닙니다."},
+        {"no": 3, "correct": true, "why": "Static Block은 Java의 정적 초기화 블록을 뜻하는 문법 요소로, 알고리즘 설계 기법에 해당하지 않아 정답입니다."},
+        {"no": 4, "correct": false, "why": "Backtracking은 해가 될 수 없는 경로를 되돌아가며 탐색을 줄이는 알고리즘 설계 기법입니다."}
+      ],
+      "keyPoint": "알고리즘 설계 기법의 종류",
+      "tags": ["알고리즘 설계 기법", "분할 정복", "백트래킹"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "블랙박스 테스트의 유형으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "경계값 분석"},
+        {"no": 2, "text": "오류 예측"},
+        {"no": 3, "text": "동등 분할 기법"},
+        {"no": 4, "text": "조건, 루프 검사"}
+      ],
+      "answer": 4,
+      "explanation": "블랙박스 테스트는 프로그램 내부 구조를 보지 않고 입력과 출력만으로 기능을 검사하는 방법으로, 경계값 분석, 동등 분할 기법, 오류 예측, 원인-결과 그래프 검사, 비교 검사 등이 이에 속합니다. 조건 검사와 루프 검사는 프로그램 내부의 제어 구조와 논리 흐름을 분석하는 화이트박스 테스트의 유형입니다. 따라서 블랙박스 테스트의 유형으로 틀린 것은 조건, 루프 검사입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "경계값 분석은 입력값의 경계에서 결함이 많이 발생한다는 점을 이용하는 대표적인 블랙박스 테스트 유형입니다."},
+        {"no": 2, "correct": false, "why": "오류 예측은 경험과 감각을 바탕으로 오류가 있을 만한 부분을 예측해 검사하는 블랙박스 테스트 유형입니다."},
+        {"no": 3, "correct": false, "why": "동등 분할 기법은 결과가 같은 입력값들을 하나의 그룹으로 나누어 검사하는 블랙박스 테스트 유형입니다."},
+        {"no": 4, "correct": true, "why": "조건, 루프 검사는 소스 코드의 제어 구조를 분석하는 화이트박스 테스트 유형이므로 블랙박스 테스트 유형으로 볼 수 없습니다."}
+      ],
+      "keyPoint": "블랙박스 테스트와 화이트박스 테스트의 구분",
+      "tags": ["블랙박스 테스트", "화이트박스 테스트", "테스트 유형"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "다음에서 설명하는 클린 코드 작성 원칙은?",
+      "passage": "ㆍ한 번에 한 가지 처리만 수행한다.\nㆍ클래스/메소드/함수를 최소 단위로 분리한다.",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "다형성"},
+        {"no": 2, "text": "단순성"},
+        {"no": 3, "text": "추상화"},
+        {"no": 4, "text": "의존성"}
+      ],
+      "answer": 2,
+      "explanation": "클린 코드의 단순성 원칙은 한 번에 한 가지 처리만 수행하도록 하고, 클래스/메소드/함수를 최소 단위로 분리해 코드를 단순하게 작성하는 것입니다. 코드가 단순할수록 읽기 쉽고 수정과 테스트도 쉬워집니다. 다형성, 추상화, 의존성은 객체지향 설계나 클린 코드에서 함께 다루는 개념이지만, 한 번에 한 가지 일만 처리하고 최소 단위로 분리한다는 설명에 해당하지는 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "다형성은 같은 메시지에 여러 객체가 서로 다른 방식으로 반응하는 객체지향 특성으로, 제시된 설명과 일치하지 않습니다."},
+        {"no": 2, "correct": true, "why": "단순성은 한 번에 한 가지 처리만 수행하고 클래스/메소드/함수를 최소 단위로 분리하는 클린 코드 작성 원칙으로 정답입니다."},
+        {"no": 3, "correct": false, "why": "추상화는 공통된 성격의 기능을 상위 개념으로 묶어 표현하는 개념이며, 제시된 설명과 다릅니다."},
+        {"no": 4, "correct": false, "why": "의존성은 클린 코드에서 최소화해야 할 대상으로, 한 번에 한 가지 일만 처리한다는 설명의 원칙 이름과 다릅니다."}
+      ],
+      "keyPoint": "클린 코드 작성 원칙 - 단순성",
+      "tags": ["클린 코드", "단순성"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "n개의 노드로 구성된 무방향 그래프의 최대 간선 수는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "n－1"},
+        {"no": 2, "text": "n/2"},
+        {"no": 3, "text": "n(n－1)/2"},
+        {"no": 4, "text": "n(n＋1)"}
+      ],
+      "answer": 3,
+      "explanation": "무방향 그래프에서 각 노드는 자기 자신을 제외한 n－1개의 노드와 연결될 수 있으므로 연결의 수는 n(n－1)이 됩니다. 간선은 두 노드를 한 쌍으로 묶는 것이므로 같은 간선을 두 번 세지 않도록 2로 나누면 최대 간선 수는 n(n－1)/2가 됩니다. n－1은 모든 노드가 연결된 트리(신장 트리)의 간선 수이므로 정답이 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "n－1은 n개의 노드가 사이클 없이 모두 연결된 트리(신장 트리)의 간선 수로, 무방향 그래프의 최대 간선 수가 아닙니다."},
+        {"no": 2, "correct": false, "why": "n/2는 노드 수를 2로 나눈 값일 뿐, 무방향 그래프의 간선 수를 구하는 공식과 관계가 없습니다."},
+        {"no": 3, "correct": true, "why": "각 노드가 n－1개 노드와 연결되고 간선을 두 번 세지 않도록 2로 나누므로 최대 간선 수는 n(n－1)/2가 되어 정답입니다."},
+        {"no": 4, "correct": false, "why": "n(n＋1)은 무방향 그래프의 간선 수 공식이 아니며, 계산 결과도 최대 간선 수와 일치하지 않습니다."}
+      ],
+      "keyPoint": "무방향 그래프의 최대 간선 수 공식",
+      "tags": ["그래프", "무방향 그래프", "간선 수"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "다음 초기 자료에 대하여 삽입 정렬(Insertion Sort)을 이용하여 오름차순 정렬할 경우 1회전 후의 결과는?",
+      "passage": "초기 자료 : 8, 3, 4, 9, 7",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "3, 4, 8, 7, 9"},
+        {"no": 2, "text": "3, 4, 9, 7, 8"},
+        {"no": 3, "text": "7, 8, 3, 4, 9"},
+        {"no": 4, "text": "3, 8, 4, 9, 7"}
+      ],
+      "answer": 4,
+      "explanation": "삽입 정렬은 두 번째 원소부터 시작해 앞쪽의 정렬된 부분에서 자신이 들어갈 위치를 찾아 삽입하는 방식입니다. 1회전에서는 두 번째 값인 3을 첫 번째 값 8과 비교해 8 앞에 삽입하므로 자료는 3, 8, 4, 9, 7이 됩니다. 즉 1회전에서는 앞의 두 원소만 정렬되고 아직 다루지 않은 4, 9, 7은 위치가 그대로 유지된다는 점이 핵심입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "3, 4, 8, 7, 9는 여러 회전을 수행한 결과에 해당하며, 1회전에서는 4와 7의 위치가 바뀌지 않습니다."},
+        {"no": 2, "correct": false, "why": "3, 4, 9, 7, 8은 두 번째와 세 번째 원소까지 정렬이 진행된 결과로, 1회전 결과가 아닙니다."},
+        {"no": 3, "correct": false, "why": "7, 8, 3, 4, 9는 삽입 정렬의 1회전 수행 결과로 나올 수 없는 배열입니다."},
+        {"no": 4, "correct": true, "why": "1회전에서 두 번째 원소 3이 8 앞으로 삽입되어 3, 8, 4, 9, 7이 되므로 정답입니다."}
+      ],
+      "keyPoint": "삽입 정렬의 1회전 수행 과정",
+      "tags": ["삽입 정렬", "정렬 회전"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "소프트웨어 패키징 도구 활용 시 고려사항으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "반드시 내부 콘텐츠에 대한 암호화 및 보안을 고려한다."},
+        {"no": 2, "text": "보안을 위하여 이기종 연동을 고려하지 않아도 된다."},
+        {"no": 3, "text": "사용자 편의성을 위한 복잡성 및 비효율성 문제를 고려한다."},
+        {"no": 4, "text": "제품 소프트웨어 종류에 적합한 암호화 알고리즘을 적용한다."}
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 패키징 도구를 활용할 때에는 내부 콘텐츠의 암호화와 보안, 사용자 편의성을 위한 복잡성·비효율성 문제, 제품 소프트웨어 종류에 적합한 암호화 알고리즘 적용을 모두 고려해야 합니다. 또한 다양한 기기와 플랫폼에서 동작할 수 있도록 이기종 연동도 반드시 함께 고려해야 합니다. 따라서 이기종 연동을 고려하지 않아도 된다는 설명은 패키징 도구 활용 시 고려사항으로 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "패키징 시 내부 콘텐츠에 대한 암호화와 보안 고려는 올바른 고려사항이므로 틀린 설명이 아닙니다."},
+        {"no": 2, "correct": true, "why": "패키징된 소프트웨어는 여러 기기와 플랫폼에서 실행되므로 이기종 연동을 반드시 고려해야 하며, 고려하지 않아도 된다는 설명이 틀렸습니다."},
+        {"no": 3, "correct": false, "why": "사용자 편의성을 위해 복잡성과 비효율성을 줄이는 문제를 고려하는 것은 올바른 고려사항입니다."},
+        {"no": 4, "correct": false, "why": "제품 소프트웨어 종류에 적합한 암호화 알고리즘을 적용하는 것은 올바른 고려사항입니다."}
+      ],
+      "keyPoint": "소프트웨어 패키징 도구 활용 시 고려사항",
+      "tags": ["소프트웨어 패키징", "이기종 연동", "암호화"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "하향식 통합 시험을 위해 일시적으로 필요한 조건만을 가지고 임시로 제공되는 시험용 모듈은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Stub"},
+        {"no": 2, "text": "Driver"},
+        {"no": 3, "text": "Procedure"},
+        {"no": 4, "text": "Function"}
+      ],
+      "answer": 1,
+      "explanation": "하향식 통합 테스트는 상위 모듈부터 통합해 나가면서 아직 개발되지 않은 하위 모듈을 스텁(Stub)이라는 임시 모듈로 대체해 시험합니다. 반대로 상향식 통합 테스트에서는 아직 준비되지 않은 상위 모듈을 대신하는 드라이버(Driver)를 사용합니다. Procedure와 Function은 프로그램에서 호출되는 처리 단위를 가리키는 용어로 통합 테스트용 임시 모듈과는 다릅니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "Stub은 하향식 통합 테스트에서 아직 개발되지 않은 하위 모듈을 임시로 대신하는 시험용 모듈로 정답입니다."},
+        {"no": 2, "correct": false, "why": "Driver는 상향식 통합 테스트에서 상위 모듈을 대신해 하위 모듈을 호출하는 시험용 모듈이므로 반대의 경우입니다."},
+        {"no": 3, "correct": false, "why": "Procedure는 일련의 처리를 묶어 놓은 호출 단위를 뜻할 뿐, 통합 테스트를 위한 임시 모듈이 아닙니다."},
+        {"no": 4, "correct": false, "why": "Function은 특정 기능을 수행하는 코드 단위를 가리키는 용어로, 하향식 통합 시험용 임시 모듈과는 다릅니다."}
+      ],
+      "keyPoint": "하향식 통합 테스트와 스텁(Stub)",
+      "tags": ["통합 테스트", "Stub", "Driver"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "소프트웨어 형상 관리(Configuration Management)에 관한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "소프트웨어에서 일어나는 수정이나 변경을 알아내고 제어하는 것을 의미한다."},
+        {"no": 2, "text": "소프트웨어 개발의 전체 비용을 줄이고, 개발 과정의 여러 방해 요인이 최소화되도록 보증하는 것을 목적으로 한다."},
+        {"no": 3, "text": "형상 관리를 위하여 구성된 팀을 “chief programmer team”이라고 한다."},
+        {"no": 4, "text": "형상 관리의 기능 중 하나는 버전 제어 기술이다."}
+      ],
+      "answer": 3,
+      "explanation": "형상 관리는 소프트웨어 개발 과정에서 일어나는 수정과 변경을 알아내고 제어하며, 버전 제어 등의 기능을 통해 개발 비용과 방해 요인을 최소화하는 활동입니다. 형상 관리를 전담하도록 구성한 팀은 형상 관리 팀(형상 통제 위원회)이며, chief programmer team은 책임 프로그래머를 중심으로 소수의 인원이 역할을 분담하는 개발 조직 형태로 형상 관리 조직이 아닙니다. 따라서 형상 관리 팀을 chief programmer team이라고 한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "형상 관리는 소프트웨어의 수정이나 변경을 알아내고 제어하는 활동이라는 설명이 옳습니다."},
+        {"no": 2, "correct": false, "why": "개발 전체 비용을 줄이고 개발 과정의 방해 요인을 최소화하는 것을 목적으로 한다는 설명이 옳습니다."},
+        {"no": 3, "correct": true, "why": "형상 관리 팀과 책임 프로그래머 중심의 개발 조직인 chief programmer team은 서로 다른 개념이므로 이 설명이 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "버전 제어 기술은 형상 관리의 기능 중 하나라는 설명이 옳습니다."}
+      ],
+      "keyPoint": "소프트웨어 형상 관리의 정의와 목적",
+      "tags": ["형상 관리", "버전 제어"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "소프트웨어 품질 목표 중 쉽게 배우고 사용할 수 있는 정도를 나타내는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Correctness"},
+        {"no": 2, "text": "Reliability"},
+        {"no": 3, "text": "Usability"},
+        {"no": 4, "text": "Integrity"}
+      ],
+      "answer": 3,
+      "explanation": "Usability(사용 용이성)는 사용자가 소프트웨어를 쉽게 배우고 편리하게 사용할 수 있는 정도를 나타내는 품질 목표입니다. Correctness는 요구사항을 정확하게 만족시키는 정도, Reliability는 오류 없이 정상적으로 동작을 유지하는 신뢰성, Integrity는 허가되지 않은 접근으로부터 시스템과 데이터를 보호하는 무결성을 뜻합니다. 쉽게 배우고 사용할 수 있는 정도라는 설명에 해당하는 것은 Usability입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Correctness는 소프트웨어가 요구사항을 정확히 충족시키는 정도를 뜻하므로 쉽게 배우고 사용하는 정도와 다릅니다."},
+        {"no": 2, "correct": false, "why": "Reliability는 오류 없이 정상적인 기능을 유지하는 신뢰성을 뜻하므로 제시된 설명과 다릅니다."},
+        {"no": 3, "correct": true, "why": "Usability는 소프트웨어를 쉽게 배우고 사용할 수 있는 정도를 나타내는 품질 목표로 정답입니다."},
+        {"no": 4, "correct": false, "why": "Integrity는 시스템과 데이터를 안전하게 보호하는 무결성을 뜻하므로 사용 편의성에 대한 설명이 아닙니다."}
+      ],
+      "keyPoint": "소프트웨어 품질 목표(Usability 등)",
+      "tags": ["소프트웨어 품질 목표", "Usability"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "공학적으로 잘된 소프트웨어(Well Engineered Software)의 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "소프트웨어는 유지보수가 용이해야 한다."},
+        {"no": 2, "text": "소프트웨어는 신뢰성이 높아야 한다."},
+        {"no": 3, "text": "소프트웨어는 사용자 수준에 무관하게 일관된 인터페이스를 제공해야 한다."},
+        {"no": 4, "text": "소프트웨어는 충분한 테스팅을 거쳐야 한다."}
+      ],
+      "answer": 3,
+      "explanation": "공학적으로 잘된 소프트웨어는 유지보수가 용이하고 신뢰성이 높아야 하며, 충분한 테스팅을 거쳐 결함을 줄여야 합니다. 또한 사용자의 수준과 특성에 맞는 인터페이스를 제공해 누구나 쉽게 사용할 수 있어야 합니다. 따라서 사용자 수준에 무관하게 일관된 인터페이스를 제공해야 한다는 설명은 사용자별 요구를 반영하지 못하므로 잘된 소프트웨어의 조건에 어긋납니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "유지보수가 용이해야 한다는 것은 잘된 소프트웨어가 갖추어야 할 올바른 특성입니다."},
+        {"no": 2, "correct": false, "why": "신뢰성이 높아야 한다는 것은 오류 없이 동작해야 함을 의미하는 올바른 특성입니다."},
+        {"no": 3, "correct": true, "why": "사용자 수준에 맞는 인터페이스를 제공해야 하므로 수준과 무관하게 일관된 인터페이스를 제공한다는 설명이 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "충분한 테스팅을 거쳐야 한다는 것은 결함을 줄이기 위한 올바른 조건입니다."}
+      ],
+      "keyPoint": "공학적으로 잘된 소프트웨어의 조건",
+      "tags": ["Well Engineered Software", "소프트웨어 품질"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "다음 설명의 소프트웨어 테스트의 기본 원칙은?",
+      "passage": "ㆍ파레토 법칙이 좌우한다.\nㆍ애플리케이션 결함의 대부분은 소수의 특정한 모듈에 집중되어 존재한다.\nㆍ결함은 발생한 모듈에서 계속 추가로 발생할 가능성이 높다.",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "살충제 패러독스"},
+        {"no": 2, "text": "결함 집중"},
+        {"no": 3, "text": "오류 부재의 궤변"},
+        {"no": 4, "text": "완벽한 테스팅은 불가능"}
+      ],
+      "answer": 2,
+      "explanation": "결함 집중 원칙은 애플리케이션 결함의 대부분이 소수의 특정 모듈에 집중되는 파레토 법칙을 따르며, 결함이 발생한 모듈에서 다시 결함이 발생할 가능성이 높다는 테스트 원칙입니다. 살충제 패러독스는 같은 테스트 케이스를 반복해서 실행하면 새로운 결함을 찾지 못하게 되는 현상이고, 오류 부재의 궤변은 결함이 없더라도 요구사항을 충족하지 못하면 품질이 좋다고 할 수 없다는 원칙입니다. 제시된 설명은 결함 집중에 해당합니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "살충제 패러독스는 동일한 테스트를 반복하면 새로운 결함을 발견하지 못하는 현상으로, 파레토 법칙에 대한 설명과 다릅니다."},
+        {"no": 2, "correct": true, "why": "결함이 소수의 모듈에 집중되고 그 모듈에서 계속 결함이 발생한다는 설명은 결함 집중 원칙에 해당합니다."},
+        {"no": 3, "correct": false, "why": "오류 부재의 궤변은 결함이 없어도 요구사항을 충족하지 못하면 품질이 좋다고 할 수 없다는 원칙으로 설명과 다릅니다."},
+        {"no": 4, "correct": false, "why": "완벽한 테스팅은 불가능은 모든 결함을 찾는 테스트가 불가능하다는 원칙으로, 결함 집중에 대한 설명이 아닙니다."}
+      ],
+      "keyPoint": "소프트웨어 테스트의 기본 원칙 - 결함 집중",
+      "tags": ["테스트 기본 원칙", "결함 집중", "파레토 법칙"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "저작권 관리 구성 요소 중 패키저(Packager)의 주요 역할로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "콘텐츠를 제공하는 저작권자를 의미한다."},
+        {"no": 2, "text": "콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는다."},
+        {"no": 3, "text": "라이선스를 발급하고 관리한다."},
+        {"no": 4, "text": "배포된 콘텐츠의 이용 권한을 통제한다."}
+      ],
+      "answer": 2,
+      "explanation": "저작권 관리 구성 요소에서 패키저(Packager)는 콘텐츠를 메타 데이터와 함께 배포할 수 있는 하나의 단위로 묶는 역할을 담당합니다. 콘텐츠를 제공하는 저작권자는 콘텐츠 제공자, 라이선스를 발급하고 사용료를 징수하는 곳은 클리어링 하우스, 배포된 콘텐츠의 이용 권한을 통제하는 것은 DRM입니다. 따라서 패키저의 역할을 옳게 설명한 것은 콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는다는 설명입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "콘텐츠를 제공하는 저작권자는 콘텐츠 제공자의 역할로, 패키저의 역할이 아닙니다."},
+        {"no": 2, "correct": true, "why": "패키저는 콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는 역할을 하므로 정답입니다."},
+        {"no": 3, "correct": false, "why": "라이선스를 발급하고 관리하는 것은 클리어링 하우스의 역할로, 패키저의 역할이 아닙니다."},
+        {"no": 4, "correct": false, "why": "배포된 콘텐츠의 이용 권한을 통제하는 것은 DRM의 역할로, 패키저의 역할이 아닙니다."}
+      ],
+      "keyPoint": "저작권 관리 구성 요소별 역할",
+      "tags": ["저작권 관리", "패키저", "DRM"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "데이터베이스 성능에 많은 영향을 주는 DBMS의 구성 요소로 테이블과 클러스터에 연관되어 독립적인 저장 공간을 보유하며, 데이터베이스에 저장된 자료를 더욱 빠르게 조회하기 위하여 사용되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "인덱스(Index)"},
+        {"no": 2, "text": "트랙잭션(Transaction)"},
+        {"no": 3, "text": "역정규화(Denormalization)"},
+        {"no": 4, "text": "트리거(Trigger)"}
+      ],
+      "answer": 1,
+      "explanation": "인덱스는 테이블과 클러스터에 연관되어 별도의 독립적인 저장 공간을 차지하면서, 데이터베이스에 저장된 자료를 더 빠르게 조회할 수 있도록 검색 경로를 제공하는 DBMS 구성 요소입니다. 트랜잭션은 데이터베이스 작업을 논리적으로 묶은 단위이고, 역정규화는 성능 향상을 위해 분리된 테이블을 다시 통합하는 설계 기법이며, 트리거는 특정 이벤트가 발생하면 자동으로 실행되는 프로시저입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "인덱스는 테이블과 클러스터에 연관되어 독립적인 저장 공간을 두고 자료를 빠르게 조회하도록 지원하므로 정답입니다."},
+        {"no": 2, "correct": false, "why": "트랙잭션은 데이터베이스 작업을 논리적으로 묶은 단위로, 독립적인 저장 공간을 두고 조회 속도를 높이는 요소가 아닙니다."},
+        {"no": 3, "correct": false, "why": "역정규화는 성능 향상을 위해 테이블을 다시 통합하는 설계 기법이며, 저장 공간을 보유한 DBMS 구성 요소가 아닙니다."},
+        {"no": 4, "correct": false, "why": "트리거는 특정 이벤트 발생 시 자동으로 실행되는 프로시저로, 자료 조회 속도를 높이는 저장 구조가 아닙니다."}
+      ],
+      "keyPoint": "인덱스(Index)의 역할",
+      "tags": ["DBMS 구성 요소", "인덱스"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "다음 설명에 부합하는 용어로 옳은 것은?",
+      "passage": "ㆍ소프트웨어 구조를 이루며, 다른 것들과 구별될 수 있는 독립적인 기능을 갖는 단위이다.\nㆍ하나 또는 몇 개의 논리적인 기능을 수행하기 위한 명령어들의 집합이라고도 할 수 있다.\nㆍ서로 모여 하나의 완전한 프로그램으로 만들어질 수 있다.",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "통합 프로그램"},
+        {"no": 2, "text": "저장소"},
+        {"no": 3, "text": "모듈"},
+        {"no": 4, "text": "데이터"}
+      ],
+      "answer": 3,
+      "explanation": "모듈은 소프트웨어 구조를 이루는 단위로 다른 것들과 구별되는 독립적인 기능을 가지며, 하나 또는 몇 개의 논리적인 기능을 수행하기 위한 명령어들의 집합입니다. 여러 모듈이 서로 모여 하나의 완전한 프로그램이 만들어지므로 제시된 설명에 해당하는 용어는 모듈입니다. 저장소와 데이터는 정보를 담는 대상이고, 통합 프로그램은 모듈들을 결합해 만든 결과물을 가리키는 표현입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "통합 프로그램은 모듈들을 결합해 완성한 결과물을 가리키는 표현으로, 독립적인 기능을 갖는 단위 자체를 뜻하지 않습니다."},
+        {"no": 2, "correct": false, "why": "저장소는 데이터나 자원을 보관하는 공간을 뜻하므로 독립적인 기능 단위에 대한 설명과 맞지 않습니다."},
+        {"no": 3, "correct": true, "why": "모듈은 소프트웨어 구조를 이루며 독립적인 기능을 갖고 명령어들의 집합으로 표현되는 단위로 설명과 일치합니다."},
+        {"no": 4, "correct": false, "why": "데이터는 처리의 대상이 되는 값이나 정보를 뜻하므로 기능을 수행하는 단위에 대한 설명과 다릅니다."}
+      ],
+      "keyPoint": "모듈의 정의",
+      "tags": ["모듈", "소프트웨어 구조"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "소프트웨어 품질 관련 국제 표준인 ISO/IEC 25000에 관한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "소프트웨어 품질 평가를 위한 소프트웨어 품질평가 통합 모델 표준이다."},
+        {"no": 2, "text": "System and Software Quality Requirements and Evaluation으로 줄여서 SQuaRE라고도 한다."},
+        {"no": 3, "text": "ISO/IEC 2501n에서는 소프트웨어의 내부 측정, 외부 측정, 사용 품질 측정, 품질 측정 요소 등을 다룬다."},
+        {"no": 4, "text": "기존 소프트웨어 품질 평가 모델과 소프트웨어 평가 절차 모델인 ISO/IEC 9126과 ISO/IEC 14598을 통합하였다."}
+      ],
+      "answer": 3,
+      "explanation": "ISO/IEC 2501n은 품질 모델 부문으로 소프트웨어의 내부 품질, 외부 품질, 사용 품질에 대한 품질 특성과 부특성을 정의합니다. 내부 측정, 외부 측정, 사용 품질 측정 등 측정 지표를 다루는 부문은 ISO/IEC 2502n이므로, 2501n이 측정을 다룬다는 설명은 옳지 않습니다. ISO/IEC 25000은 SQuaRE라고도 하며 ISO/IEC 9126과 ISO/IEC 14598을 통합한 품질평가 통합 모델 표준입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "ISO/IEC 25000이 소프트웨어 품질평가를 위한 통합 모델 표준이라는 설명은 옳습니다."},
+        {"no": 2, "correct": false, "why": "System and Software Quality Requirements and Evaluation을 줄여 SQuaRE라고 한다는 설명은 옳습니다."},
+        {"no": 3, "correct": true, "why": "내부·외부·사용 품질 측정은 품질 측정 부문인 ISO/IEC 2502n에서 다루므로 2501n에 대한 설명이 틀렸습니다."},
+        {"no": 4, "correct": false, "why": "ISO/IEC 9126과 ISO/IEC 14598을 통합했다는 설명은 ISO/IEC 25000의 제정 배경에 부합합니다."}
+      ],
+      "keyPoint": "ISO/IEC 25000 시리즈의 구성",
+      "tags": ["ISO/IEC 25000", "SQuaRE", "품질 표준"],
+      "difficulty": 4,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2026-1-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "스택(Stack)에 대한 옳은 내용으로만 나열된 것은?",
+      "passage": "㉠ FIFO 방식으로 처리된다.\n㉡ 순서 리스트의 뒤(Rear)에서 노드가 삽입되며, 앞(Front)에서 노드가 제거된다.\n㉢ 선형 리스트의 양쪽 끝에서 삽입과 삭제가 모두 가능한 자료 구조이다.\n㉣ 인터럽트 처리, 서브루틴 호출 작업 등에 응용된다.",
+      "passageKind": "text",
+      "choices": [
+        {"no": 1, "text": "㉠, ㉡"},
+        {"no": 2, "text": "㉡, ㉢"},
+        {"no": 3, "text": "㉣"},
+        {"no": 4, "text": "㉠, ㉡, ㉢, ㉣"}
+      ],
+      "answer": 3,
+      "explanation": "스택은 후입선출(LIFO) 구조로 가장 나중에 삽입된 자료가 가장 먼저 삭제되며, 인터럽트 처리나 서브루틴 호출, 재귀 호출 등에 응용되므로 ㉣만 스택에 대한 옳은 설명입니다. ㉠의 FIFO는 큐의 처리 방식이고, ㉡은 뒤에서 삽입하고 앞에서 삭제하는 큐의 구조를 설명한 것입니다. ㉢은 양쪽 끝에서 삽입과 삭제가 모두 가능한 덱(Deque)에 대한 설명으로 스택의 특징이 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "㉠의 FIFO는 큐의 처리 방식이고 ㉡도 큐의 구조 설명이므로 스택에 대한 옳은 내용이 아닙니다."},
+        {"no": 2, "correct": false, "why": "㉡과 ㉢은 각각 큐와 덱에 대한 설명이므로 스택에 대한 옳은 내용이 아닙니다."},
+        {"no": 3, "correct": true, "why": "㉣의 인터럽트 처리, 서브루틴 호출 응용은 스택의 대표적인 활용으로 옳은 설명이므로 정답입니다."},
+        {"no": 4, "correct": false, "why": "㉠, ㉡, ㉢은 큐와 덱의 특징이므로 네 가지를 모두 스택의 옳은 내용으로 볼 수 없습니다."}
+      ],
+      "keyPoint": "스택의 LIFO 구조와 응용 분야",
+      "tags": ["스택", "큐", "덱"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2026년1회_기사필기_기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    }
+  ]
+}

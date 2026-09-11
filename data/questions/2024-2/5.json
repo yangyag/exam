@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2024-2",
+    "year": 2024,
+    "round": 2,
+    "title": "2024년 2회 정보처리기사 필기",
+    "sourcePdf": "2. 2024년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2024-2-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발에서 정보보안 3요소에 해당하지 않는 설명은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "기밀성 : 인가된 사용자에 대해서만 자원 접근이 가능하다." },
+        { "no": 2, "text": "무결성 : 인가된 사용자에 대해서만 자원 수정이 가능하며 전송 중인 정보는 수정되지 않는다." },
+        { "no": 3, "text": "가용성 : 인가된 사용자는 가지고 있는 권한 범위 내에서 언제든 자원 접근이 가능하다." },
+        { "no": 4, "text": "휘발성 : 인가된 사용자가 수행한 데이터는 처리 완료 즉시 폐기되어야 한다." }
+      ],
+      "answer": 4,
+      "explanation": "정보보안의 3요소는 기밀성(Confidentiality), 무결성(Integrity), 가용성(Availability)이며 흔히 CIA라고 부릅니다. 기밀성은 인가된 사용자만 자원에 접근하도록 하고, 무결성은 인가된 사용자만 자원을 수정하며 전송 중에 정보가 변조되지 않도록 보장합니다. 가용성은 인가된 사용자가 권한 범위 안에서 언제든 자원을 사용할 수 있게 하는 성질입니다. 휘발성은 정보보안 3요소에 포함되지 않는 용어입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "기밀성은 인가된 사용자에게만 자원 접근을 허용하는 성질로 정보보안 3요소에 해당합니다." },
+        { "no": 2, "correct": false, "why": "무결성은 인가된 사용자만 자원을 수정할 수 있고 전송 중 데이터가 변조되지 않음을 보장하는 3요소 중 하나입니다." },
+        { "no": 3, "correct": false, "why": "가용성은 인가된 사용자가 권한 범위 내에서 언제든 자원에 접근할 수 있는 성질로 3요소에 해당합니다." },
+        { "no": 4, "correct": true, "why": "휘발성은 데이터를 처리 즉시 폐기하라는 성질이 아니라 메모리처럼 전원이 끊기면 내용이 사라지는 저장 특성을 가리키는 말이므로 정보보안 3요소가 아닙니다." }
+      ],
+      "keyPoint": "정보보안 3요소(기밀성·무결성·가용성)와 각 요소의 정의",
+      "tags": ["정보보안 3요소", "기밀성", "가용성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "시스템이 몇 대가 되어도 하나의 시스템에서 인증에 성공하면 다른 시스템에 대한 접근 권한도 얻는 시스템을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SOS" },
+        { "no": 2, "text": "SBO" },
+        { "no": 3, "text": "SSO" },
+        { "no": 4, "text": "SOA" }
+      ],
+      "answer": 3,
+      "explanation": "SSO(Single Sign On)는 한 번의 로그인으로 여러 시스템을 이용할 수 있게 해 주는 통합 인증 방식입니다. 사용자가 인증 서버에서 한 번 인증에 성공하면 그 인증 정보를 신뢰하여 연결된 다른 시스템들의 접근 권한까지 함께 얻게 됩니다. 시스템 수가 늘어나도 사용자는 계정과 비밀번호를 하나만 관리하면 되므로 편의성과 보안 관리 효율이 높아집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SOS는 조난 신호를 뜻하는 용어로, 통합 인증 시스템과는 관계가 없습니다." },
+        { "no": 2, "correct": false, "why": "SBO는 지문 등에서 정의된 인증 방식이 아니며 통합 인증을 가리키는 약어가 아닙니다." },
+        { "no": 3, "correct": true, "why": "SSO(Single Sign On)는 한 시스템에서 인증에 성공하면 다른 시스템의 접근 권한도 함께 얻는 통합 인증 방식입니다." },
+        { "no": 4, "correct": false, "why": "SOA는 서비스 지향 아키텍처로, 업무 기능을 서비스 단위로 재구성하는 소프트웨어 설계 방식입니다." }
+      ],
+      "keyPoint": "SSO(Single Sign On) = 한 번의 인증으로 여러 시스템 이용",
+      "tags": ["SSO", "통합 인증"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "COCOMO 모형에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "원시 프로그램의 규모인 LOC에 의한 비용 산정 기법이다." },
+        { "no": 2, "text": "30만 라인 이상의 소프트웨어에서는 내장(Embedded)형 방식을 이용하여 비용을 산정한다." },
+        { "no": 3, "text": "중간(Intermediate)형은 개발 공정별로 보다 자세하고 정확하게 노력을 산출하여 비용을 산정하는 모형이다." },
+        { "no": 4, "text": "사무 처리용, 업무용 등의 소규모 소프트웨어의 비용 산정에는 조직(Organic)형 산정 모델을 사용하는 것이 적합하다." }
+      ],
+      "answer": 3,
+      "explanation": "COCOMO 모형은 원시 프로그램의 규모(LOC)를 기준으로 비용을 산정하는 대표적인 하향식 비용 산정 기법입니다. 개발 규모에 따라 조직형(Organic), 반분리형(Semi-Detached), 내장형(Embedded)으로 나뉘고, 모형의 정밀도에 따라 기본형(Basic), 중간형(Intermediate), 발전형(Detailed)으로 나뉩니다. 중간형은 기본형에 비용 상승 요인인 노력 승수를 반영한 모형이고, 개발 공정별로 보다 자세하고 정확하게 노력을 산출하는 모형은 발전(Detailed)형입니다. 소규모 사무·업무용 소프트웨어에는 조직형이, 30만 라인 이상의 대규모 소프트웨어에는 내장형이 적합합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "COCOMO는 원시 프로그램의 라인 수(LOC)를 입력으로 삼아 비용을 산정하는 기법이므로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "내장형(Embedded)은 30만 라인 이상의 대규모 소프트웨어에 적용하는 방식이므로 맞는 설명입니다." },
+        { "no": 3, "correct": true, "why": "중간형은 기본형에 노력 승수 같은 비용 상승 요인을 추가한 모형이며, 개발 공정별로 세밀하게 노력을 산출하는 것은 발전(Detailed)형이므로 설명이 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "조직형(Organic)은 사무 처리용이나 업무용처럼 소규모이고 개발 경험이 있는 프로젝트에 적합하므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "COCOMO의 개발 규모별 유형(조직형·반분리형·내장형)과 모형 수준별 유형(기본형·중간형·발전형)",
+      "tags": ["COCOMO", "비용 산정", "발전형"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "다음 Java 코드에서 밑줄로 표시된 부분에는 어떤 보안 약점이 존재하는가?",
+      "passage": "public static void main(String[] args) {\n    int a = 5;\n    a = func(a);\n}\nstatic int func(int a) {\n    return a <= 5 ? func(a) : 3;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "종료되지 않는 반복문 또는 재귀함수" },
+        { "no": 2, "text": "널 포인터 역참조" },
+        { "no": 3, "text": "하드코드된 암호화 키 사용" },
+        { "no": 4, "text": "초기화되지 않은 변수 사용" }
+      ],
+      "answer": 1,
+      "explanation": "func()는 인자로 받은 a가 5 이하이면 다시 func(a)를 호출하고, 그렇지 않으면 3을 반환합니다. 그런데 호출할 때마다 인자 a의 값이 5 그대로 전달되어 조건 a <= 5가 항상 참이 되므로 함수가 끝나지 않고 자기 자신을 계속 호출합니다. 이처럼 종료 조건에 도달할 수 없는 재귀 호출은 스택 오버플로를 일으켜 프로그램을 비정상 종료시키는 보안 약점입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "인자 값을 바꾸지 않은 채 항상 참인 조건으로 자기 자신을 다시 호출하므로 종료되지 않는 재귀함수에 해당합니다." },
+        { "no": 2, "correct": false, "why": "코드에 널(null) 참조가 될 수 있는 포인터나 객체 사용이 없으므로 널 포인터 역참조 약점은 아닙니다." },
+        { "no": 3, "correct": false, "why": "암호화 키를 소스 코드에 직접 적어 둔 부분이 없으므로 하드코드된 암호화 키 사용 약점은 아닙니다." },
+        { "no": 4, "correct": false, "why": "변수 a는 int a = 5로 선언과 동시에 초기화되어 사용되므로 초기화되지 않은 변수 사용 약점은 아닙니다." }
+      ],
+      "keyPoint": "재귀함수의 종료 조건 부재로 인한 무한 재귀(스택 오버플로)",
+      "tags": ["보안 약점", "무한 재귀", "재귀함수"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "SAN(Storage Area Network)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "서버와 저장 장치를 연결하는 전용 네트워크를 별도로 구성하는 방식이다." },
+        { "no": 2, "text": "파이버 채널(FC) 스위치를 이용하여 네트워크를 구성한다." },
+        { "no": 3, "text": "서버들이 저장장치 및 파일을 공유할 수 있다." },
+        { "no": 4, "text": "초기 설치 시 소요되는 비용을 절약할 수 있다." }
+      ],
+      "answer": 4,
+      "explanation": "SAN은 서버와 저장 장치를 연결하는 전용 네트워크를 별도로 구성해 데이터를 고속으로 주고받는 저장 방식입니다. 파이버 채널(FC) 스위치를 이용해 망을 구성하며 여러 서버가 저장장치와 파일을 공유할 수 있고 확장성도 뛰어납니다. 다만 전용 스위치와 광케이블 등 별도의 장비가 필요해 초기 구축 비용이 많이 드는 것이 단점이므로, 비용 절약이라는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SAN은 서버와 저장 장치를 잇는 전용 스토리지 네트워크를 별도로 구성하는 방식이므로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "SAN은 파이버 채널(FC) 스위치를 이용해 전용망을 구성하는 것이 일반적이므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "SAN에서는 다수의 서버가 저장장치와 파일을 공유할 수 있으므로 맞는 설명입니다." },
+        { "no": 4, "correct": true, "why": "SAN은 전용 스위치와 장비가 필요해 초기 설치 비용이 많이 드는 방식이므로 비용을 절약할 수 있다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "SAN의 전용망·FC 스위치 구성과 고비용이라는 단점",
+      "tags": ["SAN", "스토리지", "파이버 채널"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "해시(Hash)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "해시 알고리즘으로 변환된 값이나 키를 해시값 또는 해시키라고 부른다." },
+        { "no": 2, "text": "고정된 길이의 입력 데이터나 메시지를 임의의 길이의 값이나 키로 변환한다." },
+        { "no": 3, "text": "데이터의 암호화, 무결성 검증을 위해 사용될 뿐만 아니라 정보 보호의 다양한 분야에서 활용된다." },
+        { "no": 4, "text": "대표적인 해시 알고리즘에는 SHA 시리즈, MD 시리즈 등이 있다." }
+      ],
+      "answer": 2,
+      "explanation": "해시는 임의 길이의 입력 데이터나 메시지를 고정된 길이의 값이나 키로 변환하는 단방향 함수입니다. 변환된 결과를 해시값 또는 해시키라고 하며, 입력이 조금만 달라져도 결과가 크게 바뀌어 데이터의 무결성 검증, 암호화, 인증 등 다양한 분야에서 활용됩니다. 대표적인 알고리즘으로 SHA 시리즈와 MD 시리즈가 있습니다. 입력과 출력의 길이 관계를 반대로 설명한 ②번이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "해시 알고리즘으로 변환된 값이나 키를 해시값 또는 해시키라고 부르므로 맞는 설명입니다." },
+        { "no": 2, "correct": true, "why": "해시는 임의 길이의 입력을 고정된 길이의 값으로 변환하는 함수이므로 입력과 출력의 길이를 뒤바꾼 이 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "해시는 데이터 암호화와 무결성 검증을 비롯한 정보 보호의 여러 분야에서 활용되므로 맞는 설명입니다." },
+        { "no": 4, "correct": false, "why": "SHA 시리즈와 MD 시리즈는 대표적인 해시 알고리즘이므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "해시 함수는 임의 길이 입력을 고정 길이 출력으로 변환",
+      "tags": ["해시", "SHA", "무결성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "다음 중 소유 기반 인증(Something you have) 방법에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "i-PIN" },
+        { "no": 2, "text": "OTP" },
+        { "no": 3, "text": "스마트 카드" },
+        { "no": 4, "text": "신분증" }
+      ],
+      "answer": 1,
+      "explanation": "소유 기반 인증(Something you have)은 사용자가 실제로 가지고 있는 물건이나 장치로 신원을 확인하는 방식으로, OTP 토큰, 스마트 카드, 신분증 등이 해당합니다. i-PIN은 본인만 알고 있는 비밀번호나 아이디 같은 정보를 이용하는 지식 기반 인증(Something you know)에 속합니다. 지식 기반·소유 기반과 함께 지문이나 홍채를 쓰는 생체 기반 인증(Something you are)이 대표적인 인증 수단으로 분류됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "i-PIN은 사용자가 기억하고 있는 아이디와 비밀번호로 인증하는 지식 기반 방식이므로 소유 기반 인증이 아닙니다." },
+        { "no": 2, "correct": false, "why": "OTP는 사용자가 소지한 토큰이나 단말기가 생성한 일회용 비밀번호로 인증하므로 소유 기반 방식에 해당합니다." },
+        { "no": 3, "correct": false, "why": "스마트 카드는 사용자가 소지한 카드 자체로 인증하는 소유 기반 방식에 해당합니다." },
+        { "no": 4, "correct": false, "why": "신분증은 사용자가 소지한 실물로 신원을 확인하는 소유 기반 방식에 해당합니다." }
+      ],
+      "keyPoint": "지식 기반·소유 기반·생체 기반 인증 수단의 구분",
+      "tags": ["소유 기반 인증", "i-PIN", "OTP"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "기존 무선 랜의 한계 극복을 위해 등장하였으며, 대규모 디바이스의 네트워크 생성에 최적화되어 차세대 이동통신, 홈네트워킹, 공공 안전 등의 특수목적에 사용되는 새로운 방식의 네트워크 기술을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Mesh Network" },
+        { "no": 2, "text": "Virtual Private Network" },
+        { "no": 3, "text": "Local Area Network" },
+        { "no": 4, "text": "Software Defined Perimeter" }
+      ],
+      "answer": 1,
+      "explanation": "메시 네트워크(Mesh Network)는 여러 노드가 그물망처럼 서로 연결되어 데이터를 중계하는 방식으로, 기존 무선 랜의 한계를 극복하기 위해 등장했습니다. 대규모 디바이스를 연결하는 데 최적화되어 있어 차세대 이동통신, 홈네트워킹, 공공 안전 같은 특수 목적에 활용됩니다. 일부 노드에 장애가 생겨도 다른 경로로 통신할 수 있어 안정성이 높습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "메시 네트워크는 노드 간 그물망 연결로 대규모 디바이스 네트워크에 최적화된 차세대 네트워크 기술입니다." },
+        { "no": 2, "correct": false, "why": "VPN은 공중망에 가상의 전용 터널을 만들어 안전하게 통신하는 기술로, 대규모 기기 연결 최적화와는 거리가 있습니다." },
+        { "no": 3, "correct": false, "why": "LAN은 사무실이나 건물 같은 한정된 지역을 연결하는 근거리 통신망입니다." },
+        { "no": 4, "correct": false, "why": "SDP는 서버와 사용자 사이에 가상의 경계를 만들어 접근을 통제하는 보안 기술입니다." }
+      ],
+      "keyPoint": "메시 네트워크(Mesh Network)의 그물망 연결 구조와 활용 분야",
+      "tags": ["Mesh Network", "무선 랜"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "개인키 암호화 기법으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "DES" },
+        { "no": 2, "text": "ARIA" },
+        { "no": 3, "text": "SEED" },
+        { "no": 4, "text": "RSA" }
+      ],
+      "answer": 4,
+      "explanation": "개인키 암호화 기법(대칭키 암호)은 암호화와 복호화에 같은 키를 사용하는 방식으로 DES, ARIA, SEED, AES 등이 이에 해당합니다. RSA는 암호화 키와 복호화 키가 서로 다른 공개키(비대칭키) 암호화 기법으로, 소인수 분해의 어려움을 안전성의 근거로 삼습니다. 따라서 개인키 기법이 아닌 것은 RSA입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DES는 암호화와 복호화에 동일한 키를 사용하는 대칭키(개인키) 암호화 알고리즘입니다." },
+        { "no": 2, "correct": false, "why": "ARIA는 국내에서 개발된 128비트 블록 대칭키 암호화 알고리즘입니다." },
+        { "no": 3, "correct": false, "why": "SEED는 국내 표준으로 채택된 128비트 블록 대칭키 암호화 알고리즘입니다." },
+        { "no": 4, "correct": true, "why": "RSA는 공개키와 개인키를 한 쌍으로 사용하는 비대칭키(공개키) 암호화 기법이므로 개인키 암호화 기법이 아닙니다." }
+      ],
+      "keyPoint": "대칭키(DES·ARIA·SEED)와 비대칭키(RSA)의 구분",
+      "tags": ["개인키 암호화", "RSA", "대칭키"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "수동적인 네트워크 침해 공격의 하나로, 네트워크의 패킷 정보를 도청하는 해킹 유형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "스니핑(Sniffing)" },
+        { "no": 2, "text": "스미싱(Smishing)" },
+        { "no": 3, "text": "피싱(Phishing)" },
+        { "no": 4, "text": "백도어(Back Door)" }
+      ],
+      "answer": 1,
+      "explanation": "스니핑(Sniffing)은 네트워크를 흐르는 패킷을 몰래 들여다보며 아이디, 비밀번호 같은 정보를 빼내는 수동적 공격입니다. 데이터를 변조하지 않고 가로채기만 하므로 시스템 자원에는 흔적을 남기지 않는 것이 특징입니다. 스미싱은 문자메시지의 링크로 악성 앱을 설치하게 하는 공격이고, 피싱은 가짜 사이트로 개인정보를 빼내는 공격이며, 백도어는 시스템에 몰래 만들어 둔 접근 통로입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "스니핑은 네트워크의 패킷 정보를 도청해 정보를 탈취하는 대표적인 수동적 공격입니다." },
+        { "no": 2, "correct": false, "why": "스미싱은 문자메시지에 악성 앱 설치 링크를 보내는 사회공학적 공격으로 패킷 도청과는 다릅니다." },
+        { "no": 3, "correct": false, "why": "피싱은 금융기관 등을 사칭한 가짜 사이트로 개인정보를 입력하게 만드는 공격입니다." },
+        { "no": 4, "correct": false, "why": "백도어는 인증을 우회해 시스템에 접근할 수 있도록 몰래 만들어 둔 통로입니다." }
+      ],
+      "keyPoint": "수동적 공격인 스니핑과 사회공학적 공격(스미싱·피싱)의 구분",
+      "tags": ["스니핑", "수동적 공격", "네트워크 침해"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "다음 괄호에 공통으로 들어갈 용어는 무엇인가?",
+      "passage": "(   )는 일련의 데이터를 정의하고 설명해 주는 데이터로, 컴퓨터에서는 데이터 사전의 내용, 스키마 등을 의미한다. (   )는 여러 용도로 사용되나 주로 빠르게 검색하거나 내용을 간략하고 체계적으로 하기 위해 많이 사용된다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "View" },
+        { "no": 2, "text": "Broad Data" },
+        { "no": 3, "text": "Big Data" },
+        { "no": 4, "text": "Meta Data" }
+      ],
+      "answer": 4,
+      "explanation": "메타 데이터(Meta Data)는 데이터를 정의하고 설명해 주는 데이터로, 컴퓨터에서는 데이터 사전의 내용이나 스키마를 가리킵니다. 실제 데이터 자체가 아니라 데이터의 이름, 형식, 크기, 제약 조건 같은 속성을 담고 있어 데이터를 관리하고 해석하는 근거가 됩니다. 여러 용도로 쓰이지만 주로 빠른 검색을 돕거나 내용을 간략하고 체계적으로 정리하기 위해 활용됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "View는 하나 이상의 테이블에서 사용자가 필요한 부분만 정의해 놓은 가상 테이블이므로 지문의 설명과 다릅니다." },
+        { "no": 2, "correct": false, "why": "Broad Data는 지문에서 정의한 것과 같은 정립된 용어가 아니며 데이터를 설명하는 데이터를 가리키지도 않습니다." },
+        { "no": 3, "correct": false, "why": "Big Data는 기존 방법으로 처리하기 어려운 대용량 데이터 자체를 뜻하므로 데이터를 정의·설명하는 데이터라는 설명과 맞지 않습니다." },
+        { "no": 4, "correct": true, "why": "Meta Data는 일련의 데이터를 정의하고 설명해 주는 데이터로, 데이터 사전의 내용이나 스키마를 의미하므로 지문에 해당합니다." }
+      ],
+      "keyPoint": "메타 데이터(Meta Data) = 데이터를 정의·설명해 주는 데이터",
+      "tags": ["메타 데이터", "데이터 사전", "스키마"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "다음에서 설명하는 IT 기술은?",
+      "passage": "ㆍ네트워크를 제어부, 데이터 전달부로 분리하여 네트워크 관리자가 보다 효율적으로 네트워크를 제어, 관리할 수 있는 기술\nㆍ기존의 라우터, 스위치 등과 같이 하드웨어에 의존하는 네트워크 체계에서 안정성, 속도, 보안 등을 소프트웨어로 제어관리하기 위해 개발됨\nㆍ네트워크 장비의 펌웨어 업그레이드를 통해 사용자의 직접적인 데이터 전송 경로 관리가 가능하고, 기존 네트워크에는 영향을 주지 않으면서 특정 서비스의 전송 경로 수정을 통하여 인터넷상에서 발생하는 문제를 처리할 수 있음",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "SDN(Software Defined Networking)" },
+        { "no": 2, "text": "NFS(Network File System)" },
+        { "no": 3, "text": "Network Mapper" },
+        { "no": 4, "text": "AOE Network" }
+      ],
+      "answer": 1,
+      "explanation": "SDN(Software Defined Networking)은 네트워크 장비의 제어부와 데이터 전달부를 분리해, 소프트웨어로 네트워크 전체를 프로그래밍하고 관리하는 기술입니다. 하드웨어에 의존하던 기존 체계에서 벗어나 안정성, 속도, 보안 등을 소프트웨어로 제어할 수 있으며, 펌웨어 업그레이드만으로 전송 경로를 바꾸거나 특정 서비스의 경로를 수정할 수 있습니다. NFS는 네트워크상에서 파일을 공유하는 시스템, Network Mapper는 포트 스캔 도구, AOE 네트워크는 작업 순서를 표현하는 방향 그래프입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "제어부와 데이터 전달부의 분리, 소프트웨어 기반 네트워크 제어라는 설명은 SDN의 정의에 해당합니다." },
+        { "no": 2, "correct": false, "why": "NFS는 원격 컴퓨터의 파일을 자기 것처럼 사용하게 해 주는 네트워크 파일 시스템입니다." },
+        { "no": 3, "correct": false, "why": "Network Mapper는 네트워크의 호스트와 열린 포트를 조사하는 보안 스캐닝 도구입니다." },
+        { "no": 4, "correct": false, "why": "AOE 네트워크는 프로젝트의 작업 순서와 선후 관계를 나타내는 방향 그래프로 네트워크 관리 기술이 아닙니다." }
+      ],
+      "keyPoint": "SDN의 제어부·데이터 전달부 분리와 소프트웨어 기반 네트워크 관리",
+      "tags": ["SDN", "소프트웨어 정의 네트워킹"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "정보 보안을 위한 접근통제 정책 종류에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "임의적 접근통제" },
+        { "no": 2, "text": "데이터 전환 접근통제" },
+        { "no": 3, "text": "강제적 접근통제" },
+        { "no": 4, "text": "역할 기반 접근통제" }
+      ],
+      "answer": 2,
+      "explanation": "접근통제 정책은 주체와 객체의 관계를 어떻게 규정하느냐에 따라 임의적 접근통제(DAC), 강제적 접근통제(MAC), 역할 기반 접근통제(RBAC)로 나뉩니다. 임의적 접근통제는 객체 소유자가 권한을 부여하고, 강제적 접근통제는 보안 등급과 허가 등급을 비교해 시스템이 강제로 통제하며, 역할 기반 접근통제는 조직에서 맡은 역할에 권한을 묶어 부여합니다. '데이터 전환 접근통제'라는 종류는 존재하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "임의적 접근통제(DAC)는 객체의 소유자가 자율적으로 접근 권한을 부여하는 대표적인 접근통제 정책입니다." },
+        { "no": 2, "correct": true, "why": "데이터 전환 접근통제라는 정책은 존재하지 않으며, 접근통제 정책은 임의적·강제적·역할 기반으로 구분됩니다." },
+        { "no": 3, "correct": false, "why": "강제적 접근통제(MAC)는 주체와 객체의 보안 등급을 비교해 시스템이 강제로 접근을 제한하는 정책입니다." },
+        { "no": 4, "correct": false, "why": "역할 기반 접근통제(RBAC)는 사용자의 역할에 따라 권한을 부여하는 정책입니다." }
+      ],
+      "keyPoint": "접근통제 정책 3가지 - 임의적(DAC)·강제적(MAC)·역할 기반(RBAC)",
+      "tags": ["접근통제", "MAC", "RBAC"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "다음 중 병행수행으로 발생할 수 있는 문제점이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "갱신 분실(Lost Update)" },
+        { "no": 2, "text": "완료 의존성(Committed Dependency)" },
+        { "no": 3, "text": "모순성(Inconsistency)" },
+        { "no": 4, "text": "연쇄 복귀(Cascading Rollback)" }
+      ],
+      "answer": 2,
+      "explanation": "여러 트랜잭션이 동시에 수행될 때 발생할 수 있는 대표적인 문제는 갱신 분실, 모순성, 연쇄 복귀, 비완료 의존성입니다. 갱신 분실은 두 트랜잭션이 같은 데이터를 갱신해 한쪽 결과가 사라지는 경우이고, 모순성은 동시 수행 결과가 서로 다르게 나타나는 경우이며, 연쇄 복귀는 한 트랜잭션의 실패가 다른 트랜잭션의 철회로 이어지는 경우입니다. '완료 의존성(Committed Dependency)'은 병행 수행의 문제점으로 다루는 용어가 아니며, 비완료 의존성(Uncommitted Dependency)을 잘못 표현한 것입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "갱신 분실은 두 트랜잭션이 동시에 같은 데이터를 갱신해 한쪽 갱신이 무효가 되는 병행 수행 문제점입니다." },
+        { "no": 2, "correct": true, "why": "완료 의존성이라는 용어는 병행 수행의 문제점으로 쓰이지 않으며, 병행 수행 문제로는 비완료 의존성(Uncommitted Dependency)이 있습니다." },
+        { "no": 3, "correct": false, "why": "모순성은 동시에 수행된 트랜잭션들이 서로 다른 결과를 만들어 데이터가 일관되지 않게 되는 문제점입니다." },
+        { "no": 4, "correct": false, "why": "연쇄 복귀는 한 트랜잭션의 실패로 그 결과에 의존하던 다른 트랜잭션까지 연쇄적으로 철회되는 문제점입니다." }
+      ],
+      "keyPoint": "병행 수행의 문제점 - 갱신 분실, 모순성, 연쇄 복귀, 비완료 의존성",
+      "tags": ["병행수행", "갱신 분실", "연쇄 복귀"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "다음 빈 칸에 알맞은 기술은?",
+      "passage": "(   )은/는 필요한 모든 것에 RFID 태그를 부착하여 수집한 정보를 무선으로 수집할 수 있도록 구성한 네트워크이다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "GIS" },
+        { "no": 2, "text": "SON" },
+        { "no": 3, "text": "USN" },
+        { "no": 4, "text": "UWB" }
+      ],
+      "answer": 3,
+      "explanation": "USN(Ubiquitous Sensor Network)은 필요한 모든 사물에 RFID 태그나 센서를 부착하고, 여기서 수집한 정보를 무선으로 모아 처리하는 네트워크입니다. 사람이 직접 개입하지 않아도 사물의 상태를 감지해 정보를 전달하므로 유비쿼터스 환경을 구현하는 기반 기술로 쓰입니다. GIS는 지리 정보를 다루는 시스템, SON은 스스로 설정을 최적화하는 이동통신망, UWB는 초광대역 무선 통신 기술입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "GIS는 지리적 정보를 수집·저장·분석하는 지리정보시스템으로 RFID 기반 센서 네트워크와는 다릅니다." },
+        { "no": 2, "correct": false, "why": "SON은 기지국 스스로 설정과 최적화를 수행하도록 하는 자가 구성 네트워크 기술입니다." },
+        { "no": 3, "correct": true, "why": "USN은 모든 사물에 RFID 태그를 부착해 수집한 정보를 무선으로 모으는 네트워크이므로 지문에 해당합니다." },
+        { "no": 4, "correct": false, "why": "UWB는 매우 넓은 주파수 대역을 사용하는 초광대역 근거리 무선 통신 기술입니다." }
+      ],
+      "keyPoint": "USN(Ubiquitous Sensor Network) - RFID 태그 기반 무선 센서 네트워크",
+      "tags": ["USN", "RFID", "센서 네트워크"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "소프트웨어 재공학(Reengineering)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "기존 시스템을 이용하여 보다 나은 시스템을 구축하는 것이다." },
+        { "no": 2, "text": "유지보수 비용의 최소화를 위해 유지보수성과 품질을 향상시키는 것을 목적으로 한다." },
+        { "no": 3, "text": "소프트웨어 위기를 해결하는 방법 중 하나로 꼽힌다." },
+        { "no": 4, "text": "소프트웨어의 수명이 연장되지만, 개발 비용이 증가한다." }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 재공학은 기존 시스템을 분석하고 개선해 보다 나은 시스템으로 다시 만들어 내는 활동입니다. 유지보수 비용을 최소화하고 유지보수성과 품질을 높이는 것이 목적이며, 소프트웨어 위기를 해결하는 방법 중 하나로 꼽힙니다. 재공학을 적용하면 소프트웨어의 수명이 연장될 뿐 아니라 재개발에 드는 비용도 줄어들므로, 개발 비용이 증가한다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "재공학은 기존 시스템을 이용해 더 나은 시스템을 구축하는 활동이므로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "재공학은 유지보수 비용을 최소화하고 유지보수성과 품질을 향상시키는 것을 목적으로 하므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "재공학은 소프트웨어 위기를 해결하는 대표적인 방법 중 하나로 꼽히므로 맞는 설명입니다." },
+        { "no": 4, "correct": true, "why": "재공학은 소프트웨어 수명을 연장하면서 개발 비용을 절감하는 효과가 있으므로 개발 비용이 증가한다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "소프트웨어 재공학의 목적 - 유지보수 비용 절감과 수명 연장",
+      "tags": ["소프트웨어 재공학", "유지보수", "소프트웨어 위기"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "다음 중 양방향 암호화 방식이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "DES" },
+        { "no": 2, "text": "SEED" },
+        { "no": 3, "text": "RSA" },
+        { "no": 4, "text": "HASH" }
+      ],
+      "answer": 4,
+      "explanation": "양방향 암호화 방식은 암호화된 데이터를 키를 이용해 원래의 평문으로 되돌릴 수 있는 방식입니다. DES와 SEED는 암호화와 복호화에 같은 키를 쓰는 대칭키 방식이고 RSA는 공개키와 개인키를 한 쌍으로 쓰는 비대칭키 방식이므로 모두 양방향에 해당합니다. HASH는 임의 길이의 입력을 고정 길이의 값으로 바꾸는 단방향 함수로 복호화가 불가능하므로 양방향 암호화 방식이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DES는 같은 키로 암호화와 복호화를 모두 수행하는 양방향(대칭키) 암호화 알고리즘입니다." },
+        { "no": 2, "correct": false, "why": "SEED는 복호화가 가능한 국내 표준 대칭키 암호화 알고리즘으로 양방향 방식에 해당합니다." },
+        { "no": 3, "correct": false, "why": "RSA는 공개키와 개인키를 이용해 암호화와 복호화를 모두 수행하는 양방향(비대칭키) 암호화 알고리즘입니다." },
+        { "no": 4, "correct": true, "why": "HASH는 복호화가 불가능한 단방향 암호화 방식이므로 양방향 암호화 방식이 아닙니다." }
+      ],
+      "keyPoint": "단방향 해시와 양방향(DES·SEED·RSA) 암호화의 차이",
+      "tags": ["양방향 암호화", "단방향", "HASH"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "데이터 다이어트(Data Diet)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "대용량 데이터를 분산 처리하기 위한 목적으로 개발된 프로그래밍 모델이다." },
+        { "no": 2, "text": "데이터를 압축하고, 중복된 정보는 중복을 배제하고, 새로운 기준에 따라 나누어 저장하는 작업이다." },
+        { "no": 3, "text": "데이터 집합에서 사용자의 요구에 따라 유용하고 가능성 있는 정보를 발견하기 위한 기법이다." },
+        { "no": 4, "text": "기존의 관리 방법이나 분석 체계로는 처리하기 어려운 막대한 양의 정형 또는 비정형 데이터 집합을 의미한다." }
+      ],
+      "answer": 2,
+      "explanation": "데이터 다이어트는 데이터를 압축하고, 중복된 정보는 배제하며, 새로운 기준에 따라 나누어 저장해 데이터의 양을 줄이고 품질을 높이는 작업입니다. 데이터가 불필요하게 많아지면 저장 공간과 처리 시간이 낭비되므로, 꼭 필요한 데이터만 남기고 정리해 관리 효율을 높이는 것이 목적입니다. ①번은 맵리듀스(MapReduce), ③번은 데이터 마이닝, ④번은 빅 데이터에 대한 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "대용량 데이터를 분산 처리하기 위한 프로그래밍 모델은 맵리듀스(MapReduce)에 대한 설명입니다." },
+        { "no": 2, "correct": true, "why": "데이터를 압축하고 중복을 배제하며 새로운 기준에 따라 나누어 저장하는 작업이 바로 데이터 다이어트입니다." },
+        { "no": 3, "correct": false, "why": "데이터 집합에서 유용하고 가능성 있는 정보를 발견하는 기법은 데이터 마이닝(Data Mining)입니다." },
+        { "no": 4, "correct": false, "why": "기존 방법으로 처리하기 어려운 막대한 양의 정형·비정형 데이터 집합은 빅 데이터(Big Data)에 대한 설명입니다." }
+      ],
+      "keyPoint": "데이터 다이어트 - 압축·중복 배제·기준별 분류 저장",
+      "tags": ["데이터 다이어트", "데이터 마이닝", "빅 데이터"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "테일러링(Tailoring) 개발 방법론의 내부 기준에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "납기/비용" },
+        { "no": 2, "text": "기술 환경" },
+        { "no": 3, "text": "구성원 능력" },
+        { "no": 4, "text": "국제 표준 품질 기준" }
+      ],
+      "answer": 4,
+      "explanation": "테일러링은 프로젝트 상황에 맞게 개발 방법론을 재정의하는 활동이며, 기준을 내부 기준과 외부 기준으로 나눕니다. 내부 기준은 목표, 환경, 규모와 범위, 납기/비용, 기술 환경, 구성원 능력 등 프로젝트 자체의 특성을 다룹니다. 외부 기준은 국제 표준 품질 기준, 법적·규제적 요구사항, 유사 프로젝트 참조 등 조직 밖에서 주어지는 조건이므로, 국제 표준 품질 기준은 내부 기준이 아닌 외부 기준에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "납기/비용은 프로젝트 일정과 예산이라는 내부 조건을 반영하는 테일러링의 내부 기준입니다." },
+        { "no": 2, "correct": false, "why": "기술 환경은 프로젝트에서 사용할 기술 수준을 따지는 내부 기준에 해당합니다." },
+        { "no": 3, "correct": false, "why": "구성원 능력은 투입 인력의 역량을 고려하는 테일러링의 내부 기준입니다." },
+        { "no": 4, "correct": true, "why": "국제 표준 품질 기준은 조직 외부에서 주어지는 외부 기준이므로 내부 기준에 해당하지 않습니다." }
+      ],
+      "keyPoint": "테일러링 기준 - 내부 기준(납기/비용·기술 환경·구성원 능력)과 외부 기준(국제 표준 품질 기준)",
+      "tags": ["테일러링", "내부 기준", "외부 기준"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "OWASP(the Open Web Application Security Project)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "P2P 네트워크를 이용하여 온라인 금융 거래 정보를 온라인 네트워크 참여자(Peer)의 디지털 장비에 분산 저장하는 기술이다." },
+        { "no": 2, "text": "대표적인 사례로 블록체인(Blockchain)이 있다." },
+        { "no": 3, "text": "양자 통신을 위해 비밀키를 분배하여 관리하는 기술이다." },
+        { "no": 4, "text": "웹 정보 노출이나 악성 코드, 스크립트, 보안이 취약한 부분을 연구하는 비영리 단체이다." }
+      ],
+      "answer": 4,
+      "explanation": "OWASP는 웹 애플리케이션의 보안 취약점을 연구하고 개선 방안을 공유하는 비영리 단체입니다. 웹 정보 노출, 악성 코드와 스크립트, 인증 취약점 등 웹에서 발생하는 보안 문제를 연구하며, 3년마다 웹 보안 위협 10가지를 정리한 OWASP Top 10을 발표해 개발자가 참고하도록 합니다. ①과 ②는 블록체인, ③은 양자 암호 키 분배(QKD)에 대한 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "P2P 네트워크 참여자의 장비에 거래 정보를 분산 저장하는 기술은 블록체인에 대한 설명입니다." },
+        { "no": 2, "correct": false, "why": "블록체인은 분산 원장 기술의 대표 사례이며 OWASP의 사례가 아닙니다." },
+        { "no": 3, "correct": false, "why": "양자 통신을 위해 비밀키를 분배·관리하는 기술은 양자 암호 키 분배(QKD)입니다." },
+        { "no": 4, "correct": true, "why": "OWASP는 웹 정보 노출이나 악성 코드·스크립트 등 보안 취약점을 연구하는 비영리 단체이므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "OWASP - 웹 애플리케이션 보안 취약점을 연구하는 비영리 단체",
+      "tags": ["OWASP", "웹 보안", "취약점"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

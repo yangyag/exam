@@ -1,0 +1,1478 @@
+{
+ "exam": {
+  "id": "2023-1",
+  "year": 2023,
+  "round": 1,
+  "title": "2023년 1회 정보처리기사 필기",
+  "sourcePdf": "2023년1회_정보처리기사필기기출문제.pdf"
+ },
+ "subject": {
+  "code": 4,
+  "name": "프로그래밍 언어 활용"
+ },
+ "questions": [
+  {
+   "id": "2023-1-061",
+   "number": 61,
+   "subjectCode": 4,
+   "stem": "한 개의 통신 회선에 여러 대의 단말장치가 연결되어 있는 형태를 가진 네트워크 토폴로지는 어떤 형인가?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "그물형"
+    },
+    {
+     "no": 2,
+     "text": "십자형"
+    },
+    {
+     "no": 3,
+     "text": "버스형"
+    },
+    {
+     "no": 4,
+     "text": "링형"
+    }
+   ],
+   "answer": 3,
+   "explanation": "버스형은 하나의 공통 전송 회선에 여러 대의 단말장치를 연결하고 데이터를 회선 전체로 보내면 목적지 주소에 해당하는 단말만 받아들이는 구조입니다. 그물형은 모든 노드가 서로 직접 연결되는 형태라 회선이 여러 개 필요하고, 링형은 노드들이 원형으로 배치되어 인접한 노드끼리 차례로 연결됩니다. 따라서 하나의 통신 회선을 여러 단말장치가 공유하는 형태는 버스형입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "그물형은 모든 노드가 1:1로 연결되어 여러 개의 회선이 필요한 형태이므로 하나의 회선을 공유한다는 설명과 맞지 않습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "십자형은 중앙 노드를 중심으로 단말이 연결되는 형태로, 하나의 공통 회선을 공유하는 버스형과 다릅니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "하나의 공통 통신 회선에 여러 단말장치를 연결하고 회선을 공유하는 형태이므로 맞는 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "링형은 노드들이 원형으로 배치되어 인접한 노드끼리 연결되는 형태이므로 틀린 설명입니다."
+    }
+   ],
+   "keyPoint": "네트워크 토폴로지(버스형·링형·그물형)의 연결 구조",
+   "tags": [
+    "네트워크 토폴로지",
+    "버스형"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-062",
+   "number": 62,
+   "subjectCode": 4,
+   "stem": "C언어에서 산술 연산자가 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "%"
+    },
+    {
+     "no": 2,
+     "text": "*"
+    },
+    {
+     "no": 3,
+     "text": "<<"
+    },
+    {
+     "no": 4,
+     "text": "/"
+    }
+   ],
+   "answer": 3,
+   "explanation": "C언어의 산술 연산자는 덧셈, 뺄셈, 곱셈, 나눗셈, 나머지를 구하는 +, -, *, /, % 등으로 수치 계산에 사용됩니다. <<는 비트를 왼쪽으로 한 자리씩 옮기는 시프트 연산자로 연산자 분류상 비트 연산자에 속합니다. 따라서 산술 연산자가 아닌 것은 <<입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "%는 나눗셈의 나머지를 구하는 산술 연산자이므로 산술 연산자에 해당합니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "*는 값을 곱하는 산술 연산자이므로 산술 연산자에 해당합니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "<<는 비트를 왼쪽으로 이동시키는 시프트 연산자로 산술 연산자가 아닙니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "/는 값을 나누는 산술 연산자이므로 산술 연산자에 해당합니다."
+    }
+   ],
+   "keyPoint": "C언어 연산자 분류(산술 연산자와 비트 시프트 연산자)",
+   "tags": [
+    "C언어",
+    "연산자"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-063",
+   "number": 63,
+   "subjectCode": 4,
+   "stem": "IPv6에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "128비트의 주소 공간을 제공한다."
+    },
+    {
+     "no": 2,
+     "text": "인증 및 보안 기능을 포함하고 있다."
+    },
+    {
+     "no": 3,
+     "text": "패킷 크기가 64Kbyte로 고정되어 있다."
+    },
+    {
+     "no": 4,
+     "text": "IPv6 확장 헤더를 통해 네트워크 기능 확장이 용이하다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "IPv6는 16비트씩 8부분으로 이루어진 128비트 주소 체계로 IPv4보다 훨씬 많은 주소를 제공하고, 인증과 보안 기능을 기본으로 포함하며 확장 헤더를 통해 기능을 유연하게 확장할 수 있습니다. 패킷 크기가 64Kbyte로 고정된 것은 IPv4의 헤더 규격이고, IPv6는 확장 헤더를 사용해 패킷 크기에 제한이 없습니다. 따라서 패킷 크기를 잘못 설명한 보기가 틀린 것입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "IPv6는 128비트 주소 체계를 사용하므로 맞는 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "IPv6는 인증 및 보안 기능을 기본으로 포함하고 있으므로 맞는 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "패킷 크기가 64Kbyte로 고정된 것은 IPv4이며 IPv6의 패킷 크기는 제한이 없으므로 틀린 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "IPv6는 확장 헤더를 이용해 네트워크 기능을 확장하므로 맞는 설명입니다."
+    }
+   ],
+   "keyPoint": "IPv6의 주소 크기·보안·확장 헤더와 IPv4와의 차이",
+   "tags": [
+    "IPv6",
+    "패킷 크기"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-064",
+   "number": 64,
+   "subjectCode": 4,
+   "stem": "다음 설명의 ㉠과 ㉡에 들어갈 내용으로 옳은 것은?",
+   "passage": "가상기억장치의 일반적인 구현 방법에는 프로그램을 고정된 크기의 일정한 블록으로 나누는 ( ㉠ ) 기법과 가변적인 크기의 블록으로 나누는 ( ㉡ ) 기법이 있다.",
+   "passageKind": "text",
+   "choices": [
+    {
+     "no": 1,
+     "text": "㉠ : Paging, ㉡ : Segmentation"
+    },
+    {
+     "no": 2,
+     "text": "㉠ : Segmentation, ㉡ : Allocatin"
+    },
+    {
+     "no": 3,
+     "text": "㉠ : Segmentation, ㉡ : Compaction"
+    },
+    {
+     "no": 4,
+     "text": "㉠ : Paging, ㉡ : Linking"
+    }
+   ],
+   "answer": 1,
+   "explanation": "가상기억장치 구현에서 프로그램을 고정된 크기의 일정한 블록인 페이지 단위로 나누는 기법은 페이징(Paging)이고, 가변적인 크기의 논리적 블록인 세그먼트 단위로 나누는 기법은 세그먼테이션(Segmentation)입니다. Allocatin은 기억공간 할당, Compaction은 단편화된 공간을 한곳으로 모으는 작업, Linking은 여러 모듈을 하나로 연결하는 작업을 뜻하므로 분할 기법의 명칭이 아닙니다. 따라서 ㉠에는 Paging, ㉡에는 Segmentation이 들어갑니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "고정 크기 블록으로 나누는 페이징과 가변 크기 블록으로 나누는 세그먼테이션이 순서대로 짝지어졌으므로 맞습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "고정 크기 분할은 Paging이며 Allocatin은 기억공간 할당을 뜻하는 용어로 ㉡에 들어갈 기법이 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "고정 크기 분할은 Paging이고 Compaction은 단편화 해소를 위한 작업으로 ㉡에 들어갈 기법이 아닙니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "㉠의 Paging은 맞지만 Linking은 모듈 연결 작업이므로 ㉡에 들어갈 기법이 아닙니다."
+    }
+   ],
+   "keyPoint": "가상기억장치 구현 기법(페이징과 세그먼테이션)",
+   "tags": [
+    "가상기억장치",
+    "페이징",
+    "세그먼테이션"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-065",
+   "number": 65,
+   "subjectCode": 4,
+   "stem": "JAVA에서 변수와 자료형에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "변수는 어떤 값을 주기억장치에 기억하기 위해서 사용하는 공간이다."
+    },
+    {
+     "no": 2,
+     "text": "char 자료형은 한 개의 문자를 저장하고자 할 때 사용한다."
+    },
+    {
+     "no": 3,
+     "text": "실수형 자료형에는 float, short, byte가 있다."
+    },
+    {
+     "no": 4,
+     "text": "boolean 자료형은 조건이 참인지 거짓인지 판단하고자 할 때 사용한다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "자바의 실수형 자료형에는 float와 double이 있고, short와 byte는 정수형 자료형에 속합니다. 변수는 값을 주기억장치에 기억하기 위해 사용하는 공간이며, char는 한 개의 문자를, boolean은 참과 거짓을 저장하는 자료형입니다. 따라서 실수형 자료형을 잘못 설명한 보기가 틀린 것입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "변수는 값을 주기억장치에 저장하기 위해 사용하는 공간이므로 맞는 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "char는 한 개의 문자를 저장하는 자료형이므로 맞는 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "short와 byte는 정수형 자료형이며 실수형 자료형에는 float와 double이 있으므로 틀린 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "boolean은 참과 거짓을 판단하는 논리형 자료형이므로 맞는 설명입니다."
+    }
+   ],
+   "keyPoint": "JAVA 자료형 분류(정수형·실수형·문자형·논리형)",
+   "tags": [
+    "JAVA",
+    "자료형"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-066",
+   "number": 66,
+   "subjectCode": 4,
+   "stem": "프로세스 적재 정책과 관련한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "반복, 스택, 부프로그램은 시간 지역성(Temporal Locality)과 관련이 있다."
+    },
+    {
+     "no": 2,
+     "text": "공간 지역성(Spatial Locality)은 프로세스가 어떤 페이지를 참조했다면 이후 가상주소 공간상 그 페이지와 인접한 페이지들을 참조할 가능성이 높음을 의미한다."
+    },
+    {
+     "no": 3,
+     "text": "일반적으로 페이지 교환에 보내는 시간보다 프로세스 수행에 보내는 시간이 더 크면 스레싱(Thrashing)이 발생한다."
+    },
+    {
+     "no": 4,
+     "text": "스레싱(Thrashing) 현상을 방지하기 위해서는 각 프로세스가 필요로 하는 프레임을 제공할 수 있어야 한다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "스레싱은 페이지 교환에 소요되는 시간이 프로세스 수행 시간보다 커져 실제 작업보다 페이지 교체에 대부분의 시간을 쓰는 현상이므로, 설명은 두 시간의 대소 관계가 반대로 서술되었습니다. 시간 지역성은 반복문이나 스택, 부프로그램처럼 최근에 참조한 기억장소를 곧 다시 참조하는 성질이고, 공간 지역성은 참조한 페이지와 인접한 페이지를 이어서 참조할 가능성이 높은 성질입니다. 또한 각 프로세스가 필요로 하는 프레임을 충분히 제공하는 것은 스레싱을 줄이는 대표적인 방법입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "반복문, 스택, 부프로그램은 최근에 사용한 기억장소를 다시 참조하는 시간 지역성의 대표적인 예이므로 맞는 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "참조한 페이지와 인접한 페이지를 함께 참조할 가능성이 높다는 것은 공간 지역성의 정의이므로 맞는 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "페이지 교환 시간이 프로세스 수행 시간보다 더 커야 스레싱이 발생하는데 조건이 반대로 서술되어 틀린 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "프로세스마다 필요한 프레임을 제공하는 것은 스레싱을 방지하는 방법이므로 맞는 설명입니다."
+    }
+   ],
+   "keyPoint": "스레싱(Thrashing)의 발생 원인과 시간·공간 지역성",
+   "tags": [
+    "스레싱",
+    "지역성"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-067",
+   "number": 67,
+   "subjectCode": 4,
+   "stem": "다음 C언어 프로그램이 실행되었을 때의 결과는?",
+   "passage": "#include <stdio.h>\nint main(void) {\n    int n = 4;\n    int* pt = NULL;\n    pt = &n;\n    printf(\"%d\", &n + *pt - *&pt + n);\n    return 0;\n}",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "0"
+    },
+    {
+     "no": 2,
+     "text": "4"
+    },
+    {
+     "no": 3,
+     "text": "8"
+    },
+    {
+     "no": 4,
+     "text": "12"
+    }
+   ],
+   "answer": 3,
+   "explanation": "pt에 &n을 저장했으므로 *pt는 n의 값인 4이고, *&pt는 다시 pt가 가리키는 주소 &n입니다. 따라서 &n + *pt - *&pt는 주소 &n에 4를 더한 뒤 다시 &n을 빼는 연산이 되어 4가 되고, 여기에 n의 값 4를 더하면 8이 됩니다. 포인터 연산은 가리키는 자료형의 크기를 단위로 계산되지만 같은 주소를 더하고 빼면 상쇄되므로 최종 출력 값은 8입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "주소 연산이 상쇄된 뒤 남는 값은 n의 값 4이므로 0은 출력되지 않습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "4는 &n + *pt - *&pt까지의 결과이며 여기에 n의 값 4를 더해야 하므로 출력 값이 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "&n + *pt - *&pt가 4가 되고 여기에 n의 값 4를 더한 8이 출력되므로 맞습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "12는 주소 연산의 상쇄를 반영하지 않고 값을 크게 계산한 결과입니다."
+    }
+   ],
+   "keyPoint": "포인터 연산(&, *)과 주소 값의 상쇄",
+   "tags": [
+    "C언어",
+    "포인터"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-068",
+   "number": 68,
+   "subjectCode": 4,
+   "stem": "은행가 알고리즘(Banker’s Algorithm)은 교착상태의 해결 방법 중 어떤 기법에 해당하는가?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "Avoidance"
+    },
+    {
+     "no": 2,
+     "text": "Detection"
+    },
+    {
+     "no": 3,
+     "text": "Prevention"
+    },
+    {
+     "no": 4,
+     "text": "Recovery"
+    }
+   ],
+   "answer": 1,
+   "explanation": "은행가 알고리즘은 자원을 할당하기 전에 그 할당이 시스템을 안전 상태로 유지할 수 있는지 미리 검사하고, 교착상태가 발생할 수 있는 요청은 받아들이지 않는 기법입니다. 이처럼 교착상태가 생기지 않도록 자원 할당을 조절하는 방법은 회피(Avoidance)에 해당합니다. Prevention은 교착상태 발생 조건이 성립하지 않도록 사전에 차단하는 방법이고, Detection과 Recovery는 발생한 교착상태를 찾아내거나 되돌리는 방법입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "자원 할당 전에 안전성을 검사해 교착상태를 피하는 회피 기법이므로 맞습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "Detection은 이미 발생한 교착상태를 발견하는 기법으로 은행가 알고리즘과 다릅니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "Prevention은 상호 배제, 점유와 대기 등 교착상태 발생 조건을 미리 차단하는 방법입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "Recovery는 교착상태에 빠진 프로세스를 종료하거나 자원을 회수해 되돌리는 방법입니다."
+    }
+   ],
+   "keyPoint": "교착상태 해결 방법(예방·회피·검출·복구)과 은행가 알고리즘",
+   "tags": [
+    "교착상태",
+    "은행가 알고리즘"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-069",
+   "number": 69,
+   "subjectCode": 4,
+   "stem": "3개의 페이지 프레임을 갖는 시스템에서 페이지 참조 순서가 1, 2, 1, 0, 4, 1, 3일 경우 FIFO 알고리즘에 의한 페이지 교체의 경우 프레임의 최종 상태는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "1, 2, 0"
+    },
+    {
+     "no": 2,
+     "text": "2, 4, 3"
+    },
+    {
+     "no": 3,
+     "text": "1, 4, 2"
+    },
+    {
+     "no": 4,
+     "text": "4, 1, 3"
+    }
+   ],
+   "answer": 4,
+   "explanation": "FIFO는 프레임에 가장 먼저 적재된 페이지를 먼저 교체하는 알고리즘입니다. 1, 2, 0을 적재한 뒤 4를 참조하면 가장 먼저 들어온 1이 나가고, 1을 다시 참조하면 그다음으로 오래된 2가, 3을 참조하면 0이 교체됩니다. 각 단계를 거치면 프레임의 최종 상태는 4, 1, 3이 됩니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "1, 2, 0은 0까지 참조한 상태이며 이후 4, 1, 3 참조에 의한 교체가 반영되지 않았습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "2, 4, 3은 가장 오래된 페이지를 교체한다는 FIFO 규칙과 맞지 않는 결과입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "1, 4, 2는 각 참조에서 교체 대상을 잘못 선택한 결과입니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "가장 먼저 적재된 페이지를 차례로 교체하면 최종 프레임 상태는 4, 1, 3이 되므로 맞습니다."
+    }
+   ],
+   "keyPoint": "FIFO 페이지 교체 알고리즘의 프레임 상태 변화",
+   "tags": [
+    "페이지 교체",
+    "FIFO"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-070",
+   "number": 70,
+   "subjectCode": 4,
+   "stem": "TCP/IP 프로토콜에서 TCP가 해당하는 계층은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "데이터 링크 계층"
+    },
+    {
+     "no": 2,
+     "text": "네트워크 계층"
+    },
+    {
+     "no": 3,
+     "text": "트랜스포트 계층"
+    },
+    {
+     "no": 4,
+     "text": "세션 계층"
+    }
+   ],
+   "answer": 3,
+   "explanation": "TCP/IP 계층에서 TCP는 응용 계층과 인터넷 계층 사이에서 연결을 설정하고 오류 복구와 흐름 제어를 통해 신뢰성 있는 데이터 전송을 담당하는 트랜스포트(전송) 계층의 프로토콜입니다. 데이터 링크 계층은 인접한 노드 사이의 프레임 전송을, 네트워크 계층은 IP를 이용한 주소 지정과 경로 설정을 담당합니다. 세션 계층은 OSI 7계층 모델의 계층이며 TCP/IP 계층에는 해당 계층이 없습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "데이터 링크 계층은 이더넷, PPP 등 인접 노드 간 프레임 전송을 담당하는 계층입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "네트워크 계층은 IP, ICMP 등 주소 지정과 경로 설정을 담당하는 계층입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "TCP는 종단 간 연결 관리와 신뢰성 있는 전송을 담당하는 트랜스포트 계층에 속하므로 맞습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "세션 계층은 OSI 7계층의 계층으로 TCP/IP 계층 구조에는 포함되지 않습니다."
+    }
+   ],
+   "keyPoint": "TCP/IP 계층 구조에서 TCP의 위치",
+   "tags": [
+    "TCP/IP",
+    "트랜스포트 계층"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-071",
+   "number": 71,
+   "subjectCode": 4,
+   "stem": "다음 C언어 프로그램의 결과로 옳은 것은?",
+   "passage": "#include <stdio.h>\nmain() {\n    int a = 3, b = 4, c = 5;\n    int r1, r2, r3;\n    r1 = a < 4 && b <= 4;\n    r2 = a > 3 || b <= 5;\n    r3 = !c;\n    printf(“%d”, r1 - r2 + r3);\n}",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "0"
+    },
+    {
+     "no": 2,
+     "text": "1"
+    },
+    {
+     "no": 3,
+     "text": "2"
+    },
+    {
+     "no": 4,
+     "text": "3"
+    }
+   ],
+   "answer": 1,
+   "explanation": "a가 3이므로 a<4는 참이고 b가 4이므로 b<=4도 참이어서 r1에는 1이 저장됩니다. a>3은 거짓이지만 b<=5가 참이므로 r2에도 1이 저장되고, c가 5이므로 !c는 0이 되어 r3에는 0이 저장됩니다. 따라서 r1 - r2 + r3는 1 - 1 + 0 = 0이 되어 0이 출력됩니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "각 논리 연산의 결과가 1, 1, 0이므로 1-1+0=0이 출력되어 맞습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "1은 r1과 r2에 저장된 값이며 두 값이 상쇄되므로 출력 결과가 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "2는 논리 연산의 결과를 잘못 계산한 값으로 실제 출력과 다릅니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "3은 변수 a의 값이며 프로그램이 출력하는 값이 아닙니다."
+    }
+   ],
+   "keyPoint": "C언어 관계·논리 연산자와 참·거짓의 정수 값",
+   "tags": [
+    "C언어",
+    "논리 연산자"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-072",
+   "number": 72,
+   "subjectCode": 4,
+   "stem": "UNIX 시스템에서 파일의 권한 모드 설정에 관한 명령어는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "cp"
+    },
+    {
+     "no": 2,
+     "text": "chmod"
+    },
+    {
+     "no": 3,
+     "text": "cat"
+    },
+    {
+     "no": 4,
+     "text": "ls"
+    }
+   ],
+   "answer": 2,
+   "explanation": "chmod는 파일이나 디렉터리에 대한 읽기, 쓰기, 실행 권한을 기호나 8진수로 지정하는 명령어로 파일의 권한 모드를 설정할 때 사용합니다. cp는 파일을 복사하고, cat은 파일의 내용을 화면에 출력하며, ls는 디렉터리에 있는 파일 목록을 보여줍니다. 따라서 파일 권한 모드 설정에 관한 명령어는 chmod입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "cp는 파일을 복사하는 명령어로 권한 설정과 관련이 없습니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "chmod는 파일의 접근 권한을 지정하는 명령어이므로 맞습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "cat은 파일 내용을 출력하는 명령어로 권한 설정과 관련이 없습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "ls는 파일 목록을 확인하는 명령어로 권한 설정과 관련이 없습니다."
+    }
+   ],
+   "keyPoint": "UNIX 파일 권한 관리 명령어(chmod)",
+   "tags": [
+    "UNIX",
+    "chmod"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-073",
+   "number": 73,
+   "subjectCode": 4,
+   "stem": "UNIX에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "상당 부분 C 언어를 사용하여 작성되었으며, 이식성이 우수하다."
+    },
+    {
+     "no": 2,
+     "text": "사용자는 하나 이상의 작업을 백그라운드에서 수행할 수 있어 여러 개의 작업을 병행 처리할 수 있다."
+    },
+    {
+     "no": 3,
+     "text": "쉘(Shell)은 프로세스 관리, 기억장치 관리, 입출력 관리 등의 기능을 수행한다."
+    },
+    {
+     "no": 4,
+     "text": "두 사람 이상의 사용자가 동시에 시스템을 사용할 수 있어 정보와 유틸리티들을 공유하는 편리한 작업 환경을 제공한다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "UNIX에서 셸은 사용자가 입력한 명령을 해석해 커널에 전달하는 명령어 해석기이고, 프로세스 관리, 기억장치 관리, 입출력 관리는 커널이 담당하는 기능입니다. UNIX는 대부분 C언어로 작성되어 이식성이 우수하고 여러 사용자가 동시에 사용할 수 있는 다중 사용자 시스템이며, 하나 이상의 작업을 백그라운드에서 처리하는 다중 작업을 지원합니다. 따라서 셸의 기능을 잘못 설명한 보기가 틀린 것입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "UNIX는 상당 부분 C언어로 작성되어 이식성이 우수하므로 맞는 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "여러 작업을 백그라운드에서 수행하는 다중 작업 기능을 제공하므로 맞는 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "프로세스, 기억장치, 입출력 관리는 커널의 기능이며 셸은 명령어 해석기이므로 틀린 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "여러 사람이 동시에 사용하는 다중 사용자 시스템이므로 맞는 설명입니다."
+    }
+   ],
+   "keyPoint": "UNIX의 특징과 셸(Shell)의 역할",
+   "tags": [
+    "UNIX",
+    "셸"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-074",
+   "number": 74,
+   "subjectCode": 4,
+   "stem": "빈 기억공간의 크기가 20KB, 16KB, 8KB, 40KB일 때 기억장치 배치 전략으로 “Best Fit”을 사용하여 17KB의 프로그램을 적재할 경우 내부 단편화의 크기는 얼마인가?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "3KB"
+    },
+    {
+     "no": 2,
+     "text": "23KB"
+    },
+    {
+     "no": 3,
+     "text": "64KB"
+    },
+    {
+     "no": 4,
+     "text": "67KB"
+    }
+   ],
+   "answer": 1,
+   "explanation": "Best Fit(최적 적합)은 프로그램이 적재될 수 있는 빈 공간 중 가장 작은 공간을 선택하는 전략이므로 17KB의 프로그램은 20KB 영역에 적재됩니다. 내부 단편화는 할당된 공간의 크기에서 프로그램이 실제로 사용한 크기를 뺀 값이므로 20KB에서 17KB를 뺀 3KB가 됩니다. 따라서 내부 단편화의 크기는 3KB입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "20KB 영역에 17KB를 적재하므로 내부 단편화는 3KB가 되어 맞습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "23KB는 40KB 영역에 17KB를 적재했을 때의 단편화 크기이며 Best Fit이 선택하는 공간이 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "64KB는 전체 빈 공간의 합과 관련된 값으로 내부 단편화 계산 결과가 아닙니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "67KB는 빈 공간과 프로그램 크기의 관계를 잘못 계산한 값입니다."
+    }
+   ],
+   "keyPoint": "최적 적합(Best Fit) 배치 전략과 내부 단편화 계산",
+   "tags": [
+    "기억장치 배치",
+    "내부 단편화"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 5
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-075",
+   "number": 75,
+   "subjectCode": 4,
+   "stem": "192.168.1.0/24 네트워크를 FLSM 방식을 이용하여 4개의 Subnet으로 나누고 IP Subnet-zero를 적용했다. 이 때 Subnetting된 네트워크 중 4번째 네트워크의 4번째 사용 가능한 IP는 무엇인가?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "192.168.1.192"
+    },
+    {
+     "no": 2,
+     "text": "192.168.1.195"
+    },
+    {
+     "no": 3,
+     "text": "192.168.1.196"
+    },
+    {
+     "no": 4,
+     "text": "192.168.1.198"
+    }
+   ],
+   "answer": 3,
+   "explanation": "/24 네트워크를 4개의 서브넷으로 나누려면 호스트 비트에서 2비트를 빌려 /26으로 만들어야 하고, 각 서브넷은 64개의 주소를 갖습니다. 네 번째 서브넷의 주소 범위는 192.168.1.192부터 192.168.1.255까지이며, 첫 주소인 192.168.1.192는 네트워크 주소로 사용되므로 사용 가능한 주소는 192.168.1.193부터 시작합니다. 여기서 네 번째 주소를 세면 192.168.1.196이 됩니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "192.168.1.192는 네 번째 서브넷의 네트워크 주소이므로 사용 가능한 IP가 아닙니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "192.168.1.195는 사용 가능한 주소 중 세 번째에 해당합니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "사용 가능한 주소를 192.168.1.193부터 세면 네 번째 주소는 192.168.1.196이므로 맞습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "192.168.1.198은 사용 가능한 주소 중 여섯 번째에 해당합니다."
+    }
+   ],
+   "keyPoint": "FLSM 서브넷팅과 사용 가능한 IP 주소 계산",
+   "tags": [
+    "서브넷팅",
+    "FLSM"
+   ],
+   "difficulty": 4,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 6
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-076",
+   "number": 76,
+   "subjectCode": 4,
+   "stem": "다음 C언어 프로그램에서 밑줄 친 부분과 동일한 의미를 가지는 것은 어떤것인가?",
+   "passage": "#include <stdio.h>\nmain( ) {\n    int a, b;\n    for (a = 0; a < 2; a++)\n        for (b = 0; b < 2; b++)\n            printf(“%d”, !a && !b);\n}",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "!a || !b"
+    },
+    {
+     "no": 2,
+     "text": "!(a || b)"
+    },
+    {
+     "no": 3,
+     "text": "a && b"
+    },
+    {
+     "no": 4,
+     "text": "a || b"
+    }
+   ],
+   "answer": 2,
+   "explanation": "드모르간의 법칙에 따르면 !a && !b는 !(a || b)와 같은 값을 갖습니다. 두 식 모두 a와 b가 모두 0일 때만 참이 되고, 둘 중 하나라도 참이면 거짓이 됩니다. 따라서 밑줄 친 !a && !b와 동일한 의미를 가지는 식은 !(a || b)입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "!a || !b는 a와 b 중 하나만 0이어도 참이 되어 !a && !b보다 참이 되는 경우가 많습니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "드모르간의 법칙에 의해 !(a || b)는 !a && !b와 같은 값을 가지므로 맞습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "a && b는 두 값이 모두 참일 때 참이 되어 !a && !b와 결과가 반대입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "a || b는 둘 중 하나라도 참이면 참이 되어 !a && !b의 결과와 다릅니다."
+    }
+   ],
+   "keyPoint": "드모르간의 법칙과 논리 연산자의 관계",
+   "tags": [
+    "C언어",
+    "드모르간 법칙"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 6
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-077",
+   "number": 77,
+   "subjectCode": 4,
+   "stem": "UNIX에서 새로운 프로세스를 생성하는 명령어는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "ls"
+    },
+    {
+     "no": 2,
+     "text": "cat"
+    },
+    {
+     "no": 3,
+     "text": "fork"
+    },
+    {
+     "no": 4,
+     "text": "chmod"
+    }
+   ],
+   "answer": 3,
+   "explanation": "fork는 현재 실행 중인 프로세스를 복제하여 새로운 자식 프로세스를 생성하는 UNIX 시스템 호출로, 생성된 프로세스는 부모 프로세스와 같은 코드를 실행합니다. ls는 파일 목록을 확인하고, cat은 파일의 내용을 출력하며, chmod는 파일의 접근 권한을 변경합니다. 따라서 새로운 프로세스를 생성하는 명령어는 fork입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "ls는 디렉터리의 파일 목록을 출력하는 명령어로 프로세스 생성과 관련이 없습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "cat은 파일의 내용을 출력하는 명령어로 프로세스 생성과 관련이 없습니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "fork는 현재 프로세스를 복제해 새로운 프로세스를 생성하므로 맞습니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "chmod는 파일의 권한을 변경하는 명령어로 프로세스 생성과 관련이 없습니다."
+    }
+   ],
+   "keyPoint": "UNIX 프로세스 생성 명령어(fork)",
+   "tags": [
+    "UNIX",
+    "fork"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 6
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-078",
+   "number": 78,
+   "subjectCode": 4,
+   "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+   "passage": "#include <stdio.h>\nstruct st {\n    int a;\n    int c[10];\n};\nint main(int argc, char* argv[ ]) {\n    int i = 0;\n    struct st ob1;\n    struct st ob2;\n    ob1.a = 0;\n    ob2.a = 0;\n    for (i = 0; i < 10; i++) {\n        ob1.c[i] = i;\n        ob2.c[i] = ob1.c[i] + i;\n    }\n    for (i = 0; i < 10; i = i + 2) {\n        ob1.a = ob1.a + ob1.c[i];\n        ob2.a = ob2.a + ob2.c[i];\n    }\n    printf(“%d”, ob1.a + ob2.a);\n    return 0;\n}",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "30"
+    },
+    {
+     "no": 2,
+     "text": "60"
+    },
+    {
+     "no": 3,
+     "text": "80"
+    },
+    {
+     "no": 4,
+     "text": "120"
+    }
+   ],
+   "answer": 2,
+   "explanation": "첫 번째 반복문에서 ob1.c[i]에는 i가, ob2.c[i]에는 ob1.c[i]+i인 2i가 저장됩니다. 두 번째 반복문은 i를 0, 2, 4, 6, 8로 증가시키면서 짝수 인덱스의 값을 누적하므로 ob1.a에는 0+2+4+6+8인 20이, ob2.a에는 0+4+8+12+16인 40이 저장됩니다. 따라서 ob1.a + ob2.a를 출력한 결과는 60입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "30은 두 구조체 누적 합의 절반에 해당하는 값으로 실제 누적 결과가 아닙니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "ob1.a가 20, ob2.a가 40이므로 합인 60이 출력되어 맞습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "80은 두 누적 합을 잘못 배분한 값으로 실제 계산 결과가 아닙니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "120은 두 누적 합을 두 배로 계산한 값으로, 반복문이 2씩 증가하는 점이 잘못 반영된 결과입니다."
+    }
+   ],
+   "keyPoint": "구조체 배열과 반복문을 이용한 누적 합 계산",
+   "tags": [
+    "C언어",
+    "구조체",
+    "반복문"
+   ],
+   "difficulty": 4,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 6
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-079",
+   "number": 79,
+   "subjectCode": 4,
+   "stem": "개발 환경 구성을 위한 빌드(Build) 도구에 해당하지 않는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "Ant"
+    },
+    {
+     "no": 2,
+     "text": "Kerberos"
+    },
+    {
+     "no": 3,
+     "text": "Maven"
+    },
+    {
+     "no": 4,
+     "text": "Gradle"
+    }
+   ],
+   "answer": 2,
+   "explanation": "Ant, Maven, Gradle은 모두 소스 코드를 컴파일하고 패키징하며 의존성을 관리하는 빌드 자동화 도구입니다. Kerberos는 네트워크에서 사용자와 서비스를 안전하게 인증하기 위한 인증 프로토콜로, 빌드 도구에 해당하지 않습니다. 따라서 빌드 도구가 아닌 것은 Kerberos입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "Ant는 자바 프로젝트의 빌드 자동화 도구이므로 빌드 도구에 해당합니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "Kerberos는 네트워크 인증 프로토콜로 빌드 도구가 아니므로 맞습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "Maven은 의존성 관리와 빌드를 지원하는 도구이므로 빌드 도구에 해당합니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "Gradle은 Groovy 기반의 빌드 자동화 도구이므로 빌드 도구에 해당합니다."
+    }
+   ],
+   "keyPoint": "빌드 자동화 도구(Ant·Maven·Gradle)와 Kerberos 인증",
+   "tags": [
+    "빌드 도구",
+    "Kerberos"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 6
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2023-1-080",
+   "number": 80,
+   "subjectCode": 4,
+   "stem": "다음 Python 프로그램이 실행되었을 때, 실행 결과는?",
+   "passage": "a = 100\nlist_data = [‘a’,‘b’,‘c’]\ndict_data = {‘a’:90, ‘b’:95}\nprint(list_data[0])\nprint(dict_data['a'])",
+   "passageKind": "code",
+   "choices": [
+    {
+     "no": 1,
+     "text": "a\n90"
+    },
+    {
+     "no": 2,
+     "text": "100\n90"
+    },
+    {
+     "no": 3,
+     "text": "100\n100"
+    },
+    {
+     "no": 4,
+     "text": "a\na"
+    }
+   ],
+   "answer": 1,
+   "explanation": "list_data[0]은 리스트의 첫 번째 요소인 문자열 ‘a’를 반환하고, dict_data['a']는 딕셔너리에서 키 'a'에 대응하는 값 90을 반환합니다. 변수 a에 저장된 100은 두 print 문에서 사용되지 않으므로 출력되지 않습니다. 따라서 실행 결과는 a와 90이 차례로 출력됩니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "리스트의 첫 요소인 a와 키 'a'의 값 90이 차례로 출력되므로 맞습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "100은 리스트나 딕셔너리를 통해 출력되지 않으므로 결과가 아닙니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "딕셔너리에서 키 'a'에 대응하는 값은 100이 아니라 90입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "두 번째 출력값은 문자열 a가 아니라 정수 90입니다."
+    }
+   ],
+   "keyPoint": "Python 리스트 인덱스와 딕셔너리 키 접근 결과",
+   "tags": [
+    "Python",
+    "리스트",
+    "딕셔너리"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2023년1회_정보처리기사필기기출문제.pdf",
+    "page": 6
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  }
+ ]
+}

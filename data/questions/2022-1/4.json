@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2022-1",
+    "year": 2022,
+    "round": 1,
+    "title": "2022년 1회 정보처리기사 필기",
+    "sourcePdf": "2022년1회_기사필기 기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2022-1-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "IP 주소체계와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "IPv6의 패킷 헤더는 32 octet의 고정된 길이를 가진다." },
+        { "no": 2, "text": "IPv6는 주소 자동설정(Auto Configuration) 기능을 통해 손쉽게 이용자의 단말을 네트워크에 접속시킬 수 있다." },
+        { "no": 3, "text": "IPv4는 호스트 주소를 자동으로 설정하며 유니캐스트(Unicast)를 지원한다." },
+        { "no": 4, "text": "IPv4는 클래스별로 네트워크와 호스트 주소의 길이가 다르다." }
+      ],
+      "answer": 1,
+      "explanation": "IPv6의 기본 헤더는 확장 헤더와 별개로 40 octet의 고정 길이를 가지며, IPv4의 헤더는 옵션 유무에 따라 20~60 octet으로 변합니다. 어느 쪽도 32 octet 고정이 아니므로 이 설명이 틀렸습니다. IPv6는 주소 자동설정 기능과 128비트 주소 체계를 제공하고, IPv4는 클래스별로 네트워크 주소부와 호스트 주소부의 길이가 다릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "IPv6 헤더는 40 octet 고정이고 IPv4 헤더는 20~60 octet으로 가변이므로 32 octet 고정이라는 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "IPv6는 주소 자동설정 기능으로 단말을 별도 설정 없이 네트워크에 접속시킬 수 있으므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "IPv4도 호스트 주소를 자동으로 설정할 수 있고 유니캐스트 전송을 지원하므로 맞는 설명입니다." },
+        { "no": 4, "correct": false, "why": "IPv4는 A, B, C, D, E 클래스에 따라 네트워크 주소부와 호스트 주소부의 길이가 달라지므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "IPv4와 IPv6의 헤더 길이와 주소 체계 차이",
+      "tags": ["IPv6", "IP 주소체계"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\n#include <stdlib.h>\nint main(int argc, char* argv[]) {\n    int arr[2][3] = { 1,2,3,4,5,6 };\n    int (*p)[3] = NULL;\n    p = arr;\n    printf(\"%d, \", *(p[0] + 1) + *(p[1] + 2));\n    printf(\"%d\", *(*(p + 1) + 0) + *(*(p + 1) + 1));\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "7, 5" },
+        { "no": 2, "text": "8, 5" },
+        { "no": 3, "text": "8, 9" },
+        { "no": 4, "text": "7, 9" }
+      ],
+      "answer": 3,
+      "explanation": "p는 int형 원소 3개를 가진 배열을 가리키는 배열 포인터이므로 p[0]은 첫 번째 행, p[1]은 두 번째 행을 의미합니다. *(p[0]+1)은 arr[0][1]=2, *(p[1]+2)는 arr[1][2]=6이므로 첫 번째 출력은 2+6=8이고, *(*(p+1)+0)은 arr[1][0]=4, *(*(p+1)+1)은 arr[1][1]=5이므로 두 번째 출력은 4+5=9입니다. 따라서 실행 결과는 8, 9입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "첫 번째 출력에서 arr[1][2]=6 대신 arr[1][1]=5를 더해 2+5=7로 계산한 결과입니다." },
+        { "no": 2, "correct": false, "why": "첫 번째 출력 8은 맞지만 두 번째 출력에서 4+5=9를 5로 잘못 본 결과입니다." },
+        { "no": 3, "correct": true, "why": "첫 번째 출력은 2+6=8, 두 번째 출력은 4+5=9이므로 8, 9가 맞습니다." },
+        { "no": 4, "correct": false, "why": "첫 번째 출력에서 arr[1][2]=6을 더하지 않고 5를 더한 값으로 틀렸습니다." }
+      ],
+      "keyPoint": "배열 포인터를 이용한 2차원 배열 원소 접근",
+      "tags": ["C언어", "배열 포인터"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 중 데이터링크 계층에 해당되는 프로토콜이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "HTTP" },
+        { "no": 2, "text": "HDLC" },
+        { "no": 3, "text": "PPP" },
+        { "no": 4, "text": "LLC" }
+      ],
+      "answer": 1,
+      "explanation": "HTTP는 웹 브라우저와 서버가 문서를 주고받기 위한 응용 계층 프로토콜입니다. HDLC와 PPP는 데이터링크 계층에서 프레임 단위의 점대점 전송을 담당하고, LLC는 매체 접근 제어 부계층 위에서 논리 링크와 흐름을 관리하는 데이터링크 계층의 부계층입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "HTTP는 응용 계층에서 웹 문서를 송수신하는 프로토콜이므로 데이터링크 계층 프로토콜이 아닙니다." },
+        { "no": 2, "correct": false, "why": "HDLC는 데이터링크 계층에서 동기식 점대점 전송을 수행하는 프로토콜이므로 해당됩니다." },
+        { "no": 3, "correct": false, "why": "PPP는 데이터링크 계층에서 두 지점 간 링크를 설정하고 프레임을 전송하는 프로토콜입니다." },
+        { "no": 4, "correct": false, "why": "LLC는 데이터링크 계층의 상위 부계층으로 흐름 제어와 오류 제어를 담당합니다." }
+      ],
+      "keyPoint": "OSI 7계층별 프로토콜의 소속 계층",
+      "tags": ["OSI 7계층", "데이터링크 계층"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "C언어에서 두 개의 논리 값 중 하나라도 참이면 1을, 모두 거짓이면 0을 반환하는 연산자는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "∥" },
+        { "no": 2, "text": "&&" },
+        { "no": 3, "text": "**" },
+        { "no": 4, "text": "!=" }
+      ],
+      "answer": 1,
+      "explanation": "두 논리 값 중 하나라도 참이면 1을 반환하는 것은 논리합(OR) 연산자인 ∥입니다. &&는 두 값이 모두 참일 때만 1을 반환하는 논리곱 연산자이고, **는 C언어에 존재하지 않는 연산자이며, !=는 두 값이 서로 다른지를 판단하는 관계 연산자입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "∥(||)는 논리합 연산자로 피연산자 중 하나라도 참이면 1을 반환합니다." },
+        { "no": 2, "correct": false, "why": "&&는 논리곱 연산자로 두 값이 모두 참일 때만 1을 반환합니다." },
+        { "no": 3, "correct": false, "why": "**는 C언어에서 제공하지 않는 연산자로 논리 연산에 사용할 수 없습니다." },
+        { "no": 4, "correct": false, "why": "!=는 두 값이 다르면 1, 같으면 0을 반환하는 관계 연산자입니다." }
+      ],
+      "keyPoint": "C언어 논리합(∥)과 논리곱(&&) 연산자의 동작",
+      "tags": ["C언어", "논리 연산자"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "IPv6에 대한 특성으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "표시방법은 8비트씩 4부분의 10진수로 표시한다." },
+        { "no": 2, "text": "2^128개의 주소를 표현할 수 있다." },
+        { "no": 3, "text": "등급별, 서비스별로 패킷을 구분할 수 있어 품질보장이 용이하다." },
+        { "no": 4, "text": "확장기능을 통해 보안기능을 제공한다." }
+      ],
+      "answer": 1,
+      "explanation": "IPv6 주소는 16비트씩 8부분을 콜론으로 구분하여 16진수로 표시하며, 8비트씩 4부분을 10진수로 표시하는 방식은 IPv4의 주소 표기법입니다. IPv6는 128비트 주소 체계로 2^128개의 주소를 표현할 수 있고, 등급·서비스별 패킷 구분과 확장 헤더를 통한 보안 기능을 제공합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "IPv6는 16비트씩 8부분을 16진수로 표기하므로 8비트씩 4부분의 10진수 표기라는 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "128비트 주소 체계이므로 2^128개의 주소를 표현할 수 있어 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "등급별·서비스별로 패킷을 구분해 품질 보장(QoS)을 지원하므로 맞는 설명입니다." },
+        { "no": 4, "correct": false, "why": "확장 헤더를 통해 인증과 암호화 같은 보안 기능을 제공하므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "IPv6 주소 표기법과 주요 특성",
+      "tags": ["IPv6", "주소 표기"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "JAVA의 예외(exception)와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "문법 오류로 인해 발생한 것" },
+        { "no": 2, "text": "오동작이나 결과에 악영향을 미칠 수 있는 실행 시간 동안에 발생한 오류" },
+        { "no": 3, "text": "배열의 인덱스가 그 범위를 넘어서는 경우 발생하는 오류" },
+        { "no": 4, "text": "존재하지 않는 파일을 읽으려고 하는 경우에 발생하는 오류" }
+      ],
+      "answer": 1,
+      "explanation": "예외는 프로그램이 실행되는 동안 발생하는 비정상적인 상황을 객체로 표현한 것으로, 배열의 인덱스가 범위를 넘을 때 발생하는 ArrayIndexOutOfBoundsException이나 없는 파일을 읽을 때 발생하는 FileNotFoundException이 대표적입니다. 문법 오류는 컴파일 단계에서 발견되는 컴파일 오류이므로 실행 중에 발생하는 예외와 구분됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "문법 오류는 컴파일 단계에서 발견되는 컴파일 오류이므로 예외에 대한 설명으로 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "실행 시간 동안 발생하는 오류를 예외라고 하므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "배열 인덱스가 범위를 넘을 때 발생하는 ArrayIndexOutOfBoundsException은 대표적인 예외입니다." },
+        { "no": 4, "correct": false, "why": "존재하지 않는 파일을 읽을 때 발생하는 FileNotFoundException도 예외에 해당합니다." }
+      ],
+      "keyPoint": "JAVA 예외와 컴파일 오류의 구분",
+      "tags": ["JAVA", "예외 처리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "TCP/IP 계층 구조에서 IP의 동작 과정에서의 전송 오류가 발생하는 경우에 대비해 오류 정보를 전송하는 목적으로 사용하는 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ECP(Error Checking Protocol)" },
+        { "no": 2, "text": "ARP(Address Resolution Protocol)" },
+        { "no": 3, "text": "ICMP(Internet Control Message Protocol)" },
+        { "no": 4, "text": "PPP(Point-to-Point Protocol)" }
+      ],
+      "answer": 3,
+      "explanation": "ICMP는 IP 데이터그램을 전송하는 과정에서 오류가 발생했을 때 오류 정보를 송신 측에 알려 주는 인터넷 제어 메시지 프로토콜입니다. ARP는 IP 주소를 MAC 주소로 변환하는 프로토콜이고, PPP는 점대점 링크에서 데이터링크 계층 프레임을 전송하는 프로토콜이며, ECP는 TCP/IP 표준 프로토콜이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ECP는 TCP/IP 표준에 정의된 프로토콜이 아니므로 오류 정보 전송 용도로 사용되지 않습니다." },
+        { "no": 2, "correct": false, "why": "ARP는 논리 주소인 IP 주소를 물리 주소인 MAC 주소로 변환하는 역할을 합니다." },
+        { "no": 3, "correct": true, "why": "ICMP는 IP 전송 중 발생한 오류 정보를 송신 측에 전달하는 목적으로 사용됩니다." },
+        { "no": 4, "correct": false, "why": "PPP는 두 지점 간 직접 연결에서 데이터링크 계층 프레임을 주고받기 위한 프로토콜입니다." }
+      ],
+      "keyPoint": "ICMP의 오류 메시지 전달 기능",
+      "tags": ["ICMP", "TCP/IP"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "좋은 소프트웨어 설계를 위한 소프트웨어의 모듈간의 결합도(Coupling)와 모듈 내 요소 간 응집도(Cohesion)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "응집도는 낮게 결합도는 높게 설계한다." },
+        { "no": 2, "text": "응집도는 높게 결합도는 낮게 설계한다." },
+        { "no": 3, "text": "양쪽 모두 낮게 설계한다." },
+        { "no": 4, "text": "양쪽 모두 높게 설계한다." }
+      ],
+      "answer": 2,
+      "explanation": "응집도는 한 모듈 안의 요소들이 서로 얼마나 밀접하게 관련되어 있는지를 나타내는 척도이므로 높을수록 좋습니다. 결합도는 모듈과 모듈 사이의 의존 정도를 나타내므로 낮을수록 좋으므로, 응집도는 높게 결합도는 낮게 설계하는 것이 바람직한 소프트웨어 설계입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "응집도는 높을수록, 결합도는 낮을수록 좋으므로 두 기준을 반대로 설명했습니다." },
+        { "no": 2, "correct": true, "why": "모듈 내부 요소는 강하게 묶고 모듈 간 의존은 약하게 만드는 고응집·저결합 설계가 바람직합니다." },
+        { "no": 3, "correct": false, "why": "응집도가 낮으면 모듈의 독립성과 가독성이 떨어지므로 둘 다 낮게 설계하는 것은 옳지 않습니다." },
+        { "no": 4, "correct": false, "why": "결합도가 높으면 다른 모듈의 변경이 연쇄 영향을 주므로 둘 다 높게 설계하는 것은 옳지 않습니다." }
+      ],
+      "keyPoint": "고응집·저결합(응집도는 높게, 결합도는 낮게)",
+      "tags": ["결합도", "응집도"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "다음과 같은 형태로 임계 구역의 접근을 제어하는 상호배제 기법은?",
+      "passage": "P(S) : while S <= 0 do skip;\nS := S - 1;\nV(S) : S := S + 1;",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "Dekker Algorithm" },
+        { "no": 2, "text": "Lamport Algorithm" },
+        { "no": 3, "text": "Peterson Algorithm" },
+        { "no": 4, "text": "Semaphore" }
+      ],
+      "answer": 4,
+      "explanation": "제시된 P(S)와 V(S) 연산은 세마포어(Semaphore)의 전형적인 형태로, P 연산은 S가 0보다 크면 값을 1 감소시키고 임계 구역에 들어가며 V 연산은 값을 1 증가시켜 임계 구역을 빠져나온 뒤 대기 중인 프로세스를 깨웁니다. Dekker와 Peterson 알고리즘은 두 프로세스가 turn, flag 같은 공유 변수만으로 상호배제를 구현하는 소프트웨어 기법이고, Lamport 알고리즘은 분산 시스템에서 사건의 순서를 정하는 기법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Dekker 알고리즘은 공유 변수를 이용해 두 프로세스의 진입 순서를 정하는 소프트웨어적 상호배제 기법입니다." },
+        { "no": 2, "correct": false, "why": "Lamport 알고리즘은 분산 환경에서 프로세스 간 사건 순서를 결정하는 기법으로 P/V 연산과 다릅니다." },
+        { "no": 3, "correct": false, "why": "Peterson 알고리즘은 flag와 turn 변수를 사용해 두 프로세스의 상호배제를 보장하는 소프트웨어 기법입니다." },
+        { "no": 4, "correct": true, "why": "P와 V 연산으로 임계 구역 진입과 탈출을 제어하는 세마포어가 제시된 형태에 해당합니다." }
+      ],
+      "keyPoint": "세마포어의 P(S)·V(S) 연산과 상호배제",
+      "tags": ["세마포어", "상호배제"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "소프트웨어 개발에서 모듈(Module)이 되기 위한 주요 특징에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "다른 것들과 구별될 수 있는 독립적인 기능을 가진 단위(Unit)이다." },
+        { "no": 2, "text": "독립적인 컴파일이 가능하다." },
+        { "no": 3, "text": "유일한 이름을 가져야 한다." },
+        { "no": 4, "text": "다른 모듈에서의 접근이 불가능해야 한다." }
+      ],
+      "answer": 4,
+      "explanation": "모듈은 다른 것과 구별되는 독립적인 기능을 수행하고, 독립적으로 컴파일이 가능하며, 유일한 이름을 갖는 소프트웨어 단위입니다. 모듈은 인터페이스를 통해 서로 호출하고 정보를 주고받아야 하므로 다른 모듈에서 접근할 수 없어야 한다는 설명은 모듈의 특징이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "다른 것들과 구별되는 독립적인 기능을 가진 단위라는 설명은 모듈의 특징에 해당합니다." },
+        { "no": 2, "correct": false, "why": "모듈은 독립적으로 컴파일과 테스트가 가능해야 하므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "모듈을 식별하고 호출하려면 유일한 이름을 가져야 하므로 맞는 설명입니다." },
+        { "no": 4, "correct": true, "why": "모듈은 인터페이스를 통해 다른 모듈에서 접근할 수 있어야 하므로 이 설명이 특징이 아닙니다." }
+      ],
+      "keyPoint": "모듈의 주요 특징과 인터페이스를 통한 접근",
+      "tags": ["모듈", "소프트웨어 설계"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "빈 기억공간의 크기가 20KB, 16KB, 8KB, 40KB일 때 기억장치 배치 전략으로 “Best Fit”을 사용하여 17KB의 프로그램을 적재할 경우 내부 단편화의 크기는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "3KB" },
+        { "no": 2, "text": "23KB" },
+        { "no": 3, "text": "64KB" },
+        { "no": 4, "text": "67KB" }
+      ],
+      "answer": 1,
+      "explanation": "Best Fit(최적 적합)은 요구 크기보다 큰 빈 공간 중에서 가장 작은 공간에 프로그램을 배치하는 전략입니다. 17KB를 수용할 수 있는 공간은 20KB와 40KB이고 이 중 작은 20KB에 적재하므로, 내부 단편화는 20KB에서 17KB를 뺀 3KB가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "가장 작은 적합 공간인 20KB에 적재하므로 내부 단편화는 20-17=3KB입니다." },
+        { "no": 2, "correct": false, "why": "23KB는 40KB 공간에 적재했을 때 생기는 단편화로 Best Fit의 결과가 아닙니다." },
+        { "no": 3, "correct": false, "why": "64KB는 어떤 빈 공간의 크기와도 맞지 않으며 단편화 계산 근거가 없습니다." },
+        { "no": 4, "correct": false, "why": "67KB는 전체 빈 공간이나 적재 결과와 관계없는 값으로 틀렸습니다." }
+      ],
+      "keyPoint": "Best Fit(최적 적합) 배치와 내부 단편화 계산",
+      "tags": ["Best Fit", "내부 단편화"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\n#include <stdlib.h>\nint main(int argc, char* argv[]) {\n    int i = 0;\n    while (1) {\n        if (i == 4) {\n            break;\n        }\n        ++i;\n    }\n    printf(\"i = %d\", i);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "i = 0" },
+        { "no": 2, "text": "i = 1" },
+        { "no": 3, "text": "i = 3" },
+        { "no": 4, "text": "i = 4" }
+      ],
+      "answer": 4,
+      "explanation": "while(1)은 조건이 항상 참인 무한 반복문이고, i는 0에서 시작해 if(i == 4)가 성립할 때까지 ++i로 1씩 증가합니다. i가 4가 되는 순간 break가 실행되어 반복문을 빠져나오고, 그 뒤 printf가 i의 값을 출력하므로 실행 결과는 i = 4입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "반복문 안에서 ++i가 실행되므로 i는 0에서 증가하여 0이 출력되지 않습니다." },
+        { "no": 2, "correct": false, "why": "i = 1은 첫 반복이 끝난 시점의 값으로, break 조건인 i == 4에 도달하지 않았습니다." },
+        { "no": 3, "correct": false, "why": "i = 3이면 아직 i == 4 조건이 거짓이므로 반복문이 끝나지 않고 한 번 더 수행됩니다." },
+        { "no": 4, "correct": true, "why": "i가 4가 되었을 때 break로 반복문을 탈출하므로 최종 출력은 i = 4입니다." }
+      ],
+      "keyPoint": "while 무한 반복문에서 break로 탈출하는 시점",
+      "tags": ["C언어", "while", "break"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "public class Ape {\n    static void rs(char a[]) {\n        for(int i = 0; i < a.length; i++)\n            if(a[i] == 'B')\n                a[i] = 'C';\n            else if(i == a.length - 1)\n                a[i] = a[i-1];\n            else a[i] = a[i+1];\n    }\n    static void pca(char a[]) {\n        for(int i = 0; i < a.length; i ++)\n            System.out.print(a[i]);\n        System.out.println();\n    }\n    public static void main(String[] args) {\n        char c[] = {'A','B','D','D','A','B','C'};\n        rs(c);\n        pca(c);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "BCDABCA" },
+        { "no": 2, "text": "BCDABCC" },
+        { "no": 3, "text": "CDDACCC" },
+        { "no": 4, "text": "CDDACCA" }
+      ],
+      "answer": 2,
+      "explanation": "rs 메서드는 각 문자를 검사하여 'B'이면 'C'로 바꾸고, 'B'가 아니면서 마지막 문자가 아니면 뒤 문자를, 마지막 문자이면 앞 문자를 복사합니다. 배열 {'A','B','D','D','A','B','C'}에 이 규칙을 앞에서부터 차례로 적용하면 BCDABCC가 되고, pca 메서드가 이 배열을 그대로 이어서 출력합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "마지막 문자가 앞 문자로 바뀌는 규칙이 반영되지 않아 마지막 글자가 A로 남은 결과입니다." },
+        { "no": 2, "correct": true, "why": "각 위치에 치환 규칙을 순서대로 적용하면 최종 배열은 BCDABCC가 됩니다." },
+        { "no": 3, "correct": false, "why": "첫 문자에 뒤 문자를 복사하는 처리가 빠져 첫 글자가 A가 아닌 C로 계산된 결과입니다." },
+        { "no": 4, "correct": false, "why": "'B'를 'C'로 바꾸는 규칙과 마지막 문자 처리 중 일부가 잘못 적용된 결과입니다." }
+      ],
+      "keyPoint": "배열을 순회하며 조건에 따라 값을 바꾸는 메서드의 결과 추적",
+      "tags": ["JAVA", "배열", "메서드"],
+      "difficulty": 4,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "개발 환경 구성을 위한 빌드(Build) 도구에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Ant" },
+        { "no": 2, "text": "Kerberos" },
+        { "no": 3, "text": "Maven" },
+        { "no": 4, "text": "Gradle" }
+      ],
+      "answer": 2,
+      "explanation": "Ant, Maven, Gradle은 모두 소스 코드를 컴파일하고 라이브러리를 관리하며 결과물을 패키징하는 자바 기반 빌드 도구입니다. Kerberos는 네트워크에서 사용자를 안전하게 인증하기 위한 인증 프로토콜이므로 빌드 도구에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Ant는 XML 기반 빌드 스크립트를 사용하는 대표적인 자바 빌드 도구입니다." },
+        { "no": 2, "correct": true, "why": "Kerberos는 티켓 기반 사용자 인증 프로토콜로 빌드 도구가 아닙니다." },
+        { "no": 3, "correct": false, "why": "Maven은 의존성 관리와 표준화된 빌드 생명주기를 제공하는 빌드 도구입니다." },
+        { "no": 4, "correct": false, "why": "Gradle은 Groovy 기반 스크립트로 빌드와 의존성을 관리하는 빌드 도구입니다." }
+      ],
+      "keyPoint": "빌드 도구(Ant, Maven, Gradle)와 인증 프로토콜(Kerberos)의 구분",
+      "tags": ["빌드 도구", "Kerberos"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "3개의 페이지 프레임을 갖는 시스템에서 페이지 참조 순서가 1, 2, 1, 0, 4, 1, 3일 경우 FIFO 알고리즘에 의한 페이지 교체의 경우 프레임의 최종 상태는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "1, 2, 0" },
+        { "no": 2, "text": "2, 4, 3" },
+        { "no": 3, "text": "1, 4, 2" },
+        { "no": 4, "text": "4, 1, 3" }
+      ],
+      "answer": 4,
+      "explanation": "FIFO는 메모리에 가장 먼저 들어온 페이지를 가장 먼저 교체하는 알고리즘입니다. 참조 순서 1, 2, 1, 0까지는 프레임이 1, 2, 0이 되고, 4를 참조할 때 가장 먼저 들어온 1이 4로 교체되어 4, 2, 0이 되며, 1 참조 시 2가 교체되어 4, 1, 0, 마지막 3 참조 시 0이 교체되어 최종 상태는 4, 1, 3이 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "1, 2, 0은 0을 참조한 시점까지의 상태로 이후의 교체 결과가 반영되지 않았습니다." },
+        { "no": 2, "correct": false, "why": "2, 4, 3은 들어온 순서와 다른 순서로 페이지를 교체한 결과입니다." },
+        { "no": 3, "correct": false, "why": "1, 4, 2는 가장 먼저 들어온 1이 먼저 교체되어야 하는데 남아 있으므로 틀렸습니다." },
+        { "no": 4, "correct": true, "why": "1, 2, 0 → 4, 2, 0 → 4, 1, 0 → 4, 1, 3 순으로 교체되어 최종 프레임은 4, 1, 3입니다." }
+      ],
+      "keyPoint": "FIFO 페이지 교체 알고리즘의 프레임 상태 추적",
+      "tags": ["FIFO", "페이지 교체"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\n#include <stdlib.h>\nint main(int argc, char* argv[]) {\n    char str1[20] = \"KOREA\";\n    char str2[20] = \"LOVE\";\n    char* p1 = NULL;\n    char* p2 = NULL;\n    p1 = str1;\n    p2 = str2;\n    str1[1] = p2[2];\n    str2[3] = p1[4];\n    strcat(str1, str2);\n    printf(\"%c\", *(p1 + 2));\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "E" },
+        { "no": 2, "text": "V" },
+        { "no": 3, "text": "R" },
+        { "no": 4, "text": "O" }
+      ],
+      "answer": 3,
+      "explanation": "p1은 str1의 시작 주소를 가리키므로 *(p1 + 2)는 인덱스 2에 있는 문자를 출력합니다. str1은 \"KOREA\"에서 str1[1]이 p2[2]인 'V'로 바뀌어 \"KVREA\"가 되지만 인덱스 2의 문자는 그대로 'R'이고, 이후 strcat으로 str2가 뒤에 붙어도 p1이 가리키는 시작 위치는 변하지 않습니다. 따라서 출력되는 문자는 R입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "E는 str1의 인덱스 3에 있는 문자로 *(p1 + 2)가 가리키는 위치가 아닙니다." },
+        { "no": 2, "correct": false, "why": "V는 str1[1]에 저장된 문자이므로 인덱스 2의 문자와 다릅니다." },
+        { "no": 3, "correct": true, "why": "str1[1]만 'V'로 바뀌고 인덱스 2는 그대로이며, p1이 str1을 가리키므로 R이 출력됩니다." },
+        { "no": 4, "correct": false, "why": "O는 원래 \"KOREA\"의 인덱스 3에 있던 문자로 인덱스 2의 값이 아닙니다." }
+      ],
+      "keyPoint": "포인터로 문자열 배열의 특정 인덱스 문자에 접근",
+      "tags": ["C언어", "포인터", "문자열"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "다음 Python 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "a = 100\nlist_data = ['a','b','c']\ndict_data = {'a':90, 'b':95}\nprint(list_data[0])\nprint(dict_data['a'])",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "a\n90" },
+        { "no": 2, "text": "100\n90" },
+        { "no": 3, "text": "100\n100" },
+        { "no": 4, "text": "a\na" }
+      ],
+      "answer": 1,
+      "explanation": "list_data는 ['a','b','c']이므로 list_data[0]은 첫 번째 요소인 'a'를 출력합니다. dict_data는 {'a':90, 'b':95}이므로 dict_data['a']는 키 'a'에 대응하는 값 90을 출력하며, 변수 a에 저장된 100은 프로그램에서 사용되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "리스트의 첫 요소 'a'와 딕셔너리 키 'a'의 값 90이 차례로 출력됩니다." },
+        { "no": 2, "correct": false, "why": "첫 줄에 변수 a의 값 100이 출력되는 것이 아니라 리스트 요소 'a'가 출력됩니다." },
+        { "no": 3, "correct": false, "why": "두 번째 출력은 딕셔너리 키 'a'의 값 90이며 100이 아닙니다." },
+        { "no": 4, "correct": false, "why": "첫 줄의 'a'는 맞지만 dict_data['a']는 값 90을 출력하므로 둘째 줄이 틀렸습니다." }
+      ],
+      "keyPoint": "리스트 인덱싱과 딕셔너리 키 조회 결과",
+      "tags": ["Python", "리스트", "딕셔너리"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "C언어에서 정수 변수 a, b에 각각 1, 2가 저장되어 있을 때 다음 식의 연산 결과로 옳은 것은?",
+      "passage": "a < b + 2 && a << 1 <= b",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "0" },
+        { "no": 2, "text": "1" },
+        { "no": 3, "text": "3" },
+        { "no": 4, "text": "5" }
+      ],
+      "answer": 2,
+      "explanation": "a는 1, b는 2이므로 b + 2는 4이고 a < 4는 참(1)입니다. 시프트 연산 a << 1의 결과는 2이고 이것이 b보다 작거나 같은지 비교한 a << 1 <= b도 참(1)이며, 논리곱 &&는 두 항이 모두 참일 때 1을 반환하므로 전체 결과는 1입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "두 조건이 모두 참이므로 && 연산의 결과가 0이 될 수 없습니다." },
+        { "no": 2, "correct": true, "why": "a < b + 2와 a << 1 <= b가 각각 참이므로 &&의 결과는 1입니다." },
+        { "no": 3, "correct": false, "why": "3은 산술 연산 결과로 착각한 값이며 논리 연산의 결과는 0 또는 1뿐입니다." },
+        { "no": 4, "correct": false, "why": "5 역시 논리 연산의 결과로 나올 수 없는 값입니다." }
+      ],
+      "keyPoint": "연산자 우선순위에 따른 논리식 평가와 논리값 0·1",
+      "tags": ["C언어", "연산자 우선순위"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "다음 Python 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "a = [\"대\", \"한\", \"민\", \"국\"]\nfor i in a:\n    print(i)",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "대한민국" },
+        { "no": 2, "text": "대\n한\n민\n국" },
+        { "no": 3, "text": "대" },
+        { "no": 4, "text": "대대대대" }
+      ],
+      "answer": 2,
+      "explanation": "for i in a는 리스트 a의 요소를 앞에서부터 하나씩 i에 대입하며 반복하고, print(i)가 실행될 때마다 값을 출력합니다. print 함수는 기본적으로 출력 후 줄을 바꾸므로 '대', '한', '민', '국'이 각각 한 줄씩 출력됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "한 줄로 이어서 출력한 결과이며, print는 실행될 때마다 줄을 바꾸므로 틀렸습니다." },
+        { "no": 2, "correct": true, "why": "리스트의 네 요소가 한 줄에 하나씩 차례로 출력됩니다." },
+        { "no": 3, "correct": false, "why": "첫 번째 요소만 출력되는 것이 아니라 리스트의 모든 요소가 출력됩니다." },
+        { "no": 4, "correct": false, "why": "같은 문자가 반복 출력되는 것이 아니라 서로 다른 네 요소가 하나씩 출력됩니다." }
+      ],
+      "keyPoint": "for 문으로 리스트 요소를 순회하며 print 실행",
+      "tags": ["Python", "for 문", "리스트"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-1-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "UNIX 시스템의 쉘(shell)의 주요 기능에 대한 설명이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "사용자 명령을 해석하고 커널로 전달하는 기능을 제공한다." },
+        { "no": 2, "text": "반복적인 명령 프로그램을 만드는 프로그래밍 기능을 제공한다." },
+        { "no": 3, "text": "쉘 프로그램 실행을 위해 프로세스와 메모리를 관리한다." },
+        { "no": 4, "text": "초기화 파일을 이용해 사용자 환경을 설정하는 기능을 제공한다." }
+      ],
+      "answer": 3,
+      "explanation": "쉘은 사용자가 입력한 명령을 해석하여 커널에 전달하고, 쉘 스크립트로 반복적인 명령을 자동화하는 프로그래밍 기능과 초기화 파일을 통한 사용자 환경 설정 기능을 제공하는 명령 해석기입니다. 프로세스와 메모리, 파일 시스템을 관리하는 것은 커널의 역할이므로 쉘의 주요 기능이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "사용자 명령을 해석해 커널로 전달하는 것은 쉘의 대표적인 기능입니다." },
+        { "no": 2, "correct": false, "why": "쉘 스크립트로 반복적인 명령을 자동화하는 프로그래밍 기능도 쉘의 기능입니다." },
+        { "no": 3, "correct": true, "why": "프로세스와 메모리 관리는 커널이 담당하므로 쉘의 주요 기능이 아닙니다." },
+        { "no": 4, "correct": false, "why": "초기화 파일(.profile 등)을 이용한 사용자 환경 설정도 쉘의 기능입니다." }
+      ],
+      "keyPoint": "쉘의 주요 기능과 커널의 역할 구분",
+      "tags": ["UNIX", "쉘"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년1회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

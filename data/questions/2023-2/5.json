@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2023-2",
+    "year": 2023,
+    "round": 2,
+    "title": "2023년 2회 정보처리기사 필기",
+    "sourcePdf": "2023년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2023-2-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "소프트웨어 생명주기 모형에서 프로토타입 모형의 장점이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "단기간 제작 목적으로 인하여 비효율적인 언어나 알고리즘을 사용할 수 있다." },
+        { "no": 2, "text": "개발과정에서 사용자의 요구를 충분히 반영한다." },
+        { "no": 3, "text": "최종 결과물이 만들어지기 전에 의뢰자가 최종결과물의 일부 혹은 모형을 볼 수 있다." },
+        { "no": 4, "text": "의뢰자나 개발자 모두에게 공동의 참조 모델을 제공한다." }
+      ],
+      "answer": 1,
+      "explanation": "프로토타입 모형은 완성될 시스템의 시제품을 먼저 만들어 사용자와 요구사항을 확인하고 보완해 나가는 생명주기 모형입니다. 따라서 개발과정에서 사용자의 요구를 충분히 반영하고, 최종 결과물이 만들어지기 전에 의뢰자가 그 일부나 모형을 볼 수 있으며, 의뢰자와 개발자 모두에게 공동의 참조 모델을 제공한다는 점이 장점입니다. 반대로 단기간 제작을 목적으로 하다 보면 비효율적인 언어나 알고리즘을 사용하게 될 수 있다는 점은 장점이 아니라 프로토타입 모형의 단점에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "비효율적인 언어나 알고리즘을 사용할 수 있다는 점은 장점이 아니라 프로토타입 모형의 단점입니다." },
+        { "no": 2, "correct": false, "why": "사용자의 요구를 충분히 반영한다는 것은 프로토타입 모형의 대표적인 장점입니다." },
+        { "no": 3, "correct": false, "why": "최종 결과물의 일부나 모형을 미리 볼 수 있다는 것도 프로토타입 모형의 장점입니다." },
+        { "no": 4, "correct": false, "why": "의뢰자와 개발자에게 공동의 참조 모델을 제공한다는 것도 프로토타입 모형의 장점입니다." }
+      ],
+      "keyPoint": "프로토타입 모형의 장점과 단점 구분",
+      "tags": ["프로토타입 모형", "소프트웨어 생명주기"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "COCOMO Model 중 기관 내부에서 개발된 중·소 규모의 소프트웨어로 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용으로 5만 라인 이하의 소프트웨어를 개발하는 유형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Embeded" },
+        { "no": 2, "text": "Organic" },
+        { "no": 3, "text": "Semi-Detached" },
+        { "no": 4, "text": "Semi-Embeded" }
+      ],
+      "answer": 2,
+      "explanation": "COCOMO 모형은 원시 코드 라인 수를 기준으로 비용을 산정하며, 개발 유형을 Organic, Semi-Detached, Embedded의 세 가지로 구분합니다. 이 중 Organic은 기관 내부에서 개발된 중소 규모의 소프트웨어로, 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용 등 5만 라인 이하의 소프트웨어를 개발하는 유형입니다. Embedded는 내장형 소프트웨어처럼 규모가 큰 유형이고, Semi-Detached는 두 유형의 중간 규모에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Embeded(Embedded)는 내장형 소프트웨어처럼 규모가 크고 복잡한 프로젝트에 적용되는 유형입니다." },
+        { "no": 2, "correct": true, "why": "5만 라인 이하의 중소 규모 소프트웨어를 개발하는 유형은 Organic입니다." },
+        { "no": 3, "correct": false, "why": "Semi-Detached는 Organic과 Embedded의 중간 규모 프로젝트에 적용되는 유형입니다." },
+        { "no": 4, "correct": false, "why": "Semi-Embeded라는 명칭은 COCOMO의 개발 유형에 존재하지 않습니다." }
+      ],
+      "keyPoint": "COCOMO 개발 유형 - Organic의 적용 규모",
+      "tags": ["COCOMO", "Organic"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "CMMI의 단계가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "초기" },
+        { "no": 2, "text": "관리" },
+        { "no": 3, "text": "정의" },
+        { "no": 4, "text": "반복" }
+      ],
+      "answer": 4,
+      "explanation": "CMMI의 단계적 표현은 초기(Initial), 관리(Managed), 정의(Defined), 정량적 관리(Quantitatively Managed), 최적화(Optimizing)의 5단계로 구성됩니다. 반복(Repeatable)은 CMM의 성숙도 단계에만 있는 명칭으로, CMMI의 단계에는 포함되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "초기는 프로세스가 정의되지 않은 CMMI의 1단계입니다." },
+        { "no": 2, "correct": false, "why": "관리는 프로젝트 차원의 기본적인 프로세스 관리가 이루어지는 CMMI 2단계입니다." },
+        { "no": 3, "correct": false, "why": "정의는 조직 표준 프로세스가 확립된 CMMI 3단계입니다." },
+        { "no": 4, "correct": true, "why": "반복은 CMM의 성숙도 단계 명칭으로 CMMI의 단계가 아닙니다." }
+      ],
+      "keyPoint": "CMMI 5단계 성숙도 모델과 CMM과의 차이",
+      "tags": ["CMMI", "성숙도 모델"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 이를 관리하는 활동으로서, 프로젝트를 성공시키기 위하여 위험 요소를 사전에 예측, 대비하는 모든 기술과 활동을 포함하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Critical Path Method" },
+        { "no": 2, "text": "Risk Analysis" },
+        { "no": 3, "text": "Work Breakdown Structure" },
+        { "no": 4, "text": "Waterfall Model" }
+      ],
+      "answer": 2,
+      "explanation": "위험 분석(Risk Analysis)은 프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 관리하는 활동으로, 프로젝트를 성공시키기 위해 위험 요소를 사전에 예측하고 대비하는 모든 기술과 활동을 포함합니다. CPM은 임계 경로를 찾아 일정을 관리하는 기법, WBS는 프로젝트 업무를 세분화한 작업 분류 체계, 폭포수 모형은 순차적으로 진행되는 개발 생명주기 모형입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Critical Path Method는 임계 경로를 구해 프로젝트 일정과 여유 시간을 관리하는 기법입니다." },
+        { "no": 2, "correct": true, "why": "위험 요소를 인식·분석하고 사전에 대비하는 일련의 활동을 가리키는 용어는 Risk Analysis입니다." },
+        { "no": 3, "correct": false, "why": "Work Breakdown Structure는 프로젝트 업무를 세분화해 구조화한 작업 분류 체계입니다." },
+        { "no": 4, "correct": false, "why": "Waterfall Model은 각 단계를 순차적으로 수행하는 소프트웨어 개발 모형입니다." }
+      ],
+      "keyPoint": "위험 분석(Risk Analysis)의 정의",
+      "tags": ["위험 분석", "프로젝트 관리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "취약점 관리를 위한 응용 프로그램의 보안 설정과 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "서버 관리실 출입 통제" },
+        { "no": 2, "text": "실행 프로세스 권한 설정" },
+        { "no": 3, "text": "운영체제의 접근 제한" },
+        { "no": 4, "text": "운영체제의 정보 수집 제한" }
+      ],
+      "answer": 1,
+      "explanation": "취약점 관리는 응용 프로그램과 운영체제 수준에서 접근 권한을 제한하고 불필요한 정보 노출을 막는 보안 설정을 점검하는 활동입니다. 실행 프로세스 권한 설정, 운영체제의 접근 제한, 운영체제의 정보 수집 제한은 모두 시스템 내부에서 이루어지는 논리적 보안 설정입니다. 반면 서버 관리실 출입 통제는 사람의 출입을 막는 물리적 보안 대책이므로 응용 프로그램의 보안 설정과는 거리가 멉니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "출입 통제는 물리적 보안에 해당하므로 응용 프로그램의 보안 설정과 가장 거리가 먼 항목입니다." },
+        { "no": 2, "correct": false, "why": "실행 프로세스 권한 설정은 불필요한 권한을 줄이는 대표적인 보안 설정입니다." },
+        { "no": 3, "correct": false, "why": "운영체제의 접근 제한은 계정과 자원에 대한 접근을 통제하는 보안 설정입니다." },
+        { "no": 4, "correct": false, "why": "정보 수집 제한도 불필요한 정보 노출을 막는 시스템 보안 설정에 해당합니다." }
+      ],
+      "keyPoint": "응용 프로그램 보안 설정과 물리적 보안의 구분",
+      "tags": ["취약점 관리", "보안 설정"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "다음이 설명하는 용어로 옳은 것은?",
+      "passage": "ㆍ오픈 소스를 기반으로 한 분산 컴퓨팅 플랫폼이다.\nㆍ일반 PC급 컴퓨터들로 가상화된 대형 스토리지를 형성한다.\nㆍ다양한 소스를 통해 생성된 빅데이터를 효율적으로 저장하고 처리한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "하둡(Hadoop)" },
+        { "no": 2, "text": "비컨(Beacon)" },
+        { "no": 3, "text": "포스퀘어(Foursquare)" },
+        { "no": 4, "text": "맴리스터(Memristor)" }
+      ],
+      "answer": 1,
+      "explanation": "제시된 설명은 오픈 소스 기반의 분산 컴퓨팅 플랫폼인 하둡(Hadoop)에 대한 것입니다. 하둡은 일반 PC급 컴퓨터들을 클러스터로 묶어 가상화된 대형 스토리지를 형성하고, HDFS와 맵리듀스를 이용해 다양한 소스에서 생성된 빅데이터를 효율적으로 저장하고 처리합니다. 비컨은 근거리 무선 통신으로 위치를 인식하는 기술, 포스퀘어는 위치 기반 소셜 네트워크 서비스, 맴리스터는 전원이 없어도 데이터를 유지하는 저항 소자입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "오픈 소스 분산 컴퓨팅 플랫폼으로 대형 스토리지를 형성하고 빅데이터를 처리하는 기술은 하둡입니다." },
+        { "no": 2, "correct": false, "why": "비컨은 블루투스 등을 이용해 위치를 인식하고 정보를 전달하는 근거리 통신 기술입니다." },
+        { "no": 3, "correct": false, "why": "포스퀘어는 위치 기반 소셜 네트워크 서비스로 분산 컴퓨팅 플랫폼이 아닙니다." },
+        { "no": 4, "correct": false, "why": "맴리스터는 메모리 저항 소자로 빅데이터 저장·처리 플랫폼과 관련이 없습니다." }
+      ],
+      "keyPoint": "하둡(Hadoop)의 분산 컴퓨팅 플랫폼 특징",
+      "tags": ["하둡", "빅데이터"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "IP 또는 ICMP의 특성을 악용하여 특정 사이트에 집중적으로 데이터를 보내 네트워크 또는 시스템의 상태를 불능으로 만드는 공격 방법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "TearDrop" },
+        { "no": 2, "text": "Smishing" },
+        { "no": 3, "text": "Qshing" },
+        { "no": 4, "text": "Smurfing" }
+      ],
+      "answer": 4,
+      "explanation": "Smurfing은 ICMP 에코 요청 패킷의 출발지 주소를 공격 대상의 IP로 위조한 뒤 브로드캐스트 주소로 전송하여, 다수의 호스트가 보내는 응답이 공격 대상 한 곳에 집중되도록 만드는 서비스 거부 공격입니다. 그 결과 네트워크나 시스템이 정상적인 서비스를 제공하지 못하게 됩니다. TearDrop은 조각화된 패킷의 재조립을 방해하는 공격이고, Smishing과 Qshing은 각각 문자 메시지와 QR 코드를 이용한 피싱 기법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "TearDrop은 조각화된 패킷의 순서 번호를 조작해 재조립을 방해하는 공격입니다." },
+        { "no": 2, "correct": false, "why": "Smishing은 문자 메시지로 가짜 링크를 보내 개인정보를 탈취하는 피싱 기법입니다." },
+        { "no": 3, "correct": false, "why": "Qshing은 QR 코드로 악성 앱 설치나 정보 입력을 유도하는 피싱 기법입니다." },
+        { "no": 4, "correct": true, "why": "ICMP 응답을 다수 호스트에서 공격 대상으로 집중시키는 공격이 Smurfing입니다." }
+      ],
+      "keyPoint": "Smurfing(스머핑) 공격의 원리",
+      "tags": ["Smurfing", "서비스 거부 공격"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "백도어 탐지 방법으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "무결성 검사" },
+        { "no": 2, "text": "닫힌 포트 확인" },
+        { "no": 3, "text": "로그 분석" },
+        { "no": 4, "text": "SetUID 파일 검사" }
+      ],
+      "answer": 2,
+      "explanation": "백도어는 시스템에 불법적으로 접근하기 위해 몰래 만들어 놓은 통로로, 무결성 검사, 열린 포트 확인, 로그 분석, SetUID 파일 검사 등의 방법으로 탐지합니다. 백도어가 외부와 통신하기 위해 열어 놓은 포트는 열린 상태로 남아 있으므로 확인해야 할 대상도 열린 포트입니다. 따라서 닫힌 포트를 확인한다는 이 보기는 틀린 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "무결성 검사는 시스템 파일이나 설정이 변조되었는지 확인하는 정상적인 백도어 탐지 방법입니다." },
+        { "no": 2, "correct": true, "why": "백도어 탐지에서는 닫힌 포트가 아니라 열린 포트를 확인해야 합니다." },
+        { "no": 3, "correct": false, "why": "로그 분석은 비정상적인 접속과 실행 기록을 찾아내는 백도어 탐지 방법입니다." },
+        { "no": 4, "correct": false, "why": "SetUID 파일 검사는 권한 상승을 노리는 파일을 찾아내는 백도어 탐지 방법입니다." }
+      ],
+      "keyPoint": "백도어 탐지 방법(열린 포트 확인)",
+      "tags": ["백도어", "보안 점검"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "정보 보안의 3대 요소에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "기밀성" },
+        { "no": 2, "text": "휘발성" },
+        { "no": 3, "text": "무결성" },
+        { "no": 4, "text": "가용성" }
+      ],
+      "answer": 2,
+      "explanation": "정보 보안의 3대 요소는 기밀성(Confidentiality), 무결성(Integrity), 가용성(Availability)이며 앞 글자를 따서 CIA라고 부릅니다. 기밀성은 인가된 사용자만 정보에 접근하도록 하고, 무결성은 정보가 허가 없이 변조되지 않도록 하며, 가용성은 필요할 때 정보와 서비스를 사용할 수 있도록 보장합니다. 휘발성은 메모리나 저장 매체의 특성을 나타내는 용어로 정보 보안의 3대 요소가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "기밀성은 인가된 사용자만 정보에 접근할 수 있도록 하는 보안 요소입니다." },
+        { "no": 2, "correct": true, "why": "휘발성은 메모리나 저장 매체의 특성으로 정보 보안의 3대 요소가 아닙니다." },
+        { "no": 3, "correct": false, "why": "무결성은 정보가 허가 없이 변조되지 않도록 보장하는 보안 요소입니다." },
+        { "no": 4, "correct": false, "why": "가용성은 필요할 때 정보와 서비스를 사용할 수 있도록 하는 보안 요소입니다." }
+      ],
+      "keyPoint": "정보 보안의 3대 요소(기밀성·무결성·가용성)",
+      "tags": ["정보 보안", "기밀성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "기존 무선 랜의 한계 극복을 위해 등장하였으며, 대규모 디바이스의 네트워크 생성에 최적화되어 차세대 이동통신, 홈네트워킹, 공공 안전 등의 특수목적에 사용되는 새로운 방식의 네트워크 기술을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Software Defined Perimeter" },
+        { "no": 2, "text": "Virtual Private Network" },
+        { "no": 3, "text": "Local Area Network" },
+        { "no": 4, "text": "Mesh Network" }
+      ],
+      "answer": 4,
+      "explanation": "메시 네트워크(Mesh Network)는 여러 노드가 그물처럼 서로 연결되어 데이터를 주고받는 방식으로, 기존 무선 랜의 한계를 극복하기 위해 등장했습니다. 대규모 디바이스의 네트워크 생성에 최적화되어 차세대 이동통신, 홈네트워킹, 공공 안전 등의 특수 목적에 사용됩니다. SDP는 소프트웨어 정의 경계, VPN은 공중망에 사설 터널을 만드는 기술, LAN은 근거리 통신망을 뜻합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Software Defined Perimeter는 인증된 사용자에게만 서비스 접근을 허용하는 보안 경계 기술입니다." },
+        { "no": 2, "correct": false, "why": "Virtual Private Network는 공중망을 통해 사설 네트워크를 구성하는 기술입니다." },
+        { "no": 3, "correct": false, "why": "Local Area Network는 사무실이나 건물 같은 좁은 지역을 연결하는 근거리 통신망입니다." },
+        { "no": 4, "correct": true, "why": "대규모 디바이스 연결에 최적화된 새로운 방식의 네트워크 기술은 메시 네트워크입니다." }
+      ],
+      "keyPoint": "메시 네트워크(Mesh Network)의 특징",
+      "tags": ["메시 네트워크", "무선 네트워크"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "물리적 위협으로 인한 문제에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "화재, 홍수 등 천재지변으로 인한 위협" },
+        { "no": 2, "text": "하드웨어 파손, 고장으로 인한 장애" },
+        { "no": 3, "text": "방화, 테러로 인한 하드웨어와 기록장치를 물리적으로 파괴하는 행위" },
+        { "no": 4, "text": "방화벽 설정의 잘못된 조작으로 인한 네트워크, 서버 보안 위협" }
+      ],
+      "answer": 4,
+      "explanation": "물리적 위협은 화재나 홍수 같은 천재지변, 하드웨어의 파손과 고장, 방화나 테러로 인한 장비 파괴처럼 설비 자체가 물리적으로 훼손되는 위험을 말합니다. 반면 방화벽 설정을 잘못 조작해 네트워크와 서버에 보안 문제가 생기는 것은 설정 오류에서 비롯된 논리적(기술적) 위협에 해당하므로 물리적 위험에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "화재, 홍수 등 천재지변으로 인한 위협은 설비가 물리적으로 훼손되는 물리적 위협입니다." },
+        { "no": 2, "correct": false, "why": "하드웨어 파손, 고장으로 인한 장애도 대표적인 물리적 위협입니다." },
+        { "no": 3, "correct": false, "why": "방화, 테러로 장비를 물리적으로 파괴하는 행위 역시 물리적 위협에 해당합니다." },
+        { "no": 4, "correct": true, "why": "방화벽 설정 오조작으로 인한 보안 위협은 논리적 위협이므로 물리적 위험에 해당하지 않습니다." }
+      ],
+      "keyPoint": "물리적 위협과 논리적 위협의 구분",
+      "tags": ["물리적 위협", "보안 관리"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "COCOMO(Constructive Cost Model) 모형의 특징이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "프로젝트를 완성하는데 필요한 Man-Month로 산정 결과를 나타낼 수 있다." },
+        { "no": 2, "text": "보헴(Boehm)이 제안한 것으로 원시 코드 라인 수에 의한 비용 산정 기법이다." },
+        { "no": 3, "text": "비교적 작은 규모의 프로젝트 기록을 통계 분석하여 얻은 결과를 반영한 모델이며 중소 규모 소프트웨어 프로젝트 비용 추정에 적합하다." },
+        { "no": 4, "text": "프로젝트 개발 유형에 따라 object, dynamic, function의 3가지 모드로 구분한다." }
+      ],
+      "answer": 4,
+      "explanation": "COCOMO 모형은 보헴(Boehm)이 제안한 비용 산정 기법으로, 원시 코드 라인 수를 기준으로 프로젝트에 필요한 노력(Man-Month)을 산정하고 비교적 작은 규모의 프로젝트 기록을 통계 분석한 결과를 반영합니다. 개발 유형(모드)은 Organic(유기적), Semi-Detached(반분리형), Embedded(내장형)의 3가지로 구분하므로, object, dynamic, function으로 구분한다는 보기는 틀린 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "COCOMO는 프로젝트에 필요한 노력을 Man-Month 단위로 산정해 제시하므로 올바른 설명입니다." },
+        { "no": 2, "correct": false, "why": "보헴이 제안했고 원시 코드 라인 수를 기준으로 비용을 산정한다는 설명도 올바릅니다." },
+        { "no": 3, "correct": false, "why": "통계 분석 결과를 반영해 중소 규모 프로젝트 비용 추정에 적합하다는 설명도 COCOMO의 특징입니다." },
+        { "no": 4, "correct": true, "why": "COCOMO의 개발 유형은 Organic, Semi-Detached, Embedded의 3가지이므로 object, dynamic, function이라는 설명은 틀렸습니다." }
+      ],
+      "keyPoint": "COCOMO 모형의 특징과 3가지 개발 유형",
+      "tags": ["COCOMO", "비용 산정"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "소인수 분해 문제를 이용한 공개키 암호화 기법에 널리 사용되는 암호 알고리즘 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "RSA" },
+        { "no": 2, "text": "ECC" },
+        { "no": 3, "text": "PKI" },
+        { "no": 4, "text": "PRM" }
+      ],
+      "answer": 1,
+      "explanation": "RSA는 큰 수의 소인수 분해가 현실적으로 어렵다는 점을 안전성의 근거로 삼는 공개키 암호 알고리즘입니다. 암호화에는 공개키를, 복호화에는 개인키를 사용하는 비대칭키 방식으로 전자상거래와 전자서명에 널리 활용됩니다. ECC는 타원 곡선 이산 대수 문제, PKI는 공개키를 안전하게 관리·배포하기 위한 기반 구조, PRM은 공개키 암호 알고리즘의 명칭이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "소인수 분해 문제의 어려움을 이용하는 대표적인 공개키 암호 알고리즘은 RSA입니다." },
+        { "no": 2, "correct": false, "why": "ECC는 소인수 분해가 아니라 타원 곡선 이산 대수 문제를 이용하는 알고리즘입니다." },
+        { "no": 3, "correct": false, "why": "PKI는 인증서와 공개키를 관리·배포하는 기반 구조로 암호 알고리즘 자체가 아닙니다." },
+        { "no": 4, "correct": false, "why": "PRM은 널리 쓰이는 공개키 암호 알고리즘의 명칭이 아닙니다." }
+      ],
+      "keyPoint": "RSA의 안전성 근거(소인수 분해 문제)",
+      "tags": ["RSA", "공개키 암호"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "암호화 키와 복호화 키가 동일한 암호화 알고리즘은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "RSA" },
+        { "no": 2, "text": "AES" },
+        { "no": 3, "text": "DSA" },
+        { "no": 4, "text": "ECC" }
+      ],
+      "answer": 2,
+      "explanation": "AES는 암호화와 복호화에 같은 키를 사용하는 대칭키(비밀키) 블록 암호 알고리즘으로, 128비트 블록을 128·192·256비트 키로 암호화합니다. RSA, DSA, ECC는 암호화 키와 복호화 키가 서로 다른 공개키(비대칭키) 기반 알고리즘입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "RSA는 공개키와 개인키를 서로 다르게 사용하는 비대칭키 암호 알고리즘입니다." },
+        { "no": 2, "correct": true, "why": "AES는 암호화와 복호화에 동일한 키를 사용하는 대칭키 알고리즘입니다." },
+        { "no": 3, "correct": false, "why": "DSA는 전자서명에 사용되는 공개키 기반 알고리즘입니다." },
+        { "no": 4, "correct": false, "why": "ECC는 타원 곡선을 이용한 공개키 암호 알고리즘입니다." }
+      ],
+      "keyPoint": "대칭키(AES)와 비대칭키 암호 알고리즘의 구분",
+      "tags": ["AES", "대칭키 암호"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 프레임워크를 적용할 경우 기대 효과로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "품질 보증" },
+        { "no": 2, "text": "시스템 복잡도 증가" },
+        { "no": 3, "text": "개발 용이성" },
+        { "no": 4, "text": "변경 용이성" }
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 개발 프레임워크는 반제품 상태의 구조와 컴포넌트를 재사용하게 해 주므로 품질 보증, 개발 용이성, 변경 용이성, 재사용성 향상과 같은 효과를 얻을 수 있습니다. 반면 시스템 복잡도 증가는 기대 효과가 아니라 프레임워크 구조를 이해하고 관리해야 하는 부담에서 생기는 부정적인 측면입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "품질 보증은 검증된 구조를 재사용함으로써 얻는 대표적인 기대 효과입니다." },
+        { "no": 2, "correct": true, "why": "시스템 복잡도 증가는 기대 효과가 아니라 프레임워크 도입 시 나타날 수 있는 부작용입니다." },
+        { "no": 3, "correct": false, "why": "개발 용이성은 반제품 상태의 구조를 활용해 얻는 기대 효과입니다." },
+        { "no": 4, "correct": false, "why": "변경 용이성은 표준화된 구조 덕분에 얻을 수 있는 기대 효과입니다." }
+      ],
+      "keyPoint": "소프트웨어 개발 프레임워크의 기대 효과",
+      "tags": ["소프트웨어 프레임워크", "재사용성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "전자 칩과 같은 소프트웨어 부품, 즉 블록(모듈)을 만들어서 끼워 맞추는 방법으로 소프트웨어를 완성시키는 재사용 방법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "합성 중심" },
+        { "no": 2, "text": "생성 중심" },
+        { "no": 3, "text": "분리 중심" },
+        { "no": 4, "text": "구조 중심" }
+      ],
+      "answer": 1,
+      "explanation": "소프트웨어 재사용 방법은 합성 중심과 생성 중심으로 나뉩니다. 합성 중심은 전자 칩과 같은 소프트웨어 부품인 블록(모듈)을 만들어 끼워 맞추는 방식으로 소프트웨어를 완성하는 방법이고, 생성 중심은 추상화된 형태의 부품을 이용해 필요한 소프트웨어를 자동으로 생성하는 방법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "블록(모듈)을 만들어 끼워 맞추는 방식의 재사용 방법은 합성 중심입니다." },
+        { "no": 2, "correct": false, "why": "생성 중심은 부품을 조립하는 것이 아니라 추상화된 형태로부터 소프트웨어를 자동 생성하는 방법입니다." },
+        { "no": 3, "correct": false, "why": "분리 중심은 재사용 방법의 분류에 속하지 않는 명칭입니다." },
+        { "no": 4, "correct": false, "why": "구조 중심 역시 재사용 방법의 분류 명칭이 아닙니다." }
+      ],
+      "keyPoint": "합성 중심과 생성 중심 재사용 방법의 차이",
+      "tags": ["소프트웨어 재사용", "합성 중심"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 것은?",
+      "passage": "ㆍ네트워크상에 광채널 스위치의 이점인 고속 전송과 장거리 연결 및 멀티 프로토콜 기능을 활용\nㆍ각기 다른 운영체제를 가진 여러 기종들이 네트워크상에서 동일 저장장치의 데이터를 공유하게 함으로써, 여러 개의 저장장치나 백업 장비를 단일화시킨 시스템",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "SAN" },
+        { "no": 2, "text": "MBR" },
+        { "no": 3, "text": "NAC" },
+        { "no": 4, "text": "NIC" }
+      ],
+      "answer": 1,
+      "explanation": "설명은 저장장치 전용 네트워크인 SAN(Storage Area Network)에 대한 것입니다. SAN은 광채널 스위치를 이용한 고속 전송과 장거리 연결, 멀티 프로토콜 기능을 활용해 서로 다른 운영체제를 쓰는 여러 기종이 동일한 저장장치의 데이터를 공유하게 하고, 여러 개의 저장장치나 백업 장비를 단일화합니다. MBR은 하드디스크의 파티션·부팅 정보 영역, NAC은 네트워크 접근 제어, NIC는 네트워크 인터페이스 카드입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "광채널 스위치와 멀티 프로토콜을 활용해 저장장치를 단일화하는 시스템은 SAN입니다." },
+        { "no": 2, "correct": false, "why": "MBR은 하드디스크의 파티션과 부팅 정보를 담고 있는 영역입니다." },
+        { "no": 3, "correct": false, "why": "NAC는 네트워크에 접속하는 단말의 정책 준수 여부를 통제하는 보안 기술입니다." },
+        { "no": 4, "correct": false, "why": "NIC는 컴퓨터를 네트워크에 연결하는 인터페이스 카드입니다." }
+      ],
+      "keyPoint": "SAN(Storage Area Network)의 개념과 이점",
+      "tags": ["SAN", "스토리지"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "시스템의 사용자가 로그인하여 명령을 내리는 과정에 대한 시스템의 동작 중 다음 설명에 해당하는 것은?",
+      "passage": "ㆍ자신의 신원(Identity)을 시스템에 증명하는 과정이다.\nㆍ아이디와 패스워드를 입력하는 과정이 가장 일반적인 예시라고 볼 수 있다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Aging" },
+        { "no": 2, "text": "Accounting" },
+        { "no": 3, "text": "Authorization" },
+        { "no": 4, "text": "Authentication" }
+      ],
+      "answer": 4,
+      "explanation": "설명에 해당하는 것은 인증(Authentication)입니다. 인증은 사용자가 자신의 신원(Identity)을 시스템에 증명하는 과정으로, 아이디와 패스워드를 입력하는 절차가 가장 일반적인 예입니다. 인가(Authorization)는 인증을 거친 사용자에게 어떤 자원의 접근 권한을 부여할지 결정하는 단계이고, 회계(Accounting)는 사용한 자원에 대한 정보를 기록·추적하는 단계입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Aging은 자원의 사용 시간이나 우선순위를 관리하는 기법으로 인증 과정이 아닙니다." },
+        { "no": 2, "correct": false, "why": "Accounting은 자원 사용 내역을 기록하고 추적하는 단계입니다." },
+        { "no": 3, "correct": false, "why": "Authorization은 인증된 사용자에게 자원의 접근 권한을 부여하는 단계입니다." },
+        { "no": 4, "correct": true, "why": "자신의 신원을 시스템에 증명하는 과정은 Authentication(인증)입니다." }
+      ],
+      "keyPoint": "인증(Authentication)과 인가(Authorization)의 차이",
+      "tags": ["인증", "Authentication"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "OSI 7 Layer 전 계층의 프로토콜과 패킷 내부의 콘텐츠를 파악하여 침입 시도, 해킹 등을 탐지하고 트래픽을 조정하기 위한 패킷 분석 기술은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "PLCP(Packet Level Control Processor)" },
+        { "no": 2, "text": "Traffic Distributor" },
+        { "no": 3, "text": "Packet Tree" },
+        { "no": 4, "text": "DPI(Deep Packet Inspection)" }
+      ],
+      "answer": 4,
+      "explanation": "DPI(Deep Packet Inspection)는 OSI 7계층 전체의 프로토콜과 패킷 내부의 콘텐츠까지 분석하여 침입 시도와 해킹 등을 탐지하고 트래픽을 조정하는 패킷 분석 기술입니다. 패킷의 헤더 정보만 확인하는 일반적인 필터링과 달리 페이로드 내용까지 검사하므로 응용 계층에서 이루어지는 공격을 찾아낼 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "PLCP는 패킷 분석 기술을 가리키는 명칭으로 쓰이지 않습니다." },
+        { "no": 2, "correct": false, "why": "Traffic Distributor는 트래픽을 분산·조정하는 장비로 패킷 내용을 분석해 침입을 탐지하는 기술이 아닙니다." },
+        { "no": 3, "correct": false, "why": "Packet Tree는 패킷 분석 결과를 트리 형태로 표현한 것으로 침입 탐지 기술의 명칭이 아닙니다." },
+        { "no": 4, "correct": true, "why": "전 계층의 프로토콜과 패킷 콘텐츠까지 분석해 침입을 탐지하는 기술은 DPI입니다." }
+      ],
+      "keyPoint": "DPI(Deep Packet Inspection)의 개념",
+      "tags": ["DPI", "패킷 분석"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "세션 하이재킹을 탐지하는 방법으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "FTP SYN SEGMENT 탐지" },
+        { "no": 2, "text": "비동기화 상태 탐지" },
+        { "no": 3, "text": "ACK STORM 탐지" },
+        { "no": 4, "text": "패킷의 유실 및 재전송 증가 탐지" }
+      ],
+      "answer": 1,
+      "explanation": "세션 하이재킹은 이미 인증이 끝난 세션을 가로채는 공격으로, 탐지 방법에는 비동기화 상태 탐지, ACK STORM 탐지, 패킷의 유실 및 재전송 증가 탐지 등이 있습니다. 세션의 시퀀스 번호가 어긋나거나 ACK 패킷이 비정상적으로 폭주하고 재전송이 늘어나는 현상이 하이재킹의 징후이기 때문입니다. FTP SYN SEGMENT 탐지는 세션 하이재킹 탐지 기법으로 분류되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "FTP SYN SEGMENT 탐지는 세션 하이재킹 탐지 방법에 해당하지 않습니다." },
+        { "no": 2, "correct": false, "why": "비동기화 상태 탐지는 시퀀스 번호가 어긋난 세션을 찾아 하이재킹을 탐지하는 방법입니다." },
+        { "no": 3, "correct": false, "why": "ACK STORM 탐지는 ACK 패킷이 비정상적으로 폭주하는 상태를 이용해 하이재킹을 탐지합니다." },
+        { "no": 4, "correct": false, "why": "패킷의 유실과 재전송이 증가하는 현상도 세션 하이재킹을 알려 주는 탐지 지표입니다." }
+      ],
+      "keyPoint": "세션 하이재킹 탐지 방법",
+      "tags": ["세션 하이재킹", "침입 탐지"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

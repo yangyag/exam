@@ -1,0 +1,583 @@
+{
+  "exam": {
+    "id": "2023-3",
+    "year": 2023,
+    "round": 3,
+    "title": "2023년 3회 정보처리기사 필기",
+    "sourcePdf": "2023년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2023-3-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "반정규화(Denormalization) 유형 중 중복 테이블을 추가하는 방법에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "빌드 테이블의 추가" },
+        { "no": 2, "text": "집계 테이블의 추가" },
+        { "no": 3, "text": "진행 테이블의 추가" },
+        { "no": 4, "text": "특정 부분만을 포함하는 테이블 추가" }
+      ],
+      "answer": 1,
+      "explanation": "반정규화에서 중복 테이블을 추가하는 방법에는 집계 테이블 추가, 진행 테이블 추가, 부분 테이블(특정 부분만을 포함하는 테이블) 추가가 있습니다. 집계 테이블은 합계·평균 같은 통계 데이터를 미리 저장해 조회 성능을 높이고, 진행 테이블은 이력이나 진행 상황을 관리하며, 부분 테이블은 자주 쓰는 열만 모아 성능을 개선합니다. 빌드 테이블의 추가라는 방법은 없으므로 이것이 해당하지 않는 항목입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "반정규화의 중복 테이블 추가 방법은 집계·진행·부분 테이블뿐이며 빌드 테이블은 이에 해당하지 않아 정답입니다." },
+        { "no": 2, "correct": false, "why": "집계 테이블 추가는 합계나 평균 등 통계 데이터를 미리 저장하는 대표적인 중복 테이블 추가 방법입니다." },
+        { "no": 3, "correct": false, "why": "진행 테이블 추가는 이력 관리나 진행 상황 파악을 위해 중복 테이블을 만드는 정식 반정규화 기법입니다." },
+        { "no": 4, "correct": false, "why": "특정 부분만을 포함하는 테이블 추가는 부분 테이블 추가에 해당하는 반정규화 방법입니다." }
+      ],
+      "keyPoint": "반정규화의 중복 테이블 추가 방법(집계·진행·부분)",
+      "tags": ["반정규화", "중복 테이블", "Denormalization"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "알고리즘 시간 복잡도 O(1)이 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "컴퓨터 처리가 불가" },
+        { "no": 2, "text": "알고리즘 입력 데이터 수가 한 개" },
+        { "no": 3, "text": "알고리즘 수행시간이 입력 데이터 수와 관계없이 일정" },
+        { "no": 4, "text": "알고리즘 길이가 입력 데이터보다 작음" }
+      ],
+      "answer": 3,
+      "explanation": "시간 복잡도 O(1)은 상수 시간 복잡도라고 하며, 입력 데이터의 수 n이 아무리 커져도 연산 수행 시간이 변하지 않는 경우를 뜻합니다. 즉 데이터의 양과 수행 시간 사이에 관계가 없으며, 배열의 첫 번째 원소를 읽는 것처럼 한 번의 연산으로 결과를 얻는 알고리즘이 이에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "컴퓨터 처리가 불가능한 알고리즘은 없으며, O(1)은 처리 가능한 가장 빠른 복잡도를 나타냅니다." },
+        { "no": 2, "correct": false, "why": "입력 데이터 수가 한 개라는 것은 데이터양에 대한 조건일 뿐, 입력 크기와 무관하게 시간이 일정하다는 의미와 다릅니다." },
+        { "no": 3, "correct": true, "why": "입력 데이터 수가 늘어나도 수행 시간이 일정하게 유지되는 상수 시간 복잡도를 의미하므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "알고리즘 길이와 입력 데이터 크기를 비교하는 개념이 아니며, O(1)은 수행 시간이 입력 크기에 영향받지 않는다는 뜻입니다." }
+      ],
+      "keyPoint": "시간 복잡도 O(1)은 입력 크기와 무관한 상수 시간",
+      "tags": ["시간 복잡도", "빅오 표기법"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "디지털 저작권 관리( )의 기술 요소가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "크랙 방지 기술" },
+        { "no": 2, "text": "정책 관리 기술" },
+        { "no": 3, "text": "암호화 기술" },
+        { "no": 4, "text": "방화벽 기술" }
+      ],
+      "answer": 4,
+      "explanation": "디지털 저작권 관리(DRM)의 기술 요소에는 암호화 기술, 키 관리 기술, 크랙 방지 기술, 정책 관리 기술, 저작권 표현 기술, 인증 기술 등이 있습니다. 방화벽 기술은 네트워크 경계에서 외부 침입을 차단하는 보안 기술로서 콘텐츠 자체의 저작권 보호를 담당하는 DRM 구성 요소가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "크랙 방지 기술은 콘텐츠의 불법 복제와 변조를 막는 DRM의 핵심 기술 요소입니다." },
+        { "no": 2, "correct": false, "why": "정책 관리 기술은 콘텐츠 이용 규칙과 권한을 정의하고 관리하는 DRM 기술 요소입니다." },
+        { "no": 3, "correct": false, "why": "암호화 기술은 허가된 사용자만 콘텐츠를 이용하도록 보호하는 DRM의 기본 기술입니다." },
+        { "no": 4, "correct": true, "why": "방화벽은 네트워크 침입을 차단하는 보안 기술로 DRM의 기술 요소가 아니므로 정답입니다." }
+      ],
+      "keyPoint": "DRM 기술 요소와 네트워크 보안 장비의 구분",
+      "tags": ["DRM", "디지털 저작권 관리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "다음 트리를 Preorder 운행법으로 운행할 경우 가장 먼저 탐색되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "A" },
+        { "no": 2, "text": "B" },
+        { "no": 3, "text": "D" },
+        { "no": 4, "text": "G" }
+      ],
+      "answer": 1,
+      "explanation": "Preorder(전위) 운행법은 루트 노드를 가장 먼저 방문한 뒤 왼쪽 서브트리, 오른쪽 서브트리 순으로 순회하는 방법입니다. 주어진 트리에서 루트는 A이므로 전위 운행을 시작하면 가장 먼저 탐색되는 노드는 A가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "전위 운행은 루트를 가장 먼저 방문하므로 트리의 루트인 A가 첫 번째로 탐색되어 정답입니다." },
+        { "no": 2, "correct": false, "why": "B는 루트 A의 왼쪽 자식으로, 루트 A를 방문한 다음에 탐색되는 노드입니다." },
+        { "no": 3, "correct": false, "why": "D는 B의 자식이므로 순회 순서상 A, B 다음에 탐색됩니다." },
+        { "no": 4, "correct": false, "why": "G는 E의 자식으로 순회의 뒤쪽에서 탐색되는 노드입니다." }
+      ],
+      "keyPoint": "전위(Preorder) 운행은 루트 → 왼쪽 → 오른쪽 순서",
+      "tags": ["트리 순회", "Preorder"],
+      "difficulty": 1,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2023-3/024.png",
+        "alt": "A를 루트로 하고 B와 C가 자식으로 갈라지며, B 아래에 D, C 아래에 E와 F가 있고, E 아래에 G와 H가 붙은 이진 트리",
+        "page": 2,
+        "col": 1,
+        "box": [317.7, 207.4, 434.7, 304.0]
+      },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "인터페이스 보안을 위해 네트워크 영역에 적용될 수 있는 솔루션과 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "IPSec" },
+        { "no": 2, "text": "SSL" },
+        { "no": 3, "text": "SMTP" },
+        { "no": 4, "text": "S-HTTP" }
+      ],
+      "answer": 3,
+      "explanation": "네트워크 영역에 적용하는 인터페이스 보안 솔루션으로는 IPSec, SSL, S-HTTP 등이 있습니다. IPSec은 네트워크 계층에서 IP 패킷을 암호화·인증하고, SSL은 전송 계층에서 클라이언트와 서버 사이의 데이터를 암호화하며, S-HTTP은 응용 계층에서 HTTP 메시지를 암호화합니다. SMTP는 전자우편 전송을 위한 프로토콜일 뿐 보안 솔루션이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "IPSec은 네트워크 계층에서 IP 패킷을 암호화하고 인증하는 보안 솔루션입니다." },
+        { "no": 2, "correct": false, "why": "SSL은 전송 계층에서 클라이언트와 서버 간 데이터를 암호화하는 보안 프로토콜입니다." },
+        { "no": 3, "correct": true, "why": "SMTP는 전자우편 전송 프로토콜로 인터페이스 보안 솔루션이 아니므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "S-HTTP은 HTTP 메시지 자체를 암호화해 전송하는 응용 계층 보안 프로토콜입니다." }
+      ],
+      "keyPoint": "네트워크 영역 인터페이스 보안 솔루션(IPSec·SSL·S-HTTP)",
+      "tags": ["인터페이스 보안", "네트워크 보안"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "저작권 관리 구성 요소에 대한 설명이 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "콘텐츠 제공자(Contents Provider) : 콘텐츠를 제공하는 저작권자" },
+        { "no": 2, "text": "콘텐츠 분배자(Contents Distributor) : 콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는 기능" },
+        { "no": 3, "text": "클리어링 하우스(Clearing House) : 키 관리 및 라이선스 발급 관리" },
+        { "no": 4, "text": "DRM 컨트롤러 : 배포된 콘텐츠의 이용 권한을 통제" }
+      ],
+      "answer": 2,
+      "explanation": "저작권 관리 구성 요소에서 콘텐츠 분배자(Contents Distributor)는 콘텐츠를 여러 사용자에게 유통·판매하는 주체입니다. 콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는 기능은 패키저(Packager)의 역할이므로, 분배자에 대한 두 번째 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "콘텐츠 제공자가 콘텐츠를 제공하는 저작권자라는 설명은 맞습니다." },
+        { "no": 2, "correct": true, "why": "메타 데이터와 함께 배포 단위로 묶는 기능은 패키저의 역할이므로 분배자 설명은 틀려 정답입니다." },
+        { "no": 3, "correct": false, "why": "클리어링 하우스가 키 관리와 라이선스 발급을 담당한다는 설명은 맞습니다." },
+        { "no": 4, "correct": false, "why": "DRM 컨트롤러가 배포된 콘텐츠의 이용 권한을 통제한다는 설명은 맞습니다." }
+      ],
+      "keyPoint": "패키저와 콘텐츠 분배자의 역할 구분",
+      "tags": ["저작권 관리", "DRM 구성 요소"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "소프트웨어 패키징 도구 활용 시 고려사항으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "반드시 내부 콘텐츠에 대한 암호화 및 보안을 고려한다." },
+        { "no": 2, "text": "보안을 위하여 이기종 연동을 고려하지 않아도 된다." },
+        { "no": 3, "text": "사용자 편의성을 위한 복잡성 및 비효율성 문제를 고려한다." },
+        { "no": 4, "text": "제품 소프트웨어 종류에 적합한 암호화 알고리즘을 적용한다." }
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 패키징 도구를 활용할 때는 내부 콘텐츠의 암호화와 보안, 사용자 편의성을 위한 복잡성·비효율성 문제, 제품 소프트웨어 종류에 적합한 암호화 알고리즘 적용 등을 함께 고려해야 합니다. 다양한 실행 환경에서 동작해야 하므로 이기종 간 연동도 반드시 고려해야 하며, 고려하지 않아도 된다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "내부 콘텐츠의 암호화와 보안 고려는 패키징 도구 활용 시 필요한 사항으로 맞습니다." },
+        { "no": 2, "correct": true, "why": "이기종 연동은 반드시 고려해야 할 사항이므로 고려하지 않아도 된다는 설명은 틀려 정답입니다." },
+        { "no": 3, "correct": false, "why": "사용자 편의성을 해치는 복잡성과 비효율성 문제를 함께 고려한다는 설명은 맞습니다." },
+        { "no": 4, "correct": false, "why": "제품에 적합한 암호화 알고리즘을 적용한다는 설명은 맞습니다." }
+      ],
+      "keyPoint": "소프트웨어 패키징 도구 활용 시 고려사항",
+      "tags": ["소프트웨어 패키징", "패키징 도구"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "자료 구조에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "큐는 비선형 구조에 해당한다." },
+        { "no": 2, "text": "큐는 First In – First Out 처리를 수행한다." },
+        { "no": 3, "text": "스택은 Last In – First Out 처리를 수행한다." },
+        { "no": 4, "text": "스택은 서브루틴 호출, 인터럽트 처리, 수식 계산 및 수식 표기법에 응용된다." }
+      ],
+      "answer": 1,
+      "explanation": "큐와 스택은 모두 데이터가 일렬로 나열되는 선형 구조이며, 큐는 선입선출(FIFO), 스택은 후입선출(LIFO) 방식으로 자료를 처리합니다. 스택은 서브루틴 호출, 인터럽트 처리, 수식 계산 및 표기법 변환 등에 응용됩니다. 큐가 비선형 구조라는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "큐는 선형 구조이므로 비선형 구조라는 설명이 틀려 정답입니다." },
+        { "no": 2, "correct": false, "why": "큐가 먼저 들어간 자료를 먼저 내보내는 First In – First Out 처리를 한다는 설명은 맞습니다." },
+        { "no": 3, "correct": false, "why": "스택이 나중에 들어간 자료를 먼저 내보내는 Last In – First Out 처리를 한다는 설명은 맞습니다." },
+        { "no": 4, "correct": false, "why": "스택이 서브루틴 호출, 인터럽트 처리, 수식 계산 및 표기법 변환에 응용된다는 설명은 맞습니다." }
+      ],
+      "keyPoint": "선형 구조(큐·스택)와 비선형 구조(트리·그래프)의 구분",
+      "tags": ["자료 구조", "큐", "스택"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "순서가 A, B, C, D로 정해진 입력 자료를 스택에 입력한 후 출력한 결과로 불가능한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "D, C, B, A" },
+        { "no": 2, "text": "B, C, D, A" },
+        { "no": 3, "text": "C, B, A, D" },
+        { "no": 4, "text": "D, B, C, A" }
+      ],
+      "answer": 4,
+      "explanation": "스택은 마지막에 입력된 자료가 먼저 출력되는 후입선출 구조이므로 언제나 가장 위에 있는 원소부터 꺼낼 수 있습니다. D를 가장 먼저 출력했다면 남은 원소는 A, B, C가 쌓인 순서대로 남아 있으므로 C, B, A 순서로만 출력할 수 있습니다. 따라서 D를 먼저 꺼낸 뒤 B를 C보다 앞서 출력하는 ④는 불가능합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "A, B, C, D를 모두 push한 뒤 차례로 pop하면 D, C, B, A가 되므로 가능합니다." },
+        { "no": 2, "correct": false, "why": "A, B를 push해 B를 출력하고 C, D를 차례로 push해 출력한 뒤 A를 출력하면 B, C, D, A가 되어 가능합니다." },
+        { "no": 3, "correct": false, "why": "A, B, C를 push해 C, B, A를 출력한 뒤 D를 push해 출력하면 C, B, A, D가 되어 가능합니다." },
+        { "no": 4, "correct": true, "why": "D를 먼저 출력한 상태에서는 A, B, C가 쌓여 있으므로 C보다 B를 먼저 출력할 수 없어 불가능합니다." }
+      ],
+      "keyPoint": "스택의 LIFO 특성에 따른 출력 순서 제약",
+      "tags": ["스택", "LIFO"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "다음 중 단위 테스트를 통해 발견할 수 있는 오류가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "알고리즘 오류에 따른 원치 않는 결과" },
+        { "no": 2, "text": "탈출구가 없는 반복문의 사용" },
+        { "no": 3, "text": "모듈 간의 비정상적 상호 작용으로 인한 원치 않는 결과" },
+        { "no": 4, "text": "틀린 계산 수식에 의한 잘못된 결과" }
+      ],
+      "answer": 3,
+      "explanation": "단위 테스트는 개별 모듈이나 함수 단위에서 알고리즘 오류, 탈출구가 없는 반복문, 잘못된 계산 수식 등 모듈 내부 구현상의 오류를 발견하는 테스트입니다. 모듈 간의 비정상적 상호 작용으로 인한 오류는 여러 모듈을 결합해 확인하는 통합 테스트에서 발견되므로 단위 테스트의 대상이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "알고리즘 오류로 원치 않는 결과가 나오는 것은 모듈 내부 오류로 단위 테스트에서 발견됩니다." },
+        { "no": 2, "correct": false, "why": "탈출구가 없는 반복문은 모듈 내부의 논리 오류로 단위 테스트에서 발견됩니다." },
+        { "no": 3, "correct": true, "why": "모듈 간 상호 작용으로 인한 오류는 통합 테스트의 영역이므로 단위 테스트로 발견할 수 없어 정답입니다." },
+        { "no": 4, "correct": false, "why": "틀린 계산 수식에 의한 잘못된 결과는 단위 테스트에서 확인할 수 있습니다." }
+      ],
+      "keyPoint": "단위 테스트와 통합 테스트의 발견 대상 차이",
+      "tags": ["단위 테스트", "통합 테스트"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "다음 자료를 버블 정렬을 이용하여 오름차순으로 정렬할 경우 Pass 2의 결과는?",
+      "passage": "9 | 6 | 7 | 3 | 5",
+      "passageKind": "table",
+      "choices": [
+        { "no": 1, "text": "3, 5, 6, 7, 9" },
+        { "no": 2, "text": "6, 7, 3, 5, 9" },
+        { "no": 3, "text": "3, 5, 9, 6, 7" },
+        { "no": 4, "text": "6, 3, 5, 7, 9" }
+      ],
+      "answer": 4,
+      "explanation": "버블 정렬은 인접한 두 원소를 비교해 큰 값을 오른쪽으로 밀어내는 과정을 반복하는 정렬입니다. 9, 6, 7, 3, 5에서 1회전(Pass 1)을 수행하면 가장 큰 값 9가 맨 뒤로 이동해 6, 7, 3, 5, 9가 됩니다. 이어지는 2회전(Pass 2)에서는 7과 3, 7과 5가 차례로 교환되어 6, 3, 5, 7, 9가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "3, 5, 6, 7, 9는 모든 회전이 끝난 뒤의 최종 정렬 결과입니다." },
+        { "no": 2, "correct": false, "why": "6, 7, 3, 5, 9는 1회전(Pass 1)을 마친 상태의 결과입니다." },
+        { "no": 3, "correct": false, "why": "3, 5, 9, 6, 7은 버블 정렬 과정에서 만들어지지 않는 배열입니다." },
+        { "no": 4, "correct": true, "why": "2회전에서 7과 3, 7과 5가 교환되어 6, 3, 5, 7, 9가 되므로 정답입니다." }
+      ],
+      "keyPoint": "버블 정렬의 회전(Pass)별 중간 결과",
+      "tags": ["버블 정렬", "정렬 알고리즘"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "케이스 자동 생성 도구를 이용하여 테스트 데이터를 찾아내는 방법이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "스터브(Stub)와 드라이버(Driver)" },
+        { "no": 2, "text": "입력 도메인 분석" },
+        { "no": 3, "text": "랜덤(Random) 테스트" },
+        { "no": 4, "text": "자료 흐름도" }
+      ],
+      "answer": 1,
+      "explanation": "케이스 자동 생성 도구를 이용해 테스트 데이터를 찾아내는 방법에는 입력 도메인 분석, 랜덤 테스트, 자료 흐름도 등이 있습니다. 스터브와 드라이버는 하향식·상향식 통합 테스트에서 아직 완성되지 않은 모듈을 대신하는 테스트 대역이므로 테스트 데이터를 생성하는 방법과는 무관합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "스터브와 드라이버는 통합 테스트용 대역 모듈이므로 테스트 데이터 생성 방법이 아니어서 정답입니다." },
+        { "no": 2, "correct": false, "why": "입력 도메인 분석은 입력 값의 범위와 경계를 분석해 테스트 데이터를 선정하는 방법입니다." },
+        { "no": 3, "correct": false, "why": "랜덤 테스트는 임의의 데이터를 반복 입력해 오류를 찾는 대표적인 자동 생성 기법입니다." },
+        { "no": 4, "correct": false, "why": "자료 흐름도는 데이터의 흐름을 분석해 테스트 경로와 데이터를 도출하는 방법입니다." }
+      ],
+      "keyPoint": "테스트 데이터 자동 생성 기법과 테스트 대역의 구분",
+      "tags": ["테스트 데이터", "케이스 자동 생성 도구"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "형상 관리의 개념과 절차에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "형상 식별은 형상 관리 계획을 근거로 형상 관리의 대상이 무엇인지 식별하는 과정이다." },
+        { "no": 2, "text": "형상 관리를 통해 가시성과 추적성을 보장함으로써 소프트웨어의 생산성과 품질을 높일 수 있다." },
+        { "no": 3, "text": "형상 통제 과정에서는 형상 목록의 변경 요구를 즉시 수용 및 반영해야 한다." },
+        { "no": 4, "text": "형상 감사는 형상 관리 계획대로 형상 관리가 진행되고 있는지, 형상 항목의 변경이 요구사항에 맞도록 제대로 이뤄졌는지 등을 살펴보는 활동이다." }
+      ],
+      "answer": 3,
+      "explanation": "형상 관리는 형상 식별, 형상 통제, 형상 감사, 형상 기록의 절차로 진행되며 가시성과 추적성을 보장해 소프트웨어의 생산성과 품질을 높입니다. 형상 통제는 변경 요구를 검토하고 승인된 변경만 기준선에 반영하는 절차이므로, 변경 요구를 즉시 수용해 반영한다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "형상 식별이 관리 대상이 무엇인지 식별하는 과정이라는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "가시성과 추적성 보장으로 생산성과 품질을 높인다는 설명은 맞습니다." },
+        { "no": 3, "correct": true, "why": "형상 통제는 변경 요구를 검토·승인한 뒤 반영하는 절차이므로 즉시 수용한다는 설명은 틀려 정답입니다." },
+        { "no": 4, "correct": false, "why": "형상 감사에 대한 설명으로 형상 관리 계획과 요구사항 준수를 확인하는 활동이 맞습니다." }
+      ],
+      "keyPoint": "형상 통제는 검토·승인 절차를 거쳐 변경을 반영",
+      "tags": ["형상 관리", "형상 통제"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 이를 관리하는 활동으로서, 프로젝트를 성공시키기 위하여 위험 요소를 사전에 예측, 대비하는 모든 기술과 활동을 포함하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Critical Path Method" },
+        { "no": 2, "text": "Risk Analysis" },
+        { "no": 3, "text": "Work Breakdown Structure" },
+        { "no": 4, "text": "Waterfall Model" }
+      ],
+      "answer": 2,
+      "explanation": "위험 분석(Risk Analysis)은 프로젝트에 내재된 위험 요소를 인식하고 그 영향을 분석하여 관리하는 활동으로, 위험 요소를 사전에 예측하고 대비하는 모든 기술과 활동을 포함합니다. 위험을 미리 파악해 대응 방안을 세움으로써 프로젝트의 실패 가능성을 낮추는 것이 목적입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Critical Path Method는 일정 관리에서 임계 경로를 찾아 프로젝트 공기를 관리하는 기법입니다." },
+        { "no": 2, "correct": true, "why": "위험 요소를 인식·분석하고 사전에 예측·대비하는 활동은 Risk Analysis에 해당하여 정답입니다." },
+        { "no": 3, "correct": false, "why": "Work Breakdown Structure는 프로젝트 업무를 계층적으로 분할해 정의하는 기법입니다." },
+        { "no": 4, "correct": false, "why": "Waterfall Model은 요구 분석부터 유지보수까지 순차적으로 진행하는 소프트웨어 개발 모델입니다." }
+      ],
+      "keyPoint": "Risk Analysis(위험 분석)의 정의",
+      "tags": ["위험 관리", "Risk Analysis"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "분할 정복(Divide and Conquer)에 기반한 알고리즘으로 피봇(pivot)을 사용하며 최악의 경우 n(n-1)/2 회의 비교를 수행해야 하는 정렬(Sort)은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Selection Sort" },
+        { "no": 2, "text": "Bubble Sort" },
+        { "no": 3, "text": "Insert Sort" },
+        { "no": 4, "text": "Quick Sort" }
+      ],
+      "answer": 4,
+      "explanation": "퀵 정렬(Quick Sort)은 분할 정복 기법을 기반으로 피봇을 기준으로 자료를 두 부분으로 나누고 각 부분을 재귀적으로 정렬하는 알고리즘입니다. 분할이 균등하게 이루어지면 평균 O(NlogN)이지만, 피봇이 한쪽으로 치우치는 최악의 경우에는 n(n-1)/2번의 비교가 필요해 O(N²)의 시간이 소요됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "선택 정렬은 분할 정복이 아니라 이중 반복문으로 최솟값을 찾아 교환하는 O(N²) 알고리즘입니다." },
+        { "no": 2, "correct": false, "why": "버블 정렬은 인접한 두 원소를 비교·교환하는 방식으로 피봇을 사용하지 않습니다." },
+        { "no": 3, "correct": false, "why": "삽입 정렬은 정렬된 부분에 원소를 끼워 넣는 방식으로 피봇 개념을 사용하지 않습니다." },
+        { "no": 4, "correct": true, "why": "퀵 정렬은 피봇을 이용한 분할 정복 알고리즘으로 최악의 경우 n(n-1)/2번 비교해 O(N²)이 되므로 정답입니다." }
+      ],
+      "keyPoint": "퀵 정렬의 최악 시간복잡도 O(N²)",
+      "tags": ["퀵 정렬", "분할 정복", "정렬 알고리즘"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "클린 코드(Clean Code)를 작성하기 위한 원칙으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "추상화 : 하위 클래스/메소드/함수를 통해 애플리케이션의 특성을 간략하게 나타내고, 상세 내용은 상위 클래스/메소드/함수에서 구현한다." },
+        { "no": 2, "text": "의존성 : 다른 모듈에 미치는 영향을 최소화하도록 작성한다." },
+        { "no": 3, "text": "가독성 : 누구든지 읽기 쉽게 코드를 작성한다." },
+        { "no": 4, "text": "중복성 : 중복을 최소화 할 수 있는 코드를 작성한다." }
+      ],
+      "answer": 1,
+      "explanation": "클린 코드의 원칙에는 가독성, 의존성 최소화, 중복 최소화, 추상화 등이 있습니다. 추상화는 상위 클래스/메소드/함수에서 애플리케이션의 특성을 간략하게 나타내고, 상세 내용은 하위 클래스/메소드/함수에서 구현하는 것이므로 첫 번째 설명은 구현 위치가 반대로 되어 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "추상화는 상위 클래스에서 개요를 표현하고 하위 클래스에서 상세를 구현하므로 이 설명은 틀려 정답입니다." },
+        { "no": 2, "correct": false, "why": "다른 모듈에 미치는 영향을 최소화하도록 작성한다는 의존성 원칙은 맞습니다." },
+        { "no": 3, "correct": false, "why": "누구든지 읽기 쉽게 코드를 작성한다는 가독성 원칙은 맞습니다." },
+        { "no": 4, "correct": false, "why": "중복을 최소화하는 코드를 작성한다는 것도 클린 코드의 핵심 원칙입니다." }
+      ],
+      "keyPoint": "클린 코드의 추상화 방향(상위 개요 · 하위 상세)",
+      "tags": ["클린 코드", "Clean Code"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "순서가 있는 리스트에서 데이터의 삽입(Push), 삭제(Pop)가 한 쪽 끝에서 일어나며 LIFO(Last_In-First-Out)의 특징을 가지는 자료 구조는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Tree" },
+        { "no": 2, "text": "Graph" },
+        { "no": 3, "text": "Stack" },
+        { "no": 4, "text": "Queue" }
+      ],
+      "answer": 3,
+      "explanation": "스택은 리스트의 한쪽 끝에서만 자료의 삽입(Push)과 삭제(Pop)가 일어나는 선형 구조로, 가장 나중에 들어간 자료가 가장 먼저 나오는 후입선출(LIFO) 특징을 가집니다. 큐는 한쪽에서 삽입하고 반대쪽에서 삭제하는 선입선출 구조이며, 트리와 그래프는 계층이나 연결 관계를 표현하는 비선형 구조입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "트리는 계층 관계를 표현하는 비선형 구조로 한쪽 끝에서만 입출력이 일어나지 않습니다." },
+        { "no": 2, "correct": false, "why": "그래프는 정점과 간선으로 연결 관계를 표현하는 비선형 구조입니다." },
+        { "no": 3, "correct": true, "why": "한쪽 끝에서 삽입과 삭제가 일어나며 LIFO 특징을 가지는 자료 구조는 스택이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "큐는 한쪽에서 삽입하고 반대쪽에서 삭제하는 선입선출(FIFO) 구조입니다." }
+      ],
+      "keyPoint": "스택의 LIFO 특성과 큐의 FIFO 특성",
+      "tags": ["스택", "LIFO"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "화이트박스 테스트와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "화이트박스 테스트의 이해를 위해 논리 흐름도(Logic-Flow Diagram)를 이용할 수 있다." },
+        { "no": 2, "text": "테스트 데이터를 이용해 실제 프로그램을 실행함으로써 오류를 찾는 동적 테스트(Dynamic Test)에 해당한다." },
+        { "no": 3, "text": "프로그램의 구조를 고려하지 않기 때문에 테스트 케이스는 프로그램 또는 모듈의 요구나 명세를 기초로 결정한다." },
+        { "no": 4, "text": "테스트 데이터를 선택하기 위하여 검증 기준(Test Coverage)을 정한다." }
+      ],
+      "answer": 3,
+      "explanation": "화이트박스 테스트는 프로그램의 내부 구조와 논리를 직접 확인하는 테스트로, 논리 흐름도(Logic-Flow Diagram)를 이용하고 검증 기준(Test Coverage)에 따라 테스트 데이터를 선택하는 동적 테스트입니다. 프로그램의 구조를 고려하지 않고 요구나 명세를 기초로 테스트 케이스를 결정하는 것은 블랙박스 테스트이므로 세 번째 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "논리 흐름도를 이용해 내부 논리를 확인한다는 설명은 화이트박스 테스트에 맞습니다." },
+        { "no": 2, "correct": false, "why": "실제 프로그램을 실행해 오류를 찾는 동적 테스트라는 설명은 맞습니다." },
+        { "no": 3, "correct": true, "why": "프로그램 구조를 고려하지 않고 명세를 기초로 하는 것은 블랙박스 테스트이므로 이 설명은 틀려 정답입니다." },
+        { "no": 4, "correct": false, "why": "검증 기준(Test Coverage)을 정해 테스트 데이터를 선택한다는 설명은 맞습니다." }
+      ],
+      "keyPoint": "화이트박스와 블랙박스 테스트의 구분",
+      "tags": ["화이트박스 테스트", "동적 테스트"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "다음과 같이 레코드가 구성되어 있을 때, 이진 검색 방법으로 14를 찾을 경우 비교되는 횟수는?",
+      "passage": "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15",
+      "passageKind": "table",
+      "choices": [
+        { "no": 1, "text": "2" },
+        { "no": 2, "text": "3" },
+        { "no": 3, "text": "4" },
+        { "no": 4, "text": "5" }
+      ],
+      "answer": 2,
+      "explanation": "이진 검색은 정렬된 자료에서 중간값과 찾는 값을 비교해 탐색 범위를 절반씩 줄여 나가는 방법입니다. 1부터 15까지 15개 레코드에서는 중간값 8을 먼저 비교하고, 9~15 구간의 중간값 12와 두 번째로 비교한 뒤, 13~15 구간의 중간값 14를 세 번째 비교에서 찾게 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "2회 비교로는 14에 도달하지 못하므로 맞지 않습니다." },
+        { "no": 2, "correct": true, "why": "8, 12, 14 순으로 세 번 비교해 14를 찾으므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "탐색 범위가 절반씩 줄어 3회 만에 값을 찾으므로 4회라는 설명은 맞지 않습니다." },
+        { "no": 4, "correct": false, "why": "5회는 이 자료에서 필요하지 않은 비교 횟수입니다." }
+      ],
+      "keyPoint": "이진 검색의 비교 횟수 계산",
+      "tags": ["이진 검색", "탐색 알고리즘"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "DBMS의 필수 기능 중 모든 응용 프로그램들이 요구하는 데이터 구조를 지원하기 위해 데이터베이스에 저장될 데이터 타입과 구조에 대한 정의, 이용 방식, 제약 조건 등을 명시하는 기능은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "정의 기능" },
+        { "no": 2, "text": "조작 기능" },
+        { "no": 3, "text": "제어 기능" },
+        { "no": 4, "text": "절차 기능" }
+      ],
+      "answer": 1,
+      "explanation": "DBMS의 필수 기능은 정의 기능, 조작 기능, 제어 기능으로 구분됩니다. 정의 기능은 데이터베이스에 저장될 데이터의 타입과 구조, 이용 방식, 제약 조건 등을 명시해 모든 응용 프로그램이 요구하는 데이터 구조를 지원하는 기능입니다. 조작 기능은 데이터의 검색·삽입·삭제·갱신을, 제어 기능은 무결성 유지와 보안, 동시성 제어를 담당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "데이터 타입과 구조, 이용 방식, 제약 조건을 명시하는 기능은 정의 기능이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "조작 기능은 데이터의 검색·삽입·삭제·갱신을 처리하는 기능입니다." },
+        { "no": 3, "correct": false, "why": "제어 기능은 데이터 무결성과 보안, 동시성 제어를 담당하는 기능입니다." },
+        { "no": 4, "correct": false, "why": "절차 기능은 DBMS의 필수 기능에 포함되지 않는 용어입니다." }
+      ],
+      "keyPoint": "DBMS 필수 기능(정의·조작·제어)",
+      "tags": ["DBMS", "정의 기능"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

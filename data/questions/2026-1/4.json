@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2026-1",
+    "year": 2026,
+    "round": 1,
+    "title": "2026년 1회 정보처리기사 필기",
+    "sourcePdf": "2026년1회_기사필기_기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2026-1-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "OSI 7계층에서 물리적 연결을 이용해 신뢰성 있는 정보를 전송하려고 동기화, 오류 제어, 흐름 제어 등의 전송 에러를 제어하는 계층은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "데이터 링크 계층" },
+        { "no": 2, "text": "물리 계층" },
+        { "no": 3, "text": "응용 계층" },
+        { "no": 4, "text": "표현 계층" }
+      ],
+      "answer": 1,
+      "explanation": "데이터 링크 계층은 물리적으로 연결된 인접 노드 사이에서 프레임 단위로 데이터를 주고받으며 동기화, 오류 제어, 흐름 제어, 순서 제어를 담당해 신뢰성 있는 전송을 보장합니다. 물리 계층은 비트를 전기적 신호로 바꿔 전달할 뿐 전송 에러를 제어하지 못하고, 응용 계층과 표현 계층은 사용자 서비스 제공과 데이터 표현 형식 변환을 담당하는 상위 계층입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "동기화, 오류 제어, 흐름 제어 등 전송 에러 제어를 담당하는 계층이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "물리 계층은 비트를 신호로 변환해 전송할 뿐 오류 제어나 흐름 제어 기능은 없습니다." },
+        { "no": 3, "correct": false, "why": "응용 계층은 HTTP, FTP처럼 사용자에게 네트워크 서비스를 제공하는 최상위 계층입니다." },
+        { "no": 4, "correct": false, "why": "표현 계층은 데이터의 형식 변환, 암호화, 압축을 담당하는 계층입니다." }
+      ],
+      "keyPoint": "데이터 링크 계층의 전송 에러 제어 기능",
+      "tags": ["OSI 7계층", "데이터 링크 계층"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "다음 중 소프트웨어 개발 지원 도구에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "성능이나 편의성뿐만 아니라 범용성도 고려하여 개발 도구를 선정해야 한다." },
+        { "no": 2, "text": "IDE는 개발자가 편리하게 컴파일 및 디버깅할 수 있도록 지원하는 도구이다." },
+        { "no": 3, "text": "외부의 플러그인을 쉽게 검색하고 적용할 수 있는 IDE를 선정해야 한다." },
+        { "no": 4, "text": "코드 품질 및 인터페이스 검사 도구는 모든 코딩을 완료한 후에 실행하는 것이 좋다." }
+      ],
+      "answer": 4,
+      "explanation": "코드 품질 및 인터페이스 검사 도구(정적 분석 도구)는 코딩이 완전히 끝난 뒤 한 번 돌리는 것이 아니라 개발 초기부터 수시로 실행해 결함을 조기에 발견할 때 효과가 큽니다. 따라서 모든 코딩을 완료한 후에 실행하는 것이 좋다는 설명은 옳지 않습니다. 나머지 보기는 개발 도구 선정 기준과 IDE의 특징을 바르게 설명하고 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "성능, 편의성과 함께 범용성까지 고려해 도구를 선정해야 하므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "IDE는 편집, 컴파일, 디버깅 기능을 통합 제공하는 개발 환경이므로 옳은 설명입니다." },
+        { "no": 3, "correct": false, "why": "플러그인을 쉽게 검색하고 적용할 수 있는 IDE를 선택하는 것이 바람직하므로 옳은 설명입니다." },
+        { "no": 4, "correct": true, "why": "정적 검사 도구는 개발 전 과정에서 수시로 실행해야 하므로 코딩 완료 후에 실행하라는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "소프트웨어 개발 지원 도구의 선정 기준과 검사 도구의 활용 시점",
+      "tags": ["개발 도구", "IDE", "정적 분석"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "UNIX에서 새로운 프로세스를 생성하는 명령어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ls" },
+        { "no": 2, "text": "cat" },
+        { "no": 3, "text": "fork" },
+        { "no": 4, "text": "chmod" }
+      ],
+      "answer": 3,
+      "explanation": "fork는 현재 실행 중인 프로세스가 자기 자신을 그대로 복제해 새로운 자식 프로세스를 만드는 UNIX 시스템 호출입니다. ls는 디렉터리 목록 조회, cat은 파일 내용 출력, chmod는 파일 접근 권한 변경에 사용하는 명령어이므로 프로세스 생성과는 관련이 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ls는 디렉터리 안의 파일 목록을 출력하는 명령어입니다." },
+        { "no": 2, "correct": false, "why": "cat은 파일 내용을 화면에 출력하거나 여러 파일을 이어 붙이는 명령어입니다." },
+        { "no": 3, "correct": true, "why": "fork는 자신을 복제해 새로운 프로세스를 생성하는 시스템 호출이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "chmod는 파일이나 디렉터리의 접근 권한을 변경하는 명령어입니다." }
+      ],
+      "keyPoint": "fork를 이용한 프로세스 생성",
+      "tags": ["UNIX", "fork", "프로세스"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때의 결과는?",
+      "passage": "#include <stdio.h>\nmain( ) {\n    int sum = 0;\n    for (int i = 0; i <= 10; i++) {\n        if (i % 2 == 0)\n            continue;\n        sum = sum + i;\n    }\n    printf(\"%d\", sum);\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "20" },
+        { "no": 2, "text": "25" },
+        { "no": 3, "text": "30" },
+        { "no": 4, "text": "55" }
+      ],
+      "answer": 2,
+      "explanation": "for 문이 i를 0부터 10까지 증가시키면서 i % 2 == 0인 짝수일 때 continue를 만나 아래의 sum = sum + i를 건너뜁니다. 따라서 sum에는 홀수인 1, 3, 5, 7, 9만 누적되어 25가 출력됩니다. continue는 반복문 전체를 빠져나가는 break와 달리 해당 회차의 남은 문장만 건너뛰고 다음 반복으로 넘어가는 제어문입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "짝수를 더하거나 누적 범위를 잘못 계산한 값으로, 홀수의 합 25와 다릅니다." },
+        { "no": 2, "correct": true, "why": "1 + 3 + 5 + 7 + 9 = 25가 출력되므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "continue의 동작을 반영하지 못한 값으로 실제 출력값 25와 다릅니다." },
+        { "no": 4, "correct": false, "why": "continue를 무시하고 1부터 10까지 모두 더한 값(55)이라 틀렸습니다." }
+      ],
+      "keyPoint": "continue 문에 의한 반복 회차 건너뛰기",
+      "tags": ["C 언어", "continue", "반복문"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "다음 중 프로세스에 대한 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "프로세서가 할당되는 실체로, 디스패치가 가능한 단위이다." },
+        { "no": 2, "text": "프로세스는 비동기적 행위를 일으키는 주체이다." },
+        { "no": 3, "text": "프로세스는 스레드 내의 작업 단위를 의미하며, 경량 스레드라고도 불린다." },
+        { "no": 4, "text": "PCB를 가지며 PCB에는 프로세스의 현재 상태, 고유 식별자를 가지고 있다." }
+      ],
+      "answer": 3,
+      "explanation": "③은 프로세스가 아니라 스레드에 대한 설명입니다. 스레드는 프로세스 내부에서 실행되는 작업 단위로 경량 프로세스(Light Weight Process)라고도 불리며, 프로세스보다 적은 자원으로 생성됩니다. 프로세스는 운영체제로부터 자원을 할당받아 독립적으로 실행되는 실체이고 PCB를 통해 상태와 고유 식별자를 관리하므로, 나머지 보기는 프로세스의 특징을 바르게 설명한 것입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "프로세서를 할당받아 디스패치될 수 있는 실행 실체라는 설명은 프로세스에 맞습니다." },
+        { "no": 2, "correct": false, "why": "비동기적 행위를 일으키는 주체라는 설명은 프로세스의 일반적인 정의에 부합합니다." },
+        { "no": 3, "correct": true, "why": "스레드에 대한 설명을 프로세스라고 했으므로 틀렸습니다. 경량 스레드/경량 프로세스는 스레드를 가리킵니다." },
+        { "no": 4, "correct": false, "why": "프로세스는 PCB를 가지며 PCB에 현재 상태와 고유 식별자(PID) 등이 저장되므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "프로세스와 스레드의 정의 구분",
+      "tags": ["프로세스", "스레드", "PCB"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "소프트웨어 개발에서 모듈(Module)이 되기 위한 주요 특징에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "다른 것들과 구별될 수 있는 독립적인 기능을 가진 단위(Unit)이다." },
+        { "no": 2, "text": "독립적인 컴파일이 가능하다." },
+        { "no": 3, "text": "유일한 이름을 가져야 한다." },
+        { "no": 4, "text": "다른 모듈에서의 접근이 불가능해야 한다." }
+      ],
+      "answer": 4,
+      "explanation": "모듈은 여러 개가 모여 하나의 소프트웨어를 구성하므로 다른 모듈에서 호출하고 접근할 수 있어야 합니다. 따라서 다른 모듈에서의 접근이 불가능해야 한다는 설명은 모듈의 특징이 아닙니다. 모듈이 되기 위해서는 다른 것과 구별되는 독립적인 기능 단위여야 하고, 독립적으로 컴파일이 가능하며, 서로 구별되도록 유일한 이름을 가져야 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모듈은 다른 것과 구별되는 독립적인 기능을 가진 단위여야 하므로 옳은 특징입니다." },
+        { "no": 2, "correct": false, "why": "독립적으로 컴파일이 가능해야 모듈로 볼 수 있으므로 옳은 특징입니다." },
+        { "no": 3, "correct": false, "why": "각 모듈은 서로 구별되도록 유일한 이름을 가져야 하므로 옳은 특징입니다." },
+        { "no": 4, "correct": true, "why": "모듈은 다른 모듈과 결합해 소프트웨어를 이루므로 접근이 불가능해야 한다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "모듈의 특징(독립적 기능, 독립 컴파일, 유일한 이름)",
+      "tags": ["모듈", "모듈화"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "UDP 프로토콜의 특징이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "비연결형 서비스를 제공한다." },
+        { "no": 2, "text": "단순한 헤더 구조로 오버헤드가 적다." },
+        { "no": 3, "text": "주로 주소를 지정하고, 경로를 설정하는 기능을 한다." },
+        { "no": 4, "text": "TCP와 같이 트랜스포트 계층에 존재한다." }
+      ],
+      "answer": 3,
+      "explanation": "주소 지정과 경로 설정은 네트워크 계층의 IP가 담당하는 기능이며, UDP는 트랜스포트 계층에서 포트 번호를 이용해 프로세스 사이의 데이터 전송만 수행합니다. UDP는 연결 설정 과정 없이 데이터그램을 보내는 비연결형 프로토콜이고, 헤더가 8바이트로 단순해 오버헤드가 적습니다. 따라서 주소 지정과 경로 설정 기능을 한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "UDP는 연결 설정 없이 데이터를 전송하는 비연결형 서비스를 제공하므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "헤더가 단순해 오버헤드가 적다는 설명은 UDP의 옳은 특징입니다." },
+        { "no": 3, "correct": true, "why": "주소 지정과 경로 설정은 네트워크 계층(IP)의 기능이므로 틀린 설명입니다." },
+        { "no": 4, "correct": false, "why": "UDP는 TCP와 마찬가지로 트랜스포트 계층에 존재하므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "UDP의 비연결형 특징과 트랜스포트 계층의 역할",
+      "tags": ["UDP", "트랜스포트 계층"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때의 결과는?",
+      "passage": "#include <stdio.h>\nint main(void) {\n    int n = 4;\n    int* pt = NULL;\n    pt = &n;\n    printf(\"%d\", &n + *pt - *&pt + n);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "0" },
+        { "no": 2, "text": "4" },
+        { "no": 3, "text": "8" },
+        { "no": 4, "text": "12" }
+      ],
+      "answer": 3,
+      "explanation": "n은 4이고 pt는 n의 주소를 가리키므로 *pt와 *&pt는 모두 4입니다. 따라서 &n + *pt - *&pt + n은 &n + 4 - &n + 4가 되어 주소 부분이 서로 상쇄되고 8이 출력됩니다. 포인터에 정수를 더하면 주소 값이 증가하지만 같은 주소를 다시 빼면 원래 주소로 돌아온다는 점이 핵심입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "주소 연산이 모두 상쇄된다고 본 값이지만 n이 두 번 더해져 8이 되므로 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "n의 값 하나만 계산한 결과로, 포인터 역참조 연산 결과를 반영하지 못했습니다." },
+        { "no": 3, "correct": true, "why": "*pt와 *&pt가 모두 4이므로 4 + 4 = 8이 출력되어 정답입니다." },
+        { "no": 4, "correct": false, "why": "주소 증가분을 잘못 계산한 값으로 실제 출력값 8과 다릅니다." }
+      ],
+      "keyPoint": "포인터 역참조(*, &) 연산과 포인터 산술",
+      "tags": ["C 언어", "포인터", "역참조"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "프로세스 적재 정책과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "반복, 스택, 부프로그램은 시간 지역성(Temporal Locality)과 관련이 있다." },
+        { "no": 2, "text": "공간 지역성(Spatial Locality)은 프로세스가 어떤 페이지를 참조했다면 이후 가상주소 공간상 그 페이지와 인접한 페이지들을 참조할 가능성이 높음을 의미한다." },
+        { "no": 3, "text": "일반적으로 페이지 교환에 보내는 시간보다 프로세스 수행에 보내는 시간이 더 크면 스레싱(Thrashing)이 발생한다." },
+        { "no": 4, "text": "스레싱(Thrashing) 현상을 방지하기 위해서는 각 프로세스가 필요로 하는 프레임을 제공할 수 있어야 한다." }
+      ],
+      "answer": 3,
+      "explanation": "스레싱은 페이지 교환(페이지 부재 처리)에 소요되는 시간이 프로세스 수행 시간보다 커져서 실제 작업보다 페이징에 대부분의 시간을 소비하는 현상입니다. 보기 ③은 두 시간의 관계를 반대로 설명했으므로 틀렸습니다. 반복, 스택, 부프로그램은 최근 참조한 페이지를 다시 참조하는 시간 지역성과 관련되고, 스레싱을 막으려면 각 프로세스가 필요로 하는 프레임을 충분히 제공해야 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "반복문, 스택, 부프로그램은 최근 참조된 페이지를 다시 참조하는 시간 지역성과 관련되므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "인접한 페이지를 참조할 가능성이 높다는 설명은 공간 지역성의 올바른 정의입니다." },
+        { "no": 3, "correct": true, "why": "페이지 교환 시간이 프로세스 수행 시간보다 클 때 스레싱이 발생하므로 반대로 설명한 이 보기가 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "프로세스별로 필요한 프레임을 확보해 주는 것은 스레싱을 막는 올바른 방법입니다." }
+      ],
+      "keyPoint": "스레싱(Thrashing)의 발생 원인과 방지 방법",
+      "tags": ["스레싱", "지역성", "페이지 교환"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "다음 중 응집도가 가장 높은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "절차적 응집도" },
+        { "no": 2, "text": "순차적 응집도" },
+        { "no": 3, "text": "우연적 응집도" },
+        { "no": 4, "text": "논리적 응집도" }
+      ],
+      "answer": 2,
+      "explanation": "응집도는 기능적, 순차적, 교환적, 절차적, 시간적, 논리적, 우연적 응집도 순으로 높아집니다. 보기 중에서는 순차적 응집도가 가장 높고 우연적 응집도가 가장 낮습니다. 순차적 응집도는 한 기능의 출력이 다음 기능의 입력으로 사용되는 형태로, 단순히 순서만 나열하는 절차적 응집도보다 좋은 설계입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "절차적 응집도는 기능들이 정해진 순서대로 수행될 뿐 데이터를 주고받지 않아 순차적 응집도보다 낮습니다." },
+        { "no": 2, "correct": true, "why": "앞 기능의 출력이 뒤 기능의 입력으로 사용되는 순차적 응집도가 보기 중 가장 높으므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "우연적 응집도는 서로 관련 없는 기능들이 모여 있어 응집도가 가장 낮습니다." },
+        { "no": 4, "correct": false, "why": "논리적 응집도는 유사한 성격의 기능들을 묶은 것으로 순차적 응집도보다 낮습니다." }
+      ],
+      "keyPoint": "응집도가 높은 순서(기능적 > 순차적 > 교환적 > 절차적 > 시간적 > 논리적 > 우연적)",
+      "tags": ["응집도", "순차적 응집도"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "C 언어에서 malloc( ) 함수에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "원하는 시점에 원하는 만큼 메모리를 동적으로 할당한다." },
+        { "no": 2, "text": "사용자가 입력한 bit만큼 메모리를 할당한다." },
+        { "no": 3, "text": "free 명령어로 할당된 메모리를 해제한다." },
+        { "no": 4, "text": "메모리 할당이 불가능할 경우 NULL이 반환된다." }
+      ],
+      "answer": 2,
+      "explanation": "malloc()은 인자로 전달받은 크기를 바이트(byte) 단위로 해석해 힙 영역에 메모리를 동적으로 할당하는 함수입니다. 따라서 사용자가 입력한 bit만큼 할당한다는 설명은 틀렸습니다. 할당에 실패하면 NULL 포인터를 반환하고, 사용이 끝난 메모리는 free()로 해제해 메모리 누수를 막아야 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "필요한 시점에 필요한 크기만큼 메모리를 동적으로 할당하는 것이 malloc()의 기능이므로 옳은 설명입니다." },
+        { "no": 2, "correct": true, "why": "할당 크기의 단위는 bit가 아니라 byte이므로 틀린 설명입니다." },
+        { "no": 3, "correct": false, "why": "할당한 메모리를 free()로 해제한다는 설명은 옳습니다." },
+        { "no": 4, "correct": false, "why": "메모리 할당에 실패하면 NULL을 반환한다는 설명은 옳습니다." }
+      ],
+      "keyPoint": "malloc()의 바이트 단위 동적 메모리 할당",
+      "tags": ["C 언어", "malloc", "동적 할당"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "public class Ape {\n    static void rs(char a[]) {\n        for(int i = 0; i < a.length; i++)\n            if(a[i] == 'B')\n                a[i] = 'C';\n            else if(i == a.length - 1)\n                a[i] = a[i-1];\n            else a[i] = a[i+1];\n    }\n    static void pca(char a[]) {\n        for(int i = 0; i < a.length; i++)\n            System.out.print(a[i]);\n        System.out.println();\n    }\n    public static void main(String[] args) {\n        char c[] = {'A','B','D','D','A','B','C'};\n        rs(c);\n        pca(c);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "BCDABCA" },
+        { "no": 2, "text": "BCDABCC" },
+        { "no": 3, "text": "CDDACCC" },
+        { "no": 4, "text": "CDDACCA" }
+      ],
+      "answer": 2,
+      "explanation": "rs()는 각 자리에서 문자가 'B'이면 'C'로 바꾸고, 마지막 자리이면 앞 문자를 복사하며, 그 외에는 뒤 문자를 앞으로 복사합니다. 배열 {'A','B','D','D','A','B','C'}에 이 규칙을 차례로 적용하면 B, C, D, A, B, C, C가 되어 BCDABCC가 출력됩니다. 변경된 값이 이후 자리 계산에 그대로 반영된다는 점을 순서대로 따라가는 것이 핵심입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "마지막 자리는 앞 자리의 값을 복사하는데, 그 앞 자리가 i=5에서 'C'로 바뀌었으므로 마지막도 'C'가 되어야 합니다. 'A'가 남는다고 본 값이 틀렸습니다." },
+        { "no": 2, "correct": true, "why": "각 자리 규칙을 차례로 적용한 결과가 B, C, D, A, B, C, C이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "첫 문자 'A'는 'B'가 아니라서 뒤 문자를 복사해 'B'가 되는데, 첫 자리부터 'C'로 본 값이 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "첫 자리는 'B'가 되고 마지막 자리는 'C'가 되어야 하는데 각각 'C'와 'A'로 본 값이 틀렸습니다." }
+      ],
+      "keyPoint": "배열을 순회하며 조건에 따라 값을 갱신하는 반복 처리 추적",
+      "tags": ["JAVA", "배열", "반복문"],
+      "difficulty": 4,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때의 결과는?",
+      "passage": "public class Operator {\n    public static void main(String[] args) {\n        int x=5, y=0, z=0;\n        y = x++;\n        z = --x;\n        System.out.print(x + \", \" + y + \", \" +z);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "5, 5, 5" },
+        { "no": 2, "text": "5, 6, 5" },
+        { "no": 3, "text": "6, 5, 5" },
+        { "no": 4, "text": "5, 6, 4" }
+      ],
+      "answer": 1,
+      "explanation": "y = x++는 후위 증가 연산이므로 y에 x의 값 5를 먼저 대입한 뒤 x가 6으로 증가합니다. 다음 줄 z = --x는 전위 감소 연산이므로 x를 5로 감소시킨 뒤 그 값을 z에 대입합니다. 결과적으로 x=5, y=5, z=5가 되어 5, 5, 5가 출력됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "후위 증가와 전위 감소를 적용한 결과가 x=5, y=5, z=5이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "y = x++에서 y에는 증가 전의 값 5가 들어가므로 y가 6이라는 설명은 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "z = --x로 x가 다시 5로 감소하는 것을 반영하지 못한 값입니다." },
+        { "no": 4, "correct": false, "why": "x=5, y=5, z=5이므로 6이나 4가 나올 수 없습니다." }
+      ],
+      "keyPoint": "전위(--x)와 후위(x++) 증감 연산자의 적용 시점",
+      "tags": ["JAVA", "증감 연산자"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "빈 기억공간의 크기가 20KB, 16KB, 8KB, 40KB일 때 기억장치 배치 전략으로 \"Best Fit\"을 사용하여 17KB의 프로그램을 적재할 경우 내부 단편화의 크기는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "3KB" },
+        { "no": 2, "text": "23KB" },
+        { "no": 3, "text": "64KB" },
+        { "no": 4, "text": "67KB" }
+      ],
+      "answer": 1,
+      "explanation": "Best Fit(최적 적합)은 프로그램이 적재될 수 있는 빈 공간 중 가장 크기가 작은 곳에 배치하는 전략입니다. 17KB 프로그램이 들어갈 수 있는 공간은 20KB와 40KB뿐이고, 이 중 작은 20KB에 배치되므로 20KB - 17KB = 3KB의 내부 단편화가 발생합니다. 16KB와 8KB는 프로그램보다 작아 사용할 수 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "가장 작은 적합 공간 20KB에 적재되어 20KB - 17KB = 3KB가 남으므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "40KB 공간에 적재했을 때 남는 23KB로, Best Fit의 결과가 아닙니다." },
+        { "no": 3, "correct": false, "why": "어떤 배치 방식으로도 나오지 않는 값입니다." },
+        { "no": 4, "correct": false, "why": "전체 빈 공간의 합(84KB)과도 계산이 맞지 않는 값입니다." }
+      ],
+      "keyPoint": "Best Fit(최적 적합) 배치와 내부 단편화 계산",
+      "tags": ["Best Fit", "내부 단편화", "기억장치 배치"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "TCP/IP에서 사용되는 논리 주소를 물리 주소로 변환시켜 주는 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "TCP" },
+        { "no": 2, "text": "ARP" },
+        { "no": 3, "text": "FTP" },
+        { "no": 4, "text": "IP" }
+      ],
+      "answer": 2,
+      "explanation": "ARP(Address Resolution Protocol)는 같은 네트워크에 연결된 호스트의 논리 주소인 IP 주소를 물리 주소인 MAC 주소로 변환해 주는 프로토콜입니다. 반대로 물리 주소를 논리 주소로 바꾸는 것은 RARP입니다. TCP는 신뢰성 있는 전송, FTP는 파일 전송, IP는 논리 주소 지정과 경로 결정을 담당하므로 주소 변환 기능과는 거리가 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "TCP는 연결형으로 신뢰성 있는 데이터 전송을 담당하는 트랜스포트 계층 프로토콜입니다." },
+        { "no": 2, "correct": true, "why": "논리 주소(IP)를 물리 주소(MAC)로 변환하는 프로토콜이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "FTP는 파일 송수신을 위한 응용 계층 프로토콜입니다." },
+        { "no": 4, "correct": false, "why": "IP는 논리 주소를 부여하고 경로를 결정하는 네트워크 계층 프로토콜로, 주소 변환 자체를 담당하지 않습니다." }
+      ],
+      "keyPoint": "ARP의 역할(IP 주소를 MAC 주소로 변환)",
+      "tags": ["ARP", "IP 주소", "MAC 주소"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램 실행 후, 'c'를 입력하였을 때 출력 결과는?",
+      "passage": "#include <stdio.h>\nmain() {\n    char ch;\n    scanf(\"%c\", &ch);\n    switch (ch) {\n    case 'a':\n        printf(\"one \");\n    case 'b':\n        printf(\"two \");\n    case 'c':\n        printf(\"three \");\n        break;\n    case 'd':\n        printf(\"four \");\n        break;\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "one" },
+        { "no": 2, "text": "one two" },
+        { "no": 3, "text": "three" },
+        { "no": 4, "text": "one two three four" }
+      ],
+      "answer": 3,
+      "explanation": "switch 문은 일치하는 case 위치로 이동한 뒤 break를 만날 때까지 아래쪽 문장을 모두 실행합니다. 입력이 'c'이면 case 'c'로 바로 이동해 three를 출력하고 곧바로 break를 만나 switch 문을 빠져나가므로 출력 결과는 three입니다. case 'a'와 'b'의 문장은 실행되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "입력이 'a'일 때 실행되는 문장으로, 'c' 입력과는 관계가 없습니다." },
+        { "no": 2, "correct": false, "why": "'a'를 입력했을 때 break가 없어 연달아 실행되는 결과입니다." },
+        { "no": 3, "correct": true, "why": "case 'c'의 문장을 실행하고 break로 종료되므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "'c' 입력 시에는 앞이나 뒤의 case로 이동하지 않으므로 나올 수 없는 결과입니다." }
+      ],
+      "keyPoint": "switch~case 문의 break와 fall-through 동작",
+      "tags": ["C 언어", "switch", "break"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 중 다음 설명에 해당하는 계층은?",
+      "passage": "• 개방 시스템들 간의 네트워크 연결을 관리하는 기능과 데이터의 교환 및 중계 기능을 함\n• 네트워크 연결을 설정, 유지, 해제하는 기능을 함",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "데이터 링크 계층" },
+        { "no": 2, "text": "네트워크 계층" },
+        { "no": 3, "text": "전송 계층" },
+        { "no": 4, "text": "표현 계층" }
+      ],
+      "answer": 2,
+      "explanation": "네트워크 연결을 관리하고 데이터를 교환·중계하며 연결을 설정, 유지, 해제하는 기능은 네트워크 계층의 특징입니다. 네트워크 계층은 논리 주소(IP)를 이용해 목적지까지의 최적 경로를 결정하고 라우터를 통해 패킷을 중계합니다. 데이터 링크 계층은 인접 노드 사이의 프레임 전송, 전송 계층은 종단 간 신뢰성 있는 전송을 담당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "데이터 링크 계층은 인접한 노드 사이의 프레임 전송과 오류 제어를 담당합니다." },
+        { "no": 2, "correct": true, "why": "라우팅과 데이터 교환·중계, 연결 설정·유지·해제를 담당하는 계층이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "전송 계층은 종단 간(프로세스 간) 연결 관리와 흐름·오류 제어를 담당하며 경로 중계 기능은 없습니다." },
+        { "no": 4, "correct": false, "why": "표현 계층은 데이터의 표현 형식 변환, 암호화, 압축을 담당합니다." }
+      ],
+      "keyPoint": "네트워크 계층의 라우팅과 연결 관리 기능",
+      "tags": ["OSI 7계층", "네트워크 계층"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "C 언어의 자료형 중 논리형에 해당하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "short" },
+        { "no": 2, "text": "int" },
+        { "no": 3, "text": "char" },
+        { "no": 4, "text": "bool" }
+      ],
+      "answer": 4,
+      "explanation": "C 언어에서 참과 거짓을 저장하는 논리형은 _Bool이며, stdbool.h를 포함하면 bool이라는 이름으로 사용할 수 있습니다. short와 int는 정수를, char는 문자 하나를 저장하는 자료형이므로 논리형이 아닙니다. 논리형 변수에는 참(1)과 거짓(0)만 저장됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "short는 2바이트 크기의 정수형으로 논리형이 아닙니다." },
+        { "no": 2, "correct": false, "why": "int는 4바이트 크기의 정수형으로 논리형이 아닙니다." },
+        { "no": 3, "correct": false, "why": "char는 문자 하나를 저장하는 문자형입니다." },
+        { "no": 4, "correct": true, "why": "참과 거짓을 저장하는 논리형이므로 정답입니다." }
+      ],
+      "keyPoint": "C 언어의 논리형 bool(_Bool)",
+      "tags": ["C 언어", "자료형", "bool"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "C 언어에서 산술 연산자가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "%" },
+        { "no": 2, "text": "*" },
+        { "no": 3, "text": "<<" },
+        { "no": 4, "text": "/" }
+      ],
+      "answer": 3,
+      "explanation": "보기 3번의 << 는 비트를 왼쪽으로 한 칸씩 이동시키는 시프트 연산자로, 비트 연산자에 속하며 산술 연산자가 아닙니다. %, *, /는 각각 나머지, 곱셈, 나눗셈을 수행하는 산술 연산자입니다. 시프트 연산자는 연산 우선순위가 산술 연산자보다 낮은 별도의 비트 연산자입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "%는 나머지를 구하는 산술 연산자입니다." },
+        { "no": 2, "correct": false, "why": "*는 곱셈을 수행하는 산술 연산자입니다." },
+        { "no": 3, "correct": true, "why": "비트를 왼쪽으로 이동시키는 시프트 연산자이므로 산술 연산자가 아닙니다." },
+        { "no": 4, "correct": false, "why": "/는 나눗셈을 수행하는 산술 연산자입니다." }
+      ],
+      "keyPoint": "산술 연산자와 비트(시프트) 연산자의 구분",
+      "tags": ["C 언어", "연산자"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "다음 파이썬 코드에서 '53t44'를 입력했을 때 출력 결과는?",
+      "passage": "a, b = map(int, input( ).split(\"t\"));\nprint(a, b)",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "53 t 44" },
+        { "no": 2, "text": "53t44" },
+        { "no": 3, "text": "53 44" },
+        { "no": 4, "text": "53, 44" }
+      ],
+      "answer": 3,
+      "explanation": "input()으로 입력받은 문자열 '53t44'를 구분자 't'로 나누면 '53'과 '44'가 되고, map(int, ...)에 의해 각각 정수 53과 44로 변환되어 변수 a와 b에 저장됩니다. print(a, b)는 두 값을 공백으로 구분해 출력하므로 53 44가 됩니다. 구분자로 사용한 t는 결과에서 사라진다는 점이 핵심입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "구분자 t가 그대로 남은 형태로, split으로 분리된 결과와 다릅니다." },
+        { "no": 2, "correct": false, "why": "문자열을 나누지 않고 그대로 출력한 경우입니다." },
+        { "no": 3, "correct": true, "why": "정수로 변환된 두 값이 공백으로 구분되어 출력되므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "print는 값을 쉼표 없이 공백으로 구분해 출력하므로 틀렸습니다." }
+      ],
+      "keyPoint": "파이썬 split과 map을 이용한 정수 입력 처리",
+      "tags": ["파이썬", "split", "map"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

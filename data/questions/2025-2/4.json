@@ -1,0 +1,1481 @@
+{
+  "exam": {
+    "id": "2025-2",
+    "year": 2025,
+    "round": 2,
+    "title": "2025년 2회 정보처리기사 필기",
+    "sourcePdf": "2025년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2025-2-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "오류 제어에 사용되는 자동 반복 요청 방식(ARQ)이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Stop-and-wait ARQ"
+        },
+        {
+          "no": 2,
+          "text": "Go-back-N ARO"
+        },
+        {
+          "no": 3,
+          "text": "Selective-Repeat ARQ"
+        },
+        {
+          "no": 4,
+          "text": "Non-Acknowledge ARQ"
+        }
+      ],
+      "answer": 4,
+      "explanation": "ARQ(자동 반복 요청)는 전송 중 오류가 발생하면 수신 측의 응답에 따라 송신 측이 데이터를 다시 보내는 오류 제어 방식으로, Stop-and-wait, Go-back-N, Selective-Repeat 방식이 대표적입니다. Non-Acknowledge ARQ는 확인 응답 없이 전송한다는 의미의 용어로 실제 ARQ 방식에 포함되지 않습니다. 따라서 ARQ가 아닌 것은 ④입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Stop-and-wait ARQ는 한 번에 한 프레임을 보내고 확인 응답을 기다리는 대표적인 ARQ 방식입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Go-back-N ARO는 오류가 난 프레임부터 이후 프레임을 모두 재전송하는 ARQ 방식입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Selective-Repeat ARQ는 오류가 발생한 프레임만 골라 재전송하는 ARQ 방식입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Non-Acknowledge ARQ는 수신 확인을 받지 않는다는 뜻으로 ARQ 방식에 속하지 않습니다."
+        }
+      ],
+      "keyPoint": "ARQ(자동 반복 요청) 오류 제어 방식의 종류",
+      "tags": [
+        "ARQ",
+        "오류 제어"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 중 네트워크 계층에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "패킷을 발신지로부터 최종 목적지까지 전달하는 책임을 진다."
+        },
+        {
+          "no": 2,
+          "text": "한 노드로부터 다른 노드로 프레임을 전송하는 책임을 진다."
+        },
+        {
+          "no": 3,
+          "text": "패킷에 발신지와 목적지의 논리 주소를 추가한다."
+        },
+        {
+          "no": 4,
+          "text": "라우터 또는 교환기는 패킷 전달을 위해 경로를 지정하거나 교환 기능을 제공한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "네트워크 계층은 패킷에 논리 주소(IP 주소)를 부여하고 발신지에서 최종 목적지까지 전달될 경로를 선택하는 계층으로, 라우터나 교환기가 이 기능을 담당합니다. 한 노드에서 다른 노드로 프레임을 전송하는 책임은 데이터 링크 계층에 있으므로 ②는 네트워크 계층에 대한 설명이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "패킷을 발신지에서 최종 목적지까지 전달하는 것은 네트워크 계층의 기능이므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "프레임 단위의 인접 노드 간 전송은 데이터 링크 계층의 역할이므로 틀린 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "패킷에 논리 주소를 추가하는 것은 네트워크 계층의 기능이므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "라우터와 교환기가 경로를 지정하고 교환 기능을 제공하는 것은 네트워크 계층의 기능이므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "네트워크 계층과 데이터 링크 계층의 역할 구분",
+      "tags": [
+        "OSI 7계층",
+        "네트워크 계층"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\nint main(int argc, char* argv[]) {\n    int a = 5, b = 3, c = 12;\n    int t1, t2, t3;\n    t1 = a && b;\n    t2 = a || b;\n    t3 = !c;\n    printf(\"%d\", t1 + t2 + t3);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "0"
+        },
+        {
+          "no": 2,
+          "text": "2"
+        },
+        {
+          "no": 3,
+          "text": "5"
+        },
+        {
+          "no": 4,
+          "text": "14"
+        }
+      ],
+      "answer": 2,
+      "explanation": "C 언어에서 논리 연산의 결과는 참이면 1, 거짓이면 0입니다. a=5와 b=3은 모두 0이 아닌 참이므로 t1 = a && b는 1, t2 = a || b도 1이며, c=12가 참이므로 t3 = !c는 거짓을 뜻하는 0입니다. 따라서 t1 + t2 + t3 = 1 + 1 + 0 = 2가 출력됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "0은 모든 논리 연산 결과가 거짓일 때의 값으로 실제 계산 결과와 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "t1과 t2는 각각 1, t3는 0이므로 그 합인 2가 출력됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "5는 논리 연산 결과가 아니라 변수 a에 저장된 값입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "14는 변수 값들을 논리 연산 없이 그대로 더했을 때의 값으로 출력 결과가 아닙니다."
+        }
+      ],
+      "keyPoint": "C 언어 논리 연산자 &&, ||, !의 결과 값",
+      "tags": [
+        "C언어",
+        "논리 연산자"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 중 프로토콜 데이터 단위(PDU)가 메시지(Message)가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "전송 계층"
+        },
+        {
+          "no": 2,
+          "text": "세션 계층"
+        },
+        {
+          "no": 3,
+          "text": "표현 계층"
+        },
+        {
+          "no": 4,
+          "text": "응용 계층"
+        }
+      ],
+      "answer": 1,
+      "explanation": "OSI 7계층에서 응용 계층, 표현 계층, 세션 계층이 주고받는 PDU는 메시지(Message)입니다. 전송 계층의 PDU는 세그먼트(Segment)이고 네트워크 계층은 패킷, 데이터 링크 계층은 프레임, 물리 계층은 비트를 사용합니다. 따라서 PDU가 메시지가 아닌 계층은 전송 계층입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "전송 계층의 PDU는 세그먼트이므로 메시지를 사용하는 계층이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "세션 계층의 PDU는 메시지에 해당합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "표현 계층의 PDU도 메시지에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "응용 계층의 PDU도 메시지에 해당합니다."
+        }
+      ],
+      "keyPoint": "OSI 계층별 PDU(메시지·세그먼트·패킷·프레임)",
+      "tags": [
+        "OSI 7계층",
+        "PDU"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "다음 Python 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "strA = 'Information Technology'\nstrL = list()\nfor i in range(0, len(strA), 2):\n    strL.append(strA[i])\nfor j in range(len(strL) - 1, 0, -2):\n    print(strL[j], end='')",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "gnTir"
+        },
+        {
+          "no": 2,
+          "text": "riTng"
+        },
+        {
+          "no": 3,
+          "text": "ot hl"
+        },
+        {
+          "no": 4,
+          "text": "lh to"
+        }
+      ],
+      "answer": 1,
+      "explanation": "첫 번째 for문은 range(0, len(strA), 2)에 따라 문자열의 0, 2, 4, ... 번째 문자를 strL에 담으므로 strL은 I, f, r, a, i, n, T, c, n, l, g가 됩니다. 두 번째 for문은 길이에서 1을 뺀 인덱스 10부터 0 직전까지 2씩 줄여가며 출력하므로 g, n, T, i, r 순서로 이어져 gnTir가 됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "인덱스 10, 8, 6, 4, 2의 문자를 차례로 출력하면 gnTir가 됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "riTng는 출력 순서를 반대로 하거나 인덱스를 늘려가며 출력했을 때 나오는 값입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "ot hl은 짝수 번째가 아닌 다른 위치의 문자를 골랐을 때 얻어지는 값입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "lh to는 공백을 포함한 문자를 중간에 넣었을 때의 결과로 실제 출력과 다릅니다."
+        }
+      ],
+      "keyPoint": "range()의 증감 값과 리스트 인덱스에 따른 출력 순서",
+      "tags": [
+        "Python",
+        "range()",
+        "리스트"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "프로세스 적재 정책과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "반복, 스택, 부프로그램은 시간 지역성(Temporal Locality)과 관련이 있다."
+        },
+        {
+          "no": 2,
+          "text": "공간 지역성(Spatial Locality)은 프로세스가 어떤 페이지를 참조했다면 이후 가상주소 공간상 그 페이지와 인접한 페이지들을 참조할 가능성이 높음을 의미한다."
+        },
+        {
+          "no": 3,
+          "text": "일반적으로 페이지 교환에 보내는 시간보다 프로세스 수행에 보내는 시간이 더 크면 스레싱(Thrashing)이 발생한다."
+        },
+        {
+          "no": 4,
+          "text": "스레싱(Thrashing) 현상을 방지하기 위해서는 각 프로세스가 필요로 하는 프레임을 제공할 수 있어야 한다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "스레싱은 페이지 부재가 잦아져 페이지 교환에 보내는 시간이 프로세스 수행에 보내는 시간보다 커질 때 발생하는 현상입니다. 즉 페이지 교환 시간이 더 커야 하므로 ③은 조건이 반대로 서술되어 틀렸습니다. 반복·스택·부프로그램은 시간 지역성의 예이고, 스레싱을 막으려면 프로세스가 필요로 하는 프레임을 충분히 확보해야 합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "반복, 스택, 부프로그램은 시간 지역성(Temporal Locality)의 예이므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "참조한 페이지와 인접한 페이지를 참조할 가능성이 높다는 것은 공간 지역성의 설명으로 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "스레싱은 페이지 교환 시간이 프로세스 수행 시간보다 커질 때 발생하므로 설명이 반대입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "스레싱을 방지하려면 프로세스마다 필요한 프레임을 충분히 할당해야 하므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "스레싱(Thrashing)의 발생 조건과 지역성",
+      "tags": [
+        "스레싱",
+        "지역성"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "다음은 정수 배열 a에 0부터 9까지의 무작위 수를 저장하는 Java 코드이다. 괄호에 들어갈 알맞은 코드는 무엇인가?",
+      "passage": "import ( ).*;\npublic class Test {\n    public static void main(String[] args) {\n        Random rand = new Random();\n        int a[] = new int[6];\n        for(int i = 0; i < 6; i++)\n            a[i] = rand.nextInt(10);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "java.lang"
+        },
+        {
+          "no": 2,
+          "text": "java.util"
+        },
+        {
+          "no": 3,
+          "text": "java.io"
+        },
+        {
+          "no": 4,
+          "text": "java.net"
+        }
+      ],
+      "answer": 2,
+      "explanation": "난수를 생성할 때 사용하는 Random 클래스는 java.util 패키지에 속하므로 import java.util.*; 처럼 선언해야 합니다. java.lang은 String, System 등 기본 클래스가 자동으로 포함되는 패키지이고, java.io는 파일·스트림 입출력, java.net은 네트워크 통신 관련 클래스를 담고 있습니다. 따라서 빈 괄호에 들어갈 코드는 java.util입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "java.lang에는 Random 클래스가 없고 기본 클래스만 들어 있습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Random 클래스는 java.util 패키지에 있으므로 java.util을 넣어야 합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "java.io는 파일과 스트림 입출력 관련 패키지이므로 Random 클래스와 무관합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "java.net은 소켓 등 네트워크 통신 관련 패키지이므로 Random 클래스와 무관합니다."
+        }
+      ],
+      "keyPoint": "Java Random 클래스가 속한 java.util 패키지",
+      "tags": [
+        "Java",
+        "java.util",
+        "Random"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "리눅스 Bash 쉘(Shell)에서 export와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "변수를 출력하고자 할 때는 export를 사용해야 한다."
+        },
+        {
+          "no": 2,
+          "text": "export가 매개변수 없이 쓰일 경우 현재 설정된 환경변수들이 출력된다."
+        },
+        {
+          "no": 3,
+          "text": "사용자가 생성하는 변수는 export 명령어로 표시하지 않는 한 현재 쉘에 국한된다."
+        },
+        {
+          "no": 4,
+          "text": "변수를 export 시키면 전역(Global)변수처럼 되어 끝까지 기억된다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "쉘 변수의 값을 확인할 때는 echo $변수명처럼 변수명 앞에 $를 붙여 출력하며, export는 변수를 환경변수로 등록해 자식 프로세스에서도 사용할 수 있게 하는 명령입니다. 매개변수 없이 export만 실행하면 현재 설정된 환경변수 목록이 출력됩니다. 따라서 변수 출력에 export를 사용해야 한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "변수 값을 출력할 때는 echo를 사용하므로 export가 필요하다는 설명은 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "export를 인수 없이 실행하면 환경변수 목록이 출력되므로 옳은 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "export하지 않은 변수는 현재 쉘에서만 유효하므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "export한 변수는 환경변수로 등록되어 자식 프로세스에도 전달되므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "export 명령의 역할과 쉘 변수 출력 방법",
+      "tags": [
+        "리눅스",
+        "export",
+        "환경변수"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "다음 Java 프로그램이 실행되었을 때의 결과는?",
+      "passage": "public class Test {\n    public static void main(String[] args) {\n        int x = 7, y = 0;\n        while(x-- > 0) {\n            if (x%3 == 0)\n                continue;\n            y++;\n        }\n        System.out.print(y);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "0"
+        },
+        {
+          "no": 2,
+          "text": "4"
+        },
+        {
+          "no": 3,
+          "text": "5"
+        },
+        {
+          "no": 4,
+          "text": "7"
+        }
+      ],
+      "answer": 2,
+      "explanation": "while(x-- > 0)은 x를 비교한 뒤 1씩 감소시키므로 반복이 진행되면서 x는 6, 5, 4, 3, 2, 1, 0이 됩니다. x%3 == 0이면 continue로 y를 증가시키지 않고 넘어가므로 y가 증가하는 것은 x가 5, 4, 2, 1일 때의 네 번입니다. 따라서 출력값은 4입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "0은 반복문이 한 번도 수행되지 않았을 때의 값으로 실제 결과와 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "x가 5, 4, 2, 1일 때만 y가 증가하므로 출력값은 4입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "5는 x가 0이 되는 시점까지의 반복 횟수를 잘못 계산한 값입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "7은 변수 x의 처음 값으로 출력되는 y의 값이 아닙니다."
+        }
+      ],
+      "keyPoint": "while(x-- > 0)의 후위 감소 연산과 continue에 의한 y 누적",
+      "tags": [
+        "Java",
+        "while문",
+        "continue"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "TCP/IP 프로토콜에서 TCP가 해당하는 계층은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "데이터 링크 계층"
+        },
+        {
+          "no": 2,
+          "text": "네트워크 계층"
+        },
+        {
+          "no": 3,
+          "text": "트랜스포트 계층"
+        },
+        {
+          "no": 4,
+          "text": "세션 계층"
+        }
+      ],
+      "answer": 3,
+      "explanation": "TCP/IP 계층에서 TCP는 연결형·신뢰성 있는 전송을 담당하는 트랜스포트(전송) 계층의 프로토콜입니다. 네트워크 계층에는 IP와 ICMP가, 응용 계층에는 HTTP와 FTP가 속합니다. 데이터 링크 계층과 세션 계층은 TCP가 위치하는 계층이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "데이터 링크 계층은 프레임 전송을 담당하는 계층으로 TCP가 속하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "네트워크 계층에는 IP, ICMP 등이 속하며 TCP는 포함되지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "TCP는 트랜스포트(전송) 계층에서 연결 지향형 전송을 담당합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "세션 계층은 OSI 참조 모델의 계층으로 TCP가 속하는 계층이 아닙니다."
+        }
+      ],
+      "keyPoint": "TCP/IP 계층에서 TCP의 위치(트랜스포트 계층)",
+      "tags": [
+        "TCP",
+        "TCP/IP"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "Java에서 사용되는 출력 함수가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "System.out.print()"
+        },
+        {
+          "no": 2,
+          "text": "System.out.println()"
+        },
+        {
+          "no": 3,
+          "text": "System.out.printing()"
+        },
+        {
+          "no": 4,
+          "text": "System.out.printf()"
+        }
+      ],
+      "answer": 3,
+      "explanation": "Java의 표준 출력은 System.out 객체가 제공하는 print(), println(), printf() 메서드로 수행합니다. println()은 출력 후 줄을 바꾸고, printf()는 형식 지정자를 사용해 서식을 적용해 출력합니다. printing()이라는 메서드는 Java에 존재하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "print()는 줄바꿈 없이 값을 출력하는 메서드로 실제 존재합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "println()은 값을 출력하고 줄을 바꾸는 메서드로 실제 존재합니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "printing()은 Java에 정의되어 있지 않은 메서드입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "printf()는 형식 지정자를 사용해 출력하는 메서드로 실제 존재합니다."
+        }
+      ],
+      "keyPoint": "Java System.out의 출력 메서드(print/println/printf)",
+      "tags": [
+        "Java",
+        "System.out"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음의 페이지 참조 열(Page reference)에 대해 페이지 교체 기법으로 선입선출 알고리즘을 사용할 경우 페이지 부재(Page Fault) 횟수는? (단, 할당된 페이지 프레임 수는 3이고, 처음에는 모든 프레임이 비어 있다.)",
+      "passage": "<페이지 참조열>\n7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "13"
+        },
+        {
+          "no": 2,
+          "text": "14"
+        },
+        {
+          "no": 3,
+          "text": "15"
+        },
+        {
+          "no": 4,
+          "text": "20"
+        }
+      ],
+      "answer": 2,
+      "explanation": "FIFO는 프레임에 가장 먼저 적재된 페이지를 교체하는 기법으로, 프레임이 비어 있는 상태에서 참조한 7, 0, 1은 모두 페이지 부재가 발생합니다. 이후 2, 3, 0, 4, 2, 3, 0, 1, 2, 7, 0을 참조할 때도 프레임에 없는 페이지마다 부재가 일어나며, 전체 19번의 참조 중 0, 3, 2, 0, 1의 5번만 적중해 페이지 부재는 모두 14번입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "13은 적중 횟수를 잘못 세어 부재를 하나 적게 계산한 값입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "19번의 참조 중 5번이 적중하고 나머지 14번에서 페이지 부재가 발생합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "15는 교체 시점을 잘못 판단해 계산한 값으로 실제 부재 횟수와 다릅니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "20은 전체 참조 횟수인 19번보다 큰 값이므로 답이 될 수 없습니다."
+        }
+      ],
+      "keyPoint": "FIFO 페이지 교체 알고리즘의 페이지 부재 횟수 계산",
+      "tags": [
+        "페이지 교체",
+        "FIFO",
+        "페이지 부재"
+      ],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "배치 프로그램의 자동 수행 주기 중 사용자가 특정 조건을 설정해 두고 해당 조건이 충족될 때만 수행되도록 하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "정기 배치"
+        },
+        {
+          "no": 2,
+          "text": "이벤트성 배치"
+        },
+        {
+          "no": 3,
+          "text": "On-Demand 배치"
+        },
+        {
+          "no": 4,
+          "text": "사용자 배치"
+        }
+      ],
+      "answer": 2,
+      "explanation": "배치 프로그램의 수행 주기는 정기 배치, 이벤트성 배치, On-Demand 배치로 나뉩니다. 이벤트성 배치는 사용자가 설정한 조건이 충족되는 이벤트가 발생할 때 수행되고, 정기 배치는 정해진 시각마다, On-Demand 배치는 사용자가 직접 요구할 때 수행됩니다. 조건 충족 시 자동 수행을 뜻하는 것은 이벤트성 배치입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "정기 배치는 매일·매주처럼 정해진 일정에 따라 주기적으로 수행되는 방식입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "이벤트성 배치는 사용자가 설정한 조건이 충족될 때만 자동으로 수행됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "On-Demand 배치는 사용자가 요청할 때 즉시 수행되는 방식입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "사용자 배치는 배치 프로그램의 수행 주기를 분류할 때 사용하는 용어가 아닙니다."
+        }
+      ],
+      "keyPoint": "배치 프로그램의 수행 주기(정기·이벤트성·On-Demand)",
+      "tags": [
+        "배치 프로그램",
+        "이벤트성 배치"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "다음 Python 코드 출력문의 결과는?",
+      "passage": "print(4, 1, 2, sep=',', end='')\nprint(3, 5, sep='/')",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "4,1,23/5"
+        },
+        {
+          "no": 2,
+          "text": "4 1 23/5"
+        },
+        {
+          "no": 3,
+          "text": "4,1,2\n3/5"
+        },
+        {
+          "no": 4,
+          "text": "4 1 2\n3 5"
+        }
+      ],
+      "answer": 1,
+      "explanation": "print()의 sep는 인자 사이에 넣을 구분자를, end는 출력 끝에 붙일 문자를 지정하는 옵션입니다. 첫 문장은 sep=','와 end=''로 줄바꿈 없이 4,1,2를 출력하고, 이어서 두 번째 문장이 sep='/'로 3/5를 출력하므로 최종 결과는 4,1,23/5가 됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "첫 출력 4,1,2에 줄바꿈 없이 두 번째 출력 3/5가 이어져 4,1,23/5가 됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "sep=','를 지정했으므로 숫자 사이는 공백이 아니라 쉼표로 구분됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "end=''로 줄바꿈을 없앴으므로 4,1,2 다음에 줄이 바뀌지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "두 출력 모두 sep가 지정되어 있어 공백으로 구분되지 않습니다."
+        }
+      ],
+      "keyPoint": "print()의 sep와 end 옵션에 따른 출력 형태",
+      "tags": [
+        "Python",
+        "print"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "JAVA의 예외(exception)와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "문법 오류로 인해 발생한 것"
+        },
+        {
+          "no": 2,
+          "text": "오동작이나 결과에 악영향을 미칠 수 있는 실행 시간 동안에 발생한 오류"
+        },
+        {
+          "no": 3,
+          "text": "배열의 인덱스가 그 범위를 넘어서는 경우 발생하는 오류"
+        },
+        {
+          "no": 4,
+          "text": "존재하지 않는 파일을 읽으려고 하는 경우에 발생하는 오류"
+        }
+      ],
+      "answer": 1,
+      "explanation": "예외는 프로그램이 실행되는 동안 발생하는 오류로, 오동작이나 배열 인덱스 초과, 없는 파일에 대한 접근 등이 이에 해당합니다. 문법 오류(syntax error)는 컴파일 단계에서 발견되어 프로그램이 실행되지 않으므로 예외로 처리되지 않습니다. 따라서 문법 오류로 인해 발생한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "문법 오류는 컴파일 시 발견되는 오류이므로 예외에 대한 설명으로 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "실행 시간에 발생한 오류는 예외의 정의에 해당하므로 옳은 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "배열 인덱스 초과는 범위를 벗어난 참조로 예외가 발생하는 대표적인 경우입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "존재하지 않는 파일을 읽으려는 경우에도 예외가 발생하므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "예외(exception)와 문법 오류의 구분",
+      "tags": [
+        "Java",
+        "예외 처리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "다음은 파이썬으로 만들어진 반복문 코드이다. 이 코드의 결과는?",
+      "passage": "while(True) :\n    print('A')\n    print('B')\n    break\n    print('C')\nprint('D')",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "A, B 출력이 반복된다."
+        },
+        {
+          "no": 2,
+          "text": "A, B, C 까지만 출력된다."
+        },
+        {
+          "no": 3,
+          "text": "A, B, C 출력이 반복된다."
+        },
+        {
+          "no": 4,
+          "text": "A, B, D 까지만 출력된다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "while(True)는 조건이 항상 참이므로 break를 만나기 전까지 계속 반복되는 구조입니다. 이 코드는 A와 B를 출력한 뒤 바로 break를 만나 반복문을 빠져나오므로 break 아래의 print('C')는 실행되지 않습니다. 반복문이 끝난 뒤 print('D')가 실행되어 A, B, D까지만 출력됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "break로 반복문을 빠져나오므로 A, B 출력이 반복되지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "break 아래의 print('C')는 실행되지 않으므로 C가 출력되지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "반복이 이루어지지 않고 C도 실행되지 않으므로 해당 결과가 나오지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "A와 B를 출력하고 break로 빠져나온 뒤 D가 출력되어 A, B, D까지만 나옵니다."
+        }
+      ],
+      "keyPoint": "while(True)와 break에 의한 반복문 종료",
+      "tags": [
+        "Python",
+        "break"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "사용자 수준에서 지원되는 스레드(thread)가 커널에서 지원되는 스레드에 비해 가지는 장점으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "한 프로세스가 운영체제를 호출할 때 전체 프로세스가 대기할 필요가 없으므로 시스템 성능을 높일 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "동시에 여러 스레드가 커널에 접근할 수 있으므로 여러 스레드가 시스템 호출을 동시에 사용할 수 있다."
+        },
+        {
+          "no": 3,
+          "text": "각 스레드를 개별적으로 관리할 수 있으므로 스레드의 독립적인 스케줄링이 가능하다."
+        },
+        {
+          "no": 4,
+          "text": "커널 모드로의 전환 없이 스레드 교환이 가능하므로 오버헤드가 줄어든다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "사용자 수준 스레드는 커널이 스레드의 존재를 모르는 상태에서 라이브러리가 관리하므로, 스레드를 교환할 때 커널 모드로 전환하지 않아 오버헤드가 작습니다. 반면 커널 수준 스레드는 커널이 직접 스레드를 관리하기 때문에 다중 처리기에서 병렬 수행과 개별적인 스케줄링이 가능합니다. 따라서 커널 모드 전환이 없다는 점이 사용자 수준 스레드의 장점입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "한 스레드의 시스템 호출로 프로세스 전체가 대기하는 것은 사용자 수준 스레드의 단점입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "여러 스레드가 커널에 동시에 접근해 시스템 호출을 함께 사용하는 것은 커널 수준 스레드의 장점입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "스레드별 독립적인 스케줄링은 커널이 스레드를 직접 관리하는 커널 수준 스레드의 장점입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "커널 모드 전환 없이 사용자 영역에서 교환되므로 오버헤드가 줄어드는 것이 장점입니다."
+        }
+      ],
+      "keyPoint": "사용자 수준 스레드와 커널 수준 스레드의 장단점",
+      "tags": [
+        "스레드",
+        "커널 수준 스레드"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "다음 중 페이지 교체(Page Replacement) 알고리즘이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "LRU"
+        },
+        {
+          "no": 2,
+          "text": "OPT"
+        },
+        {
+          "no": 3,
+          "text": "NUR"
+        },
+        {
+          "no": 4,
+          "text": "SCF"
+        }
+      ],
+      "answer": 4,
+      "explanation": "LRU는 가장 오랫동안 사용되지 않은 페이지를, OPT는 앞으로 가장 오랫동안 사용되지 않을 페이지를, NUR은 최근에 사용되지 않은 페이지를 교체 대상으로 삼는 페이지 교체 알고리즘입니다. SCF는 페이지 교체 알고리즘으로 사용되는 기법이 아니므로 답입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "LRU는 사용되지 않은 시간이 가장 오래된 페이지를 교체하는 알고리즘입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "OPT는 앞으로 가장 오랫동안 사용되지 않을 페이지를 교체하는 알고리즘입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "NUR은 참조 비트와 변형 비트를 이용해 최근에 사용되지 않은 페이지를 교체하는 알고리즘입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "SCF는 페이지 교체 알고리즘에 포함되지 않는 용어입니다."
+        }
+      ],
+      "keyPoint": "페이지 교체 알고리즘의 종류(LRU, OPT, NUR)",
+      "tags": [
+        "페이지 교체",
+        "LRU"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "프레임워크(Framework)에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "소프트웨어 구성에 필요한 기본 구조를 제공함으로써 재사용이 가능하게 해준다."
+        },
+        {
+          "no": 2,
+          "text": "소프트웨어 개발 시 구조가 잡혀 있기 때문에 확장이 불가능하다."
+        },
+        {
+          "no": 3,
+          "text": "소프트웨어 아키텍처(Architecture)와 동일한 개념이다."
+        },
+        {
+          "no": 4,
+          "text": "모듈화(Modularity)가 불가능하다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "프레임워크는 소프트웨어 구성에 필요한 기본 구조와 뼈대를 제공해 설계에 드는 노력을 줄이고 재사용과 확장을 쉽게 해주는 개발 기반입니다. 아키텍처가 전체 구조에 대한 설계와 의사결정이라면 프레임워크는 그 구조를 코드 수준에서 제공하는 구현 도구라는 점에서 구분됩니다. 따라서 기본 구조를 제공해 재사용이 가능하게 한다는 설명이 옳습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "필요한 기본 구조를 제공해 재사용성을 높이는 것은 프레임워크에 대한 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "프레임워크는 기본 구조를 제공할 뿐 확장과 변경이 가능합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "아키텍처는 구조에 대한 설계 개념이고 프레임워크는 이를 구현하는 기반이므로 같은 개념이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "프레임워크는 모듈화를 지원하므로 모듈화가 불가능하다는 설명은 틀렸습니다."
+        }
+      ],
+      "keyPoint": "프레임워크의 개념과 재사용성",
+      "tags": [
+        "프레임워크",
+        "재사용성"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-2-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "단편화(Fragmentation)와 재결합(Reassembly)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "단편화는 송신 측에서 전송할 데이터를 전송에 알맞은 일정 크기의 작은 블록으로 자르는 작업을 의미한다."
+        },
+        {
+          "no": 2,
+          "text": "재결합은 수신 측에서 단편화된 블록을 원래의 데이터로 모으는 것이다."
+        },
+        {
+          "no": 3,
+          "text": "단편화를 통해 세분화된 데이터 블록을 프레임이라고 한다."
+        },
+        {
+          "no": 4,
+          "text": "단편화를 하면 전송 시간이 단축되고, 효과적인 오류 제어가 가능하다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "단편화는 송신 측에서 전송할 데이터를 전송에 알맞은 일정 크기의 작은 블록으로 나누는 작업이고, 재결합은 수신 측에서 나뉜 블록을 원래의 데이터로 모으는 작업입니다. 이때 세분화된 데이터 블록을 패킷이라고 하며, 프레임은 데이터 링크 계층에서 사용하는 전송 단위입니다. 따라서 블록을 프레임이라고 설명한 ③이 옳지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "송신 측에서 데이터를 일정 크기로 자르는 것은 단편화에 대한 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "수신 측에서 나뉜 블록을 원래 데이터로 모으는 것은 재결합에 대한 옳은 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "세분화된 데이터 블록은 패킷이므로 프레임이라는 설명은 옳지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "단편화한 블록 단위로 전송하면 오류 제어와 재전송이 효율적이므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "데이터 단편화·재결합과 패킷/프레임 구분",
+      "tags": [
+        "단편화",
+        "재결합",
+        "패킷"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년2회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2026-1",
+    "year": 2026,
+    "round": 1,
+    "title": "2026년 1회 정보처리기사 필기",
+    "sourcePdf": "2026년1회_기사필기_기출문제.pdf"
+  },
+  "subject": {
+    "code": 1,
+    "name": "소프트웨어 설계"
+  },
+  "questions": [
+    {
+      "id": "2026-1-001",
+      "number": 1,
+      "subjectCode": 1,
+      "stem": "소프트웨어 공학의 기본 원칙이라고 볼 수 없는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "품질 높은 소프트웨어 상품 개발" },
+        { "no": 2, "text": "지속적인 검증 시행" },
+        { "no": 3, "text": "결과에 대한 명확한 기록 유지" },
+        { "no": 4, "text": "최대한 많은 인력 투입" }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 공학은 품질 높은 소프트웨어를 경제적으로 개발하고 유지보수하기 위한 학문으로, 품질 높은 상품 개발, 지속적인 검증 시행, 결과에 대한 명확한 기록 유지를 기본 원칙으로 삼습니다. 인력은 개발 규모에 맞게 최소한으로 투입하는 것이 원칙이므로 '최대한 많은 인력 투입'은 기본 원칙이 아닙니다. 인력이 늘어나면 의사소통과 관리에 드는 비용이 커져 생산성이 오히려 떨어질 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "품질 높은 소프트웨어 상품을 개발하는 것은 소프트웨어 공학의 대표적인 기본 원칙입니다." },
+        { "no": 2, "correct": false, "why": "지속적으로 검증을 시행하여 결함을 조기에 발견하는 활동도 기본 원칙에 해당합니다." },
+        { "no": 3, "correct": false, "why": "결과에 대한 명확한 기록을 유지하는 것 역시 기본 원칙에 해당합니다." },
+        { "no": 4, "correct": true, "why": "인력은 많을수록 좋은 것이 아니라 최소한으로 투입해야 하므로, 기본 원칙이 아닌 이 보기가 정답입니다." }
+      ],
+      "keyPoint": "소프트웨어 공학의 기본 원칙과 최소 인력 투입",
+      "tags": ["소프트웨어 공학", "기본 원칙"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-002",
+      "number": 2,
+      "subjectCode": 1,
+      "stem": "다음 중 CASE의 장점이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "자동화된 기법을 통해 소프트웨어 품질이 향상된다." },
+        { "no": 2, "text": "소프트웨어의 유지보수를 간편하게 수행할 수 있다." },
+        { "no": 3, "text": "소프트웨어의 생산성이 향상된다." },
+        { "no": 4, "text": "소프트웨어 모듈의 재사용성이 줄어든다." }
+      ],
+      "answer": 4,
+      "explanation": "CASE(Computer Aided Software Engineering)는 요구사항 분석부터 설계, 구현, 테스트, 유지보수까지 소프트웨어 개발 공정의 일부 또는 전부를 자동화하는 도구입니다. 자동화된 기법으로 품질과 생산성을 높이고 유지보수를 간편하게 하며 모듈의 재사용성을 향상시키므로, 재사용성이 줄어든다는 설명은 장점이 아니라 잘못된 서술입니다. 즉 CASE는 반복적이고 형식적인 작업을 줄여 개발 효율을 높이는 것을 목표로 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "자동화된 기법을 통한 품질 향상은 CASE의 대표적인 장점입니다." },
+        { "no": 2, "correct": false, "why": "산출물이 일관된 형태로 관리되어 유지보수가 간편해지는 것도 CASE의 장점입니다." },
+        { "no": 3, "correct": false, "why": "생산성 향상은 CASE를 도입하는 가장 큰 목적 중 하나입니다." },
+        { "no": 4, "correct": true, "why": "CASE는 모듈 재사용성을 높여 주므로 재사용성이 줄어든다는 이 보기가 장점이 아닌 정답입니다." }
+      ],
+      "keyPoint": "CASE의 개념과 장점",
+      "tags": ["CASE", "소프트웨어 공학"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-003",
+      "number": 3,
+      "subjectCode": 1,
+      "stem": "객체에게 어떤 행위를 하도록 지시하는 명령은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Class" },
+        { "no": 2, "text": "Package" },
+        { "no": 3, "text": "Object" },
+        { "no": 4, "text": "Message" }
+      ],
+      "answer": 4,
+      "explanation": "객체지향에서 메시지(Message)는 객체에게 특정 행위를 수행하도록 요청하는 수단으로, 객체들은 메시지를 주고받으며 상호작용합니다. 클래스는 같은 속성과 연산을 가진 객체들의 틀이고, 객체는 클래스의 인스턴스이며, 패키지는 관련된 클래스들을 묶은 그룹이므로 행위를 지시하는 명령에 해당하는 것은 메시지입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "클래스는 객체를 만들기 위한 공통 속성과 연산의 정의(틀)일 뿐, 행위를 지시하는 명령이 아닙니다." },
+        { "no": 2, "correct": false, "why": "패키지는 관련된 클래스나 인터페이스를 묶어 관리하는 그룹입니다." },
+        { "no": 3, "correct": false, "why": "객체는 명령을 받아 수행하는 주체이며, 명령 자체를 뜻하지는 않습니다." },
+        { "no": 4, "correct": true, "why": "메시지는 객체에게 특정 행위를 하도록 지시·요청하는 명령이므로 정답입니다." }
+      ],
+      "keyPoint": "객체지향의 메시지와 객체 간 상호작용",
+      "tags": ["객체지향", "메시지"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-004",
+      "number": 4,
+      "subjectCode": 1,
+      "stem": "분산 시스템에서의 미들웨어(Middleware)와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "분산 시스템에서 다양한 부분을 관리하고 통신하며 데이터를 교환하게 해주는 소프트웨어로 볼 수 있다." },
+        { "no": 2, "text": "위치 투명성(Location Transparency)을 제공한다." },
+        { "no": 3, "text": "분산 시스템의 여러 컴포넌트가 요구하는 재사용 가능한 서비스의 구현을 제공한다." },
+        { "no": 4, "text": "애플리케이션과 사용자 사이에서만 분산 서비스를 제공한다." }
+      ],
+      "answer": 4,
+      "explanation": "미들웨어는 분산 시스템에서 서로 다른 컴포넌트와 애플리케이션이 통신하고 데이터를 교환할 수 있도록 중개하는 소프트웨어로, 위치 투명성과 재사용 가능한 서비스를 제공합니다. 그런데 그 범위가 애플리케이션과 사용자 사이에만 한정되는 것이 아니라 클라이언트와 서버, 서버와 서버 등 분산 환경 전반에 걸쳐 서비스를 제공하므로 ④의 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "미들웨어가 분산 환경의 통신과 데이터 교환을 중개한다는 설명은 옳습니다." },
+        { "no": 2, "correct": false, "why": "위치 투명성 제공은 미들웨어의 대표적인 기능으로 옳은 설명입니다." },
+        { "no": 3, "correct": false, "why": "재사용 가능한 서비스 구현 제공도 미들웨어의 기능에 해당합니다." },
+        { "no": 4, "correct": true, "why": "미들웨어는 애플리케이션과 사용자 사이뿐 아니라 분산 환경 전반에서 서비스를 제공하므로, 범위를 한정한 이 보기가 정답입니다." }
+      ],
+      "keyPoint": "미들웨어의 정의와 위치 투명성",
+      "tags": ["미들웨어", "분산 시스템"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-005",
+      "number": 5,
+      "subjectCode": 1,
+      "stem": "기본 유스케이스 수행 시 특별한 조건을 만족할 때 수행하는 유스케이스는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "연관" },
+        { "no": 2, "text": "확장" },
+        { "no": 3, "text": "선택" },
+        { "no": 4, "text": "특화" }
+      ],
+      "answer": 2,
+      "explanation": "확장(Extend) 관계는 기본 유스케이스가 정상적으로 수행되는 도중에 특별한 조건이 만족될 때에만 선택적으로 수행되는 유스케이스를 연결하는 관계입니다. 연관은 액터와 유스케이스 사이의 기본적인 연결이고, 특화(일반화)는 유사한 유스케이스를 상속 관계로 묶는 것이며, 선택은 유스케이스 관계의 종류가 아닙니다. 참고로 포함(Include) 관계는 기본 유스케이스가 반드시 수행해야 하는 공통 기능을 분리할 때 사용합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "연관은 액터가 유스케이스를 사용하는 기본 관계로, 조건에 따른 선택적 수행과는 다릅니다." },
+        { "no": 2, "correct": true, "why": "확장은 특별한 조건이 만족될 때에만 기본 유스케이스에 추가로 수행되는 관계이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "선택은 유스케이스 다이어그램의 관계 종류에 없는 용어입니다." },
+        { "no": 4, "correct": false, "why": "특화는 유사한 유스케이스를 상속 관계로 일반화한 것으로, 조건부 수행과는 다릅니다." }
+      ],
+      "keyPoint": "유스케이스 확장(Extend) 관계",
+      "tags": ["유스케이스", "확장 관계"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-006",
+      "number": 6,
+      "subjectCode": 1,
+      "stem": "다음 중 소프트웨어 요구사항 분석을 위해 대상이 되는 목표 집단에 속한 사용자 유형의 대표가 되는 가상 인물에 대한 표현으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "페르소나" },
+        { "no": 2, "text": "진첩도" },
+        { "no": 3, "text": "번업 차트" },
+        { "no": 4, "text": "스토리 맵" }
+      ],
+      "answer": 1,
+      "explanation": "페르소나(Persona)는 요구사항 분석 단계에서 목표 집단에 속한 사용자 유형을 대표하는 가상의 인물로, 사용자의 목표와 행동, 환경을 구체적으로 설정하여 요구사항을 도출하는 데 활용합니다. 진첩도는 작업의 진행 정도를 시각적으로 표시한 그림이고, 번업 차트는 애자일에서 완료된 작업량의 추이를 나타내는 그래프이며, 스토리 맵은 사용자 스토리를 사용자 활동 흐름에 따라 배치한 지도이므로 정답이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "페르소나는 사용자 유형의 대표가 되는 가상 인물을 뜻하므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "진첩도는 작업 진행 정도를 보여주는 도표로, 가상의 사용자 인물과는 관련이 없습니다." },
+        { "no": 3, "correct": false, "why": "번업 차트는 애자일 프로젝트에서 남은 작업량과 완료량의 추이를 나타내는 도구입니다." },
+        { "no": 4, "correct": false, "why": "스토리 맵은 사용자 스토리를 활동 흐름에 따라 배치한 것으로, 인물 표현이 아닙니다." }
+      ],
+      "keyPoint": "페르소나(Persona)의 정의와 활용",
+      "tags": ["페르소나", "요구사항 분석"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-007",
+      "number": 7,
+      "subjectCode": 1,
+      "stem": "파이프 필터 형태의 소프트웨어 아키텍처에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "노드와 간선으로 구성된다." },
+        { "no": 2, "text": "서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브시스템으로 넘겨주는 과정을 반복한다." },
+        { "no": 3, "text": "계층 모델이라고도 한다." },
+        { "no": 4, "text": "3개의 서브시스템(모델, 뷰, 제어)으로 구성되어 있다." }
+      ],
+      "answer": 2,
+      "explanation": "파이프 필터 아키텍처는 각 서브시스템(필터)이 입력 데이터를 받아 변환·처리하고, 그 결과를 파이프를 통해 다음 서브시스템으로 넘겨주는 과정을 반복하여 최종 결과를 만들어 내는 구조입니다. 노드와 간선으로 구성된다는 설명은 그래프 형태 구조를 일반적으로 표현한 것이고, 계층 모델은 상위 계층이 하위 계층에 서비스를 요청하는 레이어드 구조이며, 모델·뷰·제어 3개의 서브시스템 구조는 MVC 모델에 대한 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "노드와 간선으로 구성되는 것은 그래프 형태 아키텍처에 대한 일반적인 설명입니다." },
+        { "no": 2, "correct": true, "why": "필터가 데이터를 처리해 다음 필터로 넘기는 과정을 반복하는 것이 파이프 필터 구조이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "계층 모델(레이어드)은 파이프 필터가 아니라 상하 계층 구조를 가진 아키텍처입니다." },
+        { "no": 4, "correct": false, "why": "모델·뷰·제어 3개 서브시스템 구조는 MVC 아키텍처에 대한 설명입니다." }
+      ],
+      "keyPoint": "파이프 필터 아키텍처의 데이터 흐름",
+      "tags": ["소프트웨어 아키텍처", "파이프 필터"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-008",
+      "number": 8,
+      "subjectCode": 1,
+      "stem": "분산 시스템을 위한 마스터-슬레이브(Master-Slave) 아키텍처에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "일반적으로 실시간 시스템에서 사용된다." },
+        { "no": 2, "text": "마스터 프로세스는 일반적으로 연산, 통신, 조정을 책임진다." },
+        { "no": 3, "text": "슬레이브 프로세스는 데이터 수집 기능을 수행할 수 없다." },
+        { "no": 4, "text": "마스터 프로세스는 슬레이브 프로세스들을 제어할 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "마스터-슬레이브 아키텍처는 마스터 프로세스가 연산·통신·조정을 담당하고 슬레이브 프로세스들을 제어하며, 슬레이브는 마스터의 지시에 따라 데이터 수집 등 실제 작업을 수행하는 구조로 실시간 시스템에서 자주 사용됩니다. 따라서 슬레이브가 데이터 수집 기능을 수행할 수 없다는 ③의 설명은 사실과 반대이므로 틀린 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "마스터-슬레이브 구조는 일반적으로 실시간 시스템에서 사용되므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "마스터가 연산, 통신, 조정을 책임진다는 설명은 옳습니다." },
+        { "no": 3, "correct": true, "why": "슬레이브는 마스터의 지시에 따라 데이터 수집 기능을 수행할 수 있으므로, 이 보기가 틀린 설명이자 정답입니다." },
+        { "no": 4, "correct": false, "why": "마스터가 슬레이브를 제어한다는 설명은 옳습니다." }
+      ],
+      "keyPoint": "마스터-슬레이브 아키텍처의 역할 분담",
+      "tags": ["마스터-슬레이브", "소프트웨어 아키텍처"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-009",
+      "number": 9,
+      "subjectCode": 1,
+      "stem": "소프트웨어 아키텍처 모델 중 MVC(Model-View-Controller)와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "MVC 모델은 사용자 인터페이스를 담당하는 계층의 응집도를 높일 수 있고, 여러 개의 다른 UI를 만들어 그 사이에 결합도를 낮출 수 있다." },
+        { "no": 2, "text": "모델(Model)은 뷰(View)와 제어(Controller) 사이에서 전달자 역할을 하며, 뷰마다 모델 서브시스템이 각각 하나씩 연결된다." },
+        { "no": 3, "text": "뷰(View)는 모델(Model)에 있는 데이터를 사용자 인터페이스에 보이는 역할을 담당한다." },
+        { "no": 4, "text": "제어(Controller)는 모델(Model)에 명령을 보냄으로써 모델의 상태를 변경할 수 있다." }
+      ],
+      "answer": 2,
+      "explanation": "MVC에서 모델은 데이터와 그 처리 로직을 담당하고, 뷰는 모델의 데이터를 사용자에게 보여 주며, 제어는 사용자 입력을 해석해 모델과 뷰를 조정합니다. 뷰와 모델 사이에서 전달자(중개자) 역할을 하는 것은 모델이 아니라 제어이며, 뷰마다 대응하는 제어가 연결되어 상호작용을 처리하므로 ②의 설명이 틀렸습니다. MVC를 적용하면 화면 계층의 응집도를 높이고 UI 간 결합도를 낮출 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "MVC가 화면 계층의 응집도를 높이고 UI 사이의 결합도를 낮춘다는 설명은 옳습니다." },
+        { "no": 2, "correct": true, "why": "뷰와 모델 사이의 전달자 역할은 제어가 담당하므로, 모델이 전달자라고 한 이 보기가 틀린 설명이자 정답입니다." },
+        { "no": 3, "correct": false, "why": "뷰가 모델의 데이터를 사용자 인터페이스에 표시한다는 설명은 옳습니다." },
+        { "no": 4, "correct": false, "why": "제어가 모델에 명령을 보내 상태를 바꾼다는 설명은 옳습니다." }
+      ],
+      "keyPoint": "MVC 패턴에서 각 요소의 역할",
+      "tags": ["MVC", "소프트웨어 아키텍처"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-010",
+      "number": 10,
+      "subjectCode": 1,
+      "stem": "다음 내용이 설명하는 디자인 패턴은?",
+      "passage": "ㆍ하나의 객체를 생성하면 생성된 객체를 어디서든 참조할 수 있지만, 여러 프로세스가 동시에 참조할 수는 없다.\nㆍ클래스 내에서 인스턴스가 하나뿐임을 보장하며, 불필요한 메모리 낭비를 최소화할 수 있다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Singleton" },
+        { "no": 2, "text": "Adapter" },
+        { "no": 3, "text": "Prototype" },
+        { "no": 4, "text": "Decorator" }
+      ],
+      "answer": 1,
+      "explanation": "싱글턴(Singleton) 패턴은 클래스 내에서 인스턴스가 하나만 생성되도록 보장하고, 그 하나의 인스턴스에 어디서든 접근할 수 있는 전역적인 참조점을 제공하는 생성 패턴입니다. 인스턴스를 하나로 제한하므로 불필요한 메모리 낭비를 줄일 수 있지만, 동시에 여러 곳에서 같은 인스턴스를 변경하면 문제가 생기므로 동시 참조를 제한하기도 합니다. 어댑터와 데코레이터는 구조 패턴, 프로토타입은 객체를 복제해 생성하는 생성 패턴입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "인스턴스를 하나만 생성해 보장하고 전역 참조를 제공하는 싱글턴 패턴이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "어댑터는 호환되지 않는 인터페이스를 변환해 연결하는 구조 패턴입니다." },
+        { "no": 3, "correct": false, "why": "프로토타입은 원본 객체를 복제하여 새로운 객체를 만드는 생성 패턴입니다." },
+        { "no": 4, "correct": false, "why": "데코레이터는 기존 객체에 기능을 동적으로 추가하는 구조 패턴입니다." }
+      ],
+      "keyPoint": "싱글턴(Singleton) 패턴의 인스턴스 단일 보장",
+      "tags": ["디자인 패턴", "Singleton"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-011",
+      "number": 11,
+      "subjectCode": 1,
+      "stem": "명백한 역할을 가지고 독립적으로 존재할 수 있는 시스템의 부분으로 넓은 의미에서는 재사용되는 모든 단위라고 볼 수 있으며, 인터페이스를 통해서만 접근할 수 있는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Model" },
+        { "no": 2, "text": "Sheet" },
+        { "no": 3, "text": "Component" },
+        { "no": 4, "text": "Cell" }
+      ],
+      "answer": 3,
+      "explanation": "컴포넌트(Component)는 명백한 역할을 가지며 독립적으로 배포·교체될 수 있는 시스템의 부분으로, 넓은 의미에서는 재사용되는 모든 단위를 뜻하고 자신의 인터페이스를 통해서만 접근이 허용됩니다. 모델은 MVC에서 데이터와 처리 로직을 담당하는 요소이고, 시트와 셀은 스프레드시트의 작업 단위를 가리키는 용어이므로 컴포넌트의 정의에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모델은 MVC 구조에서 데이터를 담당하는 요소로, 재사용 단위 일반을 뜻하지 않습니다." },
+        { "no": 2, "correct": false, "why": "시트는 스프레드시트에서 표를 작성하는 작업 단위입니다." },
+        { "no": 3, "correct": true, "why": "독립적으로 존재하며 인터페이스를 통해서만 접근되는 재사용 단위는 컴포넌트이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "셀은 표의 한 칸을 뜻하는 최소 단위로 인터페이스를 통한 재사용 단위와는 다릅니다." }
+      ],
+      "keyPoint": "컴포넌트의 정의와 인터페이스 기반 접근",
+      "tags": ["컴포넌트", "재사용"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-012",
+      "number": 12,
+      "subjectCode": 1,
+      "stem": "아키텍처 설계 과정이 올바른 순서로 나열된 것은?",
+      "passage": "㉮ 설계 목표 설정\n㉯ 시스템 타입 결정\n㉰ 스타일 적용 및 커스터마이즈\n㉱ 서브시스템의 기능, 인터페이스 동작 작성\n㉲ 아키텍처 설계 검토",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉮ → ㉯ → ㉰ → ㉱ → ㉲" },
+        { "no": 2, "text": "㉲ → ㉮ → ㉯ → ㉱ → ㉰" },
+        { "no": 3, "text": "㉮ → ㉲ → ㉯ → ㉱ → ㉰" },
+        { "no": 4, "text": "㉮ → ㉯ → ㉰ → ㉲ → ㉱" }
+      ],
+      "answer": 1,
+      "explanation": "소프트웨어 아키텍처 설계는 먼저 설계 목표를 설정하고, 시스템 타입을 결정한 다음, 적용할 아키텍처 스타일을 적용·커스터마이즈하고, 서브시스템의 기능과 인터페이스 동작을 작성한 뒤, 마지막으로 아키텍처 설계를 검토하는 순서로 진행됩니다. 설계 검토는 산출물이 완성된 뒤에 수행해야 하므로 검토 단계가 중간이나 앞에 오는 순서는 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "설계 목표 설정부터 설계 검토까지의 표준 순서와 일치하므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "설계 검토가 가장 먼저 오는 순서는 논리적으로 성립하지 않습니다." },
+        { "no": 3, "correct": false, "why": "목표 설정 직후에 설계 검토를 배치한 순서는 옳지 않습니다." },
+        { "no": 4, "correct": false, "why": "설계 검토 뒤에 서브시스템 작성이 오는 순서는 옳지 않습니다." }
+      ],
+      "keyPoint": "소프트웨어 아키텍처 설계 절차",
+      "tags": ["아키텍처 설계", "설계 절차"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-013",
+      "number": 13,
+      "subjectCode": 1,
+      "stem": "순차 다이어그램(Sequence Diagram)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "객체들의 상호 작용을 나타내기 위해 사용한다." },
+        { "no": 2, "text": "시간의 흐름에 따라 객체들이 주고 받는 메시지의 전달 과정을 강조한다." },
+        { "no": 3, "text": "동적 다이어그램보다는 정적 다이어그램에 가깝다." },
+        { "no": 4, "text": "교류 다이어그램(Interaction Diagram)의 한 종류로 볼 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "순차 다이어그램은 객체들이 시간의 흐름에 따라 주고받는 메시지의 순서를 표현하여 상호작용을 나타내는 동적(행위) 다이어그램이며, 교류 다이어그램의 한 종류입니다. 따라서 정적 다이어그램에 가깝다는 ③의 설명이 틀렸습니다. 시스템의 정적인 구조를 표현하는 대표적인 다이어그램은 클래스 다이어그램입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "순차 다이어그램이 객체들의 상호작용을 나타낸다는 설명은 옳습니다." },
+        { "no": 2, "correct": false, "why": "시간 흐름에 따른 메시지 전달 과정을 강조한다는 설명도 옳습니다." },
+        { "no": 3, "correct": true, "why": "순차 다이어그램은 동적 다이어그램에 해당하므로, 정적 다이어그램에 가깝다는 이 보기가 틀린 설명이자 정답입니다." },
+        { "no": 4, "correct": false, "why": "순차 다이어그램은 교류 다이어그램의 한 종류로 분류되므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "순차 다이어그램은 동적 다이어그램",
+      "tags": ["UML", "순차 다이어그램"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-014",
+      "number": 14,
+      "subjectCode": 1,
+      "stem": "다음 설명에 해당하는 시스템으로 옳은 것은?",
+      "passage": "시스템 인터페이스를 구성하는 시스템으로, 연계할 데이터를 데이터베이스와 애플리케이션으로부터 연계 테이블 또는 파일 형태로 생성하여 송신하는 시스템이다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "연계 서버" },
+        { "no": 2, "text": "중계 서버" },
+        { "no": 3, "text": "송신 시스템" },
+        { "no": 4, "text": "수신 시스템" }
+      ],
+      "answer": 3,
+      "explanation": "송신 시스템은 연계할 데이터를 데이터베이스나 애플리케이션에서 추출하여 연계 테이블이나 파일 형태로 생성한 뒤 수신 시스템으로 전송하는 시스템입니다. 수신 시스템은 전송받은 데이터를 검증·변환하여 자신의 데이터베이스에 반영하는 쪽이고, 연계 서버나 중계 서버는 송신 시스템과 수신 시스템 사이에서 데이터 변환과 전달을 중개하므로 정답이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "연계 서버는 송·수신 시스템 사이의 연계를 중개하는 서버로, 데이터를 송신하는 주체 자체는 아닙니다." },
+        { "no": 2, "correct": false, "why": "중계 서버 역시 데이터를 중계·변환하는 역할로, 생성과 송신을 담당하는 시스템이 아닙니다." },
+        { "no": 3, "correct": true, "why": "연계할 데이터를 테이블이나 파일 형태로 생성해 송신하는 시스템은 송신 시스템이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "수신 시스템은 전송받은 데이터를 검증·반영하는 시스템이므로 설명과 다릅니다." }
+      ],
+      "keyPoint": "시스템 인터페이스의 송신 시스템 역할",
+      "tags": ["시스템 인터페이스", "송신 시스템"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-015",
+      "number": 15,
+      "subjectCode": 1,
+      "stem": "통신을 위한 프로그램을 생성하여 포트를 할당하고, 클라이언트의 통신 요청 시 클라이언트와 연결하는 내·외부 송·수신 연계기술은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "DB링크 기술" },
+        { "no": 2, "text": "소켓 기술" },
+        { "no": 3, "text": "스크럼 기술" },
+        { "no": 4, "text": "프로토타입 기술" }
+      ],
+      "answer": 2,
+      "explanation": "소켓(Socket) 기술은 통신을 위한 프로그램을 생성해 포트를 할당하고, 클라이언트의 접속 요청이 오면 연결을 맺어 양쪽이 데이터를 주고받도록 하는 연계 기술입니다. DB링크 기술은 데이터베이스 간에 직접 연결하여 데이터를 조회·연계하는 방식이고, 스크럼은 애자일 개발 방법론, 프로토타입은 시제품을 만들어 요구사항을 검증하는 기법이므로 통신 연결 기술과는 거리가 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DB링크는 데이터베이스 간 연결 기술로, 포트를 할당해 클라이언트와 연결하는 방식이 아닙니다." },
+        { "no": 2, "correct": true, "why": "포트를 할당하고 클라이언트 요청 시 연결을 맺는 통신 연계 기술은 소켓이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "스크럼은 애자일 기반의 개발 방법론으로 통신 연계 기술이 아닙니다." },
+        { "no": 4, "correct": false, "why": "프로토타입은 요구사항 검증을 위한 시제품 개발 기법입니다." }
+      ],
+      "keyPoint": "소켓(Socket)을 이용한 통신 연계",
+      "tags": ["소켓", "연계 기술"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-016",
+      "number": 16,
+      "subjectCode": 1,
+      "stem": "입력되는 데이터를 컴퓨터의 프로세서가 처리하기 전에 미리 처리하여 프로세서가 처리하는 시간을 줄여주는 프로그램이나 하드웨어를 말하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "EAI" },
+        { "no": 2, "text": "FEP" },
+        { "no": 3, "text": "GPL" },
+        { "no": 4, "text": "Duplexing" }
+      ],
+      "answer": 2,
+      "explanation": "FEP(Front End Processor)는 대형 컴퓨터와 통신 회선 사이에서 입력 데이터를 프로세서가 처리하기 전에 미리 처리하여, 프로세서가 처리하는 시간을 줄여 주는 프로그램이나 하드웨어입니다. EAI는 기업 내 서로 다른 애플리케이션을 통합하는 솔루션, GPL은 소스 코드 공개를 조건으로 하는 자유 소프트웨어 라이선스, Duplexing은 시스템을 이중화하는 기법이므로 정답이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "EAI는 기업 애플리케이션 통합 솔루션으로, 입력 데이터의 전처리 장치가 아닙니다." },
+        { "no": 2, "correct": true, "why": "입력 데이터를 미리 처리해 프로세서의 부담을 줄여 주는 장치는 FEP이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "GPL은 소프트웨어 라이선스의 한 종류로 하드웨어 장치와 무관합니다." },
+        { "no": 4, "correct": false, "why": "Duplexing은 장애 대비를 위한 이중화 기법입니다." }
+      ],
+      "keyPoint": "FEP(전처리 장치)의 역할",
+      "tags": ["FEP", "전처리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-017",
+      "number": 17,
+      "subjectCode": 1,
+      "stem": "다음 중 비기능 요구사항에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "은행의 조회, 입금, 출금, 이체 등이 어떻게 수행되는지 여부는 비기능 요구사항에 해당한다." },
+        { "no": 2, "text": "처리 속도 및 시간, 처리량 등의 성능에 대한 요구사항은 비기능 요구사항에 해당하지 않는다." },
+        { "no": 3, "text": "보안 및 접근 통제를 위한 요구사항은 비기능 요구사항에 해당하지 않는다." },
+        { "no": 4, "text": "\"차량 대여 시스템에서 제공하는 모든 화면은 3초 안에 사용자에게 보여야 한다\"는 것은 비기능 요구사항에 해당한다." }
+      ],
+      "answer": 4,
+      "explanation": "비기능 요구사항은 시스템이 무엇을 하는지가 아니라 성능, 보안, 사용성, 품질 등 어떻게 동작해야 하는지를 규정하는 요구사항입니다. 모든 화면이 3초 안에 보여야 한다는 것은 응답 시간(성능)에 대한 제약이므로 비기능 요구사항에 해당합니다. 반면 은행의 조회·입금·출금·이체처럼 시스템이 수행할 기능을 설명한 것은 기능 요구사항이고, 처리 속도·처리량과 보안·접근 통제는 대표적인 비기능 요구사항입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "조회, 입금, 출금, 이체는 시스템이 수행할 기능을 기술한 것이므로 기능 요구사항입니다." },
+        { "no": 2, "correct": false, "why": "처리 속도, 처리 시간, 처리량은 성능에 관한 대표적인 비기능 요구사항입니다." },
+        { "no": 3, "correct": false, "why": "보안과 접근 통제는 비기능 요구사항에 해당하므로 해당하지 않는다는 설명이 틀렸습니다." },
+        { "no": 4, "correct": true, "why": "화면 표시 시간(3초)은 응답 시간이라는 성능 제약이므로 비기능 요구사항이며 정답입니다." }
+      ],
+      "keyPoint": "기능 요구사항과 비기능 요구사항의 구분",
+      "tags": ["요구사항 분석", "비기능 요구사항"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-018",
+      "number": 18,
+      "subjectCode": 1,
+      "stem": "CASE에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "소프트웨어 모듈의 재사용성이 향상된다." },
+        { "no": 2, "text": "자동화된 기법을 통해 소프트웨어 품질이 향상된다." },
+        { "no": 3, "text": "소프트웨어 사용자들이 소프트웨어 사용 방법을 신속히 숙지할 수 있도록 개발된 자동화 패키지이다." },
+        { "no": 4, "text": "소프트웨어 유지보수를 간편하게 수행할 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "CASE는 소프트웨어 개발 공정의 일부 또는 전부를 자동화하여 품질 향상, 생산성 향상, 유지보수 간편화, 모듈 재사용성 향상을 목표로 하는 개발 지원 도구입니다. 소프트웨어 사용자가 사용 방법을 쉽게 익히도록 만든 패키지가 아니라 개발자와 분석가의 작업을 지원하는 자동화 도구이므로 ③의 설명이 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "CASE는 모듈 재사용성을 향상시키므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "자동화된 기법을 통한 품질 향상도 CASE의 효과로 옳은 설명입니다." },
+        { "no": 3, "correct": true, "why": "CASE는 개발자를 지원하는 자동화 도구이지 사용자용 사용법 학습 패키지가 아니므로, 이 보기가 옳지 않은 설명이자 정답입니다." },
+        { "no": 4, "correct": false, "why": "유지보수를 간편하게 수행할 수 있다는 설명도 옳습니다." }
+      ],
+      "keyPoint": "CASE의 목적과 활용 대상",
+      "tags": ["CASE", "개발 자동화"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-019",
+      "number": 19,
+      "subjectCode": 1,
+      "stem": "GoF(Gangs of Four) 디자인 패턴 분류에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "생성 패턴" },
+        { "no": 2, "text": "객체 패턴" },
+        { "no": 3, "text": "행위 패턴" },
+        { "no": 4, "text": "구조 패턴" }
+      ],
+      "answer": 2,
+      "explanation": "GoF 디자인 패턴은 그 목적에 따라 객체 생성에 관련된 생성 패턴, 클래스나 객체의 구성에 관련된 구조 패턴, 객체 간 상호작용에 관련된 행위 패턴의 세 가지로 분류합니다. '객체 패턴'은 GoF의 대분류에 없는 용어이며, 필요에 따라 패턴의 적용 대상에 따라 클래스 패턴과 객체 패턴으로 나누어 설명하기는 하지만 분류의 기준이 되는 대분류는 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "생성 패턴은 객체 생성과 관련된 GoF의 대분류로 해당됩니다." },
+        { "no": 2, "correct": true, "why": "객체 패턴은 GoF의 대분류에 없는 용어이므로 해당하지 않는 이 보기가 정답입니다." },
+        { "no": 3, "correct": false, "why": "행위 패턴은 객체 간 상호작용을 다루는 GoF의 대분류로 해당됩니다." },
+        { "no": 4, "correct": false, "why": "구조 패턴은 클래스나 객체의 구성을 다루는 GoF의 대분류로 해당됩니다." }
+      ],
+      "keyPoint": "GoF 디자인 패턴의 3가지 분류",
+      "tags": ["디자인 패턴", "GoF"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-020",
+      "number": 20,
+      "subjectCode": 1,
+      "stem": "캡슐화된 객체 내부의 자료 구조 또는 함수 이용이 외부에 영향을 받지 않기 위해 부작용을 최소화한 객체지향 개념은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Finding" },
+        { "no": 2, "text": "Inheritance" },
+        { "no": 3, "text": "Information Hiding" },
+        { "no": 4, "text": "Polymorphism" }
+      ],
+      "answer": 3,
+      "explanation": "정보 은닉(Information Hiding)은 캡슐화된 객체 내부의 자료 구조와 함수를 외부에서 직접 접근하지 못하도록 숨기고, 정해진 인터페이스를 통해서만 사용하게 함으로써 외부의 변경이나 잘못된 사용으로 인한 부작용을 최소화하는 객체지향 개념입니다. 상속(Inheritance)은 상위 클래스의 속성과 연산을 하위 클래스가 물려받는 것이고, 다형성(Polymorphism)은 같은 메시지에 대해 객체마다 다른 방법으로 응답하는 성질이므로 정답이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Finding은 객체지향의 기본 개념 용어가 아니며 정보 은닉을 뜻하지 않습니다." },
+        { "no": 2, "correct": false, "why": "상속은 부모 클래스의 속성과 연산을 자식 클래스가 물려받는 것으로, 부작용 최소화와 직접 관련이 없습니다." },
+        { "no": 3, "correct": true, "why": "내부 자료 구조와 함수를 숨겨 외부 영향을 차단하는 정보 은닉이 정답입니다." },
+        { "no": 4, "correct": false, "why": "다형성은 같은 메시지에 여러 형태로 응답하는 성질로, 정보 보호와는 다른 개념입니다." }
+      ],
+      "keyPoint": "정보 은닉(Information Hiding)과 캡슐화",
+      "tags": ["객체지향", "정보 은닉"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2023-2",
+    "year": 2023,
+    "round": 2,
+    "title": "2023년 2회 정보처리기사 필기",
+    "sourcePdf": "2023년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2023-2-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "하나의 애트리뷰트가 가질 수 있는 원자값들의 집합을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "도메인" },
+        { "no": 2, "text": "튜플" },
+        { "no": 3, "text": "엔티티" },
+        { "no": 4, "text": "다형성" }
+      ],
+      "answer": 1,
+      "explanation": "도메인(Domain)은 하나의 애트리뷰트가 가질 수 있는 원자값들의 집합으로, 속성 값의 타입과 허용 범위를 규정합니다. 예를 들어 '학년' 속성의 도메인을 1~4로 정의하면 그 범위에 속하는 값만 저장할 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "애트리뷰트가 가질 수 있는 원자값들의 집합은 도메인의 정의에 해당합니다." },
+        { "no": 2, "correct": false, "why": "튜플은 릴레이션을 구성하는 각각의 행으로, 여러 애트리뷰트 값들의 모임입니다." },
+        { "no": 3, "correct": false, "why": "엔티티는 사람, 사물, 개념처럼 독립적으로 존재하는 객체를 가리키는 개념입니다." },
+        { "no": 4, "correct": false, "why": "다형성은 객체 지향 언어에서 같은 메시지에 대해 객체마다 다르게 동작하는 성질입니다." }
+      ],
+      "keyPoint": "도메인(Domain)의 정의",
+      "tags": ["도메인", "릴레이션", "애트리뷰트"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "데이터베이스에서 릴레이션에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "모든 튜플은 서로 다른 값을 가지고 있다." },
+        { "no": 2, "text": "하나의 릴레이션에서 튜플은 특정한 순서를 가진다." },
+        { "no": 3, "text": "각 속성은 릴레이션 내에서 유일한 이름을 가진다." },
+        { "no": 4, "text": "모든 속성 값은 원자값(Atomic Value)을 가진다." }
+      ],
+      "answer": 2,
+      "explanation": "릴레이션은 튜플들의 집합이므로 튜플 사이에는 순서가 없고, 어떤 순서로 접근하더라도 같은 결과를 얻습니다. 따라서 튜플이 특정한 순서를 가진다는 설명은 릴레이션의 성질에 어긋납니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "한 릴레이션 안에서 동일한 튜플이 중복될 수 없으므로 옳은 설명입니다." },
+        { "no": 2, "correct": true, "why": "튜플은 순서를 가지지 않으므로 순서가 정해져 있다는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "각 속성은 릴레이션 내에서 유일한 이름을 가져야 하므로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "모든 속성 값은 더 이상 분해되지 않는 원자값이어야 하므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "릴레이션의 특성(튜플의 무순서성, 속성 이름의 유일성, 원자값)",
+      "tags": ["릴레이션", "튜플", "원자값"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "DML에 해당하는 것으로만 나열된 것은?",
+      "passage": "㉠ SELECT\n㉡ UPDATE\n㉢ INSERT\n㉣ GRANT",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉠, ㉡, ㉢" },
+        { "no": 2, "text": "㉠, ㉡, ㉣" },
+        { "no": 3, "text": "㉠, ㉢, ㉣" },
+        { "no": 4, "text": "㉠, ㉡, ㉢, ㉣" }
+      ],
+      "answer": 1,
+      "explanation": "DML(Data Manipulation Language)은 데이터를 조회·삽입·수정·삭제하는 언어로 SELECT, INSERT, UPDATE, DELETE가 여기에 속합니다. GRANT는 사용자에게 권한을 부여하는 DCL(Data Control Language)이므로 DML에 포함되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "SELECT, UPDATE, INSERT는 모두 DML이므로 올바르게 나열되었습니다." },
+        { "no": 2, "correct": false, "why": "GRANT는 권한을 부여하는 DCL이므로 DML 조합에 포함될 수 없습니다." },
+        { "no": 3, "correct": false, "why": "GRANT가 DCL이므로 SELECT, INSERT와 함께 DML로 묶을 수 없습니다." },
+        { "no": 4, "correct": false, "why": "GRANT가 DML이 아니므로 네 가지를 모두 DML로 볼 수 없습니다." }
+      ],
+      "keyPoint": "DML(SELECT·INSERT·UPDATE·DELETE)과 DCL(GRANT·REVOKE)의 구분",
+      "tags": ["DML", "GRANT", "SQL"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "다음은 관계 대수의 수학적 표현식이다. 해당되는 연산은?",
+      "passage": "R x S = { r·s | r ∈ R ∧ s ∈ S }\nr = < a1, a2, …, an >, s = < b1, b2, …, bm >",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "합집합" },
+        { "no": 2, "text": "교집합" },
+        { "no": 3, "text": "차집합" },
+        { "no": 4, "text": "카티션 프로덕트" }
+      ],
+      "answer": 4,
+      "explanation": "제시된 식은 두 릴레이션 R과 S의 모든 튜플을 서로 짝지어 결합하는 카티션 프로덕트(Cartesian Product, 교차곱) 연산입니다. 결과 릴레이션의 차수는 두 릴레이션 차수의 합이 되고, 튜플 수(카디널리티)는 두 카디널리티의 곱이 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "합집합은 두 릴레이션의 튜플을 합치고 중복을 제거하는 연산으로 기호는 ∪입니다." },
+        { "no": 2, "correct": false, "why": "교집합은 두 릴레이션에 공통으로 존재하는 튜플만 추출하는 연산으로 기호는 ∩입니다." },
+        { "no": 3, "correct": false, "why": "차집합은 한 릴레이션에는 있고 다른 릴레이션에는 없는 튜플을 추출하는 연산입니다." },
+        { "no": 4, "correct": true, "why": "R의 각 튜플과 S의 각 튜플을 모두 결합하는 연산이므로 카티션 프로덕트가 해당됩니다." }
+      ],
+      "keyPoint": "관계 대수 카티션 프로덕트(교차곱)의 정의",
+      "tags": ["관계 대수", "카티션 프로덕트", "교차곱"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "병렬 데이터베이스 환경 중 수평 분할에서 활용되는 분할 기법이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "라운드-로빈" },
+        { "no": 2, "text": "범위 분할" },
+        { "no": 3, "text": "예측 분할" },
+        { "no": 4, "text": "해시 분할" }
+      ],
+      "answer": 3,
+      "explanation": "수평 분할은 릴레이션의 행(튜플)을 여러 노드에 나누어 저장하는 방법으로, 라운드 로빈, 범위 분할, 해시 분할, 부분집합 분할 등이 사용됩니다. 예측 분할이라는 기법은 수평 분할에 사용되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "라운드 로빈은 튜플을 순서대로 돌아가며 분배하는 대표적인 수평 분할 기법입니다." },
+        { "no": 2, "correct": false, "why": "범위 분할은 특정 속성 값의 범위를 기준으로 튜플을 나누는 수평 분할 기법입니다." },
+        { "no": 3, "correct": true, "why": "예측 분할은 수평 분할 기법으로 사용되지 않으므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "해시 분할은 해시 함수의 결과값을 기준으로 튜플을 분배하는 수평 분할 기법입니다." }
+      ],
+      "keyPoint": "수평 분할 기법(라운드 로빈·범위 분할·해시 분할)",
+      "tags": ["병렬 데이터베이스", "수평 분할", "분할 기법"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "분산 데이터베이스 시스템과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "물리적으로 분산된 데이터베이스 시스템을 논리적으로 하나의 데이터베이스 시스템처럼 사용할 수 있도록 한 것이다." },
+        { "no": 2, "text": "물리적으로 분산되어 지역별로 필요한 데이터를 처리할 수 있는 지역 컴퓨터(Local Computer)를 분산 처리기(Distributed Processor)라고 한다." },
+        { "no": 3, "text": "분산 데이터베이스 시스템을 위한 통신 네트워크 구조가 데이터 통신에 영향을 주므로 효율적으로 설계해야 한다." },
+        { "no": 4, "text": "데이터베이스가 분산되어 있음을 사용자가 인식할 수 있도록 분산 투명성(Distribution Transparency)을 배제해야 한다." }
+      ],
+      "answer": 4,
+      "explanation": "분산 데이터베이스는 위치 투명성, 중복 투명성, 병행 투명성, 장애 투명성 등을 제공하여 사용자가 데이터의 분산 여부를 인식하지 못하게 하는 것을 목표로 합니다. 따라서 분산 투명성을 배제해야 한다는 설명은 목표와 정반대이므로 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "물리적으로 분산된 시스템을 논리적으로 하나처럼 사용하게 하는 것이 분산 데이터베이스이므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "지역 컴퓨터를 분산 처리기라고 부르므로 옳은 설명입니다." },
+        { "no": 3, "correct": false, "why": "통신 네트워크 구조가 데이터 통신에 영향을 주므로 효율적으로 설계해야 한다는 설명은 옳습니다." },
+        { "no": 4, "correct": true, "why": "사용자가 분산을 인식하지 못하게 하는 것이 목표이므로 투명성을 배제한다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "분산 데이터베이스의 목표와 투명성",
+      "tags": ["분산 데이터베이스", "투명성", "분산 처리기"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "스키마의 종류 중 조직이나 기관의 총괄적 입장에서 본 데이터베이스의 전체적인 논리적 구조로서, 모든 응용 프로그램이나 사용자들이 필요로 하는 데이터를 종합한 조직 전체의 데이터베이스 구조를 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "관계 스키마" },
+        { "no": 2, "text": "외부 스키마" },
+        { "no": 3, "text": "내부 스키마" },
+        { "no": 4, "text": "개념 스키마" }
+      ],
+      "answer": 4,
+      "explanation": "개념 스키마는 조직 전체의 관점에서 본 데이터베이스의 전체적인 논리적 구조로, 모든 응용 프로그램과 사용자가 필요로 하는 데이터를 종합하여 정의합니다. 하나의 데이터베이스에 하나만 존재하며 데이터 간의 관계, 제약 조건, 접근 권한 등도 함께 명세합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "관계 스키마는 데이터를 테이블 형태로 표현하는 구조를 가리키는 말로, 스키마의 3단계 분류에 속하지 않습니다." },
+        { "no": 2, "correct": false, "why": "외부 스키마는 사용자나 응용 프로그램 관점에서의 부분적인 논리 구조를 정의합니다." },
+        { "no": 3, "correct": false, "why": "내부 스키마는 데이터가 물리적 저장 장치에 저장되는 방법을 정의합니다." },
+        { "no": 4, "correct": true, "why": "조직 전체 입장에서 본 전체적인 논리적 구조는 개념 스키마에 해당합니다." }
+      ],
+      "keyPoint": "스키마 3단계(외부·개념·내부)의 역할",
+      "tags": ["개념 스키마", "스키마", "데이터베이스 구조"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "학적 테이블에서 전화번호가 Null 값이 아닌 학생명을 모두 검색할 때, SQL 구문으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 DON’T NULL;" },
+        { "no": 2, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 != NOT NULL;" },
+        { "no": 3, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 IS NOT NULL;" },
+        { "no": 4, "text": "SELECT 학생명 FROM 학적 WHERE 전화번호 IS NULL;" }
+      ],
+      "answer": 3,
+      "explanation": "NULL은 값이 아니라 알 수 없는 상태를 의미하므로 =, != 같은 비교 연산자로 판별할 수 없고 IS NULL 또는 IS NOT NULL을 사용해야 합니다. 전화번호가 Null이 아닌 학생을 찾으려면 WHERE 전화번호 IS NOT NULL로 작성해야 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "DON’T NULL은 SQL에 존재하지 않는 문법입니다." },
+        { "no": 2, "correct": false, "why": "NULL 비교에는 != NOT NULL 같은 표현을 사용할 수 없습니다." },
+        { "no": 3, "correct": true, "why": "IS NOT NULL은 속성 값이 Null이 아닌 행을 검색하는 올바른 문법입니다." },
+        { "no": 4, "correct": false, "why": "IS NULL은 전화번호가 Null인 학생을 검색하므로 문제의 조건과 반대입니다." }
+      ],
+      "keyPoint": "NULL 비교 시 IS NULL / IS NOT NULL 사용",
+      "tags": ["NULL", "IS NOT NULL", "SQL"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "다음 중 SQL에서의 DDL 문이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "CREATE" },
+        { "no": 2, "text": "DELETE" },
+        { "no": 3, "text": "ALTER" },
+        { "no": 4, "text": "DROP" }
+      ],
+      "answer": 2,
+      "explanation": "DDL(Data Definition Language)은 CREATE, ALTER, DROP, TRUNCATE처럼 데이터베이스 구조를 정의하거나 변경하는 언어입니다. DELETE는 테이블에 저장된 데이터(행)를 삭제하는 DML이므로 DDL이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "CREATE는 테이블, 뷰, 인덱스 등을 생성하는 DDL 문입니다." },
+        { "no": 2, "correct": true, "why": "DELETE는 데이터를 삭제하는 DML 문이므로 DDL이 아닙니다." },
+        { "no": 3, "correct": false, "why": "ALTER는 기존 객체의 구조를 변경하는 DDL 문입니다." },
+        { "no": 4, "correct": false, "why": "DROP은 객체를 삭제하는 DDL 문입니다." }
+      ],
+      "keyPoint": "DDL(CREATE·ALTER·DROP)과 DML(DELETE)의 구분",
+      "tags": ["DDL", "DELETE", "SQL"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "다음 SQL 문장이 뜻하는 것은 무엇인가?",
+      "passage": "INSERT INTO 컴퓨터과테이블(학번, 이름, 학년)\nSELECT 학번, 이름, 학년\nFROM 학생테이블\nWHERE 학과='컴퓨터'",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "학생테이블에서 학과가 컴퓨터인 사람의 학번, 이름, 학년을 검색하라." },
+        { "no": 2, "text": "학생테이블에 학과가 컴퓨터인 사람의 학번, 이름, 학년을 삽입하라." },
+        { "no": 3, "text": "학생테이블에서 학과가 컴퓨터인 사람의 학번, 이름, 학년을 검색하여 컴퓨터과테이블에 삽입하라." },
+        { "no": 4, "text": "컴퓨터과테이블에서 학과가 컴퓨터인 사람의 학번, 이름, 학년을 검색하여 학생테이블에 삽입하라." }
+      ],
+      "answer": 3,
+      "explanation": "INSERT INTO ~ SELECT 문은 서브 쿼리의 검색 결과를 지정한 테이블에 삽입하는 구문입니다. 즉 학생테이블에서 학과가 '컴퓨터'인 학생의 학번, 이름, 학년을 조회해 컴퓨터과테이블에 입력하라는 의미입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "단순히 검색만 하는 문장이라면 INSERT INTO 절이 필요하지 않습니다." },
+        { "no": 2, "correct": false, "why": "삽입할 값이 학생테이블에서 SELECT로 가져온다는 점과 삽입 대상이 컴퓨터과테이블이라는 점이 빠져 있습니다." },
+        { "no": 3, "correct": true, "why": "학생테이블에서 조건에 맞는 행을 검색해 컴퓨터과테이블에 삽입하는 문장으로 정확합니다." },
+        { "no": 4, "correct": false, "why": "검색 대상과 삽입 대상 테이블이 서로 바뀌어 설명되었습니다." }
+      ],
+      "keyPoint": "INSERT INTO ~ SELECT 구문의 동작",
+      "tags": ["INSERT INTO", "SELECT", "SQL"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "릴레이션 R의 차수(Degree)가 3, 카디널리티(Cardinality)가 3, 릴레이션 S의 차수가 4, 카디널리티가 4일 때, 두 릴레이션을 카티션 프로덕트(Cartesian Product)한 결과 릴레이션의 차수와 카디널리티는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "4, 4" },
+        { "no": 2, "text": "7, 7" },
+        { "no": 3, "text": "7, 12" },
+        { "no": 4, "text": "12, 12" }
+      ],
+      "answer": 3,
+      "explanation": "카티션 프로덕트의 결과 차수는 두 릴레이션 차수의 합(3+4=7)이 되고, 카디널리티는 두 카디널리티의 곱(3×4=12)이 됩니다. 따라서 결과 릴레이션은 차수 7, 카디널리티 12를 가집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "차수는 합, 카디널리티는 곱으로 계산하므로 4, 4가 될 수 없습니다." },
+        { "no": 2, "correct": false, "why": "카디널리티를 곱하지 않고 합으로 잘못 계산한 값입니다." },
+        { "no": 3, "correct": true, "why": "차수 3+4=7, 카디널리티 3×4=12로 계산되므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "차수를 곱으로 잘못 계산한 값입니다." }
+      ],
+      "keyPoint": "카티션 프로덕트 결과의 차수(합)와 카디널리티(곱)",
+      "tags": ["카티션 프로덕트", "차수", "카디널리티"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "다음 표와 같은 판매실적 테이블에서 서울지역에 한하여 판매액 내림차순으로 지점명과 판매액을 출력하고자 한다. 가장 적절한 SQL 구문은?",
+      "passage": "[테이블명 : 판매실적]\n도시 | 지점명 | 판매액\n서울 | 강남 지점 | 330\n서울 | 강북 지점 | 168\n광주 | 광주 지점 | 197\n서울 | 강서 지점 | 158\n서울 | 강동 지점 | 197\n대전 | 대전 지점 | 165",
+      "passageKind": "table",
+      "choices": [
+        { "no": 1, "text": "SELECT 지점명, 판매액 FROM 판매실적 WHERE 도시 = “서울” ORDER BY 판매액 DESC;" },
+        { "no": 2, "text": "SELECT 지점명, 판매액 FROM 판매실적 ORDER BY 판매액 DESC;" },
+        { "no": 3, "text": "SELECT 지점명, 판매액 FROM 판매실적 WHERE 도시 = “서울” ASC;" },
+        { "no": 4, "text": "SELECT * FROM 판매실적 WHEN 도시 = “서울” ORDER BY 판매액 DESC;" }
+      ],
+      "answer": 1,
+      "explanation": "서울 지역이라는 조건으로 행을 골라낼 때는 WHERE 절에 도시 = '서울'을 지정하고, 정렬 기준은 ORDER BY 절에 작성합니다. 판매액이 큰 값부터 나오도록 내림차순을 지정하려면 ORDER BY 판매액 DESC를 사용해야 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "WHERE로 서울 지역만 걸러내고 ORDER BY 판매액 DESC로 내림차순 정렬했으므로 요구 조건을 모두 만족합니다." },
+        { "no": 2, "correct": false, "why": "WHERE 절이 없어 서울 이외 지역의 지점까지 모두 출력됩니다." },
+        { "no": 3, "correct": false, "why": "ASC는 오름차순 정렬이고 ORDER BY 절 없이 ASC만 단독으로 사용할 수도 없습니다." },
+        { "no": 4, "correct": false, "why": "SELECT *는 지점명과 판매액만 출력한다는 조건에 어긋나고, 조건 지정에는 WHEN이 아니라 WHERE를 사용해야 합니다." }
+      ],
+      "keyPoint": "WHERE 조건 검색과 ORDER BY DESC 내림차순 정렬",
+      "tags": ["WHERE", "ORDER BY", "정렬"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "트랜잭션들을 수행하는 도중 장애로 인해 손상된 데이터베이스를 손상되기 이전의 정상적인 상태로 복구시키는 작업은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Recovery" },
+        { "no": 2, "text": "Restart" },
+        { "no": 3, "text": "Commit" },
+        { "no": 4, "text": "Abort" }
+      ],
+      "answer": 1,
+      "explanation": "Recovery(회복)는 트랜잭션 수행 중 발생한 장애로 손상된 데이터베이스를 장애 이전의 일관된 상태로 되돌리는 작업입니다. 로그를 이용한 회복 기법과 검사점(Checkpoint) 기법, 그림자 페이지 기법 등이 사용됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "장애 이전의 정상 상태로 데이터베이스를 복구하는 작업은 Recovery입니다." },
+        { "no": 2, "correct": false, "why": "Restart는 시스템을 다시 기동하는 것으로 데이터베이스 회복 작업 자체를 뜻하지는 않습니다." },
+        { "no": 3, "correct": false, "why": "Commit은 트랜잭션의 수행 결과를 데이터베이스에 정상적으로 반영하는 연산입니다." },
+        { "no": 4, "correct": false, "why": "Abort는 트랜잭션을 취소하고 수행 이전 상태로 되돌리는 연산입니다." }
+      ],
+      "keyPoint": "트랜잭션 장애 후 데이터베이스 회복(Recovery)",
+      "tags": ["Recovery", "트랜잭션", "회복"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "다음 조건을 모두 만족하는 정규형은?",
+      "passage": "ㆍ테이블 R에 속한 모든 도메인이 원자값만으로 구성되어 있다.\nㆍ테이블 R에서 키가 아닌 모든 필드가 키에 대해 함수적으로 종속되며, 키의 부분집합이 결정자가 되는 부분 종속이 존재하지 않는다.\nㆍ테이블 R에 존재하는 모든 함수적 종속에서 결정자가 후보키이다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "BCNF" },
+        { "no": 2, "text": "제1정규형" },
+        { "no": 3, "text": "제2정규형" },
+        { "no": 4, "text": "제3정규형" }
+      ],
+      "answer": 1,
+      "explanation": "모든 함수적 종속에서 결정자가 후보키가 되도록 만든 정규형이 BCNF(Boyce-Codd Normal Form)입니다. 원자값 조건(1NF), 부분 함수 종속 제거(2NF), 이행 함수 종속 제거(3NF)를 모두 만족하면서 결정자 조건까지 만족해야 하므로 BCNF가 해당됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "1NF, 2NF, 3NF를 모두 만족하면서 모든 결정자가 후보키인 정규형은 BCNF입니다." },
+        { "no": 2, "correct": false, "why": "제1정규형은 모든 도메인이 원자값이기만 하면 만족하는 단계입니다." },
+        { "no": 3, "correct": false, "why": "제2정규형은 부분 함수 종속을 제거한 단계로, 결정자가 후보키라는 조건까지 요구하지는 않습니다." },
+        { "no": 4, "correct": false, "why": "제3정규형은 이행 함수 종속을 제거한 단계로, 결정자가 후보키가 아닌 종속이 남을 수 있습니다." }
+      ],
+      "keyPoint": "BCNF의 정의(모든 결정자가 후보키)",
+      "tags": ["BCNF", "정규형", "함수 종속"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "관계 데이터베이스의 정규화에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "정규화를 거치지 않으면 여러 가지 상이한 종류의 정보를 하나의 릴레이션으로 표현하여 그 릴레이션을 조작할 때 이상(Anomaly) 현상이 발생할 수 있다." },
+        { "no": 2, "text": "정규화의 목적은 각 릴레이션에 분산된 종속성을 하나의 릴레이션에 통합하는 것이다." },
+        { "no": 3, "text": "이상(Anomaly) 현상은 데이터들 간에 존재하는 함수 종속이 하나의 원인이 될 수 있다." },
+        { "no": 4, "text": "정규화가 잘못되면 데이터의 불필요한 중복이 야기되어 릴레이션을 조작할 때 문제가 발생할 수 있다." }
+      ],
+      "answer": 2,
+      "explanation": "정규화는 하나의 릴레이션에 모여 있는 종속성을 여러 릴레이션으로 분해하여 이상(Anomaly) 현상을 제거하는 과정입니다. 따라서 분산된 종속성을 하나의 릴레이션으로 통합한다는 설명은 정규화의 목적과 정반대이므로 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "정규화를 하지 않으면 이상 현상이 발생할 수 있으므로 옳은 설명입니다." },
+        { "no": 2, "correct": true, "why": "정규화는 종속성을 분해하는 과정이므로 종속성을 하나로 통합한다는 설명은 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "함수 종속이 이상 현상의 원인이 될 수 있으므로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "정규화가 제대로 되지 않으면 데이터 중복으로 조작 시 문제가 발생할 수 있으므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "정규화의 목적(종속성 분해와 이상 현상 제거)",
+      "tags": ["정규화", "이상 현상", "함수 종속"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "분산 데이터베이스의 투명성(Transparency)에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Location Transparency" },
+        { "no": 2, "text": "Replication Transparency" },
+        { "no": 3, "text": "Failure Transparency" },
+        { "no": 4, "text": "Media Access Transparency" }
+      ],
+      "answer": 4,
+      "explanation": "분산 데이터베이스의 투명성에는 위치 투명성, 중복 투명성, 병행 투명성, 장애 투명성이 있습니다. Media Access Transparency는 이 네 가지 투명성에 포함되지 않는 용어입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Location Transparency(위치 투명성)는 데이터의 저장 위치를 몰라도 접근할 수 있게 하는 성질입니다." },
+        { "no": 2, "correct": false, "why": "Replication Transparency(중복 투명성)는 데이터가 여러 곳에 복제되어도 사용자가 알 필요가 없게 하는 성질입니다." },
+        { "no": 3, "correct": false, "why": "Failure Transparency(장애 투명성)는 장애가 발생해도 정상 처리되는 것처럼 보이게 하는 성질입니다." },
+        { "no": 4, "correct": true, "why": "Media Access Transparency는 분산 데이터베이스의 투명성 종류에 포함되지 않습니다." }
+      ],
+      "keyPoint": "분산 데이터베이스의 4대 투명성(위치·중복·병행·장애)",
+      "tags": ["투명성", "분산 데이터베이스", "장애 투명성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "다음 질의에 대한 SQL 문은?",
+      "passage": "프로젝트번호(PNO) 1, 2, 3에서 일하는 사원의 주민등록번호(JUNO)를 검색하라.\n(단, 사원 테이블(WORKS)은 프로젝트번호(PNO), 주민등록번호(JUNO) 필드로 구성된다.)",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "SELECT WORKS FROM JUNO WHERE PNO IN 1, 2, 3;" },
+        { "no": 2, "text": "SELECT WORKS FROM JUNO WHERE PNO ON 1, 2, 3;" },
+        { "no": 3, "text": "SELECT JUNO FROM WORKS WHERE PNO IN(1, 2, 3);" },
+        { "no": 4, "text": "SELECT JUNO FROM WORKS WHERE PNO ON(1, 2, 3);" }
+      ],
+      "answer": 3,
+      "explanation": "검색할 속성은 JUNO이고 대상 테이블은 WORKS이므로 SELECT JUNO FROM WORKS로 작성합니다. 여러 값 중 하나와 일치하는 행을 찾을 때는 IN 연산자를 사용하므로 WHERE PNO IN(1, 2, 3)이 옳은 표현입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SELECT 절에는 검색할 속성인 JUNO가, FROM 절에는 테이블인 WORKS가 와야 하는데 서로 바뀌었습니다." },
+        { "no": 2, "correct": false, "why": "테이블과 속성이 바뀌었고, 여러 값 중 하나를 비교할 때는 ON이 아니라 IN을 사용합니다." },
+        { "no": 3, "correct": true, "why": "속성과 테이블이 올바르고 PNO가 1, 2, 3 중 하나인 행을 찾는 IN 연산자도 정확합니다." },
+        { "no": 4, "correct": false, "why": "테이블과 속성은 맞지만 여러 값 비교에 ON 연산자를 사용할 수 없습니다." }
+      ],
+      "keyPoint": "IN 연산자를 이용한 다중 값 조건 검색",
+      "tags": ["IN", "SELECT", "SQL"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "다음 두 릴레이션에서 외래키로 사용된 것은? (단, 밑줄 친 속성은 기본키이다.)",
+      "passage": "과목(과목번호, 과목명)\n수강(수강번호, 학번, 과목번호, 학기)",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "수강번호" },
+        { "no": 2, "text": "과목번호" },
+        { "no": 3, "text": "학번" },
+        { "no": 4, "text": "과목명" }
+      ],
+      "answer": 2,
+      "explanation": "외래키는 다른 릴레이션의 기본키를 참조하는 속성입니다. 과목 릴레이션의 기본키인 과목번호가 수강 릴레이션에 포함되어 과목 릴레이션을 참조하므로 외래키로 사용됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "수강번호는 수강 릴레이션의 기본키이며 다른 릴레이션을 참조하지 않습니다." },
+        { "no": 2, "correct": true, "why": "과목번호는 과목 릴레이션의 기본키이면서 수강 릴레이션에 포함되어 외래키 역할을 합니다." },
+        { "no": 3, "correct": false, "why": "학번은 수강 릴레이션의 일반 속성이고, 이를 기본키로 하는 릴레이션이 제시되어 있지 않습니다." },
+        { "no": 4, "correct": false, "why": "과목명은 과목 릴레이션의 일반 속성이며 수강 릴레이션에는 존재하지도 않습니다." }
+      ],
+      "keyPoint": "외래키(다른 릴레이션의 기본키를 참조하는 속성)",
+      "tags": ["외래키", "기본키", "릴레이션"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "데이터베이스에서 병행제어의 목적으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "시스템 활용도 최대화" },
+        { "no": 2, "text": "사용자에 대한 응답시간 최소화" },
+        { "no": 3, "text": "데이터베이스 공유 최소화" },
+        { "no": 4, "text": "데이터베이스 일관성 유지" }
+      ],
+      "answer": 3,
+      "explanation": "병행제어(Concurrency Control)는 여러 트랜잭션이 동시에 수행될 때 데이터베이스의 일관성을 유지하면서 시스템 활용도를 최대화하고 사용자 응답 시간을 최소화하는 것을 목적으로 합니다. 데이터베이스 공유를 최소화하는 것은 병행제어의 목적이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "시스템 활용도를 최대화하는 것은 병행제어의 목적입니다." },
+        { "no": 2, "correct": false, "why": "사용자에 대한 응답 시간을 최소화하는 것도 병행제어의 목적입니다." },
+        { "no": 3, "correct": true, "why": "데이터베이스 공유 최소화는 병행제어가 추구하는 목적이 아니므로 틀린 설명입니다." },
+        { "no": 4, "correct": false, "why": "데이터베이스 일관성 유지는 병행제어의 핵심 목적입니다." }
+      ],
+      "keyPoint": "병행제어의 목적(일관성 유지, 활용도 향상, 응답시간 단축)",
+      "tags": ["병행제어", "일관성", "트랜잭션"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "객체 지향 기법에서 하나 이상의 유사한 객체들을 묶어서 하나의 공통된 특성을 표현한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "메시지" },
+        { "no": 2, "text": "클래스" },
+        { "no": 3, "text": "추상화" },
+        { "no": 4, "text": "메소드" }
+      ],
+      "answer": 2,
+      "explanation": "클래스는 속성과 연산이 유사한 객체들을 하나로 묶어 공통된 특성을 정의한 것입니다. 클래스라는 틀에 의해 만들어진 실제 객체를 인스턴스라고 하며, 같은 클래스의 인스턴스들은 동일한 속성과 연산을 가집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "메시지는 객체들 사이에 상호 작용을 위해 주고받는 요청입니다." },
+        { "no": 2, "correct": true, "why": "유사한 객체들을 묶어 공통된 특성을 표현한 것은 클래스입니다." },
+        { "no": 3, "correct": false, "why": "추상화는 공통된 속성과 연산을 뽑아내는 개념으로, 묶인 결과 자체를 가리키지는 않습니다." },
+        { "no": 4, "correct": false, "why": "메소드는 클래스에 정의된 연산(함수)을 의미합니다." }
+      ],
+      "keyPoint": "클래스와 객체(인스턴스)의 관계",
+      "tags": ["클래스", "객체 지향", "인스턴스"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

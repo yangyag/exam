@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2023-3",
+    "year": 2023,
+    "round": 3,
+    "title": "2023년 3회 정보처리기사 필기",
+    "sourcePdf": "2023년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2023-3-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "TCP/IP 기반 네트워크에서 동작하는 발행-구독 기반의 메시징 프로토콜로 최근 IoT 환경에서 자주 사용되고 있는 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "MLFQ" },
+        { "no": 2, "text": "MQTT" },
+        { "no": 3, "text": "Zigbee" },
+        { "no": 4, "text": "MTSP" }
+      ],
+      "answer": 2,
+      "explanation": "MQTT는 TCP/IP 기반에서 동작하는 발행-구독(Publish-Subscribe) 방식의 경량 메시징 프로토콜로, 브로커를 통해 다수의 IoT 기기가 적은 대역폭과 전력으로 메시지를 주고받을 수 있게 해 줍니다. MLFQ는 준비 큐를 여러 단계로 나누어 우선순위를 조정하는 CPU 스케줄링 기법이고, Zigbee는 저전력 근거리 무선 통신 규격(IEEE 802.15.4)이며, MTSP는 메시징 프로토콜이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "MLFQ는 다단계 피드백 큐 스케줄링 기법으로, 네트워크 메시징 프로토콜이 아닙니다." },
+        { "no": 2, "correct": true, "why": "MQTT는 발행-구독 구조와 브로커를 사용해 IoT 환경에서 널리 쓰이는 TCP/IP 기반 경량 메시징 프로토콜입니다." },
+        { "no": 3, "correct": false, "why": "Zigbee는 저속·저전력 근거리 무선 통신 규격으로, 발행-구독 메시징 프로토콜을 지칭하지 않습니다." },
+        { "no": 4, "correct": false, "why": "MTSP는 메시징 프로토콜이 아니며, IoT 통신 규격으로 사용되지 않습니다." }
+      ],
+      "keyPoint": "MQTT : 발행-구독 구조의 경량 IoT 메시징 프로토콜",
+      "tags": ["MQTT", "IoT", "메시징 프로토콜"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "COCOMO Model 중 기관 내부에서 개발된 중소규모의 소프트웨어로 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용으로 5만 라인 이하의 소프트웨어를 개발하는 유형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Embeded" },
+        { "no": 2, "text": "Organic" },
+        { "no": 3, "text": "Semi-Detached" },
+        { "no": 4, "text": "Semi-Embeded" }
+      ],
+      "answer": 2,
+      "explanation": "COCOMO 모델은 소프트웨어의 규모와 개발 환경에 따라 Organic, Semi-Detached, Embedded 세 가지 유형으로 나눕니다. 이 중 Organic은 기관 내부에서 개발된 5만 라인 이하의 중소규모 소프트웨어로, 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용에 해당합니다. Semi-Detached는 30만 라인 이하의 중간 규모, Embedded는 개발 제약이 큰 30만 라인 이상의 대규모 프로젝트 유형입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Embedded(원문 표기는 Embeded)는 개발 제약이 큰 대규모 프로젝트 유형으로, 5만 라인 이하 중소규모 설명과 맞지 않습니다." },
+        { "no": 2, "correct": true, "why": "Organic 유형이 기관 내부에서 개발하는 5만 라인 이하의 중소규모 소프트웨어를 가리킵니다." },
+        { "no": 3, "correct": false, "why": "Semi-Detached는 30만 라인 이하의 중간 규모 프로젝트 유형입니다." },
+        { "no": 4, "correct": false, "why": "Semi-Embeded는 COCOMO의 분류에 없는 표기이며, Embedded 유형도 대규모 프로젝트에 해당합니다." }
+      ],
+      "keyPoint": "COCOMO 유형 구분 : Organic(5만 라인 이하) · Semi-Detached · Embedded",
+      "tags": ["COCOMO", "Organic", "비용 산정"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "IP 또는 ICMP의 특성을 악용하여 특정 사이트에 집중적으로 데이터를 보내 네트워크 또는 시스템의 상태를 불능으로 만드는 공격 방법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "TearDrop" },
+        { "no": 2, "text": "Smishing" },
+        { "no": 3, "text": "Qshing" },
+        { "no": 4, "text": "Smurfing" }
+      ],
+      "answer": 4,
+      "explanation": "Smurfing은 IP와 ICMP의 특성을 악용해 출발지 주소를 공격 대상으로 위조한 ICMP Echo Request를 브로드캐스트로 대량 전송하고, 이에 응답하는 다수 호스트의 트래픽이 대상 시스템으로 몰리게 하여 네트워크를 마비시키는 서비스 거부 공격입니다. TearDrop은 IP 단편화의 오프셋을 조작해 재조립 과정에서 오류를 일으키는 공격이고, Smishing은 문자메시지, Qshing은 QR코드를 이용한 피싱 수법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "TearDrop은 IP 패킷의 단편화 오프셋을 조작해 재조립 오류를 유발하는 공격입니다." },
+        { "no": 2, "correct": false, "why": "Smishing은 문자메시지로 악성 링크나 앱 설치를 유도하는 피싱 공격입니다." },
+        { "no": 3, "correct": false, "why": "Qshing은 QR코드를 매개로 개인정보를 탈취하는 피싱 공격입니다." },
+        { "no": 4, "correct": true, "why": "Smurfing은 ICMP를 악용해 대량 트래픽을 집중시켜 네트워크를 불능 상태로 만드는 공격입니다." }
+      ],
+      "keyPoint": "Smurfing : ICMP 브로드캐스트를 악용한 트래픽 집중 공격",
+      "tags": ["Smurfing", "ICMP", "서비스 거부 공격"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "기능 점수(Functional Point) 모형에서 비용 산정에 이용되는 요소가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "클래스 인터페이스" },
+        { "no": 2, "text": "명령어(사용자 질의수)" },
+        { "no": 3, "text": "데이터 파일" },
+        { "no": 4, "text": "출력 보고서" }
+      ],
+      "answer": 1,
+      "explanation": "기능 점수 모형은 소프트웨어의 기능을 데이터와 트랜잭션 관점에서 계수화하여 비용을 산정하는 기법으로, 자료 입력, 자료 출력(출력 보고서), 명령어(사용자 질의수), 데이터 파일, 인터페이스 수 등을 산정 요소로 사용합니다. 클래스 인터페이스는 객체지향 설계에서 쓰이는 개념으로 기능 점수 산정 요소가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "클래스 인터페이스는 객체지향 개념이며, 기능 점수 모형의 산정 요소가 아닙니다." },
+        { "no": 2, "correct": false, "why": "명령어(사용자 질의수)는 기능 점수 산정의 트랜잭션 요소 중 하나입니다." },
+        { "no": 3, "correct": false, "why": "데이터 파일은 기능 점수 산정에서 데이터 요소로 사용됩니다." },
+        { "no": 4, "correct": false, "why": "출력 보고서는 자료 출력에 해당하는 기능 점수 산정 요소입니다." }
+      ],
+      "keyPoint": "기능 점수(FP) 산정 요소 : 입력·출력·명령어·데이터 파일·인터페이스 수",
+      "tags": ["기능 점수", "FP", "비용 산정"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 스토리지 시스템은?",
+      "passage": "ㆍ하드디스크와 같은 데이터 저장장치를 호스트버스 어댑터에 직접 연결하는 방식\nㆍ저장장치와 호스트 기기 사이에 네트워크 디바이스가 있지 말아야 하고 직접 연결하는 방식으로 구성",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "DAS" },
+        { "no": 2, "text": "NAS" },
+        { "no": 3, "text": "N-SCREEN" },
+        { "no": 4, "text": "NFC" }
+      ],
+      "answer": 1,
+      "explanation": "DAS(Direct Attached Storage)는 하드디스크 같은 저장장치를 호스트버스 어댑터에 직접 연결해 사용하는 방식으로, 저장장치와 호스트 기기 사이에 별도의 네트워크 디바이스가 개입하지 않습니다. NAS는 이더넷 같은 네트워크에 연결해 파일 단위로 데이터를 공유하는 저장장치이고, N-SCREEN은 여러 기기에서 동일한 콘텐츠를 이어 보는 서비스, NFC는 10cm 이내 근접 무선통신 기술입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "DAS는 저장장치를 호스트버스 어댑터에 직접 연결하며 네트워크 디바이스가 개입하지 않는 방식입니다." },
+        { "no": 2, "correct": false, "why": "NAS는 네트워크에 연결해 파일 단위로 저장 공간을 공유하는 방식이므로 직접 연결 설명과 다릅니다." },
+        { "no": 3, "correct": false, "why": "N-SCREEN은 하나의 콘텐츠를 여러 화면에서 연속 재생하는 서비스로 스토리지 방식이 아닙니다." },
+        { "no": 4, "correct": false, "why": "NFC는 근접 무선통신 기술로 데이터 저장장치 연결 방식과 무관합니다." }
+      ],
+      "keyPoint": "DAS : 저장장치를 호스트에 직접 연결하는 스토리지 방식",
+      "tags": ["DAS", "스토리지", "직접 연결"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "다음 암호 알고리즘 중 성격이 다른 하나는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "MD4" },
+        { "no": 2, "text": "MD5" },
+        { "no": 3, "text": "SHA-1" },
+        { "no": 4, "text": "AES" }
+      ],
+      "answer": 4,
+      "explanation": "MD4, MD5, SHA-1은 임의 길이의 메시지를 고정 길이의 압축 값으로 바꾸는 단방향 해시 함수로, 복호화가 불가능하고 무결성 확인·전자서명 등에 사용됩니다. AES는 키를 가진 대칭키 블록 암호로 암호화와 복호화가 모두 가능하므로, 나머지 셋과 성격이 다릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "MD4는 단방향 해시 함수로, MD5·SHA-1과 같은 계열입니다." },
+        { "no": 2, "correct": false, "why": "MD5는 단방향 해시 함수로, MD4를 보완한 알고리즘입니다." },
+        { "no": 3, "correct": false, "why": "SHA-1은 미국 NSA가 설계한 단방향 해시 함수입니다." },
+        { "no": 4, "correct": true, "why": "AES는 대칭키 블록 암호로, 해시 함수인 나머지 보기와 성격이 다릅니다." }
+      ],
+      "keyPoint": "해시 함수(MD4·MD5·SHA-1)와 대칭키 암호(AES)의 구분",
+      "tags": ["해시 함수", "AES", "대칭키 암호"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 접근 제어 모델은?",
+      "passage": "ㆍ군대의 보안 레벨처럼 정보의 기밀성에 따라 상하 관계가 구분된 정보를 보호하기 위해 사용\nㆍ자신의 권한보다 낮은 보안 레벨 권한을 가진 경우에는 높은 보안 레벨의 문서를 읽을 수 없고 자신의 권한보다 낮은 수준의 문서만 읽을 수 있다.\nㆍ자신의 권한보다 높은 보안 레벨의 문서에는 쓰기가 가능하지만 보안 레벨이 낮은 문서의 쓰기 권한은 제한한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Clark-Wilson Integrity Model" },
+        { "no": 2, "text": "PDCA Model" },
+        { "no": 3, "text": "Bell-Lapadula Model" },
+        { "no": 4, "text": "Chinese Wall Model" }
+      ],
+      "answer": 3,
+      "explanation": "Bell-LaPadula 모델은 군대의 보안 등급처럼 정보의 기밀성에 따라 보안 레벨을 상하로 나누고, 낮은 레벨의 주체는 높은 레벨의 문서를 읽을 수 없으며(No Read Up) 높은 레벨의 주체는 낮은 레벨의 문서에 쓸 수 없도록(No Write Down) 통제하는 기밀성 중심 접근 제어 모델입니다. Clark-Wilson은 데이터의 무결성 보장에 초점을 둔 모델이고, Chinese Wall은 이해 충돌 방지를 목적으로 하며, PDCA는 접근 제어 모델이 아니라 관리 사이클입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Clark-Wilson 모델은 상업용 환경에서 데이터 무결성 보장을 목표로 하는 접근 제어 모델입니다." },
+        { "no": 2, "correct": false, "why": "PDCA는 계획-실행-점검-개선의 관리 사이클로, 접근 제어 모델이 아닙니다." },
+        { "no": 3, "correct": true, "why": "Bell-LaPadula 모델은 보안 레벨에 따른 기밀성 통제(No Read Up, No Write Down)를 규정합니다." },
+        { "no": 4, "correct": false, "why": "Chinese Wall 모델은 이해 충돌이 있는 정보 접근을 차단하는 상업적 접근 통제 모델입니다." }
+      ],
+      "keyPoint": "Bell-LaPadula : 기밀성 중심의 강제적 접근 통제(No Read Up, No Write Down)",
+      "tags": ["접근 제어", "Bell-LaPadula", "기밀성"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "SQL Injection 공격과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SQL Injection은 임의로 작성한 SQL 구문을 애플리케이션에 삽입하는 공격 방식이다." },
+        { "no": 2, "text": "SQL Injection 취약점이 발생하는 곳은 주로 웹 애플리케이션과 데이터베이스가 연동되는 부분이다." },
+        { "no": 3, "text": "DBMS의 종류와 관계없이 SQL Injection 공격 기법은 모두 동일하다." },
+        { "no": 4, "text": "로그인과 같이 웹에서 사용자의 입력 값을 받아 데이터베이스 SQL 문으로 데이터를 요청하는 경우 SQL Injection을 수행할 수 있다." }
+      ],
+      "answer": 3,
+      "explanation": "SQL Injection은 입력 값 검증이 없는 애플리케이션에 악의적으로 작성한 SQL 구문을 삽입해 데이터베이스를 비정상적으로 조작하는 공격으로, 주로 웹 애플리케이션과 데이터베이스가 연동되는 부분과 로그인처럼 사용자 입력을 SQL 문으로 처리하는 곳에서 발생합니다. 다만 DBMS마다 SQL 문법과 함수, 오류 메시지가 달라 공격 문자열과 기법도 달라지므로, 종류와 무관하게 기법이 모두 동일하다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SQL Injection은 임의로 작성한 SQL 구문을 애플리케이션에 삽입하는 공격으로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "취약점은 주로 웹 애플리케이션과 데이터베이스가 연동되는 부분에서 발생하므로 맞는 설명입니다." },
+        { "no": 3, "correct": true, "why": "DBMS별 SQL 문법과 함수가 달라 공격 기법도 달라지므로, 종류와 관계없이 동일하다는 설명은 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "로그인처럼 입력 값을 SQL 문으로 처리하는 경우에도 SQL Injection이 가능하므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "SQL Injection : 웹 입력값을 통한 SQL 구문 삽입, DBMS마다 기법이 다름",
+      "tags": ["SQL Injection", "입력값 검증", "웹 보안"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "다음 설명에 해당하는 시스템은?",
+      "passage": "ㆍ1990년대 David Clock이 처음 제안하였다.\nㆍ비정상적인 접근의 탐지를 위해 의도적으로 설치해 둔 시스템이다.\nㆍ침입자를 속여 실제 공격당하는 것처럼 보여줌으로써 크래커를 추적 및 공격 기법의 정보를 수집하는 역할을 한다.\nㆍ쉽게 공격자에게 노출되어야 하며 쉽게 공격이 가능한 것처럼 취약해 보여야 한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Apache" },
+        { "no": 2, "text": "Hadoop" },
+        { "no": 3, "text": "Honeypot" },
+        { "no": 4, "text": "MapReduce" }
+      ],
+      "answer": 3,
+      "explanation": "Honeypot은 비정상적인 접근을 탐지하기 위해 의도적으로 취약하게 만들어 놓은 유인 시스템으로, David Clark이 1990년대 처음 제안했습니다. 공격자를 속여 실제로 공격당하는 것처럼 보이게 함으로써 크래커를 추적하고 공격 기법 정보를 수집하므로, 쉽게 노출되고 취약해 보이도록 구성합니다. Apache는 웹 서버, Hadoop은 분산 컴퓨팅 플랫폼, MapReduce는 분산 처리 프로그래밍 모델입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Apache는 대표적인 웹 서버 소프트웨어로, 유인 시스템과 무관합니다." },
+        { "no": 2, "correct": false, "why": "Hadoop은 대용량 데이터를 분산 저장·처리하는 오픈 소스 플랫폼입니다." },
+        { "no": 3, "correct": true, "why": "Honeypot은 침입자를 유인해 추적하고 공격 정보를 수집하도록 의도적으로 설치한 취약한 시스템입니다." },
+        { "no": 4, "correct": false, "why": "MapReduce는 대용량 데이터를 분산 처리하기 위한 프로그래밍 모델입니다." }
+      ],
+      "keyPoint": "Honeypot : 침입자를 유인해 공격 정보를 수집하는 의도적 취약 시스템",
+      "tags": ["Honeypot", "침입 탐지", "보안 시스템"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "다음 설명에 해당하는 공격 기법은?",
+      "passage": "시스템 공격 기법 중 하나로 허용 범위 이상의 ICMP 패킷을 전송하여 대상 시스템의 네트워크를 마비시킨다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Ping of Death" },
+        { "no": 2, "text": "Session Hijacking" },
+        { "no": 3, "text": "Piggyback Attack" },
+        { "no": 4, "text": "XSS" }
+      ],
+      "answer": 1,
+      "explanation": "Ping of Death는 허용 범위를 넘는 크기의 ICMP 패킷을 전송해, 대상 시스템이 조각을 재조립하는 과정에서 버퍼 오버플로가 발생하거나 네트워크가 마비되도록 만드는 공격입니다. Session Hijacking은 정상적인 세션 정보를 가로채 인증을 우회하는 공격, Piggyback Attack은 다른 사용자의 연결에 편승해 접근 권한을 얻는 공격, XSS는 웹 페이지에 악성 스크립트를 삽입해 사용자 브라우저에서 실행되게 하는 공격입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Ping of Death는 허용 범위 이상의 ICMP 패킷으로 대상 시스템을 마비시키는 공격입니다." },
+        { "no": 2, "correct": false, "why": "Session Hijacking은 세션 ID를 탈취해 정상 사용자인 것처럼 접속하는 공격입니다." },
+        { "no": 3, "correct": false, "why": "Piggyback Attack은 다른 사용자의 연결에 편승해 접근하는 공격입니다." },
+        { "no": 4, "correct": false, "why": "XSS는 웹 페이지에 악성 스크립트를 삽입해 사용자 측에서 실행되게 하는 공격입니다." }
+      ],
+      "keyPoint": "Ping of Death : 허용 범위를 초과한 ICMP 패킷을 이용한 서비스 거부 공격",
+      "tags": ["Ping of Death", "ICMP", "네트워크 공격"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "네트워크 장비에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "브라우터는 전송되는 신호가 전송 선로의 특성 및 외부 충격 등의 요인으로 인해 원래의 형태와 다르게 왜곡되거나 약해질 경우 원래의 신호 형태로 재생하여 다시 전송하는 역할을 수행한다." },
+        { "no": 2, "text": "브리지는 LAN과 LAN을 연결하거나 LAN 안에서의 컴퓨터 그룹을 연결하는 기능을 수행하며, 데이터 링크 계층 중 MAC 계층에서 사용된다." },
+        { "no": 3, "text": "스위치는 LAN과 LAN을 연결하여 훨씬 더 큰 LAN을 만드는 장치로, OSI 7계층의 2계층에서 사용된다." },
+        { "no": 4, "text": "라우터는 LAN과 LAN의 연결 기능에 데이터 전송의 최적 경로를 선택할 수 있는 기능이 추가된 것으로, 서로 다른 LAN이나 LAN과 WAN의 연결도 수행하고, OSI 7계층의 네트워크 계층에서 동작한다." }
+      ],
+      "answer": 1,
+      "explanation": "전송 선로의 특성이나 외부 충격으로 왜곡·약화된 신호를 원래 형태로 재생해 다시 전송하는 장비는 리피터(Repeater)입니다. 브라우터(Brouter)는 브리지와 라우터의 기능을 결합한 장비로, 신호 재생 기능을 설명한 ①은 브라우터가 아니라 리피터에 대한 설명이므로 틀렸습니다. 브리지는 데이터 링크 계층의 MAC 계층에서, 스위치는 2계층에서, 라우터는 최적 경로 선택 기능을 가진 3계층 네트워크 계층 장비입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "신호를 재생해 다시 전송하는 장비는 리피터이므로, 이를 브라우터의 기능이라고 한 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "브리지는 LAN과 LAN 또는 컴퓨터 그룹을 연결하고 데이터 링크 계층의 MAC 계층에서 사용되므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "스위치는 LAN과 LAN을 연결해 더 큰 LAN을 구성하며 OSI 7계층의 2계층에서 사용되므로 맞는 설명입니다." },
+        { "no": 4, "correct": false, "why": "라우터는 최적 경로 선택 기능으로 LAN과 WAN을 연결하며 네트워크 계층에서 동작하므로 맞는 설명입니다." }
+      ],
+      "keyPoint": "리피터·브리지·스위치·라우터의 기능과 동작 계층 구분",
+      "tags": ["네트워크 장비", "리피터", "라우터"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 것은?",
+      "passage": "ㆍ개인과 기업, 국가적으로 큰 위협이 되고 있는 주요 사이버 범죄 중 하나로, Snake, Darkside 등 시스템을 잠그거나 데이터를 암호화해 사용할 수 없도록 하고 이를 인질로 금전을 요구하는 데 사용되는 악성 프로그램이다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Format String" },
+        { "no": 2, "text": "Ransomware" },
+        { "no": 3, "text": "Buffer overflow" },
+        { "no": 4, "text": "Adware" }
+      ],
+      "answer": 2,
+      "explanation": "랜섬웨어(Ransomware)는 시스템을 잠그거나 저장된 데이터를 암호화해 사용할 수 없게 만든 뒤, 이를 인질로 삼아 복구 대가로 금전을 요구하는 악성 프로그램입니다. Snake, Darkside 등이 대표적인 사례로 기업과 국가 기반 시설을 대상으로 한 공격에 사용되었습니다. Format String과 Buffer overflow는 소프트웨어 취약점을 이용한 공격 기법이고, Adware는 사용자에게 광고를 표시하는 프로그램입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Format String은 포맷 문자열을 악용해 메모리를 훼손하는 취약점 공격입니다." },
+        { "no": 2, "correct": true, "why": "시스템과 데이터를 인질로 금전을 요구하는 악성 프로그램은 랜섬웨어입니다." },
+        { "no": 3, "correct": false, "why": "Buffer overflow는 버퍼 크기를 초과하는 데이터를 입력해 프로그램 흐름을 조작하는 공격입니다." },
+        { "no": 4, "correct": false, "why": "Adware는 광고를 노출해 수익을 얻는 프로그램으로 금전을 요구하지 않습니다." }
+      ],
+      "keyPoint": "랜섬웨어 : 데이터를 인질로 금전을 요구하는 악성 프로그램",
+      "tags": ["랜섬웨어", "악성코드", "사이버 범죄"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "소인수 분해 문제를 이용한 공개키 암호화 기법에 널리 사용되는 암호 알고리즘 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "RSA" },
+        { "no": 2, "text": "ECC" },
+        { "no": 3, "text": "PKI" },
+        { "no": 4, "text": "PRM" }
+      ],
+      "answer": 1,
+      "explanation": "RSA는 큰 두 소수의 곱을 원래의 소인수로 분해하기 어렵다는 소인수 분해 문제의 난이도에 안전성을 두는 공개키 암호 알고리즘으로, 암호화와 전자서명에 모두 사용됩니다. ECC는 타원 곡선 상의 이산로그 문제를 이용하는 공개키 암호이고, PKI는 공개키와 인증서를 안전하게 배포·관리하기 위한 기반 구조로 알고리즘 자체가 아니며, PRM은 암호 알고리즘 명칭으로 쓰이지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "RSA는 소인수 분해의 어려움을 안전성 근거로 삼는 대표적인 공개키 암호 알고리즘입니다." },
+        { "no": 2, "correct": false, "why": "ECC는 타원 곡선 이산로그 문제를 기반으로 하는 공개키 암호 방식입니다." },
+        { "no": 3, "correct": false, "why": "PKI는 인증서와 공개키를 관리하는 기반 구조로, 암호 알고리즘이 아닙니다." },
+        { "no": 4, "correct": false, "why": "PRM은 공개키 암호 알고리즘 명칭으로 사용되지 않습니다." }
+      ],
+      "keyPoint": "RSA : 소인수 분해 문제 기반의 공개키 암호 알고리즘",
+      "tags": ["RSA", "공개키 암호", "소인수 분해"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "메모리 상에서 프로그램의 복귀 주소와 변수 사이에 특정 값을 저장해 두었다가 그 값이 변경되었을 경우 오버플로우 상태로 가정하여 프로그램 실행을 중단하는 기술은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "모드체크" },
+        { "no": 2, "text": "리커버리 통제" },
+        { "no": 3, "text": "시스로그" },
+        { "no": 4, "text": "스택가드" }
+      ],
+      "answer": 4,
+      "explanation": "스택가드(Stack Guard)는 스택 프레임에서 복귀 주소와 지역 변수 사이에 카나리(Canary)라고 하는 특정 값을 저장해 두고, 함수가 복귀할 때 그 값이 변경되었는지 확인하여 버퍼 오버플로가 발생한 것으로 판단되면 프로그램 실행을 중단하는 기술입니다. 모드체크, 리커버리 통제, 시스로그는 데이터베이스의 보안·감사 및 복구와 관련된 통제 방식으로 스택 보호 기법이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모드체크는 데이터베이스 보안 통제의 한 종류로, 스택 오버플로를 탐지하는 기술이 아닙니다." },
+        { "no": 2, "correct": false, "why": "리커버리 통제는 데이터베이스 복구와 관련된 통제 방식입니다." },
+        { "no": 3, "correct": false, "why": "시스로그는 DBMS의 감사 및 로그 기록과 관련된 통제 방식입니다." },
+        { "no": 4, "correct": true, "why": "스택가드는 복귀 주소 앞의 특정 값 변경 여부를 확인해 버퍼 오버플로 시 실행을 중단합니다." }
+      ],
+      "keyPoint": "스택가드 : 카나리 값 검사로 스택 버퍼 오버플로를 탐지하는 기법",
+      "tags": ["스택가드", "버퍼 오버플로", "보안 코딩"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 모델 중 나선형 모델의 4가지 주요 활동이 순서대로 나열된 것은?",
+      "passage": "Ⓐ 계획 수립\nⒷ 고객 평가\nⒸ 개발 및 검증\nⒹ 위험 분석",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Ⓐ-Ⓑ-Ⓓ-Ⓒ 순으로 반복" },
+        { "no": 2, "text": "Ⓐ-Ⓓ-Ⓒ-Ⓑ 순으로 반복" },
+        { "no": 3, "text": "Ⓐ-Ⓑ-Ⓒ-Ⓓ 순으로 반복" },
+        { "no": 4, "text": "Ⓐ-Ⓒ-Ⓑ-Ⓓ 순으로 반복" }
+      ],
+      "answer": 2,
+      "explanation": "나선형(Spiral) 모델은 계획 수립 → 위험 분석 → 개발 및 검증 → 고객 평가의 네 가지 활동을 나선을 그리며 반복 수행하고, 반복할 때마다 나선의 반지름이 커지면서 점진적으로 완성도를 높여 갑니다. 따라서 Ⓐ 계획 수립, Ⓓ 위험 분석, Ⓒ 개발 및 검증, Ⓑ 고객 평가 순으로 반복하는 것이 옳습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "위험 분석(Ⓓ)을 개발 및 검증(Ⓒ) 뒤에 수행하는 순서는 나선형 모델의 활동 순서와 다릅니다." },
+        { "no": 2, "correct": true, "why": "계획 수립 → 위험 분석 → 개발 및 검증 → 고객 평가 순으로 반복하는 것이 나선형 모델의 활동 순서입니다." },
+        { "no": 3, "correct": false, "why": "개발 및 검증(Ⓒ) 후에 고객 평가(Ⓑ)와 위험 분석(Ⓓ)이 오는 순서는 맞지 않습니다." },
+        { "no": 4, "correct": false, "why": "계획 수립 직후에 개발 및 검증을 수행하는 순서는 위험 분석을 먼저 하는 나선형 모델과 다릅니다." }
+      ],
+      "keyPoint": "나선형 모델의 4대 활동 : 계획 수립 → 위험 분석 → 개발 및 검증 → 고객 평가",
+      "tags": ["나선형 모델", "위험 분석", "소프트웨어 생명 주기"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "소프트웨어 정의 데이터센터(SDDC : Software Defined Data Center)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "컴퓨팅, 네트워킹, 스토리지, 관리 등을 모두 소프트웨어로 정의한다." },
+        { "no": 2, "text": "인력 개입 없이 소프트웨어 조작만으로 자동 제어 관리한다." },
+        { "no": 3, "text": "데이터센터 내 모든 자원을 가상화하여 서비스한다." },
+        { "no": 4, "text": "특정 하드웨어에 종속되어 특화된 업무를 서비스하기에 적합하다." }
+      ],
+      "answer": 4,
+      "explanation": "SDDC(Software Defined Data Center)는 컴퓨팅, 네트워킹, 스토리지, 관리 등 데이터센터의 모든 자원을 소프트웨어로 정의하고 가상화하여, 사람의 개입 없이 소프트웨어 조작만으로 자동 제어·관리하는 데이터센터입니다. 특정 하드웨어에 종속되는 것이 아니라 하드웨어와 무관하게 자원을 유연하게 구성하고 서비스를 제공하는 것이 목표이므로, 특정 하드웨어 종속을 설명한 ④가 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SDDC는 컴퓨팅·네트워킹·스토리지·관리 등을 모두 소프트웨어로 정의하므로 맞는 설명입니다." },
+        { "no": 2, "correct": false, "why": "인력 개입 없이 소프트웨어 조작만으로 자동 제어 관리하는 것이 SDDC의 특징입니다." },
+        { "no": 3, "correct": false, "why": "데이터센터 내 모든 자원을 가상화해 서비스하는 것이 SDDC의 목표입니다." },
+        { "no": 4, "correct": true, "why": "SDDC는 특정 하드웨어에 종속되지 않고 자원을 유연하게 구성하므로, 하드웨어 종속을 말한 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "SDDC : 데이터센터 자원의 소프트웨어 정의·가상화·자동 제어",
+      "tags": ["SDDC", "가상화", "데이터센터"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "스트림 암호화 방식의 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "비트/바이트/단어들을 순차적으로 암호화한다." },
+        { "no": 2, "text": "해쉬 함수를 이용한 해쉬 암호화 방식을 사용한다." },
+        { "no": 3, "text": "RC4는 스트림 암호화 방식에 해당한다." },
+        { "no": 4, "text": "대칭키 암호화 방식이다." }
+      ],
+      "answer": 2,
+      "explanation": "스트림 암호는 평문을 비트나 바이트, 단어 단위로 순차적으로 암호화하는 대칭키 암호 방식으로, 키 스트림을 생성해 평문과 결합하며 RC4가 대표적인 알고리즘입니다. 해시 함수는 임의 길이의 데이터를 고정 길이 값으로 압축하는 단방향 함수로 복호화를 전제로 하지 않으므로, 해시 함수를 이용한 해시 암호화 방식을 사용한다는 설명은 스트림 암호화 방식에 대한 설명이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "스트림 암호는 비트·바이트·단어 단위로 순차적으로 암호화하므로 맞는 설명입니다." },
+        { "no": 2, "correct": true, "why": "해시 함수는 복호화가 불가능한 단방향 함수이므로, 스트림 암호화 방식의 설명으로 적절하지 않습니다." },
+        { "no": 3, "correct": false, "why": "RC4는 대표적인 스트림 암호 알고리즘이므로 맞는 설명입니다." },
+        { "no": 4, "correct": false, "why": "스트림 암호는 암호화와 복호화에 같은 키를 사용하는 대칭키 방식입니다." }
+      ],
+      "keyPoint": "스트림 암호 : 비트·바이트 단위 순차 암호화, RC4가 대표 (해시 함수와는 별개)",
+      "tags": ["스트림 암호", "RC4", "대칭키"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "하둡(Hadoop)과 관계형 데이터베이스 간에 데이터를 전송할 수 있도록 설계된 도구는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Apnic" },
+        { "no": 2, "text": "Topology" },
+        { "no": 3, "text": "Sqoop" },
+        { "no": 4, "text": "SDB" }
+      ],
+      "answer": 3,
+      "explanation": "Sqoop(SQL-to-Hadoop)은 관계형 데이터베이스와 하둡의 HDFS·Hive 등 사이에서 대용량 데이터를 양방향으로 전송하고 가져오기·내보내기를 할 수 있도록 설계된 도구입니다. APNIC은 아시아·태평양 지역의 IP 주소를 관리하는 기구이고, Topology는 노드와 링크의 연결 형태를 뜻하는 용어이며, SDB는 데이터 전송 도구의 명칭이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "APNIC은 아시아·태평양 지역 인터넷 주소 자원 관리 기구로, 데이터 전송 도구가 아닙니다." },
+        { "no": 2, "correct": false, "why": "Topology는 네트워크나 시스템의 연결 구조를 가리키는 용어입니다." },
+        { "no": 3, "correct": true, "why": "Sqoop은 관계형 데이터베이스와 하둡 간 데이터 전송을 위해 설계된 도구입니다." },
+        { "no": 4, "correct": false, "why": "SDB는 하둡과 관계형 데이터베이스 간 데이터 전송 도구가 아닙니다." }
+      ],
+      "keyPoint": "Sqoop : 관계형 데이터베이스 ↔ 하둡 간 대용량 데이터 전송 도구",
+      "tags": ["Sqoop", "Hadoop", "데이터 전송"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "S/W 각 기능의 원시 코드 라인수의 비관치, 낙관치, 기대치를 측정하여 예측치를 구하고 이를 이용하여 비용을 산정하는 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Effort Per Task 기법" },
+        { "no": 2, "text": "전문가 감정 기법" },
+        { "no": 3, "text": "델파이기법" },
+        { "no": 4, "text": "LOC 기법" }
+      ],
+      "answer": 4,
+      "explanation": "LOC 기법은 소프트웨어 각 기능의 원시 코드 라인 수를 비관치·낙관치·기대치로 나누어 측정한 뒤 (비관치＋4×기대치＋낙관치)/6 의 식으로 예측치를 구하고, 이를 이용해 개발 비용과 노력을 산정하는 상향식 비용 산정 기법입니다. Effort Per Task 기법은 기능별 작업에 투입되는 노력을 산정하는 방식이고, 전문가 감정 기법과 델파이 기법은 전문가의 경험과 판단에 의존하는 산정 기법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Effort Per Task 기법은 기능별 작업에 소요되는 노력을 산정하는 방식으로, 원시 코드 라인 수의 비관치·낙관치·기대치를 사용하지 않습니다." },
+        { "no": 2, "correct": false, "why": "전문가 감정 기법은 두 명 이상의 전문가가 경험을 바탕으로 비용을 추정하는 기법입니다." },
+        { "no": 3, "correct": false, "why": "델파이 기법은 여러 전문가의 의견을 반복 조정해 합의를 도출하는 비용 산정 기법입니다." },
+        { "no": 4, "correct": true, "why": "LOC 기법은 원시 코드 라인 수의 비관치·낙관치·기대치로 예측치를 구해 비용을 산정합니다." }
+      ],
+      "keyPoint": "LOC 기법 : 비관치·낙관치·기대치로 원시 코드 라인 수를 예측해 비용 산정",
+      "tags": ["LOC 기법", "비용 산정", "예측치"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-3-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 방법론의 테일러링(Tailoring)과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "프로젝트 수행 시 예상되는 변화를 배제하고 신속히 진행하여야 한다." },
+        { "no": 2, "text": "프로젝트에 최적화된 개발 방법론을 적용하기 위해 절차, 산출물 등을 적절히 변경하는 활동이다." },
+        { "no": 3, "text": "관리 측면에서의 목적 중 하나는 최단기간에 안정적인 프로젝트 진행을 위한 사전 위험을 식별하고 제거하는 것이다." },
+        { "no": 4, "text": "기술적 측면에서의 목적 중 하나는 프로젝트에 최적화된 기술 요소를 도입하여 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것이다." }
+      ],
+      "answer": 1,
+      "explanation": "테일러링(Tailoring)은 프로젝트의 규모·특성·제약 조건에 맞추어 개발 방법론의 절차와 산출물, 기법과 도구를 적절히 변경하는 활동입니다. 따라서 프로젝트 수행 중 발생할 수 있는 변화를 배제하는 것이 아니라 변화를 예측하고 수용할 수 있도록 방법론을 조정하는 것이므로 ①이 틀렸습니다. 테일러링은 관리 측면에서 사전 위험을 식별·제거하고, 기술 측면에서 프로젝트에 최적화된 기법과 도구를 사용하도록 하는 것을 목적으로 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "테일러링은 변화를 배제하는 것이 아니라 변화를 수용하도록 방법론을 조정하는 활동이므로 틀린 설명입니다." },
+        { "no": 2, "correct": false, "why": "프로젝트에 최적화하기 위해 절차와 산출물을 적절히 변경하는 것이 테일러링이므로 맞는 설명입니다." },
+        { "no": 3, "correct": false, "why": "관리 측면에서 사전 위험을 식별하고 제거해 안정적으로 진행하는 것은 테일러링의 목적 중 하나입니다." },
+        { "no": 4, "correct": false, "why": "기술 측면에서 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것도 테일러링의 목적입니다." }
+      ],
+      "keyPoint": "테일러링 : 프로젝트 특성에 맞게 개발 방법론의 절차·산출물·기법을 조정",
+      "tags": ["테일러링", "개발 방법론", "프로젝트 관리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년3회_정보처리기사필기기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

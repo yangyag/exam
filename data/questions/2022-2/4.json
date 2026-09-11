@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2022-2",
+    "year": 2022,
+    "round": 2,
+    "title": "2022년 2회 정보처리기사 필기",
+    "sourcePdf": "2022년2회_기사필기 기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2022-2-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "C언어에서 문자열 처리 함수의 서식과 그 기능의 연결로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "strlen(s) - s의 길이를 구한다." },
+        { "no": 2, "text": "strcpy(s1, s2) - s2를 s1으로 복사한다." },
+        { "no": 3, "text": "strcmp(s1, s2) - s1과 s2를 연결한다." },
+        { "no": 4, "text": "strrev(s) - s를 거꾸로 변환한다." }
+      ],
+      "answer": 3,
+      "explanation": "strcmp는 두 문자열을 앞에서부터 비교해 같으면 0, 앞 문자열이 작으면 음수, 크면 양수를 반환하는 비교 함수입니다. 문자열을 뒤에 이어 붙이는 함수는 strcat이므로 strcmp가 두 문자열을 연결한다는 설명은 틀렸습니다. strlen은 널 문자를 제외한 길이를 구하고, strcpy는 원본 문자열을 대상 문자열로 복사하며, strrev는 문자열의 순서를 거꾸로 뒤집습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "strlen은 널 문자를 제외한 문자열의 길이를 반환하므로 옳은 연결입니다." },
+        { "no": 2, "correct": false, "why": "strcpy는 s2의 문자열을 s1으로 복사하는 함수이므로 옳은 연결입니다." },
+        { "no": 3, "correct": true, "why": "strcmp는 두 문자열을 비교하는 함수이고 문자열을 연결하는 함수는 strcat이므로 틀린 연결입니다." },
+        { "no": 4, "correct": false, "why": "strrev는 문자열의 순서를 거꾸로 뒤집는 함수이므로 옳은 연결입니다." }
+      ],
+      "keyPoint": "C언어 문자열 함수 strlen·strcpy·strcmp·strcat의 기능",
+      "tags": ["C언어", "문자열 함수"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\n\nint main(int argc, char* argv[]) {\n    int a = 5, b = 3, c = 12;\n    int t1, t2, t3;\n\n    t1 = a && b;\n    t2 = a || b;\n    t3 = !c;\n\n    printf(\"%d\", t1 + t2 + t3);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "0" },
+        { "no": 2, "text": "2" },
+        { "no": 3, "text": "5" },
+        { "no": 4, "text": "14" }
+      ],
+      "answer": 2,
+      "explanation": "C언어에서 논리 연산의 결과는 참이면 1, 거짓이면 0의 정수값으로 계산됩니다. a와 b가 모두 0이 아닌 참이므로 t1 = a && b는 1, t2 = a || b도 1이며, c = 12 역시 참이므로 t3 = !c는 0이 됩니다. 따라서 t1 + t2 + t3 = 1 + 1 + 0 = 2가 출력됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "t1과 t2가 모두 1이므로 합이 0이 될 수 없습니다." },
+        { "no": 2, "correct": true, "why": "t1 = 1, t2 = 1, t3 = 0이므로 합이 2가 되어 정답입니다." },
+        { "no": 3, "correct": false, "why": "논리 연산의 결과는 피연산자 값이 아니라 0 또는 1이므로 5가 나오지 않습니다." },
+        { "no": 4, "correct": false, "why": "14는 논리 연산 결과가 아닌 c에 저장된 실제 값이므로 합에 사용되지 않습니다." }
+      ],
+      "keyPoint": "C언어 논리 연산자 &&, ||, !의 결과가 0 또는 1로 정규화되는 규칙",
+      "tags": ["C언어", "논리 연산자"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 5 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\nstruct st {\n    int a;\n    int c[10];\n};\nint main(int argc, char* argv[]) {\n    int i = 0;\n    struct st ob1;\n    struct st ob2;\n    ob1.a = 0;\n    ob2.a = 0;\n    for (i = 0; i < 10; i++) {\n        ob1.c[i] = i;\n        ob2.c[i] = ob1.c[i] + i;\n    }\n    for (i = 0; i < 10; i = i + 2) {\n        ob1.a = ob1.a + ob1.c[i];\n        ob2.a = ob2.a + ob2.c[i];\n    }\n    printf(\"%d\", ob1.a + ob2.a);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "30" },
+        { "no": 2, "text": "60" },
+        { "no": 3, "text": "80" },
+        { "no": 4, "text": "120" }
+      ],
+      "answer": 2,
+      "explanation": "첫 번째 반복문에서 ob1.c[i]에는 i가, ob2.c[i]에는 ob1.c[i] + i인 2i가 저장되므로 ob1.c는 0~9, ob2.c는 0, 2, 4, …, 18이 됩니다. 두 번째 반복문은 i가 0, 2, 4, 6, 8일 때만 수행되므로 ob1.a = 0+2+4+6+8 = 20, ob2.a = 0+4+8+12+16 = 40이 됩니다. 따라서 출력값은 20 + 40 = 60입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "30은 구조체 하나의 누적값만 계산했거나 짝수 인덱스 합을 잘못 더한 결과입니다." },
+        { "no": 2, "correct": true, "why": "ob1.a가 20, ob2.a가 40이므로 두 값을 더한 60이 출력되어 정답입니다." },
+        { "no": 3, "correct": false, "why": "80은 모든 인덱스를 더했을 때 나오는 값으로, 증가식이 i = i + 2인 점을 반영하지 못했습니다." },
+        { "no": 4, "correct": false, "why": "120은 ob2.c의 값까지 두 번 더한 경우로 실제 누적 결과와 다릅니다." }
+      ],
+      "keyPoint": "구조체 배열에 값을 채우고 짝수 인덱스만 누적하는 반복문 추적",
+      "tags": ["C언어", "구조체", "배열"],
+      "difficulty": 4,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "IP 프로토콜에서 사용하는 필드와 해당 필드에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Header Length는 IP 프로토콜의 헤더 길이를 32비트 워드 단위로 표시한다." },
+        { "no": 2, "text": "Packet Length는 IP 헤더를 제외한 패킷 전체의 길이를 나타내며 최대 크기는 2³²-1비트이다." },
+        { "no": 3, "text": "Time To Live는 송신 호스트가 패킷을 전송하기 전 네트워크에서 생존할 수 있는 시간을 지정한 것이다." },
+        { "no": 4, "text": "Version Number는 IP 프로토콜의 버전번호를 나타낸다." }
+      ],
+      "answer": 2,
+      "explanation": "IP 헤더의 Total Length(패킷 길이) 필드는 IP 헤더를 포함한 패킷 전체의 길이를 16비트로 표현하므로 최대 크기는 2¹⁶-1바이트입니다. 따라서 헤더를 제외한 길이를 나타내며 최대가 2³²-1비트라는 설명은 틀렸습니다. Header Length는 4비트로 32비트 워드 단위의 헤더 길이를, Time To Live는 패킷이 네트워크에서 살아 있을 수 있는 시간을, Version Number는 IP 버전을 나타냅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Header Length는 32비트 워드 단위로 헤더 길이를 표시하므로 옳은 설명입니다." },
+        { "no": 2, "correct": true, "why": "Total Length는 헤더를 포함한 전체 길이를 16비트로 표시하며 최대 2¹⁶-1바이트이므로 틀린 설명입니다." },
+        { "no": 3, "correct": false, "why": "Time To Live는 패킷이 네트워크에서 생존할 수 있는 시간을 지정하는 필드로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "Version Number는 IP 프로토콜의 버전 번호를 나타내는 필드로 옳은 설명입니다." }
+      ],
+      "keyPoint": "IPv4 헤더의 Total Length·Header Length·TTL·Version 필드",
+      "tags": ["IP 프로토콜", "IPv4 헤더"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "다음 Python 프로그램의 실행 결과가 [실행결과]와 같을 때, 빈칸에 적합한 것은?",
+      "passage": "x = 20\nif x == 10:\n    print('10')\n(     ) x == 20:\n    print('20')\nelse:\n    print('other')\n\n[실행결과]\n20",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "either" },
+        { "no": 2, "text": "elif" },
+        { "no": 3, "text": "else if" },
+        { "no": 4, "text": "else" }
+      ],
+      "answer": 2,
+      "explanation": "Python은 다중 조건 분기에서 다른 언어의 else if에 해당하는 키워드로 elif를 사용합니다. x = 20이므로 첫 번째 if는 거짓이지만 elif x == 20은 참이 되어 '20'이 출력되므로, [실행결과]와 같은 결과를 얻을 수 있습니다. either는 Python에 없는 키워드이고, else는 조건식을 가질 수 없으며 else if는 두 단어로 분리되어 문법 오류가 발생합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "either는 Python에 존재하지 않는 키워드이므로 사용할 수 없습니다." },
+        { "no": 2, "correct": true, "why": "elif는 앞 조건이 거짓일 때 새로운 조건을 검사하는 키워드이므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "else if는 Python에서 두 개의 토큰으로 해석되어 문법 오류가 발생합니다." },
+        { "no": 4, "correct": false, "why": "else 뒤에는 조건식을 붙일 수 없으므로 x == 20을 쓸 수 없습니다." }
+      ],
+      "keyPoint": "Python의 elif를 이용한 다중 조건 분기",
+      "tags": ["Python", "조건문", "elif"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "RIP 라우팅 프로토콜에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "경로 선택 메트릭은 홉 카운트(hop count)이다." },
+        { "no": 2, "text": "라우팅 프로토콜을 IGP와 EGP로 분류했을 때 EGP에 해당한다." },
+        { "no": 3, "text": "최단 경로 탐색에 Bellman-Ford 알고리즘을 사용한다." },
+        { "no": 4, "text": "각 라우터는 이웃 라우터들로부터 수신한 정보를 이용하여 라우팅 표를 갱신한다." }
+      ],
+      "answer": 2,
+      "explanation": "RIP는 하나의 자율 시스템 내부에서 경로를 교환하는 내부 게이트웨이 프로토콜(IGP)에 해당하므로 EGP라는 설명은 틀렸습니다. RIP는 목적지까지 거쳐 가는 라우터 수인 홉 카운트를 메트릭으로 사용하며, Bellman-Ford 알고리즘에 기반해 이웃 라우터가 알려 준 정보로 자신의 라우팅 표를 갱신합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "RIP는 홉 카운트를 경로 선택 메트릭으로 사용하므로 옳은 설명입니다." },
+        { "no": 2, "correct": true, "why": "RIP는 자율 시스템 내부용인 IGP에 해당하므로 EGP라는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "RIP는 최단 경로 탐색에 Bellman-Ford 알고리즘을 사용하므로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "RIP 라우터는 이웃 라우터로부터 받은 정보로 라우팅 표를 갱신하므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "RIP는 홉 카운트를 쓰는 IGP이며 Bellman-Ford 기반 거리 벡터 프로토콜",
+      "tags": ["RIP", "라우팅 프로토콜"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "다음에서 설명하는 프로세스 스케줄링은?",
+      "passage": "최소 작업 우선(SJF) 기법의 약점을 보완한 비선점 스케줄링 기법으로 다음과 같은 식을 이용해 우선순위를 판별한다.\n\n우선순위 = (대기한 시간 + 서비스를 받을 시간) / 서비스를 받을 시간",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "FIFO 스케줄링" },
+        { "no": 2, "text": "RR 스케줄링" },
+        { "no": 3, "text": "HRN 스케줄링" },
+        { "no": 4, "text": "MQ 스케줄링" }
+      ],
+      "answer": 3,
+      "explanation": "HRN은 SJF가 실행 시간이 긴 작업을 무한히 대기시키는 약점을 보완하기 위해 (대기한 시간 + 서비스를 받을 시간) / 서비스를 받을 시간으로 우선순위를 계산하는 비선점 스케줄링 기법입니다. 대기 시간이 길수록 우선순위가 높아지므로 오래 기다린 작업이 굶주리지 않습니다. FIFO는 도착 순서대로 처리하고, RR은 시간 할당량마다 선점하며, MQ는 작업을 여러 단계 큐로 나누어 처리합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "FIFO는 준비 큐에 도착한 순서대로 처리하는 기법이라 우선순위 계산식과 무관합니다." },
+        { "no": 2, "correct": false, "why": "RR은 시간 할당량을 두고 실행 중인 작업을 선점하는 시분할 기법입니다." },
+        { "no": 3, "correct": true, "why": "제시된 우선순위 계산식을 사용하는 비선점 기법이 HRN이므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "MQ는 준비 큐를 여러 단계로 나누어 단계별로 스케줄링하는 기법입니다." }
+      ],
+      "keyPoint": "HRN 스케줄링의 우선순위 계산식과 비선점 특징",
+      "tags": ["HRN", "프로세스 스케줄링"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "UNIX 운영체제에 관한 특징으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "하나 이상의 작업에 대하여 백그라운드에서 수행이 가능하다." },
+        { "no": 2, "text": "Multi-User는 지원하지만 Multi-Tasking은 지원하지 않는다." },
+        { "no": 3, "text": "트리 구조의 파일 시스템을 갖는다." },
+        { "no": 4, "text": "이식성이 높으며 장치 간의 호환성이 높다." }
+      ],
+      "answer": 2,
+      "explanation": "UNIX는 여러 사용자가 동시에 접속하는 다중 사용자(Multi-User)와 여러 작업을 동시에 처리하는 다중 작업(Multi-Tasking)을 모두 지원하는 운영체제입니다. 따라서 Multi-Tasking을 지원하지 않는다는 설명은 틀렸습니다. 또한 백그라운드 작업 수행, 트리 구조의 계층적 파일 시스템, 높은 이식성과 장치 호환성도 UNIX의 대표적인 특징입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "UNIX는 백그라운드 작업 수행을 지원하므로 옳은 설명입니다." },
+        { "no": 2, "correct": true, "why": "UNIX는 Multi-Tasking도 지원하므로 지원하지 않는다는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "UNIX는 루트를 기준으로 한 트리 구조 파일 시스템을 사용하므로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "UNIX는 C언어로 작성되어 이식성과 장치 간 호환성이 높으므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "UNIX는 Multi-User와 Multi-Tasking을 모두 지원하는 대화형 운영체제",
+      "tags": ["UNIX", "운영체제 특징"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "UDP 프로토콜의 특징이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "비연결형 서비스를 제공한다." },
+        { "no": 2, "text": "단순한 헤더 구조로 오버헤드가 적다." },
+        { "no": 3, "text": "주로 주소를 지정하고, 경로를 설정하는 기능을 한다." },
+        { "no": 4, "text": "TCP와 같이 트랜스포트 계층에 존재한다." }
+      ],
+      "answer": 3,
+      "explanation": "주소를 지정하고 목적지까지의 경로를 설정하는 기능은 네트워크 계층의 IP 프로토콜이 담당합니다. UDP는 트랜스포트 계층에서 포트 번호를 이용해 프로세스 사이의 데이터 전달만 수행합니다. UDP는 연결 설정 없이 데이터그램을 보내는 비연결형 서비스이며, 8바이트의 단순한 헤더만 사용해 오버헤드가 적다는 점이 TCP와 다릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "UDP는 연결 설정 과정 없이 전송하는 비연결형 프로토콜이므로 옳은 설명입니다." },
+        { "no": 2, "correct": false, "why": "UDP 헤더는 8바이트로 단순해 오버헤드가 적으므로 옳은 설명입니다." },
+        { "no": 3, "correct": true, "why": "주소 지정과 경로 설정은 IP의 역할이므로 UDP의 특징이 아닙니다." },
+        { "no": 4, "correct": false, "why": "UDP는 TCP와 함께 트랜스포트 계층에 속하므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "UDP의 비연결형·저오버헤드 특징과 IP와의 역할 구분",
+      "tags": ["UDP", "트랜스포트 계층"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "Python 데이터 타입 중 시퀀스(Sequence) 데이터 타입에 해당하며 다양한 데이터 타입들을 주어진 순서에 따라 저장할 수 있으나 저장된 내용을 변경할 수 없는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "복소수(complex) 타입" },
+        { "no": 2, "text": "리스트(list) 타입" },
+        { "no": 3, "text": "사전(dict) 타입" },
+        { "no": 4, "text": "튜플(tuple) 타입" }
+      ],
+      "answer": 4,
+      "explanation": "튜플은 여러 자료형을 순서대로 저장하는 시퀀스 타입이면서 한 번 생성하면 원소를 추가·삭제·변경할 수 없는 불변(immutable) 자료형입니다. 리스트는 같은 시퀀스지만 값을 바꿀 수 있는 가변 자료형이고, 사전은 인덱스가 아닌 키로 값을 찾는 매핑 타입이며, 복소수는 시퀀스가 아닌 수치형 타입입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "복소수는 실수부와 허수부로 이루어진 수치형 타입으로 시퀀스가 아닙니다." },
+        { "no": 2, "correct": false, "why": "리스트는 시퀀스이지만 저장된 내용을 변경할 수 있는 가변 타입입니다." },
+        { "no": 3, "correct": false, "why": "사전은 키와 값의 쌍을 저장하는 매핑 타입으로 시퀀스에 해당하지 않습니다." },
+        { "no": 4, "correct": true, "why": "튜플은 순서를 가진 시퀀스이면서 내용을 변경할 수 없는 불변 타입이므로 정답입니다." }
+      ],
+      "keyPoint": "Python 튜플은 순서가 있고 변경할 수 없는 불변 시퀀스 타입",
+      "tags": ["Python", "튜플", "시퀀스"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때, 실행결과는?",
+      "passage": "public class Rarr {\n    static int[] marr() {\n        int temp[] = new int[4];\n        for (int i = 0; i < temp.length; i++)\n            temp[i] = i;\n        return temp;\n    }\n\n    public static void main(String[] args) {\n        int iarr[];\n        iarr = marr();\n        for (int i = 0; i < iarr.length; i++)\n            System.out.print(iarr[i] + \" \");\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "1 2 3 4" },
+        { "no": 2, "text": "0 1 2 3" },
+        { "no": 3, "text": "1 2 3" },
+        { "no": 4, "text": "0 1 2" }
+      ],
+      "answer": 2,
+      "explanation": "marr()는 크기가 4인 정수 배열 temp를 만든 뒤 반복문에서 temp[i] = i를 수행하므로 배열에는 0, 1, 2, 3이 차례로 저장됩니다. 이 배열을 그대로 반환해 iarr에 대입하고 배열의 길이만큼 반복해 출력하므로 결과는 0 1 2 3입니다. 인덱스가 0부터 시작하고 반복 조건이 i < temp.length이므로 값 4는 저장되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "인덱스가 0부터 시작하므로 첫 값이 1이 될 수 없고 4도 저장되지 않습니다." },
+        { "no": 2, "correct": true, "why": "temp[i] = i로 0부터 3까지 저장된 배열이 그대로 출력되므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "배열의 크기가 4이고 네 번 모두 출력되므로 값이 3개만 나올 수 없습니다." },
+        { "no": 4, "correct": false, "why": "반복문이 iarr.length인 4번 수행되므로 출력값이 3개일 수 없습니다." }
+      ],
+      "keyPoint": "Java 배열의 인덱스 0부터 채우기와 반환된 배열 출력",
+      "tags": ["Java", "배열", "반복문"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때의 결과는?",
+      "passage": "public class ovr {\n    public static void main(String[] args) {\n        int a = 1, b = 2, c = 3, d = 4;\n        int mx, mn;\n        mx = a < b ? b : a;\n        if (mx == 1) {\n            mn = a > mx ? b : a;\n        }\n        else {\n            mn = b < mx ? d : c;\n        }\n        System.out.println(mn);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "1" },
+        { "no": 2, "text": "2" },
+        { "no": 3, "text": "3" },
+        { "no": 4, "text": "4" }
+      ],
+      "answer": 3,
+      "explanation": "삼항 연산자 mx = a < b ? b : a에서 a = 1이 b = 2보다 작으므로 mx에는 b의 값 2가 저장됩니다. mx가 1이 아니므로 if의 조건은 거짓이 되어 else 블록으로 이동하고, mn = b < mx ? d : c에서 b = 2가 mx = 2보다 작지 않으므로 mn에는 c의 값 3이 저장되어 3이 출력됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "1은 a의 값으로, else 블록에서 선택되는 값이 아닙니다." },
+        { "no": 2, "correct": false, "why": "2는 mx에 저장되는 값이며 mn에 대입되는 값이 아닙니다." },
+        { "no": 3, "correct": true, "why": "b < mx가 거짓이므로 c의 값 3이 mn에 저장되어 정답입니다." },
+        { "no": 4, "correct": false, "why": "4는 b < mx가 참일 때 선택되는 d의 값이므로 조건이 거짓인 경우와 다릅니다." }
+      ],
+      "keyPoint": "삼항 연산자와 if-else로 결정되는 최댓값·최솟값 추적",
+      "tags": ["Java", "삼항 연산자"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "다음 중 Myers가 구분한 응집도(Cohesion)의 정도에서 가장 낮은 응집도를 갖는 단계는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "순차적 응집도(Sequential Cohesion)" },
+        { "no": 2, "text": "기능적 응집도(Functional Cohesion)" },
+        { "no": 3, "text": "시간적 응집도(Temporal Cohesion)" },
+        { "no": 4, "text": "우연적 응집도(Coincidental Cohesion)" }
+      ],
+      "answer": 4,
+      "explanation": "응집도는 모듈 내부의 구성 요소들이 얼마나 밀접하게 관련되어 있는지를 나타내며, 우연적 → 논리적 → 시간적 → 절차적 → 통신적 → 순차적 → 기능적 순으로 강해집니다. 우연적 응집도는 모듈 내 요소들이 아무런 관련 없이 한 모듈에 모여 있는 상태로 응집도가 가장 낮습니다. 기능적 응집도는 모든 요소가 하나의 기능을 수행하도록 구성된 가장 높은 단계입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "순차적 응집도는 한 요소의 출력이 다음 요소의 입력으로 쓰이는 비교적 강한 단계입니다." },
+        { "no": 2, "correct": false, "why": "기능적 응집도는 응집도가 가장 높은 단계이므로 가장 낮은 단계가 아닙니다." },
+        { "no": 3, "correct": false, "why": "시간적 응집도는 특정 시점에 함께 처리되는 요소들로 구성되어 우연적 응집도보다 강합니다." },
+        { "no": 4, "correct": true, "why": "우연적 응집도는 구성 요소 간 관련성이 거의 없어 응집도가 가장 낮으므로 정답입니다." }
+      ],
+      "keyPoint": "응집도의 강약 순서와 우연적 응집도의 위치",
+      "tags": ["응집도", "모듈화"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램이 실행되었을 때, 실행 결과는?",
+      "passage": "#include <stdio.h>\nint main(int arge, char* argv[]) {\n    int n1 = 1, n2 = 2, n3 = 3;\n    int r1, r2, r3;\n    r1 = (n2 <= 2) || (n3 > 3);\n    r2 = !n3;\n    r3 = (n1 > 1) && (n2 < 3);\n    printf(\"%d\", r3 - r2 + r1);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "0" },
+        { "no": 2, "text": "1" },
+        { "no": 3, "text": "2" },
+        { "no": 4, "text": "3" }
+      ],
+      "answer": 2,
+      "explanation": "r1은 (2 <= 2)가 참이므로 뒤의 (3 > 3)을 평가하지 않고 1이 되고, r2는 n3가 3으로 참이므로 !n3가 0이 됩니다. r3는 (1 > 1)이 거짓이라 && 연산의 결과가 0이 되며, 따라서 r3 - r2 + r1 = 0 - 0 + 1 = 1이 출력됩니다. 관계·논리 연산의 결과는 참이면 1, 거짓이면 0인 정수입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "r1이 1이므로 전체 식의 값이 0이 될 수 없습니다." },
+        { "no": 2, "correct": true, "why": "0 - 0 + 1 = 1이 계산되어 출력되므로 정답입니다." },
+        { "no": 3, "correct": false, "why": "r2가 0이고 r3도 0이므로 합이 2가 되지 않습니다." },
+        { "no": 4, "correct": false, "why": "세 변수의 값이 1, 0, 0이므로 3이 나올 수 없습니다." }
+      ],
+      "keyPoint": "C언어 관계·논리 연산 결과의 0/1 정규화와 단축 평가",
+      "tags": ["C언어", "논리 연산"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "IP 프로토콜의 주요 특징에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "체크섬(Checksum) 기능으로 데이터 체크섬(Data Checksum)만 제공한다." },
+        { "no": 2, "text": "패킷을 분할, 병합하는 기능을 수행하기도 한다." },
+        { "no": 3, "text": "비연결형 서비스를 제공한다." },
+        { "no": 4, "text": "Best Effort 원칙에 따른 전송 기능을 제공한다." }
+      ],
+      "answer": 1,
+      "explanation": "IP는 헤더 부분의 오류만 검사하는 헤더 체크섬만 제공하고, 데이터 부분의 오류 검사는 상위 프로토콜인 TCP나 UDP가 담당합니다. 따라서 데이터 체크섬만 제공한다는 설명은 IP의 특징이 아닙니다. IP는 비연결형 데이터그램 서비스를 제공하고, 전송 중 최선을 다하지만 신뢰성은 보장하지 않는 Best Effort 원칙을 따르며, 필요할 때 패킷을 분할하고 목적지에서 재결합합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "IP는 헤더 체크섬만 제공하므로 데이터 체크섬만 제공한다는 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "IP는 MTU에 맞게 패킷을 분할하고 재결합하는 기능을 수행하므로 옳은 설명입니다." },
+        { "no": 3, "correct": false, "why": "IP는 연결 설정 없이 전송하는 비연결형 서비스를 제공하므로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "IP는 신뢰성을 보장하지 않는 Best Effort 전송을 제공하므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "IP는 헤더 체크섬만 제공하고 Best Effort로 전송하는 비연결형 프로토콜",
+      "tags": ["IP 프로토콜", "체크섬"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "4개의 페이지를 수용할 수 있는 주기억장치가 있으며, 초기에는 모두 비어 있다고 가정한다. 다음의 순서로 페이지 참조가 발생할 때, LRU 페이지 교체 알고리즘을 사용할 경우 몇 번의 페이지 결함이 발생하는가?",
+      "passage": "페이지 참조 순서 1, 2, 3, 1, 2, 4, 1, 2, 5",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "5회" },
+        { "no": 2, "text": "6회" },
+        { "no": 3, "text": "7회" },
+        { "no": 4, "text": "8회" }
+      ],
+      "answer": 1,
+      "explanation": "프레임이 4개이므로 1, 2, 3을 참조할 때 세 번의 페이지 결함이 발생하고 이어서 1과 2를 참조할 때는 적중합니다. 4를 참조하면 프레임이 가득 차 네 번째 결함이 발생하며, 이후 1과 2는 다시 적중합니다. 마지막으로 5를 참조할 때 가장 오래 사용되지 않은 페이지인 3을 교체하므로 결함이 한 번 더 발생해 모두 5회가 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "1, 2, 3, 4, 5를 참조할 때 각각 결함이 발생해 모두 5회이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "6회는 이미 적중한 1이나 2를 결함으로 잘못 계산한 결과입니다." },
+        { "no": 3, "correct": false, "why": "7회는 4를 참조한 뒤의 1, 2 적중을 반영하지 못한 계산입니다." },
+        { "no": 4, "correct": false, "why": "8회는 첫 세 번 이후의 모든 참조를 결함으로 본 경우로 실제와 다릅니다." }
+      ],
+      "keyPoint": "LRU 페이지 교체 알고리즘의 페이지 결함 횟수 계산",
+      "tags": ["LRU", "페이지 교체"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "사용자 수준에서 지원되는 스레드(thread)가 커널에서 지원되는 스레드에 비해 가지는 장점으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "한 프로세스가 운영체제를 호출할 때 전체 프로세스가 대기할 필요가 없으므로 시스템 성능을 높일 수 있다." },
+        { "no": 2, "text": "동시에 여러 스레드가 커널에 접근할 수 있으므로 여러 스레드가 시스템 호출을 동시에 사용할 수 있다." },
+        { "no": 3, "text": "각 스레드를 개별적으로 관리할 수 있으므로 스레드의 독립적인 스케줄링이 가능하다." },
+        { "no": 4, "text": "커널 모드로의 전환 없이 스레드 교환이 가능하므로 오버헤드가 줄어든다." }
+      ],
+      "answer": 4,
+      "explanation": "사용자 수준 스레드는 커널이 아니라 사용자 영역의 라이브러리가 생성과 스케줄링을 관리하므로 스레드를 교환할 때 커널 모드로 전환할 필요가 없어 오버헤드가 적습니다. 반면 한 스레드가 시스템 호출로 블록되면 프로세스 전체가 대기하게 되고, 커널이 스레드의 존재를 알지 못해 여러 스레드를 여러 처리기에 동시에 배정하는 독립적 스케줄링은 커널 수준 스레드의 장점입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "사용자 수준 스레드는 한 스레드의 시스템 호출로 프로세스 전체가 대기하므로 반대의 설명입니다." },
+        { "no": 2, "correct": false, "why": "커널이 스레드를 인식하지 못하므로 여러 스레드가 시스템 호출을 동시에 사용할 수 없습니다." },
+        { "no": 3, "correct": false, "why": "개별 스레드의 독립적 스케줄링은 커널이 스레드를 직접 관리하는 커널 수준 스레드의 장점입니다." },
+        { "no": 4, "correct": true, "why": "커널 개입 없이 사용자 영역에서 스레드를 교환하므로 오버헤드가 줄어드는 것이 정답입니다." }
+      ],
+      "keyPoint": "사용자 수준 스레드와 커널 수준 스레드의 장단점 비교",
+      "tags": ["스레드", "운영체제"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "한 모듈이 다른 모듈의 내부 기능 및 그 내부 자료를 참조하는 경우의 결합도는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "내용 결합도(Content Coupling)" },
+        { "no": 2, "text": "제어 결합도(Control Coupling)" },
+        { "no": 3, "text": "공통 결합도(Common Coupling)" },
+        { "no": 4, "text": "스탬프 결합도(Stamp Coupling)" }
+      ],
+      "answer": 1,
+      "explanation": "내용 결합도는 한 모듈이 다른 모듈의 내부 자료나 내부 기능을 직접 참조하거나 수정하는 경우로, 결합도가 가장 강해 가장 나쁜 설계로 봅니다. 제어 결합도는 제어 신호를 전달하며 다른 모듈의 흐름을 결정할 때, 공통 결합도는 여러 모듈이 전역 변수 같은 공통 자료를 함께 사용할 때, 스탬프 결합도는 자료 구조 전체를 매개 변수로 넘길 때 나타납니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "다른 모듈의 내부 기능과 자료를 직접 참조하는 가장 강한 결합도이므로 정답입니다." },
+        { "no": 2, "correct": false, "why": "제어 결합도는 제어 신호를 전달해 다른 모듈의 처리 흐름을 결정하는 경우입니다." },
+        { "no": 3, "correct": false, "why": "공통 결합도는 여러 모듈이 전역 변수 등 공통 자료 영역을 함께 사용하는 경우입니다." },
+        { "no": 4, "correct": false, "why": "스탬프 결합도는 배열이나 레코드 같은 자료 구조 전체를 매개 변수로 전달하는 경우입니다." }
+      ],
+      "keyPoint": "내용 결합도(Content Coupling)의 정의와 결합도 종류 구분",
+      "tags": ["결합도", "모듈화"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "a[0]의 주소값이 10일 경우 다음 C언어 프로그램이 실행되었을 때의 결과는? (단, int 형의 크기는 4Byte로 가정한다.)",
+      "passage": "#include <stdio.h>\nint main(int argc, char* argv[]) {\n    int a[] = { 14,22,30,38 };\n    printf(\"%u, \", &a[2]);\n    printf(\"%u\", a);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "14, 10" },
+        { "no": 2, "text": "14, M" },
+        { "no": 3, "text": "18, 10" },
+        { "no": 4, "text": "18, M" }
+      ],
+      "answer": 3,
+      "explanation": "int 형의 크기가 4Byte이고 a[0]의 주소가 10이므로 a[2]의 주소는 10 + 2 × 4 = 18이 되어 첫 번째 printf가 18을 출력합니다. 두 번째 printf에서 배열 이름 a는 첫 번째 원소의 주소인 &a[0]와 같으므로 10이 출력됩니다. 따라서 실행 결과는 18, 10입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "14는 a[0]에 저장된 값이며 &a[2]가 출력하는 주소가 아닙니다." },
+        { "no": 2, "correct": false, "why": "첫 번째 출력값이 a[0]의 저장 값이 아니므로 잘못된 조합입니다." },
+        { "no": 3, "correct": true, "why": "&a[2]는 18, 배열 이름 a는 첫 원소의 주소 10을 출력하므로 정답입니다." },
+        { "no": 4, "correct": false, "why": "두 번째 출력값이 첫 원소의 주소 10이 아니므로 잘못된 조합입니다." }
+      ],
+      "keyPoint": "배열 이름은 첫 원소의 주소이며 &a[i]는 시작 주소에 i×자료형 크기를 더한 값",
+      "tags": ["C언어", "포인터", "배열"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-2-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "모듈화(Modularity)와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "시스템을 모듈로 분할하면 각각의 모듈을 별개로 만들고 수정할 수 있기 때문에 좋은 구조가 된다." },
+        { "no": 2, "text": "응집도는 모듈과 모듈 사이의 상호의존 또는 연관 정도를 의미한다." },
+        { "no": 3, "text": "모듈 간의 결합도가 약해야 독립적인 모듈이 될 수 있다." },
+        { "no": 4, "text": "모듈 내 구성 요소들 간의 응집도가 강해야 좋은 모듈 설계이다." }
+      ],
+      "answer": 2,
+      "explanation": "모듈과 모듈 사이의 상호 의존 정도는 결합도(Coupling)이고, 응집도(Cohesion)는 한 모듈 내부의 구성 요소들이 서로 얼마나 관련되어 있는지를 나타냅니다. 따라서 응집도를 모듈 사이의 관계로 설명한 ②가 틀렸습니다. 좋은 설계는 모듈 간 결합도를 약하게 하고 모듈 내부 응집도를 강하게 만드는 방향이며, 시스템을 모듈로 나누면 각 모듈을 독립적으로 만들고 수정할 수 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모듈 분할로 각 모듈을 별개로 개발·수정할 수 있다는 설명은 옳습니다." },
+        { "no": 2, "correct": true, "why": "모듈 사이의 상호 의존 정도는 결합도이므로 응집도에 대한 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "결합도가 약할수록 모듈이 독립적이 되므로 옳은 설명입니다." },
+        { "no": 4, "correct": false, "why": "모듈 내 구성 요소의 응집도가 강해야 좋은 설계이므로 옳은 설명입니다." }
+      ],
+      "keyPoint": "응집도는 모듈 내부의 관련성, 결합도는 모듈 사이의 의존성",
+      "tags": ["모듈화", "응집도", "결합도"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년2회_기사필기 기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

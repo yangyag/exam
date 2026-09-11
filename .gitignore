@@ -1,0 +1,12 @@
+# 생성물/캐시 (도구로 언제든 재생성 가능)
+tmp/
+data/raw/pages/
+data/raw/text/
+__pycache__/
+*.pyc
+
+# 에디터/OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

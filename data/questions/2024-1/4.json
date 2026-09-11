@@ -1,0 +1,1479 @@
+{
+  "exam": {
+    "id": "2024-1",
+    "year": 2024,
+    "round": 1,
+    "title": "2024년 1회 정보처리기사 필기",
+    "sourcePdf": "1. 2024년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2024-1-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "C언어에서 문자열 처리 함수의 서식과 그 기능의 연결로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "strlen(s) - s의 길이를 구한다."
+        },
+        {
+          "no": 2,
+          "text": "strcpy(s1, s2) - s2를 s1으로 복사한다."
+        },
+        {
+          "no": 3,
+          "text": "strcmp(s1, s2) - s1과 s2를 연결한다."
+        },
+        {
+          "no": 4,
+          "text": "strrev(s) - s를 거꾸로 변환한다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "strcmp는 두 문자열 s1과 s2가 같은지를 비교하여 같으면 0, 다르면 0이 아닌 값을 반환하는 함수이며, 두 문자열을 이어 붙이는 함수는 strcat입니다. strlen은 문자열의 길이를 구하고, strcpy는 s2의 문자열을 s1으로 복사하며, strrev는 문자열을 거꾸로 뒤집는 기능을 수행합니다. 따라서 strcmp의 기능을 연결로 잘못 설명한 ③번이 틀린 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "strlen(s)은 널 문자를 제외한 문자열 s의 길이를 반환하는 함수이므로 설명이 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "strcpy(s1, s2)는 s2의 문자열을 s1으로 복사하는 함수이므로 설명이 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "strcmp는 두 문자열을 비교하는 함수이며 문자열을 연결하는 함수는 strcat이므로, 이 연결이 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "strrev(s)는 문자열 s의 순서를 거꾸로 뒤집는 함수이므로 설명이 맞습니다."
+        }
+      ],
+      "keyPoint": "C언어 문자열 처리 함수(strlen, strcpy, strcmp, strcat, strrev)의 기능",
+      "tags": [
+        "C언어",
+        "문자열 함수"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "다음 C언어 프로그램의 결과로 옳은 것은?",
+      "passage": "#include <stdio.h>\nmain( ) {\n    int a[10];\n    a[0] = 0;\n    a[1] = 1;\n    for (int i = 0; i < 8; i++)\n        a[i + 2] = a[i + 1] + a[i];\n    printf(\"%d\", a[9]);\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "8"
+        },
+        {
+          "no": 2,
+          "text": "13"
+        },
+        {
+          "no": 3,
+          "text": "21"
+        },
+        {
+          "no": 4,
+          "text": "34"
+        }
+      ],
+      "answer": 4,
+      "explanation": "배열 a는 a[0]=0, a[1]=1로 초기화된 뒤 a[i+2]=a[i+1]+a[i]를 i가 0부터 7이 될 때까지 반복하면서 앞의 두 값을 더한 피보나치 수열 형태로 채워집니다. 이 과정에서 a[2]=1, a[3]=2, a[4]=3, a[5]=5, a[6]=8, a[7]=13, a[8]=21, a[9]=34가 되므로 출력되는 a[9]의 값은 34입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "8은 a[6]에 저장된 값으로 a[9]의 값이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "13은 a[7]에 저장된 값으로 a[9]의 값이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "21은 a[8]에 저장된 값으로 a[9]의 값이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "a[9]에는 a[8]+a[7]=21+13인 34가 저장되므로 출력 결과는 34입니다."
+        }
+      ],
+      "keyPoint": "배열과 반복문을 이용한 피보나치 수열 계산",
+      "tags": [
+        "C언어",
+        "배열",
+        "반복문"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "IPv6에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "128비트의 주소 공간을 제공한다."
+        },
+        {
+          "no": 2,
+          "text": "인증 및 보안 기능을 포함하고 있다."
+        },
+        {
+          "no": 3,
+          "text": "패킷 크기가 64Kbyte로 고정되어 있다."
+        },
+        {
+          "no": 4,
+          "text": "IPv6 확장 헤더를 통해 네트워크 기능 확장이 용이하다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "IPv6는 128비트의 주소 공간을 제공하고 인증 및 보안 기능을 포함하며, 확장 헤더를 통해 네트워크 기능을 유연하게 확장할 수 있습니다. 반면 패킷 크기가 64Kbyte로 고정되어 있는 것은 IPv4이고, IPv6의 패킷 크기에는 제한이 없습니다. 따라서 ③번이 틀린 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "IPv6는 128비트 주소 체계로 IPv4의 32비트보다 훨씬 많은 주소를 제공하므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "IPv6는 인증 및 보안 기능을 기본으로 포함하고 있으므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "패킷 크기가 64Kbyte로 고정된 것은 IPv4이며 IPv6의 패킷 크기는 제한이 없으므로 틀린 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "IPv6는 확장 헤더를 이용해 네트워크 기능 확장이 용이하므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "IPv6의 특징과 IPv4와의 차이",
+      "tags": [
+        "IPv6",
+        "IPv4",
+        "패킷 크기"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "파이썬의 변수 작성 규칙 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "첫 자리에 숫자를 사용할 수 없다."
+        },
+        {
+          "no": 2,
+          "text": "영문 대문자/소문자, 숫자, 밑줄(_)의 사용이 가능하다."
+        },
+        {
+          "no": 3,
+          "text": "변수 이름의 중간에 공백을 사용할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "이미 사용되고 있는 예약어는 사용할 수 없다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "파이썬의 변수 이름에는 영문 대소문자, 숫자, 밑줄(_)을 사용할 수 있지만 첫 자리에 숫자가 올 수 없고 이미 의미를 가진 예약어도 사용할 수 없습니다. 변수 이름 중간에 공백을 넣으면 이름이 둘로 나뉘어 인식되므로 공백은 사용할 수 없습니다. 따라서 ③번이 옳지 않은 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "변수 이름의 첫 자리에 숫자가 오면 숫자와 이름을 구분할 수 없으므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "영문 대소문자와 숫자, 밑줄(_)은 변수 이름에 사용할 수 있으므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "변수 이름 중간에 공백을 넣을 수 없으므로 이 설명이 옳지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "이미 사용되고 있는 예약어는 변수 이름으로 쓸 수 없으므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "파이썬 변수 이름 작성 규칙",
+      "tags": [
+        "파이썬",
+        "변수 명명 규칙"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "스레드(Thread)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "한 개의 프로세스는 여러 개의 스레드를 가질 수 없다."
+        },
+        {
+          "no": 2,
+          "text": "커널 스레드의 경우 운영체제에 의해 스레드를 운용한다."
+        },
+        {
+          "no": 3,
+          "text": "사용자 스레드의 경우 사용자가 만든 라이브러리를 사용하여 스레드를 운용한다."
+        },
+        {
+          "no": 4,
+          "text": "스레드를 사용함으로써 하드웨어, 운영체제의 성능과 응용 프로그램의 처리율을 향상시킬 수 있다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "하나의 프로세스는 여러 개의 스레드를 가질 수 있으며, 각 스레드는 프로세스가 가진 자원을 공유하면서 독립적으로 실행됩니다. 커널 스레드는 운영체제가, 사용자 스레드는 사용자 라이브러리가 관리하며, 스레드를 사용하면 자원 공유가 쉬워 하드웨어와 운영체제의 성능, 응용 프로그램의 처리율이 향상됩니다. 따라서 ①번이 옳지 않은 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "한 개의 프로세스는 여러 개의 스레드를 가질 수 있으므로 이 설명이 옳지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "커널 스레드는 운영체제가 직접 스레드를 운용하므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "사용자 스레드는 사용자가 만든 라이브러리를 통해 운용되므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "스레드를 사용하면 성능과 처리율이 향상되므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "스레드의 개념과 사용자 스레드·커널 스레드의 차이",
+      "tags": [
+        "스레드",
+        "프로세스"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "HRN 방식으로 스케줄링 할 경우, 입력된 작업이 다음과 같을 때 처리되는 작업 순서로 옳은 것은?",
+      "passage": "작업 | 대기 시간 | 서비스(실행)시간\nA | 5 | 20\nB | 40 | 20\nC | 15 | 45\nD | 20 | 2",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "A → B → C → D"
+        },
+        {
+          "no": 2,
+          "text": "A → C → B → D"
+        },
+        {
+          "no": 3,
+          "text": "D → B → C → A"
+        },
+        {
+          "no": 4,
+          "text": "D → A → B → C"
+        }
+      ],
+      "answer": 3,
+      "explanation": "HRN은 (대기 시간 + 서비스 시간) / 서비스 시간으로 우선순위를 계산하는 비선점 스케줄링 기법으로, 계산값이 클수록 먼저 처리됩니다. 각 작업의 우선순위는 A=(5+20)/20=1.25, B=(40+20)/20=3, C=(15+45)/45=1.33, D=(20+2)/2=11이므로 우선순위가 가장 높은 D부터 B, C, A 순으로 처리됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "A의 우선순위가 1.25로 가장 낮으므로 A가 가장 먼저 처리되는 순서는 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "A보다 D, B, C의 우선순위가 더 높으므로 A가 먼저 처리되는 순서는 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "우선순위가 D=11, B=3, C=1.33, A=1.25 순으로 크므로 D → B → C → A 순으로 처리됩니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "D 다음에는 B(3)가 A(1.25)보다 우선순위가 높으므로 B가 먼저 처리되어야 합니다."
+        }
+      ],
+      "keyPoint": "HRN 스케줄링의 우선순위 계산식",
+      "tags": [
+        "HRN",
+        "스케줄링"
+      ],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "다음 자바 코드를 실행한 결과는?",
+      "passage": "int x=1, y=6;\nwhile (y--) {\n    x++;\n}\nSystem.out.println(\"x=\" x+\"y=\" y);",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "x=7 y=0"
+        },
+        {
+          "no": 2,
+          "text": "x=6 y=-1"
+        },
+        {
+          "no": 3,
+          "text": "x=7 y=-1"
+        },
+        {
+          "no": 4,
+          "text": "Unresolved compilation problem 오류 발생"
+        }
+      ],
+      "answer": 4,
+      "explanation": "제시된 코드는 while문의 조건식과 println() 메소드의 인수 형식이 잘못되어 컴파일 오류(Unresolved compilation problem)가 발생하는 코드입니다. while (y-- > 0)처럼 조건식을 명확히 하고 \"x=\" + x + \" y=\" + y와 같이 문자열과 변수를 + 연산자로 연결해야 정상적으로 컴파일되며, 이렇게 수정하면 x=7 y=-1이 출력됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "컴파일 자체가 되지 않아 실행 결과가 출력될 수 없으므로 이 값이 될 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "y는 while문이 반복되면서 1씩 감소해 -1이 되므로 이 값은 올바른 결과가 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "코드를 수정하면 x=7 y=-1이 되지만 제시된 코드는 컴파일 오류가 발생해 실행되지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "문자열과 변수를 +로 연결하지 않은 문법 오류 때문에 컴파일 오류가 발생합니다."
+        }
+      ],
+      "keyPoint": "자바 컴파일 오류와 후치 감소 연산자의 동작",
+      "tags": [
+        "자바",
+        "컴파일 오류"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "C언어에서 산술 연산자가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "%"
+        },
+        {
+          "no": 2,
+          "text": "*"
+        },
+        {
+          "no": 3,
+          "text": "/"
+        },
+        {
+          "no": 4,
+          "text": "="
+        }
+      ],
+      "answer": 4,
+      "explanation": "C언어의 산술 연산자에는 +, -, *, /, %가 있으며 나머지를 구하는 %도 산술 연산자에 포함됩니다. =는 오른쪽의 값을 왼쪽 변수에 저장하는 대입 연산자이므로 산술 연산자가 아닙니다. 따라서 정답은 ④번입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "%는 나머지를 구하는 산술 연산자이므로 답이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "*는 곱셈을 수행하는 산술 연산자이므로 답이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "/는 나눗셈의 몫을 구하는 산술 연산자이므로 답이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "=는 값을 변수에 저장하는 대입 연산자이므로 산술 연산자가 아닙니다."
+        }
+      ],
+      "keyPoint": "C언어 산술 연산자와 대입 연산자의 구분",
+      "tags": [
+        "C언어",
+        "연산자"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때의 결과는?",
+      "passage": "public class Operator {\n    public static void main(String[] args) {\n        int x=5, y=0, z=0;\n        y = x++;\n        z = --x;\n        System.out.print(x + \", \" + y +\", \" +z);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "5, 5, 5"
+        },
+        {
+          "no": 2,
+          "text": "5, 6, 5"
+        },
+        {
+          "no": 3,
+          "text": "6, 5, 5"
+        },
+        {
+          "no": 4,
+          "text": "5, 6, 4"
+        }
+      ],
+      "answer": 1,
+      "explanation": "y = x++에서 x는 후치 증가 연산자이므로 x의 값 5를 먼저 y에 저장한 뒤 x를 1 증가시켜 x=6이 됩니다. 이어서 z = --x에서는 x가 전치 감소 연산자이므로 x를 1 감소시킨 값 5를 z에 저장합니다. 따라서 x=5, y=5, z=5가 되어 5, 5, 5가 출력됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "y에는 증가 전의 값 5가, z에는 감소 후의 값 5가 저장되어 5, 5, 5가 출력됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "y = x++에서 y에는 x가 증가하기 전의 값 5가 저장되므로 y가 6이 될 수 없습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "z = --x에서 x가 먼저 5로 감소한 뒤 출력되므로 x가 6으로 출력될 수 없습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "전치·후치 연산의 순서를 반대로 계산한 값으로 올바른 결과가 아닙니다."
+        }
+      ],
+      "keyPoint": "전치·후치 증가/감소 연산자의 동작 차이",
+      "tags": [
+        "자바",
+        "증감 연산자"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "C Class에 속하는 IP address는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "200.168.30.1"
+        },
+        {
+          "no": 2,
+          "text": "10.3.2.1"
+        },
+        {
+          "no": 3,
+          "text": "225.2.4.1"
+        },
+        {
+          "no": 4,
+          "text": "172.16.98.3"
+        }
+      ],
+      "answer": 1,
+      "explanation": "C 클래스에 속하는 IP 주소의 범위는 192.0.0.0 ~ 223.255.255.255로 첫 번째 옥텟이 192~223입니다. 200.168.30.1은 첫 옥텟이 200이므로 C 클래스에 해당하고, 10.3.2.1은 A 클래스(0~127), 172.16.98.3은 B 클래스(128~191), 225.2.4.1은 D 클래스(224~239)에 속합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "첫 옥텟이 200이므로 C 클래스 범위(192~223)에 속합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "첫 옥텟이 10이므로 C 클래스가 아니라 A 클래스(0~127)에 속합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "첫 옥텟이 225이므로 C 클래스가 아니라 D 클래스(224~239)에 속합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "첫 옥텟이 172이므로 C 클래스가 아니라 B 클래스(128~191)에 속합니다."
+        }
+      ],
+      "keyPoint": "IP 주소 클래스별 첫 옥텟 범위",
+      "tags": [
+        "IP 주소",
+        "클래스"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "빈 기억공간의 크기가 20KB, 16KB, 8KB, 40KB 일 때 기억장치 배치 전략으로 “Best Fit”을 사용하여 17KB의 프로그램을 적재할 경우 내부 단편화의 크기는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "3KB"
+        },
+        {
+          "no": 2,
+          "text": "23KB"
+        },
+        {
+          "no": 3,
+          "text": "64KB"
+        },
+        {
+          "no": 4,
+          "text": "67KB"
+        }
+      ],
+      "answer": 1,
+      "explanation": "최적 적합(Best Fit)은 프로그램이 적재될 수 있는 빈 영역 중 단편화를 가장 적게 남기는, 즉 가장 작은 영역에 배치하는 전략입니다. 17KB를 적재할 수 있는 영역은 20KB와 40KB이고 이 중 작은 20KB를 선택하므로, 내부 단편화는 20KB-17KB=3KB가 됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "20KB 영역에 17KB를 적재하므로 내부 단편화는 20KB-17KB인 3KB입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "23KB는 40KB 영역에 적재했을 때의 단편화(40KB-17KB)로 최적 적합의 결과가 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "64KB는 빈 영역 전체 크기(20+16+8+40)를 잘못 계산한 값입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "67KB는 내부 단편화의 정의와 관계없는 값입니다."
+        }
+      ],
+      "keyPoint": "최적 적합(Best Fit) 배치 전략과 내부 단편화",
+      "tags": [
+        "기억장치 배치 전략",
+        "Best Fit"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음의 페이지 참조 열(Page reference)에 대해 페이지 교체 기법으로 선입선출 알고리즘을 사용할 경우 페이지 부재(Page Fault) 횟수는? (단, 할당된 페이지 프레임 수는 3이고, 처음에는 모든 프레임이 비어 있다.)",
+      "passage": "<페이지 참조열>\n7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "13"
+        },
+        {
+          "no": 2,
+          "text": "14"
+        },
+        {
+          "no": 3,
+          "text": "15"
+        },
+        {
+          "no": 4,
+          "text": "20"
+        }
+      ],
+      "answer": 2,
+      "explanation": "FIFO는 주기억장치에 적재된 시간이 가장 오래된 페이지를 교체하는 기법이며, 초기에는 세 개의 프레임이 모두 비어 있으므로 7, 0, 1을 적재할 때 각각 페이지 부재가 발생합니다. 이어서 2, 3, 0, 4, 2, 3, 0, 1, 2, 7, 0을 참조하는 과정에서도 프레임에 없는 페이지를 적재할 때마다 부재가 발생합니다. 19번의 참조 중 이미 적재된 페이지를 참조한 0, 3, 2, 0, 1의 5번을 제외하면 페이지 부재는 모두 14번 발생합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "부재가 발생하지 않는 참조 5번을 제외하면 14번이므로 13번은 계산이 맞지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "19번의 참조 중 5번이 적중하고 나머지 14번에서 페이지 부재가 발생합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "15번은 교체 시점을 잘못 계산한 값으로 실제 부재 횟수와 다릅니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "20번은 전체 참조 횟수(19번)보다도 큰 값이므로 답이 될 수 없습니다."
+        }
+      ],
+      "keyPoint": "FIFO 페이지 교체 알고리즘과 페이지 부재 횟수 계산",
+      "tags": [
+        "페이지 교체",
+        "FIFO",
+        "페이지 부재"
+      ],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "UNIX에서 새로운 프로세스를 생성하는 명령어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "ls"
+        },
+        {
+          "no": 2,
+          "text": "cat"
+        },
+        {
+          "no": 3,
+          "text": "fork"
+        },
+        {
+          "no": 4,
+          "text": "chmod"
+        }
+      ],
+      "answer": 3,
+      "explanation": "fork는 UNIX에서 현재 실행 중인 프로세스를 복제하여 새로운 자식 프로세스를 생성하는 시스템 호출입니다. ls는 현재 디렉터리 내의 파일 목록을 확인하고, cat은 파일 내용을 화면에 표시하며, chmod는 파일의 보호 모드를 설정하여 사용 허가를 지정하는 명령어입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "ls는 디렉터리 내의 파일 목록을 확인하는 명령어이므로 답이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "cat은 파일의 내용을 화면에 출력하는 명령어이므로 답이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "fork는 실행 중인 프로세스를 복제해 새로운 프로세스를 생성하는 명령어입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "chmod는 파일의 접근 권한을 설정하는 명령어이므로 답이 아닙니다."
+        }
+      ],
+      "keyPoint": "UNIX의 프로세스 생성 명령어 fork",
+      "tags": [
+        "UNIX",
+        "fork",
+        "프로세스"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "페이징 기법에서 페이지 크기가 작아질수록 발생하는 현상이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "기억장소 이용 효율이 증가한다."
+        },
+        {
+          "no": 2,
+          "text": "입·출력 시간이 늘어난다."
+        },
+        {
+          "no": 3,
+          "text": "내부 단편화가 감소한다."
+        },
+        {
+          "no": 4,
+          "text": "페이지 맵 테이블의 크기가 감소한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "페이지 크기가 작아지면 전체 페이지의 개수가 많아지므로 주소 변환에 사용하는 페이지 맵 테이블의 크기는 오히려 커집니다. 반면 페이지 단위가 잘게 나뉘어 기억장소 이용 효율은 높아지고 내부 단편화는 줄어들며, 페이지 교체가 자주 일어나 입·출력 시간이 늘어납니다. 따라서 ④번이 발생하는 현상이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "페이지가 잘게 나뉘어 남는 공간이 줄어들므로 기억장소 이용 효율은 증가합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "페이지 수가 많아져 교체가 잦아지므로 입·출력 시간이 늘어납니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "페이지 크기가 작을수록 마지막 페이지에서 낭비되는 공간이 줄어 내부 단편화가 감소합니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "페이지 개수가 많아져 페이지 맵 테이블의 크기는 커지므로 이 설명이 옳지 않습니다."
+        }
+      ],
+      "keyPoint": "페이지 크기 변화에 따른 페이징 기법의 특성",
+      "tags": [
+        "페이징",
+        "내부 단편화"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "C언어에서 두 개의 논리 값 중 하나라도 참이면 1을, 모두 거짓이면 0을 반환하는 연산자는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "∥"
+        },
+        {
+          "no": 2,
+          "text": "&&"
+        },
+        {
+          "no": 3,
+          "text": "**"
+        },
+        {
+          "no": 4,
+          "text": "!="
+        }
+      ],
+      "answer": 1,
+      "explanation": "∥는 논리합(OR) 연산자로 두 논리 값 중 하나라도 참이면 1을 반환하고 모두 거짓일 때만 0을 반환합니다. &&는 두 값이 모두 참일 때만 1을 반환하는 논리곱 연산자이고, **는 C언어에 없는 연산자이며, !=는 두 값이 다를 때 참이 되는 관계 연산자입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "∥는 논리합 연산자로 하나라도 참이면 1을 반환합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "&&는 두 값이 모두 참일 때만 1을 반환하는 논리곱 연산자이므로 답이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "**는 C언어에서 제공하지 않는 연산자이므로 답이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "!=는 두 값이 같지 않은지를 판별하는 관계 연산자이므로 답이 아닙니다."
+        }
+      ],
+      "keyPoint": "C언어 논리 연산자(∥, &&)의 동작",
+      "tags": [
+        "C언어",
+        "논리 연산자"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "IPv6의 주소체계로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Unicast"
+        },
+        {
+          "no": 2,
+          "text": "Anycast"
+        },
+        {
+          "no": 3,
+          "text": "Broadcast"
+        },
+        {
+          "no": 4,
+          "text": "Multicast"
+        }
+      ],
+      "answer": 3,
+      "explanation": "IPv6의 주소 체계에는 유니캐스트(Unicast), 멀티캐스트(Multicast), 애니캐스트(Anycast)가 있으며 브로드캐스트는 사용하지 않습니다. 브로드캐스트는 IPv4에서 네트워크에 연결된 모든 호스트에게 데이터를 전송하는 방식입니다. 따라서 ③번이 IPv6의 주소 체계와 거리가 먼 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "유니캐스트는 하나의 송신자와 하나의 수신자를 지정하는 IPv6 주소 체계에 포함됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "애니캐스트는 가장 가까운 하나의 수신자에게 전송하는 IPv6 주소 체계에 포함됩니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "브로드캐스트는 IPv4의 주소 체계로 IPv6에서는 사용하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "멀티캐스트는 특정 그룹에 속한 모든 수신자에게 전송하는 IPv6 주소 체계에 포함됩니다."
+        }
+      ],
+      "keyPoint": "IPv6 주소 체계(유니캐스트·멀티캐스트·애니캐스트)",
+      "tags": [
+        "IPv6",
+        "주소 체계"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "어떤 모듈이 다른 모듈의 내부 논리 조직을 제어하기 위한 목적으로 제어신호를 이용하여 통신하는 경우이며, 하위 모듈에서 상위 모듈로 제어신호가 이동하여 상위 모듈에게 처리 명령을 부여하는 권리 전도현상이 발생하게 되는 결합도는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Data Coupling"
+        },
+        {
+          "no": 2,
+          "text": "Stamp Coupling"
+        },
+        {
+          "no": 3,
+          "text": "Control Coupling"
+        },
+        {
+          "no": 4,
+          "text": "Common Coupling"
+        }
+      ],
+      "answer": 3,
+      "explanation": "제어 결합도(Control Coupling)는 한 모듈이 다른 모듈의 내부 논리 조직을 제어할 목적으로 제어신호를 이용해 통신하는 결합도로, 하위 모듈에서 상위 모듈로 제어신호가 이동하는 권리 전도현상이 발생할 수 있습니다. 결합도는 낮을수록 좋으므로 제어 결합도보다 자료 결합도와 스탬프 결합도가 더 바람직한 형태입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "자료 결합도는 모듈 간에 매개변수로 자료만 주고받는 가장 낮은 결합도로, 권리 전도현상과 관계가 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "스탬프 결합도는 배열이나 구조체 같은 자료 구조를 매개변수로 전달하는 결합도로, 제어신호 전달과는 다릅니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "제어 결합도는 제어신호로 다른 모듈의 논리를 제어해 권리 전도현상을 일으킵니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "공통 결합도는 여러 모듈이 공통 데이터 영역을 사용하는 결합도로, 제어신호 전달과는 다릅니다."
+        }
+      ],
+      "keyPoint": "모듈 결합도의 종류와 권리 전도현상",
+      "tags": [
+        "결합도",
+        "Control Coupling"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "TCP/IP에서 사용되는 논리 주소를 물리 주소로 변환시켜 주는 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "TCP"
+        },
+        {
+          "no": 2,
+          "text": "ARP"
+        },
+        {
+          "no": 3,
+          "text": "FTP"
+        },
+        {
+          "no": 4,
+          "text": "IP"
+        }
+      ],
+      "answer": 2,
+      "explanation": "ARP(Address Resolution Protocol)는 TCP/IP 네트워크에서 논리 주소인 IP 주소를 물리 주소인 MAC 주소로 변환해 주는 프로토콜입니다. TCP는 신뢰성 있는 연결형 전송 서비스를 제공하고, FTP는 컴퓨터 사이의 원격 파일 전송을 담당하며, IP는 데이터그램 기반의 비연결형 서비스와 주소 지정, 경로 선택 기능을 제공합니다. 따라서 정답은 ②번입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "TCP는 패킷의 다중화, 순서 제어, 오류 제어, 흐름 제어를 제공하는 전송 계층 프로토콜입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "ARP는 논리 주소(IP)를 물리 주소(MAC)로 변환하는 프로토콜입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "FTP는 파일을 주고받기 위한 원격 파일 전송 프로토콜이므로 답이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "IP는 주소 지정과 경로 선택을 담당하는 논리 주소 자체이며, 물리 주소 변환 기능은 없습니다."
+        }
+      ],
+      "keyPoint": "논리 주소를 물리 주소로 변환하는 ARP",
+      "tags": [
+        "ARP",
+        "프로토콜"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "운영체제의 가상기억장치 관리에서 프로세스가 일정 시간동안 자주 참조하는 페이지들의 집합을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Locality"
+        },
+        {
+          "no": 2,
+          "text": "Deadlock"
+        },
+        {
+          "no": 3,
+          "text": "Thrashing"
+        },
+        {
+          "no": 4,
+          "text": "Working Set"
+        }
+      ],
+      "answer": 4,
+      "explanation": "워킹 셋(Working Set)은 프로세스가 일정 시간 동안 자주 참조하는 페이지들의 집합으로, 주기억장치에 유지해야 할 페이지를 결정하는 데 사용됩니다. Locality는 프로세스가 일부 페이지만 집중적으로 참조하는 성질, Deadlock은 둘 이상의 프로세스가 자원을 점유한 채 서로의 자원을 요구하며 무한정 기다리는 현상, Thrashing은 페이지 교체에 소요되는 시간이 처리 시간보다 많아지는 현상입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Locality는 일부 페이지만 집중적으로 참조하는 성질을 뜻하므로 답이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Deadlock은 자원 점유로 인해 프로세스가 무한정 대기하는 교착상태를 뜻합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Thrashing은 페이지 교체 시간이 처리 시간보다 많아지는 현상으로, 집합 자체를 뜻하지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Working Set은 일정 시간 동안 자주 참조하는 페이지들의 집합을 뜻합니다."
+        }
+      ],
+      "keyPoint": "워킹 셋과 페이지 참조의 지역성(Locality)",
+      "tags": [
+        "워킹 셋",
+        "가상기억장치"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    },
+    {
+      "id": "2024-1-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "다음 설명에 해당하는 방식은?",
+      "passage": "ㆍ무선 랜에서 데이터 전송 시, 매체가 비어있음을 확인한 뒤 충돌을 회피하기 위해 임의 시간을 기다린 후 데이터를 전송하는 방법이다.\nㆍ네트워크에 데이터의 전송이 없는 경우라도 동시 전송에 의한 충돌에 대비하여 확인 신호를 전송한다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "STA"
+        },
+        {
+          "no": 2,
+          "text": "Collision Domain"
+        },
+        {
+          "no": 3,
+          "text": "CSMA/CA"
+        },
+        {
+          "no": 4,
+          "text": "CSMA/CD"
+        }
+      ],
+      "answer": 3,
+      "explanation": "CSMA/CA는 무선 랜에서 매체가 비어 있음을 확인한 뒤에도 충돌을 회피하기 위해 임의 시간을 기다렸다가 데이터를 전송하는 방식으로, 전송 전에 확인 신호를 주고받아 충돌을 미리 피합니다. CSMA/CD는 유선 LAN에서 통신 회선을 조사해 사용 중이면 대기하고 비어 있으면 전송하며 충돌을 검출하는 방식입니다. 따라서 지문은 CSMA/CA에 대한 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "STA는 무선 통신에서 메시지를 통해 데이터 단말기를 제어하는 장치를 뜻하므로 답이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Collision Domain은 충돌이 발생할 수 있는 영역을 뜻하는 개념이므로 답이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "CSMA/CA는 무선 랜에서 임의 시간 대기와 확인 신호로 충돌을 회피하는 방식입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "CSMA/CD는 유선 LAN에서 회선 사용 여부를 확인하고 충돌을 검출하는 방식입니다."
+        }
+      ],
+      "keyPoint": "CSMA/CA와 CSMA/CD의 차이",
+      "tags": [
+        "CSMA/CA",
+        "무선 랜"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "1. 2024년1회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "pdf"
+      }
+    }
+  ]
+}

@@ -1,0 +1,855 @@
+{
+  "exam": {
+    "id": "2025-3",
+    "year": 2025,
+    "round": 3,
+    "title": "2025년 3회 정보처리기사 필기",
+    "sourcePdf": "2025년3회_정보처리기사 필기_기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2025-3-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "다음 설명의 ( ) 안에 들어갈 내용으로 적합한 것은?",
+      "passage": "후보키는 릴레이션에 있는 모든 튜플에 대해 유일성과 ( )을 모두 만족시켜야 한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "중복성" },
+        { "no": 2, "text": "최소성" },
+        { "no": 3, "text": "참조성" },
+        { "no": 4, "text": "동일성" }
+      ],
+      "answer": 2,
+      "explanation": "후보키는 릴레이션에 있는 모든 튜플을 유일하게 식별할 수 있는 유일성과, 꼭 필요한 속성만으로 구성되어 더는 줄일 수 없는 최소성을 모두 만족해야 합니다. 유일성만 만족하고 최소성을 만족하지 못하면 슈퍼키가 되므로 ( ) 안에는 최소성이 들어가야 합니다. 중복성과 동일성은 유일성과 반대되거나 무관한 개념이고, 참조성은 외래키와 관련된 성질입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "중복성은 여러 튜플이 같은 값을 가지는 성질로, 후보키가 보장해야 하는 유일성과 오히려 반대되는 개념입니다." },
+        { "no": 2, "correct": true, "why": "후보키는 유일성과 함께 꼭 필요한 속성만으로 구성되는 최소성도 만족해야 합니다." },
+        { "no": 3, "correct": false, "why": "참조성은 외래키가 다른 릴레이션의 값을 가리키는 성질로, 후보키의 요건이 아닙니다." },
+        { "no": 4, "correct": false, "why": "동일성은 값이 서로 같다는 의미로, 튜플을 서로 구별해야 하는 후보키의 요건과 거리가 있습니다." }
+      ],
+      "keyPoint": "후보키의 두 가지 요건(유일성과 최소성)",
+      "tags": ["후보키", "최소성", "유일성"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "E-R 모델의 표현 방법으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "개체 타입 : 사각형" },
+        { "no": 2, "text": "관계 타입 : 마름모" },
+        { "no": 3, "text": "속성 : 오각형" },
+        { "no": 4, "text": "연결 : 선" }
+      ],
+      "answer": 3,
+      "explanation": "E-R 다이어그램에서는 개체 타입을 사각형, 관계 타입을 마름모, 속성을 타원으로 표현하고 이들을 선으로 연결합니다. 따라서 속성을 오각형으로 표현한다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "개체 타입을 사각형으로 표현하는 것은 E-R 다이어그램의 올바른 표기법입니다." },
+        { "no": 2, "correct": false, "why": "관계 타입을 마름모로 표현하는 것도 올바른 표기법입니다." },
+        { "no": 3, "correct": true, "why": "속성은 타원으로 표현하며 오각형은 E-R 다이어그램에서 사용하지 않는 기호입니다." },
+        { "no": 4, "correct": false, "why": "개체와 관계, 속성을 연결하는 선으로 표기하는 것은 맞습니다." }
+      ],
+      "keyPoint": "E-R 다이어그램 표기법(개체 사각형, 관계 마름모, 속성 타원, 연결 선)",
+      "tags": ["E-R 모델", "E-R 다이어그램", "개체 관계도"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "데이터 무결성 제약 조건 중 “개체 무결성 제약” 조건에 대한 설명으로 맞는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "릴레이션 내의 튜플들이 각 속성의 도메인에 지정된 값만을 가져야 한다." },
+        { "no": 2, "text": "기본키에 속해 있는 애트리뷰트는 널 값이나 중복 값을 가질 수 없다." },
+        { "no": 3, "text": "릴레이션은 참조할 수 없는 외래키 값을 가질 수 없다." },
+        { "no": 4, "text": "외래키 값은 참조 릴레이션의 기본키 값과 동일해야 한다." }
+      ],
+      "answer": 2,
+      "explanation": "개체 무결성 제약조건은 기본키를 구성하는 애트리뷰트가 널 값이나 중복 값을 가질 수 없도록 하여 모든 튜플을 유일하게 식별할 수 있게 하는 규칙입니다. 각 속성이 도메인에 지정된 값만 가지도록 하는 것은 도메인 무결성, 외래키가 참조할 수 없는 값을 갖지 못하게 하는 것은 참조 무결성에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "각 속성이 도메인에 지정된 값만 갖도록 하는 것은 도메인 무결성 제약조건에 대한 설명입니다." },
+        { "no": 2, "correct": true, "why": "기본키에 속한 애트리뷰트가 널 값이나 중복 값을 가질 수 없다는 것이 개체 무결성 제약조건입니다." },
+        { "no": 3, "correct": false, "why": "참조할 수 없는 외래키 값을 허용하지 않는 것은 참조 무결성 제약조건에 대한 설명입니다." },
+        { "no": 4, "correct": false, "why": "외래키 값이 참조 릴레이션의 기본키 값과 동일해야 한다는 설명도 참조 무결성과 관련된 내용입니다." }
+      ],
+      "keyPoint": "개체 무결성(기본키의 널·중복 불가)과 도메인·참조 무결성의 구분",
+      "tags": ["개체 무결성", "무결성 제약조건", "기본키"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "릴레이션에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "튜플들의 삽입, 삭제 등의 작업으로 인해 릴레이션은 시간에 따라 변한다." },
+        { "no": 2, "text": "한 릴레이션에 포함된 튜플들은 모두 상이하다." },
+        { "no": 3, "text": "애트리뷰트는 논리적으로 쪼갤 수 없는 원자값으로 저장한다." },
+        { "no": 4, "text": "한 릴레이션에 포함된 튜플 사이에는 순서가 있다." }
+      ],
+      "answer": 4,
+      "explanation": "릴레이션에서 튜플 사이에는 아무런 순서가 없으며, 튜플의 삽입과 삭제로 내용이 변하더라도 같은 의미의 릴레이션으로 취급합니다. 따라서 튜플 사이에 순서가 있다는 설명이 거리가 멉니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "삽입, 삭제 등의 작업으로 릴레이션이 시간에 따라 변한다는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "한 릴레이션에 포함된 튜플들은 모두 상이하여 중복된 튜플은 존재하지 않습니다." },
+        { "no": 3, "correct": false, "why": "애트리뷰트는 논리적으로 쪼갤 수 없는 원자값으로 저장되며, 이는 제1정규형의 조건이기도 합니다." },
+        { "no": 4, "correct": true, "why": "릴레이션은 튜플의 집합이므로 튜플 사이에 순서가 존재하지 않아 이 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "릴레이션의 특성(튜플 무순서, 튜플 상이, 원자값)",
+      "tags": ["릴레이션", "튜플", "원자값"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "player 테이블에는 player_name, team_id, height 컬럼이 존재한다. 아래 SQL문에서 문법적 오류가 있는 부분은?",
+      "passage": "(1) SELECT player_name, height\n(2) FROM player\n(3) WHERE team_id = 'korea'\n(4) AND height BETWEEN 170 OR 180;",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "(1)" },
+        { "no": 2, "text": "(2)" },
+        { "no": 3, "text": "(3)" },
+        { "no": 4, "text": "(4)" }
+      ],
+      "answer": 4,
+      "explanation": "BETWEEN 연산자는 'BETWEEN 값1 AND 값2'의 형태로만 사용하므로 (4)의 'BETWEEN 170 OR 180'은 문법에 맞지 않습니다. 범위 조건을 지정할 때는 두 값을 AND로 연결해야 하며, OR을 사용하려면 'height = 170 OR height = 180'처럼 조건을 각각 서술해야 합니다. 나머지 절은 컬럼과 테이블, 조건을 올바르게 지정하고 있습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SELECT 절에 조회할 컬럼명을 나열한 부분은 문법적으로 문제가 없습니다." },
+        { "no": 2, "correct": false, "why": "FROM 절에 테이블명을 지정한 부분도 올바른 문법입니다." },
+        { "no": 3, "correct": false, "why": "WHERE 절에서 team_id가 'korea'인 행을 조건으로 지정한 것은 맞습니다." },
+        { "no": 4, "correct": true, "why": "BETWEEN은 'BETWEEN 170 AND 180'처럼 AND와 함께 써야 하므로 OR을 사용한 (4)에 오류가 있습니다." }
+      ],
+      "keyPoint": "BETWEEN 연산자의 문법(BETWEEN 값1 AND 값2)",
+      "tags": ["SQL", "BETWEEN", "AND"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "DCL(Data Control Language) 명령어가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "COMMIT" },
+        { "no": 2, "text": "ROLLBACK" },
+        { "no": 3, "text": "GRANT" },
+        { "no": 4, "text": "SELECT" }
+      ],
+      "answer": 4,
+      "explanation": "DCL은 데이터베이스 사용자에게 권한을 부여하거나 회수하는 명령어로 GRANT와 REVOKE가 대표적이고, COMMIT과 ROLLBACK은 트랜잭션을 제어하는 TCL입니다. SELECT는 데이터를 조회하는 DML(또는 DQL)에 해당하므로 DCL이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "COMMIT은 트랜잭션의 변경 내용을 확정하는 TCL 명령어로 DCL과 구분됩니다." },
+        { "no": 2, "correct": false, "why": "ROLLBACK은 트랜잭션을 취소하고 이전 상태로 되돌리는 TCL 명령어입니다." },
+        { "no": 3, "correct": false, "why": "GRANT는 사용자에게 권한을 부여하는 대표적인 DCL 명령어입니다." },
+        { "no": 4, "correct": true, "why": "SELECT는 데이터를 조회하는 DML 계열 명령어이므로 DCL이 아닙니다." }
+      ],
+      "keyPoint": "DCL(GRANT, REVOKE)과 TCL(COMMIT, ROLLBACK), DML(SELECT)의 구분",
+      "tags": ["DCL", "GRANT", "SELECT"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "릴레이션 R의 모든 결정자(Determinant)가 후보키이면 그 릴레이션 R은 어떤 정규형에 속하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "제1정규형" },
+        { "no": 2, "text": "제2정규형" },
+        { "no": 3, "text": "보이스/코드 정규형" },
+        { "no": 4, "text": "제4정규형" }
+      ],
+      "answer": 3,
+      "explanation": "보이스/코드 정규형(BCNF)은 릴레이션의 모든 결정자가 후보키인 정규형으로, 3정규형을 만족하면서 후보키가 아닌 결정자가 존재하지 않도록 한 단계 더 강화한 형태입니다. 제1정규형은 원자값, 제2정규형은 완전 함수 종속, 제4정규형은 다치 종속 제거를 조건으로 하므로 결정자와 후보키의 관계를 다루는 정규형은 BCNF입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "제1정규형은 릴레이션의 모든 속성이 원자값을 갖도록 하는 단계입니다." },
+        { "no": 2, "correct": false, "why": "제2정규형은 키가 아닌 속성이 기본키에 완전 함수 종속되도록 하는 단계입니다." },
+        { "no": 3, "correct": true, "why": "모든 결정자가 후보키이면 보이스/코드 정규형(BCNF)에 속합니다." },
+        { "no": 4, "correct": false, "why": "제4정규형은 다치 종속을 제거한 정규형으로 결정자 조건과는 다릅니다." }
+      ],
+      "keyPoint": "BCNF(보이스/코드 정규형) - 모든 결정자가 후보키",
+      "tags": ["정규화", "BCNF", "결정자"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "A1, A2, A3 3개 속성을 갖는 한 릴레이션에서 A1의 도메인은 3개 값, A2의 도메인은 2개 값, A3의 도메인은 4개 값을 갖는다. 이 릴레이션에 존재할 수 있는 가능한 튜플(Tuple)의 최대 수는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "24" },
+        { "no": 2, "text": "12" },
+        { "no": 3, "text": "8" },
+        { "no": 4, "text": "9" }
+      ],
+      "answer": 1,
+      "explanation": "릴레이션에 존재할 수 있는 튜플의 최대 수는 각 속성 도메인 크기의 곱, 즉 카티션 프로덕트로 구합니다. A1의 도메인이 3개, A2가 2개, A3가 4개 값이므로 3 × 2 × 4 = 24개의 튜플이 가능합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "3 × 2 × 4 = 24이므로 가능한 튜플의 최대 수는 24개입니다." },
+        { "no": 2, "correct": false, "why": "12는 3 × 4의 결과로, A2의 도메인 크기 2를 반영하지 않았습니다." },
+        { "no": 3, "correct": false, "why": "8은 일부 도메인 값만 곱한 결과로 최대 튜플 수가 아닙니다." },
+        { "no": 4, "correct": false, "why": "9는 3 × 3으로 계산한 값이며 세 도메인의 곱과 일치하지 않습니다." }
+      ],
+      "keyPoint": "가능한 튜플 수 = 각 속성 도메인 크기의 곱(카티션 프로덕트)",
+      "tags": ["도메인", "튜플", "카티션 프로덕트"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "관계대수에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "주어진 릴레이션 조작을 위한 연산의 집합이다." },
+        { "no": 2, "text": "일반 집합 연산과 순수 관계 연산으로 구분된다." },
+        { "no": 3, "text": "질의에 대한 해를 구하기 위해 수행해야 할 연산의 순서를 명시한다." },
+        { "no": 4, "text": "원하는 정보와 그 정보를 어떻게 유도하는가를 기술하는 비절차적 방법이다." }
+      ],
+      "answer": 4,
+      "explanation": "관계대수는 원하는 정보를 얻기 위해 수행할 연산의 순서를 명시하는 절차적 질의 언어이며, 일반 집합 연산과 순수 관계 연산으로 나뉩니다. 비절차적 방법은 연산 순서를 명시하지 않고 원하는 정보만 기술하는 관계해석에 해당하므로, 관계대수를 비절차적이라고 설명한 보기가 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "관계대수가 릴레이션 조작을 위한 연산의 집합이라는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "일반 집합 연산과 순수 관계 연산으로 구분된다는 설명도 맞습니다." },
+        { "no": 3, "correct": false, "why": "수행해야 할 연산의 순서를 명시한다는 설명은 관계대수의 절차적 특성을 잘 나타냅니다." },
+        { "no": 4, "correct": true, "why": "비절차적 방법은 관계해석에 대한 설명이며, 관계대수는 절차적 방법입니다." }
+      ],
+      "keyPoint": "관계대수(절차적)와 관계해석(비절차적)의 차이",
+      "tags": ["관계대수", "관계해석", "절차적 언어"],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "정규화된 엔티티, 속성, 관계를 시스템의 성능 향상과 개발 운영의 단순화를 위해 중복, 통합, 분리 등을 수행하는 데이터 모델링 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "정규화" },
+        { "no": 2, "text": "반정규화" },
+        { "no": 3, "text": "집단화" },
+        { "no": 4, "text": "머징" }
+      ],
+      "answer": 2,
+      "explanation": "반정규화는 정규화로 분리된 엔티티, 속성, 관계를 시스템 성능 향상과 개발·운영의 단순화를 위해 중복, 통합, 분리 등을 수행하는 데이터 모델링 기법입니다. 정규화가 중복 제거를 통해 무결성을 높이는 것과 반대 방향의 기법이라는 점이 핵심입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "정규화는 중복을 제거해 무결성을 높이는 기법으로, 중복을 허용하는 반정규화와 반대됩니다." },
+        { "no": 2, "correct": true, "why": "성능 향상과 운영 단순화를 위해 중복, 통합, 분리를 수행하는 기법은 반정규화입니다." },
+        { "no": 3, "correct": false, "why": "집단화는 상세한 엔티티를 상위 엔티티로 묶는 개념으로, 제시된 설명과 다릅니다." },
+        { "no": 4, "correct": false, "why": "머징은 여러 엔티티를 하나로 합치는 작업의 일부일 뿐 제시된 기법의 명칭이 아닙니다." }
+      ],
+      "keyPoint": "반정규화의 목적(성능 향상과 운영 단순화)",
+      "tags": ["반정규화", "데이터 모델링", "정규화"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "트랜잭션을 수행하는 도중 장애로 인해 손상된 데이터베이스를 손상되기 이전에 정상적인 상태로 복구시키는 작업은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Recovery" },
+        { "no": 2, "text": "Commit" },
+        { "no": 3, "text": "Abort" },
+        { "no": 4, "text": "Restart" }
+      ],
+      "answer": 1,
+      "explanation": "Recovery는 트랜잭션 수행 중 발생한 장애로 손상된 데이터베이스를 장애 이전의 정상 상태로 되돌리는 복구 작업입니다. 로그와 백업을 이용해 재실행(Redo)과 취소(Undo)를 수행하며, Commit과 Abort는 트랜잭션의 종료 연산, Restart는 시스템을 다시 기동하는 작업입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "장애로 손상된 데이터베이스를 정상 상태로 복구하는 작업은 Recovery입니다." },
+        { "no": 2, "correct": false, "why": "Commit은 트랜잭션의 수행 결과를 확정하는 연산으로 복구 작업과 다릅니다." },
+        { "no": 3, "correct": false, "why": "Abort는 트랜잭션을 취소하고 이전 상태로 되돌리는 연산입니다." },
+        { "no": 4, "correct": false, "why": "Restart는 시스템을 재기동하는 것으로, 데이터베이스 복구 자체를 의미하지는 않습니다." }
+      ],
+      "keyPoint": "장애 복구(Recovery)의 개념과 Redo/Undo",
+      "tags": ["Recovery", "트랜잭션", "장애 복구"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "시스템 카탈로그에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "시스템 카탈로그의 갱신은 무결성 유지를 위하여 SQL을 이용하여 사용자가 직접 갱신하여야 한다." },
+        { "no": 2, "text": "데이터베이스에 포함되는 데이터 객체에 대한 정의나 명세에 대한 정보를 유지관리한다." },
+        { "no": 3, "text": "DBMS가 스스로 생성하고 유지하는 데이터베이스 내의 특별한 테이블의 집합체이다." },
+        { "no": 4, "text": "카탈로그에 저장된 정보를 메타 데이터라고도 한다." }
+      ],
+      "answer": 1,
+      "explanation": "시스템 카탈로그는 DBMS가 스스로 생성하고 유지하는 메타 데이터의 집합으로, 데이터 객체의 정의와 명세 정보를 관리합니다. 카탈로그의 갱신은 DBMS가 내부적으로 처리하므로 사용자가 SQL로 직접 갱신해야 한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "시스템 카탈로그는 DBMS가 자동으로 관리하므로 사용자가 직접 갱신한다는 설명은 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "데이터 객체의 정의와 명세 정보를 유지·관리한다는 설명은 맞습니다." },
+        { "no": 3, "correct": false, "why": "DBMS가 스스로 생성하고 유지하는 특별한 테이블의 집합체라는 설명도 맞습니다." },
+        { "no": 4, "correct": false, "why": "카탈로그에 저장된 정보를 메타 데이터라고 부른다는 설명도 맞습니다." }
+      ],
+      "keyPoint": "시스템 카탈로그는 DBMS가 자동으로 유지·관리하는 메타 데이터",
+      "tags": ["시스템 카탈로그", "메타 데이터", "DBMS"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "속성(attribute)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "속성은 개체의 특성을 기술한다." },
+        { "no": 2, "text": "속성은 데이터베이스를 구성하는 가장 작은 논리적 단위이다." },
+        { "no": 3, "text": "속성은 파일 구조상 데이터 항목 또는 데이터 필드에 해당된다." },
+        { "no": 4, "text": "속성의 수를 “cardinality”라고 한다." }
+      ],
+      "answer": 4,
+      "explanation": "속성은 개체의 특성을 기술하는 가장 작은 논리적 단위로, 파일 구조상 데이터 항목이나 데이터 필드에 해당합니다. 속성의 수는 차수(degree)라고 하고 cardinality는 릴레이션에 포함된 튜플의 수를 의미하므로, 두 용어를 바꾸어 쓴 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "속성이 개체의 특성을 기술한다는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "데이터베이스를 구성하는 가장 작은 논리적 단위라는 설명도 맞습니다." },
+        { "no": 3, "correct": false, "why": "파일 구조상 데이터 항목 또는 데이터 필드에 해당된다는 설명도 맞습니다." },
+        { "no": 4, "correct": true, "why": "속성의 수는 차수(degree)이고 cardinality는 튜플의 수를 뜻하므로 틀린 설명입니다." }
+      ],
+      "keyPoint": "차수(degree, 속성 수)와 카디널리티(cardinality, 튜플 수)",
+      "tags": ["속성", "차수", "카디널리티"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "데이터 속성 간의 종속성에 대한 엄밀한 고려없이 잘못 설계된 데이터베이스에서는 데이터 처리 연산 수행 시 각종 이상 현상이 발생할 수 있는데, 이러한 이상 현상이 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "검색 이상" },
+        { "no": 2, "text": "삽입 이상" },
+        { "no": 3, "text": "삭제 이상" },
+        { "no": 4, "text": "갱신 이상" }
+      ],
+      "answer": 1,
+      "explanation": "속성 간의 종속성을 고려하지 않고 설계하면 데이터의 중복으로 인해 삽입 이상, 삭제 이상, 갱신 이상이 발생합니다. 검색 이상은 이러한 이상 현상의 종류에 포함되지 않으므로 정답입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "이상 현상은 삽입, 삭제, 갱신 이상을 말하므로 검색 이상은 해당하지 않습니다." },
+        { "no": 2, "correct": false, "why": "삽입 이상은 데이터를 삽입할 때 불필요한 값까지 함께 저장해야 하는 현상입니다." },
+        { "no": 3, "correct": false, "why": "삭제 이상은 필요한 정보까지 함께 삭제되는 현상입니다." },
+        { "no": 4, "correct": false, "why": "갱신 이상은 중복 저장된 값 중 일부만 갱신되어 데이터 불일치가 생기는 현상입니다." }
+      ],
+      "keyPoint": "이상 현상의 종류(삽입·삭제·갱신 이상)",
+      "tags": ["이상 현상", "삽입 이상", "정규화"],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "다음 관계 대수 중 순수 관계 연산자가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "차집합(Difference)" },
+        { "no": 2, "text": "프로젝트(Project)" },
+        { "no": 3, "text": "조인(Join)" },
+        { "no": 4, "text": "디비전(Division)" }
+      ],
+      "answer": 1,
+      "explanation": "순수 관계 연산자는 셀렉트(Select), 프로젝트(Project), 조인(Join), 디비전(Division) 네 가지입니다. 차집합(Difference)은 합집합, 교집합, 카티션 프로덕트와 함께 일반 집합 연산에 속하므로 순수 관계 연산자가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "차집합은 일반 집합 연산에 속하므로 순수 관계 연산자가 아닙니다." },
+        { "no": 2, "correct": false, "why": "프로젝트는 릴레이션에서 필요한 속성만 추출하는 순수 관계 연산자입니다." },
+        { "no": 3, "correct": false, "why": "조인은 두 릴레이션을 공통 속성으로 연결하는 순수 관계 연산자입니다." },
+        { "no": 4, "correct": false, "why": "디비전은 조건에 맞는 튜플을 나누어 추출하는 순수 관계 연산자입니다." }
+      ],
+      "keyPoint": "순수 관계 연산자(셀렉트·프로젝트·조인·디비전)",
+      "tags": ["관계대수", "순수 관계 연산자", "차집합"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "트랜잭션의 주요 특성 중 하나로, 둘 이상의 트랜잭션이 동시에 병행 실행되는 경우 어느 하나의 트랜잭션 실행 중에 다른 트랜잭션의 연산이 끼어들 수 없음을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Log" },
+        { "no": 2, "text": "Consistency" },
+        { "no": 3, "text": "Isolation" },
+        { "no": 4, "text": "Durability" }
+      ],
+      "answer": 3,
+      "explanation": "격리성(Isolation)은 둘 이상의 트랜잭션이 동시에 병행 실행되더라도 서로의 연산에 끼어들 수 없도록 하여 각 트랜잭션이 독립적으로 수행되는 것처럼 보장하는 특성입니다. Log는 변경 내역을 기록해 복구에 사용하는 파일이고, Consistency(일관성)와 Durability(지속성)는 트랜잭션의 다른 특성입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Log는 변경 내용을 기록해 복구에 사용하는 파일로, 트랜잭션의 특성 명칭이 아닙니다." },
+        { "no": 2, "correct": false, "why": "Consistency(일관성)는 트랜잭션 수행 전후에 데이터베이스가 일관된 상태를 유지하는 특성입니다." },
+        { "no": 3, "correct": true, "why": "다른 트랜잭션의 연산이 끼어들 수 없음을 의미하는 특성은 격리성(Isolation)입니다." },
+        { "no": 4, "correct": false, "why": "Durability(지속성)는 완료된 트랜잭션의 결과가 영구히 반영되는 특성입니다." }
+      ],
+      "keyPoint": "트랜잭션의 ACID 특성과 격리성(Isolation)",
+      "tags": ["트랜잭션", "격리성", "ACID"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "관계형 데이터베이스에서 다음 설명에 해당하는 키(Key)는?",
+      "passage": "한 릴레이션 내의 속성들의 집합으로 구성된 키로서, 릴레이션을 구성하는 모든 튜플에 대한 유일성은 만족시키지만 최소성은 만족시키지 못한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "후보키" },
+        { "no": 2, "text": "대체키" },
+        { "no": 3, "text": "슈퍼키" },
+        { "no": 4, "text": "외래키" }
+      ],
+      "answer": 3,
+      "explanation": "슈퍼키는 릴레이션을 구성하는 속성들의 집합으로서 모든 튜플에 대한 유일성은 만족시키지만 불필요한 속성이 포함될 수 있어 최소성은 만족시키지 못하는 키입니다. 후보키는 슈퍼키 중에서 최소성까지 만족하는 키이고, 대체키는 후보키 중 기본키로 선택되지 않은 키, 외래키는 다른 릴레이션의 기본키를 참조하는 속성입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "후보키는 유일성과 최소성을 모두 만족하므로 최소성을 만족하지 못한다는 설명과 맞지 않습니다." },
+        { "no": 2, "correct": false, "why": "대체키는 후보키 중에서 기본키로 지정되지 않은 나머지 키입니다." },
+        { "no": 3, "correct": true, "why": "유일성은 만족하지만 최소성은 만족하지 못하는 키는 슈퍼키입니다." },
+        { "no": 4, "correct": false, "why": "외래키는 다른 릴레이션의 기본키를 참조하는 속성으로, 유일성·최소성과는 다른 개념입니다." }
+      ],
+      "keyPoint": "슈퍼키(유일성 O, 최소성 X)와 후보키의 차이",
+      "tags": ["슈퍼키", "후보키", "키의 종류"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "물리적 데이터베이스 설계에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "물리적 설계의 목적은 효율적인 방법으로 데이터를 저장하는 것이다." },
+        { "no": 2, "text": "트랜잭션 처리량과 응답시간, 디스크 용량 등을 고려해야 한다." },
+        { "no": 3, "text": "저장 레코드의 형식, 순서, 접근 경로와 같은 정보를 사용하여 설계한다." },
+        { "no": 4, "text": "트랜잭션의 인터페이스를 설계하며, 데이터 타입 및 데이터 타입들 간의 관계로 표현한다." }
+      ],
+      "answer": 4,
+      "explanation": "물리적 데이터베이스 설계에서는 저장 레코드의 형식과 순서, 접근 경로, 트랜잭션 처리량과 응답시간, 디스크 용량 등을 고려해 효율적인 저장 방법을 결정합니다. 트랜잭션의 인터페이스를 설계하고 데이터 타입과 타입 간의 관계로 표현하는 것은 논리적 설계 단계에 해당하므로 거리가 멉니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "효율적인 방법으로 데이터를 저장하는 것이 물리적 설계의 목적이라는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "트랜잭션 처리량과 응답시간, 디스크 용량을 고려한다는 설명도 맞습니다." },
+        { "no": 3, "correct": false, "why": "저장 레코드의 형식, 순서, 접근 경로를 사용해 설계한다는 설명도 맞습니다." },
+        { "no": 4, "correct": true, "why": "트랜잭션 인터페이스 설계와 데이터 타입 간 관계 표현은 논리적 설계에 해당합니다." }
+      ],
+      "keyPoint": "논리적 설계와 물리적 설계의 구분",
+      "tags": ["물리적 설계", "논리적 설계", "데이터베이스 설계"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "뷰(View)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "뷰 위에 또 다른 뷰를 정의할 수 있다." },
+        { "no": 2, "text": "DBA는 보안성 측면에서 뷰를 활용할 수 있다." },
+        { "no": 3, "text": "사용자가 필요한 정보를 요구에 맞게 가공하여 뷰로 만들 수 있다." },
+        { "no": 4, "text": "SQL을 사용하면 뷰에 대한 삽입, 갱신, 삭제 연산 시 제약 사항이 없다." }
+      ],
+      "answer": 4,
+      "explanation": "뷰는 하나 이상의 테이블에서 유도된 가상 테이블로, 뷰 위에 또 다른 뷰를 정의할 수 있고 보안성 향상과 사용자 편의에 활용됩니다. 다만 뷰에 대한 삽입·갱신·삭제에는 여러 제약이 따르므로 제약 사항이 없다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "뷰 위에 또 다른 뷰를 정의할 수 있다는 설명은 맞습니다." },
+        { "no": 2, "correct": false, "why": "DBA가 보안성 측면에서 뷰를 활용할 수 있다는 설명도 맞습니다." },
+        { "no": 3, "correct": false, "why": "사용자가 필요한 정보를 요구에 맞게 가공해 뷰로 만들 수 있다는 설명도 맞습니다." },
+        { "no": 4, "correct": true, "why": "뷰의 삽입·갱신·삭제에는 제약이 따르므로 제약 사항이 없다는 설명이 틀렸습니다." }
+      ],
+      "keyPoint": "뷰의 특징과 갱신 시 제약",
+      "tags": ["뷰", "가상 테이블", "보안성"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2025-3-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "데이터 모델의 구성 요소 중 데이터 구조에 따라 개념 세계나 컴퓨터 세계에서 실제로 표현된 값들을 처리하는 작업을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Data Structure" },
+        { "no": 2, "text": "Operation" },
+        { "no": 3, "text": "Relation" },
+        { "no": 4, "text": "Constraint" }
+      ],
+      "answer": 2,
+      "explanation": "데이터 모델의 구성 요소는 구조(Structure), 연산(Operation), 제약 조건(Constraint) 세 가지입니다. 이 중 연산은 데이터 구조에 따라 개념 세계나 컴퓨터 세계에서 실제로 표현된 값들을 처리하는 작업을 의미하며, 구조는 데이터 간의 관계를, 제약 조건은 허용되는 값과 상태의 범위를 나타냅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Data Structure는 데이터 간의 관계와 논리적 구조를 정의하는 요소입니다." },
+        { "no": 2, "correct": true, "why": "실제로 표현된 값들을 처리하는 작업을 의미하는 요소는 Operation(연산)입니다." },
+        { "no": 3, "correct": false, "why": "Relation은 데이터를 저장하는 릴레이션 자체를 가리키는 말로, 구성 요소의 명칭과 다릅니다." },
+        { "no": 4, "correct": false, "why": "Constraint는 데이터가 지켜야 할 제약 조건을 정의하는 요소입니다." }
+      ],
+      "keyPoint": "데이터 모델의 3요소(구조·연산·제약 조건)",
+      "tags": ["데이터 모델", "연산", "구성 요소"],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2025년3회_정보처리기사 필기_기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2023-2",
+    "year": 2023,
+    "round": 2,
+    "title": "2023년 2회 정보처리기사 필기",
+    "sourcePdf": "2023년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2023-2-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "구현 단계에서의 작업 절차를 순서에 맞게 나열한 것은?",
+      "passage": "㉠ 코딩한다.\n㉡ 코딩작업을 계획한다.\n㉢ 코드를 테스트한다.\n㉣ 컴파일한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉠ → ㉡ → ㉢ → ㉣" },
+        { "no": 2, "text": "㉡ → ㉠ → ㉣ → ㉢" },
+        { "no": 3, "text": "㉢ → ㉠ → ㉡ → ㉣" },
+        { "no": 4, "text": "㉣ → ㉡ → ㉠ → ㉢" }
+      ],
+      "answer": 2,
+      "explanation": "구현 단계에서는 먼저 코딩 작업을 계획하고, 계획에 따라 실제로 코딩한 뒤, 작성한 코드를 컴파일하여 오류를 확인하고 마지막으로 테스트를 수행합니다. 즉 코딩작업 계획(㉡) → 코딩(㉠) → 컴파일(㉣) → 테스트(㉢) 순서로 진행됩니다. 계획 없이 코딩부터 시작하거나 컴파일보다 테스트를 먼저 수행하는 순서는 구현 단계의 작업 절차에 맞지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "㉠ 코딩을 맨 앞에 두어 코딩작업 계획보다 실제 코딩이 앞서므로 구현 단계의 절차와 어긋납니다." },
+        { "no": 2, "correct": true, "why": "㉡ 코딩작업을 계획한다 → ㉠ 코딩한다 → ㉣ 컴파일한다 → ㉢ 코드를 테스트한다 순서로, 구현 단계의 실제 작업 흐름과 일치합니다." },
+        { "no": 3, "correct": false, "why": "㉢ 코드 테스트를 맨 앞에 두었으므로 테스트할 코드가 아직 없는 순서가 되어 맞지 않습니다." },
+        { "no": 4, "correct": false, "why": "㉣ 컴파일을 가장 먼저 수행하는 순서는 컴파일할 소스가 작성되기 전이므로 성립하지 않습니다." }
+      ],
+      "keyPoint": "구현 단계의 작업 절차",
+      "tags": ["구현 단계", "코딩 절차"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "소프트웨어 품질 목표 중 쉽게 배우고 사용할 수 있는 정도를 나타내는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Correctness" },
+        { "no": 2, "text": "Reliability" },
+        { "no": 3, "text": "Usability" },
+        { "no": 4, "text": "Integrity" }
+      ],
+      "answer": 3,
+      "explanation": "Usability(사용 용이성)는 소프트웨어를 쉽게 배우고 편리하게 사용할 수 있는 정도를 나타내는 품질 목표입니다. Correctness는 요구된 기능을 정확하게 수행하는 정도, Reliability는 오류 없이 신뢰성 있게 동작하는 정도, Integrity는 허가되지 않은 접근이나 변경으로부터 데이터를 보호하는 정도를 의미합니다. 따라서 쉽게 배우고 사용할 수 있는 정도에 해당하는 품질 목표는 Usability입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Correctness는 사용자가 요구한 기능을 정확하게 수행하는 정도를 뜻하므로 학습·사용 용이성과는 다릅니다." },
+        { "no": 2, "correct": false, "why": "Reliability는 주어진 조건에서 오류 없이 신뢰성 있게 동작하는 정도를 뜻하므로 설명과 맞지 않습니다." },
+        { "no": 3, "correct": true, "why": "Usability는 소프트웨어를 쉽게 배우고 사용할 수 있는 정도를 나타내는 품질 목표로 설명과 일치합니다." },
+        { "no": 4, "correct": false, "why": "Integrity는 데이터가 허가되지 않은 접근이나 변경으로 훼손되지 않는 정도를 뜻하므로 설명과 다릅니다." }
+      ],
+      "keyPoint": "소프트웨어 품질 목표별 의미",
+      "tags": ["소프트웨어 품질", "Usability"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "객체지향 개념을 활용한 소프트웨어 구현과 관련한 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "객체(Object)란 필요한 자료 구조와 수행되는 함수들을 가진 하나의 독립된 존재이다." },
+        { "no": 2, "text": "JAVA에서 정보은닉(Information Hiding)을 표기할 때 private의 의미는 ‘공개’이다." },
+        { "no": 3, "text": "상속(Inheritance)은 개별 클래스를 상속 관계로 묶음으로써 클래스 간의 체계화된 전체 구조를 파악하기 쉽다는 장점이 있다." },
+        { "no": 4, "text": "같은 클래스에 속하는 개개의 객체이자 하나의 클래스에서 생성된 객체를 인스턴스(Instance)라고 한다." }
+      ],
+      "answer": 2,
+      "explanation": "정보 은닉(Information Hiding)은 객체의 내부 구현을 외부에서 직접 접근하지 못하도록 감추는 개념이며, JAVA에서 private는 해당 클래스 내부에서만 접근할 수 있다는 뜻이므로 ‘공개’가 아니라 ‘비공개’에 해당합니다. 객체는 자료 구조와 수행되는 함수들을 함께 가진 독립된 존재이고, 상속은 클래스 간의 계층 구조를 만들어 전체 구조를 파악하기 쉽게 하며, 인스턴스는 클래스로부터 생성된 개별 객체를 말합니다. 따라서 private의 의미를 ‘공개’라고 설명한 보기가 틀린 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "객체를 자료 구조와 함수들을 가진 독립된 존재로 설명한 것은 객체지향의 일반적인 정의에 부합하므로 틀린 설명이 아닙니다." },
+        { "no": 2, "correct": true, "why": "private는 클래스 내부에서만 접근을 허용하는 접근 제한자이므로 ‘공개’라는 설명은 반대 의미여서 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "상속이 클래스 간의 체계화된 전체 구조를 파악하기 쉽게 한다는 설명은 상속의 대표적인 장점입니다." },
+        { "no": 4, "correct": false, "why": "클래스로부터 생성된 각각의 객체를 인스턴스라고 부르는 것은 올바른 정의입니다." }
+      ],
+      "keyPoint": "정보 은닉과 private 접근 제한자의 의미",
+      "tags": ["객체지향", "정보 은닉", "캡슐화"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "다음 설명에 부합하는 용어로 옳은 것은?",
+      "passage": "ㆍ소프트웨어 구조를 이루며, 다른 것들과 구별될 수 있는 독립적인 기능을 갖는 단위이다.\nㆍ하나 또는 몇 개의 논리적인 기능을 수행하기 위한 명령어들의 집합이라고도 할 수 있다.\nㆍ서로 모여 하나의 완전한 프로그램으로 만들어질 수 있다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "통합 프로그램" },
+        { "no": 2, "text": "저장소" },
+        { "no": 3, "text": "모듈" },
+        { "no": 4, "text": "데이터" }
+      ],
+      "answer": 3,
+      "explanation": "모듈은 소프트웨어 구조를 이루는 단위로, 다른 것들과 구별되는 독립적인 기능을 가지며 하나 또는 몇 개의 논리적인 기능을 수행하는 명령어들의 집합입니다. 또한 여러 모듈이 서로 모여 하나의 완전한 프로그램을 구성하게 됩니다. 저장소는 데이터를 보관하는 공간이고 데이터는 처리 대상이 되는 값 자체이므로, 세 가지 설명에 모두 부합하는 용어는 모듈입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "통합 프로그램은 모듈들이 모여 완성된 결과물을 가리키는 말로, 독립적인 기능을 갖는 구조 단위 자체는 아닙니다." },
+        { "no": 2, "correct": false, "why": "저장소는 데이터나 자원을 보관하는 공간이므로 독립적인 기능 단위라는 설명과 어긋납니다." },
+        { "no": 3, "correct": true, "why": "모듈은 소프트웨어 구조를 이루며 논리적 명령어의 집합으로 완전한 프로그램을 만드는 단위로, 설명과 정확히 일치합니다." },
+        { "no": 4, "correct": false, "why": "데이터는 명령어들의 집합이 아니라 처리 대상이 되는 값 자체를 뜻하므로 설명에 부합하지 않습니다." }
+      ],
+      "keyPoint": "모듈의 정의와 특징",
+      "tags": ["모듈", "소프트웨어 구조"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "스택에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "입출력이 한쪽 끝으로만 제한된 리스트이다." },
+        { "no": 2, "text": "Head(front)와 Tail(rear)의 2개 포인터를 갖고 있다." },
+        { "no": 3, "text": "LIFO 구조이다." },
+        { "no": 4, "text": "더 이상 삭제할 데이터가 없는 상태에서 데이터를 삭제하면 언더플로(Underflow)가 발생한다." }
+      ],
+      "answer": 2,
+      "explanation": "스택은 데이터의 삽입과 삭제가 한쪽 끝(top)에서만 일어나는 후입선출(LIFO) 구조로, 삭제할 데이터가 없는데 삭제를 시도하면 언더플로가 발생합니다. 포인터도 삽입·삭제 위치를 가리키는 top 하나만 사용합니다. Head(front)와 Tail(rear)의 2개 포인터를 사용해 삽입은 rear에서, 삭제는 front에서 수행하는 구조는 큐(Queue)이므로 스택에 대한 설명으로 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "스택은 입출력이 한쪽 끝(top)으로만 제한된 리스트라는 설명이 맞습니다." },
+        { "no": 2, "correct": true, "why": "2개의 포인터를 사용하는 것은 큐의 특징이며 스택은 top 포인터 하나만 사용하므로 틀린 설명입니다." },
+        { "no": 3, "correct": false, "why": "스택이 후입선출(LIFO) 구조라는 설명은 올바릅니다." },
+        { "no": 4, "correct": false, "why": "빈 스택에서 데이터를 삭제하면 언더플로가 발생한다는 설명도 올바릅니다." }
+      ],
+      "keyPoint": "스택의 LIFO 구조와 큐와의 차이",
+      "tags": ["스택", "LIFO", "큐"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "다음 전위식(prefix)을 후위식(postfix)으로 옳게 표현한 것은?",
+      "passage": "- / * A + B C D E",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "A B C + D / * E -" },
+        { "no": 2, "text": "A B * C D / + E -" },
+        { "no": 3, "text": "A B * C + D / E -" },
+        { "no": 4, "text": "A B C + * D / E -" }
+      ],
+      "answer": 4,
+      "explanation": "전위 표기식은 연산자가 피연산자보다 앞에 오는 표기법이므로, 식을 연산자 단위로 묶어 트리로 만든 뒤 후위 순회하면 후위식을 얻을 수 있습니다. - / * A + B C D E는 A에 (B + C)를 곱한 값을 D로 나눈 뒤 E를 빼는 식이므로, 연산자를 피연산자 뒤로 옮기면 A B C + * D / E - 가 됩니다. 나머지 보기들은 연산자 위치나 피연산자 순서가 어긋나 원래 식과 다른 결과를 나타냅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "A B C + D / * E - 는 곱셈 연산자의 위치가 어긋나 (A * (B + C)) / D 구조를 표현하지 못합니다." },
+        { "no": 2, "correct": false, "why": "A B * C D / + E - 는 피연산자 순서가 바뀌어 전위식 - / * A + B C D E 와 다른 식이 됩니다." },
+        { "no": 3, "correct": false, "why": "A B * C + D / E - 도 피연산자와 연산자의 대응이 어긋난 잘못된 표기입니다." },
+        { "no": 4, "correct": true, "why": "A B C + * D / E - 는 (A * (B + C)) / D 에서 E를 빼는 원래 식을 후위 표기로 정확히 옮긴 것입니다." }
+      ],
+      "keyPoint": "전위식과 후위식의 변환",
+      "tags": ["전위식", "후위식", "스택"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "버블 정렬을 이용하여 다음 자료를 오름차순으로 정렬할 경우 PASS 1의 결과는?",
+      "passage": "9, 6, 7, 3, 5",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "6, 9, 7, 3, 5" },
+        { "no": 2, "text": "3, 9, 6, 7, 5" },
+        { "no": 3, "text": "3, 6, 7, 9, 5" },
+        { "no": 4, "text": "6, 7, 3, 5, 9" }
+      ],
+      "answer": 4,
+      "explanation": "버블 정렬은 인접한 두 원소를 비교하여 순서가 맞지 않으면 자리를 바꾸는 과정을 한 PASS 동안 끝까지 반복합니다. 9, 6, 7, 3, 5에서 (9, 6)을 교환해 6, 9, 7, 3, 5가 되고, 이어 (9, 7)을 교환해 6, 7, 3, 9, 5가 되며, 마지막으로 9와 5를 교환하면 6, 7, 3, 5, 9가 됩니다. 즉 PASS 1에서는 가장 큰 값이 맨 뒤로 이동하게 됩니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "6, 9, 7, 3, 5 는 첫 번째 교환만 반영한 상태로 PASS 1이 끝까지 진행되지 않았습니다." },
+        { "no": 2, "correct": false, "why": "3, 9, 6, 7, 5 는 인접한 원소를 차례로 비교·교환하는 버블 정렬의 진행 순서와 맞지 않습니다." },
+        { "no": 3, "correct": false, "why": "3, 6, 7, 9, 5 는 PASS 1에서 3과 5의 위치가 그대로여서 버블 정렬 한 회차의 결과와 다릅니다." },
+        { "no": 4, "correct": true, "why": "6, 7, 3, 5, 9 는 PASS 1에서 가장 큰 값 9가 맨 뒤로 밀려난 올바른 결과입니다." }
+      ],
+      "keyPoint": "버블 정렬의 PASS별 동작",
+      "tags": ["버블 정렬", "정렬 알고리즘"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "해싱 함수(Hashing Function)의 종류가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "제곱법(Mid-Square)" },
+        { "no": 2, "text": "숫자 분석법(Digit Analysis)" },
+        { "no": 3, "text": "개방주소법(Open Addressing)" },
+        { "no": 4, "text": "제산법(Division)" }
+      ],
+      "answer": 3,
+      "explanation": "해싱 함수는 키 값을 해시 테이블의 주소로 변환하는 함수로 제곱법, 숫자 분석법, 제산법, 접지법, 기수법 등이 있습니다. 개방주소법(Open Addressing)은 서로 다른 키가 같은 주소로 계산되는 충돌이 발생했을 때 빈 버킷을 찾아 저장하는 충돌 해결 기법입니다. 따라서 해싱 함수의 종류가 아닌 것은 개방주소법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "제곱법은 키 값을 제곱한 뒤 중간 비트를 주소로 사용하는 대표적인 해싱 함수입니다." },
+        { "no": 2, "correct": false, "why": "숫자 분석법은 키를 이루는 숫자의 분포를 분석하여 주소를 결정하는 해싱 함수입니다." },
+        { "no": 3, "correct": true, "why": "개방주소법은 충돌 발생 시 다른 버킷을 탐사해 저장하는 충돌 해결 방법이므로 해싱 함수가 아닙니다." },
+        { "no": 4, "correct": false, "why": "제산법은 키 값을 소수로 나눈 나머지를 주소로 사용하는 해싱 함수입니다." }
+      ],
+      "keyPoint": "해싱 함수의 종류와 충돌 해결 기법의 구분",
+      "tags": ["해싱 함수", "개방주소법", "충돌 해결"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "소프트웨어 패키징 도구 활용 시 고려사항으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "반드시 내부 콘텐츠에 대한 암호화 및 보안을 고려한다." },
+        { "no": 2, "text": "보안을 위하여 이기종 연동을 고려하지 않아도 된다." },
+        { "no": 3, "text": "사용자 편의성을 위한 복잡성 및 비효율성 문제를 고려한다." },
+        { "no": 4, "text": "제품 소프트웨어 종류에 적합한 암호화 알고리즘을 적용한다." }
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 패키징 도구를 활용할 때는 내부 콘텐츠에 대한 암호화와 보안, 사용자 편의성을 떨어뜨리는 복잡성·비효율성 문제, 제품 소프트웨어 종류에 적합한 암호화 알고리즘 적용 등을 고려해야 합니다. 이기종 연동은 서로 다른 기종과 플랫폼 사이에서도 동작하도록 하기 위해 반드시 고려해야 할 사항입니다. 따라서 이기종 연동을 고려하지 않아도 된다는 보기가 잘못된 고려사항입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "내부 콘텐츠에 대한 암호화와 보안을 고려해야 한다는 것은 올바른 고려사항입니다." },
+        { "no": 2, "correct": true, "why": "이기종 연동은 여러 환경에서 사용하기 위해 반드시 고려해야 하므로, 고려하지 않아도 된다는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "사용자 편의성을 위한 복잡성 및 비효율성 문제를 고려해야 한다는 설명은 맞습니다." },
+        { "no": 4, "correct": false, "why": "제품 소프트웨어 종류에 적합한 암호화 알고리즘을 적용해야 한다는 설명도 올바릅니다." }
+      ],
+      "keyPoint": "소프트웨어 패키징 도구 활용 시 고려사항",
+      "tags": ["소프트웨어 패키징", "이기종 연동"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "소프트웨어 설치 매뉴얼에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "설치 과정에서 표시될 수 있는 예외상황에 관련 내용을 별도로 구분하여 설명한다." },
+        { "no": 2, "text": "설치 시작부터 완료할 때까지의 전 과정을 빠짐없이 순서대로 설명한다." },
+        { "no": 3, "text": "설치 매뉴얼은 개발자 기준으로 작성한다." },
+        { "no": 4, "text": "설치 매뉴얼에는 목차, 개요, 기본사항 등이 기본적으로 포함되어야 한다." }
+      ],
+      "answer": 3,
+      "explanation": "설치 매뉴얼은 소프트웨어를 설치하는 사용자를 기준으로 작성해야 하며, 개발자 기준으로 작성하면 사용자가 이해하기 어렵습니다. 매뉴얼에는 설치 시작부터 완료까지의 전 과정과 설치 중 표시될 수 있는 예외상황에 대한 설명, 목차·개요·기본사항 등이 포함되어야 합니다. 따라서 설치 매뉴얼을 개발자 기준으로 작성한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "설치 과정에서 표시될 수 있는 예외상황을 별도로 구분해 설명한다는 것은 올바른 설명입니다." },
+        { "no": 2, "correct": false, "why": "설치 시작부터 완료까지의 전 과정을 순서대로 빠짐없이 설명한다는 것도 맞습니다." },
+        { "no": 3, "correct": true, "why": "설치 매뉴얼은 사용자 기준으로 작성해야 하므로 개발자 기준으로 작성한다는 설명이 틀렸습니다." },
+        { "no": 4, "correct": false, "why": "설치 매뉴얼에 목차, 개요, 기본사항 등이 기본적으로 포함되어야 한다는 설명은 맞습니다." }
+      ],
+      "keyPoint": "설치 매뉴얼의 작성 기준과 포함 내용",
+      "tags": ["설치 매뉴얼", "사용자 매뉴얼"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "제품 소프트웨어의 형상 관리 역할로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "형상 관리를 통해 이전 리버전이나 버전에 대한 정보에 접근 가능하여 배포본 관리에 유용" },
+        { "no": 2, "text": "불필요한 사용자의 소스 수정 제한" },
+        { "no": 3, "text": "프로젝트 개발비용을 효율적으로 관리" },
+        { "no": 4, "text": "동일한 프로젝트에 대해 여러 개발자 동시 개발 가능" }
+      ],
+      "answer": 3,
+      "explanation": "형상 관리는 개발 과정에서 만들어지는 산출물의 변경을 체계적으로 관리하여 이전 버전 정보에 접근할 수 있게 하고, 불필요한 사용자의 소스 수정을 제한하며, 동일한 프로젝트를 여러 개발자가 동시에 개발할 수 있도록 지원합니다. 반면 프로젝트 개발비용을 효율적으로 관리하는 것은 일정·비용·인력 등을 다루는 프로젝트 관리 활동에 해당합니다. 따라서 프로젝트 개발비용을 효율적으로 관리한다는 설명이 형상 관리의 역할로 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "이전 버전 정보에 접근할 수 있어 배포본 관리에 유용하다는 설명은 형상 관리의 역할이 맞습니다." },
+        { "no": 2, "correct": false, "why": "불필요한 사용자의 소스 수정을 제한한다는 것도 형상 관리의 역할입니다." },
+        { "no": 3, "correct": true, "why": "개발비용 관리는 프로젝트 관리 활동에 속하며 형상 관리의 역할이 아니므로 틀린 설명입니다." },
+        { "no": 4, "correct": false, "why": "동일한 프로젝트를 여러 개발자가 동시에 개발할 수 있게 한다는 설명은 형상 관리의 역할입니다." }
+      ],
+      "keyPoint": "형상 관리의 역할",
+      "tags": ["형상 관리", "버전 관리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "동시에 소스를 수정하는 것을 방지하며 다른 방향으로 진행된 개발 결과를 합치거나 변경 내용을 추적할 수 있는 소프트웨어 버전 관리 도구는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "RCS(Revision Control System)" },
+        { "no": 2, "text": "RTS(Reliable Transfer Service)" },
+        { "no": 3, "text": "RPC(Remote Procedure Call)" },
+        { "no": 4, "text": "RVS(Relative Version System)" }
+      ],
+      "answer": 1,
+      "explanation": "RCS(Revision Control System)는 파일 단위로 버전을 관리하는 소프트웨어 버전 관리 도구로, 동시에 소스를 수정하는 것을 방지하고 다른 방향으로 진행된 개발 결과를 합치거나 변경 내용을 추적할 수 있습니다. RTS는 신뢰성 있는 데이터 전송을 위한 서비스이고 RPC는 네트워크를 통해 원격 프로시저를 호출하는 기술입니다. 따라서 설명에 해당하는 버전 관리 도구는 RCS입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "RCS는 소스 수정 방지와 변경 내용 추적, 다른 방향으로 진행된 결과의 병합을 지원하는 버전 관리 도구로 설명과 일치합니다." },
+        { "no": 2, "correct": false, "why": "RTS(Reliable Transfer Service)는 신뢰성 있는 데이터 전송 서비스로 버전 관리 도구가 아닙니다." },
+        { "no": 3, "correct": false, "why": "RPC(Remote Procedure Call)는 원격 프로시저 호출 기술로 소스 버전 관리와는 무관합니다." },
+        { "no": 4, "correct": false, "why": "RVS(Relative Version System)는 존재하지 않는 버전 관리 도구 이름입니다." }
+      ],
+      "keyPoint": "RCS의 특징과 버전 관리 도구의 종류",
+      "tags": ["RCS", "버전 관리 도구"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "블랙박스 테스트 기법으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "기초 경로 검사" },
+        { "no": 2, "text": "동치 클래스 분해" },
+        { "no": 3, "text": "경계값 분석" },
+        { "no": 4, "text": "원인 결과 그래프" }
+      ],
+      "answer": 1,
+      "explanation": "블랙박스 테스트는 프로그램의 내부 구조를 보지 않고 입력과 출력만으로 검사하는 기법으로, 동치 클래스 분해, 경계값 분석, 원인-결과 그래프, 오류 예측 검사 등이 이에 속합니다. 기초 경로 검사는 소스 코드의 제어 흐름 그래프를 분석해 수행 가능한 경로를 검사하는 화이트박스 테스트 기법입니다. 따라서 블랙박스 테스트 기법과 거리가 먼 것은 기초 경로 검사입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "기초 경로 검사는 제어 흐름 그래프를 이용해 경로를 검사하는 화이트박스 기법이므로 블랙박스 기법과 거리가 있습니다." },
+        { "no": 2, "correct": false, "why": "동치 클래스 분해는 입력값을 같은 결과가 나오는 그룹으로 나누어 검사하는 블랙박스 테스트 기법입니다." },
+        { "no": 3, "correct": false, "why": "경계값 분석은 입력 범위의 경계에서 오류가 발생하기 쉽다는 점을 이용하는 블랙박스 기법입니다." },
+        { "no": 4, "correct": false, "why": "원인 결과 그래프는 입력(원인)과 출력(결과)의 관계를 그래프로 표현해 검사하는 블랙박스 기법입니다." }
+      ],
+      "keyPoint": "블랙박스 테스트와 화이트박스 테스트의 구분",
+      "tags": ["블랙박스 테스트", "기초 경로 검사", "동치 분할"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "하향식 통합 시험을 위해 일시적으로 필요한 조건만을 가지고 임시로 제공되는 시험용 모듈은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Stub" },
+        { "no": 2, "text": "Driver" },
+        { "no": 3, "text": "Procedure" },
+        { "no": 4, "text": "Function" }
+      ],
+      "answer": 1,
+      "explanation": "Stub은 하향식 통합 시험에서 아직 완성되지 않은 하위 모듈을 대신해 일시적으로 제공되는 시험용 모듈로, 상위 모듈부터 시험할 수 있게 해 줍니다. 반대로 Driver는 상향식 통합 시험에서 상위 모듈이 없을 때 하위 모듈을 호출하고 시험을 구동하기 위해 사용하는 모듈입니다. Procedure와 Function은 프로그램의 구성 요소를 가리키는 용어일 뿐 통합 시험용 대역 모듈을 뜻하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Stub은 하향식 통합 시험에서 아직 개발되지 않은 하위 모듈 자리에 임시로 넣어 시험하는 모듈입니다." },
+        { "no": 2, "correct": false, "why": "Driver는 상향식 통합 시험에서 하위 모듈을 시험하기 위해 상위 자리에 두는 모듈로 적용 방향이 반대입니다." },
+        { "no": 3, "correct": false, "why": "Procedure는 일련의 처리를 모아 놓은 구성 요소로, 통합 시험을 위한 임시 모듈을 가리키지 않습니다." },
+        { "no": 4, "correct": false, "why": "Function은 특정 기능을 수행하는 프로그램 단위로, 통합 시험에서 임시로 제공되는 대역 모듈과 다릅니다." }
+      ],
+      "keyPoint": "Stub과 Driver의 사용 방향",
+      "tags": ["통합 테스트", "Stub", "Driver"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "알고리즘 시간 복잡도 O(1)이 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "컴퓨터 처리가 불가" },
+        { "no": 2, "text": "알고리즘 입력 데이터 수가 한 개" },
+        { "no": 3, "text": "알고리즘 수행시간이 입력 데이터 수와 관계없이 일정" },
+        { "no": 4, "text": "알고리즘 길이가 입력 데이터보다 작음" }
+      ],
+      "answer": 3,
+      "explanation": "시간 복잡도 O(1)은 입력 데이터의 수가 늘어나더라도 알고리즘의 수행 시간이 변하지 않고 일정하다는 것을 의미합니다. 스택의 push·pop이나 배열에서 특정 인덱스의 값을 읽는 연산처럼 입력 크기와 무관하게 한 번의 처리로 끝나는 경우가 이에 해당합니다. 처리 자체가 불가능하다는 뜻도, 입력 데이터 수가 한 개라는 뜻도 아니므로 나머지 보기는 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "O(1)은 계산이 불가능하다는 뜻이 아니라 입력 크기와 무관하게 일정한 시간이 걸린다는 뜻입니다." },
+        { "no": 2, "correct": false, "why": "입력 데이터 수가 한 개인 알고리즘을 가리키는 표기가 아니라 수행 시간이 상수라는 의미입니다." },
+        { "no": 3, "correct": true, "why": "O(1)은 입력 데이터 수와 관계없이 알고리즘 수행 시간이 일정하다는 것을 나타냅니다." },
+        { "no": 4, "correct": false, "why": "알고리즘의 길이가 입력 데이터보다 작다는 뜻이 아니라 수행 시간이 입력 크기에 영향을 받지 않는다는 의미입니다." }
+      ],
+      "keyPoint": "시간 복잡도 O(1)의 의미",
+      "tags": ["시간 복잡도", "빅오 표기법"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "제어 흐름 그래프가 다음과 같을 때 McCabe의 cyclomatic 수는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "3" },
+        { "no": 2, "text": "4" },
+        { "no": 3, "text": "5" },
+        { "no": 4, "text": "6" }
+      ],
+      "answer": 2,
+      "explanation": "McCabe의 cyclomatic 수(순환 복잡도)는 제어 흐름 그래프의 간선 수에서 노드 수를 뺀 뒤 2를 더해 구하며, 프로그램의 독립적인 경로 수를 의미합니다. 제시된 그래프는 노드가 a, b, c, d 4개이고 간선이 a→b, a→c, b→c, c→d, d→c, d→a 6개이므로 6 - 4 + 2 = 4가 됩니다. 순환 복잡도가 클수록 시험해야 할 경로가 많아집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "3은 간선 6개와 노드 4개로 계산한 순환 복잡도 4와 맞지 않습니다." },
+        { "no": 2, "correct": true, "why": "간선 6개, 노드 4개이므로 6 - 4 + 2 = 4가 되어 순환 복잡도는 4입니다." },
+        { "no": 3, "correct": false, "why": "5는 간선 수와 노드 수에 따른 계산 결과와 다릅니다." },
+        { "no": 4, "correct": false, "why": "6은 노드를 제외하지 않고 간선 수만 사용한 값으로 순환 복잡도 계산과 맞지 않습니다." }
+      ],
+      "keyPoint": "McCabe 순환 복잡도 계산",
+      "tags": ["McCabe", "순환 복잡도", "제어 흐름 그래프"],
+      "difficulty": 3,
+      "figure": { "needed": true, "kind": "diagram", "image": "figures/2023-2/036.png", "alt": "위쪽 a에서 왼쪽 b와 아래쪽 c로 향하고, b에서 c로, c와 d가 서로를 가리키며 d에서 다시 a로 돌아가는 화살표로 연결된 4개 노드의 제어 흐름 그래프", "page": 3, "col": 0, "box": [57.5, 540.0, 157.9, 632.2] },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "클린 코드 작성 원칙에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "코드의 중복을 최소화 한다." },
+        { "no": 2, "text": "코드가 다른 모듈에 미치는 영향을 최대화하도록 작성한다." },
+        { "no": 3, "text": "누구든지 코드를 쉽게 읽을 수 있도록 작성한다." },
+        { "no": 4, "text": "간단하게 코드를 작성한다." }
+      ],
+      "answer": 2,
+      "explanation": "클린 코드는 중복을 최소화하고, 누구든지 쉽게 읽을 수 있으며, 간단하게 작성하는 것을 원칙으로 합니다. 또한 한 모듈이 다른 모듈에 미치는 영향은 최소화해야 유지보수와 수정이 쉬워집니다. 따라서 코드가 다른 모듈에 미치는 영향을 최대화하도록 작성한다는 설명이 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "코드의 중복을 최소화한다는 것은 클린 코드의 대표적인 작성 원칙입니다." },
+        { "no": 2, "correct": true, "why": "모듈 간 영향은 최소화해야 하므로 영향을 최대화하도록 작성한다는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "누구든지 코드를 쉽게 읽을 수 있도록 작성한다는 것도 올바른 원칙입니다." },
+        { "no": 4, "correct": false, "why": "간단하게 코드를 작성한다는 설명 역시 클린 코드 작성 원칙에 해당합니다." }
+      ],
+      "keyPoint": "클린 코드 작성 원칙",
+      "tags": ["클린 코드", "유지보수성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "인터페이스 보안을 위해 네트워크 영역에 적용될 수 있는 것으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "IPSec" },
+        { "no": 2, "text": "SSL" },
+        { "no": 3, "text": "SMTP" },
+        { "no": 4, "text": "S-HTTP" }
+      ],
+      "answer": 3,
+      "explanation": "IPSec은 IP 계층에서 패킷을 암호화하고 인증하며, SSL은 전송 계층에서 웹 통신 구간을 암호화하고, S-HTTP는 응용 계층에서 HTTP 메시지를 암호화하는 보안 프로토콜입니다. SMTP는 전자우편을 전송하기 위한 프로토콜로 인터페이스 보안을 위한 암호화 기능을 제공하지 않습니다. 따라서 네트워크 영역에 적용되는 보안 기술과 거리가 먼 것은 SMTP입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "IPSec은 IP 계층에서 패킷을 암호화·인증하는 네트워크 보안 프로토콜로 적용 대상입니다." },
+        { "no": 2, "correct": false, "why": "SSL은 전송 계층에서 데이터를 암호화해 인터페이스 구간을 보호하는 보안 프로토콜입니다." },
+        { "no": 3, "correct": true, "why": "SMTP는 메일 전송용 프로토콜로 인터페이스 보안을 위한 암호화 기능을 제공하지 않습니다." },
+        { "no": 4, "correct": false, "why": "S-HTTP는 웹에서 주고받는 메시지를 암호화하는 보안 프로토콜로 적용 대상입니다." }
+      ],
+      "keyPoint": "인터페이스 보안을 위한 네트워크 보안 기술",
+      "tags": ["인터페이스 보안", "IPSec", "SSL"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "다음 그래프에서 정점 A를 선택하여 깊이 우선 탐색(DFS)으로 운행한 결과는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ABECDFG" },
+        { "no": 2, "text": "ABECFDG" },
+        { "no": 3, "text": "ABCDEFG" },
+        { "no": 4, "text": "ABEFGCD" }
+      ],
+      "answer": 4,
+      "explanation": "깊이 우선 탐색은 한 정점에서 갈 수 있는 곳까지 깊이 들어간 뒤 더 진행할 곳이 없으면 되돌아와 아직 방문하지 않은 정점을 방문하는 방식입니다. 그래프에서 A는 B, C, D와 연결되어 있고 B는 E와, E는 F와, F는 G와 연결되어 있으므로, A에서 B로 간 뒤 E, F, G 순서로 깊이 들어가고 되돌아와 남은 C, D를 방문하면 A, B, E, F, G, C, D 순서가 됩니다. 나머지 보기는 서로 인접하지 않은 정점으로 이동하는 등 DFS 운행 순서로 성립하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ABECDFG는 B 다음에 E로 간 뒤 인접하지 않은 C로 이동하므로 DFS 순서가 아닙니다." },
+        { "no": 2, "correct": false, "why": "ABECFDG도 E에서 C로 이동하는 부분이 그래프의 인접 관계와 맞지 않습니다." },
+        { "no": 3, "correct": false, "why": "ABCDEFG는 D에서 E로 이동하는데 두 정점이 서로 인접하지 않아 성립하지 않습니다." },
+        { "no": 4, "correct": true, "why": "ABEFGCD는 A→B→E→F→G로 깊이 들어간 뒤 되돌아와 C, D를 방문하는 올바른 DFS 운행 순서입니다." }
+      ],
+      "keyPoint": "그래프의 깊이 우선 탐색(DFS) 순서",
+      "tags": ["깊이 우선 탐색", "DFS", "그래프"],
+      "difficulty": 3,
+      "figure": { "needed": true, "kind": "diagram", "image": "figures/2023-2/039.png", "alt": "맨 위 A에서 B, C, D가 모두 연결되고 B와 E, C와 F, D와 F, E와 F가 연결되며 F 아래에 G가 하나 붙은 무방향 그래프", "page": 3, "col": 1, "box": [319.7, 93.8, 427.5, 209.7] },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2023-2-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "정보 시스템 개발 단계에서 프로그래밍 언어 선택 시 고려할 사항으로 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "개발 정보 시스템의 특성" },
+        { "no": 2, "text": "사용자의 요구사항" },
+        { "no": 3, "text": "컴파일러의 가용성" },
+        { "no": 4, "text": "컴파일러의 독창성" }
+      ],
+      "answer": 4,
+      "explanation": "프로그래밍 언어를 선택할 때는 개발하려는 정보 시스템의 특성, 사용자의 요구사항, 해당 언어를 지원하는 컴파일러의 가용성 등을 함께 고려해야 합니다. 컴파일러의 가용성은 개발 환경을 구성할 수 있는지와 직결되는 요소입니다. 반면 컴파일러의 독창성은 언어 선택의 판단 기준이 되지 않으므로 가장 거리가 먼 고려사항입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "개발 정보 시스템의 특성은 어떤 언어가 적합한지 판단하는 기본 고려사항입니다." },
+        { "no": 2, "correct": false, "why": "사용자의 요구사항도 언어 선택 시 반영해야 하는 요소입니다." },
+        { "no": 3, "correct": false, "why": "컴파일러의 가용성은 개발 환경 구축 가능 여부와 직결되어 반드시 고려해야 합니다." },
+        { "no": 4, "correct": true, "why": "컴파일러의 독창성은 프로그래밍 언어를 고르는 기준으로 삼기 어려운 항목이라 가장 거리가 멉니다." }
+      ],
+      "keyPoint": "프로그래밍 언어 선택 시 고려사항",
+      "tags": ["프로그래밍 언어", "언어 선택 기준"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2023년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

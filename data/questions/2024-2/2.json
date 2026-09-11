@@ -1,0 +1,1475 @@
+{
+  "exam": {
+    "id": "2024-2",
+    "year": 2024,
+    "round": 2,
+    "title": "2024년 2회 정보처리기사 필기",
+    "sourcePdf": "2. 2024년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2024-2-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "테스트 하네스(Test Harness)의 구성 요소에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "테스트 드라이버"
+        },
+        {
+          "no": 2,
+          "text": "테스트 스텁"
+        },
+        {
+          "no": 3,
+          "text": "테스트 케이스"
+        },
+        {
+          "no": 4,
+          "text": "테스트 시나리오"
+        }
+      ],
+      "answer": 4,
+      "explanation": "테스트 하네스는 자동화된 테스트를 수행하기 위해 테스트 대상 시스템과 함께 사용하는 도구와 데이터의 집합으로, 테스트 드라이버, 테스트 스텁, 테스트 슈트, 테스트 케이스, 목 오브젝트 등으로 구성됩니다. 테스트 시나리오는 여러 테스트 케이스를 수행 순서에 따라 묶은 절차를 뜻하는 별개의 개념이므로 하네스의 구성 요소로 보기 어렵습니다. 테스트 드라이버는 하위 모듈을 호출하고, 테스트 스텁은 호출에 응답하는 더미 모듈 역할을 합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "테스트 드라이버는 상위 모듈에서 하위 모듈을 호출하듯 테스트를 구동하는 구성 요소입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "테스트 스텁은 하위 모듈을 대신하여 호출에 응답하는 더미 모듈로 하네스에 포함됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "테스트 케이스는 테스트 항목의 입력값과 기대 결과를 정리한 것으로 하네스의 구성 요소입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "테스트 시나리오는 테스트 케이스를 수행 순서대로 묶은 절차여서 하네스의 구성 요소가 아닙니다."
+        }
+      ],
+      "keyPoint": "테스트 하네스의 구성 요소",
+      "tags": [
+        "테스트 하네스",
+        "소프트웨어 테스트"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "통합 개발 환경(IDE)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "개발을 위한 편집기, 컴파일러, 디버거 등이 포함되어 있다."
+        },
+        {
+          "no": 2,
+          "text": "코드의 자동 생성이 가능하다."
+        },
+        {
+          "no": 3,
+          "text": "다양한 기능들을 다운로드하여 추가할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "단일 플랫폼만을 지원하는 한계가 있다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "IDE(통합 개발 환경)는 편집기, 컴파일러, 디버거 등 개발에 필요한 여러 도구를 하나의 인터페이스로 묶어 제공하는 소프트웨어입니다. 코드 자동 생성이나 플러그인 내려받기 같은 편의 기능도 제공하며, 이클립스나 인텔리제이처럼 여러 운영체제와 다양한 개발 언어를 지원합니다. 따라서 플랫폼을 하나만 지원한다는 설명은 IDE의 특징이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "편집기, 컴파일러, 디버거 등을 하나로 묶어 제공하는 것은 IDE의 기본 기능입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "코드 자동 생성은 IDE가 제공하는 대표적인 편의 기능입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "플러그인 형태로 다양한 기능을 내려받아 추가할 수 있는 것도 IDE의 특징입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "IDE는 여러 플랫폼과 언어를 지원하므로 단일 플랫폼만 지원한다는 이 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "IDE(통합 개발 환경)의 개념과 기능",
+      "tags": [
+        "IDE",
+        "통합 개발 환경"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "디지털 저작권 관리(DRM)에 대한 설명으로 가장 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "콘텐츠의 생성, 유통, 이용까지의 전 과정에 걸쳐 사용되는 디지털 콘텐츠 관리 및 보호 기술이다."
+        },
+        {
+          "no": 2,
+          "text": "패키징 수행 전 라이선스 정보를 클리어링 하우스에 등록한다."
+        },
+        {
+          "no": 3,
+          "text": "원본 콘텐츠가 아날로그인 경우에는 변환 작업을 수행한 뒤 패키징을 한다."
+        },
+        {
+          "no": 4,
+          "text": "암호화, 식별 기술, 크랙 방지, 인증 등의 기술이 사용된다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "DRM은 디지털 콘텐츠의 생성, 유통, 이용 전 과정에서 저작권을 보호하기 위해 암호화, 식별 기술, 크랙 방지, 인증 등의 기술을 적용하는 관리 체계입니다. 콘텐츠는 패키저를 통해 암호화되는 패키징 과정을 거친 뒤 클리어링 하우스에 등록되어 라이선스가 관리되므로, 라이선스 정보 등록은 패키징 이후에 이루어집니다. 원본이 아날로그라면 디지털로 변환한 다음 패키징합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "콘텐츠의 생성·유통·이용 전 과정을 관리하고 보호한다는 설명은 DRM의 정의에 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "라이선스 정보는 패키징을 마친 뒤 등록되므로 패키징 수행 전에 등록한다는 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "원본이 아날로그이면 디지털로 변환한 뒤 패키징한다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "암호화, 식별 기술, 크랙 방지, 인증 등은 DRM에 사용되는 대표적인 기술입니다."
+        }
+      ],
+      "keyPoint": "DRM의 개념과 콘텐츠 보호 절차",
+      "tags": [
+        "DRM",
+        "디지털 저작권 관리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "스택에서 순서가 A, B, C, D로 정해진 입력 자료를, push → push → pop → push → pop → push → pop → pop으로 연산 했을 때 출력은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "C, B, D, A"
+        },
+        {
+          "no": 2,
+          "text": "B, C, D, A"
+        },
+        {
+          "no": 3,
+          "text": "B, C, A, D"
+        },
+        {
+          "no": 4,
+          "text": "C, B, A, D"
+        }
+      ],
+      "answer": 2,
+      "explanation": "입력 순서 A, B, C, D로 연산을 차례대로 수행하면 push A → push B → pop(B) → push C → pop(C) → push D → pop(D) → pop(A)가 됩니다. 스택은 마지막에 삽입된 자료가 먼저 나오는 LIFO 구조이므로 가장 먼저 들어간 A가 마지막에 출력되어 전체 출력은 B, C, D, A가 됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "두 번째 push 뒤의 pop에서는 B가 출력되므로 C가 먼저 나올 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "연산 순서대로 수행하면 B, C, D, A 순으로 출력되어 이 보기가 맞습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "A는 스택에 가장 오래 남아 마지막에 출력되므로 세 번째에 나올 수 없습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "A가 세 번째에 출력된다는 점이 실제 수행 결과와 다릅니다."
+        }
+      ],
+      "keyPoint": "스택의 LIFO 구조와 push/pop 연산",
+      "tags": [
+        "스택",
+        "LIFO"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "EAI(Enterprise Application Integration)의 구축유형에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Point-to-Point는 가장 기본적인 애플리케이션 통합 방식으로, 애플리케이션을 1:1로 연결한다."
+        },
+        {
+          "no": 2,
+          "text": "Hub&Spoke는 단일 접점인 허브 시스템을 통해 데이터를 전송하는 중앙 집중형 방식이다."
+        },
+        {
+          "no": 3,
+          "text": "애플리케이션 사이에 미들웨어를 두어 처리하는 방식은 ESB이다."
+        },
+        {
+          "no": 4,
+          "text": "Hybrid는 Point-to-Point와 Hub&Spoke의 혼합 방식이다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "EAI 구축 유형에는 애플리케이션을 1:1로 연결하는 Point-to-Point, 단일 접점인 허브를 거치는 Hub&Spoke, 애플리케이션 사이에 미들웨어를 두는 Message Bus(ESB), 이들을 섞은 Hybrid가 있습니다. Hybrid는 Hub&Spoke와 Message Bus 방식을 혼합한 형태이므로 Point-to-Point와 Hub&Spoke를 혼합한 방식이라는 설명은 옳지 않습니다. Point-to-Point는 통합할 시스템이 늘어날수록 연결이 복잡해지는 단점이 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Point-to-Point가 애플리케이션을 1:1로 연결하는 가장 기본적인 방식이라는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Hub&Spoke는 허브라는 단일 접점을 통해 데이터를 전송하는 중앙 집중형 방식입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "애플리케이션 사이에 미들웨어를 두는 방식은 Message Bus, 즉 ESB로 설명됩니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Hybrid는 Hub&Spoke와 Message Bus(ESB)의 혼합이므로 Point-to-Point와의 혼합이라는 이 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "EAI 구축 유형 4가지의 특징",
+      "tags": [
+        "EAI",
+        "ESB"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "디지털 저작권 관리(DRM)의 구성 요소에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "클리어링 하우스는 저작권에 대한 권한 및 결제에 대해 관리한다."
+        },
+        {
+          "no": 2,
+          "text": "패키저는 암호화된 콘텐츠를 배포한다."
+        },
+        {
+          "no": 3,
+          "text": "DRM 컨트롤러는 배포된 콘텐츠를 통제한다."
+        },
+        {
+          "no": 4,
+          "text": "보안 컨테이너는 콘텐츠 유통을 위한 전자적 보안장치이다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "DRM은 콘텐츠 제공자, 콘텐츠 분배자, 패키저, 클리어링 하우스, DRM 컨트롤러, 보안 컨테이너로 구성됩니다. 패키저는 콘텐츠를 암호화하여 패키징하는 역할을 하고, 실제 콘텐츠 배포는 콘텐츠 분배자가 담당하므로 패키저가 암호화된 콘텐츠를 배포한다는 설명은 틀렸습니다. 클리어링 하우스는 권한과 결제를 관리하고, DRM 컨트롤러는 배포된 콘텐츠의 이용을 통제합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "클리어링 하우스가 저작권 권한과 결제를 관리한다는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "패키저는 콘텐츠를 암호화해 패키징하는 역할이므로 배포한다는 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "DRM 컨트롤러가 배포된 콘텐츠의 이용을 통제한다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "보안 컨테이너가 콘텐츠 유통을 위한 전자적 보안장치라는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "DRM 구성 요소별 역할",
+      "tags": [
+        "DRM",
+        "클리어링 하우스"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "테스트 오라클(Test Oracle)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "테스트 오라클을 모든 테스트 케이스에 적용할 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "애플리케이션의 변경이 있을 때는 일관 검사 오라클을 이용하는 것이 효과적이다."
+        },
+        {
+          "no": 3,
+          "text": "테스트 오라클의 값을 수학적 기법을 이용하여 구할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "테스트 대상 프로그램의 실행결과, 비교, 커버리지 측정 등을 자동화 할 수 있다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "테스트 오라클은 테스트 결과의 옳고 그름을 판단하기 위한 기준으로, 참 오라클, 샘플링 오라클, 추정 오라클, 일관성 검사 오라클 등이 있습니다. 모든 입력값에 대한 기대 결과를 미리 만들 수 없으므로 대표적인 입력값만 확인하는 샘플링 오라클을 사용하며, 오라클을 모든 테스트 케이스에 적용할 수는 없습니다. 애플리케이션이 변경되면 변경 전후의 결과를 비교하는 일관성 검사 오라클이 효과적입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "기대 결과를 모든 입력값에 대해 만들 수 없어 일부 케이스에만 적용하므로 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "변경 전후 결과를 비교하는 일관성 검사 오라클은 애플리케이션 변경 시 효과적입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "수학적 기법으로 기대 값을 계산해 실행 결과와 비교하는 방식이 사용되므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "실행결과 비교, 커버리지 측정 등의 자동화는 테스트 오라클의 기능으로 옳습니다."
+        }
+      ],
+      "keyPoint": "테스트 오라클의 종류와 한계",
+      "tags": [
+        "테스트 오라클",
+        "소프트웨어 테스트"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 2
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "버블 정렬을 이용한 오름차순 정렬 시 다음 자료에 대한 2회전 후의 결과는?",
+      "passage": "9, 6, 7, 3, 5",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "3, 5, 6, 7, 9"
+        },
+        {
+          "no": 2,
+          "text": "6, 7, 3, 5, 9"
+        },
+        {
+          "no": 3,
+          "text": "3, 5, 9, 6, 7"
+        },
+        {
+          "no": 4,
+          "text": "6, 3, 5, 7, 9"
+        }
+      ],
+      "answer": 4,
+      "explanation": "버블 정렬은 인접한 두 값을 비교해 큰 값을 뒤로 보내는 과정을 반복하며 정렬합니다. 1회전에서 9가 맨 뒤로 이동해 6, 7, 3, 5, 9가 되고, 2회전에서는 7과 3, 이어서 7과 5를 교환하여 6, 3, 5, 7, 9가 됩니다. 따라서 2회전 후의 결과는 6, 3, 5, 7, 9입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "3, 5, 6, 7, 9는 정렬이 모두 끝난 최종 결과로 2회전 후의 결과가 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "6, 7, 3, 5, 9는 1회전만 수행한 상태의 결과입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "3, 5, 9, 6, 7은 2회전까지의 교환 과정과 맞지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "2회전에서 교환이 두 번 일어나 6, 3, 5, 7, 9가 되므로 이 보기가 맞습니다."
+        }
+      ],
+      "keyPoint": "버블 정렬의 회전별 진행 과정",
+      "tags": [
+        "버블 정렬",
+        "정렬 알고리즘"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "형상 관리 도구의 주요 기능으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "체크아웃(Check-out)"
+        },
+        {
+          "no": 2,
+          "text": "체크인(Check-in)"
+        },
+        {
+          "no": 3,
+          "text": "식별(Identification)"
+        },
+        {
+          "no": 4,
+          "text": "커밋(Commit)"
+        }
+      ],
+      "answer": 3,
+      "explanation": "형상 관리 도구는 저장소에 보관된 산출물의 버전을 관리하기 위해 작업 공간으로 내려받는 체크아웃, 수정한 파일을 저장소에 등록하는 체크인, 변경 내용을 확정해 기록하는 커밋 기능을 제공합니다. 형상 식별은 어떤 항목을 형상 관리 대상으로 삼을지 정하는 형상 관리 절차의 하나이지 도구가 제공하는 버전 관리 기능이 아닙니다. 형상 관리 절차는 형상 식별, 형상 통제, 형상 감사, 형상 기록으로 구성됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "체크아웃은 저장소의 산출물을 작업 공간으로 가져오는 도구의 주요 기능입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "체크인은 수정한 산출물을 저장소에 등록하는 도구의 주요 기능입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "형상 식별은 형상 관리 절차에 해당하므로 도구의 주요 기능과는 거리가 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "커밋은 변경 내용을 저장소에 확정 반영하는 도구의 주요 기능입니다."
+        }
+      ],
+      "keyPoint": "형상 관리 도구의 주요 기능과 형상 관리 절차",
+      "tags": [
+        "형상 관리",
+        "버전 관리 도구"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "목적에 따른 테스트 방식 중 시스템에 과도한 정보량이나 빈도 등을 부과하여 과부하 시에도 소프트웨어가 정상적으로 실행되는지를 확인하는 테스트는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "회복(Recovery) 테스트"
+        },
+        {
+          "no": 2,
+          "text": "강도(Stress) 테스트"
+        },
+        {
+          "no": 3,
+          "text": "성능(Performance) 테스트"
+        },
+        {
+          "no": 4,
+          "text": "회귀(Regression) 테스트"
+        }
+      ],
+      "answer": 2,
+      "explanation": "강도(Stress) 테스트는 시스템에 과도한 정보량이나 빈도, 부하를 부과하여 한계 상황에서도 소프트웨어가 정상적으로 실행되는지 확인하는 테스트입니다. 회복 테스트는 고의로 장애를 일으킨 뒤 정상 복구가 가능한지 확인하고, 성능 테스트는 응답 시간과 처리량 같은 성능 지표를 측정합니다. 회귀 테스트는 소프트웨어 변경 후 기존 기능이 그대로 동작하는지 확인하는 테스트입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "회복 테스트는 장애를 일으킨 후 복구 능력을 확인하는 테스트입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "과도한 부하를 부과해 정상 동작 여부를 확인하는 테스트는 강도(Stress) 테스트입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "성능 테스트는 응답 시간, 처리량 등 성능 목표 달성 여부를 평가하는 테스트입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "회귀 테스트는 변경된 소프트웨어에서 기존 기능의 정상 동작 여부를 확인합니다."
+        }
+      ],
+      "keyPoint": "강도 테스트의 정의와 목적별 테스트 구분",
+      "tags": [
+        "강도 테스트",
+        "소프트웨어 테스트"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "빌드 자동화 도구에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Gradle은 실행할 처리 명령들을 모아 태스크로 만든 후 태스크 단위로 실행한다."
+        },
+        {
+          "no": 2,
+          "text": "Ant는 Groovy를 기반으로 한 오픈소스로 안드로이드 앱 개발 환경에서 사용된다."
+        },
+        {
+          "no": 3,
+          "text": "빌드 자동화 도구에는 Ant, Gradle, Jenkins 등이 있다."
+        },
+        {
+          "no": 4,
+          "text": "빌드 자동화 도구는 지속적인 통합개발환경에서 유용하게 활용된다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "빌드 자동화 도구는 소스 코드의 컴파일과 패키징 과정을 자동화하여 지속적인 통합 환경에서 활용되는 도구로, Ant, Maven, Gradle, Jenkins 등이 있습니다. Gradle은 처리 명령을 태스크 단위로 묶어 실행하고 Groovy 기반의 빌드 스크립트를 사용하는 반면, Ant는 자바 기반으로 XML 빌드 스크립트를 사용합니다. 따라서 Ant가 Groovy를 기반으로 안드로이드 앱 개발 환경에서 사용된다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Gradle이 처리 명령을 태스크로 만들어 태스크 단위로 실행한다는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Groovy 기반의 빌드 도구는 Gradle이므로 Ant에 대한 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Ant, Gradle, Jenkins 등이 대표적인 빌드 자동화 도구라는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "빌드 자동화 도구가 지속적인 통합개발환경에서 유용하다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "빌드 자동화 도구의 종류와 특징",
+      "tags": [
+        "빌드 자동화",
+        "Gradle"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "해싱 함수(Hashing Function)의 종류가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "제곱법(mid-square)"
+        },
+        {
+          "no": 2,
+          "text": "제산법(division)"
+        },
+        {
+          "no": 3,
+          "text": "숫자분석법(digit analysis)"
+        },
+        {
+          "no": 4,
+          "text": "개방주소법(open addressing)"
+        }
+      ],
+      "answer": 4,
+      "explanation": "해싱 함수는 키 값을 해시 테이블의 주소로 변환하는 함수로, 제곱법, 제산법, 숫자 분석법, 기수법, 폴딩법, 무작위법 등이 있습니다. 제곱법은 키를 제곱한 뒤 중간 자리를 주소로 쓰고, 제산법은 키를 테이블 크기로 나눈 나머지를 주소로 사용하며, 숫자 분석법은 키를 이루는 숫자의 분포를 분석해 주소를 정합니다. 개방 주소법은 서로 다른 키가 같은 주소를 갖는 충돌이 발생했을 때 빈 버킷을 찾아 저장하는 충돌 해결 방법이므로 해싱 함수의 종류가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "제곱법(mid-square)은 키를 제곱해 중간 부분을 주소로 사용하는 해싱 함수입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "제산법(division)은 키를 테이블 크기로 나눈 나머지를 주소로 사용하는 해싱 함수입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "숫자 분석법은 키의 숫자 분포를 분석해 주소를 결정하는 해싱 함수입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "개방 주소법은 해시 충돌을 해결하는 방법이므로 해싱 함수의 종류가 아닙니다."
+        }
+      ],
+      "keyPoint": "해싱 함수의 종류와 충돌 해결 방법",
+      "tags": [
+        "해싱 함수",
+        "해시 테이블"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "효과적인 모듈 설계를 위한 유의사항으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "모듈 간의 결합도를 약하게 하면 모듈 독립성이 향상된다."
+        },
+        {
+          "no": 2,
+          "text": "하나의 입구와 하나의 출구를 갖도록 해야한다."
+        },
+        {
+          "no": 3,
+          "text": "모듈의 기능은 예측이 가능해야 하며 지나치게 제한적이어서는 안 된다."
+        },
+        {
+          "no": 4,
+          "text": "일관성을 줄이고 중복성을 유지시킨다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "효과적인 모듈 설계를 위해서는 모듈 간 결합도를 약하게 하고 응집도를 높여 독립성을 향상시켜야 하며, 하나의 입구와 하나의 출구를 두고 기능이 예측 가능하도록 설계해야 합니다. 또한 모듈 간에 일관성을 유지하고 중복성을 줄여야 하므로, 일관성을 줄이고 중복성을 유지시킨다는 설명은 정반대입니다. 결합도는 낮을수록, 응집도는 높을수록 좋은 설계로 평가됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "결합도를 약하게 하면 모듈 독립성이 향상된다는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "하나의 입구와 하나의 출구를 갖도록 해야 한다는 설명도 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "기능이 예측 가능해야 하며 지나치게 제한적이지 않아야 한다는 설명도 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "일관성은 유지하고 중복성은 줄여야 하므로 이 보기가 정반대의 설명입니다."
+        }
+      ],
+      "keyPoint": "모듈 설계 유의사항과 결합도·응집도",
+      "tags": [
+        "모듈 설계",
+        "결합도"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "White Box Testing에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Base Path Testing, Boundary Value Analysis가 대표적인 기법이다."
+        },
+        {
+          "no": 2,
+          "text": "Source Code의 모든 문장을 한 번 이상 수행함으로써 진행된다."
+        },
+        {
+          "no": 3,
+          "text": "모듈 안의 작동을 직접 관찰할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "산출물의 각 기능별로 적절한 프로그램의 제어 구조에 따라 선택, 반복 등의 부분들을 수행함으로써 논리적 경로를 점검한다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "화이트박스 테스트는 소스 코드의 내부 구조를 보면서 논리적 경로를 점검하는 테스트로, 기초 경로 검사(Base Path Testing)와 제어 구조 검사가 대표적인 기법입니다. 경계값 분석(Boundary Value Analysis)은 입력값의 경계에서 오류를 찾는 블랙박스 테스트 기법이므로 화이트박스 테스트의 대표 기법으로 볼 수 없습니다. 화이트박스 테스트는 코드의 모든 문장을 한 번 이상 수행하고 모듈 내부의 작동을 직접 관찰할 수 있다는 특징이 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "경계값 분석은 입력값 경계를 기준으로 하는 블랙박스 테스트 기법이므로 이 보기가 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "모든 문장을 한 번 이상 수행한다는 설명은 화이트박스 테스트의 특징입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "모듈 안의 작동을 직접 관찰할 수 있다는 설명도 화이트박스 테스트의 특징입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "선택, 반복 등 제어 구조를 따라 논리적 경로를 점검한다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "화이트박스 테스트와 블랙박스 테스트의 구분",
+      "tags": [
+        "화이트박스 테스트",
+        "경계값 분석"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "다음 중 워크스루(Walkthrough)와 인스펙션(Inspection)에 대한 설명으로 가장 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "워크스루는 전문가들에 의해 개발자의 작업 내역이 검토된다."
+        },
+        {
+          "no": 2,
+          "text": "워크스루는 제품 개발자가 주최가 된다."
+        },
+        {
+          "no": 3,
+          "text": "워크스루는 오류 발견과 발견된 오류의 문제 해결에 중점을 둔다."
+        },
+        {
+          "no": 4,
+          "text": "인스펙션은 워크스루를 발전시킨 형태이다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "워크스루는 개발자가 주최자가 되어 동료 전문가들에게 작업 내역을 설명하고 검토받는 비공식 검토 기법으로, 오류를 발견하고 검출하는 데 목적이 있습니다. 발견된 오류의 문제 해결까지 중점을 두는 것은 워크스루의 목적이 아니며, 인스펙션은 워크스루를 발전시킨 보다 공식적인 검토 기법입니다. 인스펙션은 작성자가 아닌 다른 사람이 주최하고 체크리스트를 사용해 결함을 찾는 점에서 워크스루와 구별됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "워크스루에서 전문가들이 개발자의 작업 내역을 검토한다는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "워크스루의 주최가 제품 개발자라는 설명도 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "워크스루는 오류 발견에 중점을 두고 문제 해결까지 다루지는 않으므로 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "인스펙션이 워크스루를 발전시킨 형태라는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "워크스루와 인스펙션의 차이",
+      "tags": [
+        "워크스루",
+        "인스펙션"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "중위 표기법(Infix)의 수식 (A+B)*C+(D+E)을 후위 표기법(Postfix)으로 옳게 표기한 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "AB+CDE*++"
+        },
+        {
+          "no": 2,
+          "text": "AB+C*DE++"
+        },
+        {
+          "no": 3,
+          "text": "+AB*C+DE+"
+        },
+        {
+          "no": 4,
+          "text": "+*+ABC+DE"
+        }
+      ],
+      "answer": 2,
+      "explanation": "중위 표기식을 후위 표기식으로 바꿀 때는 연산 순서에 따라 피연산자를 먼저 쓰고 연산자를 뒤에 배치합니다. (A+B)는 AB+, 여기에 C를 곱하면 AB+C*가 되고, (D+E)는 DE+가 되며, 마지막으로 두 결과를 더하면 AB+C*DE++가 됩니다. 따라서 옳은 표기는 AB+C*DE++입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "AB+CDE*++는 C와 (D+E)의 곱이 아니라 D와 E를 곱한 형태가 되어 원래 수식과 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "(A+B)*C와 (D+E)의 연산 순서를 정확히 나타낸 표기는 AB+C*DE++입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "+AB*C+DE+는 연산자가 피연산자 앞에 오는 전위 표기 형태여서 후위 표기법이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "+*+ABC+DE 역시 연산자가 앞에 배치된 전위 표기 형태입니다."
+        }
+      ],
+      "keyPoint": "중위 표기법과 후위 표기법의 변환",
+      "tags": [
+        "후위 표기법",
+        "표기법 변환"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "다음 설명의 소프트웨어 버전 관리 도구 방식은?",
+      "passage": "ㆍ버전 관리 자료가 원격 저장소와 로컬 저장소에 함께 저장되어 관리된다.\nㆍ로컬 저장소에서 버전 관리가 가능하므로 원격 저장소에 문제가 생겨도 로컬 저장소의 자료를 이용하여 작업할 수 있다.\nㆍ대표적인 버전 관리 도구로 Git이 있다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "단일 저장소 방식"
+        },
+        {
+          "no": 2,
+          "text": "분산 저장소 방식"
+        },
+        {
+          "no": 3,
+          "text": "공유 폴더 방식"
+        },
+        {
+          "no": 4,
+          "text": "클라이언트·서버 방식"
+        }
+      ],
+      "answer": 2,
+      "explanation": "분산 저장소 방식은 버전 관리 자료를 원격 저장소와 로컬 저장소에 함께 저장하여, 개발자가 자신의 컴퓨터에서도 커밋과 이력 관리 같은 버전 관리를 수행할 수 있는 방식입니다. 원격 저장소에 문제가 생겨도 로컬 저장소의 자료로 작업을 이어갈 수 있으며, Git과 Mercurial이 대표적인 도구입니다. 단일 저장소 방식은 중앙 서버에만 이력을 두고, 공유 폴더 방식은 네트워크로 공유한 폴더의 파일을 복사하며 관리합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "단일 저장소 방식은 버전 관리 자료를 중앙 서버 한 곳에서만 관리합니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "원격과 로컬 저장소에 이력을 함께 두고 Git을 사용하는 방식은 분산 저장소 방식입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "공유 폴더 방식은 네트워크 공유 폴더에서 파일을 복사해 관리하는 초기 방식입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "클라이언트·서버 방식은 중앙 서버의 저장소에 클라이언트가 접속해 관리하는 방식입니다."
+        }
+      ],
+      "keyPoint": "버전 관리 도구의 저장소 방식",
+      "tags": [
+        "버전 관리",
+        "Git"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "위험 모니터링의 의미로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "위험을 이해하는 것"
+        },
+        {
+          "no": 2,
+          "text": "첫 번째 조치로 위험을 피할 수 있도록 하는 것"
+        },
+        {
+          "no": 3,
+          "text": "위험 발생 후 즉시 조치하는 것"
+        },
+        {
+          "no": 4,
+          "text": "위험 요소 징후들에 대하여 계속적으로 인지하는 것"
+        }
+      ],
+      "answer": 4,
+      "explanation": "위험 모니터링은 프로젝트를 수행하는 동안 위험 요소의 징후를 지속적으로 관찰하고 인지하여, 위험이 현실화되기 전에 대응할 수 있도록 하는 활동입니다. 위험을 이해하는 것은 위험 인식 단계의 활동이고, 위험을 피하도록 조치하는 것은 위험 회피, 위험 발생 후 즉시 조치하는 것은 위험 대응에 해당합니다. 즉 위험 모니터링은 프로젝트가 끝날 때까지 계속되는 감시 활동입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "위험을 이해하는 것은 위험을 파악하는 인식 단계의 활동입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "위험을 피할 수 있도록 하는 것은 위험 회피 활동에 해당합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "위험 발생 후 즉시 조치하는 것은 위험 대응 활동에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "위험 요소의 징후를 계속 인지하는 것이 위험 모니터링의 의미입니다."
+        }
+      ],
+      "keyPoint": "위험 모니터링의 정의",
+      "tags": [
+        "위험 관리",
+        "위험 모니터링"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "n개의 노드로 구성된 무방향 그래프의 최대 간선 수는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "n-1"
+        },
+        {
+          "no": 2,
+          "text": "n/2"
+        },
+        {
+          "no": 3,
+          "text": "n(n-1)/2"
+        },
+        {
+          "no": 4,
+          "text": "n(n+1)"
+        }
+      ],
+      "answer": 3,
+      "explanation": "무방향 그래프에서 간선은 두 노드를 순서 없이 연결하므로, n개의 노드 중 2개를 고르는 조합의 수만큼 간선을 가질 수 있습니다. 모든 노드가 서로 연결된 완전 그래프일 때 간선 수가 최대가 되며 그 값은 n(n-1)/2입니다. 방향 그래프는 연결 방향이 있어 최대 n(n-1)개의 간선을 가질 수 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "n-1은 트리처럼 사이클 없이 모든 노드를 연결한 그래프의 간선 수입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "n/2는 노드 수에 대한 간선 수의 일반식이 아니며 최대 간선 수도 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "n개의 노드에서 2개를 고르는 조합이므로 최대 간선 수는 n(n-1)/2입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "n(n+1)은 조합 계산 결과가 아니며 최대 간선 수와 무관합니다."
+        }
+      ],
+      "keyPoint": "무방향 그래프의 최대 간선 수",
+      "tags": [
+        "그래프",
+        "완전 그래프"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-2-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "이진 검색 알고리즘에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "탐색 효율이 좋고 탐색 시간이 적게 소요된다."
+        },
+        {
+          "no": 2,
+          "text": "검색할 데이터가 정렬되어 있어야 한다."
+        },
+        {
+          "no": 3,
+          "text": "피보나치 수열에 따라 다음에 비교할 대상을 선정하여 검색한다."
+        },
+        {
+          "no": 4,
+          "text": "비교횟수를 거듭할 때마다 검색 대상이 되는 데이터의 수가 절반으로 줄어든다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "이진 검색은 정렬된 데이터의 중간값과 비교하여 탐색 범위를 절반씩 줄여 나가는 검색 알고리즘으로, 탐색 효율이 좋고 시간이 적게 듭니다. 피보나치 수열을 이용해 다음에 비교할 대상을 정하는 것은 피보나치 탐색이며, 이진 검색은 매 단계에서 중간 위치를 선택합니다. 또한 이진 검색은 데이터가 미리 정렬되어 있어야만 사용할 수 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "탐색 범위를 절반씩 줄이므로 효율이 좋고 시간이 적게 든다는 설명은 옳습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "이진 검색을 위해서는 데이터가 정렬되어 있어야 한다는 설명도 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "피보나치 수열로 비교 대상을 정하는 것은 피보나치 탐색이므로 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "비교할 때마다 검색 대상이 절반으로 줄어든다는 설명은 이진 검색의 특징입니다."
+        }
+      ],
+      "keyPoint": "이진 검색의 원리와 전제 조건",
+      "tags": [
+        "이진 검색",
+        "검색 알고리즘"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

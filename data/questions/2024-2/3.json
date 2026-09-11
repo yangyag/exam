@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2024-2",
+    "year": 2024,
+    "round": 2,
+    "title": "2024년 2회 정보처리기사 필기",
+    "sourcePdf": "2. 2024년2회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2024-2-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "데이터 모델의 구성 요소가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "속성(Attribute)" },
+        { "no": 2, "text": "연산(Operation)" },
+        { "no": 3, "text": "관계(Relationship)" },
+        { "no": 4, "text": "개체(Entity)" }
+      ],
+      "answer": 2,
+      "explanation": "데이터 모델은 현실 세계의 정보를 개체, 속성, 관계의 세 가지 요소로 추상화해 표현합니다. 개체는 데이터베이스가 관리하려는 유형·무형의 대상이고, 속성은 개체가 가지는 성질이며, 관계는 개체와 개체 사이의 연관성입니다. 연산(Operation)은 이 세 요소에 포함되지 않으므로 데이터 모델의 구성 요소가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "속성(Attribute)은 개체가 가지는 성질을 나타내는 데이터 모델의 구성 요소입니다." },
+        { "no": 2, "correct": true, "why": "연산(Operation)은 개체·속성·관계로 이루어지는 데이터 모델의 구성 요소가 아닙니다." },
+        { "no": 3, "correct": false, "why": "관계(Relationship)는 개체와 개체 사이의 연관성을 표현하는 구성 요소입니다." },
+        { "no": 4, "correct": false, "why": "개체(Entity)는 데이터베이스가 표현하려는 대상으로 구성 요소의 하나입니다." }
+      ],
+      "keyPoint": "데이터 모델의 구성 요소 - 개체, 속성, 관계",
+      "tags": ["데이터 모델", "개체", "속성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "시스템 카탈로그(System Catalog)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "사용자, 객체에 대한 정의나 명세에 관한 정보를 유지 관리하는 시스템 테이블이다." },
+        { "no": 2, "text": "일반 이용자도 SQL을 이용하여 내용을 검색하거나 수정할 수 있다." },
+        { "no": 3, "text": "DBMS가 스스로 생성하고 유지한다." },
+        { "no": 4, "text": "데이터 디렉터리, 번역기, 질의 최적화기 등으로 구성된다." }
+      ],
+      "answer": 2,
+      "explanation": "시스템 카탈로그는 DBMS가 스스로 생성하고 유지하는 시스템 테이블로, 사용자와 객체에 대한 정의·명세 정보를 담고 있는 메타데이터의 집합입니다. 일반 이용자도 SQL로 내용을 검색할 수는 있지만 카탈로그의 갱신은 DBMS가 내부적으로 수행하므로 함부로 수정할 수는 없습니다. 따라서 내용을 검색하거나 수정할 수 있다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "사용자와 객체에 대한 정의·명세 정보를 유지 관리하는 시스템 테이블이라는 설명은 시스템 카탈로그의 정의에 해당합니다." },
+        { "no": 2, "correct": true, "why": "일반 이용자는 카탈로그를 검색할 수만 있고 수정할 수는 없으므로 옳지 않은 설명입니다." },
+        { "no": 3, "correct": false, "why": "시스템 카탈로그를 DBMS가 스스로 생성하고 유지한다는 설명은 옳습니다." },
+        { "no": 4, "correct": false, "why": "데이터 디렉터리, 번역기, 질의 최적화기 등으로 구성된다는 설명도 옳습니다." }
+      ],
+      "keyPoint": "시스템 카탈로그의 정의와 갱신 주체",
+      "tags": ["시스템 카탈로그", "메타데이터", "DBMS"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "관계대수에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "원하는 릴레이션을 정의하는 방법을 제공하며 비절차적 언어이다." },
+        { "no": 2, "text": "릴레이션 조작을 위한 연산의 집합으로 피연산자와 결과가 모두 릴레이션이다." },
+        { "no": 3, "text": "일반 집합 연산과 순수 관계 연산으로 구분된다." },
+        { "no": 4, "text": "질의에 대한 해를 구하기 위해 수행해야 할 연산의 순서를 명시한다." }
+      ],
+      "answer": 1,
+      "explanation": "관계대수는 릴레이션을 조작하기 위한 연산의 집합으로, 일반 집합 연산과 순수 관계 연산으로 구분되며 피연산자와 결과가 모두 릴레이션입니다. 원하는 결과를 얻기 위해 수행해야 할 연산의 순서를 명시하는 절차적 언어이므로 비절차적 언어라는 설명은 옳지 않습니다. 연산 순서를 명시하지 않고 결과만을 기술하는 비절차적 언어는 관계 해석입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "관계대수는 연산 순서를 명시하는 절차적 언어이므로 비절차적 언어라는 설명이 옳지 않습니다." },
+        { "no": 2, "correct": false, "why": "피연산자와 결과가 모두 릴레이션이라는 설명은 관계대수의 특성에 해당합니다." },
+        { "no": 3, "correct": false, "why": "일반 집합 연산과 순수 관계 연산으로 구분된다는 설명도 옳습니다." },
+        { "no": 4, "correct": false, "why": "연산의 순서를 명시한다는 점이 관계대수가 절차적 언어인 이유입니다." }
+      ],
+      "keyPoint": "관계대수(절차적)와 관계 해석(비절차적)의 차이",
+      "tags": ["관계대수", "관계 해석", "절차적 언어"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "DML에 해당하는 것으로만 나열된 것은?",
+      "passage": "㉠ SELECT\n㉡ UPDATE\n㉢ INSERT\n㉣ GRANT",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉠, ㉡, ㉢" },
+        { "no": 2, "text": "㉠, ㉡, ㉣" },
+        { "no": 3, "text": "㉠, ㉢, ㉣" },
+        { "no": 4, "text": "㉠, ㉡, ㉢, ㉣" }
+      ],
+      "answer": 1,
+      "explanation": "DML(데이터 조작어)은 데이터베이스에 저장된 데이터를 조회·삽입·수정·삭제하기 위한 언어로 SELECT, INSERT, UPDATE, DELETE가 이에 속합니다. GRANT는 사용자에게 권한을 부여하거나 회수하는 DCL(데이터 제어어)에 해당하므로 DML이 아닙니다. 따라서 DML만 나열한 것은 ㉠, ㉡, ㉢입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "SELECT, UPDATE, INSERT는 모두 데이터를 조작하는 DML입니다." },
+        { "no": 2, "correct": false, "why": "㉣ GRANT가 포함되어 있는데 GRANT는 권한을 부여하는 DCL입니다." },
+        { "no": 3, "correct": false, "why": "㉣ GRANT가 포함되어 있고 ㉡ UPDATE가 빠져 있어 DML만 나열한 것이 아닙니다." },
+        { "no": 4, "correct": false, "why": "㉣ GRANT가 함께 포함되어 있어 DML만 나열한 것이 아닙니다." }
+      ],
+      "keyPoint": "DML(SELECT·INSERT·UPDATE·DELETE)과 DCL(GRANT·REVOKE)의 구분",
+      "tags": ["DML", "DCL", "GRANT"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 3 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "개체-관계 모델에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "오너-멤버(Owner-Member) 관계라고도 한다." },
+        { "no": 2, "text": "개체 타입과 이들 간의 관계 타입을 기본 요소로 이용하여 현실 세계를 개념적으로 표현한다." },
+        { "no": 3, "text": "E-R 다이어그램에서 개체 타입은 사각형으로 나타낸다." },
+        { "no": 4, "text": "E-R 다이어그램에서 속성은 타원으로 나타낸다." }
+      ],
+      "answer": 1,
+      "explanation": "개체-관계 모델은 개체 타입과 관계 타입을 기본 요소로 이용해 현실 세계를 개념적으로 표현하는 모델이며, E-R 다이어그램에서 개체 타입은 사각형, 속성은 타원, 관계 타입은 마름모로 표기합니다. 오너-멤버(Owner-Member) 관계는 망 데이터 모델에서 사용하는 관계 유형이므로 개체-관계 모델에 대한 설명이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "오너-멤버 관계는 망(네트워크) 데이터 모델의 관계 유형이므로 옳지 않은 설명입니다." },
+        { "no": 2, "correct": false, "why": "개체 타입과 관계 타입으로 현실 세계를 개념적으로 표현한다는 설명은 옳습니다." },
+        { "no": 3, "correct": false, "why": "E-R 다이어그램에서 개체 타입을 사각형으로 나타낸다는 설명도 옳습니다." },
+        { "no": 4, "correct": false, "why": "E-R 다이어그램에서 속성을 타원으로 나타낸다는 설명도 옳습니다." }
+      ],
+      "keyPoint": "E-R 다이어그램 표기법(개체=사각형, 속성=타원, 관계=마름모)",
+      "tags": ["E-R 모델", "E-R 다이어그램", "네트워크 모델"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "릴레이션에 R1에 속한 애튜리뷰트의 조합인 외래키를 변경하려면 이를 참조하고 있는 R2의 릴레이션의 기본키도 변경해야 하는데 이를 무엇이라고 하는가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "정보 무결성" },
+        { "no": 2, "text": "고유 무결성" },
+        { "no": 3, "text": "키 제약성" },
+        { "no": 4, "text": "참조 무결성" }
+      ],
+      "answer": 4,
+      "explanation": "참조 무결성은 릴레이션 R1의 외래키 값이 참조하는 릴레이션 R2의 기본키 값과 항상 일치하도록 보장하는 제약입니다. 그래서 외래키를 변경할 때에는 이를 참조하는 기본키도 함께 변경해야 하며, 그렇지 않으면 두 릴레이션 사이의 참조 관계가 깨집니다. 고유 무결성은 특정 속성 값이 중복되지 않도록 하는 제약이고, 정보 무결성과 키 제약성은 참조 관계를 유지하는 이 상황을 가리키는 용어가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "정보 무결성은 데이터가 정확하고 일관되게 유지되도록 하는 일반적인 개념으로 참조 관계 유지를 뜻하는 용어가 아닙니다." },
+        { "no": 2, "correct": false, "why": "고유 무결성은 릴레이션의 특정 속성이 각 튜플마다 서로 다른 값을 갖도록 하는 제약입니다." },
+        { "no": 3, "correct": false, "why": "키 제약성은 키로 지정된 속성이 유일성과 최소성을 만족해야 한다는 제약입니다." },
+        { "no": 4, "correct": true, "why": "외래키를 변경할 때 이를 참조하는 기본키도 함께 변경해야 하는 성질은 참조 무결성입니다." }
+      ],
+      "keyPoint": "참조 무결성 - 외래키와 기본키 값의 일관성 유지",
+      "tags": ["참조 무결성", "외래키", "무결성 제약"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "아래 그림에서 트리의 차수(degree)를 구하면?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "2" },
+        { "no": 2, "text": "3" },
+        { "no": 3, "text": "4" },
+        { "no": 4, "text": "5" }
+      ],
+      "answer": 2,
+      "explanation": "트리의 차수는 한 노드가 가질 수 있는 최대 자식 노드의 수를 의미합니다. 제시된 트리에서 A와 C는 자식이 2개, E도 2개인데 B만 D, E, F의 세 개 자식을 가지므로 이 트리의 차수는 3입니다. 전체 노드의 수나 트리의 높이와는 관계가 없다는 점에 유의해야 합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "차수는 2가 아니라 자식이 가장 많은 B의 자식 수인 3입니다." },
+        { "no": 2, "correct": true, "why": "B가 D, E, F 세 개의 자식을 가지므로 트리의 차수는 3입니다." },
+        { "no": 3, "correct": false, "why": "자식이 4개인 노드가 없으므로 4는 트리의 차수가 아닙니다." },
+        { "no": 4, "correct": false, "why": "자식이 5개인 노드가 없으므로 5도 트리의 차수가 아닙니다." }
+      ],
+      "keyPoint": "트리의 차수 = 자식 노드 수의 최댓값",
+      "tags": ["트리", "차수", "degree"],
+      "difficulty": 2,
+      "figure": { "needed": true, "kind": "diagram", "image": "figures/2024-2/047.png", "alt": "A를 루트로 B와 C가 갈라지고, B 아래에 D, E, F가 붙고 E 아래에 I와 J가 붙으며, C 아래에 G와 H가 붙은 트리", "page": 4, "col": 0, "box": [57.5, 230.8, 155.7, 310.3] },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "정규화 과정 중 1NF에서 2NF가 되기 위한 조건은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "1NF를 만족하고 모든 도메인이 원자 값이어야 한다." },
+        { "no": 2, "text": "1NF를 만족하고 키가 아닌 모든 애트리뷰트들이 기본 키에 이행적으로 함수 종속되지 않아야 한다." },
+        { "no": 3, "text": "1NF를 만족하고 다치 종속이 제거되어야 한다." },
+        { "no": 4, "text": "1NF를 만족하고 키가 아닌 모든 속성이 기본키에 완전 함수적 종속되어야 한다." }
+      ],
+      "answer": 4,
+      "explanation": "제2정규형(2NF)은 제1정규형을 만족하면서 키가 아닌 모든 속성이 기본키에 완전 함수 종속되는 상태입니다. 즉 기본키의 일부분에만 종속되는 부분 함수 종속을 제거하는 것이 2NF의 조건입니다. 모든 도메인이 원자 값을 갖는 것은 1NF의 조건이고, 이행적 함수 종속을 제거하는 것은 3NF, 다치 종속을 제거하는 것은 4NF의 조건입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "모든 도메인이 원자 값을 가져야 한다는 것은 1NF의 조건입니다." },
+        { "no": 2, "correct": false, "why": "이행적 함수 종속을 제거하는 것은 3NF의 조건입니다." },
+        { "no": 3, "correct": false, "why": "다치 종속을 제거하는 것은 4NF의 조건입니다." },
+        { "no": 4, "correct": true, "why": "키가 아닌 모든 속성이 기본키에 완전 함수 종속되어야 2NF가 됩니다." }
+      ],
+      "keyPoint": "2NF의 조건 - 부분 함수 종속 제거",
+      "tags": ["정규화", "2NF", "함수 종속"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "병행제어 기법 중 로킹에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "로킹의 대상이 되는 객체의 크기를 로킹 단위라고 한다." },
+        { "no": 2, "text": "데이터베이스, 파일, 레코드 등은 로킹 단위가 될 수 있다." },
+        { "no": 3, "text": "로킹의 단위가 작아지면 로킹 오버헤드가 증가한다." },
+        { "no": 4, "text": "로킹의 단위가 커지면 데이터베이스 공유도가 증가한다." }
+      ],
+      "answer": 4,
+      "explanation": "로킹은 트랜잭션이 데이터에 접근할 때 잠금을 설정해 다른 트랜잭션의 접근을 막는 병행제어 기법으로, 잠금 대상이 되는 객체의 크기를 로킹 단위라고 하며 데이터베이스, 파일, 레코드 등이 모두 로킹 단위가 될 수 있습니다. 로킹 단위가 작아지면 잠금을 세밀하게 걸 수 있어 공유도는 높아지지만 관리할 잠금이 많아져 오버헤드가 증가합니다. 반대로 로킹 단위가 커지면 오버헤드는 줄어드는 대신 하나의 잠금이 막는 범위가 넓어져 공유도는 낮아집니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "로킹 대상 객체의 크기를 로킹 단위라고 한다는 설명은 옳습니다." },
+        { "no": 2, "correct": false, "why": "데이터베이스, 파일, 레코드 등이 로킹 단위가 될 수 있다는 설명도 옳습니다." },
+        { "no": 3, "correct": false, "why": "로킹 단위가 작아지면 잠금 관리 부담이 커져 오버헤드가 증가한다는 설명도 옳습니다." },
+        { "no": 4, "correct": true, "why": "로킹 단위가 커지면 잠금이 막는 범위가 넓어져 공유도는 오히려 감소하므로 옳지 않습니다." }
+      ],
+      "keyPoint": "로킹 단위와 오버헤드·공유도의 관계",
+      "tags": ["로킹", "병행제어", "공유도"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "다음 중 파티션에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "파티셔닝으로 인해 쿼리 성능은 향상되지만, 백업 및 복구 속도는 느려진다." },
+        { "no": 2, "text": "파티셔닝된 테이블은 물리적으로 별도의 세그먼트에 저장된다." },
+        { "no": 3, "text": "파티션은 하나의 테이블을 작은 논리적 단위로 나눈 것이다." },
+        { "no": 4, "text": "파티셔닝을 수행하면 데이터 가용성이 향상된다." }
+      ],
+      "answer": 1,
+      "explanation": "파티셔닝은 하나의 대용량 테이블을 파티션이라는 작은 논리적 단위로 나누어 관리하는 기법으로, 나누어진 각 파티션은 물리적으로 별도의 세그먼트에 저장됩니다. 데이터가 분산되어 있어 특정 파티션에 문제가 생겨도 나머지 파티션을 사용할 수 있으므로 가용성이 향상되고 쿼리 성능도 좋아집니다. 백업과 복구도 파티션 단위로 나누어 수행할 수 있어 오히려 빨라지므로, 백업 및 복구 속도가 느려진다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "파티셔닝은 백업과 복구를 파티션 단위로 처리할 수 있어 속도가 오히려 향상되므로 틀린 설명입니다." },
+        { "no": 2, "correct": false, "why": "파티셔닝된 테이블의 각 파티션이 물리적으로 별도의 세그먼트에 저장된다는 설명은 옳습니다." },
+        { "no": 3, "correct": false, "why": "파티션이 하나의 테이블을 작은 논리적 단위로 나눈 것이라는 설명도 옳습니다." },
+        { "no": 4, "correct": false, "why": "특정 파티션에 장애가 생겨도 나머지를 사용할 수 있어 가용성이 향상된다는 설명도 옳습니다." }
+      ],
+      "keyPoint": "파티셔닝의 목적 - 성능·가용성 향상과 세그먼트 분리",
+      "tags": ["파티셔닝", "파티션", "세그먼트"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "다음 SQL 문에서 괄호 안에 들어갈 내용으로 옳은 것은?",
+      "passage": "UPDATE MEMBER (    ) GRADE = ‘GOLD’\nWHERE POINT >= 1000;",
+      "passageKind": "code",
+      "choices": [
+        { "no": 1, "text": "SET" },
+        { "no": 2, "text": "FROM" },
+        { "no": 3, "text": "INTO" },
+        { "no": 4, "text": "IN" }
+      ],
+      "answer": 1,
+      "explanation": "UPDATE 문은 테이블에 저장된 기존 행의 값을 변경하는 DML로, SET 절에 변경할 열과 값을 지정하고 WHERE 절에 변경 대상 행의 조건을 지정합니다. 제시된 문장은 MEMBER 테이블에서 POINT가 1000 이상인 행의 GRADE를 ‘GOLD’로 바꾸는 문장이므로 괄호에는 SET이 들어가야 합니다. FROM은 주로 SELECT나 DELETE 문에서, INTO는 INSERT 문에서 사용하는 키워드이며, IN은 WHERE 절에서 여러 값 중 하나인지 비교할 때 쓰는 연산자입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "UPDATE 문에서 변경할 열과 값을 지정하는 키워드는 SET입니다." },
+        { "no": 2, "correct": false, "why": "FROM은 주로 SELECT 문에서 조회할 테이블을 지정할 때 사용합니다." },
+        { "no": 3, "correct": false, "why": "INTO는 INSERT 문에서 값을 삽입할 테이블을 지정할 때 사용합니다." },
+        { "no": 4, "correct": false, "why": "IN은 WHERE 절에서 여러 값 중 하나와 일치하는지 비교할 때 사용하는 연산자입니다." }
+      ],
+      "keyPoint": "UPDATE 문의 SET 절과 WHERE 절의 역할",
+      "tags": ["UPDATE", "SET", "DML"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "분산 데이터베이스 목표 중 “데이터베이스의 분산된 물리적 환경에서 특정 지역의 컴퓨터 시스템이나 네트워크에 장애가 발생해도 데이터 무결성이 보장된다.”는 것과 관계있는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "장애 투명성" },
+        { "no": 2, "text": "병행 투명성" },
+        { "no": 3, "text": "위치 투명성" },
+        { "no": 4, "text": "중복 투명성" }
+      ],
+      "answer": 1,
+      "explanation": "분산 데이터베이스의 장애 투명성은 특정 지역의 컴퓨터 시스템이나 네트워크에 장애가 발생하더라도 트랜잭션이 정상적으로 처리되어 데이터의 일관성과 무결성이 유지되는 성질입니다. 병행 투명성은 여러 트랜잭션이 동시에 수행되어도 이상이 없도록 보장하는 성질이고, 위치 투명성은 데이터의 실제 저장 위치를 알지 못해도 사용할 수 있게 하는 성질이며, 중복 투명성은 데이터의 중복 저장 여부를 사용자가 신경 쓰지 않아도 되게 하는 성질입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "장애가 발생해도 데이터 무결성이 보장되는 성질은 장애 투명성입니다." },
+        { "no": 2, "correct": false, "why": "병행 투명성은 여러 트랜잭션이 동시에 수행될 때 일관성을 보장하는 성질입니다." },
+        { "no": 3, "correct": false, "why": "위치 투명성은 데이터의 저장 위치를 알 필요 없이 사용할 수 있게 하는 성질입니다." },
+        { "no": 4, "correct": false, "why": "중복 투명성은 데이터가 중복 저장되어도 사용자가 이를 알 필요 없게 하는 성질입니다." }
+      ],
+      "keyPoint": "분산 데이터베이스의 투명성 - 위치·중복·병행·장애",
+      "tags": ["분산 데이터베이스", "장애 투명성", "투명성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "데이터베이스 설계 단계와 그 단계에서 수행되는 작업의 연결이 잘못된 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "요구 조건 분석 - 트랜잭션 모델링" },
+        { "no": 2, "text": "물리적 설계 단계 - 목표 DBMS에 맞는 물리적 구조 설계" },
+        { "no": 3, "text": "논리적 설계 단계 - 목표 DBMS에 종속적인 논리 스키마 설계" },
+        { "no": 4, "text": "구현 단계 - 목표 DBMS DDL로 스키마 작성" }
+      ],
+      "answer": 1,
+      "explanation": "데이터베이스 설계는 요구 조건 분석, 개념적 설계, 논리적 설계, 물리적 설계, 구현 단계의 순서로 진행됩니다. 트랜잭션 모델링은 개념적 설계 단계에서 수행하는 작업이고, 요구 조건 분석 단계에서는 사용자의 요구를 수집해 요구 조건 명세서를 작성합니다. 물리적 설계는 목표 DBMS에 맞는 물리적 구조를 설계하고, 논리적 설계는 목표 DBMS에 종속적인 논리 스키마를 설계하며, 구현 단계에서는 DDL로 스키마를 작성하므로 나머지 연결은 옳습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "트랜잭션 모델링은 개념적 설계 단계의 작업이므로 요구 조건 분석과의 연결이 잘못되었습니다." },
+        { "no": 2, "correct": false, "why": "물리적 설계 단계에서 목표 DBMS에 맞는 물리적 구조를 설계한다는 연결은 옳습니다." },
+        { "no": 3, "correct": false, "why": "논리적 설계 단계에서 목표 DBMS에 종속적인 논리 스키마를 설계한다는 연결도 옳습니다." },
+        { "no": 4, "correct": false, "why": "구현 단계에서 목표 DBMS의 DDL로 스키마를 작성한다는 연결도 옳습니다." }
+      ],
+      "keyPoint": "데이터베이스 설계 5단계와 단계별 작업",
+      "tags": ["데이터베이스 설계", "개념적 설계", "트랜잭션 모델링"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "다음 질의어를 SQL 문장으로 바르게 나타낸 것은? (단, 사원 테이블에 사원코드, 이름, 부서의 열이 있다고 가정한다.)",
+      "passage": "“부서가 인사, 사원코드가 3000 이하인 사원의 사원코드에 1000을 더하라.”",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "UPDATE 사원코드 SET 사원코드+1000 WHERE 부서=“인사” OR 사원코드<=3000;" },
+        { "no": 2, "text": "UPDATE 사원 SET 사원코드=사원코드+1000 WHERE 부서=“인사” OR 사원코드<=3000;" },
+        { "no": 3, "text": "UPDATE 사원코드 SET 사원코드+1000 WHERE 부서=“인사” AND 사원코드<=3000;" },
+        { "no": 4, "text": "UPDATE 사원 SET 사원코드=사원코드+1000 WHERE 부서=“인사” AND 사원코드<=3000;" }
+      ],
+      "answer": 4,
+      "explanation": "질의어는 부서가 인사이면서 사원코드가 3000 이하인 사원의 사원코드에 1000을 더하라는 요구이므로 두 조건을 모두 만족하도록 AND로 연결해야 합니다. UPDATE 문에서는 변경할 테이블 이름을 먼저 쓰고 SET 절에 열=값 형태의 대입식을 지정해야 하며, 이 두 가지를 모두 만족하는 문장은 테이블을 사원으로 쓰고 조건을 AND로 연결한 것입니다. ①과 ③은 테이블 이름 자리에 사원코드를 넣고 SET 절에 대입식을 쓰지 않았으며, ②는 OR를 사용해 조건이 요구와 달라졌습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "변경할 테이블 자리에 사원코드가 왔고 SET 절에 대입식이 없으며 조건도 OR로 연결했습니다." },
+        { "no": 2, "correct": false, "why": "테이블과 SET 절은 바르지만 조건을 OR로 연결해 요구 사항과 다릅니다." },
+        { "no": 3, "correct": false, "why": "조건을 AND로 연결한 것은 맞지만 테이블 이름과 SET 절이 잘못되었습니다." },
+        { "no": 4, "correct": true, "why": "사원 테이블을 지정하고 SET 절에 사원코드=사원코드+1000을 쓰고 두 조건을 AND로 연결했습니다." }
+      ],
+      "keyPoint": "UPDATE 문의 테이블·SET 절·WHERE 조건 작성법",
+      "tags": ["UPDATE", "SQL", "AND 조건"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "분산 데이터베이스의 장점으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "지역 자치성이 높다." },
+        { "no": 2, "text": "잠재적 오류가 감소한다." },
+        { "no": 3, "text": "분산 제어가 가능하다.." },
+        { "no": 4, "text": "효용성과 융통성이 높다." }
+      ],
+      "answer": 2,
+      "explanation": "분산 데이터베이스는 데이터를 여러 지역에 나누어 저장하므로 지역 자치성이 높고 분산 제어가 가능하며 효용성과 융통성이 높다는 장점이 있습니다. 반면 여러 사이트를 연결하고 데이터를 동기화해야 하므로 관리가 복잡해져 잠재적인 오류는 오히려 증가합니다. 따라서 잠재적 오류가 감소한다는 설명은 분산 데이터베이스의 장점으로 볼 수 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "각 지역이 자신의 데이터를 자체적으로 관리할 수 있어 지역 자치성이 높은 것은 장점입니다." },
+        { "no": 2, "correct": true, "why": "사이트 간 동기화와 관리의 복잡성 때문에 잠재적 오류는 오히려 증가하므로 장점이 아닙니다." },
+        { "no": 3, "correct": false, "why": "분산 제어가 가능하다는 것은 분산 데이터베이스의 장점입니다." },
+        { "no": 4, "correct": false, "why": "효용성과 융통성이 높다는 것도 분산 데이터베이스의 장점입니다." }
+      ],
+      "keyPoint": "분산 데이터베이스의 장점과 잠재적 오류 증가라는 단점",
+      "tags": ["분산 데이터베이스", "지역 자치성", "잠재적 오류"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "다음 문장의 (   ) 안 내용으로 공통 적용될 수 있는 가장 적절한 내용은 무엇인가?",
+      "passage": "“관계형 데이터 모델에서 한 릴레이션의 (   )는 참조되는 릴레이션의 기본 키와 대응되어 릴레이션간에 참조 관계를 표현하는데 사용되는 중요한 도구이다. (   )를 포함하는 릴레이션이 참조하는 릴레이션이 되고, 대응되는 기본 키를 포함하는 릴레이션이 참조 릴레이션이 된다.”",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "후보키(Candidate Key)" },
+        { "no": 2, "text": "대체키(Alternate Key)" },
+        { "no": 3, "text": "외래키(Foreign Key)" },
+        { "no": 4, "text": "수퍼키(Super Key)" }
+      ],
+      "answer": 3,
+      "explanation": "외래키는 다른 릴레이션의 기본 키를 참조하는 속성으로, 두 릴레이션 사이의 참조 관계를 표현하는 도구입니다. 지문에서 참조되는 릴레이션의 기본 키와 대응되어 참조 관계를 만들어 내는 키는 외래키이므로 두 괄호에 공통으로 들어갈 수 있습니다. 후보키는 튜플을 유일하게 식별할 수 있는 속성들의 집합이고, 대체키는 후보키 중에서 기본키로 선택되지 않은 키이며, 수퍼키는 유일성은 만족하지만 최소성은 만족하지 않는 키입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "후보키는 튜플을 유일하게 식별할 수 있는 속성들의 집합으로 참조 관계를 표현하는 키가 아닙니다." },
+        { "no": 2, "correct": false, "why": "대체키는 후보키 가운데 기본키로 선택되지 않은 나머지 키입니다." },
+        { "no": 3, "correct": true, "why": "다른 릴레이션의 기본 키와 대응되어 참조 관계를 표현하는 키는 외래키입니다." },
+        { "no": 4, "correct": false, "why": "수퍼키는 유일성은 만족하지만 최소성은 만족하지 않는 키입니다." }
+      ],
+      "keyPoint": "외래키의 정의와 참조 관계 표현",
+      "tags": ["외래키", "기본키", "참조 관계"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "다음 중 트리거(Trigger)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "데이터 변경 및 무결성 유지, 로그 메시지 출력 등의 목적으로 사용된다." },
+        { "no": 2, "text": "트리거의 생성문에는 반드시 값을 반환하는 RETURN 명령어가 사용되어야 한다." },
+        { "no": 3, "text": "데이터의 삽입, 갱신, 삭제 등의 이벤트가 발생할 때마다 관련 작업이 자동으로 수행되는 절차형 SQL이다." },
+        { "no": 4, "text": "CREATE TRIGGER 명령어를 통해 생성된다." }
+      ],
+      "answer": 2,
+      "explanation": "트리거는 데이터의 삽입·갱신·삭제 이벤트가 발생할 때마다 관련 작업이 자동으로 수행되는 절차형 SQL로, 데이터 변경과 무결성 유지, 로그 메시지 출력 등의 목적으로 사용되며 CREATE TRIGGER 문으로 생성합니다. 트리거는 값을 반환하지 않고 이벤트에 반응해 정해진 작업만 수행하므로, 생성문에 값을 반환하는 RETURN 명령어가 반드시 있어야 한다는 설명은 틀렸습니다. 값을 반환하는 RETURN은 사용자 정의 함수에서 사용하는 요소입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "데이터 변경 및 무결성 유지, 로그 메시지 출력 등에 사용된다는 설명은 옳습니다." },
+        { "no": 2, "correct": true, "why": "트리거는 값을 반환하지 않으므로 RETURN 명령어가 반드시 필요하다는 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "삽입·갱신·삭제 이벤트마다 관련 작업이 자동 수행되는 절차형 SQL이라는 설명도 옳습니다." },
+        { "no": 4, "correct": false, "why": "CREATE TRIGGER 명령어로 생성된다는 설명도 옳습니다." }
+      ],
+      "keyPoint": "트리거의 자동 수행 특성과 값 반환 여부",
+      "tags": ["트리거", "절차형 SQL", "CREATE TRIGGER"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "데이터베이스의 특성으로 옳은 내용 모두를 나열한 것은?",
+      "passage": "㉠ 실시간 접근성\n㉡ 계속적인 변화\n㉢ 동시 공용\n㉣ 내용에 의한 참조",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "㉠" },
+        { "no": 2, "text": "㉡, ㉢" },
+        { "no": 3, "text": "㉠, ㉢, ㉣" },
+        { "no": 4, "text": "㉠, ㉡, ㉢, ㉣" }
+      ],
+      "answer": 4,
+      "explanation": "데이터베이스는 실시간 접근성, 계속적인 변화, 동시 공용, 내용에 의한 참조라는 네 가지 특성을 가집니다. 실시간 접근성은 사용자의 질의에 즉시 응답하는 성질이고, 계속적인 변화는 데이터가 계속 삽입·삭제·갱신되면서 항상 최신 상태를 유지하는 성질입니다. 동시 공용은 여러 사용자가 동시에 접근해도 서로 영향을 주지 않는 성질이며, 내용에 의한 참조는 데이터의 위치가 아니라 값의 내용을 기준으로 검색하는 성질이므로 네 가지가 모두 데이터베이스의 특성에 해당합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "실시간 접근성만 나열되어 나머지 세 가지 특성이 빠졌습니다." },
+        { "no": 2, "correct": false, "why": "계속적인 변화와 동시 공용만 나열되어 실시간 접근성과 내용에 의한 참조가 빠졌습니다." },
+        { "no": 3, "correct": false, "why": "계속적인 변화가 빠져 있어 옳은 내용을 모두 나열하지 못했습니다." },
+        { "no": 4, "correct": true, "why": "㉠, ㉡, ㉢, ㉣ 네 가지가 모두 데이터베이스의 특성입니다." }
+      ],
+      "keyPoint": "데이터베이스의 4대 특성",
+      "tags": ["데이터베이스 특성", "동시 공용", "실시간 접근성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "DBMS의 필수 기능 중 사용자와 데이터베이스 사이의 인터페이스 수단을 제공하는 기능은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Definition 기능" },
+        { "no": 2, "text": "Control 기능" },
+        { "no": 3, "text": "Manipulation 기능" },
+        { "no": 4, "text": "Strategy 기능" }
+      ],
+      "answer": 3,
+      "explanation": "DBMS의 필수 기능은 정의 기능, 조작 기능, 제어 기능의 세 가지로 나뉩니다. 이 중 조작 기능(Manipulation)은 사용자와 데이터베이스 사이의 인터페이스 수단을 제공하며, 데이터의 검색·삽입·삭제·갱신을 위한 연산을 지원합니다. 정의 기능은 데이터베이스의 구조와 데이터 형식 등을 정의하는 기능이고, 제어 기능은 데이터의 정확성과 보안성을 유지하도록 감시·제어하는 기능이며, Strategy 기능은 DBMS의 필수 기능에 포함되지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Definition 기능은 데이터베이스의 구조와 데이터 형식 등을 정의하는 기능입니다." },
+        { "no": 2, "correct": false, "why": "Control 기능은 무결성·보안·동시성 등을 감시하고 제어하는 기능입니다." },
+        { "no": 3, "correct": true, "why": "사용자와 데이터베이스 사이의 인터페이스 수단을 제공하는 기능은 Manipulation 기능입니다." },
+        { "no": 4, "correct": false, "why": "Strategy 기능은 DBMS의 필수 기능에 포함되지 않는 용어입니다." }
+      ],
+      "keyPoint": "DBMS의 필수 기능 - 정의·조작·제어",
+      "tags": ["DBMS", "Manipulation", "조작 기능"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2024-2-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "뷰(View)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "뷰는 CREATE 문을 사용하여 정의한다." },
+        { "no": 2, "text": "뷰는 데이터의 논리적 독립성을 제공한다." },
+        { "no": 3, "text": "뷰를 제거할 때에는 DROP 문을 사용한다." },
+        { "no": 4, "text": "뷰는 저장장치 내에 물리적으로 존재한다." }
+      ],
+      "answer": 4,
+      "explanation": "뷰는 하나 이상의 기본 테이블을 이용해 만든 가상 테이블로, CREATE 문으로 정의하고 DROP 문으로 제거합니다. 뷰는 실제 데이터를 저장하지 않고 데이터 사전에 정의만 저장되므로 기본 테이블의 구조가 바뀌어도 응용 프로그램에 영향을 덜 주는 논리적 독립성을 제공합니다. 따라서 뷰가 저장장치 내에 물리적으로 존재한다는 설명은 옳지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "뷰를 CREATE 문으로 정의한다는 설명은 옳습니다." },
+        { "no": 2, "correct": false, "why": "뷰가 데이터의 논리적 독립성을 제공한다는 설명도 옳습니다." },
+        { "no": 3, "correct": false, "why": "뷰를 제거할 때 DROP 문을 사용한다는 설명도 옳습니다." },
+        { "no": 4, "correct": true, "why": "뷰는 물리적으로 저장되지 않는 가상 테이블이므로 옳지 않은 설명입니다." }
+      ],
+      "keyPoint": "뷰의 가상 테이블 특성과 생성·제거 문",
+      "tags": ["뷰", "View", "논리적 독립성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2. 2024년2회_정보처리기사필기기출문제.pdf", "page": 4 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

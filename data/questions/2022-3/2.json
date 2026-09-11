@@ -1,0 +1,1484 @@
+{
+ "exam": {
+  "id": "2022-3",
+  "year": 2022,
+  "round": 3,
+  "title": "2022년 3회 정보처리기사 필기",
+  "sourcePdf": "2022년3회_기사필기 기출문제.pdf"
+ },
+ "subject": {
+  "code": 2,
+  "name": "소프트웨어 개발"
+ },
+ "questions": [
+  {
+   "id": "2022-3-021",
+   "number": 21,
+   "subjectCode": 2,
+   "stem": "소프트웨어 테스트와 관련한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "화이트박스 테스트는 모듈의 논리적인 구조를 체계적으로 점검할 수 있다."
+    },
+    {
+     "no": 2,
+     "text": "블랙박스 테스트는 프로그램의 구조를 고려하지 않는다."
+    },
+    {
+     "no": 3,
+     "text": "테스트 케이스에는 일반적으로 시험 조건, 테스트 데이터, 예상 결과가 포함되어야 한다."
+    },
+    {
+     "no": 4,
+     "text": "화이트박스 테스트에서 기본 경로(Basis Path)란 흐름 그래프의 시작 노드에서 종료 노드까지의 서로 독립된 경로로 싸이클을 허용하지 않는 경로를 말한다."
+    }
+   ],
+   "answer": 4,
+   "explanation": "화이트박스 테스트는 모듈 내부의 논리 구조와 경로를 체계적으로 점검하고, 블랙박스 테스트는 프로그램의 내부 구조를 고려하지 않고 입출력만으로 기능을 검증합니다. 테스트 케이스는 시험 조건, 테스트 데이터, 예상 결과로 구성되므로 세 가지 설명은 모두 옳습니다. 기본 경로(Basis Path)는 흐름 그래프의 시작 노드에서 종료 노드까지의 서로 독립된 경로들의 집합으로, 순환 복잡도(Cyclomatic Complexity)만큼의 경로가 필요하며 반복(싸이클)이 포함된 경로도 허용되므로, 싸이클을 허용하지 않는다고 단정한 설명이 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "화이트박스 테스트는 모듈의 논리 구조와 경로를 점검하는 기법이므로 옳은 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "블랙박스 테스트는 내부 구조를 고려하지 않고 입력과 출력만으로 기능을 확인하므로 옳은 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "테스트 케이스는 시험 조건, 테스트 데이터, 예상 결과를 포함해 작성하므로 옳은 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "기본 경로는 순환 복잡도만큼 존재하는 서로 독립된 경로들의 집합으로 싸이클(반복)을 포함한 경로도 허용되므로, 싸이클을 허용하지 않는다는 서술이 틀렸습니다."
+    }
+   ],
+   "keyPoint": "기본 경로(Basis Path)는 시작 노드에서 종료 노드까지의 서로 독립된 경로들의 집합",
+   "tags": [
+    "화이트박스 테스트",
+    "기본 경로",
+    "블랙박스 테스트"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-022",
+   "number": 22,
+   "subjectCode": 2,
+   "stem": "디지털 저작권 관리(DRM)의 기술 요소가 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "크랙 방지 기술"
+    },
+    {
+     "no": 2,
+     "text": "정책 관리 기술"
+    },
+    {
+     "no": 3,
+     "text": "암호화 기술"
+    },
+    {
+     "no": 4,
+     "text": "방화벽 기술"
+    }
+   ],
+   "answer": 4,
+   "explanation": "DRM(Digital Rights Management)은 디지털 콘텐츠의 생성부터 유통, 사용까지 전 과정에서 저작권을 보호하기 위한 기술과 서비스입니다. 콘텐츠를 암호화하고 키를 관리하는 암호화 기술, 사용 권한과 이용 규칙을 정의하는 정책 관리 기술, 불법 복제를 막는 크랙 방지 기술 등이 핵심 요소입니다. 방화벽은 외부의 불법 접근을 차단하는 네트워크 보안 장비로, 콘텐츠의 저작권을 보호하기 위한 DRM 기술 요소가 아닙니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "크랙 방지 기술은 콘텐츠의 불법 복제와 변조를 막는 DRM의 핵심 요소입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "정책 관리 기술은 사용자별 권한과 이용 규칙을 정의하고 통제하는 DRM의 요소입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "암호화 기술은 콘텐츠를 암호화해 권한 없는 사용을 차단하는 DRM의 요소입니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "방화벽은 외부 침입을 차단하는 네트워크 보안 기술로 DRM의 기술 요소가 아닙니다."
+    }
+   ],
+   "keyPoint": "DRM의 기술 요소는 암호화·키 관리, 정책 관리, 크랙 방지 등",
+   "tags": [
+    "DRM",
+    "저작권 관리"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-023",
+   "number": 23,
+   "subjectCode": 2,
+   "stem": "소프트웨어 형상관리(Configuration management)에 관한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "소프트웨어에서 일어나는 수정이나 변경을 알아내고 제어하는 것을 의미한다."
+    },
+    {
+     "no": 2,
+     "text": "소프트웨어 개발의 전체 비용을 줄이고, 개발 과정의 여러 방해 요인이 최소화되도록 보증하는 것을 목적으로 한다."
+    },
+    {
+     "no": 3,
+     "text": "형상관리를 위하여 구성된 팀을 “chief programmer team”이라고 한다."
+    },
+    {
+     "no": 4,
+     "text": "형상관리의 기능 중 하나는 버전 제어 기술이다."
+    }
+   ],
+   "answer": 3,
+   "explanation": "형상관리는 개발 과정에서 발생하는 변경을 식별하고 통제하며, 변경 이력을 관리해 여러 개발자가 같은 소스를 일관성 있게 유지하도록 하는 활동입니다. 버전 제어, 형상 감사, 형상 기록 등이 주요 기능이며 개발 비용 절감과 방해 요인 최소화를 목적으로 합니다. 형상관리를 전담하는 조직은 형상 통제 위원회인 CCB(Change Control Board)이고, chief programmer team은 책임 프로그래머를 중심으로 소규모 팀을 구성하는 개발 조직 형태이므로 ③이 틀린 설명입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "형상관리는 소프트웨어의 수정과 변경을 식별하고 제어하는 활동이므로 옳은 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "형상관리는 개발 비용을 줄이고 개발 과정의 방해 요인을 최소화하는 것을 목적으로 하므로 옳은 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "형상관리 전담 조직은 CCB이며, chief programmer team은 책임 프로그래머 중심의 개발 조직 형태이므로 틀린 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "버전 제어는 형상관리의 대표적인 기능 중 하나이므로 옳은 설명입니다."
+    }
+   ],
+   "keyPoint": "형상관리 전담 조직은 CCB(형상 통제 위원회)",
+   "tags": [
+    "형상관리",
+    "CCB",
+    "버전 제어"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-024",
+   "number": 24,
+   "subjectCode": 2,
+   "stem": "다음 트리를 후위 순회(Post Traversal)한 결과는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "A B D C E F"
+    },
+    {
+     "no": 2,
+     "text": "D B A E C F"
+    },
+    {
+     "no": 3,
+     "text": "A B C D E F"
+    },
+    {
+     "no": 4,
+     "text": "D B E F C A"
+    }
+   ],
+   "answer": 4,
+   "explanation": "후위 순회는 왼쪽 서브트리, 오른쪽 서브트리, 루트의 순서로 노드를 방문하는 방법입니다. 루트 A의 왼쪽 서브트리에서 D를 먼저 방문하고 B를 방문한 뒤, 오른쪽 서브트리로 이동해 E, F를 방문하고 C를 방문하며, 마지막에 루트 A를 방문하므로 결과는 D B E F C A가 됩니다. A B D C E F는 전위 순회, D B A E C F는 중위 순회의 결과입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "A B D C E F는 루트를 먼저 방문하는 전위 순회 결과입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "D B A E C F는 왼쪽-루트-오른쪽 순으로 방문하는 중위 순회 결과입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "A B C D E F는 트리 구조의 계층 순서와 맞지 않는 나열입니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "왼쪽 서브트리(D, B), 오른쪽 서브트리(E, F, C), 루트(A) 순으로 방문한 후위 순회 결과입니다."
+    }
+   ],
+   "keyPoint": "후위 순회는 왼쪽 → 오른쪽 → 루트 순서로 방문",
+   "tags": [
+    "트리",
+    "후위 순회"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": true,
+    "kind": "diagram",
+    "image": "figures/2022-3/024.png",
+    "alt": "A를 루트로 왼쪽 자식 B와 오른쪽 자식 C가 있고, B 아래에 왼쪽 자식 D, C 아래에 왼쪽 자식 E와 오른쪽 자식 F가 붙은 이진 트리",
+    "page": 2,
+    "col": 1,
+    "box": [
+     319.5,
+     320.9,
+     422.6,
+     393.4
+    ]
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-025",
+   "number": 25,
+   "subjectCode": 2,
+   "stem": "EAI(Enterprise Application Integration)의 구축 유형으로 옳지 않은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "Tree"
+    },
+    {
+     "no": 2,
+     "text": "Hub & Spoke"
+    },
+    {
+     "no": 3,
+     "text": "Message Bus"
+    },
+    {
+     "no": 4,
+     "text": "Point-to-Point"
+    }
+   ],
+   "answer": 1,
+   "explanation": "EAI는 기업 내 서로 다른 애플리케이션과 데이터를 통합해 하나의 시스템처럼 사용할 수 있도록 하는 기술입니다. 구축 유형에는 애플리케이션을 1:1로 직접 연결하는 Point-to-Point, 중앙의 허브를 통해 연결하는 Hub & Spoke, 미들웨어 버스로 통합하는 Message Bus(ESB), 이들을 조합한 Hybrid가 있습니다. Tree는 EAI의 구축 유형이 아닙니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "Tree는 EAI의 구축 유형에 포함되지 않는 용어입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "Hub & Spoke는 중앙 허브를 통해 모든 애플리케이션을 연결하는 EAI 구축 유형입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "Message Bus는 미들웨어 버스를 통해 애플리케이션을 통합하는 EAI 구축 유형입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "Point-to-Point는 애플리케이션을 1:1로 직접 연결하는 EAI 구축 유형입니다."
+    }
+   ],
+   "keyPoint": "EAI 구축 유형: Point-to-Point, Hub & Spoke, Message Bus, Hybrid",
+   "tags": [
+    "EAI",
+    "Hub & Spoke"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-026",
+   "number": 26,
+   "subjectCode": 2,
+   "stem": "소프트웨어 테스트에서 오류의 80%는 전체 모듈의 20% 내에서 발견된다는 법칙은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "Brooks의 법칙"
+    },
+    {
+     "no": 2,
+     "text": "Boehm의 법칙"
+    },
+    {
+     "no": 3,
+     "text": "Pareto의 법칙"
+    },
+    {
+     "no": 4,
+     "text": "Jackson의 법칙"
+    }
+   ],
+   "answer": 3,
+   "explanation": "파레토 법칙(Pareto Principle)은 전체 결과의 80%가 20%의 원인에서 발생한다는 법칙으로, 소프트웨어 테스트에서는 결함의 대부분이 소수의 모듈에 집중된다는 것을 뜻합니다. 따라서 결함이 많은 핵심 모듈을 우선적으로 집중 테스트하는 근거로 사용됩니다. Brooks의 법칙은 일정이 지연되는 프로젝트에 인력을 추가하면 오히려 더 늦어진다는 법칙이고, Boehm의 법칙은 결함을 발견하는 시점이 늦을수록 수정 비용이 기하급수적으로 증가한다는 법칙입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "Brooks의 법칙은 지연된 프로젝트에 인력을 추가하면 더 늦어진다는 법칙입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "Boehm의 법칙은 개발 후반부로 갈수록 결함 수정 비용이 커진다는 법칙입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "파레토 법칙은 결함의 80%가 20%의 모듈에서 발견된다는 테스트 법칙입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "Jackson의 법칙은 테스트 관련 법칙으로 제시되는 용어가 아닙니다."
+    }
+   ],
+   "keyPoint": "파레토 법칙 - 결함의 80%는 20%의 모듈에 집중",
+   "tags": [
+    "파레토 법칙",
+    "테스트"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-027",
+   "number": 27,
+   "subjectCode": 2,
+   "stem": "다음 중 테스트 오라클에 대한 설명으로 옳지 않은 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "샘플링 오라클 : 특정한 몇몇 테스트 케이스의 입력 값들에 대해서만 기대하는 결과를 제공하는 오라클이다."
+    },
+    {
+     "no": 2,
+     "text": "토탈 오라클 : 모든 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하는 오라클이다."
+    },
+    {
+     "no": 3,
+     "text": "휴리스틱 오라클 : 특정 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하고, 나머지 입력 값들에 대해서는 추정으로 처리하는 오라클이다."
+    },
+    {
+     "no": 4,
+     "text": "일관성 검사 오라클 : 애플리케이션의 변경이 있을 경우 테스트 케이스의 수행 전과 후의 결과 값이 동일한지를 확인하는 오라클이다."
+    }
+   ],
+   "answer": 2,
+   "explanation": "테스트 오라클은 테스트 결과가 올바른지 판단하기 위해 사전에 정의된 참값과 비교하는 기법으로, 참(True) 오라클, 샘플링 오라클, 휴리스틱 오라클, 일관성 검사 오라클로 구분됩니다. 모든 테스트 케이스의 입력 값에 대해 기대하는 결과를 제공하는 오라클은 참(True) 오라클이며, 토탈 오라클이라는 명칭은 사용하지 않습니다. 나머지 세 보기는 각 오라클의 정의를 정확히 설명하고 있습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "샘플링 오라클은 일부 테스트 케이스의 입력 값에 대해서만 기대 결과를 제공하므로 옳은 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "모든 테스트 케이스의 입력 값에 대해 기대 결과를 제공하는 오라클은 참(True) 오라클이며 토탈 오라클이라는 명칭은 사용하지 않으므로 틀린 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "휴리스틱 오라클은 일부는 기대 결과를, 나머지는 추정으로 처리하는 오라클이므로 옳은 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "일관성 검사 오라클은 변경 전후의 결과 값이 동일한지 확인하는 오라클이므로 옳은 설명입니다."
+    }
+   ],
+   "keyPoint": "테스트 오라클 종류 - 참(True), 샘플링, 휴리스틱, 일관성 검사",
+   "tags": [
+    "테스트 오라클",
+    "샘플링 오라클"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-028",
+   "number": 28,
+   "subjectCode": 2,
+   "stem": "IPSec(IP Security)에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "암호화 수행시 일방향 암호화만 지원한다."
+    },
+    {
+     "no": 2,
+     "text": "ESP는 발신지 인증, 데이터 무결성, 기밀성 모두를 보장한다."
+    },
+    {
+     "no": 3,
+     "text": "운영 모드는 Tunnel 모드와 Transport 모드로 분류된다."
+    },
+    {
+     "no": 4,
+     "text": "AH는 발신지 호스트를 인증하고, IP 패킷의 무결성을 보장한다."
+    }
+   ],
+   "answer": 1,
+   "explanation": "IPSec은 네트워크 계층(3계층)에서 IP 패킷을 암호화하고 인증하는 보안 프로토콜로, 인증 헤더인 AH와 보안 페이로드인 ESP를 사용합니다. AH는 발신지 인증과 데이터 무결성을 보장하고, ESP는 여기에 암호화를 통한 기밀성까지 제공하며 양방향 통신에서 사용됩니다. 운영 모드는 터널 전체를 보호하는 Tunnel 모드와 데이터 부분만 보호하는 Transport 모드로 나뉘므로, 일방향 암호화만 지원한다는 설명이 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "IPSec은 양방향 통신에서 암호화를 지원하므로 일방향 암호화만 지원한다는 설명이 틀렸습니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "ESP는 발신지 인증, 데이터 무결성, 기밀성을 모두 보장하므로 옳은 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "IPSec의 운영 모드는 Tunnel 모드와 Transport 모드로 분류되므로 옳은 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "AH는 발신지 호스트를 인증하고 IP 패킷의 무결성을 보장하므로 옳은 설명입니다."
+    }
+   ],
+   "keyPoint": "IPSec - AH는 인증·무결성, ESP는 기밀성까지 보장",
+   "tags": [
+    "IPSec",
+    "ESP",
+    "AH"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 2
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-029",
+   "number": 29,
+   "subjectCode": 2,
+   "stem": "스택(STACK)의 응용 분야로 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "인터럽트의 처리"
+    },
+    {
+     "no": 2,
+     "text": "수식의 계산"
+    },
+    {
+     "no": 3,
+     "text": "서브루틴의 복귀 번지 저장"
+    },
+    {
+     "no": 4,
+     "text": "운영체제의 작업 스케줄링"
+    }
+   ],
+   "answer": 4,
+   "explanation": "스택은 가장 나중에 삽입된 자료가 먼저 삭제되는 후입선출(LIFO) 구조로, 인터럽트 처리 순서 관리, 후위 표기법을 이용한 수식 계산, 서브루틴 호출 후 복귀 번지 저장, 깊이 우선 탐색 등에 사용됩니다. 운영체제의 작업 스케줄링은 먼저 요청된 작업을 먼저 처리하는 선입선출(FIFO) 구조인 큐가 적합하므로 스택의 응용 분야와 거리가 멉니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "인터럽트의 처리는 복귀 주소를 저장하고 되돌아오는 과정에서 스택을 사용합니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "수식의 계산은 후위 표기법으로 변환한 뒤 스택을 이용해 연산합니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "서브루틴의 복귀 번지는 호출 시 스택에 저장했다가 복귀할 때 꺼내 사용합니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "운영체제의 작업 스케줄링은 선입선출 구조인 큐를 사용하므로 스택의 응용 분야가 아닙니다."
+    }
+   ],
+   "keyPoint": "스택은 LIFO 구조, 작업 스케줄링은 큐(FIFO) 구조",
+   "tags": [
+    "스택",
+    "자료구조"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-030",
+   "number": 30,
+   "subjectCode": 2,
+   "stem": "다음 자료에 대하여 선택(Selection) 정렬을 이용하여 오름차순으로 정렬하고자 한다. 1회전 수행 결과는?",
+   "passage": "8, 3, 4, 9, 7",
+   "passageKind": "text",
+   "choices": [
+    {
+     "no": 1,
+     "text": "3, 4, 7, 8, 9"
+    },
+    {
+     "no": 2,
+     "text": "3, 4, 7, 9, 8"
+    },
+    {
+     "no": 3,
+     "text": "3, 4, 8, 9, 7"
+    },
+    {
+     "no": 4,
+     "text": "3, 8, 4, 9, 7"
+    }
+   ],
+   "answer": 4,
+   "explanation": "선택 정렬은 매 회전마다 정렬되지 않은 부분에서 가장 작은 값을 찾아 그 부분의 맨 앞 값과 자리를 바꾸는 방식입니다. 1회전에서는 전체 자료 8, 3, 4, 9, 7에서 최솟값 3을 찾아 첫 번째 값 8과 교환합니다. 따라서 1회전 결과는 3, 8, 4, 9, 7이고, 이후 회전에서 나머지 값들이 차례로 정렬됩니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "3, 4, 7, 8, 9는 정렬이 모두 끝난 최종 결과입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "3, 4, 7, 9, 8은 1회전이 아니라 여러 회전을 수행한 중간 결과입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "3, 4, 8, 9, 7은 최솟값을 앞으로 옮긴 뒤의 1회전 결과와 다릅니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "1회전에서 최솟값 3을 첫 값 8과 교환한 결과이므로 올바릅니다."
+    }
+   ],
+   "keyPoint": "선택 정렬 1회전 - 최솟값을 찾아 맨 앞 값과 교환",
+   "tags": [
+    "선택 정렬",
+    "정렬 알고리즘"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-031",
+   "number": 31,
+   "subjectCode": 2,
+   "stem": "해싱 함수(Hashing Function)의 종류가 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "제곱법(Mid-Square)"
+    },
+    {
+     "no": 2,
+     "text": "숫자 분석법(Digit Analysis)"
+    },
+    {
+     "no": 3,
+     "text": "개방 주소법(Open Addressing)"
+    },
+    {
+     "no": 4,
+     "text": "제산법(Division)"
+    }
+   ],
+   "answer": 3,
+   "explanation": "해싱 함수는 키 값을 해시 테이블의 주소로 변환하는 함수로, 제산법, 제곱법, 숫자 분석법, 폴딩법, 기수 변환법 등이 있습니다. 개방 주소법은 서로 다른 키가 같은 주소로 변환되는 충돌(Collision)이 발생했을 때 빈 버킷을 찾아 저장하는 충돌 해결 기법이지 해싱 함수의 종류가 아닙니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "제곱법은 키 값을 제곱한 뒤 중간 부분의 값을 주소로 사용하는 해싱 함수입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "숫자 분석법은 키 값을 구성하는 숫자의 분포를 분석해 주소를 만드는 해싱 함수입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "개방 주소법은 충돌 발생 시 빈 버킷을 찾는 충돌 해결 기법으로 해싱 함수의 종류가 아닙니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "제산법은 키 값을 테이블 크기로 나눈 나머지를 주소로 사용하는 대표적인 해싱 함수입니다."
+    }
+   ],
+   "keyPoint": "개방 주소법은 해싱 함수가 아니라 충돌 해결 기법",
+   "tags": [
+    "해싱 함수",
+    "충돌 해결"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-032",
+   "number": 32,
+   "subjectCode": 2,
+   "stem": "인터페이스 구현 검증 도구가 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "ESB"
+    },
+    {
+     "no": 2,
+     "text": "xUnit"
+    },
+    {
+     "no": 3,
+     "text": "STAF"
+    },
+    {
+     "no": 4,
+     "text": "NTAF"
+    }
+   ],
+   "answer": 1,
+   "explanation": "인터페이스 구현 검증 도구는 인터페이스가 정상적으로 동작하는지 확인하기 위한 도구로 xUnit, STAF, FitNesse, NTAF, Selenium, watir 등이 있습니다. ESB(Enterprise Service Bus)는 애플리케이션 사이의 통합을 담당하는 미들웨어 플랫폼으로, 인터페이스 구현 방식에 해당할 뿐 검증 도구가 아닙니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "ESB는 애플리케이션 통합을 위한 미들웨어 플랫폼으로 검증 도구가 아닙니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "xUnit은 단위 테스트와 인터페이스 검증에 사용되는 테스트 프레임워크입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "STAF는 다양한 환경의 테스트를 자동화하고 관리하는 검증 도구입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "NTAF는 웹 애플리케이션 테스트를 자동화하는 검증 도구입니다."
+    }
+   ],
+   "keyPoint": "인터페이스 검증 도구 - xUnit, STAF, FitNesse, NTAF",
+   "tags": [
+    "인터페이스 검증",
+    "ESB"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-033",
+   "number": 33,
+   "subjectCode": 2,
+   "stem": "순서가 A, B, C, D로 정해진 입력 자료를 스택에 입력하였다가 출력할 때, 가능한 출력 순서의 결과가 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "A, B, C, D"
+    },
+    {
+     "no": 2,
+     "text": "D, A, B, C"
+    },
+    {
+     "no": 3,
+     "text": "A, B, D, C"
+    },
+    {
+     "no": 4,
+     "text": "B, C, D, A"
+    }
+   ],
+   "answer": 2,
+   "explanation": "스택은 나중에 삽입된 자료가 먼저 출력되는 후입선출(LIFO) 구조입니다. D를 가장 먼저 출력하려면 A, B, C, D를 모두 삽입한 뒤 꺼내야 하므로 출력 순서는 D, C, B, A가 됩니다. 따라서 D 다음에 A가 나오는 D, A, B, C는 스택으로 만들 수 없는 순서이고, 나머지 순서는 삽입과 삭제 시점을 조절해 만들 수 있습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "A, B, C, D는 삽입과 동시에 바로 꺼내면 만들 수 있는 순서입니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "D를 먼저 출력하면 남은 자료는 C, B, A 순으로 꺼내지므로 D 다음에 A가 나올 수 없습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "A, B를 꺼낸 뒤 D와 C를 차례로 꺼내면 만들 수 있는 순서입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "A를 삽입한 뒤 B, C, D를 삽입하고 D, C, B를 꺼낸 뒤 A를 꺼내면 만들 수 있는 순서입니다."
+    }
+   ],
+   "keyPoint": "스택에서 D를 먼저 출력하면 이후 순서는 D, C, B, A",
+   "tags": [
+    "스택",
+    "LIFO"
+   ],
+   "difficulty": 3,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-034",
+   "number": 34,
+   "subjectCode": 2,
+   "stem": "다음 중 클린 코드 작성원칙으로 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "누구든지 쉽게 이해하는 코드 작성"
+    },
+    {
+     "no": 2,
+     "text": "중복이 최대화된 코드 작성"
+    },
+    {
+     "no": 3,
+     "text": "다른 모듈에 미치는 영향 최소화"
+    },
+    {
+     "no": 4,
+     "text": "단순, 명료한 코드 작성"
+    }
+   ],
+   "answer": 2,
+   "explanation": "클린 코드는 누구나 쉽게 읽고 이해할 수 있도록 가독성을 높이고, 단순하고 명료하게 작성하며, 의존성을 최소화해 다른 모듈에 미치는 영향을 줄인 코드입니다. 중복된 코드는 수정할 때 여러 곳을 함께 고쳐야 하므로 유지보수 비용을 높이고 오류 가능성을 키웁니다. 따라서 중복을 최대화한다는 설명은 클린 코드 원칙과 정반대입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "누구든지 쉽게 이해할 수 있게 작성하는 것은 가독성을 높이는 클린 코드 원칙입니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "중복을 늘리면 수정 범위가 넓어지고 오류 가능성이 커지므로 클린 코드 원칙과 거리가 멉니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "다른 모듈에 미치는 영향을 최소화하는 것은 의존성을 줄이는 클린 코드 원칙입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "단순하고 명료하게 작성하는 것은 클린 코드의 대표적인 원칙입니다."
+    }
+   ],
+   "keyPoint": "클린 코드 - 가독성, 단순성, 중복·의존성 최소화",
+   "tags": [
+    "클린 코드",
+    "유지보수"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-035",
+   "number": 35,
+   "subjectCode": 2,
+   "stem": "소스 코드 품질 분석 도구 중 정적 분석 도구가 아닌 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "pmd"
+    },
+    {
+     "no": 2,
+     "text": "checkstyle"
+    },
+    {
+     "no": 3,
+     "text": "valance"
+    },
+    {
+     "no": 4,
+     "text": "cppcheck"
+    }
+   ],
+   "answer": 3,
+   "explanation": "정적 분석 도구는 소스 코드를 실행하지 않고 코드의 오류, 표준 위반, 잠재적 결함을 검사하는 도구로 pmd, checkstyle, cppcheck, SonarQube 등이 있습니다. valance는 이러한 소스 코드 정적 분석 도구로 사용되는 명칭이 아니므로 정적 분석 도구에 해당하지 않습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "pmd는 소스 코드의 결함과 불필요한 코드를 검사하는 정적 분석 도구입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "checkstyle은 코딩 표준 준수 여부를 검사하는 정적 분석 도구입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "valance는 소스 코드 정적 분석 도구로 사용되는 명칭이 아니므로 정답입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "cppcheck는 C/C++ 소스 코드의 결함을 검사하는 정적 분석 도구입니다."
+    }
+   ],
+   "keyPoint": "정적 분석 도구 - pmd, checkstyle, cppcheck, SonarQube",
+   "tags": [
+    "정적 분석",
+    "소스 코드 품질"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-036",
+   "number": 36,
+   "subjectCode": 2,
+   "stem": "알파, 베타 테스트와 가장 밀접한 연관이 있는 테스트 단계는?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "단위 테스트"
+    },
+    {
+     "no": 2,
+     "text": "인수 테스트"
+    },
+    {
+     "no": 3,
+     "text": "통합 테스트"
+    },
+    {
+     "no": 4,
+     "text": "시스템 테스트"
+    }
+   ],
+   "answer": 2,
+   "explanation": "알파 테스트는 개발자 환경에서 개발팀이 지켜보는 가운데 사용자가 수행하는 테스트이고, 베타 테스트는 실제 사용 환경에서 사용자가 직접 수행하며 오류를 개발팀에 보고하는 테스트입니다. 두 테스트 모두 완성된 소프트웨어가 사용자의 요구사항을 충족하는지 사용자 입장에서 최종 확인하는 인수 테스트 단계에 해당합니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "단위 테스트는 모듈 단위로 개발자가 수행하는 테스트로 알파·베타 테스트와 거리가 멉니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "알파·베타 테스트는 사용자가 요구사항 충족 여부를 확인하는 인수 테스트 단계에 해당합니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "통합 테스트는 모듈을 결합해 인터페이스 오류를 확인하는 단계입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "시스템 테스트는 전체 시스템의 기능과 성능을 개발자 관점에서 검증하는 단계입니다."
+    }
+   ],
+   "keyPoint": "알파·베타 테스트는 인수 테스트 단계의 테스트",
+   "tags": [
+    "인수 테스트",
+    "알파 테스트",
+    "베타 테스트"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-037",
+   "number": 37,
+   "subjectCode": 2,
+   "stem": "테스트 드라이버(Test Driver)에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "시험 대상 모듈을 호출하는 간이 소프트웨어이다."
+    },
+    {
+     "no": 2,
+     "text": "필요에 따라 매개 변수를 전달하고 모듈을 수행한 후의 결과를 보여줄 수 있다."
+    },
+    {
+     "no": 3,
+     "text": "상향식 통합 테스트에서 사용된다."
+    },
+    {
+     "no": 4,
+     "text": "테스트 대상 모듈이 호출하는 하위 모듈의 역할을 한다."
+    }
+   ],
+   "answer": 4,
+   "explanation": "테스트 드라이버는 상향식 통합 테스트에서 아직 개발되지 않은 상위 모듈을 대신해 시험 대상 모듈을 호출하고, 매개 변수를 전달한 뒤 수행 결과를 확인하는 간이 소프트웨어입니다. 테스트 대상 모듈이 호출하는 하위 모듈의 역할을 대신하는 것은 스텁(Stub)이며 하향식 통합 테스트에서 사용됩니다. 따라서 ④가 틀린 설명입니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "드라이버는 시험 대상 모듈을 호출하는 간이 소프트웨어이므로 옳은 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "드라이버는 매개 변수를 전달하고 수행 결과를 확인할 수 있으므로 옳은 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "드라이버는 상향식 통합 테스트에서 상위 모듈을 대신하므로 옳은 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": true,
+     "why": "테스트 대상 모듈이 호출하는 하위 모듈의 역할을 하는 것은 스텁이므로 틀린 설명입니다."
+    }
+   ],
+   "keyPoint": "드라이버는 상위 모듈 대체(상향식), 스텁은 하위 모듈 대체(하향식)",
+   "tags": [
+    "테스트 드라이버",
+    "스텁",
+    "통합 테스트"
+   ],
+   "difficulty": 2,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-038",
+   "number": 38,
+   "subjectCode": 2,
+   "stem": "소프트웨어 패키징에 대한 설명으로 틀린 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "패키징은 개발자 중심으로 진행한다."
+    },
+    {
+     "no": 2,
+     "text": "신규 및 변경 개발소스를 식별하고, 이를 모듈화하여 상용제품으로 패키징한다."
+    },
+    {
+     "no": 3,
+     "text": "고객의 편의성을 위해 매뉴얼 및 버전관리를 지속적으로 한다."
+    },
+    {
+     "no": 4,
+     "text": "범용 환경에서 사용이 가능하도록 일반적인 배포 형태로 패키징이 진행된다."
+    }
+   ],
+   "answer": 1,
+   "explanation": "소프트웨어 패키징은 개발이 완료된 소프트웨어를 사용자가 사용할 수 있도록 모듈화하고 배포 형태로 묶는 과정입니다. 사용자가 직접 설치하고 사용하는 과정이므로 사용자 중심으로 진행해야 하며, 매뉴얼 작성과 버전 관리도 고객의 편의성을 기준으로 지속적으로 관리합니다. 따라서 개발자 중심으로 진행한다는 설명이 틀렸습니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": true,
+     "why": "패키징은 개발자가 아니라 사용자 중심으로 진행해야 하므로 틀린 설명입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "신규·변경 소스를 식별해 모듈화하고 상용 제품으로 패키징하는 과정이므로 옳은 설명입니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "고객의 편의를 위해 매뉴얼과 버전 관리를 지속하는 것이 패키징의 요구사항이므로 옳은 설명입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "범용 환경에서 사용할 수 있도록 일반적인 배포 형태로 패키징하므로 옳은 설명입니다."
+    }
+   ],
+   "keyPoint": "소프트웨어 패키징은 사용자 중심으로 진행",
+   "tags": [
+    "소프트웨어 패키징"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-039",
+   "number": 39,
+   "subjectCode": 2,
+   "stem": "연결 리스트(Linked List)에 대한 설명으로 거리가 먼 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "노드의 삽입이나 삭제가 쉽다."
+    },
+    {
+     "no": 2,
+     "text": "노드들이 포인터로 연결되어 검색이 빠르다."
+    },
+    {
+     "no": 3,
+     "text": "연결을 해주는 포인터(Pointer)를 위한 추가 공간이 필요하다."
+    },
+    {
+     "no": 4,
+     "text": "연결 리스트 중에서 중간 노드 연결이 끊어지면 그 다음 노드를 찾기 힘들다."
+    }
+   ],
+   "answer": 2,
+   "explanation": "연결 리스트는 노드를 포인터로 연결한 구조로, 노드의 삽입과 삭제 시 연결 정보만 바꾸면 되므로 배열보다 쉽습니다. 반면 포인터를 저장할 추가 공간이 필요하고, 중간 연결이 끊어지면 이후 노드들을 찾을 수 없게 됩니다. 특정 노드를 찾을 때는 첫 노드부터 포인터를 따라 순차적으로 이동해야 하므로 검색은 배열보다 오히려 느립니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "연결 리스트는 포인터만 수정하면 되므로 노드의 삽입과 삭제가 쉽습니다."
+    },
+    {
+     "no": 2,
+     "correct": true,
+     "why": "검색은 첫 노드부터 순차 탐색으로 수행되므로 검색이 빠르다는 설명은 틀렸습니다."
+    },
+    {
+     "no": 3,
+     "correct": false,
+     "why": "포인터를 저장하기 위한 추가 공간이 필요한 것은 연결 리스트의 특징입니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "중간 연결이 끊어지면 이후 노드에 접근할 수 없게 되는 것도 연결 리스트의 단점입니다."
+    }
+   ],
+   "keyPoint": "연결 리스트는 삽입·삭제는 빠르지만 검색은 순차 탐색이라 느림",
+   "tags": [
+    "연결 리스트",
+    "자료구조"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  },
+  {
+   "id": "2022-3-040",
+   "number": 40,
+   "subjectCode": 2,
+   "stem": "알고리즘 시간 복잡도 O(1)이 의미하는 것은?",
+   "passage": null,
+   "passageKind": null,
+   "choices": [
+    {
+     "no": 1,
+     "text": "컴퓨터 처리가 불가"
+    },
+    {
+     "no": 2,
+     "text": "알고리즘 입력 데이터 수가 한 개"
+    },
+    {
+     "no": 3,
+     "text": "알고리즘 수행시간이 입력 데이터 수와 관계 없이 일정"
+    },
+    {
+     "no": 4,
+     "text": "알고리즘 길이가 입력 데이터보다 작음"
+    }
+   ],
+   "answer": 3,
+   "explanation": "빅오 표기법은 입력 데이터 수 n이 증가할 때 알고리즘의 수행 시간이 증가하는 정도를 나타내는 표기법입니다. O(1)은 상수 시간 복잡도로, 입력 데이터 수가 얼마나 늘어나더라도 수행 시간이 변하지 않고 일정하다는 것을 의미합니다. 입력 데이터 수가 한 개인 것과는 관계가 없으며, 데이터 수가 많아져도 처리 시간이 일정한 알고리즘을 뜻합니다.",
+   "choicesAnalysis": [
+    {
+     "no": 1,
+     "correct": false,
+     "why": "컴퓨터 처리가 불가능하다는 의미가 아니라 수행 시간이 일정하다는 의미입니다."
+    },
+    {
+     "no": 2,
+     "correct": false,
+     "why": "O(1)은 입력 데이터 수가 한 개라는 뜻이 아니라 입력 수와 무관하게 시간이 일정하다는 뜻입니다."
+    },
+    {
+     "no": 3,
+     "correct": true,
+     "why": "입력 데이터 수와 관계없이 수행 시간이 일정한 상수 시간 복잡도를 의미하므로 올바릅니다."
+    },
+    {
+     "no": 4,
+     "correct": false,
+     "why": "알고리즘의 길이와 입력 데이터의 크기를 비교하는 표기법이 아닙니다."
+    }
+   ],
+   "keyPoint": "O(1)은 입력 크기와 무관하게 수행 시간이 일정한 상수 시간 복잡도",
+   "tags": [
+    "시간 복잡도",
+    "빅오 표기법"
+   ],
+   "difficulty": 1,
+   "figure": {
+    "needed": false,
+    "kind": null,
+    "image": null,
+    "alt": null,
+    "page": null,
+    "col": null,
+    "box": null
+   },
+   "source": {
+    "pdf": "2022년3회_기사필기 기출문제.pdf",
+    "page": 3
+   },
+   "provenance": {
+    "answer": "pdf",
+    "explanation": "generated"
+   }
+  }
+ ]
+}

@@ -1,0 +1,1495 @@
+{
+  "exam": {
+    "id": "2024-3",
+    "year": 2024,
+    "round": 3,
+    "title": "2024년 3회 정보처리기사 필기",
+    "sourcePdf": "3. 2024년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2024-3-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발에서 정보보안 3요소에 해당하지 않는 설명은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "기밀성 : 인가된 사용자에 대해서만 자원 접근이 가능하다."
+        },
+        {
+          "no": 2,
+          "text": "무결성 : 인가된 사용자에 대해서만 자원 수정이 가능하며 전송 중인 정보는 수정되지 않는다."
+        },
+        {
+          "no": 3,
+          "text": "가용성 : 인가된 사용자는 가지고 있는 권한 범위 내에서 언제든 자원 접근이 가능하다."
+        },
+        {
+          "no": 4,
+          "text": "휘발성 : 인가된 사용자가 수행한 데이터는 처리 완료 즉시 폐기되어야 한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "정보보안의 3요소는 자원 접근을 인가된 사용자로 제한하는 기밀성, 인가된 사용자만 자원을 수정하고 전송 중 정보가 변조되지 않게 하는 무결성, 인가된 사용자가 권한 범위 안에서 언제든 자원에 접근할 수 있게 하는 가용성입니다. 휘발성은 메모리나 저장매체가 전원이 꺼지면 내용을 잃는 성질을 가리키는 용어일 뿐 보안 3요소에는 포함되지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "인가된 사용자에 대해서만 자원 접근을 허용한다는 설명은 기밀성에 해당하므로 보안 3요소에 포함됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "인가된 사용자만 자원을 수정할 수 있고 전송 중 정보가 수정되지 않는다는 설명은 무결성에 해당합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "인가된 사용자가 권한 범위 내에서 언제든 자원에 접근할 수 있다는 설명은 가용성에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "휘발성은 데이터를 처리 완료 즉시 폐기한다는 성질로, 기밀성·무결성·가용성으로 이루어진 정보보안 3요소에 포함되지 않으므로 옳지 않은 설명입니다."
+        }
+      ],
+      "keyPoint": "정보보안 3요소 : 기밀성·무결성·가용성",
+      "tags": [
+        "정보보안 3요소",
+        "기밀성",
+        "가용성"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "COCOMO Model 중 기관 내부에서 개발된 중·소 규모의 소프트웨어로 일괄 자료 처리나 과학기술 계산용, 비즈니스 자료 처리용으로 5만 라인 이하의 소프트웨어를 개발하는 유형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Embedded"
+        },
+        {
+          "no": 2,
+          "text": "Organic"
+        },
+        {
+          "no": 3,
+          "text": "Semi-Detached"
+        },
+        {
+          "no": 4,
+          "text": "Semi-Embedded"
+        }
+      ],
+      "answer": 2,
+      "explanation": "COCOMO 모델은 보헴이 제안한 원시 프로그램 규모 기반 비용 산정 모형으로, 개발 규모와 성격에 따라 조직형(Organic), 반분리형(Semi-Detached), 내장형(Embedded)으로 유형을 나눕니다. 기관 내부에서 개발한 중·소 규모 소프트웨어로 5만 라인 이하이며 일괄 자료 처리·과학기술 계산·비즈니스 자료 처리 용도인 경우는 개발 경험이 있고 규모가 작은 조직형(Organic)에 해당합니다. 30만 라인 이상의 대규모·복잡한 소프트웨어에는 내장형(Embedded)을 적용합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "내장형(Embedded)은 30만 라인 이상의 대규모이고 복잡한 소프트웨어에 적용하는 유형이므로 해당하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "5만 라인 이하의 중·소 규모 소프트웨어를 개발하는 유형은 조직형(Organic)입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "반분리형(Semi-Detached)은 중간 규모 프로젝트에 적용하는 유형으로, 5만 라인 이하 소규모를 가리키는 유형은 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Semi-Embedded라는 유형은 COCOMO의 개발 유형에 존재하지 않습니다."
+        }
+      ],
+      "keyPoint": "COCOMO 개발 유형 : Organic(5만 라인 이하)·Semi-Detached(중간 규모)·Embedded(30만 라인 이상)",
+      "tags": [
+        "COCOMO",
+        "Organic",
+        "비용 산정"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "다음 중 소프트웨어 비용 산정에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "소프트웨어의 규모, 인력 등의 요소를 기반으로 개발에 필요한 비용을 예측하는 것이다."
+        },
+        {
+          "no": 2,
+          "text": "소프트웨어 비용 산정 기법에는 상향식, 하향식, 혼합식 기법이 있다."
+        },
+        {
+          "no": 3,
+          "text": "소프트웨어 비용을 높게 산정할 경우 예산 낭비와 일의 효율성 저하를 초래할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "소프트웨어 비용 결정 요소에는 프로젝트 요소, 자원 요소, 생산성 요소가 있다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "비용 산정은 소프트웨어의 규모와 인력 등의 요소를 바탕으로 개발에 필요한 비용을 예측하는 활동이며, 비용 결정 요소는 프로젝트 요소, 자원 요소, 생산성 요소로 구분합니다. 산정 기법은 전문가 감정·델파이 같은 하향식 기법, LOC·개발 단계별 인월수 같은 상향식 기법, COCOMO·Putnam·기능 점수 같은 수학적 산정 기법으로 분류하므로, 상향식·하향식·혼합식을 나란히 나열한 설명은 옳지 않습니다. 비용을 실제보다 높게 산정하면 예산 낭비와 효율성 저하를 초래할 수 있다는 설명은 맞습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "규모와 인력 등의 요소를 기반으로 개발에 필요한 비용을 예측하는 것이라는 설명은 비용 산정의 정의에 맞습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "비용 산정 기법은 하향식, 상향식, 수학적 산정 기법으로 분류되며 '혼합식'을 세 번째 분류로 나열한 설명은 교재의 분류와 다르므로 옳지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "비용을 높게 산정하면 예산이 낭비되고 일의 효율성이 떨어질 수 있다는 설명은 맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "비용 결정 요소를 프로젝트 요소, 자원 요소, 생산성 요소로 구분한 설명은 맞습니다."
+        }
+      ],
+      "keyPoint": "소프트웨어 비용 산정 기법의 분류(하향식·상향식·수학적)와 비용 결정 요소",
+      "tags": [
+        "비용 산정",
+        "비용 결정 요소",
+        "상향식·하향식"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "취약점 관리를 위한 응용 프로그램의 보안 설정과 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "서버 관리실 출입 통제"
+        },
+        {
+          "no": 2,
+          "text": "실행 프로세스 권한 설정"
+        },
+        {
+          "no": 3,
+          "text": "운영체제의 접근 제한"
+        },
+        {
+          "no": 4,
+          "text": "운영체제의 정보 수집 제한"
+        }
+      ],
+      "answer": 1,
+      "explanation": "응용 프로그램의 보안 설정은 실행 프로세스가 가질 수 있는 권한을 제한하거나 응용 프로그램이 접근할 수 있는 운영체제 자원과 수집할 수 있는 정보를 제한하는 소프트웨어적 조치를 말합니다. 서버 관리실 출입 통제는 관리자만 서버에 물리적으로 접근하도록 막는 시설·물리적 보안 대책이므로 응용 프로그램 보안 설정과 거리가 가장 멉니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "서버 관리실 출입 통제는 물리적 접근을 제한하는 시설 보안 대책이므로 응용 프로그램의 보안 설정과 거리가 멉니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "실행 프로세스 권한 설정은 응용 프로그램이 꼭 필요한 권한만 갖도록 제한하는 보안 설정입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "운영체제의 접근 제한은 응용 프로그램이 운영체제 자원에 접근하는 범위를 통제하는 보안 설정입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "운영체제의 정보 수집 제한은 불필요한 시스템 정보가 노출되지 않도록 수집 범위를 제한하는 보안 설정입니다."
+        }
+      ],
+      "keyPoint": "취약점 관리를 위한 응용 프로그램 보안 설정과 물리적 보안의 구분",
+      "tags": [
+        "취약점 관리",
+        "보안 설정",
+        "물리적 보안"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "Python을 기반으로 컴포넌트의 재사용과 플러그인화를 강조하여 신속한 개발이 가능하도록 지원하는 프레임워크는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Spring"
+        },
+        {
+          "no": 2,
+          "text": "Node.js"
+        },
+        {
+          "no": 3,
+          "text": "Django"
+        },
+        {
+          "no": 4,
+          "text": "Codeigniter"
+        }
+      ],
+      "answer": 3,
+      "explanation": "Django는 Python으로 작성된 오픈 소스 웹 프레임워크로, 컴포넌트 재사용과 플러그인화를 강조해 신속한 개발(rapid development)을 지원합니다. Spring은 Java 기반 엔터프라이즈 프레임워크이고 Node.js는 JavaScript 실행 환경이며 CodeIgniter는 PHP 기반 프레임워크이므로 Python 기반이라는 조건에 맞지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Spring은 Java를 기반으로 하는 엔터프라이즈 애플리케이션 프레임워크이므로 Python 기반이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Node.js는 JavaScript 코드를 서버에서 실행하는 런타임 환경이므로 프레임워크 조건에 맞지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "Django는 Python 기반 프레임워크로 컴포넌트 재사용과 플러그인화를 통한 신속한 개발을 지원합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "CodeIgniter는 PHP 기반의 웹 프레임워크입니다."
+        }
+      ],
+      "keyPoint": "Django : Python 기반 웹 프레임워크, 컴포넌트 재사용과 플러그인화",
+      "tags": [
+        "Django",
+        "Python",
+        "웹 프레임워크"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "LOC 기법에 의하여 예측된 총 라인수가 36,000라인, 개발에 참여할 프로그래머가 6명, 프로그래머들의 평균 생산성이 월간 300라인일 때 개발에 소요되는 기간은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "5개월"
+        },
+        {
+          "no": 2,
+          "text": "10개월"
+        },
+        {
+          "no": 3,
+          "text": "15개월"
+        },
+        {
+          "no": 4,
+          "text": "20개월"
+        }
+      ],
+      "answer": 4,
+      "explanation": "LOC 기법에서 개발 기간은 총 라인 수를 개발에 참여하는 프로그래머 수와 1인당 월간 생산성의 곱으로 나누어 구합니다. 총 라인 수 36,000라인을 6명 × 300라인 = 1,800라인으로 나누면 20개월이므로 개발에 20개월이 소요됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "36,000라인을 월 1,800라인으로 나눈 값은 20개월이므로 5개월은 계산 결과가 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "개발자 수와 1인당 생산성을 모두 반영해 계산하면 20개월이 나오므로 10개월은 옳지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "15개월 역시 주어진 조건으로는 도출되지 않는 값입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "36,000 ÷ (6 × 300) = 20이므로 개발 기간은 20개월입니다."
+        }
+      ],
+      "keyPoint": "LOC 기법 개발 기간 = 총 라인 수 ÷ (프로그래머 수 × 1인당 월간 생산성)",
+      "tags": [
+        "LOC 기법",
+        "개발 기간 산정",
+        "생산성"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "무선 랜에서 데이터 전송 시 매체가 비어있음을 확인한 뒤 충돌을 피하기 위해 일정한 시간을 기다린 후 데이터를 전송하는 방법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "VLAN"
+        },
+        {
+          "no": 2,
+          "text": "STP"
+        },
+        {
+          "no": 3,
+          "text": "L2AN"
+        },
+        {
+          "no": 4,
+          "text": "CSMA/CA"
+        }
+      ],
+      "answer": 4,
+      "explanation": "CSMA/CA는 무선 랜에서 매체가 비어 있는지 먼저 확인하고, 충돌을 피하기 위해 일정 시간 대기한 뒤 데이터를 전송하는 충돌 회피(Collision Avoidance) 방식입니다. VLAN은 하나의 스위치를 논리적으로 분리해 여러 네트워크처럼 사용하는 기술, STP는 스위치 사이의 이중 경로로 생기는 루프를 막는 프로토콜이며, L2AN은 무선 랜의 매체 접근 방법을 가리키는 용어가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "VLAN은 물리적 스위치를 논리적으로 분리해 별개의 네트워크처럼 사용하는 기술입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "STP(Spanning Tree Protocol)는 스위치 간 루프를 방지하기 위한 프로토콜입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "L2AN은 무선 랜에서 충돌을 회피하며 데이터를 전송하는 매체 접근 방식이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "CSMA/CA는 매체가 비어 있음을 확인한 뒤 일정 시간 기다렸다가 전송해 충돌을 피하는 방식입니다."
+        }
+      ],
+      "keyPoint": "CSMA/CA : 무선 랜에서 충돌을 회피하는 매체 접근 방식",
+      "tags": [
+        "CSMA/CA",
+        "무선 랜",
+        "충돌 회피"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "물리적 위협으로 인한 문제에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "화재, 홍수 등 천재지변으로 인한 위협"
+        },
+        {
+          "no": 2,
+          "text": "하드웨어 파손, 고장으로 인한 장애"
+        },
+        {
+          "no": 3,
+          "text": "방화, 테러로 인한 하드웨어와 기록장치를 물리적으로 파괴하는 행위"
+        },
+        {
+          "no": 4,
+          "text": "방화벽 설정의 잘못된 조작으로 인한 네트워크, 서버 보안 위협"
+        }
+      ],
+      "answer": 4,
+      "explanation": "물리적 위협은 화재·홍수 같은 천재지변, 하드웨어 파손이나 고장, 방화·테러로 인한 설비 파괴처럼 장비와 시설이 직접 손상되는 위협을 말합니다. 방화벽 설정을 잘못 조작해 발생하는 네트워크와 서버의 보안 위협은 소프트웨어와 설정에서 비롯되는 논리적(기술적) 위협이므로 물리적 위협에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "화재, 홍수 등 천재지변으로 인한 위협은 대표적인 물리적 위협입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "하드웨어 파손, 고장으로 인한 장애는 물리적 위협에 해당합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "방화, 테러로 하드웨어와 기록장치를 물리적으로 파괴하는 행위도 물리적 위협입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "방화벽 설정 조작으로 인한 보안 위협은 논리적 위협에 해당하므로 물리적 위협으로 인한 문제가 아닙니다."
+        }
+      ],
+      "keyPoint": "물리적 위협(천재지변·파손·테러)과 논리적 위협의 구분",
+      "tags": [
+        "물리적 위협",
+        "논리적 위협",
+        "방화벽"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 모델 중 나선형 모델의 4가지 주요 활동이 순서대로 나열된 것은?",
+      "passage": "Ⓐ 계획 수립\nⒷ 고객 평가\nⒸ 개발 및 검증\nⒹ 위험 분석",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "Ⓐ-Ⓑ-Ⓓ-Ⓒ 순으로 반복"
+        },
+        {
+          "no": 2,
+          "text": "Ⓐ-Ⓓ-Ⓒ-Ⓑ 순으로 반복"
+        },
+        {
+          "no": 3,
+          "text": "Ⓐ-Ⓑ-Ⓒ-Ⓓ 순으로 반복"
+        },
+        {
+          "no": 4,
+          "text": "Ⓐ-Ⓒ-Ⓑ-Ⓓ 순으로 반복"
+        }
+      ],
+      "answer": 2,
+      "explanation": "나선형 모델은 계획 수립 → 위험 분석 → 개발 및 검증 → 고객 평가의 네 활동을 나선을 돌듯 반복하면서 점진적으로 완성도를 높이는 개발 모델입니다. 위험 분석을 두 번째 활동으로 두어 위험이 큰 프로젝트에서 위험 요소를 조기에 발견하고 줄일 수 있도록 하는 것이 특징입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Ⓐ-Ⓑ-Ⓓ-Ⓒ는 고객 평가를 개발 및 검증보다 앞에 둔 순서로, 나선형 모델의 활동 순서와 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "계획 수립 → 위험 분석 → 개발 및 검증 → 고객 평가 순으로 반복하는 것이 나선형 모델의 활동 순서입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Ⓐ-Ⓑ-Ⓒ-Ⓓ는 위험 분석을 마지막에서 두 번째로 미룬 순서로, 위험 분석을 두 번째에 두는 나선형 모델과 다릅니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Ⓐ-Ⓒ-Ⓑ-Ⓓ는 고객 평가가 개발 및 검증보다 앞서는 순서이므로 나선형 모델과 맞지 않습니다."
+        }
+      ],
+      "keyPoint": "나선형 모델 : 계획 수립 → 위험 분석 → 개발 및 검증 → 고객 평가의 반복",
+      "tags": [
+        "나선형 모델",
+        "위험 분석",
+        "개발 모델"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "다음이 설명하는 IT 기술은?",
+      "passage": "ㆍ컨테이너 응용프로그램의 배포를 자동화하는 오픈소스 엔진이다.\nㆍ소프트웨어 컨테이너 안에 응용 프로그램들을 배치시키는 일을 자동화해 주는 오픈 소스 프로젝트이자 소프트웨어로 볼 수 있다.",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "Stack Guard"
+        },
+        {
+          "no": 2,
+          "text": "Docker"
+        },
+        {
+          "no": 3,
+          "text": "Cipher Container"
+        },
+        {
+          "no": 4,
+          "text": "Scytale"
+        }
+      ],
+      "answer": 2,
+      "explanation": "도커(Docker)는 컨테이너 기술을 이용해 응용 프로그램과 실행 환경을 하나로 묶어 배포와 실행을 자동화하는 오픈 소스 프로젝트입니다. Stack Guard는 복귀 주소 변조를 탐지하는 소프트웨어 보안 기법이고, Scytale은 고대 그리스에서 사용한 암호화 도구이며, Cipher Container도 컨테이너 배포를 자동화하는 기술이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Stack Guard는 스택 오버플로를 탐지하기 위해 복귀 주소 주변에 특정 값을 저장하는 보안 기법입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Docker는 컨테이너 안에 응용 프로그램을 배치하고 배포를 자동화하는 오픈 소스 프로젝트입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Cipher Container는 컨테이너 응용프로그램의 배포를 자동화하는 기술이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Scytale은 고대 그리스에서 사용한 암호화 도구로, 컨테이너 기술과 관련이 없습니다."
+        }
+      ],
+      "keyPoint": "Docker : 컨테이너 기반 응용 프로그램 배포 자동화 오픈 소스",
+      "tags": [
+        "Docker",
+        "컨테이너",
+        "배포 자동화"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "구조적 방법론에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "자료(Data) 중심의 방법론이다."
+        },
+        {
+          "no": 2,
+          "text": "구성 요소에는 객체, 클래스, 메시지 등이 있다."
+        },
+        {
+          "no": 3,
+          "text": "새로운 기능을 추가하는 것이 간단하여 확장성이 보장된다."
+        },
+        {
+          "no": 4,
+          "text": "분할과 정복(Divide and Conquer) 원리를 적용한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "구조적 방법론은 시스템을 기능과 절차 중심으로 나누어 이해하기 쉽게 만들고, 큰 문제를 작은 단위로 나누어 해결하는 분할과 정복(Divide and Conquer) 원리를 적용하는 방법론입니다. 자료(Data) 중심의 방법론은 정보공학 방법론이고, 객체·클래스·메시지를 구성 요소로 삼거나 새로운 기능 추가가 간단해 확장성이 보장된다는 설명은 객체지향 방법론의 특징입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "자료(Data) 중심의 방법론은 정보공학 방법론에 대한 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "객체, 클래스, 메시지를 구성 요소로 삼는 것은 객체지향 방법론입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "새로운 기능을 추가하기 쉽고 확장성이 보장되는 것은 객체지향 방법론의 장점입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "구조적 방법론은 분할과 정복 원리를 적용해 문제를 작은 단위로 나누어 해결합니다."
+        }
+      ],
+      "keyPoint": "구조적 방법론 : 기능 중심, 분할과 정복(Divide and Conquer) 원리 적용",
+      "tags": [
+        "구조적 방법론",
+        "분할과 정복",
+        "정보공학 방법론"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "다음에서 설명하는 IT 기술은?",
+      "passage": "ㆍ네트워크를 제어부, 데이터 전달부로 분리하여 네트워크 관리자가 보다 효율적으로 네트워크를 제어, 관리할 수 있는 기술\nㆍ기존의 라우터, 스위치 등과 같이 하드웨어에 의존하는 네트워크 체계에서 안정성, 속도, 보안 등을 소프트웨어로 제어, 관리하기 위해 개발됨\nㆍ네트워크 장비의 펌웨어 업그레이드를 통해 사용자의 직접적인 데이터 전송 경로 관리가 가능하고, 기존 네트워크에는 영향을 주지 않으면서 특정 서비스의 전송 경로 수정을 통하여 인터넷상에서 발생하는 문제를 처리할 수 있음",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "SDN(Software Defined Networking)"
+        },
+        {
+          "no": 2,
+          "text": "NFS(Network File System)"
+        },
+        {
+          "no": 3,
+          "text": "Network Mapper"
+        },
+        {
+          "no": 4,
+          "text": "AOE Network"
+        }
+      ],
+      "answer": 1,
+      "explanation": "SDN(Software Defined Networking)은 네트워크 장비의 제어부와 데이터 전달부를 분리해 소프트웨어로 네트워크를 제어·관리하는 기술입니다. 하드웨어에 의존하던 네트워크 체계에서 안정성, 속도, 보안 등을 소프트웨어로 관리할 수 있게 하며, 펌웨어 업그레이드만으로 전송 경로를 조정할 수 있다는 점이 특징입니다. NFS는 네트워크 파일 공유 시스템, Network Mapper는 네트워크 스캔 도구, AOE Network는 프로젝트 일정 분석에 쓰이는 활동 간선 네트워크입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "SDN은 제어부와 데이터 전달부를 분리해 소프트웨어로 네트워크를 제어·관리하는 기술입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "NFS는 네트워크상에서 파일을 공유하기 위한 파일 시스템입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Network Mapper(nmap)는 네트워크의 호스트와 포트를 스캔하는 도구입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "AOE Network(Activity On Edge Network)는 프로젝트 일정을 표현하고 분석하는 네트워크 기법입니다."
+        }
+      ],
+      "keyPoint": "SDN : 제어부·데이터 전달부 분리, 소프트웨어 기반 네트워크 제어",
+      "tags": [
+        "SDN",
+        "네트워크 가상화",
+        "제어부 분리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "Secure 코딩에서 입력 데이터의 보안 약점과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "SQL 삽입 : 사용자의 입력 값 등 외부 입력 값이 SQL 쿼리에 삽입되어 공격"
+        },
+        {
+          "no": 2,
+          "text": "크로스사이트 스크립트 : 검증되지 않은 외부 입력 값에 의해 브라우저에서 악의적인 코드가 실행"
+        },
+        {
+          "no": 3,
+          "text": "운영체제 명령어 삽입 : 운영체제 명령어 파라미터 입력 값이 적절한 사전검증을 거치지 않고 사용되어 공격자가 운영체제 명령어를 조작"
+        },
+        {
+          "no": 4,
+          "text": "자원 삽입 : 사용자가 내부 입력 값을 통해 시스템 내에 사용이 불가능한 자원을 지속적으로 입력함으로써 시스템에 과부하 발생"
+        }
+      ],
+      "answer": 4,
+      "explanation": "자원 삽입은 외부 입력 값이 시스템 자원을 식별하는 이름이나 색인으로 사용될 때 공격자가 자원 접근을 조작할 수 있게 되는 취약점입니다. 사용할 수 없는 자원을 지속적으로 요청해 시스템에 과부하를 일으키는 것은 자원 고갈(Resource Exhaustion)에 해당하므로, 자원 삽입을 과부하로 설명한 ④가 틀렸습니다. SQL 삽입, 크로스사이트 스크립트, 운영체제 명령어 삽입은 모두 입력 값 검증 부족에서 비롯되는 대표적인 입력 데이터 보안 약점입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "SQL 삽입은 외부 입력 값이 SQL 쿼리에 그대로 삽입되어 공격자가 의도한 쿼리를 실행하게 만드는 취약점이므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "크로스사이트 스크립트는 검증되지 않은 외부 입력 값이 브라우저에서 악성 코드로 실행되는 취약점이므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "운영체제 명령어 삽입은 사전 검증 없이 사용된 입력 값으로 공격자가 운영체제 명령어를 조작하는 취약점이므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "자원 삽입은 외부 입력 값이 시스템 자원을 식별하는 값으로 사용되어 자원 접근을 조작하는 취약점이며, 지속적인 입력으로 과부하를 일으키는 것은 자원 고갈에 해당하므로 설명이 틀렸습니다."
+        }
+      ],
+      "keyPoint": "입력 데이터 보안 약점 : SQL 삽입·크로스사이트 스크립트·운영체제 명령어 삽입·자원 삽입",
+      "tags": [
+        "Secure 코딩",
+        "자원 삽입",
+        "자원 고갈"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "DDoS 공격과 연관이 있는 공격 방법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Secure shell"
+        },
+        {
+          "no": 2,
+          "text": "Tribe Flood Network"
+        },
+        {
+          "no": 3,
+          "text": "Nimda"
+        },
+        {
+          "no": 4,
+          "text": "Deadlock"
+        }
+      ],
+      "answer": 2,
+      "explanation": "Tribe Flood Network(TFN)는 여러 시스템에 에이전트를 설치해 두고 대량의 트래픽을 한 목표에 집중시키는 분산 서비스 거부(DDoS) 공격 도구입니다. Secure shell(SSH)은 원격 접속을 암호화하는 프로토콜, Nimda는 인터넷 웜, Deadlock은 여러 프로세스가 자원을 점유한 채 서로 기다려 처리가 멈춘 상태이므로 DDoS 공격 방법이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Secure shell(SSH)은 원격 접속과 데이터 전송을 암호화하는 보안 프로토콜입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "Tribe Flood Network는 다수의 시스템을 동원해 대량 트래픽을 보내는 DDoS 공격 도구입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Nimda는 웹과 전자우편을 통해 확산된 인터넷 웜으로 DDoS 공격 도구가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Deadlock은 둘 이상의 프로세스가 자원을 점유한 채 서로를 기다려 처리가 멈춘 상태입니다."
+        }
+      ],
+      "keyPoint": "DDoS 공격 도구 : Tribe Flood Network(TFN)",
+      "tags": [
+        "DDoS",
+        "Tribe Flood Network",
+        "Nimda"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "메모리 상에서 프로그램의 복귀 주소와 변수 사이에 특정 값을 저장해 두었다가 그 값이 변경되었을 경우 오버플로우 상태로 가정하여 프로그램 실행을 중단하는 기술은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "모드체크"
+        },
+        {
+          "no": 2,
+          "text": "리커버리 통제"
+        },
+        {
+          "no": 3,
+          "text": "시스로그"
+        },
+        {
+          "no": 4,
+          "text": "스택가드"
+        }
+      ],
+      "answer": 4,
+      "explanation": "스택가드(Stack Guard)는 스택에 저장된 복귀 주소와 변수 사이에 특정 값(카나리)을 두고, 실행 중 그 값이 변경되면 스택 오버플로가 발생한 것으로 판단해 프로그램 실행을 중단하는 메모리 보호 기법입니다. 모드체크는 시스템이 정상 동작 모드인지 확인하는 절차, 시스로그는 시스템 로그를 수집·전달하는 표준, 리커버리 통제는 장애나 재해 발생 시 복구를 보장하기 위한 통제를 뜻합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "모드체크는 시스템이나 프로세스가 정상적인 동작 모드인지 확인하는 절차입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "리커버리 통제는 장애나 재해가 발생했을 때 복구를 보장하기 위한 통제를 가리킵니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "시스로그(Syslog)는 시스템에서 발생한 로그를 수집해 전달하는 표준입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "스택가드는 복귀 주소 주변에 저장한 값이 변경되면 오버플로로 판단해 실행을 중단하는 기법입니다."
+        }
+      ],
+      "keyPoint": "스택가드(Stack Guard) : 카나리 값을 이용한 스택 오버플로 탐지",
+      "tags": [
+        "스택가드",
+        "스택 오버플로",
+        "메모리 보호"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "OSI 7 Layer 전 계층의 프로토콜과 패킷 내부의 콘텐츠를 파악하여 침입 시도, 해킹 등을 탐지하고 트래픽을 조정하기 위한 패킷 분석 기술은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "PLCP(Packet Level Control Processor)"
+        },
+        {
+          "no": 2,
+          "text": "Traffic Distributor"
+        },
+        {
+          "no": 3,
+          "text": "Packet Tree"
+        },
+        {
+          "no": 4,
+          "text": "DPI(Deep Packet Inspection)"
+        }
+      ],
+      "answer": 4,
+      "explanation": "DPI(Deep Packet Inspection)는 패킷의 헤더뿐 아니라 OSI 7계층의 프로토콜과 패킷 내부 콘텐츠(페이로드)까지 심층적으로 분석해 침입 시도와 해킹을 탐지하고 트래픽을 조정하는 기술입니다. PLCP는 패킷 제어 프로세서를 가리키는 용어, Traffic Distributor는 트래픽을 분산해 전달하는 장비를 가리키는 용어, Packet Tree는 패킷 분석에 쓰이는 트리 형태의 자료 구조를 뜻하므로 전 계층 콘텐츠를 분석하는 기술이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "PLCP는 패킷 제어 프로세서를 가리키는 용어로, 전 계층 콘텐츠를 분석해 침입을 탐지하는 기술이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Traffic Distributor는 트래픽을 분산해 전달하는 장비를 가리키는 용어로 심층 패킷 분석 기술이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Packet Tree는 패킷을 분석할 때 사용하는 트리 형태의 자료 구조를 뜻하는 용어입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "DPI는 패킷 헤더와 내부 콘텐츠까지 심층 분석해 침입 탐지와 트래픽 조정을 수행하는 기술입니다."
+        }
+      ],
+      "keyPoint": "DPI(Deep Packet Inspection) : 전 계층 패킷 콘텐츠 심층 분석",
+      "tags": [
+        "DPI",
+        "패킷 분석",
+        "침입 탐지"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 것은?",
+      "passage": "ㆍ네트워크상에 광채널 스위치의 이점인 고속 전송과 장거리 연결 및 멀티 프로토콜 기능을 활용\nㆍ각기 다른 운영체제를 가진 여러 기종들이 네트워크상에서 동일 저장장치의 데이터를 공유하게 함으로써, 여러 개의 저장장치나 백업 장비를 단일화시킨 시스템",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "SAN"
+        },
+        {
+          "no": 2,
+          "text": "MBR"
+        },
+        {
+          "no": 3,
+          "text": "NAC"
+        },
+        {
+          "no": 4,
+          "text": "NIC"
+        }
+      ],
+      "answer": 1,
+      "explanation": "SAN(Storage Area Network)은 광채널 스위치로 서버와 저장장치를 연결해 고속 전송과 장거리 연결, 멀티 프로토콜을 지원하는 스토리지 전용 네트워크입니다. 이기종 운영체제를 사용하는 여러 기종이 네트워크를 통해 동일 저장장치의 데이터를 공유할 수 있게 하며, 여러 개의 저장장치나 백업 장비를 단일화할 수 있습니다. MBR은 디스크의 부트 레코드, NAC는 네트워크 접근 제어, NIC는 네트워크 인터페이스 카드이므로 설명과 관련이 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "SAN은 광채널 스위치 기반으로 여러 기종이 저장장치를 공유할 수 있게 하는 스토리지 전용 네트워크입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "MBR(Master Boot Record)은 디스크의 첫 부분에 위치해 부팅에 필요한 정보를 담는 영역입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "NAC(Network Access Control)는 단말의 보안 상태를 검사해 네트워크 접속을 통제하는 기술입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "NIC(Network Interface Card)는 컴퓨터를 네트워크에 연결하는 랜 카드입니다."
+        }
+      ],
+      "keyPoint": "SAN : 광채널 스위치 기반 스토리지 전용 네트워크",
+      "tags": [
+        "SAN",
+        "스토리지 네트워크",
+        "광채널 스위치"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "Public 메소드로부터 Private 배열이 반환될 경우 발생하는 문제점으로 가장 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "메소드로의 접근이 불가능해진다."
+        },
+        {
+          "no": 2,
+          "text": "배열의 주소가 외부로 공개되어 외부에서 접근할 수 있게 된다."
+        },
+        {
+          "no": 3,
+          "text": "시스템의 내부 정보가 노출된다."
+        },
+        {
+          "no": 4,
+          "text": "동기화 오류가 발생한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "Public 메소드가 Private로 선언한 배열을 그대로 반환하면 배열의 참조(주소)가 외부에 공개되어, Private 접근 제한이 무력화되고 외부 코드가 배열 원소를 마음대로 읽거나 바꿀 수 있게 됩니다. 즉 캡슐화가 깨지는 것이 핵심 문제이므로, 배열을 복사해 반환하거나 읽기 전용 형태로 제공해야 합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Public 메소드이므로 접근이 불가능해지는 것이 아니라 오히려 외부에서 배열에 접근할 수 있게 됩니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "배열의 주소가 외부로 공개되어 외부에서 배열 원소에 접근하고 수정할 수 있게 되는 것이 문제점입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "내부 정보 노출은 배열 주소 공개로 인해 생길 수 있는 부수적인 결과이며, 문제점의 핵심은 Private 배열에 외부에서 접근할 수 있게 된다는 점입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "동기화 오류는 여러 스레드가 같은 자원을 공유할 때 발생하는 문제로, 배열을 반환하는 것과 직접적인 관련이 없습니다."
+        }
+      ],
+      "keyPoint": "Private 배열을 그대로 반환하면 캡슐화가 깨지므로 방어적 복사가 필요",
+      "tags": [
+        "캡슐화",
+        "방어적 복사",
+        "Private 배열"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "SSH(Secure Shell)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "SSH의 기본 네트워크 포트는 25번을 사용한다."
+        },
+        {
+          "no": 2,
+          "text": "전송되는 데이터는 암호화 된다."
+        },
+        {
+          "no": 3,
+          "text": "키를 통한 인증은 클라이언트의 공개키를 서버에 등록해야 한다."
+        },
+        {
+          "no": 4,
+          "text": "서로 연결되어 있는 컴퓨터 간 원격 명령 실행이나 셀 서비스 등을 수행한다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "SSH의 기본 네트워크 포트는 22번이며, 25번은 전자우편 전송에 사용하는 SMTP의 포트이므로 첫 번째 설명이 틀렸습니다. SSH는 연결된 컴퓨터 사이에서 원격 명령을 실행하거나 셸 서비스를 이용할 수 있게 하고, 전송되는 데이터를 암호화하며, 클라이언트의 공개키를 서버에 등록해 키 기반 인증을 수행합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "SSH의 기본 포트는 22번이고 25번은 SMTP가 사용하는 포트이므로 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "SSH는 전송되는 데이터를 암호화하므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "키 기반 인증을 위해서는 클라이언트의 공개키를 서버에 등록해야 하므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "SSH는 원격 명령 실행과 셸 서비스를 제공하므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "SSH : 기본 포트 22번, 데이터 암호화, 공개키 기반 인증",
+      "tags": [
+        "SSH",
+        "포트 번호",
+        "공개키 인증"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "프로젝트의 각 작업들이 언제 시작하고 언제 종료되는지에 대한 작업 일정을 막대 도표를 이용하여 표시하는 프로젝트 일정표는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "간트 차트"
+        },
+        {
+          "no": 2,
+          "text": "임계 경로 기법"
+        },
+        {
+          "no": 3,
+          "text": "PERT"
+        },
+        {
+          "no": 4,
+          "text": "WBS"
+        }
+      ],
+      "answer": 1,
+      "explanation": "간트 차트(Gantt Chart)는 프로젝트의 각 작업이 언제 시작하고 언제 종료되는지에 대한 일정을 막대 도표로 표시하는 프로젝트 일정표입니다. 임계 경로 기법(CPM)은 최장 경로인 임계 경로를 찾아 일정을 관리하는 기법, PERT는 작업 간 선후 관계와 소요 시간을 네트워크로 분석하는 기법, WBS는 프로젝트 작업을 계층적으로 분해한 구조도이므로 막대 도표를 이용한 일정표가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "간트 차트는 작업별 시작 시점과 종료 시점을 막대 도표로 나타내는 프로젝트 일정표입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "임계 경로 기법은 프로젝트를 완성하는 데 가장 오래 걸리는 경로를 찾아 일정을 관리하는 기법입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "PERT는 작업 간 선후 관계와 소요 시간을 확률적으로 추정해 네트워크로 표현하는 기법입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "WBS는 프로젝트에서 수행할 작업을 세분화해 계층적으로 정리한 구조도입니다."
+        }
+      ],
+      "keyPoint": "간트 차트 : 막대 도표로 표현하는 프로젝트 일정표",
+      "tags": [
+        "간트 차트",
+        "프로젝트 일정",
+        "WBS"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 7
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,583 @@
+{
+  "exam": {
+    "id": "2022-3",
+    "year": 2022,
+    "round": 3,
+    "title": "2022년 3회 정보처리기사 필기",
+    "sourcePdf": "2022년3회_기사필기 기출문제.pdf"
+  },
+  "subject": {
+    "code": 1,
+    "name": "소프트웨어 설계"
+  },
+  "questions": [
+    {
+      "id": "2022-3-001",
+      "number": 1,
+      "subjectCode": 1,
+      "stem": "소프트웨어 공학에서 워크스루(Walkthrough)에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "사용사례를 확장하여 명세하거나 설계 다이어그램, 원시코드, 테스트 케이스 등에 적용할 수 있다." },
+        { "no": 2, "text": "복잡한 알고리즘 또는 반복, 실시간 동작, 병행 처리와 같은 기능이나 동작을 이해하려고 할 때 유용하다." },
+        { "no": 3, "text": "인스펙션(Inspection)과 동일한 의미를 가진다." },
+        { "no": 4, "text": "단순한 테스트 케이스를 이용하여 프로덕트를 수작업으로 수행해 보는 것이다." }
+      ],
+      "answer": 3,
+      "explanation": "워크스루는 개발자가 만든 산출물을 동료 검토자들이 모여 짧게 검토하는 비공식적 검토 기법으로, 사용사례 확장이나 설계 다이어그램, 원시코드, 테스트 케이스 등에 폭넓게 적용할 수 있으며 복잡한 알고리즘이나 반복, 실시간 동작, 병행 처리처럼 이해하기 어려운 기능을 파악할 때 유용합니다. 인스펙션은 정해진 절차와 체크리스트를 따르고 검토 결과를 기록하는 공식적이고 엄격한 검토 기법이라는 점에서 워크스루와 구분됩니다. 따라서 두 기법이 같은 의미라고 서술한 보기가 틀린 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "워크스루는 사용사례, 설계 다이어그램, 원시코드, 테스트 케이스 등 다양한 산출물에 적용할 수 있습니다." },
+        { "no": 2, "correct": false, "why": "복잡한 알고리즘이나 반복, 실시간 동작, 병행 처리처럼 이해하기 어려운 동작을 파악할 때 워크스루가 유용합니다." },
+        { "no": 3, "correct": true, "why": "워크스루는 비공식 검토이고 인스펙션은 절차와 체크리스트를 갖춘 공식 검토이므로 동일한 의미가 아닙니다." },
+        { "no": 4, "correct": false, "why": "단순한 테스트 케이스를 이용해 프로덕트를 수작업으로 수행해 보는 것도 워크스루에 대한 설명으로 맞습니다." }
+      ],
+      "keyPoint": "워크스루와 인스펙션의 차이(비공식 검토 vs 공식 검토)",
+      "tags": ["워크스루", "인스펙션", "소프트웨어 검토"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-002",
+      "number": 2,
+      "subjectCode": 1,
+      "stem": "다음 결합도의 종류에 대한 설명 중 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "자료 결합도 : 모듈 간의 인터페이스가 자료 요소로만 구성될 때의 결합도" },
+        { "no": 2, "text": "내용 결합도 : 한 모듈이 다른 모듈과 제어 신호를 이용하여 통신하고, 공유되는 공통 데이터 영역을 사용할 때의 결합도" },
+        { "no": 3, "text": "스탬프 결합도 : 모듈 간의 인터페이스로, 배열의 자료 구조가 전달될 때의 결합도" },
+        { "no": 4, "text": "외부 결합도 : 어떤 모듈에서 선언한 데이터를 다른 모듈에서 참조할 때의 결합도" }
+      ],
+      "answer": 2,
+      "explanation": "결합도는 모듈 간의 상호 의존 정도를 나타내는 척도이며 낮을수록 좋은 설계입니다. 내용 결합도는 한 모듈이 다른 모듈의 내부 기능이나 데이터를 직접 참조·수정할 때 발생하는 가장 강한 결합도이고, 제어 신호를 주고받으며 통신하는 것은 제어 결합도, 공통 데이터 영역을 여러 모듈이 함께 사용하는 것은 공통 결합도입니다. 따라서 제어 결합도와 공통 결합도의 설명을 내용 결합도라고 서술한 보기가 틀렸습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "자료 결합도는 모듈 간 인터페이스가 자료 요소로만 구성되는 가장 약한 결합도로 설명이 맞습니다." },
+        { "no": 2, "correct": true, "why": "제어 신호를 이용한 통신은 제어 결합도, 공유 데이터 영역의 사용은 공통 결합도의 설명이므로 내용 결합도에 대한 설명이 아닙니다." },
+        { "no": 3, "correct": false, "why": "스탬프 결합도는 모듈 간 인터페이스로 배열이나 구조체 같은 자료 구조가 통째로 전달될 때의 결합도입니다." },
+        { "no": 4, "correct": false, "why": "외부 결합도는 어떤 모듈에서 선언한 데이터를 외부의 다른 모듈에서 참조할 때의 결합도입니다." }
+      ],
+      "keyPoint": "결합도의 종류와 강도(내용 > 공통 > 외부 > 제어 > 스탬프 > 자료)",
+      "tags": ["결합도", "모듈화", "내용 결합도"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-003",
+      "number": 3,
+      "subjectCode": 1,
+      "stem": "익스트림 프로그래밍(eXtreme Programming)의 5가지 가치에 속하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "의사소통" },
+        { "no": 2, "text": "단순성" },
+        { "no": 3, "text": "피드백" },
+        { "no": 4, "text": "고객 배제" }
+      ],
+      "answer": 4,
+      "explanation": "익스트림 프로그래밍(XP)은 짧은 주기의 반복 개발과 지속적인 피드백을 강조하는 애자일 방법론으로, 의사소통, 단순성, 피드백, 용기, 존중을 5가지 핵심 가치로 삼습니다. 고객을 개발 과정에서 배제하는 것은 XP의 가치와 정반대이며, XP는 고객이 개발팀과 함께 상주하면서 요구사항을 수시로 확인하는 것을 권장합니다. 따라서 '고객 배제'는 5가지 가치에 속하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "의사소통은 개발자와 고객이 긴밀하게 소통할 것을 강조하는 XP의 5가지 가치 중 하나입니다." },
+        { "no": 2, "correct": false, "why": "단순성은 꼭 필요한 기능만 최소한으로 구현하는 것으로 XP의 핵심 가치입니다." },
+        { "no": 3, "correct": false, "why": "피드백은 짧은 반복 주기와 테스트를 통해 결과를 지속적으로 확인하는 XP의 가치입니다." },
+        { "no": 4, "correct": true, "why": "고객 배제는 XP가 강조하는 고객과의 협력과 소통에 정면으로 어긋나므로 5가지 가치가 아닙니다." }
+      ],
+      "keyPoint": "XP의 5가지 가치(의사소통·단순성·피드백·용기·존중)",
+      "tags": ["익스트림 프로그래밍", "XP", "애자일"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-004",
+      "number": 4,
+      "subjectCode": 1,
+      "stem": "HIPO(Hierarchy Input Process Output)에 대한 설명으로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "상향식 소프트웨어 개발을 위한 문서화 도구이다." },
+        { "no": 2, "text": "HIPO 차트 종류에는 가시적 도표, 총체적 도표, 세부적 도표가 있다." },
+        { "no": 3, "text": "기능과 자료의 의존 관계를 동시에 표현할 수 있다." },
+        { "no": 4, "text": "보기 쉽고 이해하기 쉽다." }
+      ],
+      "answer": 1,
+      "explanation": "HIPO는 시스템의 기능을 계층 구조로 나누고 각 기능의 입력과 처리, 출력을 함께 표현하는 문서화 도구로, 가시적 도표와 총체적 도표, 세부적 도표의 세 가지 차트를 사용합니다. HIPO는 전체 구조를 먼저 파악한 뒤 하위 기능으로 내려가며 설계하는 하향식(top-down) 개발에 적합하므로 상향식 개발을 위한 도구라는 설명은 거리가 멉니다. 기능과 자료의 의존 관계를 동시에 표현할 수 있고 보기 쉽다는 설명은 HIPO의 장점이 맞습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "HIPO는 시스템 전체를 먼저 파악한 뒤 세부 기능으로 내려가는 하향식 문서화 도구이므로 상향식이라는 설명이 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "HIPO 차트에는 가시적 도표, 총체적 도표, 세부적 도표가 있어 설명이 맞습니다." },
+        { "no": 3, "correct": false, "why": "기능과 자료의 의존 관계를 동시에 표현할 수 있다는 것도 HIPO의 특징입니다." },
+        { "no": 4, "correct": false, "why": "보기 쉽고 이해하기 쉽다는 것 역시 HIPO의 장점으로 맞는 설명입니다." }
+      ],
+      "keyPoint": "HIPO의 개념과 하향식 문서화 도구라는 성격",
+      "tags": ["HIPO", "하향식 설계", "문서화 도구"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-005",
+      "number": 5,
+      "subjectCode": 1,
+      "stem": "모바일 기기에서 사용하는 NUI 인터페이스에 속하지 않는 것은 무엇인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Pinch" },
+        { "no": 2, "text": "Press" },
+        { "no": 3, "text": "Flow" },
+        { "no": 4, "text": "Flick" }
+      ],
+      "answer": 3,
+      "explanation": "NUI(Natural User Interface)는 터치나 제스처, 음성처럼 사람의 자연스러운 행동으로 기기를 조작하는 인터페이스로, 두 손가락으로 화면을 벌리거나 오므리는 Pinch, 화면을 누르는 Press, 화면을 빠르게 튕기는 Flick 등이 대표적인 제스처입니다. Flow는 기기 조작을 위한 제스처가 아니라 화면과 화면 사이의 사용 흐름을 자연스럽게 연결하는 UX 설계 개념에 가깝습니다. 따라서 Flow가 NUI 인터페이스에 속하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Pinch는 두 손가락으로 화면을 벌리거나 오므려 확대·축소하는 NUI 제스처입니다." },
+        { "no": 2, "correct": false, "why": "Press는 화면을 일정 시간 누르는 동작을 인식하는 NUI 제스처입니다." },
+        { "no": 3, "correct": true, "why": "Flow는 NUI 조작 제스처가 아니라 사용 흐름을 다루는 UX 개념이므로 NUI 인터페이스가 아닙니다." },
+        { "no": 4, "correct": false, "why": "Flick은 화면을 빠르게 튕겨 넘기는 NUI 제스처입니다." }
+      ],
+      "keyPoint": "NUI 제스처의 종류(Pinch·Press·Flick 등)",
+      "tags": ["NUI", "제스처", "사용자 인터페이스"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-006",
+      "number": 6,
+      "subjectCode": 1,
+      "stem": "UML 확장 모델에서 스테레오 타입 객체를 표현할 때 사용하는 기호로 맞는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "<< >>" },
+        { "no": 2, "text": "(( ))" },
+        { "no": 3, "text": "{{ }}" },
+        { "no": 4, "text": "[[ ]]" }
+      ],
+      "answer": 1,
+      "explanation": "스테레오 타입(Stereotype)은 UML의 기본 요소만으로 표현하기 어려운 의미를 확장하기 위해 사용하는 표기로, 겹화살괄호인 << >> 안에 확장할 이름을 넣어 클래스나 컴포넌트 위에 표시합니다. <<interface>>나 <<include>>처럼 사용하며, 기존 요소의 성격을 바꾸지 않고 새로운 의미를 덧붙이는 확장 메커니즘에 해당합니다. 나머지 기호들은 UML에서 스테레오 타입을 표현하는 표기로 사용하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "<< >>는 스테레오 타입 이름을 감싸 표현하는 UML 확장 표기로 맞습니다." },
+        { "no": 2, "correct": false, "why": "(( ))는 UML 확장 모델에서 스테레오 타입을 나타내는 기호가 아닙니다." },
+        { "no": 3, "correct": false, "why": "{{ }}는 UML 확장 모델에서 스테레오 타입을 나타내는 기호가 아닙니다." },
+        { "no": 4, "correct": false, "why": "[[ ]]는 UML 확장 모델에서 스테레오 타입을 나타내는 기호가 아닙니다." }
+      ],
+      "keyPoint": "UML 스테레오 타입 표기 << >>",
+      "tags": ["UML", "스테레오 타입", "확장 모델"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-007",
+      "number": 7,
+      "subjectCode": 1,
+      "stem": "보헴이 제안한 것으로, 위험 분석 기능이 있으며, 여러 번의 개발 과정을 거쳐 점진적으로 개발하는 모형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "나선형 모형" },
+        { "no": 2, "text": "애자일 모형" },
+        { "no": 3, "text": "프로토타입 모형" },
+        { "no": 4, "text": "폭포수 모형" }
+      ],
+      "answer": 1,
+      "explanation": "나선형 모형은 보헴(Boehm)이 제안한 점진적 개발 모형으로, 계획 수립과 위험 분석, 개발 및 검증, 고객 평가의 네 가지 활동을 나선을 돌듯 여러 번 반복하며 개발을 진행합니다. 특히 위험 분석 단계를 두어 대규모 프로젝트의 위험을 조기에 식별하고 관리할 수 있다는 점이 가장 큰 특징입니다. 애자일 모형은 짧은 반복과 고객 협력을 강조하는 방법론의 총칭이고, 프로토타입 모형과 폭포수 모형은 위험 분석을 핵심 기능으로 내세우지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "나선형 모형은 보헴이 제안했고 위험 분석 기능을 가지며 여러 번의 개발 과정을 점진적으로 거치는 모형입니다." },
+        { "no": 2, "correct": false, "why": "애자일 모형은 짧은 반복 개발을 강조하는 방법론의 총칭으로, 보헴이 제안한 위험 분석 중심 모형이 아닙니다." },
+        { "no": 3, "correct": false, "why": "프로토타입 모형은 시제품을 만들어 요구사항을 확인하는 모형으로 위험 분석이 핵심 기능이 아닙니다." },
+        { "no": 4, "correct": false, "why": "폭포수 모형은 각 단계를 순차적으로 한 번씩 수행하는 모형으로 점진적 반복과 위험 분석이 특징이 아닙니다." }
+      ],
+      "keyPoint": "나선형 모형의 4단계와 위험 분석",
+      "tags": ["나선형 모형", "보헴", "위험 분석"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-008",
+      "number": 8,
+      "subjectCode": 1,
+      "stem": "UI 설계 원칙 중 누구나 쉽게 이해하고 사용할 수 있어야 한다는 원칙은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "희소성" },
+        { "no": 2, "text": "유연성" },
+        { "no": 3, "text": "직관성" },
+        { "no": 4, "text": "멀티운용성" }
+      ],
+      "answer": 3,
+      "explanation": "UI 설계 원칙에는 직관성과 유효성, 학습성, 유연성 등이 있습니다. 그중 직관성은 누구나 쉽게 이해하고 쉽게 사용할 수 있어야 한다는 원칙으로, 사용자가 별도의 설명 없이도 화면의 구조와 조작 방법을 파악할 수 있게 설계하는 것을 뜻합니다. 유연성은 오류에 대처하는 능력이나 사용자의 요구를 수용하는 정도를, 학습성은 사용자가 쉽게 배우고 익힐 수 있는 정도를 나타냅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "희소성은 UI 설계 원칙에 포함되지 않는 용어입니다." },
+        { "no": 2, "correct": false, "why": "유연성은 사용자의 요구를 최대한 수용하고 오류에 잘 대처하는 정도를 뜻하는 원칙입니다." },
+        { "no": 3, "correct": true, "why": "직관성은 누구나 쉽게 이해하고 사용할 수 있어야 한다는 원칙을 말합니다." },
+        { "no": 4, "correct": false, "why": "멀티운용성은 UI 설계 원칙에 포함되지 않는 용어입니다." }
+      ],
+      "keyPoint": "UI 설계 원칙(직관성·유효성·학습성·유연성)",
+      "tags": ["UI 설계 원칙", "직관성"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-009",
+      "number": 9,
+      "subjectCode": 1,
+      "stem": "자료 흐름도(Data Flow Diagram)의 구성 요소로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "process, data flow, data store, comment" },
+        { "no": 2, "text": "process, data flow, data store, terminator" },
+        { "no": 3, "text": "data flow, data store, terminator, data dictionary" },
+        { "no": 4, "text": "process, data store, terminator, mini-spec" }
+      ],
+      "answer": 2,
+      "explanation": "자료 흐름도(DFD)는 시스템 안에서 자료가 흘러가는 과정을 그림으로 표현한 도구로, 프로세스(process), 자료 흐름(data flow), 자료 저장소(data store), 단말(terminator)의 네 가지 요소로 구성됩니다. comment나 data dictionary, mini-spec은 DFD를 보완해 설명해 주는 도구일 뿐 DFD 자체의 기본 구성 요소가 아닙니다. 따라서 네 가지 요소를 모두 나열한 보기가 옳습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "comment는 DFD의 기본 구성 요소가 아니고, 나머지 세 요소만으로는 구성 요소를 모두 나열하지 못했습니다." },
+        { "no": 2, "correct": true, "why": "process, data flow, data store, terminator가 DFD의 네 가지 기본 구성 요소입니다." },
+        { "no": 3, "correct": false, "why": "data dictionary는 자료 사전으로 DFD의 구성 요소가 아니며 process가 빠졌습니다." },
+        { "no": 4, "correct": false, "why": "mini-spec은 프로세스의 처리 내용을 기술하는 보조 도구로 DFD의 구성 요소가 아니며 data flow가 빠졌습니다." }
+      ],
+      "keyPoint": "DFD의 4가지 구성 요소",
+      "tags": ["자료 흐름도", "DFD", "구조적 분석"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-010",
+      "number": 10,
+      "subjectCode": 1,
+      "stem": "다음 중 SOLID 원칙이라고 불리는 객체지향 설계 원칙에 속하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "ISP(Interface Segregation Principle)" },
+        { "no": 2, "text": "DIP(Dependency Inversion Principle)" },
+        { "no": 3, "text": "LSP(Liskov Substitution Principle)" },
+        { "no": 4, "text": "SSO(Single Sign On)" }
+      ],
+      "answer": 4,
+      "explanation": "SOLID는 객체지향 설계의 다섯 가지 원칙을 묶어 부르는 말로, 단일 책임 원칙(SRP), 개방-폐쇄 원칙(OCP), 리스코프 치환 원칙(LSP), 인터페이스 분리 원칙(ISP), 의존 역전 원칙(DIP)을 가리킵니다. ISP는 클라이언트가 사용하지 않는 인터페이스에 의존하지 않도록 인터페이스를 잘게 분리하는 원칙이고, DIP는 구체적인 구현이 아니라 추상화에 의존하도록 설계하는 원칙입니다. SSO(Single Sign On)는 한 번의 인증으로 여러 시스템을 이용하는 통합 인증 방식이므로 SOLID와 관계가 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "ISP(인터페이스 분리 원칙)는 SOLID의 'I'에 해당하는 원칙입니다." },
+        { "no": 2, "correct": false, "why": "DIP(의존 역전 원칙)는 SOLID의 'D'에 해당하는 원칙입니다." },
+        { "no": 3, "correct": false, "why": "LSP(리스코프 치환 원칙)는 SOLID의 'L'에 해당하는 원칙입니다." },
+        { "no": 4, "correct": true, "why": "SSO는 통합 인증 방식으로 객체지향 설계 원칙과 무관하므로 SOLID에 속하지 않습니다." }
+      ],
+      "keyPoint": "SOLID 5원칙(SRP·OCP·LSP·ISP·DIP)",
+      "tags": ["SOLID", "객체지향 설계 원칙"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-011",
+      "number": 11,
+      "subjectCode": 1,
+      "stem": "UML 모델에서 한 사물의 명세가 바뀌면 다른 사물에 영향을 주며, 일반적으로 한 클래스가 다른 클래스를 오퍼레이션의 매개 변수로 사용하는 경우에 나타나는 관계는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Association" },
+        { "no": 2, "text": "Dependency" },
+        { "no": 3, "text": "Realization" },
+        { "no": 4, "text": "Generalization" }
+      ],
+      "answer": 2,
+      "explanation": "의존(Dependency) 관계는 한 사물의 명세가 바뀌면 그 사물을 사용하는 다른 사물에 영향을 주는 관계로, 한 클래스가 다른 클래스를 오퍼레이션의 매개 변수나 지역 변수로 사용할 때 주로 나타납니다. 연관(Association)은 두 클래스가 서로를 참조하며 오래 지속되는 구조적 관계이고, 일반화(Generalization)는 상위 클래스와 하위 클래스의 상속 관계, 실현(Realization)은 인터페이스를 실제로 구현하는 관계입니다. 의존 관계는 UML에서 점선 화살표로 표기합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Association은 두 클래스가 서로 연결되어 지속적으로 참조하는 구조적 관계입니다." },
+        { "no": 2, "correct": true, "why": "Dependency는 한 사물의 변경이 다른 사물에 영향을 주는 관계로, 매개 변수로 사용할 때 나타납니다." },
+        { "no": 3, "correct": false, "why": "Realization은 클래스가 인터페이스의 명세를 실제로 구현하는 관계입니다." },
+        { "no": 4, "correct": false, "why": "Generalization은 상위 클래스와 하위 클래스 사이의 상속 관계를 나타냅니다." }
+      ],
+      "keyPoint": "UML 관계 - Dependency(의존)와 Association의 구분",
+      "tags": ["UML", "의존 관계", "Dependency"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-012",
+      "number": 12,
+      "subjectCode": 1,
+      "stem": "객체에게 어떤 행위를 하도록 지시하는 명령은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Class" },
+        { "no": 2, "text": "Package" },
+        { "no": 3, "text": "Object" },
+        { "no": 4, "text": "Message" }
+      ],
+      "answer": 4,
+      "explanation": "객체지향에서 객체는 스스로 동작하지 않고 다른 객체로부터 메시지를 받아 그에 대응하는 오퍼레이션을 수행합니다. 즉 메시지는 객체에게 어떤 행위를 하도록 지시하는 명령이며, 객체들 사이의 상호작용은 메시지를 주고받는 방식으로 이루어집니다. 클래스는 객체의 속성과 연산을 정의한 틀, 패키지는 관련된 클래스를 묶은 그룹, 객체는 클래스의 인스턴스입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Class는 같은 종류의 객체가 공유하는 속성과 연산을 정의한 틀입니다." },
+        { "no": 2, "correct": false, "why": "Package는 관련 있는 클래스나 요소를 묶어 관리하는 그룹입니다." },
+        { "no": 3, "correct": false, "why": "Object는 클래스에 정의된 내용을 바탕으로 실제 생성된 실체(인스턴스)입니다." },
+        { "no": 4, "correct": true, "why": "Message는 객체에게 특정 행위를 수행하도록 지시하는 명령을 뜻합니다." }
+      ],
+      "keyPoint": "메시지(Message)를 통한 객체 간 상호작용",
+      "tags": ["메시지", "객체지향", "객체"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-013",
+      "number": 13,
+      "subjectCode": 1,
+      "stem": "다음 내용이 설명하는 디자인 패턴은?",
+      "passage": "ㆍ하나의 객체를 생성하면 생성된 객체를 어디서든 참조할 수 있지만, 여러 프로세스가 동시에 참조할 수는 없다.\nㆍ클래스 내에서 인스턴스가 하나뿐임을 보장하며, 불필요한 메모리 낭비를 최소화 할 수 있다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Singleton" },
+        { "no": 2, "text": "Adapter" },
+        { "no": 3, "text": "Prototype" },
+        { "no": 4, "text": "Decorator" }
+      ],
+      "answer": 1,
+      "explanation": "싱글턴(Singleton) 패턴은 클래스의 인스턴스를 오직 하나만 생성하고 그 인스턴스를 어디에서든 참조할 수 있도록 하는 생성 디자인 패턴입니다. 인스턴스가 하나뿐임을 보장하므로 불필요한 메모리 낭비를 줄일 수 있고, 여러 프로세스가 동시에 참조하지 못하도록 제어합니다. 어댑터는 호환되지 않는 인터페이스를 변환하는 패턴, 프로토타입은 기존 객체를 복제해 새 객체를 만드는 패턴, 데코레이터는 객체에 기능을 동적으로 추가하는 패턴입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Singleton은 인스턴스를 하나만 생성해 어디서든 참조할 수 있게 하고 메모리 낭비를 줄이는 패턴입니다." },
+        { "no": 2, "correct": false, "why": "Adapter는 인터페이스가 서로 다른 클래스들을 함께 사용할 수 있도록 변환해 주는 구조 패턴입니다." },
+        { "no": 3, "correct": false, "why": "Prototype은 원본 객체를 복사(clone)하여 새로운 객체를 생성하는 패턴입니다." },
+        { "no": 4, "correct": false, "why": "Decorator는 객체에 새로운 기능을 동적으로 덧붙이는 패턴입니다." }
+      ],
+      "keyPoint": "Singleton 패턴의 인스턴스 단일 보장",
+      "tags": ["디자인 패턴", "Singleton", "생성 패턴"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 1 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-014",
+      "number": 14,
+      "subjectCode": 1,
+      "stem": "파이프 필터 형태의 소프트웨어 아키텍처에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "노드와 간선으로 구성된다." },
+        { "no": 2, "text": "서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브시스템으로 넘겨주는 과정을 반복한다." },
+        { "no": 3, "text": "계층 모델이라고도 한다." },
+        { "no": 4, "text": "3개의 서브시스템(모델, 뷰, 제어)으로 구성되어 있다." }
+      ],
+      "answer": 2,
+      "explanation": "파이프 필터 아키텍처는 각 서브시스템이 필터로 동작하여 입력 데이터를 받아 처리하고, 그 결과를 파이프를 통해 다음 서브시스템으로 넘겨주는 과정을 반복하는 구조입니다. 각 필터가 독립적으로 동작하므로 재사용과 조합이 쉽고 필터를 추가하거나 교체하기도 용이합니다. 노드와 간선으로 구성된다는 설명은 그래프 형태 구조에 대한 것이고, 계층 모델은 계층형 아키텍처, 모델·뷰·제어 3개의 서브시스템은 MVC 아키텍처에 대한 설명입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "노드와 간선으로 구성된다는 설명은 파이프 필터가 아니라 그래프 형태 구조에 대한 설명입니다." },
+        { "no": 2, "correct": true, "why": "서브시스템이 데이터를 처리하고 결과를 다음 서브시스템으로 넘기는 과정의 반복이 파이프 필터의 특징입니다." },
+        { "no": 3, "correct": false, "why": "계층 모델이라고도 한다는 설명은 계층형(Layered) 아키텍처에 해당합니다." },
+        { "no": 4, "correct": false, "why": "모델, 뷰, 제어의 3개 서브시스템은 MVC 아키텍처에 대한 설명입니다." }
+      ],
+      "keyPoint": "파이프 필터 아키텍처의 데이터 흐름 방식",
+      "tags": ["소프트웨어 아키텍처", "파이프 필터"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-015",
+      "number": 15,
+      "subjectCode": 1,
+      "stem": "대표적으로 DOS 및 Unix 등의 운영체제에서 조작을 위해 사용하던 것으로, 정해진 명령 문자열을 입력하여 시스템을 조작하는 사용자 인터페이스(User Interface)는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "GUI(Graphical User Interface)" },
+        { "no": 2, "text": "CLI(Command Line Interface)" },
+        { "no": 3, "text": "CUI(Cell User Interface)" },
+        { "no": 4, "text": "MUI(Mobile User Interface)" }
+      ],
+      "answer": 2,
+      "explanation": "CLI(Command Line Interface)는 정해진 명령 문자열을 키보드로 입력하여 시스템을 조작하는 텍스트 기반 사용자 인터페이스로, DOS와 Unix 같은 운영체제에서 대표적으로 사용되었습니다. GUI는 아이콘과 메뉴를 마우스로 조작하는 그래픽 인터페이스이고, CUI는 문자만으로 입출력하는 문자 기반 인터페이스, MUI는 모바일 기기에 맞춘 인터페이스입니다. CLI는 명령을 익혀야 한다는 부담이 있지만 자원 사용이 적고 스크립트로 자동화하기에 유리합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "GUI는 그래픽 아이콘과 마우스를 이용해 조작하는 인터페이스로 명령 문자열 입력 방식이 아닙니다." },
+        { "no": 2, "correct": true, "why": "CLI는 정해진 명령 문자열을 입력해 시스템을 조작하는 인터페이스로 DOS와 Unix에서 사용되었습니다." },
+        { "no": 3, "correct": false, "why": "CUI는 문자만으로 입출력하는 문자 기반 인터페이스를 가리키는 용어입니다." },
+        { "no": 4, "correct": false, "why": "MUI는 모바일 기기에 최적화된 사용자 인터페이스를 가리키는 용어입니다." }
+      ],
+      "keyPoint": "CLI와 GUI의 차이",
+      "tags": ["CLI", "사용자 인터페이스", "운영체제"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-016",
+      "number": 16,
+      "subjectCode": 1,
+      "stem": "UML에서 시퀀스 다이어그램의 구성 항목에 해당하지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "생명선" },
+        { "no": 2, "text": "실행" },
+        { "no": 3, "text": "확장" },
+        { "no": 4, "text": "메시지" }
+      ],
+      "answer": 3,
+      "explanation": "시퀀스 다이어그램은 객체들이 시간의 흐름에 따라 주고받는 메시지를 표현하는 UML 상호작용 다이어그램으로, 생명선(Lifeline)과 실행(Activation), 메시지(Message), 제어 사각형, 회귀 메시지 등으로 구성됩니다. 확장(Extend)은 유스케이스 다이어그램에서 기본 유스케이스에 예외적이거나 선택적인 흐름을 덧붙이는 관계이므로 시퀀스 다이어그램의 구성 항목이 아닙니다. 따라서 '확장'이 구성 항목에 해당하지 않습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "생명선은 시퀀스 다이어그램에서 객체가 존재하는 동안 그려지는 수직선으로 구성 항목에 해당합니다." },
+        { "no": 2, "correct": false, "why": "실행은 생명선 위에서 객체가 연산을 수행하는 동안 활성화된 구간을 나타내는 구성 항목입니다." },
+        { "no": 3, "correct": true, "why": "확장은 유스케이스 사이의 관계를 나타내는 개념으로, 시퀀스 다이어그램의 구성 항목이 아닙니다." },
+        { "no": 4, "correct": false, "why": "메시지는 객체 사이에 주고받는 요청과 응답을 나타내는 핵심 구성 항목입니다." }
+      ],
+      "keyPoint": "시퀀스 다이어그램의 구성 항목",
+      "tags": ["UML", "시퀀스 다이어그램"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-017",
+      "number": 17,
+      "subjectCode": 1,
+      "stem": "다음은 어떤 프로그램 구조를 나타낸다. 모듈 F에서의 fan-in과 fan-out의 수는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "fan-in : 2, fan-out : 3" },
+        { "no": 2, "text": "fan-in : 3, fan-out : 2" },
+        { "no": 3, "text": "fan-in : 1, fan-out : 2" },
+        { "no": 4, "text": "fan-in : 2, fan-out : 1" }
+      ],
+      "answer": 2,
+      "explanation": "fan-in은 어떤 모듈을 호출하는 상위 모듈의 수이고, fan-out은 그 모듈이 호출하는 하위 모듈의 수입니다. 제시된 구조에서 모듈 F는 B, C, D 세 모듈로부터 호출되므로 fan-in이 3이고, F가 호출하는 모듈은 G와 H 두 개이므로 fan-out이 2입니다. 따라서 fan-in : 3, fan-out : 2가 옳습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "fan-in 2, fan-out 3은 F가 호출받는 수와 F가 호출하는 수를 서로 바꾸어 계산한 값이라 맞지 않습니다." },
+        { "no": 2, "correct": true, "why": "F는 B, C, D의 호출을 받아 fan-in이 3이고, G와 H를 호출하므로 fan-out이 2입니다." },
+        { "no": 3, "correct": false, "why": "fan-in 1, fan-out 2는 F로 들어오는 호출의 수를 잘못 세었습니다." },
+        { "no": 4, "correct": false, "why": "fan-in 2, fan-out 1은 F로 들어오는 호출과 F가 호출하는 모듈의 수를 모두 잘못 세었습니다." }
+      ],
+      "keyPoint": "fan-in(호출받는 수)과 fan-out(호출하는 수)의 계산",
+      "tags": ["fan-in", "fan-out", "모듈 구조"],
+      "difficulty": 3,
+      "figure": {
+        "needed": true,
+        "kind": "diagram",
+        "image": "figures/2022-3/017.png",
+        "alt": "A를 루트로 아래에 B, C, D가 갈라지고, B 아래에 E와 F가, C와 D 아래에도 F가 연결되며, 다시 F 아래에 G와 H가 붙은 모듈 구조도",
+        "page": 2,
+        "col": 0,
+        "box": [61.4, 322.4, 202.1, 415.2]
+      },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-018",
+      "number": 18,
+      "subjectCode": 1,
+      "stem": "객체지향 개념에서 연관된 데이터와 함수를 함께 묶어 외부와 경계를 만들고 필요한 인터페이스만을 밖으로 드러내는 과정은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "메시지(Message)" },
+        { "no": 2, "text": "캡슐화(Encapsulation)" },
+        { "no": 3, "text": "다형성(Polymorphism)" },
+        { "no": 4, "text": "상속(Inheritance)" }
+      ],
+      "answer": 2,
+      "explanation": "캡슐화(Encapsulation)는 연관된 데이터(속성)와 함수(메서드)를 하나로 묶고 외부에서 직접 접근하지 못하도록 경계를 만들어, 필요한 인터페이스만 밖으로 노출하는 객체지향 기법입니다. 내부 구현을 감추는 정보 은닉을 통해 결합도를 낮추고 유지보수성을 높이는 효과가 있습니다. 메시지는 객체에게 행위를 지시하는 명령, 다형성은 같은 메시지에 대해 객체마다 다르게 응답하는 성질, 상속은 상위 클래스의 속성과 연산을 하위 클래스가 물려받는 기법입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "메시지는 객체에게 어떤 행위를 하도록 지시하는 명령을 뜻합니다." },
+        { "no": 2, "correct": true, "why": "캡슐화는 데이터와 함수를 함께 묶고 외부에는 필요한 인터페이스만 드러내는 과정입니다." },
+        { "no": 3, "correct": false, "why": "다형성은 동일한 메시지에 대해 객체가 각기 다른 방법으로 응답하는 성질입니다." },
+        { "no": 4, "correct": false, "why": "상속은 상위 클래스의 속성과 연산을 하위 클래스가 물려받아 재사용하는 기법입니다." }
+      ],
+      "keyPoint": "캡슐화와 정보 은닉",
+      "tags": ["캡슐화", "정보 은닉", "객체지향"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-019",
+      "number": 19,
+      "subjectCode": 1,
+      "stem": "그래픽 표기법을 이용하여 소프트웨어 구성 요소를 모델링하는 럼바우 분석 기법에 포함되지 않는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "객체 모델링" },
+        { "no": 2, "text": "기능 모델링" },
+        { "no": 3, "text": "동적 모델링" },
+        { "no": 4, "text": "블랙박스 분석 모델링" }
+      ],
+      "answer": 4,
+      "explanation": "럼바우(Rumbaugh)의 객체지향 분석 기법은 객체 모델링, 동적 모델링, 기능 모델링의 세 가지 모델링을 단계적으로 수행합니다. 객체 모델링은 객체와 클래스 및 그들 사이의 관계를 객체 다이어그램으로 표현하고, 동적 모델링은 상태 다이어그램으로 시간에 따른 상태 변화를, 기능 모델링은 자료 흐름도로 입력과 처리, 출력을 표현합니다. 블랙박스 분석 모델링은 럼바우 기법에 포함되지 않는 용어입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "객체 모델링은 럼바우 기법의 첫 단계로 객체와 클래스의 관계를 표현합니다." },
+        { "no": 2, "correct": false, "why": "기능 모델링은 럼바우 기법에서 자료 흐름도를 이용해 시스템의 기능을 표현하는 단계입니다." },
+        { "no": 3, "correct": false, "why": "동적 모델링은 럼바우 기법에서 상태 다이어그램으로 상태 변화를 표현하는 단계입니다." },
+        { "no": 4, "correct": true, "why": "블랙박스 분석 모델링은 럼바우의 세 가지 모델링에 포함되지 않는 용어로 정답입니다." }
+      ],
+      "keyPoint": "럼바우 분석 기법의 3가지 모델링(객체·동적·기능)",
+      "tags": ["럼바우", "객체지향 분석", "기능 모델링"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2022-3-020",
+      "number": 20,
+      "subjectCode": 1,
+      "stem": "분산 컴퓨팅 환경에서 서로 다른 기종 간의 하드웨어나 프로토콜, 통신환경 등을 연결하여 응용 프로그램과 운영환경 간에 원만한 통신이 이루어질 수 있게 서비스를 제공하는 소프트웨어는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "미들웨어" },
+        { "no": 2, "text": "하드웨어" },
+        { "no": 3, "text": "오픈허브웨어" },
+        { "no": 4, "text": "그레이웨어" }
+      ],
+      "answer": 1,
+      "explanation": "미들웨어는 분산 컴퓨팅 환경에서 서로 다른 기종의 하드웨어나 프로토콜, 통신 환경을 연결하여 응용 프로그램과 운영 환경 사이에서 원활한 통신이 이루어지도록 중간에서 서비스를 제공하는 소프트웨어입니다. 이기종 환경에서도 시스템을 통합하고 확장하기 쉽게 만들어 주는 것이 가장 큰 목적입니다. 하드웨어는 물리적 장치이고, 그레이웨어는 무료로 배포되다가 유료로 전환되는 소프트웨어를 뜻하므로 이기종 간 통신을 중개하는 소프트웨어가 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "미들웨어는 이기종 하드웨어와 프로토콜, 통신 환경을 연결해 응용 프로그램과 운영 환경 간 통신을 중개합니다." },
+        { "no": 2, "correct": false, "why": "하드웨어는 물리적인 장치로, 소프트웨어 사이의 통신을 중개하는 역할을 하지 않습니다." },
+        { "no": 3, "correct": false, "why": "오픈허브웨어는 이기종 간 연결 서비스를 제공하는 소프트웨어를 가리키는 표준 용어가 아닙니다." },
+        { "no": 4, "correct": false, "why": "그레이웨어는 무료로 쓰다가 유료로 전환되는 소프트웨어를 뜻하는 용어입니다." }
+      ],
+      "keyPoint": "미들웨어의 정의와 이기종 환경 연결 역할",
+      "tags": ["미들웨어", "분산 컴퓨팅"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2022년3회_기사필기 기출문제.pdf", "page": 2 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}

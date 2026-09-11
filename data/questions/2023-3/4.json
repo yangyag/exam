@@ -1,0 +1,1478 @@
+{
+  "exam": {
+    "id": "2023-3",
+    "year": 2023,
+    "round": 3,
+    "title": "2023년 3회 정보처리기사 필기",
+    "sourcePdf": "2023년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 4,
+    "name": "프로그래밍 언어 활용"
+  },
+  "questions": [
+    {
+      "id": "2023-3-061",
+      "number": 61,
+      "subjectCode": 4,
+      "stem": "UNIX의 쉘(Shell)에 관한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "명령어 해석기이다."
+        },
+        {
+          "no": 2,
+          "text": "시스템과 사용자 간의 인터페이스를 담당한다."
+        },
+        {
+          "no": 3,
+          "text": "여러 종류의 쉘이 있다."
+        },
+        {
+          "no": 4,
+          "text": "프로세스, 기억장치, 입출력 관리를 수행한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "쉘은 사용자가 입력한 명령을 해석해 커널에 전달하고 그 결과를 사용자에게 되돌려 주는 명령어 해석기로, 사용자와 시스템 사이의 인터페이스 역할을 합니다. sh, csh, ksh, bash 등 여러 종류가 있으며 로그인 쉘과 서브 쉘로도 나뉩니다. 프로세스, 기억장치, 입출력 장치 같은 자원을 관리하는 주체는 커널이므로 해당 설명은 쉘의 기능이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "쉘은 사용자가 입력한 명령어를 해석해 커널에 전달하는 명령어 해석기이므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "쉘은 사용자와 커널(시스템) 사이에서 명령과 결과를 주고받는 인터페이스 역할을 하므로 맞는 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "sh, csh, ksh, bash 등 여러 종류의 쉘이 존재하므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "프로세스, 기억장치, 입출력 장치의 관리는 커널이 담당하는 기능이며 쉘의 역할이 아니므로 틀린 설명입니다."
+        }
+      ],
+      "keyPoint": "UNIX 쉘(Shell)의 역할과 커널 기능의 구분",
+      "tags": [
+        "UNIX",
+        "쉘",
+        "커널"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-062",
+      "number": 62,
+      "subjectCode": 4,
+      "stem": "다음 내용이 설명하는 소프트웨어 취약점은?",
+      "passage": "메모리를 다루는 데 오류가 발생하여 잘못된 동작을 하는 프로그램 취약점",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "FTP 바운스 공격"
+        },
+        {
+          "no": 2,
+          "text": "SQL 삽입"
+        },
+        {
+          "no": 3,
+          "text": "버퍼 오버플로"
+        },
+        {
+          "no": 4,
+          "text": "디렉토리 접근 공격"
+        }
+      ],
+      "answer": 3,
+      "explanation": "버퍼 오버플로는 할당된 버퍼 크기보다 큰 데이터가 입력되어 버퍼 경계를 넘어선 메모리 영역을 덮어쓰는 취약점으로, 프로그램이 비정상 종료되거나 공격자가 임의의 코드를 실행하게 만들 수 있습니다. FTP 바운스 공격은 FTP의 PORT 명령을 악용해 다른 호스트를 공격하는 기법이고, SQL 삽입은 입력값에 악의적인 SQL 문을 넣어 데이터베이스를 조작하는 공격입니다. 메모리 처리 오류로 잘못된 동작을 일으키는 취약점은 버퍼 오버플로입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "FTP 바운스 공격은 FTP 서버를 경유지로 삼아 다른 호스트를 공격하는 기법으로 메모리 오류와 관련이 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "SQL 삽입은 웹 입력값에 SQL 문을 넣어 데이터베이스 정보를 유출·조작하는 공격입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "버퍼 오버플로는 버퍼 크기를 넘는 입력으로 메모리 처리에 오류가 생겨 잘못된 동작을 유발하는 취약점입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "디렉토리 접근 공격은 웹 서버의 상위 디렉터리 경로에 접근해 중요 파일을 열람하는 공격입니다."
+        }
+      ],
+      "keyPoint": "버퍼 오버플로의 정의와 대표적 소프트웨어 취약점 비교",
+      "tags": [
+        "버퍼 오버플로",
+        "취약점"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-063",
+      "number": 63,
+      "subjectCode": 4,
+      "stem": "Java에서 사용되는 출력 함수가 아닌 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "System.out.print( )"
+        },
+        {
+          "no": 2,
+          "text": "System.out.println( )"
+        },
+        {
+          "no": 3,
+          "text": "System.out.printing( )"
+        },
+        {
+          "no": 4,
+          "text": "System.out.printf( )"
+        }
+      ],
+      "answer": 3,
+      "explanation": "Java의 System.out은 표준 출력 스트림인 PrintStream 객체로 print(), println(), printf() 메소드를 제공합니다. print()는 줄바꿈 없이 출력하고, println()은 출력 후 줄을 바꾸며, printf()는 서식 지정자를 이용해 출력합니다. printing()은 PrintStream에 정의되어 있지 않은 이름이므로 Java의 출력 함수가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "print()는 인수를 줄바꿈 없이 출력하는 메소드로 Java에서 사용됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "println()은 인수를 출력하고 줄을 바꾸는 메소드로 Java에서 사용됩니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "printing()은 PrintStream 클래스에 존재하지 않는 메소드이므로 Java의 출력 함수가 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "printf()는 %d, %s 같은 서식 지정자를 사용해 출력하는 메소드로 Java에서 사용됩니다."
+        }
+      ],
+      "keyPoint": "Java 표준 출력 메소드 print / println / printf",
+      "tags": [
+        "Java",
+        "표준 출력"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-064",
+      "number": 64,
+      "subjectCode": 4,
+      "stem": "결합도가 낮은 것부터 높은 순으로 옳게 나열한 것은?",
+      "passage": "(ㄱ) 내용 결합도 | (ㄴ) 자료 결합도\n(ㄷ) 공통 결합도 | (ㄹ) 스탬프 결합도\n(ㅁ) 외부 결합도 | (ㅂ) 제어 결합도",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "(ㄱ) → (ㄴ) → (ㄹ) → (ㅂ) → (ㅁ) → (ㄷ)"
+        },
+        {
+          "no": 2,
+          "text": "(ㄴ) → (ㄹ) → (ㅁ) → (ㅂ) → (ㄷ) → (ㄱ)"
+        },
+        {
+          "no": 3,
+          "text": "(ㄴ) → (ㄹ) → (ㅂ) → (ㅁ) → (ㄷ) → (ㄱ)"
+        },
+        {
+          "no": 4,
+          "text": "(ㄱ) → (ㄴ) → (ㄹ) → (ㅁ) → (ㅂ) → (ㄷ)"
+        }
+      ],
+      "answer": 3,
+      "explanation": "결합도는 모듈 간의 상호 의존 정도를 나타내며 낮을수록 좋은 품질로 평가됩니다. 결합도가 낮은 것부터 높은 순서는 자료 결합도 → 스탬프 결합도 → 제어 결합도 → 외부 결합도 → 공통 결합도 → 내용 결합도입니다. 자료 결합도는 매개변수로 값만 주고받는 가장 바람직한 형태이고, 내용 결합도는 한 모듈이 다른 모듈의 내부 자료나 기능을 직접 참조하는 가장 나쁜 형태입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "내용 결합도가 맨 앞에 오면 결합도가 가장 높은 것부터 나열한 것이므로 순서가 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "자료 → 스탬프 결합도까지는 맞지만 그다음에 제어 결합도가 아니라 외부 결합도가 와야 합니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "자료 → 스탬프 → 제어 → 외부 → 공통 → 내용 결합도 순이 결합도가 낮은 것부터 높은 순서입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "스탬프 결합도 다음에 제어 결합도가 아니라 외부·공통 결합도가 오는 순서이므로 틀렸습니다."
+        }
+      ],
+      "keyPoint": "결합도 종류와 낮은 순서(자료→스탬프→제어→외부→공통→내용)",
+      "tags": [
+        "결합도",
+        "모듈화"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-065",
+      "number": 65,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 중 네트워크 계층에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "패킷을 발신지로부터 최종 목적지까지 전달하는 책임을 진다."
+        },
+        {
+          "no": 2,
+          "text": "한 노드로부터 다른 노드로 프레임을 전송하는 책임을 진다."
+        },
+        {
+          "no": 3,
+          "text": "패킷에 발신지와 목적지의 논리 주소를 추가한다."
+        },
+        {
+          "no": 4,
+          "text": "라우터 또는 교환기는 패킷 전달을 위해 경로를 지정하거나 교환 기능을 제공한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "네트워크 계층은 패킷을 최종 목적지까지 전달하는 계층으로, 패킷 헤더에 논리 주소(IP 주소)를 추가하고 경로를 선택하며 라우터나 교환기가 이 계층에서 동작합니다. 프레임 단위로 인접한 노드 사이에서 데이터를 전송하고 오류를 제어하는 것은 데이터 링크 계층의 역할입니다. 따라서 프레임 전송을 네트워크 계층의 책임이라고 설명한 보기가 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "네트워크 계층은 패킷을 발신지에서 최종 목적지까지 전달하는 역할을 담당하므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "프레임을 인접 노드로 전송하는 것은 데이터 링크 계층의 역할이므로 네트워크 계층 설명으로 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "네트워크 계층은 패킷에 발신지와 목적지의 논리 주소(IP 주소)를 추가하므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "라우터와 교환기는 네트워크 계층에서 경로를 지정하거나 패킷을 교환하는 장비이므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "네트워크 계층과 데이터 링크 계층의 역할 구분",
+      "tags": [
+        "OSI 7계층",
+        "네트워크 계층"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-066",
+      "number": 66,
+      "subjectCode": 4,
+      "stem": "다음 C 언어 프로그램이 실행되었을 때의 결과는?",
+      "passage": "#include <stdio.h>\nint main(void) {\n    int a = 3, b = 4, c = 2;\n    int r1, r2, r3;\n    r1 = b <= 4 || c == 2;\n    r2 = (a > 0) && (b < 5);\n    r3 = !c;\n    printf(\"%d\", r1+r2+r3);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "0"
+        },
+        {
+          "no": 2,
+          "text": "1"
+        },
+        {
+          "no": 3,
+          "text": "2"
+        },
+        {
+          "no": 4,
+          "text": "3"
+        }
+      ],
+      "answer": 3,
+      "explanation": "b <= 4는 4 <= 4로 참(1)이고 c == 2도 참(1)이므로 || 연산의 결과 r1은 1입니다. (a > 0) && (b < 5)는 3 > 0과 4 < 5가 모두 참이므로 r2도 1이며, c가 2이므로 !c는 거짓(0)이라 r3은 0입니다. 따라서 r1+r2+r3 = 1+1+0 = 2가 출력됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "r1과 r2가 각각 1로 계산되므로 두 값을 더한 결과가 0이 될 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "r1과 r2가 모두 참이므로 합이 1이 되지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "r1=1, r2=1, r3=0으로 계산되어 2가 출력됩니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "r3 = !c는 c가 0이 아닌 값이므로 0이며, 합이 3이 될 수 없습니다."
+        }
+      ],
+      "keyPoint": "C 언어 관계·논리 연산의 참(1)·거짓(0) 처리",
+      "tags": [
+        "C 언어",
+        "논리 연산"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-067",
+      "number": 67,
+      "subjectCode": 4,
+      "stem": "TCP/IP 계층 구조에서 IP의 동작 과정에서의 전송 오류가 발생하는 경우에 대비해 오류 정보를 전송하는 목적으로 사용하는 프로토콜은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "ECP(Error Checking Protocol)"
+        },
+        {
+          "no": 2,
+          "text": "ARP(Address Resolution Protocol)"
+        },
+        {
+          "no": 3,
+          "text": "ICMP(Internet Control Message Protocol)"
+        },
+        {
+          "no": 4,
+          "text": "PPP(Point-to-Point Protocol)"
+        }
+      ],
+      "answer": 3,
+      "explanation": "ICMP는 IP 패킷을 전달하는 과정에서 오류가 발생했을 때 오류 정보를 송신 측에 알려 주는 인터넷 제어 메시지 프로토콜로, ping과 traceroute 명령이 ICMP를 이용해 네트워크 상태를 확인합니다. ARP는 IP 주소를 MAC 주소로 변환하는 프로토콜이고 PPP는 점대점 회선에서 데이터를 전송하는 데이터 링크 계층 프로토콜입니다. ECP라는 이름의 표준 프로토콜은 존재하지 않습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "ECP(Error Checking Protocol)는 표준으로 존재하지 않는 프로토콜 이름입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "ARP는 논리 주소인 IP 주소를 물리 주소인 MAC 주소로 변환하는 프로토콜입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "ICMP는 IP 전송 과정에서 발생한 오류 정보를 송신 측에 전달하는 프로토콜입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "PPP는 점대점 방식의 직렬 회선에서 데이터 전송을 담당하는 프로토콜입니다."
+        }
+      ],
+      "keyPoint": "ICMP의 오류 보고 기능과 ARP·PPP와의 구분",
+      "tags": [
+        "ICMP",
+        "TCP/IP"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-068",
+      "number": 68,
+      "subjectCode": 4,
+      "stem": "UNIX 운영체제에 관한 특징으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "하나 이상의 작업에 대하여 백그라운드에서 수행이 가능하다."
+        },
+        {
+          "no": 2,
+          "text": "Multi-User는 지원하지만 Multi-Tasking은 지원하지 않는다."
+        },
+        {
+          "no": 3,
+          "text": "트리 구조의 파일 시스템을 갖는다."
+        },
+        {
+          "no": 4,
+          "text": "이식성이 높으며 장치 간의 호환성이 높다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "UNIX는 여러 사용자가 동시에 접속할 수 있는 다중 사용자(Multi-User) 운영체제이면서 동시에 여러 작업을 수행하는 다중 작업(Multi-Tasking)도 지원합니다. 파일 시스템은 루트를 기준으로 한 트리 구조로 구성되고 C 언어로 작성되어 이식성이 높으며 장치 간 호환성도 뛰어납니다. 따라서 다중 작업을 지원하지 않는다는 설명은 사실과 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "UNIX는 &나 nohup 등을 이용해 작업을 백그라운드로 실행할 수 있으므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "UNIX는 Multi-User와 Multi-Tasking을 모두 지원하므로 이 설명이 틀렸습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "UNIX의 파일 시스템은 루트를 기준으로 한 트리 구조이므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "UNIX는 C 언어로 작성되어 이식성이 높고 장치 간 호환성이 높으므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "UNIX의 다중 사용자·다중 작업 지원 특성",
+      "tags": [
+        "UNIX",
+        "운영체제 특징"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-069",
+      "number": 69,
+      "subjectCode": 4,
+      "stem": "3개의 보관 구조를 가지는 주기억장치가 있으며, 다음의 순서로 페이지 참조가 발생할 때, FIFO 페이지 교체 알고리즘을 사용할 경우 마지막 페이지 값으로 옳은 것은?",
+      "passage": "페이지 순서 : 1, 2, 3, 2, 4, 2, 3, 1, 3",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "4, 2, 3"
+        },
+        {
+          "no": 2,
+          "text": "4, 1, 3"
+        },
+        {
+          "no": 3,
+          "text": "1, 2, 3"
+        },
+        {
+          "no": 4,
+          "text": "1, 4, 2"
+        }
+      ],
+      "answer": 2,
+      "explanation": "FIFO는 주기억장치에 가장 먼저 들어온 페이지를 먼저 교체하는 기법으로, 보관 구조가 3개이므로 1, 2, 3을 적재하면 프레임이 모두 채워집니다. 이후 2와 3은 이미 적재된 페이지라 적중하고 4가 들어올 때 가장 먼저 들어온 1을 교체해 4, 2, 3이 됩니다. 마지막으로 1이 들어올 때 다음 순서인 2를 교체하므로 최종적으로 4, 1, 3이 남습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "4가 들어와 1이 교체된 뒤 마지막 1이 들어오면 가장 먼저 들어온 2가 교체되므로 4, 2, 3은 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "1 → 2 → 3 적재 후 4가 1을, 마지막 1이 2를 교체하여 최종적으로 4, 1, 3이 남습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "1, 2, 3은 페이지 4가 적재되기 전의 상태이므로 마지막 페이지 값이 아닙니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "1, 4, 2 순서로 프레임이 구성되는 과정은 이 참조 열에서 나타나지 않습니다."
+        }
+      ],
+      "keyPoint": "FIFO 페이지 교체 알고리즘의 프레임 변화 추적",
+      "tags": [
+        "페이지 교체",
+        "FIFO"
+      ],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-070",
+      "number": 70,
+      "subjectCode": 4,
+      "stem": "TCP/IP 프로토콜에서 TCP가 해당하는 계층은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "데이터 링크 계층"
+        },
+        {
+          "no": 2,
+          "text": "네트워크 계층"
+        },
+        {
+          "no": 3,
+          "text": "트랜스포트 계층"
+        },
+        {
+          "no": 4,
+          "text": "세션 계층"
+        }
+      ],
+      "answer": 3,
+      "explanation": "TCP/IP는 네트워크 인터페이스 계층, 인터넷 계층, 트랜스포트 계층, 응용 계층의 4계층으로 구성되며 TCP와 UDP는 트랜스포트 계층에 속합니다. 인터넷(네트워크) 계층에는 IP, ICMP, ARP 등이 있고 응용 계층에는 FTP, HTTP, SMTP 등이 있습니다. 세션 계층은 OSI 7계층 모델의 계층으로 TCP/IP 구조에는 독립된 세션 계층이 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "데이터 링크 계층에는 이더넷, PPP 등이 속하며 TCP는 해당하지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "네트워크 계층에는 IP, ICMP, ARP 등이 속하며 TCP는 해당하지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "TCP는 연결형으로 신뢰성 있는 데이터 전송을 담당하는 트랜스포트 계층의 프로토콜입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "세션 계층은 OSI 7계층의 계층이며 TCP가 속한 TCP/IP 계층이 아닙니다."
+        }
+      ],
+      "keyPoint": "TCP/IP 계층 구조에서 TCP의 위치",
+      "tags": [
+        "TCP",
+        "트랜스포트 계층"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-071",
+      "number": 71,
+      "subjectCode": 4,
+      "stem": "OSI 7계층 모델에서 전송에 필요한 장치 간의 실제 접속과 절단 등 기계적, 전기적, 기능적, 절차적 특성을 정의한 계층은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "물리 계층"
+        },
+        {
+          "no": 2,
+          "text": "데이터 링크 계층"
+        },
+        {
+          "no": 3,
+          "text": "네트워크 계층"
+        },
+        {
+          "no": 4,
+          "text": "전송 계층"
+        }
+      ],
+      "answer": 1,
+      "explanation": "물리 계층은 장치 간 실제 접속과 절단, 전송 매체의 기계적·전기적·기능적·절차적 특성을 정의하고 비트 단위의 신호를 전송하는 계층입니다. 데이터 링크 계층은 프레임 전송과 흐름·오류 제어를, 네트워크 계층은 패킷의 논리 주소 지정과 경로 선택을, 전송 계층은 종단 간 신뢰성 있는 데이터 전송을 담당합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "물리 계층은 접속 장치의 기계적·전기적·기능적·절차적 특성을 정의하고 비트를 전송합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "데이터 링크 계층은 인접 노드 간 프레임 전송과 흐름·오류 제어를 담당합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "네트워크 계층은 패킷의 논리 주소 지정과 최적 경로 선택을 담당합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "전송 계층은 종단 시스템 간 연결 설정과 신뢰성 있는 데이터 전송을 담당합니다."
+        }
+      ],
+      "keyPoint": "OSI 7계층별 역할과 물리 계층의 정의",
+      "tags": [
+        "OSI 7계층",
+        "물리 계층"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-072",
+      "number": 72,
+      "subjectCode": 4,
+      "stem": "다음 JAVA 프로그램이 실행되었을 때의 결과는?",
+      "passage": "public class ovr {\n    public static void main(String[] args) {\n        int a = 1, b = 2, c = 3, d = 4;\n        int mx, mn;\n        mx = a < b ? b : a;\n        if (mx == 1) {\n            mn = a > mx ? b : a;\n        }\n        else {\n            mn = b < mx ? d : c;\n        }\n        System.out.println(mn);\n    }\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "1"
+        },
+        {
+          "no": 2,
+          "text": "2"
+        },
+        {
+          "no": 3,
+          "text": "3"
+        },
+        {
+          "no": 4,
+          "text": "4"
+        }
+      ],
+      "answer": 3,
+      "explanation": "mx = a < b ? b : a에서 a(1)가 b(2)보다 작으므로 mx에는 b의 값인 2가 저장됩니다. mx가 1이 아니므로 else 블록이 수행되어 mn = b < mx ? d : c가 계산되는데, b(2)가 mx(2)보다 작지 않아 거짓이므로 c의 값 3이 mn에 저장됩니다. 따라서 System.out.println(mn)의 출력은 3입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "mn에는 a의 값 1이 아니라 조건식이 거짓일 때 선택되는 c의 값이 저장됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "mx에 b의 값 2가 저장되지만 mn에 대입되는 값은 b가 아니라 c입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "mx가 2라서 else가 수행되고 b < mx가 거짓이므로 mn에 c의 값 3이 저장되어 3이 출력됩니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "d의 값 4는 조건식이 참일 때 선택되는 값이므로 mn에 저장되지 않습니다."
+        }
+      ],
+      "keyPoint": "삼항 조건 연산자와 if-else 흐름에 따른 값 결정",
+      "tags": [
+        "Java",
+        "삼항 연산자"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-073",
+      "number": 73,
+      "subjectCode": 4,
+      "stem": "메모리 관리 기법 중 Worst Fit 방법을 사용할 경우 10K 크기의 프로그램 실행을 위해서는 어느 부분에 할당되는가?",
+      "passage": "영역 번호 | 메모리 크기 | 사용 여부\nNO.1 | 8K | FREE\nNO.2 | 12K | FREE\nNO.3 | 10K | IN USE\nNO.4 | 20K | IN USE\nNO.5 | 16K | FREE",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "NO.2"
+        },
+        {
+          "no": 2,
+          "text": "NO.3"
+        },
+        {
+          "no": 3,
+          "text": "NO.4"
+        },
+        {
+          "no": 4,
+          "text": "NO.5"
+        }
+      ],
+      "answer": 4,
+      "explanation": "Worst Fit(최악 적합)은 사용 가능한 빈 영역 중에서 가장 큰 영역에 프로그램을 할당하는 기법입니다. 표에서 사용 여부가 FREE인 영역은 NO.1(8K), NO.2(12K), NO.5(16K)이고 이 중 가장 큰 영역은 16K인 NO.5이므로 10K 크기의 프로그램은 NO.5에 할당됩니다. NO.3과 NO.4는 IN USE 상태여서 빈 영역이 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "NO.2는 12K의 빈 영역이지만 가장 큰 영역이 아니므로 Worst Fit의 할당 대상이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "NO.3은 IN USE 상태로 이미 사용 중인 영역이므로 할당할 수 없습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "NO.4는 20K로 가장 크지만 IN USE 상태이므로 빈 영역이 아니어서 할당할 수 없습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "빈 영역 중 가장 큰 NO.5(16K)에 할당하는 것이 Worst Fit 방식입니다."
+        }
+      ],
+      "keyPoint": "Worst Fit(최악 적합) 기법의 할당 기준",
+      "tags": [
+        "Worst Fit",
+        "메모리 관리"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-074",
+      "number": 74,
+      "subjectCode": 4,
+      "stem": "응집도의 종류 중 서로 간에 어떠한 의미 있는 연관 관계도 지니지 않은 기능 요소로 구성되는 경우이며, 서로 다른 상위 모듈에 의해 호출되어 처리 상의 연관성이 없는 서로 다른 기능을 수행하는 경우의 응집도는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Functional Cohesion"
+        },
+        {
+          "no": 2,
+          "text": "Sequential Cohesion"
+        },
+        {
+          "no": 3,
+          "text": "Logical Cohesion"
+        },
+        {
+          "no": 4,
+          "text": "Coincidental Cohesion"
+        }
+      ],
+      "answer": 4,
+      "explanation": "Coincidental Cohesion(우연적 응집도)은 모듈 내부의 요소들이 아무런 의미 있는 연관 관계 없이 서로 다른 기능을 수행하도록 구성된 경우로 응집도가 가장 낮습니다. 기능적 응집도는 모든 요소가 하나의 기능을 수행하는 가장 높은 응집도이고, 순차적 응집도는 한 요소의 출력이 다음 요소의 입력으로 이어지며, 논리적 응집도는 유사한 성격의 기능을 하나의 모듈로 묶은 경우입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "Functional Cohesion(기능적 응집도)은 모듈의 모든 요소가 단일 기능을 수행하는 가장 높은 응집도입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Sequential Cohesion(순차적 응집도)은 한 요소의 출력이 다음 요소의 입력으로 사용되는 경우입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Logical Cohesion(논리적 응집도)은 유사한 성격의 기능들을 하나의 모듈로 묶은 경우로 요소 간 연관 관계가 있습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "Coincidental Cohesion(우연적 응집도)은 요소 간 연관 관계 없이 서로 다른 기능을 수행하는 가장 낮은 응집도입니다."
+        }
+      ],
+      "keyPoint": "응집도 종류와 Coincidental Cohesion(우연적 응집도)의 정의",
+      "tags": [
+        "응집도",
+        "모듈화"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-075",
+      "number": 75,
+      "subjectCode": 4,
+      "stem": "다음은 파이썬으로 만들어진 반복문 코드이다. 이 코드의 결과는?",
+      "passage": ">> while(True) :\n    print('A')\n    print('B')\n    print('C')\n    continue\n    print('D')",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "A, B, C 출력이 반복된다."
+        },
+        {
+          "no": 2,
+          "text": "A, B, C"
+        },
+        {
+          "no": 3,
+          "text": "A, B, C, D 출력이 반복된다."
+        },
+        {
+          "no": 4,
+          "text": "A, B, C, D 까지만 출력된다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "while(True)는 조건이 항상 참이므로 무한 반복을 수행하며, 각 반복에서 A, B, C를 출력한 뒤 continue 문을 만나 루프의 나머지 부분을 건너뛰고 다시 루프의 처음으로 돌아갑니다. continue 아래에 있는 print('D')에는 도달하지 못하므로 D는 한 번도 출력되지 않습니다. 따라서 A, B, C 출력이 무한히 반복됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "continue 아래의 print('D')가 실행되지 않아 A, B, C 출력만 무한히 반복됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "무한 루프이므로 A, B, C가 한 번만 출력되고 끝나는 것이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "continue로 인해 print('D')에 도달하지 못하므로 D는 출력되지 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "D가 출력되지 않을 뿐 아니라 무한 반복이므로 D까지만 출력되는 것도 아닙니다."
+        }
+      ],
+      "keyPoint": "파이썬 while 무한 루프와 continue의 동작",
+      "tags": [
+        "Python",
+        "반복문",
+        "continue"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 5
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-076",
+      "number": 76,
+      "subjectCode": 4,
+      "stem": "C 언어에서 연산자 우선순위가 높은 것에서 낮은 것으로 바르게 나열된 것은?",
+      "passage": "㉠ ( ) | ㉡ == | ㉢ <\n㉣ << | ㉤ || | ㉥ /",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "㉠, ㉥, ㉣, ㉢, ㉡, ㉤"
+        },
+        {
+          "no": 2,
+          "text": "㉠, ㉣, ㉥, ㉢, ㉡, ㉤"
+        },
+        {
+          "no": 3,
+          "text": "㉠, ㉣, ㉥, ㉢, ㉤, ㉡"
+        },
+        {
+          "no": 4,
+          "text": "㉠, ㉥, ㉣, ㉤, ㉡, ㉢"
+        }
+      ],
+      "answer": 1,
+      "explanation": "C 언어의 연산자 우선순위는 괄호 ( )가 가장 높고, 산술 연산자인 나누기 /가 시프트 연산자 <<보다 높습니다. 시프트 연산자는 관계 연산자 <보다, 관계 연산자는 상등 연산자 ==보다, 상등 연산자는 논리합 연산자 ||보다 우선순위가 높습니다. 따라서 ( ) → / → << → < → == → || 순으로 나열해야 합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "( ) → / → << → < → == → || 순으로 우선순위가 높은 것부터 바르게 나열되었습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "시프트 연산자 <<가 나누기 /보다 먼저 나오는 것은 실제 우선순위와 다릅니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "논리합 ||가 상등 연산자 ==보다 앞에 오는 것은 실제 우선순위와 반대입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "논리합 ||가 ==보다 앞서고 <가 마지막에 오는 순서는 실제 우선순위와 다릅니다."
+        }
+      ],
+      "keyPoint": "C 언어 연산자 우선순위(괄호 > 산술 > 시프트 > 관계 > 상등 > 논리)",
+      "tags": [
+        "C 언어",
+        "연산자 우선순위"
+      ],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-077",
+      "number": 77,
+      "subjectCode": 4,
+      "stem": "모듈화(Modularity)와 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "소프트웨어의 모듈은 프로그래밍 언어에서 Subroutine, Function 등으로 표현될 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "모듈의 수가 증가하면 상대적으로 각 모듈의 크기가 커지며, 모듈 사이의 상호교류가 감소하여 과부하(Overload) 현상이 나타난다."
+        },
+        {
+          "no": 3,
+          "text": "모듈화는 시스템을 지능적으로 관리할 수 있도록 해주며, 복잡도 문제를 해결하는 데 도움을 준다."
+        },
+        {
+          "no": 4,
+          "text": "모듈화는 시스템의 유지보수와 수정을 용이하게 한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "모듈의 수가 증가하면 각 모듈의 크기는 작아지고 모듈 사이의 상호교류는 오히려 증가하여 과부하(Overload) 현상이 나타날 수 있습니다. 모듈화는 시스템의 복잡도를 줄이고 오류의 파급 효과를 최소화하며 유지보수와 수정을 용이하게 해 줍니다. 따라서 모듈의 크기가 커진다는 설명은 사실과 반대이므로 틀렸습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "모듈은 프로그래밍 언어의 서브루틴, 함수, 프로시저 등으로 구현되므로 맞는 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "모듈 수가 늘면 각 모듈의 크기는 작아지고 상호교류가 증가해 과부하가 발생하므로 틀린 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "모듈화는 시스템을 지능적으로 관리하고 복잡도 문제를 해결하는 데 도움을 주므로 맞는 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "모듈화는 시스템의 유지보수와 수정을 용이하게 하므로 맞는 설명입니다."
+        }
+      ],
+      "keyPoint": "모듈화의 장점과 모듈 수 증가에 따른 과부하 현상",
+      "tags": [
+        "모듈화",
+        "과부하"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-078",
+      "number": 78,
+      "subjectCode": 4,
+      "stem": "C 언어에서 정수 변수 a, b에 각각 1, 2가 저장되어 있을 때 다음 식의 연산 결과로 옳은 것은?",
+      "passage": "a < b + 2 && a << 1 <= b",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "0"
+        },
+        {
+          "no": 2,
+          "text": "1"
+        },
+        {
+          "no": 3,
+          "text": "3"
+        },
+        {
+          "no": 4,
+          "text": "5"
+        }
+      ],
+      "answer": 2,
+      "explanation": "b + 2는 4이고 a가 1이므로 a < b + 2는 참(1)입니다. a << 1은 a를 왼쪽으로 1비트 이동한 값으로 1×2=2가 되고 2 <= b(2)도 참(1)이므로 && 연산의 두 항이 모두 참입니다. 논리 AND 연산은 두 항이 모두 참일 때 1을 반환하므로 연산 결과는 1입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "&&의 두 항이 모두 참이므로 결과가 거짓을 뜻하는 0이 될 수 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "a < b + 2와 a << 1 <= b가 모두 참이므로 1 && 1의 결과인 1이 됩니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "논리 연산 &&의 결과는 참이면 1, 거짓이면 0이므로 3이 될 수 없습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "&&는 피연산자의 값을 그대로 반환하지 않고 참·거짓을 1과 0으로 반환합니다."
+        }
+      ],
+      "keyPoint": "C 언어의 시프트 연산과 논리 AND 연산 결과",
+      "tags": [
+        "C 언어",
+        "시프트 연산"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-079",
+      "number": 79,
+      "subjectCode": 4,
+      "stem": "a[0]의 주소 값이 10일 경우 다음 C 언어 프로그램이 실행되었을 때의 결과는? (단, int 형의 크기는 4Byte로 가정한다.)",
+      "passage": "#include <stdio.h>\nint main(int argc, char* argv[]) {\n    int a[] = { 14,22,30,38 };\n    printf(\"%u, \", &a[2]);\n    printf(\"%u\", a);\n    return 0;\n}",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "14, 10"
+        },
+        {
+          "no": 2,
+          "text": "14, M"
+        },
+        {
+          "no": 3,
+          "text": "18, 10"
+        },
+        {
+          "no": 4,
+          "text": "18, M"
+        }
+      ],
+      "answer": 3,
+      "explanation": "int 형의 크기가 4Byte이고 a[0]의 주소가 10이므로 a[1]의 주소는 14, a[2]의 주소는 18이 됩니다. &a[2]는 배열의 세 번째 요소가 있는 주소인 18을 출력하고, 배열 이름 a는 첫 번째 요소를 가리키는 포인터 상수이므로 10이 출력됩니다. 따라서 실행 결과는 18, 10입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "&a[2]는 a[0]이 아니라 a[2]의 주소이므로 14가 아니라 18이 출력됩니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "&a[2]의 값이 14가 아니고, %u 서식으로 주소 값을 출력하므로 문자 M도 출력되지 않습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "&a[2]는 a[0] 주소 10에서 8바이트 뒤인 18이고 배열 이름 a는 10을 가리키므로 18, 10이 출력됩니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "배열 이름 a는 첫 요소의 주소 10을 가리키므로 M이 아니라 10이 출력됩니다."
+        }
+      ],
+      "keyPoint": "배열 이름과 주소 연산자(&)의 의미, int 형 크기에 따른 주소 계산",
+      "tags": [
+        "C 언어",
+        "포인터",
+        "배열"
+      ],
+      "difficulty": 4,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2023-3-080",
+      "number": 80,
+      "subjectCode": 4,
+      "stem": "C 언어 라이브러리 중 stdlib.h에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "문자열을 수치 데이터로 바꾸는 문자 변환함수와 수치를 문자열로 바꿔주는 변환함수 등이 있다."
+        },
+        {
+          "no": 2,
+          "text": "문자열 처리 함수로 strlen()이 포함되어 있다."
+        },
+        {
+          "no": 3,
+          "text": "표준 입출력 라이브러리이다."
+        },
+        {
+          "no": 4,
+          "text": "삼각 함수, 제곱근, 지수 등 수학적인 함수를 내장하고 있다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "stdlib.h는 문자열을 정수나 실수로 바꾸는 atoi, atof, strtol과 수치를 문자열로 바꾸는 itoa 등을 포함하는 표준 라이브러리입니다. strlen()처럼 문자열을 처리하는 함수는 string.h에, printf()나 scanf() 같은 입출력 함수는 stdio.h에, 삼각 함수·제곱근·지수 함수는 math.h에 들어 있습니다. 따라서 문자열과 수치 사이의 변환 함수를 제공한다는 설명이 stdlib.h에 대한 옳은 설명입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "stdlib.h에는 atoi, atof처럼 문자열을 수치로, itoa처럼 수치를 문자열로 바꾸는 함수가 있습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "strlen()은 문자열 처리 함수를 모아 둔 string.h에 포함되어 있습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "표준 입출력 라이브러리는 stdio.h이며 stdlib.h는 범용 유틸리티 함수를 모아 둔 헤더입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "삼각 함수, 제곱근, 지수 함수는 math.h에 포함되어 있습니다."
+        }
+      ],
+      "keyPoint": "stdlib.h와 string.h, stdio.h, math.h의 역할 구분",
+      "tags": [
+        "stdlib.h",
+        "C 라이브러리"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "2023년3회_정보처리기사필기기출문제.pdf",
+        "page": 6
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

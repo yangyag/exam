@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2025-1",
+    "year": 2025,
+    "round": 1,
+    "title": "2025년 1회 정보처리기사 필기",
+    "sourcePdf": "2025년1회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 2,
+    "name": "소프트웨어 개발"
+  },
+  "questions": [
+    {
+      "id": "2025-1-021",
+      "number": 21,
+      "subjectCode": 2,
+      "stem": "소스 코드 품질 분석 도구 중 정적 분석 도구가 아닌 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "pmd"},
+        {"no": 2, "text": "cppcheck"},
+        {"no": 3, "text": "valMeter"},
+        {"no": 4, "text": "checkstyle"}
+      ],
+      "answer": 3,
+      "explanation": "정적 분석 도구는 소스 코드를 실행하지 않고 코드의 구조와 문법을 분석하여 잠재적인 결함이나 표준 위반을 찾아내는 도구로, pmd, cppcheck, checkstyle 등이 여기에 해당합니다. valMeter는 소스 코드를 정적으로 분석하는 도구가 아니라 프로그램을 실행한 상태에서 자원 사용이나 메모리 오류를 점검하는 동적 분석 계열의 도구이므로 정적 분석 도구로 볼 수 없습니다. 따라서 정적 분석 도구가 아닌 것은 valMeter입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "pmd는 Java 소스 코드의 결함과 비효율적인 코드를 실행 없이 분석하는 대표적인 정적 분석 도구입니다."},
+        {"no": 2, "correct": false, "why": "cppcheck는 C/C++ 소스 코드의 메모리 누수와 오류 가능성을 컴파일 없이 분석하는 정적 분석 도구입니다."},
+        {"no": 3, "correct": true, "why": "valMeter는 소스 코드를 정적으로 분석하는 도구가 아니며, 실행 중인 프로그램의 동작과 자원을 점검하는 동적 분석 계열에 속합니다."},
+        {"no": 4, "correct": false, "why": "checkstyle은 Java 소스 코드의 코딩 규칙 준수 여부를 실행 없이 검사하는 정적 분석 도구입니다."}
+      ],
+      "keyPoint": "정적 분석 도구와 동적 분석 도구의 구분",
+      "tags": ["정적 분석", "소스 코드 품질", "pmd"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-022",
+      "number": 22,
+      "subjectCode": 2,
+      "stem": "White Box Testing 에 대한 설명으로 옳지 않은 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Base Path Testing, Boundary Value Analysis 가 대표적인 기법이다."},
+        {"no": 2, "text": "Source Code 의 모든 문장을 한 번 이상 수행함으로써 진행 된다."},
+        {"no": 3, "text": "모듈 안의 작동을 직접 관찰할 수 있다."},
+        {"no": 4, "text": "산출물의 각 기능별로 적절한 프로그램의 제어 구조에 따라 선택, 반복 등의 부분들을 수행함으로써 논리적 경로를 점검한다."}
+      ],
+      "answer": 1,
+      "explanation": "화이트박스 테스트는 소스 코드의 내부 논리 구조를 직접 관찰하고 분석하면서 모든 문장과 경로를 한 번 이상 수행하도록 테스트 케이스를 설계하는 기법으로, 기초 경로(Base Path) 테스트와 조건·분기·루프 검증 등이 대표적입니다. 반면 경계값 분석(Boundary Value Analysis)은 입력값의 경계에서 결함이 발생하기 쉽다는 점을 이용해 입력 데이터를 선정하는 블랙박스 테스트 기법입니다. 따라서 두 기법을 함께 화이트박스 테스트의 대표 기법이라고 설명한 ①이 옳지 않습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "기초 경로 테스트는 화이트박스 기법이지만 경계값 분석은 입력값 경계를 이용하는 블랙박스 기법이므로, 둘을 화이트박스의 대표 기법으로 묶은 설명은 틀렸습니다."},
+        {"no": 2, "correct": false, "why": "소스 코드의 모든 문장을 최소 한 번 이상 수행하게 하는 문장 검증은 화이트박스 테스트의 대표적인 수행 기준입니다."},
+        {"no": 3, "correct": false, "why": "화이트박스 테스트는 모듈 내부의 소스 코드와 논리 구조를 직접 관찰할 수 있다는 점이 특징입니다."},
+        {"no": 4, "correct": false, "why": "각 기능의 제어 구조에 따라 선택, 반복 등의 구조를 수행하며 논리적 경로를 점검하는 것은 화이트박스 테스트에 대한 옳은 설명입니다."}
+      ],
+      "keyPoint": "화이트박스 테스트와 블랙박스 테스트 기법의 구분",
+      "tags": ["화이트박스 테스트", "경계값 분석", "기초 경로 테스트"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-023",
+      "number": 23,
+      "subjectCode": 2,
+      "stem": "소프트웨어 테스트에서 오류의 80% 는 전체 모듈의 20% 내에서 발견된다는 법칙은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Brooks 의 법칙"},
+        {"no": 2, "text": "Boehm 의 법칙"},
+        {"no": 3, "text": "Pareto 의 법칙"},
+        {"no": 4, "text": "Jackson 의 법칙"}
+      ],
+      "answer": 3,
+      "explanation": "파레토(Pareto) 법칙은 전체 결과의 80%가 20%의 원인에서 비롯된다는 경험 법칙으로, 소프트웨어 테스트에서는 전체 오류의 80%가 20%의 모듈에서 발견된다는 결함 집중의 원리로 사용됩니다. 테스트 자원을 결함이 몰려 있는 소수 모듈에 집중하면 효율을 높일 수 있다는 근거가 됩니다. 브룩스의 법칙은 지연된 프로젝트에 인력을 추가하면 오히려 일정이 더 늦어진다는 법칙이고, 봄(Boehm)의 법칙은 초기 단계의 결함일수록 수정 비용이 크게 증가한다는 법칙입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "브룩스의 법칙은 일정이 지연되는 프로젝트에 인력을 투입하면 의사소통 비용 증가로 더 지연된다는 법칙입니다."},
+        {"no": 2, "correct": false, "why": "봄의 법칙은 결함을 발견하고 수정하는 비용이 개발 단계가 진행될수록 기하급수적으로 증가한다는 법칙입니다."},
+        {"no": 3, "correct": true, "why": "파레토 법칙은 오류의 80%가 전체 모듈의 20%에서 발견된다는 결함 집중의 원리를 나타내어 정답입니다."},
+        {"no": 4, "correct": false, "why": "잭슨의 법칙은 구조적 프로그래밍과 설계 방법론에 관한 것으로, 오류 분포와는 관련이 없습니다."}
+      ],
+      "keyPoint": "파레토 법칙(80 대 20)과 결함 집중 원리",
+      "tags": ["파레토 법칙", "결함 집중", "테스트"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-024",
+      "number": 24,
+      "subjectCode": 2,
+      "stem": "다음 트리의 차수 (degree) 는 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "2"},
+        {"no": 2, "text": "3"},
+        {"no": 3, "text": "4"},
+        {"no": 4, "text": "5"}
+      ],
+      "answer": 2,
+      "explanation": "트리의 차수는 각 노드가 가진 자식 노드 수 가운데 가장 큰 값, 즉 최대 차수를 의미합니다. 제시된 트리에서 B는 D, E, F 세 개의 자식을 가져 자식 수가 3으로 가장 많고, A와 F는 자식이 2개, C는 1개입니다. 가장 큰 자식 수가 3이므로 이 트리의 차수는 3입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "자식이 2개인 노드(A, F)는 있지만 자식 수가 가장 많은 노드는 B이므로 차수는 2가 아닙니다."},
+        {"no": 2, "correct": true, "why": "자식이 가장 많은 B의 자식 수가 3이므로 트리의 차수는 3입니다."},
+        {"no": 3, "correct": false, "why": "자식이 4개인 노드는 트리에 존재하지 않으므로 차수가 4가 될 수 없습니다."},
+        {"no": 4, "correct": false, "why": "자식이 5개인 노드는 트리에 존재하지 않으므로 차수가 5가 될 수 없습니다."}
+      ],
+      "keyPoint": "트리의 차수는 자식 노드 수의 최댓값",
+      "tags": ["트리", "차수", "자료구조"],
+      "difficulty": 2,
+      "figure": {"needed": true, "kind": "diagram", "image": "figures/2025-1/024.png", "alt": "A를 루트로 B, C가 갈라지고 B 아래에 D, E, F가, C 아래에 G가, F 아래에 H, I가 붙은 트리", "page": 2, "col": 1, "box": [319.7, 254.2, 424.4, 343.9]},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-025",
+      "number": 25,
+      "subjectCode": 2,
+      "stem": "디지털 저작권 관리 (DRM) 기술과 거리가 먼 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "콘텐츠 암호화 및 키 관리"},
+        {"no": 2, "text": "콘텐츠 식별체계 표현"},
+        {"no": 3, "text": "콘텐츠 오류 감지 및 복구"},
+        {"no": 4, "text": "라이센스 발급 및 관리"}
+      ],
+      "answer": 3,
+      "explanation": "디지털 저작권 관리(DRM)는 디지털 콘텐츠의 저작권을 보호하고 안전하게 유통하기 위한 기술로, 콘텐츠 암호화와 키 관리, 콘텐츠 식별체계 표현, 라이선스 발급 및 관리(클리어링 하우스), 패키징, 크랙 방지 등의 요소로 구성됩니다. 콘텐츠 오류 감지 및 복구는 전송이나 저장 과정에서 생긴 데이터 오류를 찾아 되돌리는 데이터 통신·데이터베이스 영역의 기술입니다. 따라서 DRM 기술과 거리가 먼 것은 콘텐츠 오류 감지 및 복구입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "콘텐츠 암호화 및 키 관리는 불법 복제를 막기 위한 DRM의 핵심 구성 요소입니다."},
+        {"no": 2, "correct": false, "why": "콘텐츠 식별체계 표현(DOI 등)은 콘텐츠를 고유하게 식별하고 추적하기 위한 DRM 요소입니다."},
+        {"no": 3, "correct": true, "why": "콘텐츠 오류 감지 및 복구는 데이터 오류 제어 기술로, 저작권 보호를 위한 DRM의 구성 요소가 아닙니다."},
+        {"no": 4, "correct": false, "why": "라이센스 발급 및 관리는 사용 권한을 통제하는 DRM의 주요 구성 요소입니다."}
+      ],
+      "keyPoint": "DRM의 구성 요소와 데이터 오류 제어의 구분",
+      "tags": ["DRM", "디지털 저작권 관리", "라이센스"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-026",
+      "number": 26,
+      "subjectCode": 2,
+      "stem": "다음 자료에 대하여 “Selection Sort” 를 사용하여 오름차순으로 정렬한 경우 PASS 3 의 결과는 ? 초기상태 : 8, 3, 4, 9, 7",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "3, 4, 7, 9, 8"},
+        {"no": 2, "text": "3, 4, 8, 9, 7"},
+        {"no": 3, "text": "3, 8, 4, 9, 7"},
+        {"no": 4, "text": "3, 4, 7, 8, 9"}
+      ],
+      "answer": 1,
+      "explanation": "선택 정렬은 각 PASS마다 아직 정렬되지 않은 구간에서 가장 작은 값을 찾아 그 구간의 첫 번째 원소와 자리를 바꾸는 방식입니다. 초기 상태 8, 3, 4, 9, 7에서 1-PASS 후에는 3, 8, 4, 9, 7이 되고, 2-PASS에서는 남은 8, 4, 9, 7 중 최솟값 4를 8과 교환하여 3, 4, 8, 9, 7이 됩니다. 3-PASS에서는 남은 8, 9, 7 중 최솟값 7을 8과 교환하므로 결과는 3, 4, 7, 9, 8입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "3-PASS에서 남은 8, 9, 7 중 최솟값 7을 8과 교환한 결과인 3, 4, 7, 9, 8이 맞습니다."},
+        {"no": 2, "correct": false, "why": "3, 4, 8, 9, 7은 2-PASS까지 수행한 결과입니다."},
+        {"no": 3, "correct": false, "why": "3, 8, 4, 9, 7은 1-PASS까지 수행한 결과입니다."},
+        {"no": 4, "correct": false, "why": "3, 4, 7, 8, 9는 4-PASS까지 모두 끝낸 최종 정렬 결과입니다."}
+      ],
+      "keyPoint": "선택 정렬의 PASS별 수행 과정",
+      "tags": ["선택 정렬", "정렬 알고리즘", "PASS"],
+      "difficulty": 3,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-027",
+      "number": 27,
+      "subjectCode": 2,
+      "stem": "소프트웨어 공학의 기본 원칙이라고 볼 수 없는 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "품질 높은 소프트웨어 상품 개발"},
+        {"no": 2, "text": "지속적인 검증 시행"},
+        {"no": 3, "text": "결과에 대한 명확한 기록 유지"},
+        {"no": 4, "text": "최대한 많은 인력 투입"}
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 공학의 기본 원칙은 품질 높은 소프트웨어 상품을 개발하고, 지속적으로 검증하며, 결과에 대한 명확한 기록을 유지하는 것으로 좋은 품질의 소프트웨어를 효율적으로 개발하는 것을 목표로 합니다. 인력을 최대한 많이 투입하는 것은 브룩스의 법칙에서 보듯 의사소통 경로가 늘어 오히려 생산성을 떨어뜨리고 일정을 지연시킬 수 있습니다. 따라서 기본 원칙이라고 볼 수 없는 것은 최대한 많은 인력 투입입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "품질 높은 소프트웨어 상품 개발은 소프트웨어 공학의 기본 원칙에 해당합니다."},
+        {"no": 2, "correct": false, "why": "지속적인 검증 시행은 개발 과정의 결함을 조기에 찾기 위한 기본 원칙입니다."},
+        {"no": 3, "correct": false, "why": "결과에 대한 명확한 기록 유지는 유지보수와 의사소통을 위한 기본 원칙입니다."},
+        {"no": 4, "correct": true, "why": "인력을 무조건 많이 투입하는 것은 의사소통 비용 증가와 일정 지연을 낳아 기본 원칙이 될 수 없습니다."}
+      ],
+      "keyPoint": "소프트웨어 공학의 기본 원칙",
+      "tags": ["소프트웨어 공학", "기본 원칙"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-028",
+      "number": 28,
+      "subjectCode": 2,
+      "stem": "빌드 자동화 도구에 대한 설명으로 틀린 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Gradle 은 실행할 처리 명령들을 모아 태스크로 만든 후 태스크 단위로 실행한다."},
+        {"no": 2, "text": "빌드 자동화 도구는 지속적인 통합 개발 환경에서 유용하게 활용된다."},
+        {"no": 3, "text": "빌드 자동화 도구에는 Ant, Gradle, Jenkins 등이 있다 ."},
+        {"no": 4, "text": "Jenkins 는 Groovy 를 기반으로 한 오픈 소스로 안드로이드 앱 개발 환경에서 사용된다."}
+      ],
+      "answer": 4,
+      "explanation": "빌드 자동화 도구는 소스 코드를 컴파일하고 테스트하며 배포 가능한 형태로 만드는 과정을 자동화하는 도구로, Ant, Maven, Gradle, Jenkins 등이 있으며 지속적 통합(CI) 환경에서 필수적으로 활용됩니다. Gradle은 Groovy 기반의 스크립트로 처리 명령을 태스크 단위로 묶어 실행하는 도구입니다. Jenkins는 Java로 작성된 오픈 소스 CI 서버로 소스 관리 도구와 연동해 빌드와 테스트를 자동 수행하므로, Groovy 기반이라거나 안드로이드 앱 개발 환경에 한정된다는 설명은 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Gradle이 처리 명령을 태스크로 묶어 태스크 단위로 실행한다는 설명은 옳습니다."},
+        {"no": 2, "correct": false, "why": "빌드 자동화 도구가 지속적인 통합 개발 환경에서 유용하다는 설명도 옳습니다."},
+        {"no": 3, "correct": false, "why": "빌드 자동화 도구로 Ant, Gradle, Jenkins 등을 드는 설명은 옳습니다."},
+        {"no": 4, "correct": true, "why": "Groovy 기반 오픈 소스 빌드 도구는 Gradle이고 Jenkins는 Java 기반 CI 도구이므로 이 설명이 틀렸습니다."}
+      ],
+      "keyPoint": "빌드 자동화 도구의 종류와 특징",
+      "tags": ["빌드 자동화", "Jenkins", "Gradle"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-029",
+      "number": 29,
+      "subjectCode": 2,
+      "stem": "소프트웨어 형상 관리에서 관리 항목에 포함되지 않는 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "운영 및 설치 지침서"},
+        {"no": 2, "text": "프로젝트 개발 비용"},
+        {"no": 3, "text": "소스 코드"},
+        {"no": 4, "text": "프로젝트 요구 분석서"}
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 형상 관리는 개발 과정에서 만들어지는 산출물의 변경을 식별하고 통제하며 이력을 관리하는 활동으로, 요구 분석서, 설계서, 소스 코드, 테스트 케이스, 운영 및 설치 지침서, 사용자 매뉴얼 등이 관리 항목이 됩니다. 프로젝트 개발 비용은 일정과 예산을 관리하는 항목으로 형상 관리의 대상 산출물이 아닙니다. 따라서 관리 항목에 포함되지 않는 것은 프로젝트 개발 비용입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "운영 및 설치 지침서는 유지보수와 배포에 필요한 형상 관리 항목입니다."},
+        {"no": 2, "correct": true, "why": "프로젝트 개발 비용은 예산 관리 항목으로 형상 관리 대상 산출물이 아닙니다."},
+        {"no": 3, "correct": false, "why": "소스 코드는 형상 관리의 가장 대표적인 관리 항목입니다."},
+        {"no": 4, "correct": false, "why": "프로젝트 요구 분석서는 요구사항 변경을 추적해야 하는 주요 형상 관리 항목입니다."}
+      ],
+      "keyPoint": "형상 관리 대상 산출물의 범위",
+      "tags": ["형상 관리", "산출물", "변경 관리"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 2},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-030",
+      "number": 30,
+      "subjectCode": 2,
+      "stem": "EAI(Enterprise Application Integration) 구축 유형 중 Hybrid 에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Hub & Spoke 와 Message Bus 의 혼합 방식이다 ."},
+        {"no": 2, "text": "필요한 경우 한 가지 방식으로 EAI 구현이 가능하다 ."},
+        {"no": 3, "text": "데이터 병목 현상을 최소화할 수 있다."},
+        {"no": 4, "text": "중간에 미들웨어를 두지 않고 각 애플리케이션을 point to point 로 연결한다 ."}
+      ],
+      "answer": 4,
+      "explanation": "EAI 구축 유형 중 Hybrid는 그룹 내부는 Hub & Spoke 방식으로, 그룹 간에는 Message Bus 방식으로 연결하여 두 방식을 혼합한 형태입니다. 데이터 병목 현상을 줄일 수 있고 상황에 따라 한 가지 방식만으로도 구현할 수 있다는 장점이 있습니다. 미들웨어를 두지 않고 애플리케이션을 1대1로 직접 연결하는 것은 Point-to-Point 방식의 설명이므로 Hybrid에 대한 설명으로 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Hybrid가 Hub & Spoke와 Message Bus를 혼합한 방식이라는 설명은 옳습니다."},
+        {"no": 2, "correct": false, "why": "필요에 따라 한 가지 방식으로 구현할 수 있다는 것도 Hybrid의 특징입니다."},
+        {"no": 3, "correct": false, "why": "혼합 방식은 버스 확장을 통해 데이터 병목을 최소화할 수 있습니다."},
+        {"no": 4, "correct": true, "why": "미들웨어 없이 애플리케이션을 직접 연결하는 것은 Point-to-Point 방식이므로 Hybrid 설명으로 틀렸습니다."}
+      ],
+      "keyPoint": "EAI 구축 유형별 특징(Hybrid와 Point-to-Point)",
+      "tags": ["EAI", "Hybrid", "미들웨어"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-031",
+      "number": 31,
+      "subjectCode": 2,
+      "stem": "자료 구조에 대한 설명으로 틀린 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "큐는 비선형 구조에 해당한다."},
+        {"no": 2, "text": "큐는 First In – First Out 처리를 수행한다 ."},
+        {"no": 3, "text": "스택은 Last In – First Out 처리를 수행한다 ."},
+        {"no": 4, "text": "스택은 서브루틴 호출, 인터럽트 처리, 수식 계산 및 수식 표기법에 응용된다."}
+      ],
+      "answer": 1,
+      "explanation": "자료 구조는 데이터가 연결되는 형태에 따라 선형 구조와 비선형 구조로 나뉘며, 스택과 큐는 대표적인 선형 구조이고 트리와 그래프가 비선형 구조에 해당합니다. 큐는 한쪽 끝에서 삽입하고 반대쪽 끝에서 삭제하는 구조로 먼저 들어온 데이터가 먼저 나가는 FIFO 처리를 하고, 스택은 나중에 들어온 데이터가 먼저 나가는 LIFO 처리를 하며 서브루틴 호출이나 인터럽트 처리, 수식 계산 등에 응용됩니다. 따라서 큐를 비선형 구조라고 한 ①이 틀린 설명입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "큐는 데이터가 일렬로 연결되는 선형 구조이므로 비선형이라는 설명이 틀렸습니다."},
+        {"no": 2, "correct": false, "why": "큐가 먼저 들어온 데이터를 먼저 처리하는 FIFO 구조라는 설명은 옳습니다."},
+        {"no": 3, "correct": false, "why": "스택이 나중에 들어온 데이터를 먼저 처리하는 LIFO 구조라는 설명은 옳습니다."},
+        {"no": 4, "correct": false, "why": "스택이 서브루틴 호출, 인터럽트 처리, 수식 계산 등에 응용된다는 설명도 옳습니다."}
+      ],
+      "keyPoint": "선형 구조(스택·큐)와 비선형 구조(트리·그래프)",
+      "tags": ["스택", "큐", "선형 구조"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-032",
+      "number": 32,
+      "subjectCode": 2,
+      "stem": "그래프의 특수한 형태로 노드 (Node) 와 선분 (Branch) 으로 되어 있고 , 정점 사이에 사이클 (Cycle) 이 형성되어 있지 않으며 , 자료 사이의 관계성이 계층 형식으로 나타나는 비선형 구조는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "tree"},
+        {"no": 2, "text": "network"},
+        {"no": 3, "text": "stack"},
+        {"no": 4, "text": "distributed"}
+      ],
+      "answer": 1,
+      "explanation": "트리는 그래프의 특수한 형태로 노드와 선분으로 구성되며, 정점 사이에 사이클이 형성되지 않고 부모와 자식 관계에 따른 계층 구조를 나타내는 비선형 자료 구조입니다. 사이클이 존재하지 않아 임의의 두 노드를 잇는 경로가 하나뿐이라는 점이 그래프와 구별되는 특징입니다. 네트워크(그래프)는 노드 사이에 사이클이 허용되고, 스택은 LIFO 방식의 선형 구조입니다. 따라서 조건에 해당하는 자료 구조는 tree입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "tree는 사이클이 없고 노드 간 계층 관계를 표현하는 비선형 구조로 조건에 맞습니다."},
+        {"no": 2, "correct": false, "why": "network(그래프)는 노드 사이의 임의 연결이 가능해 사이클이 형성될 수 있습니다."},
+        {"no": 3, "correct": false, "why": "stack은 삽입과 삭제가 한쪽 끝에서 일어나는 선형 구조입니다."},
+        {"no": 4, "correct": false, "why": "distributed는 분산 처리 개념을 가리키는 용어로 자료 구조의 종류가 아닙니다."}
+      ],
+      "keyPoint": "트리와 그래프의 차이(사이클과 계층 구조)",
+      "tags": ["트리", "그래프", "비선형 구조"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-033",
+      "number": 33,
+      "subjectCode": 2,
+      "stem": "테스트와 디버그의 목적으로 옳은 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "테스트는 오류를 수정하는 작업이고 디버깅은 오류를 찾는 작업이다."},
+        {"no": 2, "text": "둘 다 소프트웨어 오류의 발견, 수정과 무관하다."},
+        {"no": 3, "text": "테스트는 오류를 찾는 작업이고 디버깅은 오류를 수정하는 작업이다."},
+        {"no": 4, "text": "둘 다 소프트웨어의 오류를 찾는 작업으로 오류 수정은 하지 않는다."}
+      ],
+      "answer": 3,
+      "explanation": "테스트는 개발된 소프트웨어에 오류가 존재하는지 확인하기 위해 오류를 찾아내는 작업이고, 디버깅은 테스트 과정에서 발견된 오류의 원인을 추적하여 수정하는 작업입니다. 즉 테스트는 오류의 발견을, 디버깅은 오류의 수정을 목적으로 하므로 두 작업은 수행 목적과 순서가 다릅니다. 따라서 테스트는 오류를 찾고 디버깅은 오류를 수정한다는 ③이 옳은 설명입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "테스트와 디버깅의 역할이 서로 뒤바뀌어 설명되어 있으므로 틀렸습니다."},
+        {"no": 2, "correct": false, "why": "테스트와 디버깅 모두 오류의 발견과 수정에 직접 관련된 작업입니다."},
+        {"no": 3, "correct": true, "why": "테스트는 오류를 찾는 작업이고 디버깅은 오류를 수정하는 작업이라는 설명이 정확합니다."},
+        {"no": 4, "correct": false, "why": "디버깅은 발견된 오류를 수정하는 작업까지 포함하므로 틀렸습니다."}
+      ],
+      "keyPoint": "테스트(오류 발견)와 디버깅(오류 수정)의 차이",
+      "tags": ["테스트", "디버깅", "오류"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-034",
+      "number": 34,
+      "subjectCode": 2,
+      "stem": "인터페이스 구현 검증 도구가 아닌 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Foxbase"},
+        {"no": 2, "text": "STAF"},
+        {"no": 3, "text": "watir"},
+        {"no": 4, "text": "xUnit"}
+      ],
+      "answer": 1,
+      "explanation": "인터페이스 구현 검증 도구는 인터페이스 동작을 자동으로 시험하는 도구로 xUnit, STAF, FitNesse, NTAF, watir, Selenium 등이 있습니다. xUnit은 언어별 단위 테스트 프레임워크, STAF는 분산 환경의 테스트 자동화 프레임워크, watir는 웹 브라우저를 제어하는 테스트 자동화 도구입니다. Foxbase는 dBASE 계열의 관계형 데이터베이스 관리 시스템으로 인터페이스 구현 검증 도구가 아닙니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "Foxbase는 데이터베이스 관리 시스템으로 인터페이스 구현 검증 도구가 아닙니다."},
+        {"no": 2, "correct": false, "why": "STAF는 분산 환경에서 테스트를 자동화하는 인터페이스 구현 검증 도구입니다."},
+        {"no": 3, "correct": false, "why": "watir는 웹 애플리케이션 테스트를 자동화하는 검증 도구입니다."},
+        {"no": 4, "correct": false, "why": "xUnit은 단위 테스트를 지원하는 대표적인 인터페이스 구현 검증 도구입니다."}
+      ],
+      "keyPoint": "인터페이스 구현 검증 도구의 종류",
+      "tags": ["인터페이스 검증", "xUnit", "STAF"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-035",
+      "number": 35,
+      "subjectCode": 2,
+      "stem": "소프트웨어 패키징에 대한 설명으로 틀린 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "패키징은 개발자 중심으로 진행한다."},
+        {"no": 2, "text": "신규 및 변경 개발소스를 식별하고, 이를 모듈화하여 상용제품으로 패키징 한다."},
+        {"no": 3, "text": "고객의 편의성을 위해 매뉴얼 및 버전관리를 지속적으로 한다."},
+        {"no": 4, "text": "범용 환경에서 사용이 가능하도록 일반적인 배포 형태로 패키징이 진행된다."}
+      ],
+      "answer": 1,
+      "explanation": "소프트웨어 패키징은 개발이 완료된 소프트웨어를 사용자가 설치하고 사용할 수 있도록 매뉴얼과 버전 정보 등을 함께 묶어 배포 형태로 만드는 작업입니다. 사용자가 직접 설치하고 사용하는 과정이므로 개발자 중심이 아니라 사용자 중심으로 진행해야 하며, 신규 및 변경된 개발 소스를 식별해 모듈화한 뒤 상용 제품으로 패키징하고 매뉴얼과 버전 관리를 지속적으로 갱신합니다. 따라서 개발자 중심으로 진행한다는 ①이 틀렸습니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": true, "why": "패키징은 사용자 편의를 기준으로 진행해야 하므로 개발자 중심이라는 설명이 틀렸습니다."},
+        {"no": 2, "correct": false, "why": "신규 및 변경 소스를 식별해 모듈화하고 상용 제품으로 패키징한다는 설명은 옳습니다."},
+        {"no": 3, "correct": false, "why": "고객 편의를 위해 매뉴얼과 버전 관리를 지속적으로 한다는 설명도 옳습니다."},
+        {"no": 4, "correct": false, "why": "범용 환경에서 사용할 수 있도록 일반적인 배포 형태로 패키징한다는 설명도 옳습니다."}
+      ],
+      "keyPoint": "소프트웨어 패키징은 사용자 중심으로 수행",
+      "tags": ["소프트웨어 패키징", "모듈화", "버전 관리"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-036",
+      "number": 36,
+      "subjectCode": 2,
+      "stem": "소프트웨어 품질 목표 중 하나 이상의 하드웨어 환경에서 운용되기 위해 쉽게 수정될 수 있는 시스템 능력을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "Correctness"},
+        {"no": 2, "text": "Portability"},
+        {"no": 3, "text": "Efficiency"},
+        {"no": 4, "text": "Usability"}
+      ],
+      "answer": 2,
+      "explanation": "소프트웨어 품질 목표 중 이식성(Portability)은 소프트웨어가 하나 이상의 하드웨어나 소프트웨어 환경에서 운용되기 위해 쉽게 수정될 수 있는 능력을 의미합니다. 정확성(Correctness)은 요구된 기능을 정확하게 수행하는 정도, 효율성(Efficiency)은 최소한의 자원으로 기능을 수행하는 정도, 사용성(Usability)은 사용자가 쉽고 편리하게 사용할 수 있는 정도를 나타냅니다. 따라서 환경이 달라져도 쉽게 수정해 운용할 수 있는 능력은 이식성입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "Correctness는 요구 기능을 오류 없이 정확히 수행하는 정도를 나타내는 품질 특성입니다."},
+        {"no": 2, "correct": true, "why": "Portability는 다른 하드웨어·소프트웨어 환경으로 쉽게 옮겨 운용할 수 있는 이식성을 의미합니다."},
+        {"no": 3, "correct": false, "why": "Efficiency는 시간과 자원을 최소로 사용하면서 기능을 수행하는 정도를 나타냅니다."},
+        {"no": 4, "correct": false, "why": "Usability는 사용자가 이해하고 사용하기 쉬운 정도를 나타내는 품질 특성입니다."}
+      ],
+      "keyPoint": "소프트웨어 품질 목표별 정의(이식성)",
+      "tags": ["이식성", "소프트웨어 품질", "Portability"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-037",
+      "number": 37,
+      "subjectCode": 2,
+      "stem": "개별 모듈을 시험하는 것으로, 모듈이 정확하게 구현되었는지, 예정한 기능이 제대로 수행되는지를 점검하는 것이 주목적인 테스트는?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "통합 테스트(Integration Test)"},
+        {"no": 2, "text": "단위 테스트(Unit Test)"},
+        {"no": 3, "text": "시스템 테스트(System Test)"},
+        {"no": 4, "text": "인수 테스트(Acceptance Test)"}
+      ],
+      "answer": 2,
+      "explanation": "단위 테스트(Unit Test)는 소프트웨어 설계의 최소 단위인 모듈이나 컴포넌트를 개별적으로 시험하는 테스트로, 모듈이 정확하게 구현되었는지와 예정한 기능이 제대로 수행되는지를 점검하는 것이 주목적입니다. 통합 테스트는 모듈 간 인터페이스와 결합 과정에서 발생하는 오류를 찾고, 시스템 테스트는 전체 시스템이 요구사항을 충족하는지 확인하며, 인수 테스트는 사용자가 요구한 사항을 만족하는지 판단합니다. 따라서 개별 모듈을 시험하는 테스트는 단위 테스트입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "통합 테스트는 개별 모듈이 아니라 모듈 간 인터페이스와 결합을 시험하는 테스트입니다."},
+        {"no": 2, "correct": true, "why": "단위 테스트는 개별 모듈의 정확한 구현 여부와 기능 수행 여부를 점검하는 테스트입니다."},
+        {"no": 3, "correct": false, "why": "시스템 테스트는 전체 시스템을 대상으로 요구사항 충족 여부를 확인하는 테스트입니다."},
+        {"no": 4, "correct": false, "why": "인수 테스트는 사용자 관점에서 요구사항 만족 여부를 판단하는 테스트입니다."}
+      ],
+      "keyPoint": "테스트 단계별 목적(단위-통합-시스템-인수)",
+      "tags": ["단위 테스트", "테스트 레벨", "모듈"],
+      "difficulty": 1,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-038",
+      "number": 38,
+      "subjectCode": 2,
+      "stem": "소프트웨어 테스트에서 검증 (Verification) 과 확인 (Validation) 에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "소프트웨어 테스트에서 검증과 확인을 구별하면 찾고자 하는 결함 유형을 명확하게 하는 데 도움이 된다."},
+        {"no": 2, "text": "검증은 소프트웨어 개발 과정을 테스트하는 것이고, 확인은 소프트웨어 결과를 테스트하는 것이다."},
+        {"no": 3, "text": "검증은 작업 제품이 요구 명세의 기능, 비기능 요구사항을 얼마나 잘 준수하는지 측정하는 작업이다."},
+        {"no": 4, "text": "검증은 작업 제품이 사용자의 요구에 적합한지 측정하며, 확인은 작업 제품이 개발자의 기대를 충족시키는지를 측정한다."}
+      ],
+      "answer": 4,
+      "explanation": "검증(Verification)은 소프트웨어가 요구 명세에 따라 올바르게 만들어지고 있는지를 확인하는 과정으로 작업 제품이 요구 명세의 기능·비기능 요구사항을 얼마나 잘 준수하는지를 측정합니다. 확인(Validation)은 만들어진 결과물이 사용자의 요구에 적합한지를 판단하는 과정이므로, 검증은 사용자 요구 적합성을, 확인은 개발자의 기대 충족 여부를 측정한다는 ④는 두 개념을 뒤바꾼 설명입니다. 따라서 틀린 것은 ④입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "검증과 확인을 구별하면 찾고자 하는 결함 유형이 명확해진다는 설명은 옳습니다."},
+        {"no": 2, "correct": false, "why": "검증은 개발 과정을, 확인은 결과를 테스트한다는 설명은 옳습니다."},
+        {"no": 3, "correct": false, "why": "검증이 요구 명세의 기능·비기능 요구사항 준수 정도를 측정한다는 설명은 옳습니다."},
+        {"no": 4, "correct": true, "why": "검증은 요구 명세 준수 여부를, 확인은 사용자 요구 적합성을 측정하므로 두 정의를 바꾼 이 설명이 틀렸습니다."}
+      ],
+      "keyPoint": "검증(Verification)과 확인(Validation)의 차이",
+      "tags": ["검증", "확인", "V&V"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-039",
+      "number": 39,
+      "subjectCode": 2,
+      "stem": "테스트를 목적에 따라 분류했을 때, 강도 (Stress) 테스트에 대한 설명으로 옳은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "시스템에 고의로 실패를 유도하고 시스템이 정상적으로 복귀하는지 테스트한다."},
+        {"no": 2, "text": "시스템에 과다 정보량을 부과하여 과부하 시에도 시스템이 정상적으로 작동되는지를 테스트한다."},
+        {"no": 3, "text": "사용자의 이벤트에 시스템이 응답하는 시간, 특정 시간 내에 처리하는 업무량, 사용자 요구에 시스템이 반응하는 속도 등을 테스트한다."},
+        {"no": 4, "text": "부당하고 불법적인 침입을 시도하여 보안시스템이 불법적인 침투를 잘 막아내는지 테스트한다."}
+      ],
+      "answer": 2,
+      "explanation": "강도(Stress) 테스트는 시스템에 과다한 정보량이나 부하를 의도적으로 부과하여 과부하 상태에서도 시스템이 정상적으로 작동하는지를 확인하는 테스트입니다. 고의로 실패를 유도한 뒤 시스템이 정상적으로 복귀하는지 확인하는 것은 회복(Recovery) 테스트, 응답 시간과 처리 업무량, 반응 속도를 측정하는 것은 성능(Performance) 테스트, 불법적인 침입을 막아내는지 확인하는 것은 보안(Security) 테스트입니다. 따라서 강도 테스트에 대한 설명은 ②입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "고의로 실패를 유도하고 정상 복귀 여부를 확인하는 것은 회복 테스트에 대한 설명입니다."},
+        {"no": 2, "correct": true, "why": "과다 정보량을 부과해 과부하 시에도 정상 작동하는지 확인하는 것이 강도 테스트입니다."},
+        {"no": 3, "correct": false, "why": "응답 시간, 처리 업무량, 반응 속도를 점검하는 것은 성능 테스트에 대한 설명입니다."},
+        {"no": 4, "correct": false, "why": "불법 침입을 막아내는지 확인하는 것은 보안 테스트에 대한 설명입니다."}
+      ],
+      "keyPoint": "테스트 목적별 분류(회복·강도·성능·보안)",
+      "tags": ["강도 테스트", "성능 테스트", "부하"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    },
+    {
+      "id": "2025-1-040",
+      "number": 40,
+      "subjectCode": 2,
+      "stem": "프로그램 설계도의 하나인 NS Chart 에 대한 설명으로 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {"no": 1, "text": "논리의 기술에 중점을 두고 도형을 이용한 표현 방법이다."},
+        {"no": 2, "text": "이해하기 쉽고 코드 변환이 용이하다."},
+        {"no": 3, "text": "화살표나 GOTO 를 사용하여 이해하기 쉽다 ."},
+        {"no": 4, "text": "연속, 선택, 반복 등의 제어 논리 구조를 표현한다 ."}
+      ],
+      "answer": 3,
+      "explanation": "NS 차트(Nassi-Schneiderman Chart)는 논리의 기술에 중점을 두고 도형을 이용해 프로그램 구조를 표현하는 설계도로, 순차·선택·반복의 제어 논리 구조를 표현하며 이해하기 쉽고 코드 변환이 용이합니다. NS 차트는 화살표나 GOTO를 사용하지 않고 중첩된 박스 구조로 흐름을 표현하는 것이 특징입니다. 따라서 화살표나 GOTO를 사용하여 이해하기 쉽다는 ③이 NS 차트와 가장 거리가 먼 설명입니다.",
+      "choicesAnalysis": [
+        {"no": 1, "correct": false, "why": "논리의 기술에 중점을 두고 도형으로 표현한다는 설명은 NS 차트의 특징입니다."},
+        {"no": 2, "correct": false, "why": "NS 차트가 이해하기 쉽고 코드 변환이 용이하다는 설명도 옳습니다."},
+        {"no": 3, "correct": true, "why": "NS 차트는 화살표나 GOTO를 사용하지 않고 박스 구조로 표현하므로 이 설명은 거리가 멉니다."},
+        {"no": 4, "correct": false, "why": "연속, 선택, 반복 등의 제어 논리 구조를 표현한다는 설명도 NS 차트의 특징입니다."}
+      ],
+      "keyPoint": "NS 차트의 특징(제어 논리 구조 표현, GOTO 미사용)",
+      "tags": ["NS 차트", "프로그램 설계도", "제어 구조"],
+      "difficulty": 2,
+      "figure": {"needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null},
+      "source": {"pdf": "2025년1회_정보처리기사필기기출문제.pdf", "page": 3},
+      "provenance": {"answer": "pdf", "explanation": "generated"}
+    }
+  ]
+}

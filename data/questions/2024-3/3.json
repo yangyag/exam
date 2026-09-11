@@ -1,0 +1,1495 @@
+{
+  "exam": {
+    "id": "2024-3",
+    "year": 2024,
+    "round": 3,
+    "title": "2024년 3회 정보처리기사 필기",
+    "sourcePdf": "3. 2024년3회_정보처리기사필기기출문제.pdf"
+  },
+  "subject": {
+    "code": 3,
+    "name": "데이터베이스 구축"
+  },
+  "questions": [
+    {
+      "id": "2024-3-041",
+      "number": 41,
+      "subjectCode": 3,
+      "stem": "참조 무결성을 유지하기 위하여 DROP문에서 부모 테이블의 항목 값을 삭제할 경우 자동적으로 자식 테이블의 해당 레코드를 삭제하기 위한 옵션은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "CLUSTER"
+        },
+        {
+          "no": 2,
+          "text": "CASCADE"
+        },
+        {
+          "no": 3,
+          "text": "SET-NULL"
+        },
+        {
+          "no": 4,
+          "text": "RESTRICTED"
+        }
+      ],
+      "answer": 2,
+      "explanation": "CASCADE는 부모 테이블의 튜플을 삭제할 때 그 값을 참조하는 자식 테이블의 튜플까지 연쇄적으로 함께 삭제하여 참조 무결성을 유지하는 옵션입니다. RESTRICTED는 참조하는 튜플이 남아 있으면 삭제를 취소하고, SET-NULL은 자식 테이블의 외래키 값을 널로 바꾸는 방식이므로 자동 삭제와는 동작이 다릅니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CLUSTER는 동일한 값을 가진 튜플을 같은 물리적 블록에 모아 저장하는 저장 구조 기법으로 삭제 옵션과는 관계가 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "부모 테이블의 항목이 삭제될 때 이를 참조하는 자식 테이블의 레코드까지 연쇄 삭제하는 옵션이 CASCADE입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "SET-NULL은 부모 값이 삭제될 때 자식 테이블의 외래키 값을 널로 설정하는 옵션이므로 자동 삭제와 다릅니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "RESTRICTED는 참조하는 레코드가 남아 있으면 삭제를 오히려 취소하는 옵션이므로 자동 삭제와 반대입니다."
+        }
+      ],
+      "keyPoint": "DROP문의 참조 동작 옵션(CASCADE·RESTRICTED·SET-NULL)",
+      "tags": [
+        "참조 무결성",
+        "CASCADE",
+        "DROP"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-042",
+      "number": 42,
+      "subjectCode": 3,
+      "stem": "뷰(View)에 대한 설명으로 옳지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "뷰는 CREATE 문을 사용하여 정의한다."
+        },
+        {
+          "no": 2,
+          "text": "뷰는 데이터의 논리적 독립성을 제공한다."
+        },
+        {
+          "no": 3,
+          "text": "뷰를 제거할 때에는 DROP 문을 사용한다."
+        },
+        {
+          "no": 4,
+          "text": "뷰는 저장장치 내에 물리적으로 존재한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "뷰는 하나 이상의 기본 테이블로부터 유도되는 가상 테이블로, 실제 데이터 값을 저장하지 않고 정의만 시스템 카탈로그에 보관합니다. 따라서 저장장치 내에 물리적으로 존재한다는 설명은 틀렸으며, 뷰를 통해 사용자는 논리적 독립성과 보안성을 얻을 수 있습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "뷰는 CREATE VIEW 문으로 정의하고 CREATE OR REPLACE로 재정의하므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "뷰는 기본 테이블의 구조가 바뀌어도 사용자 관점의 응용을 그대로 유지하게 하여 논리적 독립성을 제공하므로 옳은 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "뷰는 DROP VIEW 문으로 제거하며 CASCADE 옵션을 주면 종속된 뷰까지 함께 삭제되므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "뷰는 실제 데이터를 저장하지 않는 가상 테이블이므로 저장장치 내에 물리적으로 존재하지 않습니다."
+        }
+      ],
+      "keyPoint": "뷰(View)는 데이터를 저장하지 않는 가상 테이블",
+      "tags": [
+        "뷰",
+        "CREATE VIEW",
+        "논리적 독립성"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-043",
+      "number": 43,
+      "subjectCode": 3,
+      "stem": "DML에 해당하는 SQL 명령으로만 나열된 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "DELETE, UPDATE, CREATE, ALTER"
+        },
+        {
+          "no": 2,
+          "text": "INSERT, DELETE, UPDATE, DROP"
+        },
+        {
+          "no": 3,
+          "text": "SELECT, INSERT, DELETE, UPDATE"
+        },
+        {
+          "no": 4,
+          "text": "SELECT, INSERT, DELETE, ALTER"
+        }
+      ],
+      "answer": 3,
+      "explanation": "DML(데이터 조작어)은 데이터베이스의 데이터를 검색·삽입·삭제·갱신하는 명령으로 SELECT, INSERT, DELETE, UPDATE가 이에 해당합니다. CREATE, ALTER, DROP은 데이터 정의어(DDL)이므로 DML만 나열된 보기는 ③번입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CREATE와 ALTER는 테이블 구조를 정의·변경하는 DDL이므로 DML만 나열된 것이 아닙니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "DROP은 테이블 자체를 제거하는 DDL이므로 DML만 나열된 것이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "SELECT, INSERT, DELETE, UPDATE는 모두 데이터를 조작하는 DML에 해당합니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "ALTER는 테이블 구조를 변경하는 DDL이므로 DML만 나열된 것이 아닙니다."
+        }
+      ],
+      "keyPoint": "DML(SELECT·INSERT·UPDATE·DELETE)과 DDL의 구분",
+      "tags": [
+        "DML",
+        "DDL",
+        "SQL"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-044",
+      "number": 44,
+      "subjectCode": 3,
+      "stem": "다음과 같이 위쪽 릴레이션을 아래쪽 릴레이션으로 정규화를 하였을 때 어떤 정규화 작업을 한 것인가?",
+      "passage": "국가 | 도시\n대한민국 | 서울, 부산\n미국 | 워싱턴, 뉴욕\n중국 | 베이징\n\n↓\n\n국가 | 도시\n대한민국 | 서울\n대한민국 | 부산\n미국 | 워싱턴\n미국 | 뉴욕\n중국 | 베이징",
+      "passageKind": "table",
+      "choices": [
+        {
+          "no": 1,
+          "text": "제1정규형"
+        },
+        {
+          "no": 2,
+          "text": "제2정규형"
+        },
+        {
+          "no": 3,
+          "text": "제3정규형"
+        },
+        {
+          "no": 4,
+          "text": "제4정규형"
+        }
+      ],
+      "answer": 1,
+      "explanation": "위쪽 릴레이션은 하나의 셀에 여러 도시 값이 콤마로 나열된 비원자값을 가지고 있고, 아래쪽 릴레이션은 이를 행 단위로 분리해 모든 속성이 원자값만 갖도록 하였습니다. 이렇게 반복 그룹을 제거하여 원자값으로 만드는 작업이 제1정규형(1NF)에 해당합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "다중값 속성을 행으로 분리해 모든 속성이 원자값을 갖도록 했으므로 제1정규형에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "제2정규형은 기본키의 일부에만 종속되는 부분 함수 종속을 제거하는 단계로, 여기서는 원자값 분리가 핵심입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "제3정규형은 이행 함수 종속을 제거하는 단계이며 이 예의 변환과는 관계가 없습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "제4정규형은 다치 종속을 제거하는 단계로 릴레이션을 둘로 분해하는 작업이므로 해당하지 않습니다."
+        }
+      ],
+      "keyPoint": "제1정규형(1NF) - 모든 속성의 원자값 보장",
+      "tags": [
+        "정규화",
+        "제1정규형",
+        "원자값"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 3
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-045",
+      "number": 45,
+      "subjectCode": 3,
+      "stem": "관계 데이터 모델의 무결성 제약 중 기본키 값의 속성 값이 널(Null) 값이 아닌 원자 값을 갖는 성질은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "개체 무결성"
+        },
+        {
+          "no": 2,
+          "text": "참조 무결성"
+        },
+        {
+          "no": 3,
+          "text": "도메인 무결성"
+        },
+        {
+          "no": 4,
+          "text": "튜플의 유일성"
+        }
+      ],
+      "answer": 1,
+      "explanation": "개체 무결성은 릴레이션의 기본키를 구성하는 속성이 널 값을 가질 수 없고 원자값만 가져야 한다는 제약입니다. 참조 무결성은 외래키 값이 참조 대상 릴레이션의 기본키 값과 일치하거나 널이어야 한다는 제약이고, 도메인 무결성은 속성 값이 정의된 도메인에 속해야 한다는 제약입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "기본키 값이 널이 아닌 원자값을 가져야 한다는 제약은 개체 무결성에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "참조 무결성은 외래키와 참조되는 기본키 사이의 관계를 보장하는 제약으로 기본키의 원자값 조건과는 다릅니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "도메인 무결성은 속성 값이 그 속성의 도메인에 포함되는지를 보장하는 제약입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "튜플의 유일성은 릴레이션에 동일한 튜플이 존재하지 않아야 한다는 성질로 무결성 제약의 이름이 아닙니다."
+        }
+      ],
+      "keyPoint": "개체 무결성 - 기본키는 널과 원자값 불가",
+      "tags": [
+        "무결성",
+        "개체 무결성",
+        "기본키"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-046",
+      "number": 46,
+      "subjectCode": 3,
+      "stem": "데이터 모델에 표시해야 할 요소로 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "논리적 데이터 구조"
+        },
+        {
+          "no": 2,
+          "text": "출력 구조"
+        },
+        {
+          "no": 3,
+          "text": "연산"
+        },
+        {
+          "no": 4,
+          "text": "제약 조건"
+        }
+      ],
+      "answer": 2,
+      "explanation": "데이터 모델은 데이터 구조(structure), 연산(operation), 제약 조건(constraint)의 세 가지 요소를 표시해야 합니다. 논리적 데이터 구조와 연산, 제약 조건은 이 세 요소에 해당하지만 출력 구조는 데이터 모델의 구성 요소가 아닙니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "논리적 데이터 구조는 데이터 모델의 3요소 중 구조에 해당합니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "출력 구조는 데이터 모델이 명세해야 하는 요소가 아니며 보고서 출력 형식과 관련된 개념입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "연산은 릴레이션을 조작하는 방법을 정의하는 데이터 모델의 3요소 중 하나입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "제약 조건은 데이터가 만족해야 할 규칙으로 데이터 모델의 3요소 중 하나입니다."
+        }
+      ],
+      "keyPoint": "데이터 모델의 3요소(구조·연산·제약조건)",
+      "tags": [
+        "데이터 모델",
+        "구조",
+        "연산"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-047",
+      "number": 47,
+      "subjectCode": 3,
+      "stem": "DBA가 사용자 PARK에게 테이블 [STUDENT]의 데이터를 갱신할 수 있는 시스템 권한을 부여하고자 하는 SQL문을 작성하고자 한다. 다음에 주어진 SQL문의 빈칸을 알맞게 채운 것은?",
+      "passage": "SQL>GRANT ㉠ ㉡ STUDENT TO PARK;",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "㉠ INSERT, ㉡ INTO"
+        },
+        {
+          "no": 2,
+          "text": "㉠ ALTER, ㉡ TO"
+        },
+        {
+          "no": 3,
+          "text": "㉠ UPDATE, ㉡ ON"
+        },
+        {
+          "no": 4,
+          "text": "㉠ REPLACE, ㉡ IN"
+        }
+      ],
+      "answer": 3,
+      "explanation": "데이터를 갱신할 수 있는 권한은 UPDATE이며, GRANT 문에서 테이블을 지정할 때는 ON을 사용해 GRANT UPDATE ON 테이블명 TO 사용자 형태로 작성합니다. INSERT는 삽입 권한이고 INTO는 INSERT 문에서 대상 테이블을 지정할 때 쓰는 키워드이므로 빈칸의 답이 될 수 없습니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "INSERT는 데이터 삽입 권한이고 INTO는 GRANT 문이 아니라 INSERT 문에서 사용하는 키워드입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "ALTER는 테이블 구조 변경 권한이며 갱신 권한이 아니고 TO는 사용자 지정에 쓰입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "갱신 권한은 UPDATE이고 테이블 지정에는 ON을 사용하므로 빈칸에 알맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "REPLACE는 MySQL의 삽입 명령이고 IN은 권한 부여 문법에서 테이블 지정에 쓰이지 않습니다."
+        }
+      ],
+      "keyPoint": "GRANT UPDATE ON 테이블 TO 사용자",
+      "tags": [
+        "GRANT",
+        "권한 부여",
+        "UPDATE"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-048",
+      "number": 48,
+      "subjectCode": 3,
+      "stem": "데이터베이스에 영향을 주는 생성, 읽기, 갱신, 삭제 연산으로 프로세스와 테이블 간에 매트릭스를 만들어서 트랜잭션을 분석하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "CASE 분석"
+        },
+        {
+          "no": 2,
+          "text": "일치 분석"
+        },
+        {
+          "no": 3,
+          "text": "CRUD 분석"
+        },
+        {
+          "no": 4,
+          "text": "연관성 분석"
+        }
+      ],
+      "answer": 3,
+      "explanation": "CRUD 분석은 생성(Create), 읽기(Read), 갱신(Update), 삭제(Delete) 연산을 기준으로 프로세스와 테이블 간의 매트릭스를 만들어 트랜잭션의 양과 데이터 발생을 분석하는 기법입니다. 이를 통해 트랜잭션이 집중되는 테이블을 파악해 데이터베이스 성능과 분산 설계에 활용합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CASE 분석은 소프트웨어 개발 도구를 이용한 자동화 분석으로 데이터베이스 트랜잭션 매트릭스와는 다릅니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "일치 분석은 두 개 이상의 데이터 간 일치 여부를 비교하는 분석 기법으로 CRUD 매트릭스와 관계가 없습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "생성·읽기·갱신·삭제 연산으로 프로세스와 테이블 간 매트릭스를 만드는 것은 CRUD 분석입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "연관성 분석은 항목 간의 연관 규칙을 찾는 데이터 마이닝 기법입니다."
+        }
+      ],
+      "keyPoint": "CRUD 매트릭스를 이용한 트랜잭션 분석",
+      "tags": [
+        "CRUD 분석",
+        "매트릭스",
+        "트랜잭션"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-049",
+      "number": 49,
+      "subjectCode": 3,
+      "stem": "다음에서 설명하는 스키마(Schema)는?",
+      "passage": "데이터베이스 전체를 정의한 것으로 데이터 개체, 관계, 제약조건, 접근 권한, 무결성 규칙 등을 명세한 것",
+      "passageKind": "text",
+      "choices": [
+        {
+          "no": 1,
+          "text": "개념 스키마"
+        },
+        {
+          "no": 2,
+          "text": "내부 스키마"
+        },
+        {
+          "no": 3,
+          "text": "외부 스키마"
+        },
+        {
+          "no": 4,
+          "text": "내용 스키마"
+        }
+      ],
+      "answer": 1,
+      "explanation": "개념 스키마는 데이터베이스 전체를 정의한 것으로 데이터 개체, 관계, 제약조건, 접근 권한, 무결성 규칙 등을 명세한 스키마입니다. 외부 스키마는 사용자나 응용 프로그래머 관점의 스키마이고, 내부 스키마는 물리적 저장 장치 관점의 스키마입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "데이터베이스 전체를 정의하고 개체·관계·제약조건·접근 권한·무결성 규칙을 명세하는 것은 개념 스키마입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "내부 스키마는 저장 레코드 형식이나 인덱스 등 물리적 저장 구조를 정의하는 스키마입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "외부 스키마는 각 사용자나 응용 프로그램이 보는 부분적인 논리 구조를 정의하는 스키마입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "내용 스키마라는 스키마는 존재하지 않습니다."
+        }
+      ],
+      "keyPoint": "3단계 스키마 구조(개념·외부·내부 스키마)",
+      "tags": [
+        "스키마",
+        "개념 스키마",
+        "데이터베이스 구조"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-050",
+      "number": 50,
+      "subjectCode": 3,
+      "stem": "조건을 만족하는 릴레이션의 수평적 부분집합으로 구성하며, 연산자의 기호는 그리스 문자 시그마(σ)를 사용하는 관계대수 연산은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "Select"
+        },
+        {
+          "no": 2,
+          "text": "Project"
+        },
+        {
+          "no": 3,
+          "text": "Join"
+        },
+        {
+          "no": 4,
+          "text": "Division"
+        }
+      ],
+      "answer": 1,
+      "explanation": "Select(σ)는 주어진 조건을 만족하는 튜플만을 추출하여 수평적 부분집합을 만드는 관계대수 연산입니다. Project(π)는 필요한 속성만 추출하는 수직적 부분집합 연산이고, Join은 두 릴레이션을 연결하며 Division은 나누기 연산을 수행합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "조건을 만족하는 튜플을 추출해 수평적 부분집합을 구성하고 기호 σ를 사용하는 연산은 Select입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "Project는 속성을 추출하는 수직적 부분집합 연산으로 기호 π를 사용합니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "Join은 공통 속성을 기준으로 두 릴레이션의 튜플을 연결하는 연산입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "Division은 릴레이션을 나누어 조건을 만족하는 튜플을 구하는 연산으로 σ와 관계가 없습니다."
+        }
+      ],
+      "keyPoint": "관계대수 Select(σ) - 수평적 부분집합 연산",
+      "tags": [
+        "관계대수",
+        "Select",
+        "시그마"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-051",
+      "number": 51,
+      "subjectCode": 3,
+      "stem": "데이터베이스 설계 단계 중 저장 레코드 양식 설계, 레코드 집중의 분석 및 설계, 접근 경로 설계와 관계되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "논리적 설계"
+        },
+        {
+          "no": 2,
+          "text": "요구 조건 분석"
+        },
+        {
+          "no": 3,
+          "text": "개념적 설계"
+        },
+        {
+          "no": 4,
+          "text": "물리적 설계"
+        }
+      ],
+      "answer": 4,
+      "explanation": "물리적 설계 단계는 논리적 설계에서 만들어진 논리적 구조를 실제 저장 장치에 구현하는 단계로, 저장 레코드 양식 설계, 레코드 집중의 분석 및 설계, 접근 경로 설계, 인덱스 설계 등을 수행합니다. 즉 데이터가 디스크에 어떻게 저장되고 접근될지를 결정하는 단계입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "논리적 설계는 개념적 구조를 특정 DBMS에 맞는 논리적 스키마로 변환하고 정규화를 수행하는 단계입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "요구 조건 분석은 사용자 요구와 데이터 흐름을 파악해 설계 목표를 세우는 단계입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "개념적 설계는 현실 세계를 추상화해 개체·관계 모델로 표현하는 단계입니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "저장 레코드 양식, 레코드 집중 분석, 접근 경로 설계는 물리적 설계 단계의 작업입니다."
+        }
+      ],
+      "keyPoint": "물리적 설계 단계의 주요 작업(저장 레코드·접근 경로)",
+      "tags": [
+        "물리적 설계",
+        "저장 레코드",
+        "접근 경로"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-052",
+      "number": 52,
+      "subjectCode": 3,
+      "stem": "관계형 데이터 모델의 릴레이션에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "모든 속성 값은 원자 값을 갖는다."
+        },
+        {
+          "no": 2,
+          "text": "한 릴레이션에 포함된 튜플은 모두 상이하다."
+        },
+        {
+          "no": 3,
+          "text": "한 릴레이션에 포함된 튜플 사이에는 순서가 없다."
+        },
+        {
+          "no": 4,
+          "text": "한 릴레이션을 구성하는 속성 사이에는 순서가 존재한다."
+        }
+      ],
+      "answer": 4,
+      "explanation": "릴레이션은 수학의 집합을 기반으로 하므로 튜플 사이에는 물론 속성 사이에도 순서가 존재하지 않습니다. 따라서 속성 사이에 순서가 존재한다는 설명은 틀렸으며, 모든 속성 값이 원자값을 갖는다는 것과 튜플이 모두 상이하다는 것은 릴레이션의 올바른 특성입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "릴레이션의 모든 속성 값은 더 이상 분해되지 않는 원자값이어야 하므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "릴레이션은 튜플의 집합이므로 동일한 튜플이 중복되어 존재할 수 없으므로 옳은 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "집합에는 순서 개념이 없으므로 튜플 사이에 순서가 없다는 설명은 옳습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "릴레이션에서 속성 사이에도 순서가 없으므로 순서가 존재한다는 설명은 틀렸습니다."
+        }
+      ],
+      "keyPoint": "릴레이션은 속성과 튜플 모두 순서가 없음",
+      "tags": [
+        "릴레이션",
+        "속성",
+        "튜플"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-053",
+      "number": 53,
+      "subjectCode": 3,
+      "stem": "트랜잭션의 실행이 실패하였음을 알리는 연산자로, 트랜잭션이 수행한 결과를 원래의 상태로 원상 복귀시키는 연산은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "COMMIT 연산"
+        },
+        {
+          "no": 2,
+          "text": "BACKUP 연산"
+        },
+        {
+          "no": 3,
+          "text": "LOG 연산"
+        },
+        {
+          "no": 4,
+          "text": "ROLLBACK 연산"
+        }
+      ],
+      "answer": 4,
+      "explanation": "ROLLBACK은 트랜잭션 수행 중 실패가 발생했음을 알리고 그 트랜잭션이 지금까지 수행한 변경 내용을 취소하여 데이터베이스를 트랜잭션 시작 이전의 상태로 되돌리는 연산입니다. 반대로 COMMIT은 트랜잭션이 성공적으로 끝났음을 알리고 변경 내용을 데이터베이스에 영구히 반영합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "COMMIT은 트랜잭션이 정상 종료되었음을 알리고 변경 결과를 영구 반영하는 연산입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "BACKUP은 데이터베이스나 로그를 별도 매체에 복사해 두는 작업으로 트랜잭션 제어 연산이 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "LOG 연산은 변경 내용을 기록해 회복에 사용하는 과정으로 원상 복귀 자체를 수행하지는 않습니다."
+        },
+        {
+          "no": 4,
+          "correct": true,
+          "why": "실패를 알리고 변경 내용을 취소해 원래 상태로 복귀시키는 연산은 ROLLBACK입니다."
+        }
+      ],
+      "keyPoint": "ROLLBACK(원상 복귀)과 COMMIT(영구 반영)",
+      "tags": [
+        "트랜잭션",
+        "ROLLBACK",
+        "COMMIT"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-054",
+      "number": 54,
+      "subjectCode": 3,
+      "stem": "릴레이션 R의 차수가 4이고 카디널리티가 5이며, 릴레이션 S의 차수가 6이고 카디널리티가 7일 때, 두 개의 릴레이션을 카티션 프로덕트한 결과의 새로운 릴레이션의 차수와 카디널리티는 얼마인가?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "24, 35"
+        },
+        {
+          "no": 2,
+          "text": "24, 12"
+        },
+        {
+          "no": 3,
+          "text": "10, 35"
+        },
+        {
+          "no": 4,
+          "text": "10, 12"
+        }
+      ],
+      "answer": 3,
+      "explanation": "카티션 프로덕트(교차곱)는 두 릴레이션의 튜플을 모든 경우의 수로 조합하는 연산입니다. 결과 릴레이션의 차수는 두 릴레이션의 차수를 더한 값인 4+6=10이 되고, 카디널리티는 두 카디널리티를 곱한 값인 5×7=35가 됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "차수를 곱한 24는 카티션 프로덕트의 차수가 아니며 카디널리티도 35로만 맞지 않습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "차수와 카디널리티를 모두 곱한 값으로 카티션 프로덕트의 결과가 아닙니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "차수는 두 릴레이션 차수의 합 10, 카디널리티는 곱 35이므로 알맞습니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "카디널리티 12는 합이나 곱이 아닌 값이므로 카티션 프로덕트의 결과가 아닙니다."
+        }
+      ],
+      "keyPoint": "카티션 프로덕트 결과의 차수(합)와 카디널리티(곱)",
+      "tags": [
+        "카티션 프로덕트",
+        "차수",
+        "카디널리티"
+      ],
+      "difficulty": 3,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-055",
+      "number": 55,
+      "subjectCode": 3,
+      "stem": "정규화에 대한 설명으로 적절하지 않은 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "데이터베이스의 개념적 설계 단계 이전에 수행한다."
+        },
+        {
+          "no": 2,
+          "text": "데이터 구조의 안정성을 최대화한다."
+        },
+        {
+          "no": 3,
+          "text": "중복을 배제하여 삽입, 삭제, 갱신 이상의 발생을 방지한다."
+        },
+        {
+          "no": 4,
+          "text": "데이터 삽입 시 릴레이션을 재구성할 필요성을 줄인다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "정규화는 개념적 설계에서 만든 개체·관계 모델을 특정 DBMS의 논리적 스키마로 변환하는 논리적 설계 단계에서 수행합니다. 즉 개념적 설계 이전이 아니라 이후에 수행되므로 첫 번째 설명이 적절하지 않으며, 나머지는 정규화의 목적과 효과를 바르게 설명한 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "정규화는 논리적 설계 단계에서 수행하므로 개념적 설계 이전에 수행한다는 설명은 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "정규화는 데이터 구조의 안정성을 최대화하는 효과가 있으므로 옳은 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "중복을 배제해 삽입·삭제·갱신 이상을 방지하는 것은 정규화의 대표적인 목적입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "정규화를 하면 데이터 삽입 시 릴레이션을 재구성할 필요성이 줄어들므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "정규화는 논리적 설계 단계에서 수행",
+      "tags": [
+        "정규화",
+        "논리적 설계",
+        "이상 현상"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-056",
+      "number": 56,
+      "subjectCode": 3,
+      "stem": "데이터베이스에서 하나의 논리적 기능을 수행하기 위한 작업의 단위 또는 한꺼번에 모두 수행되어야 할 일련의 연산들을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "트랜잭션"
+        },
+        {
+          "no": 2,
+          "text": "뷰"
+        },
+        {
+          "no": 3,
+          "text": "튜플"
+        },
+        {
+          "no": 4,
+          "text": "카디널리티"
+        }
+      ],
+      "answer": 1,
+      "explanation": "트랜잭션은 데이터베이스에서 하나의 논리적 기능을 수행하기 위한 작업의 단위이며, 한꺼번에 모두 수행되어야 할 일련의 연산들의 집합입니다. 트랜잭션은 원자성, 일관성, 격리성, 영속성의 ACID 특성을 만족해야 합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "하나의 논리적 기능을 수행하는 작업 단위이자 일련의 연산 집합은 트랜잭션입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "뷰는 기본 테이블로부터 유도된 가상 테이블로 작업 단위와는 다른 개념입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "튜플은 릴레이션의 행을 의미하는 데이터 단위입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "카디널리티는 릴레이션에 포함된 튜플의 수를 의미합니다."
+        }
+      ],
+      "keyPoint": "트랜잭션 - 논리적 기능 수행의 작업 단위",
+      "tags": [
+        "트랜잭션",
+        "작업 단위",
+        "ACID"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-057",
+      "number": 57,
+      "subjectCode": 3,
+      "stem": "테이블 두 개를 조인하여 뷰 V_1을 정의하고, V_1을 이용하여 뷰 V_2를 정의하였다. 다음 명령 수행 후 결과로 옳은 것은?",
+      "passage": "DROP VIEW V_1 CASCADE;",
+      "passageKind": "code",
+      "choices": [
+        {
+          "no": 1,
+          "text": "V_1만 삭제된다."
+        },
+        {
+          "no": 2,
+          "text": "V_2만 삭제된다."
+        },
+        {
+          "no": 3,
+          "text": "V_1과 V_2 모두 삭제된다."
+        },
+        {
+          "no": 4,
+          "text": "V_1과 V_2 모두 삭제되지 않는다."
+        }
+      ],
+      "answer": 3,
+      "explanation": "CASCADE 옵션은 삭제할 뷰를 참조하여 정의된 종속 뷰까지 함께 삭제하도록 하는 옵션입니다. V_2는 V_1을 이용해 정의된 종속 뷰이므로 V_1과 V_2가 모두 삭제되며, 만약 RESTRICTED를 사용했다면 다른 뷰가 참조하고 있을 때 삭제가 취소됩니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "CASCADE를 지정하면 V_1을 참조하는 종속 뷰도 함께 삭제되므로 V_1만 삭제된다는 설명은 틀렸습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "V_1이 삭제되지 않고 V_2만 삭제되는 경우는 없습니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "V_2는 V_1에 종속된 뷰이므로 CASCADE 옵션에 의해 V_1과 V_2 모두 삭제됩니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "CASCADE 옵션을 사용했으므로 삭제가 취소되지 않습니다."
+        }
+      ],
+      "keyPoint": "DROP VIEW ... CASCADE의 종속 뷰 연쇄 삭제",
+      "tags": [
+        "뷰",
+        "DROP VIEW",
+        "CASCADE"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-058",
+      "number": 58,
+      "subjectCode": 3,
+      "stem": "SQL과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "REVOKE 키워드를 사용하여 열 이름을 다시 부여할 수 있다."
+        },
+        {
+          "no": 2,
+          "text": "데이터 정의어는 기본 테이블, 뷰, 테이블 또는 인덱스 등을 생성, 변경, 제거하는데 사용되는 명령어이다."
+        },
+        {
+          "no": 3,
+          "text": "DISTINCT를 활용하여 중복 값을 제거할 수 있다."
+        },
+        {
+          "no": 4,
+          "text": "JOIN을 통해 여러 테이블의 레코드를 조합하여 표현할 수 있다."
+        }
+      ],
+      "answer": 1,
+      "explanation": "REVOKE는 사용자에게 부여한 권한을 회수하는 명령이며, 열 이름을 다시 부여할 때는 ALTER TABLE 문의 RENAME COLUMN 절을 사용합니다. 나머지 설명은 데이터 정의어의 역할, DISTINCT의 중복 제거, JOIN의 레코드 조합 기능을 바르게 서술한 것입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": true,
+          "why": "열 이름을 다시 부여하는 명령은 ALTER TABLE ... RENAME COLUMN이고 REVOKE는 권한 회수 명령이므로 틀린 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "데이터 정의어는 테이블·뷰·인덱스 등을 생성, 변경, 제거하는 명령이라는 설명은 옳습니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "SELECT 문에서 DISTINCT를 사용하면 중복된 값을 제거한 결과를 얻을 수 있으므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "JOIN을 사용하면 두 개 이상의 테이블 레코드를 조합하여 하나의 결과로 표현할 수 있으므로 옳은 설명입니다."
+        }
+      ],
+      "keyPoint": "REVOKE는 권한 회수, 열 이름 변경은 RENAME COLUMN",
+      "tags": [
+        "REVOKE",
+        "DDL",
+        "DISTINCT"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-059",
+      "number": 59,
+      "subjectCode": 3,
+      "stem": "다른 릴레이션의 기본키를 참조하는 키를 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "필드키"
+        },
+        {
+          "no": 2,
+          "text": "슈퍼키"
+        },
+        {
+          "no": 3,
+          "text": "외래키"
+        },
+        {
+          "no": 4,
+          "text": "후보키"
+        }
+      ],
+      "answer": 3,
+      "explanation": "외래키(Foreign Key)는 다른 릴레이션의 기본키를 참조하는 속성으로, 참조하는 쪽과 참조되는 쪽의 값이 일치하도록 하여 릴레이션 간의 관계를 표현하고 참조 무결성을 보장합니다. 슈퍼키와 후보키는 하나의 릴레이션 안에서 튜플을 유일하게 식별하기 위한 키입니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "필드키는 릴레이션의 각 속성을 가리키는 일반적인 용어로 다른 릴레이션의 기본키를 참조한다는 의미는 없습니다."
+        },
+        {
+          "no": 2,
+          "correct": false,
+          "why": "슈퍼키는 한 릴레이션에서 튜플을 유일하게 식별할 수 있는 속성들의 집합입니다."
+        },
+        {
+          "no": 3,
+          "correct": true,
+          "why": "다른 릴레이션의 기본키를 참조하는 속성은 외래키입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "후보키는 기본키로 사용할 수 있는 최소한의 속성 집합입니다."
+        }
+      ],
+      "keyPoint": "외래키(Foreign Key) - 다른 릴레이션의 기본키 참조",
+      "tags": [
+        "외래키",
+        "기본키",
+        "참조 무결성"
+      ],
+      "difficulty": 1,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    },
+    {
+      "id": "2024-3-060",
+      "number": 60,
+      "subjectCode": 3,
+      "stem": "데이터 사전에 대한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        {
+          "no": 1,
+          "text": "시스템 카탈로그 또는 시스템 데이터베이스라고도 한다."
+        },
+        {
+          "no": 2,
+          "text": "데이터 사전 역시 데이터베이스의 일종이므로 일반 사용자가 생성, 유지 및 수정할 수 있다."
+        },
+        {
+          "no": 3,
+          "text": "데이터베이스에 대한 데이터인 메타데이터(Metadata)를 저장하고 있다."
+        },
+        {
+          "no": 4,
+          "text": "데이터 사전에 있는 데이터에 실제로 접근하는 데 필요한 위치 정보는 데이터 디렉토리(Data Directory)라는 곳에서 관리한다."
+        }
+      ],
+      "answer": 2,
+      "explanation": "데이터 사전은 데이터베이스에 대한 정보인 메타데이터를 저장하는 시스템 카탈로그로, 생성·유지·수정은 시스템만 수행할 수 있고 일반 사용자는 조회만 가능합니다. 따라서 일반 사용자가 생성, 유지 및 수정할 수 있다는 설명이 틀렸으며, 데이터 사전에는 실제 데이터의 위치 정보가 담기지 않아 그 부분은 데이터 디렉토리에서 관리합니다.",
+      "choicesAnalysis": [
+        {
+          "no": 1,
+          "correct": false,
+          "why": "데이터 사전은 시스템 카탈로그 또는 시스템 데이터베이스라고도 하므로 옳은 설명입니다."
+        },
+        {
+          "no": 2,
+          "correct": true,
+          "why": "데이터 사전은 시스템이 관리하며 일반 사용자는 조회만 가능하므로 틀린 설명입니다."
+        },
+        {
+          "no": 3,
+          "correct": false,
+          "why": "데이터 사전에는 데이터베이스에 대한 데이터인 메타데이터가 저장되므로 옳은 설명입니다."
+        },
+        {
+          "no": 4,
+          "correct": false,
+          "why": "실제 데이터의 위치 정보는 데이터 디렉토리에서 관리한다는 설명은 옳습니다."
+        }
+      ],
+      "keyPoint": "데이터 사전(시스템 카탈로그)은 시스템만 수정하는 읽기 전용 정보",
+      "tags": [
+        "데이터 사전",
+        "시스템 카탈로그",
+        "메타데이터"
+      ],
+      "difficulty": 2,
+      "figure": {
+        "needed": false,
+        "kind": null,
+        "image": null,
+        "alt": null,
+        "page": null,
+        "col": null,
+        "box": null
+      },
+      "source": {
+        "pdf": "3. 2024년3회_정보처리기사필기기출문제.pdf",
+        "page": 4
+      },
+      "provenance": {
+        "answer": "pdf",
+        "explanation": "generated"
+      }
+    }
+  ]
+}

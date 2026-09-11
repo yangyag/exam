@@ -1,0 +1,575 @@
+{
+  "exam": {
+    "id": "2026-1",
+    "year": 2026,
+    "round": 1,
+    "title": "2026년 1회 정보처리기사 필기",
+    "sourcePdf": "2026년1회_기사필기_기출문제.pdf"
+  },
+  "subject": {
+    "code": 5,
+    "name": "정보시스템 구축 관리"
+  },
+  "questions": [
+    {
+      "id": "2026-1-081",
+      "number": 81,
+      "subjectCode": 5,
+      "stem": "취약점 관리를 위한 응용 프로그램의 보안 설정과 가장 거리가 먼 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "서버 관리실 출입 통제" },
+        { "no": 2, "text": "실행 프로세스 권한 설정" },
+        { "no": 3, "text": "운영체제의 접근 제한" },
+        { "no": 4, "text": "운영체제의 정보 수집 제한" }
+      ],
+      "answer": 1,
+      "explanation": "취약점 관리는 응용 프로그램과 운영체제 수준에서 접근 권한을 제한하고 불필요한 정보 노출을 막는 보안 설정을 점검하는 활동입니다. 실행 프로세스 권한 설정, 운영체제의 접근 제한, 운영체제의 정보 수집 제한은 모두 시스템 내부에서 이루어지는 논리적 보안 설정에 해당합니다. 반면 서버 관리실 출입 통제는 사람의 출입을 막는 물리적 보안 대책이므로 응용 프로그램 보안 설정과는 거리가 멉니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "출입 통제는 물리적 보안에 해당하므로 응용 프로그램의 보안 설정과 가장 거리가 먼 항목입니다." },
+        { "no": 2, "correct": false, "why": "실행 프로세스 권한 설정은 불필요한 권한을 줄이는 대표적인 보안 설정입니다." },
+        { "no": 3, "correct": false, "why": "운영체제의 접근 제한은 계정과 자원에 대한 접근을 통제하는 보안 설정입니다." },
+        { "no": 4, "correct": false, "why": "정보 수집 제한도 불필요한 정보 노출을 막는 시스템 보안 설정에 해당합니다." }
+      ],
+      "keyPoint": "응용 프로그램 보안 설정과 물리적 보안의 구분",
+      "tags": ["취약점 관리", "보안 설정"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-082",
+      "number": 82,
+      "subjectCode": 5,
+      "stem": "취약점 관리를 위해 일반적으로 수행하는 작업이 아닌 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "무결성 검사" },
+        { "no": 2, "text": "응용 프로그램의 보안 설정 및 패치 (Patch) 적용" },
+        { "no": 3, "text": "중단 프로세스 및 닫힌 포트 위주로 확인" },
+        { "no": 4, "text": "불필요한 서비스 및 악성 프로그램의 확인과 제거" }
+      ],
+      "answer": 3,
+      "explanation": "취약점 관리는 현재 동작 중인 시스템에서 위험 요소를 찾아 제거하는 작업으로, 불필요하게 열려 있는 포트와 실행 중인 서비스·프로세스를 점검하는 것이 핵심입니다. 여기에 더해 무결성 검사와 보안 설정 및 패치 적용도 함께 수행합니다. 중단된 프로세스와 닫힌 포트는 이미 사용되지 않는 상태이므로 집중적으로 확인할 대상이 아닙니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "무결성 검사는 파일과 시스템이 변조되지 않았는지 확인하는 취약점 관리 작업입니다." },
+        { "no": 2, "correct": false, "why": "보안 설정과 패치 적용은 알려진 취약점을 제거하는 대표적인 관리 작업입니다." },
+        { "no": 3, "correct": true, "why": "중단된 프로세스와 닫힌 포트는 이미 비활성 상태이므로 위주로 확인할 대상이 아닙니다." },
+        { "no": 4, "correct": false, "why": "불필요한 서비스와 악성 프로그램을 확인해 제거하는 것은 취약점 관리의 핵심 작업입니다." }
+      ],
+      "keyPoint": "취약점 관리의 점검 대상(불필요한 서비스와 열린 포트)",
+      "tags": ["취약점 관리", "패치"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-083",
+      "number": 83,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 프레임워크와 관련한 설명으로 틀린 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "반제품 상태의 제품을 토대로 도메인별로 필요한 서비스 컴포넌트를 사용하여 재사용성 확대와 성능을 보장 받을 수 있게 하는 개발 소프트웨어이다." },
+        { "no": 2, "text": "개발해야 할 애플리케이션의 일부분이 이미 구현되어 있어 동일한 로직 반복을 줄일 수 있다." },
+        { "no": 3, "text": "라이브러리와 달리 사용자 코드가 직접 호출하여 사용하기 때문에 소프트웨어 개발 프레임워크가 직접 코드의 흐름을 제어할 수 없다." },
+        { "no": 4, "text": "생산성 향상과 유지보수성 향상 등의 장점이 있다." }
+      ],
+      "answer": 3,
+      "explanation": "프레임워크는 제어의 역전(IoC) 원리에 따라 프레임워크가 전체 실행 흐름을 주도하고 사용자 코드를 적절한 시점에 호출합니다. 반대로 라이브러리는 사용자 코드가 필요할 때 직접 호출해서 쓰는 부품에 가까우므로, 보기 3번은 두 개념의 관계를 정반대로 설명한 틀린 내용입니다. 나머지 보기는 재사용성 확대와 생산성·유지보수성 향상이라는 프레임워크의 목적과 특징을 올바르게 서술했습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "반제품을 토대로 서비스 컴포넌트를 재사용해 성능과 재사용성을 높인다는 설명은 프레임워크의 특징이 맞습니다." },
+        { "no": 2, "correct": false, "why": "이미 구현된 부분을 활용해 동일한 로직의 반복 개발을 줄인다는 설명도 올바릅니다." },
+        { "no": 3, "correct": true, "why": "프레임워크가 코드의 흐름을 제어하고 사용자 코드를 호출하므로 설명이 반대입니다." },
+        { "no": 4, "correct": false, "why": "생산성과 유지보수성 향상은 프레임워크 도입의 대표적인 장점입니다." }
+      ],
+      "keyPoint": "프레임워크(제어의 역전)와 라이브러리의 차이",
+      "tags": ["소프트웨어 프레임워크", "라이브러리"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-084",
+      "number": 84,
+      "subjectCode": 5,
+      "stem": "다음 내용이 설명하는 접근 제어 모델은 ?",
+      "passage": "ㆍ군대의 보안 레벨처럼 정보의 기밀성에 따라 상하 관계가 구분된 정보를 보호하기 위해 사용한다.\nㆍ자신의 권한보다 낮은 보안 레벨 권한을 가진 경우에는 높은 보안 레벨의 문서를 읽을 수 없고 자신의 권한보다 낮은 수준의 문서만 읽을 수 있다.\nㆍ자신의 권한보다 높은 보안 레벨의 문서에는 쓰기가 가능하지만 보안 레벨이 낮은 문서의 쓰기 권한은 제한한다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "Clark-Wilson Integrity Model" },
+        { "no": 2, "text": "PDCA Model" },
+        { "no": 3, "text": "Bell-Lapadula Model" },
+        { "no": 4, "text": "Chinese Wall Mode" }
+      ],
+      "answer": 3,
+      "explanation": "Bell-Lapadula 모델은 군대의 보안 등급처럼 정보를 기밀성 수준에 따라 상하로 나누고, '낮은 등급은 높은 등급을 읽을 수 없고(no read up), 높은 등급은 낮은 등급에 쓸 수 없다(no write down)'는 규칙을 적용하는 기밀성 중심 접근 제어 모델입니다. 지문의 읽기·쓰기 제한 규칙이 이 두 규칙과 정확히 일치합니다. Clark-Wilson은 데이터 무결성, Chinese Wall은 이해 충돌 방지에 초점을 둔 모델입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Clark-Wilson Integrity Model은 기밀성 등급이 아니라 데이터 무결성 보장을 목표로 하는 모델입니다." },
+        { "no": 2, "correct": false, "why": "PDCA Model은 계획-실행-점검-개선의 관리 사이클로 접근 제어 모델이 아닙니다." },
+        { "no": 3, "correct": true, "why": "보안 레벨에 따른 읽기·쓰기 제한 규칙은 Bell-Lapadula 모델의 특징입니다." },
+        { "no": 4, "correct": false, "why": "Chinese Wall Mode는 이해 충돌이 있는 정보 간 접근을 차단하는 상업적 보안 모델입니다." }
+      ],
+      "keyPoint": "Bell-Lapadula 접근 제어 모델의 기밀성 규칙",
+      "tags": ["접근 제어", "Bell-Lapadula"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-085",
+      "number": 85,
+      "subjectCode": 5,
+      "stem": "정보보호를 위한 암호화에 대한 설명으로 틀린 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "평문 - 암호화되기 전의 원본 메시지" },
+        { "no": 2, "text": "암호문 - 암호화가 적용된 메시지" },
+        { "no": 3, "text": "복호화 - 평문을 암호문으로 바꾸는 작업" },
+        { "no": 4, "text": "키 (Key) - 적절한 암호화를 위하여 사용하는 값" }
+      ],
+      "answer": 3,
+      "explanation": "암호화는 평문을 키를 이용해 제3자가 읽을 수 없는 암호문으로 바꾸는 작업이고, 복호화는 그 반대로 암호문을 평문으로 되돌리는 작업입니다. 따라서 보기 3번은 복호화가 아니라 암호화에 대한 설명이므로 틀렸습니다. 평문, 암호문, 키에 대한 나머지 설명은 모두 올바릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "평문은 암호화되기 전의 원본 메시지를 뜻하므로 올바른 설명입니다." },
+        { "no": 2, "correct": false, "why": "암호문은 암호화가 적용된 메시지를 뜻하므로 올바른 설명입니다." },
+        { "no": 3, "correct": true, "why": "평문을 암호문으로 바꾸는 작업은 복호화가 아니라 암호화입니다." },
+        { "no": 4, "correct": false, "why": "키는 암호화와 복호화에 사용하는 값으로 올바른 설명입니다." }
+      ],
+      "keyPoint": "암호화와 복호화의 개념 구분",
+      "tags": ["암호화", "복호화"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 6 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-086",
+      "number": 86,
+      "subjectCode": 5,
+      "stem": "소프트웨어 프로젝트 관리를 효율적으로 수행하기 위한 3P 중 소프트웨어 프로젝트를 수행하기 위한 Task Framework 의 고려와 가장 연관되는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "People" },
+        { "no": 2, "text": "Problem" },
+        { "no": 3, "text": "Product" },
+        { "no": 4, "text": "Process" }
+      ],
+      "answer": 4,
+      "explanation": "소프트웨어 프로젝트 관리의 3P는 People(인력), Problem(문제), Process(과정)를 뜻하며, 이 중 Task Framework는 업무를 어떤 절차와 순서로 수행할 것인지를 규정하는 틀입니다. 따라서 프로젝트 수행 과정(Process)과 가장 밀접하게 연관됩니다. People은 인력 구성과 관리, Problem은 해결해야 할 문제의 범위와 요구사항을 다룹니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "People은 프로젝트에 참여하는 인력과 조직 관리에 관한 요소입니다." },
+        { "no": 2, "correct": false, "why": "Problem은 해결할 문제의 정의와 요구사항 분석에 관한 요소입니다." },
+        { "no": 3, "correct": false, "why": "Product는 산출물 자체를 의미하며 3P의 구성 요소가 아닙니다." },
+        { "no": 4, "correct": true, "why": "Task Framework는 업무 수행 절차를 다루므로 Process와 가장 연관됩니다." }
+      ],
+      "keyPoint": "소프트웨어 프로젝트 관리의 3P(People, Problem, Process)",
+      "tags": ["프로젝트 관리", "3P"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-087",
+      "number": 87,
+      "subjectCode": 5,
+      "stem": "DoS(Denial of Service) 공격과 관련한 내용으로 틀린 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Ping of Death 공격은 정상 크기보다 큰 ICMP 패킷을 작은 조각 (Fragment) 으로 쪼개어 공격 대상이 조각화된 패킷을 처리하게 만드는 공격 방법이다." },
+        { "no": 2, "text": "Smurf 공격은 멀티캐스트 (Multicast) 를 활용하여 공격 대상이 네트워크의 임의의 시스템에 패킷을 보내게 만드는 공격이다." },
+        { "no": 3, "text": "SYN Flooding 은 존재하지 않는 클라이언트가 서버별로 한정된 접속 가능 공간에 접속한 것처럼 속여 다른 사용자가 서비스를 이용하지 못하게 하는 것이다." },
+        { "no": 4, "text": "Land 공격은 패킷 전송 시 출발지 IP 주소와 목적지 IP 주소 값을 똑같이 만들어서 공격 대상에게 보내는 공격 방법이다." }
+      ],
+      "answer": 2,
+      "explanation": "Smurf 공격은 ICMP 에코 요청의 출발지 IP 주소를 공격 대상의 주소로 위조한 뒤 다수의 호스트가 연결된 브로드캐스트 주소로 보내, 수많은 호스트의 응답이 공격 대상에게 한꺼번에 몰리게 만드는 공격입니다. 즉 멀티캐스트가 아니라 브로드캐스트를 악용하므로 보기 2번이 틀린 설명입니다. Ping of Death, SYN Flooding, Land에 대한 나머지 설명은 모두 올바릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Ping of Death는 큰 ICMP 패킷을 조각내어 대상이 재조립하느라 자원을 소모하게 하는 공격으로 설명이 맞습니다." },
+        { "no": 2, "correct": true, "why": "Smurf 공격은 멀티캐스트가 아니라 브로드캐스트를 악용하므로 설명이 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "SYN Flooding은 가상의 클라이언트가 접속한 것처럼 속여 접속 대기 공간을 고갈시키는 공격으로 설명이 맞습니다." },
+        { "no": 4, "correct": false, "why": "Land 공격은 출발지와 목적지 IP 주소를 동일하게 위조해 보내는 공격으로 설명이 맞습니다." }
+      ],
+      "keyPoint": "DoS 공격 유형별 특징(특히 Smurf의 브로드캐스트 악용)",
+      "tags": ["DoS 공격", "Smurf"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-088",
+      "number": 88,
+      "subjectCode": 5,
+      "stem": "다음 암호 알고리즘 중 성격이 다른 하나는 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "MD4" },
+        { "no": 2, "text": "MD5" },
+        { "no": 3, "text": "SHA-1" },
+        { "no": 4, "text": "AES" }
+      ],
+      "answer": 4,
+      "explanation": "MD4, MD5, SHA-1은 임의 길이의 데이터를 고정 길이의 해시 값으로 변환하는 일방향 해시 함수로, 복호화가 불가능해 무결성 검증과 전자서명에 사용됩니다. AES는 하나의 대칭키로 암호화와 복호화를 모두 수행하는 블록 암호 알고리즘입니다. 따라서 성격이 다른 것은 AES입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "MD4는 일방향 해시 함수로 MD 계열에 속합니다." },
+        { "no": 2, "correct": false, "why": "MD5도 일방향 해시 함수로 MD 계열에 속합니다." },
+        { "no": 3, "correct": false, "why": "SHA-1은 미국 NSA가 만든 일방향 해시 함수입니다." },
+        { "no": 4, "correct": true, "why": "AES는 해시 함수가 아니라 대칭키 블록 암호 알고리즘입니다." }
+      ],
+      "keyPoint": "일방향 해시 함수와 대칭키 암호 알고리즘의 구분",
+      "tags": ["해시 함수", "대칭키 암호"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-089",
+      "number": 89,
+      "subjectCode": 5,
+      "stem": "시스템이 몇 대가 되어도 하나의 시스템에서 인증에 성공하면 다른 시스템에 대한 접근 권한도 얻는 시스템을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SOS" },
+        { "no": 2, "text": "SBO" },
+        { "no": 3, "text": "SSO" },
+        { "no": 4, "text": "SOA" }
+      ],
+      "answer": 3,
+      "explanation": "SSO(Single Sign On)는 여러 시스템이 연동된 환경에서 한 번의 인증만으로 다른 시스템들의 접근 권한까지 함께 얻는 통합 인증 방식입니다. 사용자는 하나의 계정과 비밀번호로 여러 업무 시스템을 이용할 수 있어 인증 절차와 관리 부담이 줄어듭니다. SOA는 서비스 지향 아키텍처를 뜻하는 용어로 인증과는 관련이 없습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SOS는 통합 인증을 뜻하는 용어가 아닙니다." },
+        { "no": 2, "correct": false, "why": "SBO 역시 통합 인증과 관계없는 용어입니다." },
+        { "no": 3, "correct": true, "why": "SSO는 한 번의 인증으로 여러 시스템의 권한을 얻는 통합 인증 방식입니다." },
+        { "no": 4, "correct": false, "why": "SOA는 서비스 지향 아키텍처로 인증 방식이 아닙니다." }
+      ],
+      "keyPoint": "SSO(통합 인증)의 개념",
+      "tags": ["SSO", "통합 인증"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-090",
+      "number": 90,
+      "subjectCode": 5,
+      "stem": "악성코드의 유형 중 다른 컴퓨터의 취약점을 이용하여 스스로 전파되거나 메일로 전파되며 스스로를 증식하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Worm" },
+        { "no": 2, "text": "Rogue Ware" },
+        { "no": 3, "text": "Adware" },
+        { "no": 4, "text": "Reflection Attack" }
+      ],
+      "answer": 1,
+      "explanation": "웜(Worm)은 다른 컴퓨터의 취약점을 이용해 네트워크를 통해 스스로 복제·전파되고, 메일이나 공유 폴더를 통해서도 퍼져 나가는 악성코드입니다. 사용자가 파일을 실행하지 않아도 스스로 증식한다는 점에서 일반 바이러스와 구별됩니다. Rogue Ware는 가짜 백신으로 사용자를 속이는 프로그램, Adware는 광고를 노출하는 프로그램입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "웜은 스스로를 복제해 네트워크로 전파되는 대표적인 자기 증식 악성코드입니다." },
+        { "no": 2, "correct": false, "why": "Rogue Ware는 사용자를 속여 결제를 유도하는 가짜 보안 프로그램입니다." },
+        { "no": 3, "correct": false, "why": "Adware는 광고를 표시해 수익을 얻는 프로그램으로 자기 증식과 거리가 있습니다." },
+        { "no": 4, "correct": false, "why": "Reflection Attack은 악성코드가 아니라 네트워크 인증을 악용하는 공격 기법입니다." }
+      ],
+      "keyPoint": "웜(Worm)의 자기 복제·전파 특성",
+      "tags": ["악성코드", "웜"],
+      "difficulty": 1,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-091",
+      "number": 91,
+      "subjectCode": 5,
+      "stem": "Python 기반의 웹 크롤링 (Web Crawling) 프레임워크로 옳은 것은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Li-fi" },
+        { "no": 2, "text": "Scrapy" },
+        { "no": 3, "text": "CrawlCat" },
+        { "no": 4, "text": "SBAS" }
+      ],
+      "answer": 2,
+      "explanation": "Scrapy는 파이썬으로 작성된 오픈소스 웹 크롤링·스크래핑 프레임워크로, 웹 페이지에서 원하는 데이터를 추출하고 가공하는 작업을 자동화할 수 있습니다. Li-fi는 빛을 이용한 무선 통신 기술이고 SBAS는 위성 항법 보정 시스템으로, 모두 웹 크롤링과는 무관합니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Li-fi는 가시광선을 이용한 무선 통신 기술입니다." },
+        { "no": 2, "correct": true, "why": "Scrapy는 파이썬 기반의 대표적인 웹 크롤링 프레임워크입니다." },
+        { "no": 3, "correct": false, "why": "CrawlCat은 존재하지 않는 도구 이름으로 정답이 될 수 없습니다." },
+        { "no": 4, "correct": false, "why": "SBAS는 위성 기반 항법 보정 시스템으로 크롤링과 관련이 없습니다." }
+      ],
+      "keyPoint": "파이썬 웹 크롤링 프레임워크 Scrapy",
+      "tags": ["웹 크롤링", "Scrapy"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-092",
+      "number": 92,
+      "subjectCode": 5,
+      "stem": "다음이 설명하는 서비스 공격 유형은 ?",
+      "passage": "공격자가 가상의 클라이언트로 3-way-handshake 과정을 의도적으로 중단시킴으로써 공격 대상지인 서버가 대기 상태에 놓여 정상적인 서비스를 수행하지 못하게 하는 공격 방법이다.",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "SYN Flooding" },
+        { "no": 2, "text": "SMURFING" },
+        { "no": 3, "text": "Land" },
+        { "no": 4, "text": "TearDrop" }
+      ],
+      "answer": 1,
+      "explanation": "SYN Flooding은 공격자가 가상의 클라이언트로 SYN 패킷을 대량 전송한 뒤 3-way-handshake의 마지막 ACK를 보내지 않아, 서버의 연결 대기 큐(백로그)를 가득 채우는 공격입니다. 그 결과 정상 사용자는 서버에 접속하지 못하게 됩니다. Land는 출발지와 목적지 주소를 동일하게 위조하고, TearDrop은 조각화된 패킷의 순서 번호를 조작하는 공격입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "3-way-handshake를 중단시켜 서버의 연결 대기 자원을 고갈시키는 공격이 SYN Flooding입니다." },
+        { "no": 2, "correct": false, "why": "SMURFING은 ICMP와 브로드캐스트를 악용한 트래픽 증폭 공격입니다." },
+        { "no": 3, "correct": false, "why": "Land는 출발지와 목적지 주소를 같게 위조하는 공격입니다." },
+        { "no": 4, "correct": false, "why": "TearDrop은 패킷 조각의 순서 번호를 조작해 재조립을 방해하는 공격입니다." }
+      ],
+      "keyPoint": "SYN Flooding 공격 원리와 3-way-handshake",
+      "tags": ["SYN Flooding", "서비스 거부 공격"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-093",
+      "number": 93,
+      "subjectCode": 5,
+      "stem": "합법적으로 소유하고 있던 사용자의 도메인을 탈취하거나 DNS 이름을 속여 사용자들이 진짜 사이트로 오인하도록 유도하여 개인 정보를 훔치는 공격 기법은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Ransomware" },
+        { "no": 2, "text": "Pharming" },
+        { "no": 3, "text": "Phishing" },
+        { "no": 4, "text": "XSS" }
+      ],
+      "answer": 2,
+      "explanation": "파밍(Pharming)은 사용자의 도메인을 탈취하거나 DNS 주소를 조작하여, 사용자가 정상적인 주소를 입력해도 가짜 사이트로 접속하도록 유도한 뒤 개인정보를 빼내는 공격입니다. 피싱이 위장 메일이나 링크로 사용자를 직접 속이는 방식인 반면, 파밍은 주소 자체를 조작해 속인다는 점이 특징입니다. XSS는 웹 페이지에 악성 스크립트를 삽입하는 공격입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Ransomware는 파일을 암호화하고 금전을 요구하는 악성코드입니다." },
+        { "no": 2, "correct": true, "why": "도메인 탈취나 DNS 조작으로 가짜 사이트에 접속하게 만드는 공격이 파밍입니다." },
+        { "no": 3, "correct": false, "why": "Phishing은 정상 기관을 사칭한 메일이나 링크로 개인정보를 유도하는 공격입니다." },
+        { "no": 4, "correct": false, "why": "XSS는 게시판 등에 악성 스크립트를 삽입해 다른 사용자의 정보를 탈취하는 공격입니다." }
+      ],
+      "keyPoint": "파밍(Pharming) 공격의 개념과 피싱과의 차이",
+      "tags": ["파밍", "DNS"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-094",
+      "number": 94,
+      "subjectCode": 5,
+      "stem": "공격자가 패킷의 출발지 주소를 변경하여 출발지와 목적지 주소 또는 포트를 동일하게 하는 공격 유형은 ?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "SYN Flooding" },
+        { "no": 2, "text": "Land" },
+        { "no": 3, "text": "TearDrop" },
+        { "no": 4, "text": "Key Logger Attack" }
+      ],
+      "answer": 2,
+      "explanation": "Land 공격은 패킷의 출발지 IP 주소와 목적지 IP 주소 또는 포트를 동일하게 위조해 전송함으로써, 공격 대상 시스템이 자기 자신에게 계속 응답을 보내게 되어 자원이 고갈되도록 만드는 공격입니다. SYN Flooding은 연결 대기 자원을, TearDrop은 패킷 조각의 순서 번호를 악용하는 공격이고 Key Logger Attack은 키보드 입력을 가로채는 공격입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SYN Flooding은 출발지 주소를 같게 하는 것이 아니라 대기 큐를 고갈시키는 공격입니다." },
+        { "no": 2, "correct": true, "why": "출발지와 목적지 주소 또는 포트를 동일하게 위조하는 공격이 Land입니다." },
+        { "no": 3, "correct": false, "why": "TearDrop은 조각화된 패킷의 재조립 과정을 악용하는 공격입니다." },
+        { "no": 4, "correct": false, "why": "Key Logger Attack은 키보드 입력 정보를 빼내는 공격입니다." }
+      ],
+      "keyPoint": "Land 공격의 주소 위조 방식",
+      "tags": ["Land 공격", "IP 스푸핑"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-095",
+      "number": 95,
+      "subjectCode": 5,
+      "stem": "기존 무선 랜의 한계 극복을 위해 등장하였으며, 대규모 디바이스의 네트워크 생성에 최적화되어 차세대 이동통신, 홈네트워킹, 공공 안전 등의 특수목적에 사용되는 새로운 방식의 네트워크 기술을 의미하는 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Software Defined Perimeter" },
+        { "no": 2, "text": "Virtual Private Network" },
+        { "no": 3, "text": "Local Area Network" },
+        { "no": 4, "text": "Mesh Network" }
+      ],
+      "answer": 4,
+      "explanation": "메시 네트워크(Mesh Network)는 여러 노드가 서로 그물처럼 연결되어 데이터를 주고받으며, 노드가 늘어나도 유연하게 확장되는 네트워크 방식입니다. 기존 무선 랜의 한계를 극복하기 위해 등장했고 대규모 디바이스의 네트워크 생성에 최적화되어 차세대 이동통신과 홈네트워킹, 공공 안전 등의 특수 목적에 사용됩니다. SDP는 소프트웨어 정의 경계, VPN은 가상 사설망으로 설명과 다릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "SDP는 인증된 사용자만 서비스에 접근하도록 경계를 소프트웨어로 구성하는 보안 개념입니다." },
+        { "no": 2, "correct": false, "why": "VPN은 공중망에 사설 터널을 만들어 안전하게 통신하는 기술입니다." },
+        { "no": 3, "correct": false, "why": "LAN은 근거리 통신망을 뜻하는 일반 용어로 새로운 방식의 기술이 아닙니다." },
+        { "no": 4, "correct": true, "why": "기존 무선 랜의 한계를 극복하고 대규모 디바이스 연결에 최적화된 기술이 메시 네트워크입니다." }
+      ],
+      "keyPoint": "메시 네트워크(Mesh Network)의 특징",
+      "tags": ["메시 네트워크", "무선 네트워크"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-096",
+      "number": 96,
+      "subjectCode": 5,
+      "stem": "다음에서 설명하는 IT 기술은 ?",
+      "passage": "ㆍ네트워크를 제어부, 데이터 전달부로 분리하여 네트워크 관리자가 보다 효율적으로 네트워크를 제어, 관리할 수 있는 기술\nㆍ기존의 라우터, 스위치 등과 같이 하드웨어에 의존하는 네트워크 체계에서 안정성, 속도, 보안 등을 소프트웨어로 제어, 관리하기 위해 개발됨\nㆍ네트워크 장비의 펌웨어 업그레이드를 통해 사용자의 직접적인 데이터 전송 경로 관리가 가능하고, 기존 네트워크에는 영향을 주지 않으면서 특정 서비스의 전송 경로 수정을 통하여 인터넷상에서 발생하는 문제를 처리할 수 있음",
+      "passageKind": "text",
+      "choices": [
+        { "no": 1, "text": "SDN(Software Defined Networking)" },
+        { "no": 2, "text": "NFS(Network File System)" },
+        { "no": 3, "text": "Network Mapper" },
+        { "no": 4, "text": "AOE Network" }
+      ],
+      "answer": 1,
+      "explanation": "SDN(Software Defined Networking)은 네트워크 장비의 제어부(컨트롤 플레인)와 데이터 전달부(데이터 플레인)를 분리하여, 소프트웨어로 네트워크 전체를 제어하고 관리하는 기술입니다. 하드웨어에 의존하던 기존 네트워크와 달리 펌웨어 업그레이드와 소프트웨어 설정만으로 전송 경로를 유연하게 바꿀 수 있습니다. NFS는 네트워크 파일 공유 시스템, Network Mapper는 포트 스캐닝 도구입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "제어부와 데이터 전달부를 분리해 소프트웨어로 네트워크를 제어하는 기술이 SDN입니다." },
+        { "no": 2, "correct": false, "why": "NFS는 네트워크를 통해 파일을 공유하는 파일 시스템입니다." },
+        { "no": 3, "correct": false, "why": "Network Mapper는 네트워크 포트와 호스트를 스캔하는 보안 도구입니다." },
+        { "no": 4, "correct": false, "why": "AOE Network는 작업의 선후 관계를 표현하는 방향 그래프로 네트워크 제어 기술이 아닙니다." }
+      ],
+      "keyPoint": "SDN(Software Defined Networking)의 구조와 특징",
+      "tags": ["SDN", "네트워크 가상화"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-097",
+      "number": 97,
+      "subjectCode": 5,
+      "stem": "소프트웨어 개발 방법론의 테일러링 (Tailoring) 과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "프로젝트 수행 시 예상되는 변화를 배제하고 신속히 진행하여야 한다." },
+        { "no": 2, "text": "프로젝트에 최적화된 개발 방법론을 적용하기 위해 절차, 산출물 등을 적절히 변경하는 활동이다." },
+        { "no": 3, "text": "관리 측면에서의 목적 중 하나는 최단기간에 안정적인 프로젝트 진행을 위한 사전 위험을 식별하고 제거하는 것이다." },
+        { "no": 4, "text": "기술적 측면에서의 목적 중 하나는 프로젝트에 최적화된 기술 요소를 도입하여 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것이다." }
+      ],
+      "answer": 1,
+      "explanation": "테일러링은 프로젝트의 규모와 특성, 제약 조건에 맞추어 표준 개발 방법론의 절차와 산출물, 기법을 적절히 변경하는 활동입니다. 따라서 예상되는 변화를 배제하고 무조건 신속히 진행하라는 보기 1번은 테일러링의 취지와 정반대되는 틀린 설명입니다. 나머지 보기는 관리 측면과 기술적 측면에서의 테일러링 목적을 올바르게 설명했습니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "테일러링은 예상되는 변화를 반영해 방법론을 조정하는 활동이므로 변화를 배제한다는 설명은 틀렸습니다." },
+        { "no": 2, "correct": false, "why": "절차와 산출물을 프로젝트에 맞게 변경한다는 설명은 테일러링의 정의에 맞습니다." },
+        { "no": 3, "correct": false, "why": "사전 위험을 식별하고 제거하는 것은 관리 측면의 테일러링 목적으로 올바릅니다." },
+        { "no": 4, "correct": false, "why": "최적의 기법과 도구를 선택하도록 기술 요소를 조정하는 것은 기술적 측면의 목적입니다." }
+      ],
+      "keyPoint": "테일러링(Tailoring)의 정의와 관리·기술 측면 목적",
+      "tags": ["테일러링", "개발 방법론"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-098",
+      "number": 98,
+      "subjectCode": 5,
+      "stem": "침입 탐지 시스템 (IDS; Intrusion Detection System) 과 관련한 설명으로 틀린 것은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "이상 탐지 기법 (Anomaly Detection) 은 Signature Base 나 Knowledge Base 라고도 불리며 이미 발견되고 정립된 공격 패턴을 입력해두었다가 탐지 및 차단한다." },
+        { "no": 2, "text": "HIDS(Host-Based Intrusion Detection) 는 운영체제에 설정된 사용자 계정에 따라 어떤 사용자가 어떤 접근을 시도하고 어떤 작업을 했는지에 대한 기록을 남기고 추적한다." },
+        { "no": 3, "text": "NIDS(Network-Based Intrusion Detection System) 로는 대표적으로 Snort 가 있다." },
+        { "no": 4, "text": "외부 인터넷에 서비스를 제공하는 서버가 위치하는 네트워크인 DMZ(Demilitarized Zone) 에는 IDS 가 설치될 수 있다." }
+      ],
+      "answer": 1,
+      "explanation": "Signature Base나 Knowledge Base라고 불리는 기법은 이미 알려진 공격 패턴을 등록해 두고 이와 일치하는지 비교하는 오용 탐지(Misuse Detection)입니다. 이상 탐지(Anomaly Detection)는 정상적인 사용 패턴을 프로파일로 만들어 두고 여기에서 벗어난 행위를 침입으로 판단하는 방식이므로 보기 1번이 틀렸습니다. HIDS의 계정별 기록·추적, NIDS의 대표 도구 Snort, DMZ 내 IDS 설치에 대한 설명은 모두 올바릅니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": true, "why": "Signature Base와 Knowledge Base는 이상 탐지가 아니라 오용 탐지 기법의 다른 이름입니다." },
+        { "no": 2, "correct": false, "why": "HIDS가 사용자 계정별 접근과 작업 기록을 남기고 추적한다는 설명은 올바릅니다." },
+        { "no": 3, "correct": false, "why": "Snort는 대표적인 오픈소스 NIDS 도구이므로 설명이 맞습니다." },
+        { "no": 4, "correct": false, "why": "외부 서비스 서버가 있는 DMZ에 IDS를 설치할 수 있다는 설명도 올바릅니다." }
+      ],
+      "keyPoint": "IDS의 오용 탐지와 이상 탐지 기법 구분",
+      "tags": ["IDS", "오용 탐지"],
+      "difficulty": 3,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 7 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-099",
+      "number": 99,
+      "subjectCode": 5,
+      "stem": "침입 차단 시스템(방화벽) 중 다음과 같은 형태의 구축 유형은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "Block Host" },
+        { "no": 2, "text": "Tree Host" },
+        { "no": 3, "text": "Screened Subnet" },
+        { "no": 4, "text": "Ring Homed" }
+      ],
+      "answer": 3,
+      "explanation": "스크린 서브넷(Screened Subnet)은 인터넷과 내부 네트워크 사이에 외부 라우터와 내부 라우터를 두고, 그 사이에 베스천 호스트와 서버들로 구성된 별도의 완충 서브넷(DMZ)을 배치하는 방화벽 구축 유형입니다. 외부에서 내부 네트워크로 직접 접근할 수 없도록 두 단계로 나누어 차단하므로 보안성이 높습니다. 제시된 그림도 라우터와 베스천 호스트 뒤에 서버 서브넷을 두고 다시 라우터를 거쳐 내부 PC로 연결되는 구조를 보여줍니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "Block Host는 방화벽 구축 유형으로 쓰이는 표준 명칭이 아닙니다." },
+        { "no": 2, "correct": false, "why": "Tree Host 역시 방화벽 구축 유형을 가리키는 용어가 아닙니다." },
+        { "no": 3, "correct": true, "why": "베스천 호스트와 완충 서브넷을 두어 내외부를 단계적으로 차단하는 유형이 스크린 서브넷입니다." },
+        { "no": 4, "correct": false, "why": "Ring Homed는 표준 방화벽 구축 유형 명칭이 아닙니다." }
+      ],
+      "keyPoint": "방화벽 구축 유형 - 스크린 서브넷(Screened Subnet)",
+      "tags": ["방화벽", "스크린 서브넷"],
+      "difficulty": 3,
+      "figure": { "needed": true, "kind": "diagram", "image": "figures/2026-1/099.png", "alt": "인터넷이 외부 라우터에 연결되고, 배스천 호스트와 서버 3대가 있는 구간이 내부 라우터를 거쳐 PC 3대의 내부 네트워크로 이어지는 2단계 방화벽 구성도", "page": 8, "col": 0, "box": [57.5, 90.5, 246.3, 213.3] },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 8 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    },
+    {
+      "id": "2026-1-100",
+      "number": 100,
+      "subjectCode": 5,
+      "stem": "LOC 기법에 의하여 예측된 총 라인수가 36,000라인, 개발에 참여할 프로그래머가 6명, 프로그래머들의 평균 생산성이 월간 300라인일 때 개발에 소요되는 기간은?",
+      "passage": null,
+      "passageKind": null,
+      "choices": [
+        { "no": 1, "text": "5개월" },
+        { "no": 2, "text": "10개월" },
+        { "no": 3, "text": "15개월" },
+        { "no": 4, "text": "20개월" }
+      ],
+      "answer": 4,
+      "explanation": "LOC 기법으로 산정한 총 라인수를 개발 인력의 월간 생산성으로 나누면 개발에 소요되는 기간을 구할 수 있습니다. 프로그래머 6명의 월간 생산성은 6 × 300 = 1,800라인이므로, 36,000 ÷ 1,800 = 20개월이 됩니다. 따라서 개발 기간은 20개월입니다.",
+      "choicesAnalysis": [
+        { "no": 1, "correct": false, "why": "인원수와 생산성을 반영한 계산 결과인 20개월과 일치하지 않습니다." },
+        { "no": 2, "correct": false, "why": "36,000 ÷ 1,800 계산 결과가 10개월이 아니므로 틀렸습니다." },
+        { "no": 3, "correct": false, "why": "15개월은 월간 생산성을 잘못 적용했을 때 나오는 값으로 정답이 아닙니다." },
+        { "no": 4, "correct": true, "why": "36,000 ÷ (6명 × 300라인) = 20개월이므로 정답입니다." }
+      ],
+      "keyPoint": "LOC 기법을 이용한 개발 기간 산정",
+      "tags": ["LOC 기법", "생산성"],
+      "difficulty": 2,
+      "figure": { "needed": false, "kind": null, "image": null, "alt": null, "page": null, "col": null, "box": null },
+      "source": { "pdf": "2026년1회_기사필기_기출문제.pdf", "page": 8 },
+      "provenance": { "answer": "pdf", "explanation": "generated" }
+    }
+  ]
+}
