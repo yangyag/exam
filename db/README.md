@@ -1,5 +1,8 @@
 # ipe 스키마 (정보처리기사 필기 기출문제 데이터셋)
 
+`app` 데이터베이스 안에 `ipe` 스키마로 들어갑니다. **소유자와 접속 계정은 기존 앱과 동일한 `yangyag`** 입니다.
+기존 `english` / `english_test` 스키마는 건드리지 않습니다.
+
 ## 무엇이 들어가나
 
 | 테이블 | 행 수 | 내용 |
@@ -13,9 +16,32 @@
 
 그림은 파일로 서빙합니다. DB에는 `question.figure_image` 경로(`figures/2026-1/099.png`, `data/` 기준 상대경로)와 `figure_alt` 만 들어갑니다.
 
+## ⚠ search_path 주의
+
+`yangyag` 역할의 `search_path` 는 `english, public` 입니다(기존 영어 앱이 쓰고 있음). **이 역할 전역 설정은 바꾸지 않았습니다** — 바꾸면 기존 앱이 영향을 받습니다.
+
+따라서 `ipe` 테이블을 쓸 때는 다음 중 하나로 접근하세요.
+
+```sql
+-- 1) 스키마를 명시
+select * from ipe.question;
+
+-- 2) 접속 시 search_path 지정 (앱에서 권장)
+--   postgresql://yangyag:***@localhost:5432/app?options=-csearch_path%3Dipe,public
+--   또는 접속 직후:  SET search_path = ipe, public;
+```
+
+`tools/load_db.py` 는 접속할 때 세션 `search_path` 를 `ipe,public` 으로 고정하므로 역할 설정과 무관하게 동작합니다.
+
 ## 실행 순서
 
-### 1) 역할·스키마 생성 (superuser, 최초 1회)
+### 0) 접속 정보 준비
+
+```bash
+cp .env.example .env      # 그리고 EXAM_DB_URL 값에 비밀번호를 채웁니다 (.env 는 git 에 안 들어감)
+```
+
+### 1) 스키마·역할 준비 (superuser, 최초 1회)
 
 ```bash
 # 로컬(docker)
@@ -25,11 +51,7 @@ docker exec -i postgres psql -U postgres -d app -f - < db/000_bootstrap.sql
 psql -U postgres -d app -f db/000_bootstrap.sql
 ```
 
-`exam` 역할(LOGIN만) / `ipe` 스키마(소유자 exam) / `pg_trgm` 확장을 만듭니다. **운영 서버에서는 실행 후 비밀번호를 바꾸세요:**
-
-```sql
-ALTER ROLE exam PASSWORD '<새비번>';
-```
+`yangyag` 역할이 없으면 만들고(비밀번호는 실행 후 교체), `ipe` 스키마를 `yangyag` 소유로 만들고, `pg_trgm` 확장을 설치합니다. **이미 있으면 아무것도 바꾸지 않습니다.**
 
 ### 2) 테이블 생성 + 데이터 적재
 
@@ -52,24 +74,24 @@ python tools/load_db.py --verify
 
 `tools/load_db.py` 는 아래 순서로 접속 대상을 정합니다.
 
-1. `EXAM_DB_URL`
+1. `EXAM_DB_URL` (환경변수 또는 저장소 루트 `.env`)
 2. `DATABASE_URL`
 3. libpq `PG*` 환경변수 (`PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD`/`PGDATABASE`)
-4. 기본값 `postgresql://exam:exam@localhost:5432/app`
+4. 기본값 `postgresql://yangyag@localhost:5432/app` (비밀번호 없음 → `.env` 나 환경변수를 쓰세요)
 
 ```bash
-# 예: EC2
-EXAM_DB_URL='postgresql://exam:<비번>@127.0.0.1:5432/app' python tools/load_db.py
+# EC2 예시
+EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/app' python tools/load_db.py
 ```
-
-앱에서 접속할 때는 역할에 `search_path` 가 `ipe, public` 으로 잡혀 있어 `select * from question` 이 바로 동작합니다.
 
 ## 처음부터 다시 만들기 (개발용)
 
 ```sql
-DROP SCHEMA ipe CASCADE;
-DROP ROLE exam;
+DROP SCHEMA ipe CASCADE;   -- 데이터만 지움. 역할은 그대로 둔다
 ```
+
+그 뒤 `000_bootstrap.sql` → `--init` → 적재 순서로 다시 만들면 됩니다.
+(실제로 이 순서로 처음부터 재구축해서 검증했습니다.)
 
 `app` 데이터베이스의 다른 스키마(`english`, `english_test`, `public`)에는 영향이 없습니다.
 

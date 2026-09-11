@@ -5,7 +5,9 @@ data/raw/text/
 __pycache__/
 *.pyc
 
-# 에디터/OS
+# 로컬 접속 정보 (DB 비밀번호 등) — 절대 커밋하지 않는다
+.env
+
 .vscode/
 .idea/
 Thumbs.db

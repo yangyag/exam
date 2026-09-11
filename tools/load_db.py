@@ -6,17 +6,18 @@
     python tools/load_db.py --verify   # 적재 결과 검증
 
 접속 문자열 결정 순서:
-    1) EXAM_DB_URL 환경변수
-    2) DATABASE_URL 환경변수
+    1) EXAM_DB_URL 환경변수 (또는 저장소 루트 .env 파일 — git 에 안 들어감)
+    2) DATABASE_URL
     3) libpq PG* 환경변수 (PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE)
-    4) 로컬 기본값 postgresql://exam:exam@localhost:5432/app
+    4) 기본값 postgresql://yangyag@localhost:5432/app
 
 EC2 등 다른 서버에서 실행할 때:
-    EXAM_DB_URL='postgresql://exam:exam@127.0.0.1:5432/app' python tools/load_db.py
+    EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/app' python tools/load_db.py
 """
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -26,23 +27,52 @@ from psycopg.types.json import Jsonb
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SCHEMA_SQL = ROOT / "db" / "001_schema.sql"
-DEFAULT_URL = "postgresql://exam:exam@localhost:5432/app"
+ENV_FILE = ROOT / ".env"
+DEFAULT_URL = "postgresql://yangyag@localhost:5432/app"
+
+
+def load_env_file(path=ENV_FILE):
+    """`.env` 를 읽어 환경변수로 올린다. 이미 설정된 환경변수는 덮어쓰지 않는다."""
+    loaded = set()
+    if not path.exists():
+        return loaded
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key, value = key.strip(), value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+            loaded.add(key)
+    return loaded
 
 
 def resolve_url():
     """접속 문자열과 그 출처를 돌려준다. (문자열이 비면 libpq 환경변수를 쓴다는 뜻)"""
+    from_file = load_env_file()
     for var in ("EXAM_DB_URL", "DATABASE_URL"):
         if os.environ.get(var):
-            return os.environ[var], var
+            return os.environ[var], var + (" (.env)" if var in from_file else "")
     if any(os.environ.get(v) for v in ("PGHOST", "PGPORT", "PGUSER", "PGDATABASE", "PGPASSWORD")):
         return "", "libpq PG* 환경변수"
-    return DEFAULT_URL, "로컬 기본값"
+    return DEFAULT_URL, "기본값"
+
+
+def redact(url):
+    """접속 문자열에서 비밀번호를 가린다."""
+    return re.sub(r"://([^:/@]+):[^@]*@", r"://\1:***@", url)
+
+
+SEARCH_PATH = "ipe,public"
 
 
 def connect():
+    """접속. 접속 역할의 search_path 에 의존하지 않도록 이 세션의 search_path 를 고정한다."""
     url, src = resolve_url()
-    print(f"DB 접속: {src}")
-    return psycopg.connect(url) if url else psycopg.connect()
+    print(f"DB 접속: {src} — {redact(url) if url else 'libpq 환경변수'} (search_path={SEARCH_PATH})")
+    opts = {"options": f"-c search_path={SEARCH_PATH}"}
+    return psycopg.connect(url, **opts) if url else psycopg.connect(**opts)
 
 
 def init_schema(conn):
