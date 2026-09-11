@@ -7,7 +7,10 @@
 -- (python tools/load_db.py --init 이 db/*.sql 을 매번 전부 실행한다).
 -- 003 은 건드리지 않는다 — 003 이 찍은 cycle_id·round_no 와 study_cycle·study_session_item
 -- 코멘트는 그대로 두고, 여기서는 study_session 의 테이블·mode·exam_id·subject_code·end_reason 만 다시 찍는다.
--- 되돌리기: db/002_progress.sql 의 COMMENT ON TABLE ipe.study_session 과 그 컬럼 코멘트를 다시 실행한다.
+-- 되돌리기: 테이블·exam_id·subject_code 는 db/002_progress.sql(22~24행) 값으로 다시 찍고,
+-- end_reason 은 이 파일 이전 값이 db/003_study_items.sql(65행)에 있으므로 그 문구를 다시 찍으며,
+-- mode 는 이 파일이 최초로 붙였으므로 COMMENT ON COLUMN ipe.study_session.mode IS NULL 로 지운다.
+-- (사람이 붙여 넣을 SQL 은 db/README.md 진도 관리 '적용' 절의 되돌리기 블록에 있다.)
 
 COMMENT ON TABLE ipe.study_session IS '학습/응시 묶음 1건. mode 5종: subject(과목 사이클 라운드 1)·review(사이클 라운드 2+, 직전 라운드 오답 복습)·exam_practice(회차별 연습)·exam(회차 모의고사)·random(슬롯 없는 랜덤)';
 COMMENT ON COLUMN ipe.study_session.mode IS 'subject(과목 사이클 라운드 1)·review(사이클 라운드 2+, 직전 라운드 오답 복습)·exam_practice(회차별 연습)·exam(회차 모의고사)·random(슬롯 없는 랜덤 출제). 회차 연습·모의고사·사이클 라운드는 슬롯(study_session_item)을 가진다';

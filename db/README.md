@@ -18,11 +18,13 @@
 
 학습 기록(진도) 테이블 5종(`study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state`)과 통계 뷰 3종은 아래 **진도 관리** 섹션에 따로 정리했습니다. 지금은 0행입니다(앱이 쓰는 데이터).
 
-## 진도 관리 (db/002_progress.sql · db/003_study_items.sql)
+## 진도 관리 (db/002_progress.sql · db/003_study_items.sql · db/004_session_comments.sql)
 
 로그인 없는 단일 사용자 기준의 최소 구조입니다(기존 영어 앱의 `study_session`/`word_result`/`study_state` 와 같은 결). 응시·풀이 기록을 쌓고, 오답 복습 화면이 쓸 상태를 문항당 1행으로 유지합니다.
 
 `003_study_items.sql` 이 **세션의 고정 문항 목록(답안 슬롯)** 과 **과목 학습 사이클** 을 더합니다. 풀이 방식 세 가지(과목 사이클·회차 연습·모의고사)가 모두 "문항 목록을 가진 세션"으로 표현되고, 과목 사이클은 그런 세션의 연쇄(라운드)입니다. 설계 정본은 `plan/frontend-backend-gap.md` 4.2~4.6절입니다.
+
+`004_session_comments.sql` 은 구조를 바꾸지 않고 `study_session` 의 테이블·컬럼 COMMENT 만 다시 찍습니다. `002_progress.sql` 이 옛 4모드(`exam`·`subject`·`random`·`review`) 기준으로 찍어 둔 의미를 지금의 **mode 5종** 에 맞추고, 코멘트가 없던 `mode` 컬럼에 처음 붙입니다(`exam_id`·`subject_code`·`end_reason` 도 함께 다시 찍습니다). `003` 이 찍은 `cycle_id`·`round_no` 와 `study_cycle`·`study_session_item` 코멘트는 그대로 두며, `COMMENT` 는 값을 덮어쓸 뿐이라 **몇 번 실행해도 결과가 같습니다**(멱등).
 
 ### 테이블
 
@@ -49,7 +51,7 @@ mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
 | `exam` | 회차(필수) | NULL(요청에 있어도 저장 안 함) | NULL |
 | `random` | 요청값(보통 NULL) | 요청값(보통 NULL) | NULL |
 
-`end_reason` 은 `random`·연습(`subject`·`review`·`exam_practice`)이 정상 종료되면 `finished`, 새로 구성(`replaceActive`)으로 밀려나면 `abandoned` 다. 모의고사(`exam`)는 지금 `abandoned` 만 실제로 생긴다(최종 제출 API 가 아직 없음).
+`end_reason` 은 정상 종료면 `finished`, 새로 구성(`replaceActive`)으로 밀려나면 `abandoned` 이고 진행 중이면 NULL 이다. `finished` 는 연습(`subject`·`review`·`exam_practice`)이 마지막 문항 채점으로, 모의고사(`exam`)가 `POST /api/sessions/{id}/submit`(최종 일괄 채점)으로, `random` 이 `/finish` 로 생긴다. 중단된 모의고사(`abandoned`)는 제출할 수 없다(409).
 
 **`study_attempt` — 응답 1건 = 1행 (append-only, 수정하지 않음)**
 
@@ -107,7 +109,7 @@ mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
 | `subject` | 과목 사이클 라운드 1 — 과목 전체 풀이 | 과목 문항을 내용 기준 중복 제거·셔플한 목록 | 문항별 즉시 |
 | `review` | 과목 사이클 라운드 2+ — 직전 라운드 오답 복습 | 직전 라운드에서 `is_correct IS FALSE` 인 문항만 다시 섞은 목록 | 문항별 즉시 |
 | `exam_practice` | 회차별 연습 | 회차 문항 번호 순 | 문항별 즉시 |
-| `exam` | 회차 모의고사 | 회차 문항 번호 순 | 제출 전에는 선택만 슬롯에 저장(채점 안 함). 최종 일괄 채점 API 는 아직 없다(설계 5단계 예정) |
+| `exam` | 회차 모의고사 | 회차 문항 번호 순 | 제출 전에는 선택만 슬롯에 저장(채점 안 함). `POST /api/sessions/{id}/submit` 이 한 트랜잭션에서 일괄 채점하고 세션을 `finished` 로 끝낸다(미응답 문항은 0점 처리, 중단된 모의고사는 409) |
 | `random` | 랜덤 출제(설계서에 없는 기존 기능) | 없음 | 기존 `POST /api/questions/{id}/answer` — 호출마다 `study_attempt` 1행 |
 
 ### 라운드와 사이클 흐름
@@ -166,10 +168,10 @@ having count(*) > 1;
 
 ### 적용
 
-`db/002_progress.sql`·`db/003_study_items.sql` 은 `--init` 에 포함되어 있어 별도 명령이 필요 없습니다. `db/*.sql` 을 파일명 순서로 전부 적용하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) → `003_study_items.sql`(슬롯·사이클) 순서로 실행됩니다.
+`db/002_progress.sql`·`db/003_study_items.sql`·`db/004_session_comments.sql` 은 `--init` 에 포함되어 있어 별도 명령이 필요 없습니다. `db/*.sql` 을 파일명 순서로 전부 적용하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) → `003_study_items.sql`(슬롯·사이클) → `004_session_comments.sql`(COMMENT 재기록) 순서로 실행됩니다.
 
 ```bash
-python tools/load_db.py --init     # db/001 → 002 → 003 (000_bootstrap.sql 은 제외)
+python tools/load_db.py --init     # db/001 → 002 → 003 → 004 (000_bootstrap.sql 은 제외)
 ```
 
 `--init` 은 **파일마다 커밋하지 않고 전체를 한 트랜잭션**으로 실행하므로, 중간에 실패하면 앞서 적용된 파일까지 함께 롤백됩니다(위 경고 1). psql 로 직접 실행해도 됩니다(재실행 안전).
@@ -177,6 +179,7 @@ python tools/load_db.py --init     # db/001 → 002 → 003 (000_bootstrap.sql �
 ```bash
 docker exec -i postgres psql -U yangyag -d app -f - < db/002_progress.sql
 docker exec -i postgres psql -U yangyag -d app -f - < db/003_study_items.sql
+docker exec -i postgres psql -U yangyag -d app -f - < db/004_session_comments.sql
 ```
 
 되돌리려면 뷰 → 테이블 순서로 지웁니다. 문항 테이블은 그대로 둡니다.
@@ -196,6 +199,18 @@ DROP TABLE IF EXISTS ipe.study_attempt, ipe.study_state, ipe.study_session;
 ```
 
 `study_session` 을 003 이전 상태로 되돌리려면 위 `DELETE`·`ALTER` 를 먼저 하고 마지막 줄로 테이블까지 지우면 됩니다(`db/003_study_items.sql` 첫머리 주석과 같은 순서).
+
+`004_session_comments.sql` 은 COMMENT 만 다시 찍으므로, 코멘트를 004 이전 상태로 되돌리려면 아래를 실행합니다. 테이블·`exam_id`·`subject_code` 는 `db/002_progress.sql`(22~24행) 값으로 돌아가고, `end_reason` 은 004 이전 값이 `002` 가 아니라 `db/003_study_items.sql`(65행)에 있으니 그 문구를 다시 찍으며, `mode` 코멘트는 004 가 처음 붙였으니 지웁니다.
+
+```sql
+COMMENT ON TABLE ipe.study_session IS '학습/응시 묶음 1건. mode: exam(회차 모의고사)·subject(과목 연습)·random(랜덤)·review(오답 복습)';
+COMMENT ON COLUMN ipe.study_session.exam_id IS '대상 회차. 랜덤·오답 복습처럼 특정 회차가 아니면 NULL';
+COMMENT ON COLUMN ipe.study_session.subject_code IS '대상 과목. 회차 모의고사처럼 전체 과목이면 NULL';
+COMMENT ON COLUMN ipe.study_session.mode IS NULL;                  -- 004 가 최초로 붙인 코멘트를 지운다
+COMMENT ON COLUMN ipe.study_session.end_reason IS '종료 사유. finished(정상 종료)·abandoned(중단). 진행 중이면 NULL';
+```
+
+다시 004 상태로 돌리려면 `python tools/load_db.py --init`(또는 `db/004_session_comments.sql` 실행)을 씁니다.
 
 ### 자주 쓰는 조회
 
@@ -358,7 +373,7 @@ python tools/load_db.py --init     # db/*.sql 마이그레이션을 파일명 �
 python tools/load_db.py            # data/questions 전체 적재 + 검증
 ```
 
-`--init` 은 `db/` 의 SQL 을 파일명 오름차순으로 실행하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) → `003_study_items.sql`(슬롯·사이클) 순서로 들어갑니다. `000_bootstrap.sql` 은 superuser 권한과 psql 메타명령이 필요해 `--init` 에서 제외되므로 위 1) 단계에서 따로 실행합니다. `db/` 에 SQL 파일을 새로 추가하면 자동으로 포함됩니다.
+`--init` 은 `db/` 의 SQL 을 파일명 오름차순으로 실행하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) → `003_study_items.sql`(슬롯·사이클) → `004_session_comments.sql`(COMMENT 재기록) 순서로 들어갑니다. `000_bootstrap.sql` 은 superuser 권한과 psql 메타명령이 필요해 `--init` 에서 제외되므로 위 1) 단계에서 따로 실행합니다. `db/` 에 SQL 파일을 새로 추가하면 자동으로 포함됩니다.
 
 **`--init` 은 전체를 한 트랜잭션으로 실행합니다.** 어느 파일에서든 실패하면 그 실행의 변경이 전부 롤백되므로(예: 기존 DB의 중복 열린 세션 때문에 `study_session_exam_open_uk` 생성 실패 — 위 경고 1), 기존 DB에 처음 적용할 때는 먼저 진도 테이블 상태를 확인하세요.
 
