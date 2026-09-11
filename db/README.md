@@ -16,11 +16,13 @@
 
 그림은 파일로 서빙합니다. DB에는 `question.figure_image` 경로(`figures/2026-1/099.png`, `data/` 기준 상대경로)와 `figure_alt` 만 들어갑니다.
 
-학습 기록(진도) 테이블 3종과 통계 뷰 3종은 아래 **진도 관리** 섹션에 따로 정리했습니다. 지금은 0행입니다(앱이 쓰는 데이터).
+학습 기록(진도) 테이블 5종(`study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state`)과 통계 뷰 3종은 아래 **진도 관리** 섹션에 따로 정리했습니다. 지금은 0행입니다(앱이 쓰는 데이터).
 
-## 진도 관리 (db/002_progress.sql)
+## 진도 관리 (db/002_progress.sql · db/003_study_items.sql)
 
 로그인 없는 단일 사용자 기준의 최소 구조입니다(기존 영어 앱의 `study_session`/`word_result`/`study_state` 와 같은 결). 응시·풀이 기록을 쌓고, 오답 복습 화면이 쓸 상태를 문항당 1행으로 유지합니다.
+
+`003_study_items.sql` 이 **세션의 고정 문항 목록(답안 슬롯)** 과 **과목 학습 사이클** 을 더합니다. 풀이 방식 세 가지(과목 사이클·회차 연습·모의고사)가 모두 "문항 목록을 가진 세션"으로 표현되고, 과목 사이클은 그런 세션의 연쇄(라운드)입니다. 설계 정본은 `plan/frontend-backend-gap.md` 4.2~4.6절입니다.
 
 ### 테이블
 
@@ -29,9 +31,12 @@
 | 컬럼 | 의미 |
 |---|---|
 | `id` | 세션 번호 (serial) |
-| `mode` | `exam`(회차 모의고사) · `subject`(과목 연습) · `random`(랜덤 출제) · `review`(오답 복습) |
-| `exam_id` | 대상 회차 → `exam.id`. 랜덤·오답 복습처럼 특정 회차가 아니면 NULL |
-| `subject_code` | 대상 과목 → `subject.code`. 회차 모의고사처럼 전체 과목이면 NULL |
+| `mode` | `subject`(과목 사이클 라운드 1) · `review`(사이클 라운드 2+, 직전 오답 복습) · `exam_practice`(회차별 연습) · `exam`(회차 모의고사) · `random`(랜덤 출제) — 아래 **mode 5종** |
+| `exam_id` | 대상 회차 → `exam.id`. 회차 연습·모의고사는 값이 있고, 나머지는 NULL |
+| `subject_code` | 대상 과목 → `subject.code`. 사이클 라운드는 사이클의 과목이 들어가고, 회차 연습·모의고사는 NULL |
+| `cycle_id` | 사이클 라운드면 그 사이클 → `study_cycle.id`. 회차 연습·모의고사·랜덤은 NULL |
+| `round_no` | 사이클 안의 라운드 번호. `cycle_id` 가 NULL 이면 NULL |
+| `end_reason` | 종료 사유 `finished`(정상 종료)·`abandoned`(중단). 진행 중이면 NULL |
 | `started_at` / `finished_at` | 시작·종료 시각. `finished_at` 이 NULL 이면 진행 중 |
 
 **`study_attempt` — 응답 1건 = 1행 (append-only, 수정하지 않음)**
@@ -61,6 +66,82 @@
 
 원장은 `study_attempt` 이고, 목록·복습 화면은 `study_state` 만 보면 되도록 비정규화해 두었습니다.
 
+**`study_cycle` — 과목 학습 사이클 1건 (db/003_study_items.sql)**
+
+| 컬럼 | 의미 |
+|---|---|
+| `id` | 사이클 번호 (serial) |
+| `subject_code` | 과목 → `subject.code` |
+| `status` | `active`(진행 중) · `completed`(어떤 라운드가 오답 없이 끝남) · `abandoned`(진행 중에 새로 구성해 중단) |
+| `created_at` / `ended_at` | 시작·종료 시각. `active` 이면 `ended_at` 은 NULL (`study_cycle_ended_chk` 가 강제) |
+
+**`study_session_item` — 세션의 고정 문항 목록 겸 답안 슬롯(문항당 1행) (db/003_study_items.sql)**
+
+| 컬럼 | 의미 |
+|---|---|
+| `session_id` | 세션 → `study_session.id` (복합 기본키 1/2, `ON DELETE CASCADE`) |
+| `seq` | 목록에서의 순서(1부터). 복합 기본키 2/2. 다음에 풀 문항은 아직 안 푼 가장 작은 `seq` |
+| `question_id` | 문항 → `question.id`. 한 세션에 같은 문항은 1개뿐(`study_session_item_question_uk`) |
+| `choice_no` | 연습: 제출한 보기(채점 후 불변). 모의고사: 현재 고른 보기(NULL = 미응답, 제출 전 수정 가능) |
+| `is_correct` | 연습: 제출 즉시 채움(채점 후 불변). 모의고사: 최종 제출 때 채움. NULL 이면 아직 안 풂 |
+| `answered_at` | 연습: 제출 시각. 모의고사: 마지막으로 선택을 저장한 시각. `choice_no` 가 있으면 반드시 값이 있음(`study_session_item_answered_chk`) |
+
+목록은 만든 뒤 바뀌지 않고, 진행 위치를 담는 컬럼은 따로 두지 않습니다(슬롯에서 계산). 재적재로 문항이 사라지면 슬롯도 연쇄 삭제되어 `seq` 에 빈 번호가 생길 수 있으므로, 진행도는 행 수로 계산하고 연속 번호를 가정하지 않습니다.
+
+### mode 5종 (`study_session_mode_chk`)
+
+| mode | 쓰임 | 슬롯(`study_session_item`) | 채점 시점 |
+|---|---|---|---|
+| `subject` | 과목 사이클 라운드 1 — 과목 전체 풀이 | 과목 문항을 내용 기준 중복 제거·셔플한 목록 | 문항별 즉시 |
+| `review` | 과목 사이클 라운드 2+ — 직전 라운드 오답 복습 | 직전 라운드에서 `is_correct IS FALSE` 인 문항만 다시 섞은 목록 | 문항별 즉시 |
+| `exam_practice` | 회차별 연습 | 회차 문항 번호 순 | 문항별 즉시 |
+| `exam` | 회차 모의고사 | 회차 문항 번호 순 | 제출 전에는 선택만 슬롯에 저장(채점 안 함). 최종 일괄 채점 API 는 아직 없다(설계 5단계 예정) |
+| `random` | 랜덤 출제(설계서에 없는 기존 기능) | 없음 | 기존 `POST /api/questions/{id}/answer` — 호출마다 `study_attempt` 1행 |
+
+### 라운드와 사이클 흐름
+
+`study_cycle` 은 과목 하나의 학습 연쇄이고, 라운드 1회가 `study_session` 1행입니다. 과목당 진행 중(`active`) 사이클은 1개입니다(`study_cycle_active_uk`).
+
+1. **라운드 1** (`mode='subject'`, `round_no=1`): 과목 문항 260개를 API 의 내용 키(`content_key`)로 묶어 그룹 대표(가장 최근 회차 = id 최대)를 모으고, 섞어서 슬롯 `seq` 1..N 으로 저장합니다(과목별 176~199개).
+2. **라운드 2+** (`mode='review'`, `round_no>=2`): 직전 라운드의 오답 문항만 다시 섞습니다.
+3. **전환·완료는 마지막 슬롯 채점과 같은 트랜잭션**: 아직 안 푼 슬롯이 없어지면 라운드를 닫고(`finished_at`·`end_reason='finished'`) — 오답이 있으면 다음 라운드 세션을 만들고, 없으면 사이클을 `completed`(`ended_at`)로 바꿉니다. 열린 라운드 1개 인덱스(`study_session_cycle_open_uk`) 때문에 현재 라운드를 먼저 닫은 뒤 다음 라운드를 넣습니다. 그래서 "라운드가 끝났는데 다음 라운드가 없는" 중간 상태가 남지 않습니다.
+4. **중단(`abandoned`)**: 진행 중인 사이클에서 새로 구성하면 그 시점에 보이는 열린 라운드 세션과 사이클을 `end_reason='abandoned'`·`status='abandoned'` 로 닫습니다. 중단된 세션에는 더 기록할 수 없습니다.
+5. `cycle_id`·`round_no` 는 사이클 라운드만 가집니다(`study_session_round_chk`): `subject` 는 `round_no=1`, `review` 는 `round_no>=2`, `cycle_id` 가 NULL 이면 `round_no` 도 NULL.
+
+`finished_at` 은 계속 "더 이상 기록을 받지 않음"이고, `end_reason` 이 정상 종료(`finished`)와 중단(`abandoned`)을 가릅니다. `study_session_end_reason_chk` 가 둘을 동치로 묶어(`finished_at IS NULL` = `end_reason IS NULL`) 한쪽만 채우는 것을 막습니다.
+
+### 제약·인덱스 (db/003_study_items.sql)
+
+| 이름 | 종류 | 뜻 |
+|---|---|---|
+| `study_cycle_active_uk` | 유니크 인덱스 (`subject_code`) WHERE `status='active'` | 과목당 진행 중 사이클 1개. 동시 시작 경합은 이 위반으로 API 가 409 를 돌려준다 |
+| `study_session_cycle_round_uk` | 유니크 인덱스 (`cycle_id`, `round_no`) WHERE `cycle_id IS NOT NULL` | 사이클 안에서 라운드 번호는 중복될 수 없다 |
+| `study_session_cycle_open_uk` | 유니크 인덱스 (`cycle_id`) WHERE `cycle_id IS NOT NULL AND finished_at IS NULL` | 사이클당 열린 라운드는 1개 |
+| `study_session_exam_open_uk` | 유니크 인덱스 (`mode`, `exam_id`) WHERE `mode IN ('exam_practice','exam') AND finished_at IS NULL` | (모드, 회차)마다 진행 중 세션 1개 |
+| `study_session_item_question_uk` | 유니크 제약 (`session_id`, `question_id`) | 한 세션에 같은 문항은 슬롯 1개 — 재전송 멱등의 근거 |
+| `study_session_item_question_idx` | 인덱스 (`question_id`) | 문항별 슬롯 조회·연쇄 삭제용 |
+
+### ⚠ 1) 기존 DB에 이 마이그레이션을 적용하기 전 — 중복 열린 세션 정리
+
+`study_session_exam_open_uk` 는 **값이 있는 DB에 같은 `(mode, exam_id)` 로 열린 세션(`finished_at IS NULL`)이 2개 이상 있으면 생성에 실패**합니다. `tools/load_db.py --init` 은 `db/*.sql` 을 파일마다 커밋하지 않고 **전체를 한 트랜잭션으로 실행한 뒤 마지막에 한 번 커밋**하므로, 이 인덱스 생성이 실패하면 그 실행에서 만들려던 변경(새 테이블·컬럼·다른 인덱스)이 **전부 롤백**됩니다.
+
+기록이 있는 운영 DB에 처음 적용할 때는 먼저 아래 조회로 중복 열린 세션을 찾아 정리(`finished_at`·`end_reason` 채우기 등)한 뒤 `--init` 을 돌리세요. **현재 dev DB 와 새로 구축한 EC2(진도 0행)는 영향이 없습니다.**
+
+```sql
+-- 같은 (mode, exam_id) 로 열린 세션이 2개 이상인지
+select mode, exam_id, count(*)
+from ipe.study_session
+where mode in ('exam_practice', 'exam') and finished_at is null
+group by mode, exam_id
+having count(*) > 1;
+```
+
+### ⚠ 2) 'abandoned 사이클 = 열린 세션 없음' 을 가정하면 안 된다
+
+진행 중 사이클을 `replaceActive=true` 로 새로 구성할 때, 열린 라운드 세션을 잠그는 사이에 다른 요청이 마지막 슬롯을 채점해 **새 라운드(review)** 를 커밋하면 그 라운드는 중단된 사이클에 `finished_at IS NULL` 로 남을 수 있습니다(그 창을 잠금 순서를 뒤집어 없애려 하면 `advance_round_if_complete` 와 ABBA 데드락이 나므로 그대로 둔다 — 설계 4.6절). 데이터 손상은 아니고, 남은 라운드의 마지막 슬롯을 채점하면 라운드만 닫히고 새 라운드는 만들어지지 않아 스스로 회복합니다.
+
+따라서 **홈·사이클 조회·집계는 `status='active'` 사이클만 근거로 삼습니다.** 중단된 사이클에 남은 열린 세션을 세션·슬롯 API 로 계속 푸는 것 자체는 가능하지만(마지막 슬롯 채점이 회복 경로), 그 세션을 '진행 중인 사이클의 라운드' 로 해석하면 안 됩니다.
+
 ### 통계 뷰
 
 | 뷰 | 내용 |
@@ -69,26 +150,40 @@
 | `v_wrong_questions` | 한 번이라도 틀린 문항(`wrong_count > 0`). `last_is_correct` 로 미해결 오답만 골라 쓴다 |
 | `v_review_due` | `review_due_on` 이 오늘(한국 날짜 Asia/Seoul) 이하인 문항. `overdue_days` = 밀린 일수(0=오늘, 클수록 밀림). DB 세션 TimeZone 과 무관하게 Asia/Seoul 날짜로 판정·계산 |
 
+세 뷰는 모두 **전체 기간 누계**(`study_state`·`study_attempt`) 기준이라 사이클·라운드와 무관합니다. 이번 사이클의 오답만 보려면 `study_session_item` 을 쓰세요(아래 5~7번 조회).
+
 ### 적용
 
-`db/002_progress.sql` 은 `--init` 에 포함되어 있어 별도 명령이 필요 없습니다. `db/*.sql` 을 파일명 순서로 전부 적용하므로 `001_schema.sql`(문항) 다음에 실행됩니다.
+`db/002_progress.sql`·`db/003_study_items.sql` 은 `--init` 에 포함되어 있어 별도 명령이 필요 없습니다. `db/*.sql` 을 파일명 순서로 전부 적용하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) → `003_study_items.sql`(슬롯·사이클) 순서로 실행됩니다.
 
 ```bash
-python tools/load_db.py --init     # db/001_schema.sql → db/002_progress.sql (000_bootstrap.sql 은 제외)
+python tools/load_db.py --init     # db/001 → 002 → 003 (000_bootstrap.sql 은 제외)
 ```
 
-psql 로 직접 실행해도 됩니다(재실행 안전).
+`--init` 은 **파일마다 커밋하지 않고 전체를 한 트랜잭션**으로 실행하므로, 중간에 실패하면 앞서 적용된 파일까지 함께 롤백됩니다(위 경고 1). psql 로 직접 실행해도 됩니다(재실행 안전).
 
 ```bash
 docker exec -i postgres psql -U yangyag -d app -f - < db/002_progress.sql
+docker exec -i postgres psql -U yangyag -d app -f - < db/003_study_items.sql
 ```
 
 되돌리려면 뷰 → 테이블 순서로 지웁니다. 문항 테이블은 그대로 둡니다.
 
 ```sql
 DROP VIEW  IF EXISTS ipe.v_review_due, ipe.v_wrong_questions, ipe.v_subject_stats;
+DROP TABLE IF EXISTS ipe.study_session_item, ipe.study_cycle;   -- 003
+DELETE FROM ipe.study_session;                                  -- 003 의 CHECK·컬럼을 남기고 행만 비울 때
+ALTER TABLE ipe.study_session
+    DROP CONSTRAINT IF EXISTS study_session_end_reason_chk,
+    DROP CONSTRAINT IF EXISTS study_session_round_chk,
+    DROP CONSTRAINT IF EXISTS study_session_mode_chk,
+    DROP COLUMN IF EXISTS end_reason,
+    DROP COLUMN IF EXISTS round_no,
+    DROP COLUMN IF EXISTS cycle_id;                             -- mode CHECK 는 002 정의로 다시 만든다
 DROP TABLE IF EXISTS ipe.study_attempt, ipe.study_state, ipe.study_session;
 ```
+
+`study_session` 을 003 이전 상태로 되돌리려면 위 `DELETE`·`ALTER` 를 먼저 하고 마지막 줄로 테이블까지 지우면 됩니다(`db/003_study_items.sql` 첫머리 주석과 같은 순서).
 
 ### 자주 쓰는 조회
 
@@ -114,6 +209,29 @@ select question_id, attempt_count, wrong_count, last_is_correct, note
 from ipe.study_state
 where bookmarked
 order by last_answered_at desc nulls last;
+
+-- 5) 과목별 진행 중 사이클과 라운드 현황 (홈 화면용. active 사이클만 본다 — 위 경고 2)
+select c.subject_code, c.status, s.round_no, s.mode, s.end_reason,
+       count(i.*) as item_count,
+       count(i.choice_no) as answered,
+       count(*) filter (where i.is_correct) as correct
+from ipe.study_cycle c
+left join ipe.study_session s on s.cycle_id = c.id
+left join ipe.study_session_item i on i.session_id = s.id
+where c.status = 'active'
+group by c.subject_code, c.status, s.round_no, s.mode, s.end_reason
+order by c.subject_code, s.round_no;
+
+-- 6) 이어풀기 위치: 아직 안 푼 가장 작은 seq (모의고사는 is_correct 대신 choice_no is null)
+select min(seq) as next_seq
+from ipe.study_session_item
+where session_id = 1 and is_correct is null;
+
+-- 7) 이번 사이클·라운드의 오답 문항 (다음 라운드 구성과 같은 기준)
+select i.seq, i.question_id
+from ipe.study_session_item i
+where i.session_id = 1 and i.is_correct is false
+order by i.seq;
 ```
 
 ### 응답 기록 예시 (쓰기)
@@ -121,7 +239,7 @@ order by last_answered_at desc nulls last;
 `study_attempt` 에 원장을 남기고, 같은 트랜잭션에서 `study_state` 를 upsert 합니다. `correct_count + wrong_count = attempt_count` 제약을 유지해야 하므로 증감은 `excluded` 값으로 계산합니다.
 
 ```sql
--- 세션 시작. 받은 id 를 아래 session_id 로 쓴다 (mode: exam|subject|random|review)
+-- 세션 시작. 받은 id 를 아래 session_id 로 쓴다 (mode: subject|review|exam_practice|exam|random)
 insert into ipe.study_session (mode, exam_id, subject_code)
 values ('exam', '2026-1', null)
 returning id;
@@ -155,7 +273,34 @@ set bookmarked = true, note = '헷갈림',
 where question_id = '2026-1-064';
 ```
 
-위 예시(세션 → 응답 → 상태 upsert → 북마크 갱신)와 조회 예시 4개는 실제 DB 에서 실행해 확인했습니다(샘플 기록은 롤백).
+위 예시(세션 → 응답 → 상태 upsert → 북마크 갱신)와 조회 예시 1~4번은 실제 DB 에서 실행해 확인했습니다(샘플 기록은 롤백).
+
+사이클 라운드 세션과 슬롯은 **한 트랜잭션**에서 만듭니다(API `POST /api/subject-cycles`·`POST /api/sessions` 가 하는 일과 같음).
+
+```sql
+begin;
+-- 1) 사이클 (진행 중 사이클이 있으면 study_cycle_active_uk 위반 → API 는 409)
+insert into ipe.study_cycle (subject_code) values (1) returning id;          -- 예: 7
+
+-- 2) 라운드 1 세션. cycle_id·round_no 는 함께 넣어야 study_session_round_chk 를 통과한다
+insert into ipe.study_session (mode, subject_code, cycle_id, round_no)
+values ('subject', 1, 7, 1) returning id;                                    -- 예: 12
+
+-- 3) 슬롯 목록 (연습: seq 1..N, 아직 안 푼 상태 = is_correct NULL)
+insert into ipe.study_session_item (session_id, seq, question_id)
+values (12, 1, '2026-1-001'), (12, 2, '2025-3-004');
+
+-- 4) 연습 슬롯 채점: 원장 1행 + 누계 upsert + 슬롯에 결과 기록을 같은 트랜잭션에서
+insert into ipe.study_attempt (session_id, question_id, choice_no, is_correct)
+values (12, '2026-1-001', 3, false);
+update ipe.study_session_item
+set choice_no = 3, is_correct = false, answered_at = now()
+where session_id = 12 and seq = 1;
+-- (마지막 슬롯이면 같은 트랜잭션에서 라운드 종료 → 오답 라운드 생성 또는 사이클 completed)
+commit;
+```
+
+`UPDATE study_session SET finished_at` 을 직접 쓸 때는 `end_reason` 도 함께 채워야 합니다(`study_session_end_reason_chk`). 슬롯 세션은 API 경로(`PUT /api/sessions/{id}/items/{seq}/answer`)가 이 전환을 대신 처리합니다.
 
 ## ⚠ search_path 주의
 
@@ -201,7 +346,9 @@ python tools/load_db.py --init     # db/*.sql 마이그레이션을 파일명 �
 python tools/load_db.py            # data/questions 전체 적재 + 검증
 ```
 
-`--init` 은 `db/` 의 SQL 을 파일명 오름차순으로 실행하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) 순서로 들어갑니다. `000_bootstrap.sql` 은 superuser 권한과 psql 메타명령이 필요해 `--init` 에서 제외되므로 위 1) 단계에서 따로 실행합니다. `db/` 에 SQL 파일을 새로 추가하면 자동으로 포함됩니다.
+`--init` 은 `db/` 의 SQL 을 파일명 오름차순으로 실행하므로 `001_schema.sql`(문항) → `002_progress.sql`(진도) → `003_study_items.sql`(슬롯·사이클) 순서로 들어갑니다. `000_bootstrap.sql` 은 superuser 권한과 psql 메타명령이 필요해 `--init` 에서 제외되므로 위 1) 단계에서 따로 실행합니다. `db/` 에 SQL 파일을 새로 추가하면 자동으로 포함됩니다.
+
+**`--init` 은 전체를 한 트랜잭션으로 실행합니다.** 어느 파일에서든 실패하면 그 실행의 변경이 전부 롤백되므로(예: 기존 DB의 중복 열린 세션 때문에 `study_session_exam_open_uk` 생성 실패 — 위 경고 1), 기존 DB에 처음 적용할 때는 먼저 진도 테이블 상태를 확인하세요.
 
 두 명령 모두 **몇 번을 실행해도 같은 결과**입니다(멱등). JSON에서 사라진 문항은 적재 시 정리됩니다.
 
