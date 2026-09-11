@@ -1,7 +1,7 @@
 """JSON 문항 데이터를 PostgreSQL(ipe 스키마)로 적재한다.
 
 사용법:
-    python tools/load_db.py --init     # db/001_schema.sql 적용
+    python tools/load_db.py --init     # db/*.sql 마이그레이션 적용 (000_bootstrap.sql 제외)
     python tools/load_db.py            # data/questions 전체 적재 (멱등)
     python tools/load_db.py --verify   # 적재 결과 검증
 
@@ -26,7 +26,10 @@ from psycopg.types.json import Jsonb
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
-SCHEMA_SQL = ROOT / "db" / "001_schema.sql"
+DB = ROOT / "db"
+# db/000_bootstrap.sql 은 superuser(postgres) 권한과 psql 메타명령(\set, \echo)이 필요해
+# psycopg 로 실행할 수 없다. --init 에서 제외하고 psql 로 직접 실행한다(db/README.md 참고).
+BOOTSTRAP_SQL = "000_bootstrap.sql"
 ENV_FILE = ROOT / ".env"
 DEFAULT_URL = "postgresql://yangyag@localhost:5432/app"
 
@@ -75,12 +78,26 @@ def connect():
     return psycopg.connect(url, **opts) if url else psycopg.connect(**opts)
 
 
+def migrations():
+    """db/ 아래 마이그레이션 SQL 을 파일명 오름차순으로 돌려준다.
+
+    부트스트랩(000_bootstrap.sql)은 superuser 권한과 psql 메타명령(\\set, \\echo)이 필요해
+    psycopg 로 실행할 수 없으므로 제외한다. db/ 에 새 SQL 파일을 추가하면 자동으로 포함된다.
+    """
+    return [p for p in sorted(DB.glob("*.sql")) if p.name != BOOTSTRAP_SQL]
+
+
 def init_schema(conn):
-    sql = SCHEMA_SQL.read_text(encoding="utf-8")
+    files = migrations()
+    if not files:
+        print(f"--init: {DB.relative_to(ROOT).as_posix()}/*.sql 에 적용할 마이그레이션이 없음")
+        return
     with conn.cursor() as cur:
-        cur.execute(sql)
+        for path in files:
+            cur.execute(path.read_text(encoding="utf-8"))
     conn.commit()
-    print(f"스키마 적용 완료: {SCHEMA_SQL.relative_to(ROOT)}")
+    print(f"--init: {', '.join(p.relative_to(ROOT).as_posix() for p in files)} 적용")
+    print(f"  ({BOOTSTRAP_SQL} 제외: superuser 권한 + psql 메타명령(\\set, \\echo) 필요 — psql 로 직접 실행)")
 
 
 def read_json():
@@ -351,7 +368,7 @@ def verify(conn):
 
 def main():
     ap = argparse.ArgumentParser(description="기출문제 JSON → PostgreSQL(ipe) 적재")
-    ap.add_argument("--init", action="store_true", help="db/001_schema.sql 적용")
+    ap.add_argument("--init", action="store_true", help="db/*.sql 마이그레이션 적용 (000_bootstrap.sql 제외)")
     ap.add_argument("--verify", action="store_true", help="적재 결과 검증")
     args = ap.parse_args()
 
