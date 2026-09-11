@@ -328,11 +328,24 @@ POST /api/sessions  {"mode": "review"}                              # 400 — �
 - `mode=exam_practice`·`exam` 에 `examId` 가 없으면 `400`, 없는 회차면 `404`, 그 회차에 문항이 없으면 `400`.
 - `mode=exam_practice`·`exam` 은 **같은 모드·회차의 진행 중 세션(`finishedAt` 이 `null`)이 있으면 `409`** 입니다(DB 의 `study_session_exam_open_uk`). `replaceActive=true` 로 보내면 그 세션을 `endReason="abandoned"` 로 닫고 같은 트랜잭션에서 새로 만듭니다(부수 효과: 그 세션에 쌓인 슬롯·원장은 그대로 남지만 더 이상 기록할 수 없습니다). 두 기기에서 동시에 만들면 유니크 인덱스 위반을 `409` 로 돌려줍니다.
 - `examId` 의 빈 문자열(`""` 또는 공백뿐인 값)은 **`null` 로 정규화**합니다(B-02). 프론트 선택 입력의 초기값을 그대로 보내도 되도록 한 것이고, 라우터의 존재 검사 기준(`if examId`)과도 맞습니다. 그래서 `mode=exam` + `""` 는 `400`(examId 필요)이고, `mode=random` + `""` 는 회차 없음으로 만들어집니다. `""` 가 그대로 `INSERT` 되어 `500`(외래 키 위반)이 나던 동작은 없어졌습니다.
-- `subjectCode` 는 `random` 에서도 받지만 의미가 없습니다(슬롯이 없음). 없는 과목이면 `404`.
+- `random` 은 `examId`·`subjectCode` 도 받아 **세션 행에 그대로 저장합니다**(응답 `SessionOut` 에 그대로 실립니다). 랜덤 출제 자체는 `GET /api/questions/random` 이 하므로 세션의 값은 출제에 영향을 주지 않습니다(슬롯이 없음). 없는 회차·과목이면 `404`.
+- 회차 연습·모의고사에 `subjectCode` 를 함께 보내도 **저장하지 않습니다**(항상 `null`) — 그 회차의 과목 구성은 문항에서 나옵니다.
 - `/finish` 는 이미 끝난 세션에 다시 호출해도 현재 상태를 그대로 돌려줍니다(멱등). **슬롯이 있는 세션은 `409`** 입니다 — 연습은 마지막 슬롯을 채점하면 같은 트랜잭션에서 자동으로 끝나고, 모의고사는 최종 제출을 써야 합니다(아직 없음). 슬롯 없는 `random` 세션은 기존대로 `/finish` 로 끝냅니다.
-- 종료된 슬롯 세션에는 더 기록할 수 없습니다(`409`). `endReason` 이 `abandoned` 면 `"중단된 세션입니다. 새로 구성한 세션에서 계속하세요"`, `finished` 면 `"이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"`(연습) 또는 `"이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"`(모의고사)입니다.
+- 종료·중단된 슬롯 세션의 **아직 안 푼 슬롯** 제출은 `409` 이고, 메시지는 모드와 `endReason` 으로 갈립니다.
+  - 연습(`subject`·`review`·`exam_practice`): `abandoned` → `"중단된 세션입니다. 새로 구성한 세션에서 계속하세요"`, `finished` → `"이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"`. 연습의 `finished` 분기는 정상 흐름에서 나지 않습니다(마지막 슬롯 채점이 곧 종료라 그때는 모든 슬롯이 이미 채점돼 위의 재전송 경로로 갑니다).
+  - 모의고사(`exam`): `abandoned` → `"중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요"`, `finished` → `"이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"`. `finished` 는 최종 제출 API(5단계)가 붙으면 쓰이고, 지금 실제로 나는 것은 `replaceActive` 로 중단된 `abandoned` 쪽입니다.
 
-`SessionOut`(목록·생성 응답)에는 `cycleId`·`roundNo`·`endReason` 이 더해졌습니다. `subject`·`review` 는 전부 값이 있고, `exam_practice`·`exam`·`random` 은 셋 다 `null` 입니다(`roundNo` 만 `null` 이고 `cycleId` 가 있는 조합은 CHECK 가 막습니다). `GET /api/sessions?cycleId=<id>` 로 사이클의 라운드만 모아 볼 수 있습니다.
+`SessionOut`(목록·생성 응답)에는 `cycleId`·`roundNo`·`endReason` 이 더해졌습니다. 모드별로 저장되는 대상 값은 이렇습니다(위 `SessionCreate` 규칙과 같은 내용).
+
+| mode | `examId` | `subjectCode` | `cycleId`·`roundNo` | `endReason` |
+|---|---|---|---|---|
+| `subject`(라운드 1) | `null` | 사이클의 과목 | `cycleId`, `roundNo=1` | 마지막 슬롯 채점 시 `finished` · 새로 구성 시 `abandoned` |
+| `review`(라운드 2+) | `null` | 사이클의 과목 | `cycleId`, `roundNo>=2` | 위와 같음 |
+| `exam_practice` | 회차 | `null`(요청에 있어도 저장 안 함) | `null` | 마지막 슬롯 채점 시 `finished` · 새로 구성 시 `abandoned` (`/finish` 는 `409`) |
+| `exam` | 회차 | `null`(요청에 있어도 저장 안 함) | `null` | 지금은 `abandoned`(새로 구성)만 — `finished` 는 5단계 제출 API |
+| `random` | 요청값(보통 `null`) | 요청값(보통 `null`) | `null` | `/finish` 로 `finished` |
+
+`roundNo` 만 `null` 이고 `cycleId` 가 있는 조합은 CHECK(`study_session_round_chk`)가 막습니다. `GET /api/sessions?cycleId=<id>` 로 사이클의 라운드만 모아 볼 수 있습니다.
 
 ```bash
 curl -X POST http://127.0.0.1:8092/api/sessions \

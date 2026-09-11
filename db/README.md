@@ -32,12 +32,24 @@
 |---|---|
 | `id` | 세션 번호 (serial) |
 | `mode` | `subject`(과목 사이클 라운드 1) · `review`(사이클 라운드 2+, 직전 오답 복습) · `exam_practice`(회차별 연습) · `exam`(회차 모의고사) · `random`(랜덤 출제) — 아래 **mode 5종** |
-| `exam_id` | 대상 회차 → `exam.id`. 회차 연습·모의고사는 값이 있고, 나머지는 NULL |
-| `subject_code` | 대상 과목 → `subject.code`. 사이클 라운드는 사이클의 과목이 들어가고, 회차 연습·모의고사는 NULL |
+| `exam_id` | 대상 회차 → `exam.id`. 회차 연습·모의고사는 라우터가 반드시 채우고, `random` 은 요청에 `examId` 가 있으면 **그대로 저장**한다(슬롯이 없어 출제에는 영향 없음). 사이클 라운드(`subject`·`review`)는 NULL |
+| `subject_code` | 대상 과목 → `subject.code`. 사이클 라운드는 사이클의 과목이, `random` 은 요청한 `subjectCode` 가 그대로 저장된다. 회차 연습·모의고사는 요청에 있어도 저장하지 않는다(NULL) |
 | `cycle_id` | 사이클 라운드면 그 사이클 → `study_cycle.id`. 회차 연습·모의고사·랜덤은 NULL |
 | `round_no` | 사이클 안의 라운드 번호. `cycle_id` 가 NULL 이면 NULL |
 | `end_reason` | 종료 사유 `finished`(정상 종료)·`abandoned`(중단). 진행 중이면 NULL |
 | `started_at` / `finished_at` | 시작·종료 시각. `finished_at` 이 NULL 이면 진행 중 |
+
+mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
+
+| mode | `exam_id` | `subject_code` | `cycle_id`·`round_no` |
+|---|---|---|---|
+| `subject` | NULL | 사이클의 과목 | 값 있음(`round_no=1`) |
+| `review` | NULL | 사이클의 과목 | 값 있음(`round_no>=2`) |
+| `exam_practice` | 회차(필수) | NULL(요청에 있어도 저장 안 함) | NULL |
+| `exam` | 회차(필수) | NULL(요청에 있어도 저장 안 함) | NULL |
+| `random` | 요청값(보통 NULL) | 요청값(보통 NULL) | NULL |
+
+`end_reason` 은 `random`·연습(`subject`·`review`·`exam_practice`)이 정상 종료되면 `finished`, 새로 구성(`replaceActive`)으로 밀려나면 `abandoned` 다. 모의고사(`exam`)는 지금 `abandoned` 만 실제로 생긴다(최종 제출 API 가 아직 없음).
 
 **`study_attempt` — 응답 1건 = 1행 (append-only, 수정하지 않음)**
 
