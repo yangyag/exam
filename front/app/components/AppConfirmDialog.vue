@@ -1,11 +1,14 @@
 <script setup lang="ts">
-// 확인 대화상자 — 새로 구성처럼 되돌릴 수 없는 동작 전에 한 번 묻는다.
+// 확인 대화상자 — 새로 구성·모의고사 제출처럼 되돌릴 수 없는 동작 전에 한 번 묻는다.
+// 본문은 기본 슬롯으로 대체할 수 있다(모의고사 제출처럼 수치를 강조해야 할 때).
 const props = defineProps<{
   open: boolean
   title: string
-  body: string
+  body?: string
   confirmLabel?: string
   cancelLabel?: string
+  /** 진행 중일 때 확인 버튼 문구 */
+  busyLabel?: string
   busy?: boolean
 }>()
 
@@ -90,9 +93,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
         <h2 class="text-base font-semibold text-slate-900">
           {{ title }}
         </h2>
-        <p class="mt-2 text-sm leading-relaxed text-slate-600">
-          {{ body }}
-        </p>
+        <div class="mt-2 text-sm leading-relaxed text-slate-600">
+          <slot>{{ body }}</slot>
+        </div>
         <div class="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-end">
           <button
             ref="confirmButton"
@@ -102,7 +105,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
             :disabled="busy"
             @click="emit('confirm')"
           >
-            {{ busy ? '구성 중…' : (confirmLabel ?? '확인') }}
+            {{ busy ? (busyLabel ?? '처리 중…') : (confirmLabel ?? '확인') }}
           </button>
           <button
             type="button"

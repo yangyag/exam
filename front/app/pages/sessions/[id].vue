@@ -51,14 +51,6 @@ let itemShownAt = 0
 let itemToken = 0
 
 const PRACTICE_MODES = ['subject', 'review', 'exam_practice']
-const MODE_LABELS: Record<string, string> = {
-  subject: '전체 문항 풀이',
-  review: '오답 복습',
-  exam_practice: '회차별 연습',
-  exam: '모의고사',
-  random: '랜덤 출제',
-}
-
 const isPracticeMode = computed(() => Boolean(session.value && PRACTICE_MODES.includes(session.value.mode)))
 const itemCount = computed(() => progress.value.itemCount || session.value?.itemCount || 0)
 const answeredCount = computed(() => progress.value.answeredCount)
@@ -68,7 +60,7 @@ const currentNo = computed(() => seq.value)
 const roundLabel = computed(() => {
   const current = session.value
   if (!current) return ''
-  const name = MODE_LABELS[current.mode] ?? current.mode
+  const name = sessionModeLabels[current.mode] ?? current.mode
   return current.roundNo ? `${current.roundNo}라운드 · ${name}` : name
 })
 const subjectLine = computed(() => {
@@ -365,11 +357,19 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
         </h1>
         <p class="mt-1 text-sm leading-relaxed text-slate-600">
           이 화면은 과목별 연습(전체 풀이·오답 복습)과 회차별 연습을 위한 것입니다.
-          지금 세션은 <strong>{{ MODE_LABELS[session.mode] ?? session.mode }}</strong> 모드입니다 — 해당 화면에서 이용해 주세요.
+          지금 세션은 <strong>{{ sessionModeLabels[session.mode] ?? session.mode }}</strong> 모드입니다.
+          <template v-if="session.mode === 'exam'">
+            모의고사는 모의고사 화면에서 이어서 풀 수 있습니다.
+          </template>
         </p>
-        <NuxtLink to="/" class="btn-secondary mt-4" data-tap>
-          홈으로
-        </NuxtLink>
+        <div class="mt-4 flex flex-col gap-2 sm:flex-row">
+          <NuxtLink v-if="session.mode === 'exam'" :to="`/exam/${sessionId}`" class="btn-primary" data-tap data-testid="practice-to-exam">
+            모의고사 화면으로
+          </NuxtLink>
+          <NuxtLink to="/" class="btn-secondary" data-tap>
+            홈으로
+          </NuxtLink>
+        </div>
       </section>
 
       <!-- 중단·종료된 세션 -->

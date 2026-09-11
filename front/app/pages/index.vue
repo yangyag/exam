@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SubjectCycle, SubjectOverview } from '~/types/api'
+import type { Exam, SubjectCycle, SubjectOverview, SessionSummary } from '~/types/api'
 
 useHead({ title: '정보처리기사 필기 — 과목별 학습' })
 
@@ -13,6 +13,33 @@ const { data, error, pending, refresh } = useAsyncData(
   () => $fetch<SubjectOverview[]>(apiUrl('/api/subject-cycles/overview'), { retry: 0, timeout: 10000 }),
 )
 
+// 회차별 연습·모의고사 진입 — 회차 13행(GET /api/exams)과 진행 중 회차 세션(GET /api/sessions 스캔).
+// 이 조회가 실패해도 과목 카드는 그대로 두고 회차 자리에서만 안내한다.
+const { data: examData, error: examError, refresh: refreshExams } = useAsyncData('home-exams', async () => {
+  const [exams, sessions] = await Promise.all([
+    $fetch<Exam[]>(apiUrl('/api/exams'), { retry: 0, timeout: 10000 }),
+    $fetch<SessionSummary[]>(apiUrl('/api/sessions?limit=200'), { retry: 0, timeout: 10000 }),
+  ])
+  return { exams, sessions }
+})
+
+const exams = computed<Exam[]>(() => examData.value?.exams ?? [])
+const examLoadError = computed(() => (examError.value ? describeApiError(examError.value, base) : null))
+
+// 진행 중 회차 세션 — 회차 제목·문항 수를 붙여 카드로 만든다
+const openExamCards = computed(() => (examData.value?.sessions ?? [])
+  .filter(isOpenExamSession)
+  .map((session) => {
+    const exam = exams.value.find(item => item.id === session.examId) ?? null
+    return {
+      session,
+      title: exam?.title ?? session.examId ?? '',
+      questionCount: exam?.questionCount ?? 0,
+      label: sessionModeLabels[session.mode],
+      path: sessionPlayPath(session),
+    }
+  }))
+
 const subjects = computed<SubjectOverview[]>(() => data.value ?? [])
 const totalUnique = computed(() => subjects.value.reduce((sum, s) => sum + s.uniqueQuestionCount, 0))
 const loadError = computed(() => (error.value ? describeApiError(error.value, base) : null))
@@ -21,6 +48,11 @@ const isEmpty = computed(() => !pending.value && error.value === undefined && su
 
 // 진행 중인 동작 표시 — `${과목코드}:${동작}`
 const actionKey = ref<string | null>(null)
+
+// 두 데이터셋(과목 요약·회차 진행)을 함께 새로 읽는다
+async function refreshAll() {
+  await Promise.all([refresh(), refreshExams()])
+}
 
 function pendingActionFor(subject: SubjectOverview): 'start' | 'resume' | 'recreate' | null {
   if (!actionKey.value?.startsWith(`${subject.subjectCode}:`)) return null
@@ -139,7 +171,7 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
           class="btn-quiet shrink-0"
           data-tap
           :disabled="pending"
-          @click="refresh()"
+          @click="refreshAll()"
         >
           {{ pending ? '불러오는 중…' : '새로고침' }}
         </button>
@@ -213,23 +245,64 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
           />
         </div>
 
-        <!-- 회차별 연습·모의고사 자리(다음 단계에서 연결) -->
-        <section class="mt-8 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5">
-          <h2 class="text-base font-semibold text-slate-900">
-            회차별 연습 · 모의고사
-          </h2>
-          <p class="mt-1 text-sm leading-relaxed text-slate-600">
-            2022-1 ~ 2026-1 기출 회차를 골라 연습하거나 실전처럼 모의고사를 볼 자리입니다.
-            <span class="text-slate-500">화면은 다음 단계에서 연결됩니다.</span>
-          </p>
-          <div class="mt-3 flex flex-col gap-2 sm:flex-row">
-            <button type="button" class="btn-placeholder" disabled>
-              회차별 연습 (준비 중)
-            </button>
-            <button type="button" class="btn-placeholder" disabled>
-              모의고사 (준비 중)
-            </button>
+        <!-- 회차별 연습·모의고사 진입 + 진행 중 회차 세션 -->
+        <section class="mt-8" data-testid="home-exams">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-base font-semibold text-slate-900">
+              회차별 연습 · 모의고사
+            </h2>
+            <NuxtLink to="/exams" class="btn-secondary shrink-0" data-tap data-testid="home-exams-link">
+              회차 선택
+            </NuxtLink>
           </div>
+          <p class="mt-1 text-sm leading-relaxed text-slate-600">
+            2022-1 ~ 2026-1 기출<template v-if="exams.length"> {{ exams.length }}회차</template>를
+            회차별 연습(문항마다 바로 채점)이나 모의고사(100문항 · 최종 제출 채점, 제한시간 없음)로 풉니다.
+          </p>
+
+          <!-- 진행 중인 회차 세션 — 열린 세션 중 회차(examId)가 있는 것만 -->
+          <ul v-if="openExamCards.length" class="mt-3 space-y-2" data-testid="home-exam-sessions">
+            <li
+              v-for="card in openExamCards"
+              :key="card.session.id"
+              class="flex flex-wrap items-center gap-3 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3"
+              data-testid="home-exam-session"
+            >
+              <p class="min-w-0 flex-1 text-sm text-blue-900">
+                <strong>{{ card.title }}</strong> · {{ card.label }} 진행 중
+                <span class="block text-xs text-blue-700">
+                  {{ card.session.answered }} / {{ card.questionCount }}문항 · 시작 {{ formatDateTime(card.session.startedAt) }}
+                </span>
+              </p>
+              <NuxtLink
+                :to="card.path"
+                class="btn-primary shrink-0"
+                data-tap
+                :data-testid="`home-exam-resume-${card.session.mode}`"
+              >
+                이어서 풀기
+              </NuxtLink>
+            </li>
+          </ul>
+          <p
+            v-else-if="!examLoadError"
+            class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-600"
+            data-testid="home-exam-idle"
+          >
+            진행 중인 회차 세션이 없습니다.
+            <NuxtLink to="/exams" class="font-semibold text-blue-700 underline">회차를 골라 시작</NuxtLink>해 보세요.
+          </p>
+          <p
+            v-else
+            class="mt-3 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800"
+            data-testid="home-exam-error"
+            role="status"
+          >
+            회차 진행 상황을 불러오지 못했습니다 — {{ examLoadError.detail }}
+            <button type="button" class="ml-1 font-semibold underline" data-tap @click="refreshExams()">
+              다시 시도
+            </button>
+          </p>
         </section>
       </template>
     </main>
@@ -240,6 +313,7 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
       title="사이클을 새로 구성할까요?"
       :body="dialogBody"
       confirm-label="새로 구성"
+      busy-label="구성 중…"
       cancel-label="취소"
       @confirm="confirmRecreate"
       @cancel="dialogSubject = null"
