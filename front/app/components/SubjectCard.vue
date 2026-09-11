@@ -20,6 +20,14 @@ const card = computed(() => toSubjectCardView(props.subject))
 const notStarted = computed(() => props.subject.status === 'not_started')
 const completed = computed(() => props.subject.status === 'completed')
 
+// 정답 패널이 어느 풀이의 정답 수인지 라벨로 분명히 한다(완료 카드는 1차(전체) 풀이 값)
+const correctLabel = computed(() => {
+  if (props.subject.status === 'completed') return '1차 정답'
+  if (props.subject.status === 'reviewing') return '복습 정답'
+  if (props.subject.status === 'first_pass') return '1차 정답'
+  return '정답 수'
+})
+
 // 상태별 주 동작 — 시작 전=시작하기, 진행 중=이어서 풀기, 완료=새로 구성(설계 5.1절)
 const primaryAction = computed<'start' | 'resume' | 'recreate'>(() => {
   if (notStarted.value) return 'start'
@@ -55,7 +63,7 @@ function onPrimary() {
         <h2 class="mt-0.5 truncate text-lg font-semibold text-slate-900">
           {{ card.name }}
         </h2>
-        <p class="mt-0.5 text-xs text-slate-500">
+        <p class="mt-0.5 text-xs text-slate-500" data-testid="card-unique">
           고유 문항 {{ card.uniqueCount }}개<span v-if="card.total !== card.uniqueCount"> · 이번 라운드 {{ card.total }}문항</span>
         </p>
       </div>
@@ -72,15 +80,15 @@ function onPrimary() {
         <dt class="text-xs text-slate-500">
           진행도
         </dt>
-        <dd class="mt-0.5 text-xl font-semibold tabular-nums text-slate-900">
+        <dd class="mt-0.5 text-xl font-semibold tabular-nums text-slate-900" data-testid="card-progress">
           {{ card.answered }}<span class="ml-1 text-sm font-normal text-slate-500">/ {{ card.total }}</span>
         </dd>
       </div>
       <div class="rounded-xl bg-slate-50 px-3 py-2">
-        <dt class="text-xs text-slate-500">
-          정답 수
+        <dt class="text-xs text-slate-500" data-testid="card-correct-label">
+          {{ correctLabel }}
         </dt>
-        <dd class="mt-0.5 text-xl font-semibold tabular-nums text-slate-900">
+        <dd class="mt-0.5 text-xl font-semibold tabular-nums text-slate-900" data-testid="card-correct">
           {{ card.correct }}
         </dd>
       </div>
@@ -100,7 +108,7 @@ function onPrimary() {
       <p class="mt-2 text-xs leading-relaxed text-slate-600">
         {{ card.note }}
       </p>
-      <p v-if="card.detail" class="mt-0.5 text-xs text-slate-400">
+      <p v-if="card.detail" class="mt-0.5 text-xs text-slate-400" data-testid="card-detail">
         {{ card.detail }}
       </p>
     </div>

@@ -131,7 +131,7 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
             정보처리기사 필기
           </h1>
           <p class="mt-0.5 text-xs text-slate-500 sm:text-sm">
-            과목별 학습 사이클<span v-if="subjects.length"> · 고유 문항 {{ totalUnique }}개</span>
+            과목별 학습 사이클<span v-if="subjects.length"> · 과목별 고유 문항 합계 {{ totalUnique }}개 (과목마다 중복 제거)</span>
           </p>
         </div>
         <button

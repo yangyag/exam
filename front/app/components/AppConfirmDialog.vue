@@ -15,6 +15,7 @@ const emit = defineEmits<{
 }>()
 
 const confirmButton = ref<HTMLButtonElement | null>(null)
+const dialog = ref<HTMLElement | null>(null)
 // 대화상자를 닫을 때 원래 포커스로 돌려준다(키보드 사용자)
 let lastActive: HTMLElement | null = null
 
@@ -32,10 +33,42 @@ watch(
   },
 )
 
+// 대화상자 안의 포커스 가능한 요소 — Tab 순환 범위
+function focusables(): HTMLElement[] {
+  const root = dialog.value
+  if (!root) return []
+  return Array.from(
+    root.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter((el) => el.offsetParent !== null)
+}
+
 function onKeydown(event: KeyboardEvent) {
-  if (!props.open || event.key !== 'Escape') return
-  event.preventDefault()
-  emit('cancel')
+  if (!props.open) return
+
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    emit('cancel')
+    return
+  }
+  if (event.key !== 'Tab') return
+
+  // aria-modal 을 선언했으므로 Tab 이 배경으로 빠져나가면 안 된다 — 마지막에서 처음으로 되돌린다
+  const items = focusables()
+  if (items.length === 0) return
+  const first = items[0]
+  const last = items[items.length - 1]
+  const active = document.activeElement
+  const inside = active instanceof HTMLElement && Boolean(dialog.value?.contains(active))
+
+  if (event.shiftKey && (active === first || !inside)) {
+    event.preventDefault()
+    last?.focus()
+  } else if (!event.shiftKey && (active === last || !inside)) {
+    event.preventDefault()
+    first?.focus()
+  }
 }
 
 onMounted(() => window.addEventListener('keydown', onKeydown))
@@ -47,6 +80,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
     <div v-if="open" class="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div class="absolute inset-0 bg-slate-900/40" @click="emit('cancel')" />
       <div
+        ref="dialog"
         role="dialog"
         aria-modal="true"
         :aria-label="title"

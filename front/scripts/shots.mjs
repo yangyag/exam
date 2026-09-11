@@ -196,6 +196,16 @@ function watchConsole(page) {
   return errors
 }
 
+/** 현재 포커스가 대화상자 안인지 밖인지 + 어떤 요소인지 — 포커스 트랩 점검용 */
+function focusSpot(page) {
+  return page.evaluate(() => {
+    const active = document.activeElement
+    const inside = Boolean(active?.closest('[data-testid="confirm-dialog"]'))
+    const label = (active?.textContent || active?.tagName || '').trim().replace(/\s+/g, ' ').slice(0, 14)
+    return `${inside ? 'in' : 'out'}:${label}`
+  })
+}
+
 async function save(page, name) {
   const file = path.join(shotsDir, name)
   await page.screenshot({ path: file, fullPage: true })
@@ -245,15 +255,33 @@ async function captureRealData(browser) {
   await sleep(400)
 
   const beforeDataChecks = problems.length
-  const texts = await page.locator('[data-testid="subject-card"]').allInnerTexts()
-  if (texts.length !== 5) fail(`[모바일] 과목 카드가 5개가 아닙니다: ${texts.length}`)
-  EXPECTED.forEach((expected, index) => {
-    const text = (texts[index] ?? '').replace(/\s+/g, ' ')
-    if (!text.includes(expected.name)) fail(`[모바일] ${index + 1}번 카드에 과목명이 없습니다: ${expected.name}`)
-    if (!text.includes(String(expected.count))) fail(`[모바일] ${index + 1}번 카드에 고유 문항 수가 없습니다: ${expected.count}`)
-  })
+  if (await page.locator('[data-testid="subject-card"]').count() !== 5) {
+    fail(`[모바일] 과목 카드가 5개가 아닙니다: ${await page.locator('[data-testid="subject-card"]').count()}`)
+  }
+  // 라벨과 숫자를 함께 본다 — 부분 문자열만 보면 라벨이 틀린 숫자를 보여도 통과한다(리뷰 P2-4)
+  for (const [index, expected] of EXPECTED.entries()) {
+    const card = page.locator('[data-testid="subject-card"]').nth(index)
+    const where = `[모바일] ${index + 1}번 카드`
+    const text = (await card.innerText()).replace(/\s+/g, ' ')
+    if (!text.includes(expected.name)) fail(`${where}에 과목명이 없습니다: ${expected.name}`)
+
+    const unique = (await card.locator('[data-testid="card-unique"]').innerText()).replace(/\s+/g, ' ')
+    const uniqueMatch = unique.match(/^고유 문항 (\d+)개/)
+    if (!uniqueMatch) fail(`${where}의 고유 문항 줄이 '고유 문항 N개' 형식이 아닙니다: ${unique}`)
+    else if (Number(uniqueMatch[1]) !== expected.count) fail(`${where}의 고유 문항이 ${uniqueMatch[1]}개 입니다(기대 ${expected.count}개)`)
+
+    // 표시는 '0 / 176' 이지만 DOM 텍스트는 '0/ 176' 이라 공백을 지우고 비교한다
+    const progress = (await card.locator('[data-testid="card-progress"]').innerText()).replace(/\s+/g, '')
+    if (progress !== `0/${expected.count}`) fail(`${where}의 진행도가 '0 / ${expected.count}' 가 아닙니다: ${progress}`)
+
+    const correct = (await card.locator('[data-testid="card-correct"]').innerText()).trim()
+    if (correct !== '0') fail(`${where}의 정답 수가 '0' 이 아닙니다: ${correct}`)
+  }
   const header = await page.locator('header').first().innerText()
-  if (!header.includes('고유 문항 944개')) fail(`[모바일] 헤더에 총 고유 문항(944)이 없습니다: ${header.replace(/\s+/g, ' ')}`)
+  const totalUnique = EXPECTED.reduce((sum, item) => sum + item.count, 0)
+  if (!header.includes(`과목별 고유 문항 합계 ${totalUnique}개`)) {
+    fail(`[모바일] 헤더에 '과목별 고유 문항 합계 ${totalUnique}개' 기준 표기가 없습니다: ${header.replace(/\s+/g, ' ')}`)
+  }
 
   await save(page, 'home-mobile-375x812.png')
   await auditLayout(page, '모바일 375')
@@ -337,16 +365,53 @@ async function captureStatesAndActions(browser) {
   } else {
     fail(`완료 상태 카드 버튼이 예상과 다릅니다: ${JSON.stringify(completedButtons)}`)
   }
+
+  // 정답 패널이 어느 풀이의 정답 수인지 화면 문구만으로 읽히는지(리뷰 P2-2)
+  const completedCorrectLabel = (await completedCard.locator('[data-testid="card-correct-label"]').innerText()).trim()
+  const completedCorrect = (await completedCard.locator('[data-testid="card-correct"]').innerText()).trim()
+  const completedDetail = (await completedCard.locator('[data-testid="card-detail"]').innerText()).replace(/\s+/g, ' ')
+  if (completedCorrectLabel === '1차 정답' && completedCorrect === '176' && /^1차\(전체\) 풀이 정답 176\/194/.test(completedDetail)) {
+    pass(`완료 카드 정답 표기: ${completedCorrectLabel} ${completedCorrect} · ${completedDetail}`)
+  } else {
+    fail(`완료 카드 정답 표기가 예상과 다릅니다: 라벨=${completedCorrectLabel} 값=${completedCorrect} 보조줄=${completedDetail}`)
+  }
+
+  const reviewingCorrectLabel = (await page.locator('[data-testid="subject-card"]').nth(1)
+    .locator('[data-testid="card-correct-label"]').innerText()).trim()
+  if (reviewingCorrectLabel === '복습 정답') pass(`오답 복습 카드 정답 패널 라벨: ${reviewingCorrectLabel}`)
+  else fail(`복습 카드 정답 패널 라벨이 '복습 정답' 이 아닙니다: ${reviewingCorrectLabel}`)
+
   await completedCard.getByRole('button', { name: '새로 구성' }).click()
   await page.waitForSelector('[data-testid="confirm-dialog"]', { timeout: 10000 })
   const completedDialog = await page.getByTestId('confirm-dialog').innerText()
   if (completedDialog.includes('새 사이클을 시작합니다')) pass('완료 카드 확인 대화상자 문구 확인')
   else fail(`완료 카드 대화상자 문구가 다릅니다: ${completedDialog.replace(/\s+/g, ' ')}`)
-  // Esc 로도 닫히는지(키보드 조작)
+
+  // 포커스 트랩 — 열린 동안 Tab·Shift+Tab 이 대화상자 밖으로 나가면 안 된다(리뷰 P2-3)
+  const trapSpots = []
+  for (let i = 0; i < 5; i++) {
+    await page.keyboard.press('Tab')
+    trapSpots.push(await focusSpot(page))
+  }
+  await page.keyboard.press('Shift+Tab')
+  trapSpots.push(await focusSpot(page))
+  if (trapSpots.every((spot) => spot.startsWith('in:'))) {
+    pass(`대화상자 포커스 트랩(Tab 5회 + Shift+Tab): ${trapSpots.join(' → ')}`)
+  } else {
+    fail(`Tab 이 대화상자를 벗어났습니다: ${trapSpots.join(' → ')}`)
+  }
+
+  // Esc 로도 닫히는지(키보드 조작) + 닫으면 트리거 버튼으로 포커스 복귀
   await page.keyboard.press('Escape')
   await page.waitForSelector('[data-testid="confirm-dialog"]', { state: 'detached', timeout: 5000 })
     .then(() => pass('확인 대화상자 Esc 닫기 동작'))
     .catch(() => fail('Esc 로 확인 대화상자가 닫히지 않았습니다'))
+  const afterClose = await focusSpot(page)
+  if (afterClose.startsWith('out:') && afterClose.includes('새로 구성')) {
+    pass(`대화상자를 닫은 뒤 포커스 복귀: ${afterClose}`)
+  } else {
+    fail(`닫힌 뒤 포커스가 트리거 버튼으로 돌아오지 않았습니다: ${afterClose}`)
+  }
 
   // 새로 구성 → 확인 대화상자 → replaceActive=true 전송
   await page.setViewportSize(DESKTOP)

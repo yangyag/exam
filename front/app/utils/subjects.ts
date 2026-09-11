@@ -86,15 +86,22 @@ export function toSubjectCardView(subject: SubjectOverview): SubjectCardView {
   }
 
   if (status === 'completed') {
+    const answered = firstRound?.answered ?? subject.uniqueQuestionCount
+    const total = firstRound?.itemCount ?? subject.uniqueQuestionCount
+    const correct = firstRound?.correct ?? 0
     return {
       ...base,
-      answered: firstRound?.answered ?? subject.uniqueQuestionCount,
-      total: firstRound?.itemCount ?? subject.uniqueQuestionCount,
-      correct: firstRound?.correct ?? 0,
+      answered,
+      total,
+      correct,
       percent: 100,
       roundNo: null,
       note: '오답 복습까지 마쳐 사이클을 완료했습니다.',
-      detail: cycle?.endedAt ? `완료일 ${formatDay(cycle.endedAt)}` : null,
+      // 패널의 정답 수가 '1차(전체) 풀이' 값임을 화면에서 바로 알 수 있게 함께 적는다
+      detail: [
+        `1차(전체) 풀이 정답 ${correct}/${total}`,
+        cycle?.endedAt ? `완료일 ${formatDay(cycle.endedAt)}` : null,
+      ].filter(Boolean).join(' · '),
     }
   }
 
