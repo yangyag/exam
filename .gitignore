@@ -8,6 +8,11 @@ __pycache__/
 # 로컬 접속 정보 (DB 비밀번호 등) — 절대 커밋하지 않는다
 .env
 
+# AWS 자격증명/키페어 — 절대 커밋하지 않는다
+aws/
+*.pem
+*.key
+
 .vscode/
 .idea/
 Thumbs.db
