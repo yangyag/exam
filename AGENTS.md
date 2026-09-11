@@ -129,7 +129,8 @@ PostgreSQL app.ipe
 
 ## 환경
 
-- Windows + Git Bash. Python 3.14 (`psycopg[binary]`, `pymupdf` 설치됨).
+- Windows + Git Bash. 시스템 Python 은 **3.13.4** 이고 `psycopg[binary]`(3.3.5)는 설치돼 있지만 **`pymupdf` 는 없습니다** — PDF 를 다루는 `tools/extract.py`·`tools/crop_figures.py` 를 쓰기 전에 `python -m pip install pymupdf` 로 설치하세요.
+- **`back/` 은 저장소 자체 venv(`back/.venv`)에서 돕니다.** 백엔드 실행·테스트는 `.venv/Scripts/python` 을 쓰고, `psycopg` 를 포함한 의존성은 그 venv 에 `requirements.txt`(`psycopg[binary,pool]==3.3.5`)로 넣습니다 — 설치·실행법은 `back/README.md`.
 - PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다. 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
 - **프론트(`front/`)는 Nuxt 4 + TypeScript + Tailwind CSS v4 SPA(`ssr:false`)입니다.** 패키지 매니저는 npm(`package-lock.json`)이고 pnpm 은 쓰지 않습니다.
 - **프론트 dev 서버는 8091, 접속 주소는 `http://localhost:8091` 입니다.** 백엔드 기본 CORS 허용 오리진이 이 값이라 `127.0.0.1:8091` 은 오리진 문자열이 달라 API 가 막힙니다. API 오리진은 `NUXT_PUBLIC_API_BASE`(기본 `http://127.0.0.1:8092`)로 바꿉니다.
