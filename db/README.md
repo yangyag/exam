@@ -200,7 +200,17 @@ DROP TABLE IF EXISTS ipe.study_attempt, ipe.study_state, ipe.study_session;
 
 `study_session` 을 003 이전 상태로 되돌리려면 위 `DELETE`·`ALTER` 를 먼저 하고 마지막 줄로 테이블까지 지우면 됩니다(`db/003_study_items.sql` 첫머리 주석과 같은 순서).
 
-`004_session_comments.sql` 은 COMMENT 만 다시 찍으므로, 코멘트를 004 이전 상태로 되돌리려면 `db/002_progress.sql` 의 `study_session` 테이블·컬럼 COMMENT 를 다시 실행합니다.
+`004_session_comments.sql` 은 COMMENT 만 다시 찍으므로, 코멘트를 004 이전 상태로 되돌리려면 아래를 실행합니다. 테이블·`exam_id`·`subject_code` 는 `db/002_progress.sql`(22~24행) 값으로 돌아가고, `end_reason` 은 004 이전 값이 `002` 가 아니라 `db/003_study_items.sql`(65행)에 있으니 그 문구를 다시 찍으며, `mode` 코멘트는 004 가 처음 붙였으니 지웁니다.
+
+```sql
+COMMENT ON TABLE ipe.study_session IS '학습/응시 묶음 1건. mode: exam(회차 모의고사)·subject(과목 연습)·random(랜덤)·review(오답 복습)';
+COMMENT ON COLUMN ipe.study_session.exam_id IS '대상 회차. 랜덤·오답 복습처럼 특정 회차가 아니면 NULL';
+COMMENT ON COLUMN ipe.study_session.subject_code IS '대상 과목. 회차 모의고사처럼 전체 과목이면 NULL';
+COMMENT ON COLUMN ipe.study_session.mode IS NULL;                  -- 004 가 최초로 붙인 코멘트를 지운다
+COMMENT ON COLUMN ipe.study_session.end_reason IS '종료 사유. finished(정상 종료)·abandoned(중단). 진행 중이면 NULL';
+```
+
+다시 004 상태로 돌리려면 `python tools/load_db.py --init`(또는 `db/004_session_comments.sql` 실행)을 씁니다.
 
 ### 자주 쓰는 조회
 
