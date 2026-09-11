@@ -16,7 +16,7 @@ from fastapi.staticfiles import StaticFiles
 
 from . import db
 from .config import get_settings
-from .routers import exams, progress, questions, stats, tags
+from .routers import exams, progress, questions, stats, subject_cycles, tags
 
 logger = logging.getLogger(__name__)
 
@@ -59,6 +59,7 @@ def create_app() -> FastAPI:
     app.include_router(questions.router)
     app.include_router(progress.router)
     app.include_router(stats.router)
+    app.include_router(subject_cycles.router)
     app.include_router(tags.router)
 
     if settings.figures_dir.is_dir():
