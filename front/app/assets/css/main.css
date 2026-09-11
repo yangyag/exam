@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* 다크모드 대응 없음 — 흰 배경 고정 (AGENTS.md 자료 처리 정책) */
+html {
+  color-scheme: light;
+  background-color: #fff;
+}
+
+body {
+  background-color: #fff;
+  color: #0f172a;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 버튼 공통 — 최소 클릭 영역 44px(모바일 조작), 키보드 포커스 링 유지 */
+@utility btn-primary {
+  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@utility btn-secondary {
+  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+@utility btn-quiet {
+  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium text-slate-600 transition hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+/* 다음 단계에 연결할 자리 — 눌리지 않는 상태를 시각적으로 분명히 한다 */
+@utility btn-placeholder {
+  @apply inline-flex min-h-11 min-w-11 cursor-not-allowed items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-white px-4 text-sm font-medium text-slate-400;
+}
