@@ -3,7 +3,7 @@
 - 정답을 고른 경우와 오답을 고른 경우 모두 정답 여부·정답 번호·해설이 정확해야 한다.
 - study_attempt INSERT 와 study_state UPSERT 에 넘어가는 파라미터로 진도 갱신 계획을 검증한다.
   (실제 누계 갱신은 SQL 이 하므로 통합 테스트에서 확인한다.)
-- sessionId 가드(없는 세션 404 · 종료된 세션 409)와 sessionId 없이 채점하는 기존 계약을 고정한다.
+- sessionId 가드(없는 세션 404 · 종료된 세션 409 · 슬롯 세션 409)와 sessionId 없이 채점하는 기존 계약을 고정한다.
 """
 from __future__ import annotations
 
@@ -17,7 +17,8 @@ ANSWER_SELECT = "SELECT answer, explanation, key_point FROM ipe.question"
 ATTEMPT_INSERT = "INSERT INTO ipe.study_attempt"
 STATE_UPSERT = "INSERT INTO ipe.study_state"
 CHOICES_SELECT = "FROM ipe.question_choice"
-SESSION_LOOKUP = "SELECT finished_at FROM ipe.study_session WHERE id"
+SESSION_LOOKUP = "FROM ipe.study_session WHERE id"
+SLOT_GUARD = "FROM ipe.study_session_item"
 
 QUESTION_ID = "2022-1-001"
 ANSWER = 2
@@ -45,6 +46,7 @@ def _answer_rules() -> dict:
         STATE_UPSERT: state_from_params,
         CHOICES_SELECT: choice_analysis_rows(ANSWER),
         SESSION_LOOKUP: [{"finished_at": None}],
+        SLOT_GUARD: [],
     }
 
 
@@ -162,6 +164,20 @@ def test_ongoing_session_grades_and_records(client, fake):
     assert params == (7,)
     _, attempt_params = fake.single(ATTEMPT_INSERT)
     assert attempt_params == (7, QUESTION_ID, 2, True, None)
+
+
+def test_slot_session_rejected_with_409_without_writes(client, fake_db):
+    """슬롯(study_session_item)이 있는 세션은 /answer 로 기록할 수 없다 — 슬롯 제출을 쓴다."""
+    rules = _answer_rules()
+    rules[SLOT_GUARD] = [{"?column?": 1}]
+    fake = fake_db(rules)
+    response = grade(client, 2, sessionId=7)
+    assert response.status_code == 409
+    assert "슬롯" in response.json()["detail"]
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(STATE_UPSERT) == []
+    # 슬롯 판별은 세션 잠금 뒤에 한다(세션 → 슬롯 순서, 설계 4.6절).
+    assert [sql for sql, _ in fake.executed(SESSION_LOOKUP)][0].endswith("FOR UPDATE")
 
 
 def test_finished_session_rejected_with_409_without_writes(client, fake_db):

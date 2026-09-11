@@ -1,24 +1,58 @@
-"""세션·진도 API 테스트(DB 없이 가짜 커넥션으로).
+"""세션·슬롯·진도 API 테스트(DB 없이 가짜 커넥션으로).
 
-- 세션 모드별 필수 인자 검증
+- 세션 모드 계약: exam_practice·exam 은 회차 문항 슬롯을 만들고, subject·review 는 400,
+  random 은 슬롯 없이 만든다. 진행 중 세션이 있으면 409 / replaceActive=true 는 중단 후 재생성.
+- 슬롯 조회(세션 단건·문항 단건)와 제출(연습 멱등·409·nextSeq, 모의고사 선택 저장·해제).
 - study_state PATCH 는 요청에 담긴 필드만 갱신한다.
 - 목록 필터가 WHERE 절·파라미터로 정확히 반영된다.
+
+가짜 커넥션 규칙 조각은 서로 겹치지 않게 WHERE·SELECT 절까지 포함해 고른다
+(예: "INSERT INTO ipe.study_session" 은 study_session_item INSERT 와도 겹친다).
 """
 from __future__ import annotations
 
 from datetime import date
 
-from sample_data import ANSWERED_AT, session_row, state_row
+import pytest
 
-SESSION_INSERT = "INSERT INTO ipe.study_session"
+from sample_data import (
+    ANSWERED_AT,
+    choice_analysis_rows,
+    question_row,
+    session_row,
+    slot_row,
+    state_row,
+)
+
+SESSION_INSERT = "INSERT INTO ipe.study_session (mode, exam_id, subject_code) VALUES"
+SESSION_INSERT_ROUND = "VALUES (%s, %s, %s, %s, %s) RETURNING id"
 SESSION_SELECT = "FROM ipe.study_session s"
+SESSION_LOOKUP = "FROM ipe.study_session WHERE id"
 SESSION_UPDATE = "UPDATE ipe.study_session SET finished_at"
+EXAM_OPEN_SESSION = "mode = %s AND exam_id = %s AND finished_at IS NULL"
 EXAM_EXISTS = "FROM ipe.exam WHERE id"
 SUBJECT_EXISTS = "FROM ipe.subject WHERE code"
+QUESTION_IDS_BY_EXAM = "SELECT id FROM ipe.question WHERE exam_id"
+QUESTION_SELECT = "coalesce(ch.choices"
+ANSWER_SELECT = "SELECT answer, explanation, key_point FROM ipe.question"
+ATTEMPT_INSERT = "INSERT INTO ipe.study_attempt"
 STATE_UPSERT = "INSERT INTO ipe.study_state"
 QUESTION_EXISTS = "SELECT 1 FROM ipe.question WHERE id"
 STATE_SELECT_ONE = "FROM ipe.study_state WHERE question_id"
 STATE_LIST = "FROM ipe.study_state st"
+SLOT_INSERT = "INSERT INTO ipe.study_session_item"
+SLOT_GUARD = "SELECT 1 FROM ipe.study_session_item"
+SLOT_LIST = "answered_at FROM ipe.study_session_item WHERE session_id = %s ORDER BY seq"
+SLOT_ONE = "answered_at FROM ipe.study_session_item WHERE session_id = %s AND seq = %s"
+SLOT_STATS = "AS correct_count"
+SLOT_PENDING = "AS n FROM ipe.study_session_item"
+SLOT_GRADE = "SET choice_no = %s, is_correct"
+SLOT_SAVE = "answered_at = CASE WHEN"
+ROUND_FINISH = "SET finished_at = now(), end_reason = 'finished'"
+CYCLE_LOOKUP = "FROM ipe.study_cycle WHERE id"
+CYCLE_OPEN_SESSION = "s.cycle_id = %s AND s.finished_at IS NULL"
+WRONG_SLOTS = "SELECT question_id FROM ipe.study_session_item"
+CHOICES_SELECT = "FROM ipe.question_choice"
 
 QUESTION_ID = "2022-1-001"
 
@@ -44,9 +78,19 @@ def test_create_exam_session_requires_exam_id(client, fake_db):
     assert fake.executed(SESSION_INSERT) == []
 
 
-def test_create_subject_session_requires_subject_code(client, fake_db):
+def test_create_subject_session_rejected_with_400(client, fake_db):
+    """mode=subject 는 사이클 API 로만 만든다 — POST /api/sessions 는 400 이다(설계 5.3절)."""
     fake = fake_db({})
-    response = client.post("/api/sessions", json={"mode": "subject"})
+    response = client.post("/api/sessions", json={"mode": "subject", "subjectCode": 1})
+    assert response.status_code == 400
+    assert "사이클" in response.json()["detail"]
+    assert fake.executed(SESSION_INSERT) == []
+
+
+def test_create_review_session_rejected_with_400(client, fake_db):
+    """mode=review 도 사이클 라운드 자동 전환으로만 만들어진다."""
+    fake = fake_db({})
+    response = client.post("/api/sessions", json={"mode": "review", "subjectCode": 1})
     assert response.status_code == 400
     assert fake.executed(SESSION_INSERT) == []
 
@@ -71,8 +115,9 @@ def test_create_exam_session_with_unknown_exam_404(client, fake_db):
 
 
 def test_create_session_with_unknown_subject_404(client, fake_db):
+    """과목 존재 검사는 남은 모드(random 등)에서 그대로 동작한다."""
     fake = fake_db({SUBJECT_EXISTS: []})
-    response = client.post("/api/sessions", json={"mode": "subject", "subjectCode": 5})
+    response = client.post("/api/sessions", json={"mode": "random", "subjectCode": 5})
     assert response.status_code == 404
     assert fake.executed(SESSION_INSERT) == []
 
@@ -229,26 +274,55 @@ def test_sessions_list_passes_paging(client, fake_db):
 
 
 def test_finish_session_is_idempotent(client, fake_db):
-    """이미 끝난 세션을 다시 끝내도 현재 상태를 그대로 돌려준다."""
-    fake = fake_db(
-        {
-            SESSION_UPDATE: [],
-            "SELECT 1 FROM ipe.study_session WHERE id": [{"?column?": 1}],
-            SESSION_SELECT: [session_row(id=9, finished_at=ANSWERED_AT, answered=2, correct=1)],
-        }
+    """이미 끝난 세션을 다시 끝내도 현재 상태를 그대로 돌려준다(UPDATE 없음)."""
+    finished = session_row(
+        id=9, finished_at=ANSWERED_AT, end_reason="finished", answered=2, correct=1
     )
+    fake = fake_db({SESSION_LOOKUP: [finished], SLOT_GUARD: [], SESSION_SELECT: [finished]})
     response = client.post("/api/sessions/9/finish")
     assert response.status_code == 200
     body = response.json()
     assert body["id"] == 9
     assert body["finishedAt"] is not None
+    assert body["endReason"] == "finished"
     assert body["answered"] == 2
     assert body["correct"] == 1
-    assert len(fake.executed(SESSION_UPDATE)) == 1
+    assert fake.executed(SESSION_UPDATE) == []
+
+
+def test_finish_session_records_end_reason(client, fake_db):
+    """진행 중 세션을 끝내면 finished_at 과 end_reason='finished' 를 함께 기록한다(새 CHECK 통과)."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=9)],
+            SLOT_GUARD: [],
+            SESSION_SELECT: [session_row(id=9, finished_at=ANSWERED_AT, end_reason="finished")],
+        }
+    )
+    response = client.post("/api/sessions/9/finish")
+    assert response.status_code == 200
+    assert response.json()["endReason"] == "finished"
+    sql, params = fake.single(SESSION_UPDATE)
+    assert "end_reason = 'finished'" in sql
+    assert params == (9,)
+
+
+def test_finish_slot_session_rejected_with_409(client, fake_db):
+    """슬롯이 있는 세션은 /finish 로 끝낼 수 없다 — 연습은 자동 종료, 모의고사는 최종 제출."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=9, mode="exam_practice", exam_id="2026-1")],
+            SLOT_GUARD: [{"?column?": 1}],
+        }
+    )
+    response = client.post("/api/sessions/9/finish")
+    assert response.status_code == 409
+    assert "슬롯" in response.json()["detail"]
+    assert fake.executed(SESSION_UPDATE) == []
 
 
 def test_finish_unknown_session_404(client, fake_db):
-    fake_db({SESSION_UPDATE: [], "SELECT 1 FROM ipe.study_session WHERE id": []})
+    fake_db({SESSION_LOOKUP: []})
     response = client.post("/api/sessions/999/finish")
     assert response.status_code == 404
 
@@ -281,16 +355,444 @@ def test_create_exam_session_with_blank_exam_id_400(client, fake_db):
     assert fake.executed(SESSION_INSERT) == []
 
 
-def test_create_exam_session_with_known_exam_201(client, fake_db):
-    """있는 회차면 존재 검사를 통과해 201 로 만들어진다."""
+@pytest.mark.parametrize("mode", ["exam", "exam_practice"])
+def test_create_exam_slot_session_creates_slots(client, fake_db, mode):
+    """exam_practice·exam 은 회차 문항 번호 순으로 슬롯을 만들고 세션 요약에 새 필드를 싣는다."""
     fake = fake_db(
         {
             EXAM_EXISTS: [{"?column?": 1}],
-            SESSION_INSERT: [{"id": 11}],
-            SESSION_SELECT: [session_row(id=11, mode="exam", exam_id="2026-1")],
+            QUESTION_IDS_BY_EXAM: [{"id": "2026-1-001"}, {"id": "2026-1-002"}],
+            EXAM_OPEN_SESSION: [],
+            SESSION_INSERT_ROUND: [{"id": 11}],
+            SLOT_INSERT: [],
+            SESSION_SELECT: [session_row(id=11, mode=mode, exam_id="2026-1")],
         }
     )
-    response = client.post("/api/sessions", json={"mode": "exam", "examId": "2026-1"})
+    response = client.post("/api/sessions", json={"mode": mode, "examId": "2026-1"})
     assert response.status_code == 201
-    assert response.json()["examId"] == "2026-1"
-    assert fake.single(SESSION_INSERT)[1] == ("exam", "2026-1", None)
+    body = response.json()
+    assert body["examId"] == "2026-1"
+    assert body["cycleId"] is None and body["roundNo"] is None and body["endReason"] is None
+
+    sql, params = fake.single(QUESTION_IDS_BY_EXAM)
+    assert "ORDER BY number, id" in sql
+    assert params == ("2026-1",)
+    _, insert_params = fake.single(SESSION_INSERT_ROUND)
+    assert insert_params == (mode, "2026-1", None, None, None)
+    _, slot_params = fake.single(SLOT_INSERT)
+    assert slot_params == (11, ["2026-1-001", "2026-1-002"])
+
+
+def test_create_exam_slot_session_with_replace_active_abandons_old(client, fake_db):
+    """replaceActive=true 면 진행 중 세션을 abandoned 로 닫고 같은 트랜잭션에서 새로 만든다."""
+    fake = fake_db(
+        {
+            EXAM_EXISTS: [{"?column?": 1}],
+            QUESTION_IDS_BY_EXAM: [{"id": "2026-1-001"}],
+            EXAM_OPEN_SESSION: [{"id": 5}],
+            SESSION_INSERT_ROUND: [{"id": 12}],
+            SLOT_INSERT: [],
+            SESSION_SELECT: [session_row(id=12, mode="exam_practice", exam_id="2026-1")],
+        }
+    )
+    response = client.post(
+        "/api/sessions",
+        json={"mode": "exam_practice", "examId": "2026-1", "replaceActive": True},
+    )
+    assert response.status_code == 201
+    sql, params = fake.single(SESSION_UPDATE)
+    assert "end_reason = 'abandoned'" in sql
+    assert params == ([5],)
+    assert fake.executed(SLOT_INSERT)
+
+
+def test_create_exam_slot_session_conflicts_with_open_session(client, fake_db):
+    """진행 중 세션이 있고 replaceActive 가 없으면 409 이고 아무것도 만들지 않는다."""
+    fake = fake_db(
+        {
+            EXAM_EXISTS: [{"?column?": 1}],
+            QUESTION_IDS_BY_EXAM: [{"id": "2026-1-001"}],
+            EXAM_OPEN_SESSION: [{"id": 5}],
+        }
+    )
+    response = client.post("/api/sessions", json={"mode": "exam_practice", "examId": "2026-1"})
+    assert response.status_code == 409
+    assert fake.executed(SESSION_INSERT_ROUND) == []
+    assert fake.executed(SLOT_INSERT) == []
+
+
+def test_create_exam_slot_session_without_questions_400(client, fake_db):
+    fake = fake_db({EXAM_EXISTS: [{"?column?": 1}], QUESTION_IDS_BY_EXAM: []})
+    response = client.post("/api/sessions", json={"mode": "exam_practice", "examId": "2000-9"})
+    assert response.status_code == 400
+    assert fake.executed(SESSION_INSERT_ROUND) == []
+
+
+def test_get_session_detail_returns_slots_and_next_seq(client, fake_db):
+    """세션 단건은 요약 + 슬롯 목록 + nextSeq 를 준다. 조회는 아무것도 기록하지 않는다."""
+    fake = fake_db(
+        {
+            SESSION_SELECT: [session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+            SLOT_STATS: [
+                {"item_count": 3, "answered_count": 1, "next_seq": 2, "correct_count": 1, "wrong_count": 0}
+            ],
+            SLOT_LIST: [
+                slot_row(seq=1, choice_no=2, is_correct=True, answered_at=ANSWERED_AT),
+                slot_row(seq=2, question_id="2022-1-002"),
+                slot_row(seq=3, question_id="2022-1-003"),
+            ],
+        }
+    )
+    response = client.get("/api/sessions/7")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["itemCount"] == 3
+    assert body["answeredCount"] == 1
+    assert body["nextSeq"] == 2
+    assert body["finishedAt"] is None
+    assert [item["seq"] for item in body["items"]] == [1, 2, 3]
+    assert body["items"][0]["isCorrect"] is True
+    assert body["items"][1]["isCorrect"] is None
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(SLOT_GRADE) == []
+
+
+def test_get_ongoing_exam_session_hides_is_correct(client, fake_db):
+    """진행 중 모의고사는 슬롯 목록에서도 정답 여부를 가린다(isCorrect=null)."""
+    fake_db(
+        {
+            SESSION_SELECT: [session_row(id=7, mode="exam", exam_id="2026-1")],
+            SLOT_STATS: [
+                {"item_count": 2, "answered_count": 1, "next_seq": 1, "correct_count": 1, "wrong_count": 0}
+            ],
+            SLOT_LIST: [
+                slot_row(seq=1, choice_no=2, is_correct=True, answered_at=ANSWERED_AT),
+                slot_row(seq=2),
+            ],
+        }
+    )
+    body = client.get("/api/sessions/7").json()
+    assert body["items"][0]["choiceNo"] == 2
+    assert body["items"][0]["isCorrect"] is None
+
+
+def test_get_session_item_before_grading_hides_state_and_result(client, fake_db):
+    """채점 전 슬롯은 state 를 빼고 result 를 주지 않는다 — 이전 풀이 정답이 드러나지 않게."""
+    fake = fake_db(
+        {
+            SESSION_SELECT: [session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+            SLOT_ONE: [slot_row(seq=1, question_id=QUESTION_ID)],
+            QUESTION_SELECT: [question_row(state=state_row(last_is_correct=True, last_choice_no=2))],
+        }
+    )
+    response = client.get("/api/sessions/7/items/1")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["seq"] == 1
+    assert body["id"] == QUESTION_ID
+    assert body["state"] is None
+    assert body["result"] is None
+    assert body["isCorrect"] is None
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(ANSWER_SELECT) == []
+
+
+def test_get_session_item_graded_slot_returns_result_without_recording(client, fake_db):
+    """채점된 슬롯은 result 에 채점 응답과 같은 형식을 담는다. 조회는 원장을 늘리지 않는다."""
+    fake = fake_db(
+        {
+            SESSION_SELECT: [session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+            SLOT_ONE: [
+                slot_row(seq=2, question_id=QUESTION_ID, choice_no=2, is_correct=True, answered_at=ANSWERED_AT)
+            ],
+            QUESTION_SELECT: [question_row()],
+            ANSWER_SELECT: [{"answer": 2, "explanation": "정답 해설", "key_point": "핵심 개념"}],
+            CHOICES_SELECT: choice_analysis_rows(2),
+            STATE_SELECT_ONE: [state_row(attempt_count=1, correct_count=1, last_is_correct=True, last_choice_no=2)],
+        }
+    )
+    response = client.get("/api/sessions/7/items/2")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["isCorrect"] is True
+    assert body["answeredAt"] is not None
+    assert body["result"]["answer"] == 2
+    assert body["result"]["explanation"] == "정답 해설"
+    assert [item["no"] for item in body["result"]["choicesAnalysis"] if item["correct"]] == [2]
+    assert body["state"] is None
+    assert fake.executed(ATTEMPT_INSERT) == []
+
+
+def test_get_session_item_unknown_slot_404(client, fake_db):
+    fake_db({SESSION_SELECT: [session_row(id=7, mode="exam_practice", exam_id="2026-1")], SLOT_ONE: []})
+    response = client.get("/api/sessions/7/items/99")
+    assert response.status_code == 404
+
+
+def _grading_rules(slot: dict, session: dict | None = None, **extra) -> dict:
+    """연습 슬롯 채점에 쓰는 기본 규칙. 상태 행은 upsert 파라미터에서 만든다."""
+
+    def state_from_params(sql, params):
+        question_id, correct, wrong, last, choice_no, streak = params
+        return [
+            state_row(
+                question_id=question_id,
+                attempt_count=correct + wrong,
+                correct_count=correct,
+                wrong_count=wrong,
+                last_is_correct=last,
+                last_choice_no=choice_no,
+                streak=streak,
+            )
+        ]
+
+    rules = {
+        SESSION_LOOKUP: [session or session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+        SLOT_ONE: [slot],
+        ANSWER_SELECT: [{"answer": 2, "explanation": "정답 해설", "key_point": "핵심 개념"}],
+        ATTEMPT_INSERT: [],
+        STATE_UPSERT: state_from_params,
+        CHOICES_SELECT: choice_analysis_rows(2),
+        SLOT_GRADE: [],
+        SLOT_PENDING: [{"n": 1}],
+        SLOT_STATS: [
+            {"item_count": 3, "answered_count": 1, "next_seq": 2, "correct_count": 1, "wrong_count": 0}
+        ],
+    }
+    rules.update(extra)
+    return rules
+
+
+def test_put_practice_slot_grades_and_returns_progress(client, fake_db):
+    """연습 슬롯 제출은 즉시 채점하고 세션 진행 정보를 함께 돌려준다."""
+    fake = fake_db(_grading_rules(slot_row(seq=1, question_id=QUESTION_ID)))
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 2})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["isCorrect"] is True
+    assert body["answer"] == 2
+    assert body["session"] == {
+        "id": 7,
+        "itemCount": 3,
+        "answeredCount": 1,
+        "nextSeq": 2,
+        "finished": False,
+    }
+    assert body["roundResult"] is None
+    assert body["cycle"] is None
+
+    _, slot_params = fake.single(SLOT_GRADE)
+    assert slot_params == (2, True, 7, 1)
+    _, attempt_params = fake.single(ATTEMPT_INSERT)
+    assert attempt_params == (7, QUESTION_ID, 2, True, None)
+
+
+def test_put_practice_slot_resend_same_choice_is_idempotent(client, fake_db):
+    """같은 보기 재전송은 원장·슬롯을 건드리지 않고 저장된 결과로 200 이다."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+            SLOT_ONE: [
+                slot_row(seq=1, question_id=QUESTION_ID, choice_no=2, is_correct=True, answered_at=ANSWERED_AT)
+            ],
+            ANSWER_SELECT: [{"answer": 2, "explanation": "정답 해설", "key_point": "핵심 개념"}],
+            CHOICES_SELECT: choice_analysis_rows(2),
+            STATE_SELECT_ONE: [state_row(attempt_count=1, correct_count=1, last_is_correct=True, last_choice_no=2)],
+            SLOT_STATS: [
+                {"item_count": 3, "answered_count": 1, "next_seq": 2, "correct_count": 1, "wrong_count": 0}
+            ],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 2, "elapsedMs": 900})
+    assert response.status_code == 200
+    assert response.json()["isCorrect"] is True
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(STATE_UPSERT) == []
+    assert fake.executed(SLOT_GRADE) == []
+    assert fake.executed(SLOT_PENDING) == []
+
+
+def test_put_practice_slot_different_choice_conflicts(client, fake_db):
+    """이미 채점된 슬롯에 다른 보기를 보내면 409 이고 아무것도 쓰지 않는다."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+            SLOT_ONE: [
+                slot_row(seq=1, question_id=QUESTION_ID, choice_no=2, is_correct=True, answered_at=ANSWERED_AT)
+            ],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 3})
+    assert response.status_code == 409
+    assert "이미 채점된" in response.json()["detail"]
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(SLOT_GRADE) == []
+
+
+def test_put_practice_slot_requires_choice_no(client, fake_db):
+    """연습 슬롯은 선택 해제가 없다 — choiceNo 없이 보내면 400 이다."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=7, mode="exam_practice", exam_id="2026-1")],
+            SLOT_ONE: [slot_row(seq=1, question_id=QUESTION_ID)],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={})
+    assert response.status_code == 400
+    assert fake.executed(ATTEMPT_INSERT) == []
+
+
+def test_put_slot_on_random_session_404(client, fake_db):
+    """슬롯이 없는 세션(랜덤)에는 슬롯 제출 경로가 없다."""
+    fake_db({SESSION_LOOKUP: [session_row(id=7)], SLOT_ONE: []})
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 2})
+    assert response.status_code == 404
+
+
+def test_put_exam_slot_saves_choice_without_answer(client, fake_db):
+    """모의고사 슬롯은 선택만 저장하고 정답·해설을 돌려주지 않는다."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=7, mode="exam", exam_id="2026-1")],
+            SLOT_ONE: [slot_row(seq=1, question_id=QUESTION_ID)],
+            SLOT_SAVE: [{"choice_no": 3, "answered_at": ANSWERED_AT}],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 3})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["seq"] == 1
+    assert body["choiceNo"] == 3
+    assert body["answeredAt"] is not None
+    assert "answer" not in body and "result" not in body
+    _, save_params = fake.single(SLOT_SAVE)
+    assert save_params == (3, 3, 7, 1)
+    # 선택 저장은 원장·누계를 건드리지 않는다.
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(STATE_UPSERT) == []
+
+
+def test_put_exam_slot_null_clears_choice(client, fake_db):
+    """모의고사에서 choiceNo=null 은 선택 해제다(answered_at 도 비운다)."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [session_row(id=7, mode="exam", exam_id="2026-1")],
+            SLOT_ONE: [slot_row(seq=1, choice_no=3, answered_at=ANSWERED_AT)],
+            SLOT_SAVE: [{"choice_no": None, "answered_at": None}],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": None})
+    assert response.status_code == 200
+    assert response.json()["choiceNo"] is None
+    assert fake.single(SLOT_SAVE)[1] == (None, None, 7, 1)
+
+
+def test_put_last_practice_slot_advances_cycle_round(client, fake_db):
+    """마지막 슬롯 채점은 라운드를 닫고 오답으로 다음 라운드(review)를 만든다(같은 트랜잭션)."""
+    cycle = {"id": 3, "subject_code": 1, "status": "active"}
+
+    def session_by_sql(sql, params):
+        if sql.endswith("FOR UPDATE"):
+            return [session_row(id=7, mode="subject", subject_code=1, cycle_id=3, round_no=1)]
+        return [
+            session_row(
+                id=7,
+                mode="subject",
+                subject_code=1,
+                cycle_id=3,
+                round_no=1,
+                finished_at=ANSWERED_AT,
+                end_reason="finished",
+            )
+        ]
+
+    def cycle_by_sql(sql, params):
+        # 잠글 때는 active, 라운드 전환 뒤 조회에는 completed 로 바뀐 상태를 흉내낸다.
+        return [cycle] if sql.endswith("FOR UPDATE") else [{**cycle, "status": "active"}]
+
+    rules = _grading_rules(
+        slot_row(seq=2, question_id="2022-1-002"),
+        **{
+            SESSION_LOOKUP: session_by_sql,
+            SLOT_PENDING: [{"n": 0}],
+            ROUND_FINISH: [],
+            CYCLE_LOOKUP: cycle_by_sql,
+            WRONG_SLOTS: [{"question_id": "2022-1-003"}],
+            SESSION_INSERT_ROUND: [{"id": 9}],
+            SLOT_INSERT: [],
+            CYCLE_OPEN_SESSION: [{"id": 9, "round_no": 2, "item_count": 1}],
+            SLOT_STATS: [
+                {"item_count": 2, "answered_count": 2, "next_seq": None, "correct_count": 1, "wrong_count": 1}
+            ],
+        },
+    )
+    fake = fake_db(rules)
+    response = client.put("/api/sessions/7/items/2/answer", json={"choiceNo": 1})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["session"]["finished"] is True
+    assert body["session"]["nextSeq"] is None
+    assert body["roundResult"] == {"roundNo": 1, "itemCount": 2, "correct": 1, "wrong": 1}
+    assert body["cycle"] == {
+        "id": 3,
+        "status": "active",
+        "nextSessionId": 9,
+        "nextRoundNo": 2,
+        "nextItemCount": 1,
+    }
+
+    # 라운드를 먼저 닫고 다음 라운드를 만든다 — 열린 라운드 1개 인덱스 때문에 순서가 중요하다.
+    calls = [sql for sql, _ in fake.calls]
+    finish_at = next(i for i, sql in enumerate(calls) if ROUND_FINISH in sql)
+    insert_at = next(i for i, sql in enumerate(calls) if SESSION_INSERT_ROUND in sql)
+    assert finish_at < insert_at
+    _, insert_params = fake.single(SESSION_INSERT_ROUND)
+    assert insert_params == ("review", None, 1, 3, 2)
+    _, slot_params = fake.single(SLOT_INSERT)
+    assert slot_params == (9, ["2022-1-003"])
+
+
+def test_put_last_practice_slot_completes_cycle_without_wrong(client, fake_db):
+    """오답이 없으면 다음 라운드를 만들지 않고 사이클을 completed 로 바꾼다."""
+
+    def session_by_sql(sql, params):
+        if sql.endswith("FOR UPDATE"):
+            return [session_row(id=7, mode="subject", subject_code=1, cycle_id=3, round_no=1)]
+        return [
+            session_row(
+                id=7,
+                mode="subject",
+                subject_code=1,
+                cycle_id=3,
+                round_no=1,
+                finished_at=ANSWERED_AT,
+                end_reason="finished",
+            )
+        ]
+
+    def cycle_by_sql(sql, params):
+        return [{"id": 3, "subject_code": 1, "status": "active" if sql.endswith("FOR UPDATE") else "completed"}]
+
+    fake = fake_db(
+        _grading_rules(
+            slot_row(seq=2, question_id="2022-1-002"),
+            **{
+                SESSION_LOOKUP: session_by_sql,
+                SLOT_PENDING: [{"n": 0}],
+                ROUND_FINISH: [],
+                CYCLE_LOOKUP: cycle_by_sql,
+                WRONG_SLOTS: [],
+                SLOT_STATS: [
+                    {"item_count": 2, "answered_count": 2, "next_seq": None, "correct_count": 2, "wrong_count": 0}
+                ],
+            },
+        )
+    )
+    response = client.put("/api/sessions/7/items/2/answer", json={"choiceNo": 2})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["roundResult"] == {"roundNo": 1, "itemCount": 2, "correct": 2, "wrong": 0}
+    assert body["cycle"]["status"] == "completed"
+    assert body["cycle"]["nextSessionId"] is None
+    assert "status = 'completed'" in fake.single("SET status = 'completed'")[0]
+    assert fake.executed(SESSION_INSERT_ROUND) == []

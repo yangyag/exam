@@ -27,9 +27,12 @@ from test_integration_db import (
     auth_headers,
     counters,
     create_session,
+    create_slot_session,
     get_attempts,
     pick_question,
     post_answer,
+    put_slot,
+    slot_questions,
 )
 
 pytestmark = pytest.mark.integration
@@ -203,3 +206,100 @@ def test_grading_started_after_finish_is_rejected_without_writes(live_client, tr
     assert state["wrongCount"] == before["wrong_count"] + 1
     assert state["lastIsCorrect"] is False
     assert state["lastChoiceNo"] == wrong_choice
+
+
+def _submit_pair(
+    live_client,
+    session_id: int,
+    first_choice: int,
+    second_choice: int,
+    db_conn,
+) -> tuple[object, object]:
+    """첫 제출을 study_attempt SHARE 잠금으로 멈춰 세운 뒤 같은 슬롯에 두 번째 제출을 겹치게 한다.
+
+    첫 제출이 세션 행 잠금(FOR UPDATE)을 쥔 채 INSERT 에서 대기하고, 그 사이에 시작한 두 번째
+    제출은 세션 잠금을 기다린다. SHARE 를 풀면 첫 제출이 커밋되고 두 번째가 이어서 처리된다.
+    """
+    results: dict[str, object] = {}
+
+    def submit(name: str, choice_no: int) -> None:
+        results[name] = put_slot(live_client, session_id, 1, choice_no)
+
+    blocker = lock_connection(autocommit=False)
+    probe = lock_connection(autocommit=True)
+    first_thread = threading.Thread(target=submit, args=("first", first_choice), name="slot-first")
+    second_thread: threading.Thread | None = None
+    try:
+        blocker.execute("LOCK TABLE ipe.study_attempt IN SHARE MODE")
+        first_thread.start()
+        # 첫 제출이 세션 행을 잠갔는지 확인한다. FOR UPDATE 가 없으면 여기서 시간 초과로 실패한다.
+        wait_until(lambda: holds_session_lock(probe, session_id))
+
+        second_thread = threading.Thread(target=submit, args=("second", second_choice), name="slot-second")
+        second_thread.start()
+        # 첫 제출이 INSERT 에서 멈춰 있는 동안 두 번째는 세션 잠금을 기다려야 한다.
+        second_thread.join(timeout=0.3)
+        assert second_thread.is_alive(), "두 번째 제출이 첫 제출보다 먼저 끝나 버렸다"
+    finally:
+        blocker.rollback()  # SHARE 해제 — 여기서 첫 제출의 INSERT 가 진행된다
+        blocker.close()
+        probe.close()
+        first_thread.join(timeout=10)
+        if second_thread is not None:
+            second_thread.join(timeout=10)
+
+    assert not first_thread.is_alive() and "first" in results, "첫 제출이 끝나지 않았다"
+    assert second_thread is not None and "second" in results, "두 번째 제출이 끝나지 않았다"
+    return results["first"], results["second"]
+
+
+def test_concurrent_same_choice_grades_slot_once(live_client, tracker, db_conn):
+    """같은 슬롯에 같은 보기를 동시에 제출하면 한 번만 기록되고 두 요청 모두 200 이다."""
+    question = pick_question(db_conn)
+    session_id = create_slot_session(live_client, "exam_practice", question["exam_id"])
+    tracker.track_session(session_id)
+    slot = slot_questions(db_conn, session_id)[0]
+    answer = slot["answer"]
+    tracker.snapshot_state(slot["question_id"])
+
+    first, second = _submit_pair(live_client, session_id, answer, answer, db_conn)
+    assert first.status_code == 200, first.text
+    assert second.status_code == 200, second.text
+    assert second.json()["isCorrect"] is True
+    assert second.json()["choiceNo"] == answer
+
+    # 슬롯은 한 번만 채점된다 — 원장 1행, 채점된 슬롯 1행.
+    assert len(get_attempts(db_conn, session_id)) == 1
+    graded = db_conn.execute(
+        "SELECT count(*)::int AS n FROM ipe.study_session_item "
+        "WHERE session_id = %s AND is_correct IS NOT NULL",
+        (session_id,),
+    ).fetchone()["n"]
+    assert graded == 1
+
+
+def test_concurrent_different_choice_conflicts_without_second_record(live_client, tracker, db_conn):
+    """같은 슬롯에 동시에 다른 보기를 제출하면 먼저 기록된 하나만 남고 뒤 요청은 409 다."""
+    question = pick_question(db_conn)
+    session_id = create_slot_session(live_client, "exam_practice", question["exam_id"])
+    tracker.track_session(session_id)
+    slot = slot_questions(db_conn, session_id)[0]
+    answer = slot["answer"]
+    wrong_choice = 1 if answer != 1 else 2
+    tracker.snapshot_state(slot["question_id"])
+
+    first, second = _submit_pair(live_client, session_id, wrong_choice, answer, db_conn)
+    assert first.status_code == 200, first.text
+    assert first.json()["isCorrect"] is False
+    assert second.status_code == 409, second.text
+    assert "이미 채점된" in second.json()["detail"]
+
+    # 먼저 기록된(오답) 하나만 원장·슬롯에 남는다.
+    assert get_attempts(db_conn, session_id) == [
+        {"choice_no": wrong_choice, "is_correct": False, "elapsed_ms": None}
+    ]
+    stored = db_conn.execute(
+        "SELECT choice_no, is_correct FROM ipe.study_session_item WHERE session_id = %s AND seq = 1",
+        (session_id,),
+    ).fetchone()
+    assert stored == {"choice_no": wrong_choice, "is_correct": False}

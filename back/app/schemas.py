@@ -7,7 +7,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic.alias_generators import to_camel
 
-SessionMode = Literal["exam", "subject", "random", "review"]
+SessionMode = Literal["exam", "exam_practice", "subject", "random", "review"]
 PassageKind = Literal["code", "table", "text"]
 FigureKind = Literal["diagram", "screen"]
 
@@ -124,6 +124,8 @@ class SessionCreate(ApiModel):
     mode: SessionMode
     exam_id: str | None = None
     subject_code: int | None = Field(default=None, ge=1, le=5)
+    # 진행 중인 같은 모드·회차 세션이 있으면 409 이고, true 면 그 세션을 abandoned 로 닫고 새로 만든다(설계 5.2~5.3절).
+    replace_active: bool = False
 
     @field_validator("exam_id", mode="before")
     @classmethod
@@ -144,10 +146,96 @@ class SessionOut(ApiModel):
     mode: SessionMode
     exam_id: str | None = None
     subject_code: int | None = None
+    cycle_id: int | None = None
+    round_no: int | None = None
+    end_reason: str | None = None
     started_at: datetime
     finished_at: datetime | None = None
     answered: int = 0
     correct: int = 0
+
+
+class SessionItemOut(ApiModel):
+    """세션 슬롯 1개(요약). 진행 중인 모의고사는 isCorrect 를 null 로 가린다."""
+
+    seq: int
+    question_id: str
+    choice_no: int | None = None
+    is_correct: bool | None = None
+
+
+class SessionDetailOut(SessionOut):
+    """세션 단건 조회. 슬롯 목록과 진행 위치(nextSeq)를 함께 준다."""
+
+    item_count: int = 0
+    answered_count: int = 0
+    next_seq: int | None = None
+    items: list[SessionItemOut] = Field(default_factory=list)
+
+
+class SessionItemDetail(QuestionOut):
+    """슬롯 문항 단건: QuestionOut + 슬롯 상태 + result.
+
+    채점 전에는 state 를 null 로 빼서 이전 풀이의 정답 여부가 드러나지 않게 한다.
+    """
+
+    seq: int
+    choice_no: int | None = None
+    is_correct: bool | None = None
+    answered_at: datetime | None = None
+    result: GradeResult | None = None
+
+
+class SlotAnswerRequest(ApiModel):
+    """슬롯 제출. 모의고사에서 choiceNo=null 은 선택 해제다(연습에서는 필수)."""
+
+    choice_no: int | None = Field(default=None, ge=1, le=4)
+    elapsed_ms: int | None = Field(default=None, ge=0, le=2147483647)
+
+
+class SessionProgressOut(ApiModel):
+    """제출 응답에 붙는 세션 진행 정보. nextSeq 는 다음에 풀 슬롯(없으면 null)."""
+
+    id: int
+    item_count: int = 0
+    answered_count: int = 0
+    next_seq: int | None = None
+    finished: bool = False
+
+
+class RoundResultOut(ApiModel):
+    """이 제출로 라운드(세션)가 끝났을 때만 붙는다. roundNo 는 회차 연습·모의고사면 null."""
+
+    round_no: int | None = None
+    item_count: int
+    correct: int
+    wrong: int
+
+
+class CycleResultOut(ApiModel):
+    """사이클 라운드일 때만 붙는다. 다음 라운드가 없으면 nextSessionId 가 null."""
+
+    id: int
+    status: str
+    next_session_id: int | None = None
+    next_round_no: int | None = None
+    next_item_count: int | None = None
+
+
+class SlotGradeResult(GradeResult):
+    """연습 슬롯 제출 응답: 채점 결과 + 세션 진행 + 라운드·사이클 상태."""
+
+    session: SessionProgressOut
+    round_result: RoundResultOut | None = None
+    cycle: CycleResultOut | None = None
+
+
+class SlotSaveOut(ApiModel):
+    """모의고사 선택 저장 응답. 정답·해설은 최종 제출 전까지 돌려주지 않는다."""
+
+    seq: int
+    choice_no: int | None = None
+    answered_at: datetime | None = None
 
 
 class StateUpdate(ApiModel):
