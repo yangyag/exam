@@ -191,8 +191,18 @@ def replace_active_cycle(conn, *, subject_code: int, replace_active: bool) -> di
       세션은 UPDATE 의 `finished_at IS NULL` 조건이 걸러 낸다.
     - 진행 중(active) 사이클이 없으면 아무것도 하지 않고 `None`.
     - 진행 중 사이클이 있고 `replace_active=False` 면 409(아무것도 바꾸지 않는다).
-    - `replace_active=True` 면 열린 라운드 세션과 사이클을 모두 `end_reason='abandoned'`·
+    - `replace_active=True` 면 **그 시점에 보이는** 열린 라운드 세션과 사이클을 `end_reason='abandoned'`·
       `status='abandoned'`(+`ended_at`)로 닫는다. 열린 라운드가 없어도(비정상 상태) 사이클은 닫는다.
+    - **경합 시 남는 열린 라운드(계약)**: `FOR UPDATE` 조회는 문장 스냅샷을 쓰므로, 이 함수가
+      열린 세션을 기다리는 사이 다른 트랜잭션이 마지막 슬롯을 채점하고 새 라운드(review)를
+      커밋하면 그 라운드는 여기서 보이지 않아 `finished_at NULL` 로 남을 수 있다 — 중단된
+      사이클에 열린 라운드가 하나 남는 상태다. 데이터 손상은 아니고, 남은 라운드의 마지막
+      슬롯을 채점하면 `advance_round_if_complete` 가 (사이클이 active 가 아니므로) 라운드만
+      닫고 새 라운드를 만들지 않아 스스로 회복한다.
+      따라서 사이클·라운드 조회·집계는 `status='active'` 사이클만 근거로 삼고,
+      '사이클이 abandoned = 열린 세션이 없음' 을 가정하면 안 된다.
+      이 창을 잠금 순서를 뒤집어(사이클 잠금 후 재조회·UPDATE) "고치면" `advance_round_if_complete`
+      (세션 → 사이클)와 ABBA 데드락이 날 수 있으므로 그렇게 바꾸지 않는다.
 
     반환: 중단시킨 사이클 1행 `{id, subject_code, status='abandoned', ended_at}`.
     잠근 뒤 사이클이 이미 active 가 아니면 `None`(호출자는 새 사이클만 만들면 된다).
@@ -207,6 +217,7 @@ def replace_active_cycle(conn, *, subject_code: int, replace_active: bool) -> di
         )
 
     # 1) 열린 라운드 세션을 먼저 잠근다(세션 → 슬롯 → 사이클).
+    #    이 조회의 스냅샷 이후 커밋된 라운드는 보이지 않아 열린 채 남을 수 있다(docstring 계약 참고).
     open_ids = [
         row["id"] for row in conn.execute(CYCLE_OPEN_ROUND_LOCK_SQL, (cycle["id"],)).fetchall()
     ]
