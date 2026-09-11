@@ -1,7 +1,7 @@
 # AGENTS.md
 
-정보처리기사 필기 기출문제 데이터셋과 PostgreSQL 적재 파이프라인입니다.
-학습 앱(PC·모바일 하이브리드)의 데이터 계층이며, 앱 코드는 아직 없습니다.
+정보처리기사 필기 기출문제 데이터셋과 PostgreSQL 적재 파이프라인, 그리고 조회·채점·진도 API(`back/`, FastAPI)입니다.
+학습 앱(PC·모바일 하이브리드)의 데이터 계층이며, 프론트(`front/`)는 아직 없습니다.
 
 ---
 
@@ -35,6 +35,7 @@ data/raw/<회차>.json              1차 추출 결과 (좌표 포함)
 data/raw/pages/, data/raw/text/   렌더 캐시 (재생성 가능, gitignore)
 db/                               000_bootstrap.sql · 001_schema.sql(문항) · 002_progress.sql(진도) · README.md
 tools/                            파이프라인 스크립트 + 스키마 정본
+back/                             조회·채점·진도 API (FastAPI) — 실행법·엔드포인트는 back/README.md
 docs/                             비어 있음
 ```
 
@@ -68,6 +69,7 @@ PostgreSQL app.ipe
 | `python tools/crop_figures.py <회차> <번호...>` | 그림 영역 크롭 (200dpi, `--full` 은 문항 전체) |
 | `python tools/scan_figures.py` | 도형/이미지 있는 문항 탐지 |
 | `python tools/load_db.py --init\|--verify` | `db/*.sql` 마이그레이션 파일명 순서로 적용(`000_bootstrap.sql` 은 superuser 전용이라 제외) / JSON 적재 / 검증 |
+| `cd back && .venv/Scripts/python -m uvicorn app.main:app --port 8092` | FastAPI API 서버 기동. 최초 1회 `python -m venv .venv && .venv/Scripts/python -m pip install -r requirements.txt`. 엔드포인트·환경변수는 `back/README.md` |
 
 ## 문항 JSON 계약
 
