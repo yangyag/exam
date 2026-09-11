@@ -119,6 +119,22 @@ def test_negative_elapsed_rejected(client, fake):
     assert fake.executed(ATTEMPT_INSERT) == []
 
 
+def test_elapsed_ms_upper_bound_accepted(client, fake):
+    """elapsedMs 상한(2147483647)은 통과하고 그대로 저장된다(B-03)."""
+    response = grade(client, 2, sessionId=7, elapsedMs=2147483647)
+    assert response.status_code == 200
+    _, attempt_params = fake.single(ATTEMPT_INSERT)
+    assert attempt_params == (7, QUESTION_ID, 2, True, 2147483647)
+
+
+def test_elapsed_ms_above_upper_bound_rejected(client, fake):
+    """DB integer 범위를 넘는 elapsedMs 는 요청 단계에서 422 로 거부된다(B-03)."""
+    response = grade(client, 2, sessionId=7, elapsedMs=2147483648)
+    assert response.status_code == 422
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(STATE_UPSERT) == []
+
+
 def test_unknown_question_404_without_writes(client, fake_db):
     fake_db({})
     response = grade(client, 2)
@@ -141,7 +157,9 @@ def test_ongoing_session_grades_and_records(client, fake):
     """진행 중 세션(finished_at NULL)은 그대로 채점되고 그 세션에 기록된다."""
     response = grade(client, 2, sessionId=7)
     assert response.status_code == 200
-    assert fake.single(SESSION_LOOKUP)[1] == (7,)
+    sql, params = fake.single(SESSION_LOOKUP)
+    assert sql.endswith("FOR UPDATE"), sql  # 세션 행 잠금으로 종료와 순서를 보장한다(B-01)
+    assert params == (7,)
     _, attempt_params = fake.single(ATTEMPT_INSERT)
     assert attempt_params == (7, QUESTION_ID, 2, True, None)
 

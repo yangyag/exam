@@ -35,6 +35,25 @@ def question_row(**overrides) -> dict:
     return row
 
 
+def question_content_row(**overrides) -> dict:
+    """중복 판정용 조회(queries.CONTENT_KEY_SELECT) 1행.
+
+    question_row 와 같은 문항을 가리키며, 보기 본문은 번호 순서의 문자열 배열로 온다.
+    """
+    row = {
+        "id": "2022-1-001",
+        "stem": "다음 중 옳은 것은?",
+        "passage": None,
+        "passage_kind": None,
+        "figure_needed": False,
+        "figure_kind": None,
+        "figure_alt": None,
+        "choice_texts": list(CHOICE_TEXT.values()),
+    }
+    row.update(overrides)
+    return row
+
+
 def state_row(**overrides) -> dict:
     """ipe.study_state 1행."""
     row = {

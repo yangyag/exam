@@ -52,12 +52,12 @@ curl http://127.0.0.1:8092/api/health
 
 ```bash
 cd back
-.venv/Scripts/python -m pytest                       # 전체 89개 (DB 접속 정보가 없으면 통합 6개는 skip)
-.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 83개
-.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 6개
+.venv/Scripts/python -m pytest                       # 전체 108개 (DB 접속 정보가 없으면 통합 11개는 skip)
+.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 97개
+.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 11개
 ```
 
-`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다.
+`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다. 채점과 종료가 겹칠 때의 잠금 순서(`B-01`)는 실제 DB의 행 잠금을 재현하는 `test_integration_concurrency.py` 가 고정합니다(study_attempt 에 SHARE 잠금을 잠시 걸고, 세션 행 잠금은 `FOR UPDATE NOWAIT` 프로브로 판정).
 
 ## 2. 환경변수
 
@@ -106,7 +106,7 @@ cd back
 
 | 메서드 | 경로 | 설명 | 파라미터(기본값) | 응답 |
 |---|---|---|---|---|
-| GET | `/api/questions/random` | 랜덤 출제 | `examId`, `subjectCode`(1~5), `tag`(반복), `figureOnly`(false), `count`(10, 1~100) | `QuestionOut[]` |
+| GET | `/api/questions/random` | 랜덤 출제(내용 기준 중복 제거) | `examId`, `subjectCode`(1~5), `tag`(반복), `figureOnly`(false), `count`(10, 1~100) | `QuestionOut[]` |
 | GET | `/api/questions/{questionId}` | 문항 단건 | — | `QuestionOut` |
 | POST | `/api/questions/{questionId}/answer` | 채점 + 응시 기록. 종료된 세션(`sessionId`)은 `409` | 본문 `GradeRequest` | `GradeResult` |
 
@@ -127,7 +127,7 @@ cd back
 |---|---|---|---|---|
 | GET | `/api/stats/subjects` | 과목별 정답률 | — | `SubjectStatsOut[]` |
 | GET | `/api/stats/wrong-questions` | 한 번이라도 틀린 문항(최근순) | `unresolvedOnly`(false), `limit`(50, 1~200), `offset`(0) | `WrongQuestionOut[]` |
-| GET | `/api/stats/review-due` | 복습 예정일이 오늘 이하인 문항 | `limit`(50, 1~200), `offset`(0) | `ReviewDueOut[]` |
+| GET | `/api/stats/review-due` | 복습 예정일이 오늘(Asia/Seoul 날짜) 이하인 문항 | `limit`(50, 1~200), `offset`(0) | `ReviewDueOut[]` |
 
 ### 태그 · 메타
 
@@ -182,6 +182,16 @@ cd back
 
 `total` 은 **필터를 적용한 총 개수**입니다(회차 전체 문항 수가 아님).
 
+### 랜덤 출제의 중복 제거 (I-01)
+
+회차 간에 같은 문항이 여러 번 실려 있습니다(1,300문항 중 고유 847개). `/api/questions/random` 은 **한 응답 안에서 내용이 같은 문항을 한 번만** 내보냅니다. 같은 내용인지는 stem · 지문(`passage`+`passageKind`) · 보기 4개 · 도식 정보(`figure.needed`/`kind`/`alt`)를 합친 키로 판정하고, 인쇄·추출 차이로만 생기는 **쉼표는 키에서 무시**합니다(2023-1-001 과 2023-1-023 이 보기 쉼표 하나만 다른 경우). 공백·줄바꿈·다른 기호는 그대로 비교하므로 stem 만 같고 지문·보기가 다른 문항은 합쳐지지 않습니다.
+
+- 그룹마다 대표 1문항을 무작위로 고르고 그룹 순서도 무작위입니다. 여러 번 호출하면 같은 그룹에서 매번 다른 문항이 나올 수 있습니다.
+- 중복을 제거한 고유 그룹이 `count` 보다 적으면 **가용한 만큼만** 돌려줍니다(오류가 아닙니다). 예: `examId=2023-1&count=100` → 99개(001·023 이 한 그룹).
+- 목록(`/api/exams/{examId}/questions`) · 단건(`/api/questions/{questionId}`) 은 원본 그대로라 같은 내용의 문항이 모두 나옵니다. 회차 전체를 순서대로 푸는 화면은 이쪽을 쓰세요.
+- 중복 제거는 응답을 만들 때만 하며 문항 데이터는 고치지 않습니다(원본 결함 보존). 마이그레이션·스키마 변경도 없습니다.
+- 그림 파일 경로(`figure.imageUrl`)는 회차 디렉터리마다 달라서 중복 키에 넣지 않습니다. 도식의 내용(`kind`·`alt`)만 봅니다.
+
 ### 응답 스키마 필드
 
 위에서 JSON 예시로 보여주지 않은 스키마들입니다. `*` 는 항상 있는 필드, 나머지는 `null` 이 될 수 있습니다.
@@ -204,7 +214,7 @@ cd back
 
 - `SubjectStatsOut.accuracyPct` 는 **응답 기록이 없는 과목에서 `null`** 입니다(0 이 아님). `/api/stats/subjects` 는 응답이 없는 과목도 5행 전부 돌려줍니다.
 - `StateOut` 자체가 `null` 일 수 있습니다 — 그 문항에 대한 행이 없을 때입니다(`study_state` 는 문항당 1행). `PATCH` 로 북마크·메모만 남긴 문항은 행이 생기므로 `state` 가 오고, 이때 `attemptCount`·`correctCount`·`wrongCount`·`streak` 는 `0`, `bookmarked` 는 보낸 값, `lastChoiceNo`·`lastIsCorrect`·`lastAnsweredAt` 은 `null` 입니다. 응답 화면에서 `state?.attemptCount ?? 0` 처럼 다루세요.
-- `ReviewDueOut.overdueDays` 는 `0` 이면 오늘, 클수록 밀린 것입니다.
+- `ReviewDueOut.overdueDays` 는 `0` 이면 오늘, 클수록 밀린 것입니다. 여기서 **‘오늘’은 Asia/Seoul 날짜**입니다 — 복습 예정일 비교와 지연 일수 계산은 한국 날짜 기준이고, 다른 시각 응답(`startedAt` 등)은 UTC 그대로입니다. DB 뷰(`ipe.v_review_due`)가 `Asia/Seoul` 기준 날짜를 씁니다.
 - `WrongQuestionOut`·`ReviewDueOut` 에는 **`answer` 가 없습니다**(뷰에는 있지만 API 가 SELECT 하지 않음).
 
 ### 채점
@@ -231,11 +241,18 @@ curl -i -X POST http://127.0.0.1:8092/api/questions/2026-1-001/answer \
 # {"detail": "이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"}
 ```
 
-`GradeRequest`: `choiceNo`(필수, 1~4), `sessionId`(선택), `elapsedMs`(선택, 0 이상).
+`GradeRequest`: `choiceNo`(필수, 1~4), `sessionId`(선택), `elapsedMs`(선택, `0` 이상 `2147483647` 이하 — 저장 컬럼 `study_attempt.elapsed_ms` 가 PostgreSQL `integer` 라 상한을 맞췄습니다. 넘으면 `422`).
 `sessionId` 는 **이미 존재하는 세션 id 여야 합니다** — 없으면 `404`, **이미 종료된 세션(`finishedAt` 이 있는 세션)이면 `409`** 입니다. 세션 밖 단발 풀이로 기록하려면 필드를 생략하거나 `null` 로 보내세요(이때는 세션을 조회하지 않습니다).
 이 호출은 `study_attempt` 에 1행을 넣고 `study_state` 를 갱신합니다(채점 자체가 진도 기록입니다). 그래서 `state` 가 응답에 함께 실립니다.
 
 **제출이 그 세션의 점수를 확정합니다.** `/api/sessions/{sessionId}/finish` 로 제출한 세션에 채점을 시도하면 `409` 로 거부되고, 세션 요약(`answered`·`correct`)은 제출 시점 그대로입니다(실측 확인). 계속 풀려면 새 세션을 만들거나 `sessionId` 없이 기록하세요. 막히는 것은 **그 세션에 대한 기록**뿐이라, 문항별 누계(`study_state`)와 응시 이력(`study_attempt`)은 다른 세션의 채점으로 계속 쌓입니다.
+
+**채점과 제출이 겹치면 먼저 도착한 쪽이 기준입니다(B-01).** 채점 트랜잭션은 세션 행을 `FOR UPDATE` 로 잠그고 응답과 기록(`study_attempt`·`study_state`)을 마칠 때까지 유지합니다. 그래서
+
+- 채점이 먼저 잠금을 잡으면 `/finish` 는 그 채점이 끝날 때까지 기다렸다가 **그 채점까지 포함해** `answered`·`correct` 를 계산합니다(마지막 답안 전송과 제출이 겹쳐도 점수가 빠지지 않습니다).
+- `/finish` 가 먼저 커밋되었으면 뒤에 시작한 채점이 `409` 로 거부되고 이력·상태는 늘지 않습니다.
+
+프론트는 그래도 답안 요청 완료 후 제출하는 순서를 지키는 편이 좋습니다. 이 계약은 실 DB 통합 테스트(`test_integration_concurrency.py`)가 두 순서 모두 고정합니다.
 
 ```json
 {
@@ -263,6 +280,7 @@ POST /api/sessions  {"mode": "subject", "subjectCode": 3}   # 201
 
 `mode` 는 `exam`(회차 모의고사) · `subject`(과목 연습) · `random`(랜덤) · `review`(오답 복습) 중 하나입니다.
 `mode=exam` 에 `examId` 가 없거나 `mode=subject` 에 `subjectCode` 가 없으면 `400`, 없는 회차·과목이면 `404`.
+`examId` 의 빈 문자열(`""` 또는 공백뿐인 값)은 **`null` 로 정규화**합니다(B-02). 프론트 선택 입력의 초기값을 그대로 보내도 되도록 한 것이고, 라우터의 존재 검사 기준(`if examId`)과도 맞습니다. 그래서 `mode=exam` + `""` 는 `400`(examId 필요)이고, `mode=random` + `""` 는 회차 없음으로 만들어집니다. `""` 가 그대로 `INSERT` 되어 `500`(외래 키 위반)이 나던 동작은 없어졌습니다.
 `/finish` 는 이미 끝난 세션에 다시 호출해도 현재 상태를 그대로 돌려줍니다(멱등).
 종료한 세션에는 더 채점할 수 없습니다(`409`) — 제출이 그 세션의 점수를 확정하고, 계속 풀려면 새 세션을 만드세요.
 
@@ -290,8 +308,8 @@ curl -X PATCH http://127.0.0.1:8092/api/progress/questions/2026-1-001 \
 | `400` | 규칙 위반 — 필드 없는 `PATCH`, `mode=exam` 인데 `examId` 없음 등 |
 | `401` | `EXAM_API_TOKEN` 설정 시 쓰기 요청에 토큰이 없거나 틀림 |
 | `404` | 없는 회차·문항·과목·세션 |
-| `409` | 이미 종료된 세션에 채점 시도 — `/api/sessions/{id}/finish` 뒤 같은 `sessionId` 로 `POST /api/questions/{id}/answer` |
-| `422` | 스키마 위반 — `choiceNo` 가 1~4 밖, `limit` 이 범위 밖 등 |
+| `409` | 이미 종료된 세션에 채점 시도 — `/api/sessions/{id}/finish` 뒤 같은 `sessionId` 로 `POST /api/questions/{id}/answer`(채점이 먼저 시작된 경우는 종료가 기다리므로 해당 없음) |
+| `422` | 스키마 위반 — `choiceNo` 가 1~4 밖, `elapsedMs` 가 0~2147483647 밖, `limit` 이 범위 밖 등 |
 | `500` | 그 밖의 서버 오류 |
 | `503` | DB 에 연결할 수 없거나 커넥션 풀이 아직 초기화되지 않음(DB 를 쓰는 엔드포인트) |
 
@@ -332,7 +350,7 @@ DB 를 쓰는 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다(루�
 
 API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼을 **SELECT 하지 않습니다**. 뷰를 직접 조회할 때와 응답이 다르니 주의하세요.
 
-데이터 규모: 문항 1,300 / 보기 5,200 / 회차 13. 회차 간 중복 문항이 있어 고유 문항은 847개입니다(`tools/dups.py`). **`/api/questions/random` 은 중복을 걸러내지 않으므로** 같은 문항이 다른 호출에서 다시 나올 수 있습니다.
+데이터 규모: 문항 1,300 / 보기 5,200 / 회차 13. 회차 간 중복 문항이 있어 고유 문항은 847개입니다(`tools/dups.py`). **`/api/questions/random` 은 내용이 같은 문항을 한 그룹으로 묶어 그룹마다 1문항만** 돌려줍니다(위 ‘랜덤 출제의 중복 제거’ 절). 같은 호출 안에서는 물론 다른 호출에서도 같은 내용이 중복으로 나오지 않고, 고유 그룹이 `count` 보다 적으면 가용분만 나옵니다. 목록·단건 조회는 원본 그대로라 중복 문항이 모두 보입니다.
 
 ## 6. 프론트에서 붙일 때
 
