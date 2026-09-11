@@ -18,6 +18,9 @@ logger = logging.getLogger(__name__)
 SEARCH_PATH = "ipe,public"
 POOL_MIN_SIZE = 1
 POOL_MAX_SIZE = 10
+# 커넥션을 기다리는 최대 시간(초). 헬스체크와 같은 2초로 잡아 DB 장애 시
+# 데이터 엔드포인트도 30초를 기다리지 않고 바로 503 으로 떨어진다.
+POOL_TIMEOUT = 2.0
 
 _pool: ConnectionPool | None = None
 
@@ -39,6 +42,7 @@ def open_pool() -> ConnectionPool:
             conninfo=settings.db_url,
             min_size=POOL_MIN_SIZE,
             max_size=POOL_MAX_SIZE,
+            timeout=POOL_TIMEOUT,
             open=False,
             kwargs=_connect_kwargs(),
         )
@@ -57,7 +61,7 @@ def close_pool() -> None:
         _pool = None
 
 
-def ping(timeout: float = 2.0) -> bool:
+def ping(timeout: float = POOL_TIMEOUT) -> bool:
     """헬스체크용. 풀이 없거나 timeout 안에 연결하지 못하면 False."""
     pool = _pool
     if pool is None:
