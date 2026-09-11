@@ -1535,34 +1535,43 @@ async function captureExamTaking(browser) {
   return problems.length - before
 }
 
-/** 풀이할 수 없는 모의고사 세션 안내 — 중단·비-exam·404·제출 충돌(409) */
+/** 풀이할 수 없는 모의고사 세션 안내 — 중단·비-exam·404·제출 400/409 */
 async function captureExamClosed(browser) {
-  console.log('\n[10] 모의고사 안내 화면 — 중단·비-exam·404·제출 409 (API 대체, DB 무변경)')
+  console.log('\n[10] 모의고사 안내 화면 — 중단·비-exam·404·제출 400/409 (API 대체, DB 무변경)')
   const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
   await stubExamApi(context)
   const page = await context.newPage()
   const consoleErrors = watchConsole(page)
   await page.setViewportSize(DESKTOP)
 
+  /** 안내 화면 제목·본문 — 제목이 본문과 모순되지 않는지 함께 본다(P2-1 회귀 감시) */
+  async function closedParts() {
+    return {
+      title: (await page.locator('[data-testid="exam-closed-title"]').innerText()).trim(),
+      body: (await page.locator('[data-testid="exam-closed"]').innerText()).replace(/\s+/g, ' '),
+    }
+  }
+
   // 중단된 모의고사
   await page.goto(`${baseUrl}/exam/7203`, { waitUntil: 'domcontentloaded', timeout: 120000 })
   await page.waitForSelector('[data-testid="exam-closed"]', { timeout: 60000 })
-  const abandoned = (await page.locator('[data-testid="exam-closed"]').innerText()).replace(/\s+/g, ' ')
-  if (abandoned.includes('중단된 모의고사') && abandoned.includes('회차 목록')) {
-    pass(`[모의고사 안내] 중단된 세션: ${abandoned.slice(0, 46)}`)
+  const abandoned = await closedParts()
+  if (abandoned.title === '중단된 모의고사입니다' && abandoned.body.includes('이미 제출한 적이 없어 결과가 없습니다')
+    && abandoned.body.includes('회차 목록')) {
+    pass(`[모의고사 안내] 중단된 세션 — 제목·본문 일치: ${abandoned.title}`)
   } else {
-    fail(`[모의고사 안내] 중단 세션 문구가 예상과 다릅니다: ${abandoned.slice(0, 90)}`)
+    fail(`[모의고사 안내] 중단 세션 문구가 예상과 다릅니다: ${abandoned.title} / ${abandoned.body.slice(0, 90)}`)
   }
   await save(page, 'exam-abandoned-desktop-1280x900.png')
 
   // 모의고사가 아닌 세션 → 연습 화면으로 안내
   await page.goto(`${baseUrl}/exam/7204`, { waitUntil: 'domcontentloaded', timeout: 60000 })
   await page.waitForSelector('[data-testid="exam-closed"]', { timeout: 60000 })
-  const notExam = (await page.locator('[data-testid="exam-closed"]').innerText()).replace(/\s+/g, ' ')
-  if (notExam.includes('모의고사가 아닙니다') && notExam.includes('전체 문항 풀이')) {
-    pass(`[모의고사 안내] 비-exam 세션: ${notExam.slice(0, 46)}`)
+  const notExam = await closedParts()
+  if (notExam.title === '이 세션은 모의고사가 아닙니다' && notExam.body.includes('전체 문항 풀이')) {
+    pass(`[모의고사 안내] 비-exam 세션 — 제목·본문 일치: ${notExam.title}`)
   } else {
-    fail(`[모의고사 안내] 비-exam 문구가 예상과 다릅니다: ${notExam.slice(0, 90)}`)
+    fail(`[모의고사 안내] 비-exam 문구가 예상과 다릅니다: ${notExam.title} / ${notExam.body.slice(0, 90)}`)
   }
   await save(page, 'exam-not-exam-desktop-1280x900.png')
   await page.locator('[data-testid="exam-closed"]').getByRole('link', { name: '연습 화면으로' }).click()
@@ -1588,25 +1597,51 @@ async function captureExamClosed(browser) {
 
   await context.close()
 
-  // 제출이 409(중단) 인 경우 — 풀이 화면 대신 안내 화면으로
-  const conflictContext = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
-  await stubExamApi(conflictContext, {
-    submitError: { status: 409, body: { detail: '중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요' } },
-  })
-  const conflictPage = await conflictContext.newPage()
-  watchConsole(conflictPage)
-  await conflictPage.setViewportSize(DESKTOP)
-  await conflictPage.goto(`${baseUrl}/exam/7201`, { waitUntil: 'domcontentloaded', timeout: 60000 })
-  await conflictPage.waitForSelector('[data-testid="exam-item"]', { timeout: 60000 })
-  await conflictPage.locator('[data-testid="exam-submit"]').click()
-  await conflictPage.waitForSelector('[data-testid="confirm-dialog"]', { timeout: 15000 })
-  await conflictPage.getByTestId('confirm-dialog').getByRole('button', { name: '제출하기' }).click()
-  await conflictPage.waitForSelector('[data-testid="exam-closed"]', { timeout: 30000 })
-  const submitConflict = (await conflictPage.locator('[data-testid="exam-closed"]').innerText()).replace(/\s+/g, ' ')
-  if (submitConflict.includes('중단된 모의고사')) pass(`[모의고사 안내] 제출 409 → 안내 화면: ${submitConflict.slice(0, 46)}`)
-  else fail(`[모의고사 안내] 제출 409 안내가 예상과 다릅니다: ${submitConflict.slice(0, 90)}`)
-  await save(conflictPage, 'exam-submit-conflict-desktop-1280x900.png')
-  await conflictContext.close()
+  // 제출이 409(중단)·400(비-exam) 로 끝나는 경우 — 풀이 화면 대신 안내 화면, 제목은 사유와 일치해야 한다
+  const submitCases = [
+    {
+      status: 409,
+      detail: '중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요',
+      expectedTitle: '중단된 모의고사입니다',
+      file: 'exam-submit-conflict-desktop-1280x900.png',
+      label: '제출 409(중단)',
+    },
+    {
+      status: 400,
+      detail: 'POST /api/sessions/{id}/submit 은 모의고사(mode=exam) 전용입니다. '
+        + '연습은 마지막 문항에서 자동 종료되고 random 세션은 /finish 를 쓰세요',
+      expectedTitle: '이 세션은 모의고사가 아닙니다',
+      file: 'exam-submit-not-exam-desktop-1280x900.png',
+      label: '제출 400(비-exam)',
+    },
+  ]
+
+  for (const item of submitCases) {
+    const submitContext = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
+    await stubExamApi(submitContext, { submitError: { status: item.status, body: { detail: item.detail } } })
+    const submitPage = await submitContext.newPage()
+    const submitErrors = watchConsole(submitPage)
+    await submitPage.setViewportSize(DESKTOP)
+    await submitPage.goto(`${baseUrl}/exam/7201`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+    await submitPage.waitForSelector('[data-testid="exam-item"]', { timeout: 60000 })
+    await submitPage.locator('[data-testid="exam-submit"]').click()
+    await submitPage.waitForSelector('[data-testid="confirm-dialog"]', { timeout: 15000 })
+    await submitPage.getByTestId('confirm-dialog').getByRole('button', { name: '제출하기' }).click()
+    await submitPage.waitForSelector('[data-testid="exam-closed"]', { timeout: 30000 })
+    const title = (await submitPage.locator('[data-testid="exam-closed-title"]').innerText()).trim()
+    const body = (await submitPage.locator('[data-testid="exam-closed"]').innerText()).replace(/\s+/g, ' ')
+    // 제목이 본문(서버 사유)과 어긋나지 않는지 — P2-1 회귀 감시
+    if (title === item.expectedTitle && body.includes(item.detail.slice(0, 20))) {
+      pass(`[모의고사 안내] ${item.label} → 안내 화면 제목·본문 일치: ${title}`)
+    } else {
+      fail(`[모의고사 안내] ${item.label} 안내가 예상과 다릅니다: 제목=${title} 본문=${body.slice(0, 90)}`)
+    }
+    await save(submitPage, item.file)
+    const jsErrors = submitErrors.filter(message => !isExpectedResourceLog(message, [400, 409]))
+    if (jsErrors.length === 0) pass(`[모의고사 안내] ${item.label} 브라우저 콘솔 JS 오류 0`)
+    else for (const message of jsErrors) fail(`[모의고사 안내] ${item.label} ${message}`)
+    await submitContext.close()
+  }
 }
 
 async function main() {

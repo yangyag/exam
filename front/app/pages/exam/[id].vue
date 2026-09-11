@@ -24,8 +24,30 @@ const session = ref<SessionDetail | null>(null)
 const exam = ref<ExamDetail | null>(null)
 const loading = ref(true)
 const loadError = ref<ApiErrorInfo | null>(null)
+
+// 풀이를 막고 안내만 하는 상태 — 사유를 함께 들고 있어야 제목이 본문과 어긋나지 않는다.
+// (제출이 409 로 끝나면 세션의 endReason 은 이미 지나간 값이라 그것만으로는 가릴 수 없다)
+type ClosedKind = 'abandoned' | 'not_exam' | 'submitted'
+const closedTitles: Record<ClosedKind, string> = {
+  abandoned: '중단된 모의고사입니다',
+  not_exam: '이 세션은 모의고사가 아닙니다',
+  submitted: '이미 제출된 모의고사입니다',
+}
+const closedKind = ref<ClosedKind>('not_exam')
 /** 중단(409)·비-exam(400) 세션 — 풀이를 막고 안내만 한다 */
 const closedNote = ref<string | null>(null)
+
+function closeSession(kind: ClosedKind, detail: string) {
+  closedKind.value = kind
+  closedNote.value = detail
+}
+
+/** 서버 메시지로 사유를 가른다(재조회가 실패해 상태를 못 받은 경우의 마지막 수단) */
+function closedKindFromDetail(detail: string): ClosedKind {
+  if (/중단/.test(detail)) return 'abandoned'
+  if (/모의고사\(mode=exam\) 전용|전용입니다/.test(detail)) return 'not_exam'
+  return 'submitted'
+}
 
 // ── 슬롯(진행·번호 그리드의 원천) ────────────────────────────────────
 const slots = ref<SessionItemSummary[]>([])
@@ -145,6 +167,7 @@ function resetState() {
   seq.value = null
   item.value = null
   closedNote.value = null
+  closedKind.value = 'not_exam'
   loadError.value = null
   itemError.value = null
   saveError.value = null
@@ -180,11 +203,11 @@ async function loadSession() {
     slots.value = data.items ?? []
     void loadExam(data.examId)
     if (data.mode !== 'exam') {
-      closedNote.value = `이 화면은 모의고사(mode=exam) 전용입니다. 지금 세션은 ${sessionModeLabels[data.mode]} 모드입니다.`
+      closeSession('not_exam', `이 화면은 모의고사(mode=exam) 전용입니다. 지금 세션은 ${sessionModeLabels[data.mode]} 모드입니다.`)
       return
     }
     if (data.endReason === 'abandoned') {
-      closedNote.value = '중단된 모의고사입니다. 이미 제출한 적이 없어 결과가 없습니다 — 회차 목록에서 새로 시작해 주세요.'
+      closeSession('abandoned', '중단된 모의고사입니다. 이미 제출한 적이 없어 결과가 없습니다 — 회차 목록에서 새로 시작해 주세요.')
       return
     }
     if (data.examResult) {
@@ -282,7 +305,7 @@ async function selectChoice(choiceNo: number | null) {
     if (info.status === 409) {
       // 제출된·중단된 모의고사 — 세션을 다시 읽어 결과 화면이나 안내로 보낸다
       await loadSession()
-      if (!closedNote.value && !submitted.value) closedNote.value = info.detail
+      if (!closedNote.value && !submitted.value) closeSession(closedKindFromDetail(info.detail), info.detail)
     } else {
       retryChoice.value = choiceNo
       saveError.value = info.detail || info.title
@@ -327,8 +350,15 @@ async function submitExam() {
   } catch (caught) {
     confirmOpen.value = false
     const info = describeApiError(caught, base)
-    if (info.status === 400 || info.status === 409) closedNote.value = info.detail
-    else submitError.value = info
+    if (info.status === 400) {
+      // 비-exam 세션 (400) — 풀이를 막고 연습 화면·회차 목록으로 안내한다
+      closeSession('not_exam', info.detail)
+    } else if (info.status === 409) {
+      // 중단된 모의고사 (409) — 서버가 준 사유로 안내한다(세션의 endReason 은 낡은 값일 수 있다)
+      closeSession('abandoned', info.detail)
+    } else {
+      submitError.value = info
+    }
   } finally {
     submitting.value = false
   }
@@ -466,8 +496,8 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
         data-testid="exam-closed"
         role="alert"
       >
-        <h1 class="text-base font-semibold text-amber-900">
-          {{ session?.endReason === 'abandoned' ? '중단된 모의고사입니다' : '이 세션은 모의고사가 아닙니다' }}
+        <h1 class="text-base font-semibold text-amber-900" data-testid="exam-closed-title">
+          {{ closedTitles[closedKind] }}
         </h1>
         <p class="mt-1 text-sm leading-relaxed text-amber-800">
           {{ closedNote }}
