@@ -4,6 +4,7 @@ data/raw/pages/
 data/raw/text/
 __pycache__/
 *.pyc
+.venv/
 
 # 로컬 접속 정보 (DB 비밀번호 등) — 절대 커밋하지 않는다
 .env
