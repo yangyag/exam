@@ -1,7 +1,7 @@
--- ipe 스키마 DDL. exam 역할(스키마 소유자)로 실행한다.
---   python tools/load_db.py --init
+-- ipe 문항 스키마 DDL. ipe 스키마 소유자(yangyag)로 실행한다.
+--   python tools/load_db.py --init   (db/*.sql 을 파일명 순서로 전부 적용 — 002_progress.sql 은 진도 관리)
 -- psql 로 직접 실행해도 된다:
---   docker exec -i postgres psql -U exam -d app -f - < db/001_schema.sql
+--   docker exec -i postgres psql -U yangyag -d app -f - < db/001_schema.sql
 -- 재실행 안전(IF NOT EXISTS).
 
 CREATE TABLE IF NOT EXISTS ipe.subject (

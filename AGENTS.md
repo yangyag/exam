@@ -27,7 +27,7 @@ data/figures/<회차>/<번호>.png      순수 도식 24개                     
 data/index.json                   앱 진입점 (회차·과목·파일경로)
 data/raw/<회차>.json              1차 추출 결과 (좌표 포함)
 data/raw/pages/, data/raw/text/   렌더 캐시 (재생성 가능, gitignore)
-db/                               bootstrap.sql · schema.sql · README.md
+db/                               000_bootstrap.sql · 001_schema.sql(문항) · 002_progress.sql(진도) · README.md
 tools/                            파이프라인 스크립트 + 스키마 정본
 docs/                             비어 있음
 ```
@@ -61,7 +61,7 @@ PostgreSQL app.ipe
 | `python tools/build_index.py` | `data/index.json` 재생성 (자체 검증 포함) |
 | `python tools/crop_figures.py <회차> <번호...>` | 그림 영역 크롭 (200dpi, `--full` 은 문항 전체) |
 | `python tools/scan_figures.py` | 도형/이미지 있는 문항 탐지 |
-| `python tools/load_db.py --init\|--verify` | 스키마 생성 / JSON 적재 / 검증 |
+| `python tools/load_db.py --init\|--verify` | `db/*.sql` 마이그레이션 파일명 순서로 적용(`000_bootstrap.sql` 은 superuser 전용이라 제외) / JSON 적재 / 검증 |
 
 ## 문항 JSON 계약
 
@@ -97,6 +97,8 @@ PostgreSQL app.ipe
 ## DB
 
 - `app` 데이터베이스의 **`ipe` 스키마**. 소유자·접속 계정 모두 **`yangyag`** (기존 앱과 동일 계정).
+- **진도 관리 테이블이 있습니다.** `study_session`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`.
+  적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). 컬럼 의미·조회 예시는 `db/README.md`.
 - `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
 - **`yangyag` 의 `search_path` 는 `english, public` 입니다.** 역할 전역 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
   `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정합니다)
