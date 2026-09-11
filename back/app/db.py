@@ -70,6 +70,8 @@ def ping(timeout: float = POOL_TIMEOUT) -> bool:
         with pool.connection(timeout=timeout) as conn:
             conn.execute("SELECT 1")
         return True
-    except Exception:
-        logger.warning("DB 헬스체크 실패", exc_info=True)
+    except Exception as exc:
+        # 요청 경로(deps.py)와 같은 밀도로 경고 1줄만 남긴다. DB 장애는 예상된 상황이라
+        # 헬스체크가 2초마다 불려도 로그가 traceback 으로 불어나지 않게 한다.
+        logger.warning("DB 헬스체크 실패: %s", exc)
         return False

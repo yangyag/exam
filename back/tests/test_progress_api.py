@@ -163,6 +163,60 @@ def test_progress_list_filters(client, fake_db):
     assert params == [True, date(2026, 9, 30), 10, 3]
 
 
+def test_progress_list_wrong_true_filter(client, fake_db):
+    fake = fake_db({STATE_LIST: []})
+    response = client.get("/api/progress/questions", params={"wrong": "true"})
+    assert response.status_code == 200
+
+    sql, params = fake.single(STATE_LIST)
+    assert "st.wrong_count > 0" in sql
+    assert params == [50, 0]
+
+
+def test_progress_list_wrong_false_filter(client, fake_db):
+    """wrong=false 도 bookmarked 처럼 무시되지 않고 '한 번도 틀린 적 없음' 조건이 된다."""
+    fake = fake_db({STATE_LIST: []})
+    response = client.get("/api/progress/questions", params={"wrong": "false"})
+    assert response.status_code == 200
+
+    sql, params = fake.single(STATE_LIST)
+    assert "st.wrong_count = 0" in sql
+    assert "st.wrong_count > 0" not in sql
+    assert params == [50, 0]
+
+
+def test_progress_list_unresolved_true_filter(client, fake_db):
+    fake = fake_db({STATE_LIST: []})
+    response = client.get("/api/progress/questions", params={"unresolved": "true"})
+    assert response.status_code == 200
+
+    sql, _ = fake.single(STATE_LIST)
+    assert "st.wrong_count > 0 AND st.last_is_correct IS FALSE" in sql
+
+
+def test_progress_list_unresolved_false_filter(client, fake_db):
+    """unresolved=false = '마지막이 맞았거나 틀린 적 없음'. last_is_correct NULL 행도 들어간다."""
+    fake = fake_db({STATE_LIST: []})
+    response = client.get("/api/progress/questions", params={"unresolved": "false"})
+    assert response.status_code == 200
+
+    sql, params = fake.single(STATE_LIST)
+    assert "(st.wrong_count = 0 OR st.last_is_correct IS TRUE)" in sql
+    assert "IS FALSE" not in sql
+    assert params == [50, 0]
+
+
+def test_progress_list_without_flags_has_no_filter(client, fake_db):
+    """bookmarked·wrong·unresolved 를 주지 않으면 WHERE 절이 붙지 않는다(전체 조회)."""
+    fake = fake_db({STATE_LIST: []})
+    response = client.get("/api/progress/questions")
+    assert response.status_code == 200
+
+    sql, params = fake.single(STATE_LIST)
+    assert "WHERE" not in sql
+    assert params == [50, 0]
+
+
 def test_sessions_list_passes_paging(client, fake_db):
     fake = fake_db({SESSION_SELECT: [session_row(answered=2, correct=1)]})
     response = client.get("/api/sessions", params={"limit": 5, "offset": 2})
