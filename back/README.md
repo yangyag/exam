@@ -75,7 +75,12 @@ curl http://127.0.0.1:8092/api/health
 ## 3. 엔드포인트
 
 18개입니다. 스키마에 나오지 않는 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 위 표 참고.
-응답 스키마 이름은 `back/app/schemas.py` 의 클래스명입니다.
+
+- **base URL**: 개발 서버는 `http://127.0.0.1:8092` 이고, 모든 JSON 엔드포인트는 `/api` 로 시작합니다.
+- **`{examId}` 형식**: `2026-1` 처럼 `연도-회차` 인 문자열입니다.
+- **`{questionId}` 형식**: `2026-1-064` 처럼 `{examId}-번호(3자리 0채움)` 입니다. 1,300문항 전부 이 규칙을 지킵니다(확인함). 그래도 URL 은 `id` 를 그대로 쓰는 편이 안전합니다.
+- 응답 스키마 이름은 `back/app/schemas.py` 의 클래스명입니다.
+- 아래 `curl` 예시는 **저장소 루트를 cwd** 로 가정합니다(`tmp/note.json` 같은 경로가 저장소 기준).
 
 ### 회차 · 과목 — `back/app/routers/exams.py`
 
@@ -163,6 +168,30 @@ curl http://127.0.0.1:8092/api/health
 ```
 
 `total` 은 **필터를 적용한 총 개수**입니다(회차 전체 문항 수가 아님).
+
+### 응답 스키마 필드
+
+위에서 JSON 예시로 보여주지 않은 스키마들입니다. `*` 는 항상 있는 필드, 나머지는 `null` 이 될 수 있습니다.
+`QuestionOut` · `ChoiceOut` 은 "조회 응답에는 정답이 없습니다", `StateOut` 은 "채점", `GradeRequest`/`GradeResult`·`SessionCreate`/`SessionOut`·`StateUpdate` 는 각각 해당 절 참고.
+
+| 스키마 | 필드 |
+|---|---|
+| `SubjectOut` | `code*`, `name*`, `fromNo*`, `toNo*`, `questionCount` |
+| `ExamOut` | `id*`, `year*`, `round*`, `title*`, `questionCount`, `figureCount` |
+| `ExamDetail` | `ExamOut` 전부 + `sourcePdf`, `subjects`(`SubjectOut[]`, 그 회차 기준 문항 수) |
+| `TagOut` | `id*`, `name*`, `questionCount` |
+| `FigureOut` | `needed`, `kind`(`diagram`\|`screen`\|null), `imageUrl`, `alt` — 전부 선택 |
+| `ProgressItem` | `StateOut` 전부 + `examId*`, `number*`, `subjectCode*`, `subjectName`, `stem*` |
+| `SubjectStatsOut` | `subjectCode*`, `subjectName*`, `answered*`, `correct*`, `wrong*`, `questionsTotal*`, `questionsSeen*`, `accuracyPct` |
+| `WrongQuestionOut` | `questionId*`, `examId*`, `number*`, `subjectCode*`, `subjectName*`, `stem*`, `attemptCount*`, `wrongCount*`, `lastChoiceNo`, `lastIsCorrect`, `lastAnsweredAt`, `bookmarked`, `note`, `reviewDueOn` |
+| `ReviewDueOut` | `questionId*`, `examId*`, `number*`, `subjectCode*`, `subjectName*`, `stem*`, `reviewDueOn*`, `overdueDays*`, `lastIsCorrect`, `wrongCount*`, `note` |
+
+주의할 점 몇 가지:
+
+- `SubjectStatsOut.accuracyPct` 는 **응답 기록이 없는 과목에서 `null`** 입니다(0 이 아님). `/api/stats/subjects` 는 응답이 없는 과목도 5행 전부 돌려줍니다.
+- `StateOut` 자체가 `null` 일 수 있습니다 — 그 문항에 대한 행이 없을 때입니다(`study_state` 는 문항당 1행). `PATCH` 로 북마크·메모만 남긴 문항은 행이 생기므로 `state` 가 오고, 이때 `attemptCount`·`correctCount`·`wrongCount`·`streak` 는 `0`, `bookmarked` 는 보낸 값, `lastChoiceNo`·`lastIsCorrect`·`lastAnsweredAt` 은 `null` 입니다. 응답 화면에서 `state?.attemptCount ?? 0` 처럼 다루세요.
+- `ReviewDueOut.overdueDays` 는 `0` 이면 오늘, 클수록 밀린 것입니다.
+- `WrongQuestionOut`·`ReviewDueOut` 에는 **`answer` 가 없습니다**(뷰에는 있지만 API 가 SELECT 하지 않음).
 
 ### 채점
 
