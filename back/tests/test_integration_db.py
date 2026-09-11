@@ -8,8 +8,6 @@
 """
 from __future__ import annotations
 
-import datetime as dt
-
 import psycopg
 import pytest
 from fastapi.testclient import TestClient
@@ -18,6 +16,7 @@ from psycopg.rows import dict_row
 from app import db as app_db
 from app.config import get_settings
 from app.main import app as fastapi_app
+from app.queries import content_key, fetch_content_rows
 
 from helpers import assert_no_answer_leak
 
@@ -310,7 +309,11 @@ def test_progress_patch_and_stats(live_client, tracker, db_conn):
     tracker.track_session(session_id)
     post_answer(live_client, question_id, wrong_choice, sessionId=session_id)
 
-    today = dt.date.today()
+    # 복습 뷰의 '오늘'은 DB 시간대(UTC)의 current_date 이거나 Asia/Seoul 기준일 수 있다.
+    # 자정 근처에서 두 날짜가 하루 달라지므로 이른 쪽으로 예약하고 지연 일수는 0~1 로 본다.
+    today = db_conn.execute(
+        "SELECT least(current_date, (now() AT TIME ZONE 'Asia/Seoul')::date) AS d"
+    ).fetchone()["d"]
     patch = live_client.patch(
         f"/api/progress/questions/{question_id}",
         json={"bookmarked": True, "note": "통합 테스트 메모", "reviewDueOn": today.isoformat()},
@@ -341,7 +344,7 @@ def test_progress_patch_and_stats(live_client, tracker, db_conn):
     due_items = live_client.get("/api/stats/review-due", params={"limit": 200}).json()
     due = [item for item in due_items if item["questionId"] == question_id]
     assert due, "복습 예정일이 오늘인 문항이 복습 목록에 없다"
-    assert due[0]["overdueDays"] == 0
+    assert due[0]["overdueDays"] in (0, 1)
     assert_no_answer_leak(due[0])
 
     subject_stats = live_client.get("/api/stats/subjects").json()
@@ -474,3 +477,93 @@ def test_finished_session_rejects_grading_and_keeps_state_accumulating(live_clie
     # 종료된 세션의 요약은 새 세션의 채점으로도 변하지 않는다.
     assert submitted_summary()["answered"] == 1
     assert submitted_summary()["correct"] == 0
+
+
+def _content_key_of(item: dict) -> str:
+    """조회 응답(QuestionOut)에서 중복 판정 키를 만든다. DB 행과 같은 규칙을 쓴다."""
+    return content_key(
+        {
+            "stem": item["stem"],
+            "passage": item["passage"],
+            "passage_kind": item["passageKind"],
+            "figure_needed": item["figure"]["needed"],
+            "figure_kind": item["figure"]["kind"],
+            "figure_alt": item["figure"]["alt"],
+            "choice_texts": [choice["text"] for choice in item["choices"]],
+        }
+    )
+
+
+def test_random_returns_one_question_per_content_group(live_client, db_conn):
+    """2023-1-001 과 2023-1-023(보기 쉼표 하나 차이)은 같은 그룹이라 한 응답에 함께 나오지 않는다.
+
+    중복을 제거한 고유 그룹이 count 보다 적으면 가용한 만큼만 돌려준다(부족분 허용).
+    """
+    first = live_client.get("/api/questions/2023-1-001")
+    duplicate = live_client.get("/api/questions/2023-1-023")
+    assert first.status_code == 200 and duplicate.status_code == 200
+    assert first.json()["stem"] == duplicate.json()["stem"]
+    assert _content_key_of(first.json()) == _content_key_of(duplicate.json()), "같은 내용이 다른 키다"
+
+    rows = fetch_content_rows(db_conn, where="q.exam_id = %s", params=["2023-1"])
+    assert len(rows) == 100, "2023-1 회차 문항 수가 바뀌었다"
+    unique_groups = len({content_key(row) for row in rows})
+    assert unique_groups < len(rows), "중복 쌍이 사라지면 이 테스트의 전제를 다시 확인하라"
+
+    response = live_client.get("/api/questions/random", params={"examId": "2023-1", "count": 100})
+    assert response.status_code == 200
+    items = response.json()
+    ids = [item["id"] for item in items]
+    assert len(ids) == unique_groups, "고유 그룹 수만큼 돌려주지 않았다"
+    assert len(ids) < 100, "count=100 인데 중복 제거로 줄어든 만큼이 반영되지 않았다"
+    assert sum(item_id in ids for item_id in ("2023-1-001", "2023-1-023")) == 1
+    assert len({_content_key_of(item) for item in items}) == len(items), "같은 내용이 두 번 나왔다"
+
+
+def test_content_key_keeps_similar_questions_apart(live_client):
+    """stem 이 겹치는 문항이라도 지문·보기·도식이 다르면 다른 그룹이다(과병합 방지)."""
+
+    def fetch(question_id: str) -> dict:
+        response = live_client.get(f"/api/questions/{question_id}")
+        assert response.status_code == 200, response.text
+        return response.json()
+
+    # 같은 stem + 같은 보기 + 다른 지문(표를 공백으로 복원한 회차와 ' | ' 로 복원한 회차)
+    space_table, piped_table = fetch("2022-2-022"), fetch("2023-3-039")
+    assert space_table["stem"] == piped_table["stem"]
+    assert [c["text"] for c in space_table["choices"]] == [c["text"] for c in piped_table["choices"]]
+    assert _content_key_of(space_table) != _content_key_of(piped_table)
+
+    # 같은 stem + 같은 지문 + 다른 보기(∥ 와 || — 기호를 지우면 합쳐질 수 있는 쌍)
+    parallel_a, parallel_b = fetch("2022-1-064"), fetch("2023-2-075")
+    assert parallel_a["stem"] == parallel_b["stem"]
+    assert parallel_a["passage"] == parallel_b["passage"]
+    assert _content_key_of(parallel_a) != _content_key_of(parallel_b)
+
+    # 같은 stem·지문·보기 + 다른 도식(설명 alt 가 다르다)
+    figure_a, figure_b = fetch("2022-3-017"), fetch("2023-3-008")
+    assert figure_a["stem"] == figure_b["stem"]
+    assert figure_a["passage"] == figure_b["passage"]
+    assert [c["text"] for c in figure_a["choices"]] == [c["text"] for c in figure_b["choices"]]
+    assert _content_key_of(figure_a) != _content_key_of(figure_b)
+
+
+def test_create_session_with_blank_exam_id_stores_null(live_client, tracker, db_conn):
+    """빈 문자열 examId 는 null 로 정규화되어 외래 키 위반(500) 없이 만들어진다(B-02)."""
+    created = live_client.post(
+        "/api/sessions", json={"mode": "random", "examId": ""}, headers=auth_headers()
+    )
+    assert created.status_code == 201, created.text
+    body = created.json()
+    tracker.track_session(body["id"])
+    assert body["examId"] is None
+    stored = db_conn.execute(
+        "SELECT exam_id FROM ipe.study_session WHERE id = %s", (body["id"],)
+    ).fetchone()
+    assert stored == {"exam_id": None}
+
+    # mode=exam 에서는 빈 문자열이 null 이 되어 기존 400(examId 필요)으로 간다.
+    refused = live_client.post(
+        "/api/sessions", json={"mode": "exam", "examId": ""}, headers=auth_headers()
+    )
+    assert refused.status_code == 400, refused.text

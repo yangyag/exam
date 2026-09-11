@@ -4,14 +4,20 @@
 """
 from __future__ import annotations
 
+import random
+
 import pytest
 
+from app.queries import content_key, pick_unique_random_ids
+
 from helpers import assert_no_answer_leak, assert_select_hides_secrets
-from sample_data import question_row
+from sample_data import question_content_row, question_row
 
 QUESTION_SELECT = "FROM ipe.question q"
 COUNT_SELECT = "count(*)::int AS n FROM ipe.question q"
 EXAM_EXISTS = "SELECT 1 FROM ipe.exam WHERE id"
+CONTENT_KEY_SELECT = "choice_texts"
+FULL_QUESTION_SELECT = "coalesce(ch.choices"
 
 
 def test_get_question_hides_answer(client, fake_db):
@@ -42,28 +48,92 @@ def test_get_question_hides_answer(client, fake_db):
     assert_select_hides_secrets(fake.select_sqls())
 
 
-def test_random_questions_hides_answer_and_passes_count(client, fake_db):
-    """랜덤 출제도 정답을 싣지 않는다. count 는 LIMIT 파라미터로 전달된다."""
-    fake = fake_db({QUESTION_SELECT: [question_row(), question_row(id="2023-2-050", number=50)]})
-    response = client.get("/api/questions/random", params={"count": 2})
+def test_random_questions_returns_one_per_content_group(client, fake_db):
+    """내용이 같은 문항은 한 응답에 하나만 나오고, 뽑힌 대표만 문항 전체 조회로 넘어간다."""
+    contents = [
+        question_content_row(),
+        question_content_row(id="2023-2-050"),  # 2022-1-001 과 내용이 같다
+        question_content_row(id="2022-1-002", stem="다른 내용의 질문?"),
+    ]
+    fulls = [
+        question_row(),
+        question_row(id="2023-2-050", number=50),
+        question_row(id="2022-1-002", number=2),
+    ]
+    fake = fake_db({CONTENT_KEY_SELECT: contents, FULL_QUESTION_SELECT: fulls})
+    response = client.get("/api/questions/random", params={"count": 10})
     assert response.status_code == 200
     items = response.json()
-    assert [item["id"] for item in items] == ["2022-1-001", "2023-2-050"]
+    ids = [item["id"] for item in items]
+    assert len(ids) == 2, ids
+    assert "2022-1-002" in ids
+    assert len({"2022-1-001", "2023-2-050"} & set(ids)) == 1, "중복 그룹에서 두 문항이 나왔다"
     for item in items:
         assert_no_answer_leak(item)
-
-    sql, params = fake.single("ORDER BY random()")
-    assert "LIMIT %s OFFSET %s" in sql
-    assert params == [2, 0]
     assert_select_hides_secrets(fake.select_sqls())
+    assert fake.single(FULL_QUESTION_SELECT)[1] == [ids]
+
+
+def test_random_questions_shortfall_returns_available(client, fake_db):
+    """고유 후보가 count 보다 적으면 오류가 아니라 가용한 만큼만 돌려준다(부족분 허용)."""
+    contents = [
+        question_content_row(),
+        question_content_row(id="2023-2-050"),
+    ]
+    fake_db(
+        {
+            CONTENT_KEY_SELECT: contents,
+            FULL_QUESTION_SELECT: [question_row(), question_row(id="2023-2-050", number=50)],
+        }
+    )
+    response = client.get("/api/questions/random", params={"count": 10})
+    assert response.status_code == 200
+    assert len(response.json()) == 1  # 두 행이 같은 내용이라 그룹이 하나뿐이다
+
+
+def test_random_questions_count_limits_groups(client, fake_db):
+    """count 가 고유 그룹 수보다 작으면 그만큼만 고른다."""
+    contents = [
+        question_content_row(id=f"2022-1-00{n}", stem=f"질문 {n}") for n in (1, 2, 3)
+    ]
+    fulls = [question_row(id=f"2022-1-00{n}", number=n) for n in (1, 2, 3)]
+    fake_db({CONTENT_KEY_SELECT: contents, FULL_QUESTION_SELECT: fulls})
+    response = client.get("/api/questions/random", params={"count": 2})
+    assert response.status_code == 200
+    assert len(response.json()) == 2
 
 
 def test_random_route_is_not_shadowed_by_single_question_route(client, fake_db):
     """/api/questions/random 이 /api/questions/{id} 로 해석되면 목록이 아니라 404/객체가 나온다."""
-    fake_db({QUESTION_SELECT: [question_row()]})
+    fake_db({CONTENT_KEY_SELECT: [question_content_row()], FULL_QUESTION_SELECT: [question_row()]})
     response = client.get("/api/questions/random")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
+
+
+def test_content_key_ignores_only_commas():
+    """중복 키는 쉼표만 무시하고 공백·기호는 그대로 본다(I-01)."""
+    base = question_content_row(choice_texts=["가, 나", "다"])
+    comma = question_content_row(choice_texts=["가 나", "다"])
+    spaced = question_content_row(choice_texts=["가  나", "다"])
+    symbol = question_content_row(choice_texts=["가; 나", "다"])
+
+    assert content_key(base) == content_key(comma)
+    assert content_key(base) != content_key(spaced)
+    assert content_key(base) != content_key(symbol)
+
+
+def test_pick_unique_random_ids_chooses_representative_randomly():
+    """같은 내용 그룹의 대표는 매번 같은 문항으로 고정되지 않는다(대표 무작위)."""
+    rows = [
+        question_content_row(id="2022-1-001"),
+        question_content_row(id="2023-2-050"),
+    ]
+    seen = set()
+    for seed in range(10):
+        random.seed(seed)
+        seen.add(pick_unique_random_ids(rows, 1)[0])
+    assert seen == {"2022-1-001", "2023-2-050"}
 
 
 def test_exam_question_page_hides_answer_and_keeps_paging(client, fake_db):

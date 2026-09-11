@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from pydantic.alias_generators import to_camel
 
 SessionMode = Literal["exam", "subject", "random", "review"]
@@ -99,7 +99,8 @@ class TagOut(ApiModel):
 class GradeRequest(ApiModel):
     choice_no: int = Field(ge=1, le=4)
     session_id: int | None = None
-    elapsed_ms: int | None = Field(default=None, ge=0)
+    # elapsed_ms 는 PostgreSQL integer 컬럼(study_attempt.elapsed_ms)에 들어가므로 상한을 맞춘다(B-03).
+    elapsed_ms: int | None = Field(default=None, ge=0, le=2147483647)
 
 
 class ChoiceAnalysisOut(ApiModel):
@@ -123,6 +124,19 @@ class SessionCreate(ApiModel):
     mode: SessionMode
     exam_id: str | None = None
     subject_code: int | None = Field(default=None, ge=1, le=5)
+
+    @field_validator("exam_id", mode="before")
+    @classmethod
+    def _blank_exam_id_as_none(cls, value: object) -> object:
+        """프론트 선택 입력의 초기값인 빈 문자열은 '회차 없음'(null)으로 본다(B-02).
+
+        라우터는 값이 없으면 회차 존재 검사를 건너뛰므로, 빈 문자열을 그대로 두면
+        없는 회차를 INSERT 하다가 외래 키 위반(500)이 난다. mode=exam 에서는 이 값이
+        null 이 되어 기존 400(examId 필요)으로 간다.
+        """
+        if isinstance(value, str) and not value.strip():
+            return None
+        return value
 
 
 class SessionOut(ApiModel):

@@ -251,3 +251,46 @@ def test_finish_unknown_session_404(client, fake_db):
     fake_db({SESSION_UPDATE: [], "SELECT 1 FROM ipe.study_session WHERE id": []})
     response = client.post("/api/sessions/999/finish")
     assert response.status_code == 404
+
+
+def test_create_random_session_with_explicit_null_exam_id(client, fake_db):
+    """examId 를 null 로 보내는 것은 생략과 같다(존재 검사도 INSERT 값도 null)."""
+    fake = fake_db({SESSION_INSERT: [{"id": 7}], SESSION_SELECT: [session_row(id=7)]})
+    response = client.post("/api/sessions", json={"mode": "random", "examId": None})
+    assert response.status_code == 201
+    assert response.json()["examId"] is None
+    assert fake.single(SESSION_INSERT)[1] == ("random", None, None)
+
+
+def test_create_session_with_blank_exam_id_normalizes_to_null(client, fake_db):
+    """빈 문자열 examId 는 null 로 정규화되어 회차 존재 검사를 건너뛴다(B-02)."""
+    fake = fake_db({SESSION_INSERT: [{"id": 7}], SESSION_SELECT: [session_row(id=7)]})
+    response = client.post("/api/sessions", json={"mode": "random", "examId": ""})
+    assert response.status_code == 201
+    assert response.json()["examId"] is None
+    assert fake.single(SESSION_INSERT)[1] == ("random", None, None)
+    assert fake.executed(EXAM_EXISTS) == []
+
+
+def test_create_exam_session_with_blank_exam_id_400(client, fake_db):
+    """mode=exam 은 examId 가 필요하므로 빈 문자열은 400 이고 INSERT 하지 않는다(B-02)."""
+    fake = fake_db({})
+    response = client.post("/api/sessions", json={"mode": "exam", "examId": ""})
+    assert response.status_code == 400
+    assert "examId" in response.json()["detail"]
+    assert fake.executed(SESSION_INSERT) == []
+
+
+def test_create_exam_session_with_known_exam_201(client, fake_db):
+    """있는 회차면 존재 검사를 통과해 201 로 만들어진다."""
+    fake = fake_db(
+        {
+            EXAM_EXISTS: [{"?column?": 1}],
+            SESSION_INSERT: [{"id": 11}],
+            SESSION_SELECT: [session_row(id=11, mode="exam", exam_id="2026-1")],
+        }
+    )
+    response = client.post("/api/sessions", json={"mode": "exam", "examId": "2026-1"})
+    assert response.status_code == 201
+    assert response.json()["examId"] == "2026-1"
+    assert fake.single(SESSION_INSERT)[1] == ("exam", "2026-1", None)

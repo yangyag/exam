@@ -12,7 +12,7 @@ import pytest
 from pydantic import ValidationError
 
 from app.queries import figure_url, to_question
-from app.schemas import GradeRequest, GradeResult, QuestionOut, StateOut
+from app.schemas import GradeRequest, GradeResult, QuestionOut, SessionCreate, StateOut
 
 from helpers import assert_no_answer_leak
 from sample_data import ANSWERED_AT, choice_analysis_rows, question_row, state_row
@@ -155,3 +155,20 @@ def test_state_out_parses_db_row():
 )
 def test_figure_url_mapping(image, expected):
     assert figure_url(image) == expected
+
+
+def test_grade_request_allows_elapsed_ms_upper_bound():
+    """elapsedMs 허용 상한은 DB integer 최대값과 같다(B-03)."""
+    assert GradeRequest(choiceNo=1, elapsedMs=2147483647).elapsed_ms == 2147483647
+    with pytest.raises(ValidationError):
+        GradeRequest(choiceNo=1, elapsedMs=2147483648)
+
+
+@pytest.mark.parametrize("blank", ["", "   "])
+def test_session_create_normalizes_blank_exam_id(blank):
+    """빈 문자열·공백뿐인 examId 는 null 로 정규화된다(B-02)."""
+    assert SessionCreate(mode="random", examId=blank).exam_id is None
+
+
+def test_session_create_keeps_real_exam_id():
+    assert SessionCreate(mode="exam", examId="2026-1").exam_id == "2026-1"
