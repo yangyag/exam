@@ -5,8 +5,13 @@
   ProgressTracker 가 추적해 **테스트 전 상태로** 되돌린다(모듈 종료 시 검증).
 - 접속은 백엔드와 같은 조건(app/db.py 와 같은 search_path=ipe,public)이다.
   접속 정보가 없으면 실패가 아니라 skip 한다.
+- 맨 끝의 모의고사 최종 제출 테스트만 `test_integration_concurrency.py` 와 같은
+  study_attempt SHARE 잠금 기법을 쓴다(제출 vs 선택 저장 경합 — 모듈 최상단에서 그 모듈을
+  import 하면 순환 import 라, 필요한 헬퍼만 테스트 안에서 가져온다).
 """
 from __future__ import annotations
+
+import threading
 
 import psycopg
 import pytest
@@ -996,3 +1001,352 @@ def test_replace_active_cycle_does_not_commit(tracker, db_conn):
     assert db_conn.execute(
         "SELECT finished_at FROM ipe.study_session WHERE id = %s", (session_id,)
     ).fetchone()["finished_at"] is None
+
+
+# --- 모의고사 최종 제출(POST /api/sessions/{id}/submit) -------------------------
+# 다른 테스트가 회차를 열어 두므로(2022-1·2026-1) 제출 테스트는 그 밖의 회차를 쓴다.
+EXAM_SUBMIT_EXCLUDE = {"2022-1", "2026-1"}
+
+
+def _open_exam(live_client, tracker, db_conn) -> tuple[int, list[dict]]:
+    """모의고사 세션을 열고 슬롯 목록(seq·문항·정답·과목)을 돌려준다.
+
+    replaceActive=true 라 앞선 테스트가 실패해 열린 세션이 남아도 이어서 돌 수 있다.
+    슬롯 문항은 전부 미리 스냅샷해 두어 실패해도 누계가 복원되게 한다.
+    """
+    exam_id = _exam_with_questions(db_conn, exclude=EXAM_SUBMIT_EXCLUDE)
+    session_id = create_slot_session(live_client, "exam", exam_id, replaceActive=True)
+    tracker.track_session(session_id)
+    slots = slot_questions(db_conn, session_id)
+    for slot in slots:
+        tracker.snapshot_state(slot["question_id"])
+    return session_id, slots
+
+
+def _answer_exam(live_client, session_id: int, slots: list[dict], plan: dict[int, tuple[int, int]]) -> int:
+    """과목별 (정답 수, 오답 수) 계획대로 답한다 — 계획에 없는 문항은 미응답으로 남긴다.
+
+    돌려주는 값은 답한 문항 수다. 각 과목의 앞 n문항을 정답, 그다음 m문항을 오답으로 쓴다.
+    """
+    seen: dict[int, int] = {}
+    answered = 0
+    for slot in slots:
+        code = slot["subject_code"]
+        index = seen.get(code, 0)
+        seen[code] = index + 1
+        correct_n, wrong_n = plan.get(code, (0, 0))
+        if index < correct_n:
+            choice = slot["answer"]
+        elif index < correct_n + wrong_n:
+            choice = 1 if slot["answer"] != 1 else 2
+        else:
+            continue
+        response = put_slot(live_client, session_id, slot["seq"], choice)
+        assert response.status_code == 200, response.text
+        answered += 1
+    return answered
+
+
+def _submit_exam(live_client, session_id: int):
+    """제출 응답을 그대로 돌려준다(200·409 판정은 테스트가 한다)."""
+    return live_client.post(f"/api/sessions/{session_id}/submit", headers=auth_headers())
+
+
+def _slot_rows(db_conn, session_id: int) -> list[dict]:
+    """슬롯의 seq·문항·선택·정오답 — 제출이 슬롯을 어떻게 채웠는지 본다."""
+    return db_conn.execute(
+        "SELECT seq, question_id, choice_no, is_correct FROM ipe.study_session_item "
+        " WHERE session_id = %s ORDER BY seq",
+        (session_id,),
+    ).fetchall()
+
+
+def test_exam_submit_grades_and_is_idempotent(live_client, tracker, db_conn):
+    """제출: 답한 문항만 원장·누계에 남고 미응답은 점수상 오답이다. 재제출은 같은 결과(멱등)."""
+    session_id, slots = _open_exam(live_client, tracker, db_conn)
+    assert len(slots) == 100
+    answers = {slot["seq"]: slot["answer"] for slot in slots}
+
+    # 과목당 10정답·5오답, 5문항은 미응답 → 답 75문항(정답 50·오답 25).
+    plan = {code: (10, 5) for code in (1, 2, 3, 4, 5)}
+    assert _answer_exam(live_client, session_id, slots, plan) == 75
+    assert get_attempts(db_conn, session_id) == [], "선택 저장은 원장을 남기지 않는다"
+
+    response = _submit_exam(live_client, session_id)
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["sessionId"] == session_id
+    assert body["itemCount"] == 100
+    assert body["answeredCount"] == 75
+    assert body["unansweredCount"] == 25
+    assert body["correctCount"] == 50
+    assert body["wrongCount"] == 25
+    # 문항당 5점 기준 — 과목당 10정답 = 50점, 평균 50점이라 합격은 아니다(과목 40점은 넘었다).
+    assert body["bySubject"] == [
+        {"subjectCode": code, "correct": 10, "score": 50, "passed": True} for code in (1, 2, 3, 4, 5)
+    ]
+    assert body["averageScore"] == 50.0
+    assert body["passed"] is False
+    assert body["submittedAt"] is not None
+
+    # 원장: 답한 문항만 1행. 미응답 25문항은 한 행도 남지 않는다.
+    attempts = db_conn.execute(
+        "SELECT question_id, choice_no, is_correct FROM ipe.study_attempt "
+        " WHERE session_id = %s ORDER BY id",
+        (session_id,),
+    ).fetchall()
+    assert len(attempts) == 75
+    assert len({row["question_id"] for row in attempts}) == 75
+    assert all(row["choice_no"] is not None for row in attempts)
+
+    # 슬롯: 전부 채점된다(미응답은 choice_no NULL·is_correct FALSE).
+    stored = _slot_rows(db_conn, session_id)
+    assert all(row["is_correct"] is not None for row in stored)
+    unanswered = [row for row in stored if row["choice_no"] is None]
+    assert len(unanswered) == 25
+    assert all(row["is_correct"] is False for row in unanswered)
+    assert {row["question_id"] for row in attempts} == {
+        row["question_id"] for row in stored if row["choice_no"] is not None
+    }
+
+    # 누계: 답한 문항은 1 늘고, 미응답 문항은 행이 생기지도 바뀌지도 않는다.
+    for row in stored:
+        before = counters(tracker.states[row["question_id"]])
+        state = db_conn.execute(
+            "SELECT * FROM ipe.study_state WHERE question_id = %s", (row["question_id"],)
+        ).fetchone()
+        if row["choice_no"] is None:
+            assert state == tracker.states[row["question_id"]], f"미응답 {row['question_id']} 이 바뀌었다"
+            continue
+        assert state["attempt_count"] == before["attempt_count"] + 1
+        assert state["last_choice_no"] == row["choice_no"]
+        assert state["last_is_correct"] is row["is_correct"]
+        assert state["streak"] == (before["streak"] + 1 if row["is_correct"] else 0)
+
+    finished = db_conn.execute(
+        "SELECT finished_at, end_reason FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()
+    assert finished["finished_at"] is not None and finished["end_reason"] == "finished"
+
+    # 재제출 멱등: 같은 본문, 원장 그대로.
+    again = _submit_exam(live_client, session_id)
+    assert again.status_code == 200, again.text
+    assert again.json() == body
+    assert len(get_attempts(db_conn, session_id)) == 75
+
+    # 세션 단건 조회도 같은 결과를 주고, 조회는 원장을 늘리지 않는다.
+    detail = live_client.get(f"/api/sessions/{session_id}").json()
+    assert detail["examResult"] == body
+    assert detail["endReason"] == "finished"
+    assert all(item["isCorrect"] is not None for item in detail["items"])
+
+    # 제출 뒤 문항 조회: 답한 문항도 미응답 문항도 정답·해설이 붙는다.
+    for row in (stored[0], unanswered[0]):
+        item = live_client.get(f"/api/sessions/{session_id}/items/{row['seq']}").json()
+        assert item["choiceNo"] == row["choice_no"]
+        assert item["isCorrect"] is row["is_correct"]
+        assert item["result"]["choiceNo"] == row["choice_no"]
+        assert item["result"]["answer"] == answers[row["seq"]]
+        assert item["result"]["explanation"]
+        assert sum(1 for choice in item["result"]["choicesAnalysis"] if choice["correct"]) == 1
+    assert len(get_attempts(db_conn, session_id)) == 75
+
+    # 제출 뒤 도착한 선택 저장은 409 이고 아무것도 바꾸지 않는다.
+    rejected = put_slot(live_client, session_id, unanswered[0]["seq"], 1)
+    assert rejected.status_code == 409, rejected.text
+    assert "이미 제출" in rejected.json()["detail"]
+    assert len(get_attempts(db_conn, session_id)) == 75
+
+    # 제출이 끝난 모의고사는 '진행 중'이 아니므로 새로 구성해도 중단되지 않는다.
+    fresh = create_slot_session(live_client, "exam", detail["examId"])
+    tracker.track_session(fresh)
+    kept = db_conn.execute(
+        "SELECT end_reason FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()
+    assert kept["end_reason"] == "finished"
+
+
+def test_exam_submit_pass_boundaries(live_client, tracker, db_conn):
+    """합격 경계: 매 과목 40점 이상 '이면서' 전 과목 평균 60점 이상일 때만 passed 다."""
+    cases = [
+        # (과목별 정답 수, 합격 여부, 기대 평균)
+        ((8, 12, 13, 13, 14), True, 60.0),  # 과목 40점·평균 60.0 경계에서 통과
+        ((8, 12, 12, 12, 15), False, 59.0),  # 모두 40점 이상이지만 평균 59.0
+        ((7, 20, 20, 20, 20), False, 87.0),  # 평균은 높지만 35점 과목이 하나
+    ]
+    for correct_counts, passed, average in cases:
+        session_id, slots = _open_exam(live_client, tracker, db_conn)
+        plan = {code: (count, 20 - count) for code, count in zip((1, 2, 3, 4, 5), correct_counts)}
+        assert _answer_exam(live_client, session_id, slots, plan) == 100
+
+        response = _submit_exam(live_client, session_id)
+        assert response.status_code == 200, response.text
+        body = response.json()
+        assert [row["correct"] for row in body["bySubject"]] == list(correct_counts)
+        assert [row["score"] for row in body["bySubject"]] == [count * 5 for count in correct_counts]
+        assert [row["passed"] for row in body["bySubject"]] == [
+            count * 5 >= 40 for count in correct_counts
+        ]
+        assert body["unansweredCount"] == 0
+        assert body["averageScore"] == average, f"{correct_counts}: {body}"
+        assert body["passed"] is passed, f"{correct_counts}: {body}"
+
+
+def test_exam_submit_rejects_other_modes_and_abandoned(live_client, tracker, db_conn):
+    """submit 은 모의고사 전용 — random·exam_practice 는 400, 중단(abandoned)된 모의고사는 409."""
+    random_id = create_session(live_client)
+    tracker.track_session(random_id)
+    refused = _submit_exam(live_client, random_id)
+    assert refused.status_code == 400, refused.text
+    assert "모의고사" in refused.json()["detail"]
+
+    exam_id = _exam_with_questions(db_conn, exclude=EXAM_SUBMIT_EXCLUDE)
+    first = create_slot_session(live_client, "exam", exam_id, replaceActive=True)
+    tracker.track_session(first)
+    second = create_slot_session(live_client, "exam", exam_id, replaceActive=True)
+    tracker.track_session(second)
+
+    gone = _submit_exam(live_client, first)
+    assert gone.status_code == 409, gone.text
+    detail = gone.json()["detail"]
+    assert "중단" in detail
+    assert "이미 제출" not in detail
+    assert get_attempts(db_conn, first) == []
+    assert get_attempts(db_conn, second) == []
+
+    practice = create_slot_session(live_client, "exam_practice", exam_id)
+    tracker.track_session(practice)
+    rejected = _submit_exam(live_client, practice)
+    assert rejected.status_code == 400, rejected.text
+
+
+def test_exam_submit_wins_race_with_slot_save(live_client, tracker, db_conn):
+    """제출과 선택 저장이 겹치면 세션 잠금이 순서를 정한다 — 제출 뒤 도착한 저장은 409(설계 4.6절).
+
+    test_integration_concurrency.py 와 같은 기법을 쓴다: study_attempt 에 SHARE 잠금을 걸어
+    제출을 원장 INSERT 에서 멈춰 세우면 그동안 제출이 세션 행 잠금(FOR UPDATE)을 쥐고 있고,
+    그때 보낸 선택 저장은 세션 잠금을 기다린다. SHARE 를 풀면 제출이 커밋되고 저장은 409 를 받는다.
+    """
+    from test_integration_concurrency import holds_session_lock, lock_connection, wait_until
+
+    session_id, slots = _open_exam(live_client, tracker, db_conn)
+    answered = put_slot(live_client, session_id, slots[0]["seq"], slots[0]["answer"])
+    assert answered.status_code == 200, answered.text
+
+    responses: dict[str, object] = {}
+
+    def send_submit() -> None:
+        responses["submit"] = _submit_exam(live_client, session_id)
+
+    def send_save() -> None:
+        responses["save"] = put_slot(live_client, session_id, slots[1]["seq"], 1)
+
+    blocker = lock_connection(autocommit=False)
+    probe = lock_connection(autocommit=True)
+    submit_thread = threading.Thread(target=send_submit, name="exam-submit")
+    save_thread: threading.Thread | None = None
+    try:
+        # study_attempt 에 SHARE — 제출의 원장 INSERT 가 여기서 멈춘다.
+        blocker.execute("LOCK TABLE ipe.study_attempt IN SHARE MODE")
+        submit_thread.start()
+        # 제출이 세션 행을 잠갔는지 확인한다. FOR UPDATE 가 없으면 여기서 시간 초과로 실패한다.
+        wait_until(lambda: holds_session_lock(probe, session_id))
+
+        save_thread = threading.Thread(target=send_save, name="slot-save")
+        save_thread.start()
+        # 제출이 INSERT 에서 멈춰 있는 동안 선택 저장은 세션 잠금을 기다려야 한다.
+        save_thread.join(timeout=0.3)
+        assert save_thread.is_alive(), "제출이 세션 잠금을 쥐고 있는데 선택 저장이 먼저 끝났다"
+    finally:
+        blocker.rollback()  # SHARE 해제 — 여기서 제출의 INSERT 가 진행된다
+        blocker.close()
+        probe.close()
+        submit_thread.join(timeout=10)
+        if save_thread is not None:
+            save_thread.join(timeout=10)
+
+    assert not submit_thread.is_alive() and "submit" in responses, "제출이 끝나지 않았다"
+    assert save_thread is not None and "save" in responses, "선택 저장이 끝나지 않았다"
+    submitted = responses["submit"]
+    saved = responses["save"]
+    assert submitted.status_code == 200, submitted.text
+    assert saved.status_code == 409, saved.text
+    assert "이미 제출" in saved.json()["detail"]
+
+    # 저장은 거부됐으니 슬롯 2 는 미응답으로 남아 제출 결과에 오답으로 들어간다.
+    body = submitted.json()
+    assert body["answeredCount"] == 1
+    assert body["unansweredCount"] == 99
+    stored = _slot_rows(db_conn, session_id)
+    assert stored[1]["choice_no"] is None and stored[1]["is_correct"] is False
+    assert len(get_attempts(db_conn, session_id)) == 1
+
+
+def test_exam_submit_race_with_replace_active_keeps_result(live_client, tracker, db_conn):
+    """제출과 새로 구성이 겹쳐도 세션 잠금이 순서를 정한다 — 제출이 먼저면 결과는 보존된다.
+
+    새로 구성(replaceActive=true)은 진행 중 세션을 `FOR UPDATE` 로 잠그고 다시 확인하므로,
+    제출이 먼저 커밋되면 그 세션은 '진행 중'이 아니라 중단되지 않는다(설계 4.6절).
+    기법은 앞 테스트와 같다(study_attempt SHARE 잠금으로 제출을 멈춰 세운다).
+    """
+    from test_integration_concurrency import holds_session_lock, lock_connection, wait_until
+
+    session_id, slots = _open_exam(live_client, tracker, db_conn)
+    exam_id = db_conn.execute(
+        "SELECT exam_id FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()["exam_id"]
+    answered = put_slot(live_client, session_id, slots[0]["seq"], slots[0]["answer"])
+    assert answered.status_code == 200, answered.text
+
+    responses: dict[str, object] = {}
+
+    def send_submit() -> None:
+        responses["submit"] = _submit_exam(live_client, session_id)
+
+    def send_replace() -> None:
+        responses["replace"] = live_client.post(
+            "/api/sessions",
+            json={"mode": "exam", "examId": exam_id, "replaceActive": True},
+            headers=auth_headers(),
+        )
+
+    blocker = lock_connection(autocommit=False)
+    probe = lock_connection(autocommit=True)
+    submit_thread = threading.Thread(target=send_submit, name="exam-submit")
+    replace_thread: threading.Thread | None = None
+    try:
+        blocker.execute("LOCK TABLE ipe.study_attempt IN SHARE MODE")
+        submit_thread.start()
+        wait_until(lambda: holds_session_lock(probe, session_id))
+
+        replace_thread = threading.Thread(target=send_replace, name="exam-replace")
+        replace_thread.start()
+        # 새로 구성도 세션 행 잠금을 먼저 잡으려다 제출 뒤에 줄을 선다.
+        replace_thread.join(timeout=0.3)
+        assert replace_thread.is_alive(), "제출이 세션 잠금을 쥐고 있는데 새로 구성이 먼저 끝났다"
+    finally:
+        blocker.rollback()
+        blocker.close()
+        probe.close()
+        submit_thread.join(timeout=10)
+        if replace_thread is not None:
+            replace_thread.join(timeout=10)
+
+    assert not submit_thread.is_alive() and "submit" in responses, "제출이 끝나지 않았다"
+    assert replace_thread is not None and "replace" in responses, "새로 구성이 끝나지 않았다"
+    submitted = responses["submit"]
+    replaced = responses["replace"]
+    assert submitted.status_code == 200, submitted.text
+    assert replaced.status_code == 201, replaced.text
+    tracker.track_session(replaced.json()["id"])
+
+    # 제출이 먼저 끝났으므로 중단되지 않았다 — 결과와 원장이 그대로 남는다.
+    kept = db_conn.execute(
+        "SELECT finished_at, end_reason FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()
+    assert kept["finished_at"] is not None and kept["end_reason"] == "finished"
+    assert len(get_attempts(db_conn, session_id)) == 1
+    assert submitted.json()["answeredCount"] == 1
+    # 새 세션은 이어서 풀 수 있는 별개의 세션이다.
+    assert replaced.json()["id"] != session_id
+    assert replaced.json()["finishedAt"] is None
