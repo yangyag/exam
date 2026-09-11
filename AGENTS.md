@@ -33,9 +33,9 @@ data/figures/<회차>/<번호>.png      순수 도식 24개                     
 data/index.json                   앱 진입점 (회차·과목·파일경로)
 data/raw/<회차>.json              1차 추출 결과 (좌표 포함)
 data/raw/pages/, data/raw/text/   렌더 캐시 (재생성 가능, gitignore)
-db/                               000_bootstrap.sql · 001_schema.sql(문항) · 002_progress.sql(진도) · README.md
+db/                               000_bootstrap.sql · 001_schema.sql(문항) · 002_progress.sql(진도) · 003_study_items.sql(세션 슬롯·과목 사이클) · README.md
 tools/                            파이프라인 스크립트 + 스키마 정본
-back/                             조회·채점·진도 API (FastAPI) — 실행법·엔드포인트는 back/README.md
+back/                             조회·채점·진도·과목 사이클 API (FastAPI) — 실행법·엔드포인트는 back/README.md
 docs/                             git 에 없음 (빈 디렉터리는 추적되지 않아 clone·worktree 에 생기지 않음)
 ```
 
@@ -105,8 +105,8 @@ PostgreSQL app.ipe
 ## DB
 
 - `app` 데이터베이스의 **`ipe` 스키마**. 소유자·접속 계정 모두 **`yangyag`** (기존 앱과 동일 계정).
-- **진도 관리 테이블이 있습니다.** `study_session`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`.
-  적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). 컬럼 의미·조회 예시는 `db/README.md`.
+- **진도 관리 테이블이 있습니다.** `study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클).
+  적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). **`--init` 은 전체가 한 트랜잭션이라 중간 실패 시 전부 롤백됩니다** — 기록이 있는 DB에 처음 적용할 때의 주의사항은 `db/README.md` 의 경고 1. 컬럼 의미·조회 예시는 `db/README.md`.
 - `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
 - **`yangyag` 의 `search_path` 는 `english, public` 입니다.** 역할 전역 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
   `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정합니다)
@@ -117,7 +117,7 @@ PostgreSQL app.ipe
 
 1. **번들된 `pdftotext`(xpdf 4.00)로는 한글이 안 뽑힙니다** — 영문·숫자만 나오고 한글은 공백이 됩니다. PDF 텍스트는 PyMuPDF(`pymupdf`) 로 뽑으세요.
 2. **이 PDF들은 2단 레이아웃이고 텍스트가 그려진 순서가 뒤섞여 있습니다.** `page.get_text()` 를 그대로 쓰면 문항 순서가 깨집니다. `tools/extract.py` 의 좌표 정렬(단 → y → x)을 쓰세요.
-3. **회차 간 중복 문항이 많습니다.** 1,300문항 중 고유 문항은 847개입니다(`tools/dups.py`). 랜덤 출제의 중복 제거는 API(`/api/questions/random`)가 내용 키(stem + 지문 + 보기 4개 + 도식)로 처리합니다 — 그룹마다 1문항, 대표는 무작위, 고유 후보가 `count` 보다 적으면 가용분만 반환. 쉼표는 자연어 문장부호일 때만 무시하고(2023-1-001·2023-1-023 같은 인쇄 차이), `code`/`table` 지문의 쉼표와 공백 없이 영숫자에 붙은 코드·수식 쉼표는 보존합니다(`back/app/queries.py` 의 `key_text`·`code_key_text`). 목록·단건 조회는 원본 그대로입니다.
+3. **회차 간 중복 문항이 많습니다.** 수치는 세는 기준에 따라 다르니 쓰는 곳의 기준을 확인하세요. **API 내용 키 기준**(`back/app/queries.py` 의 `content_key` — 랜덤 출제·과목 사이클 구성에 쓰는 기준)으로 1,300문항은 **938그룹**이고, 과목별 고유 문항 수는 176·194·194·199·181(1~5과목, 각 260문항)입니다(`GET /api/subject-cycles/overview` 의 `uniqueQuestionCount`). **`tools/dups.py` 기준**(더 느슨한 정규화)은 고유 문항 **847개**입니다. 랜덤 출제의 중복 제거는 API(`/api/questions/random`)가 내용 키(stem + 지문 + 보기 4개 + 도식)로 처리합니다 — 그룹마다 1문항, 대표는 무작위, 고유 후보가 `count` 보다 적으면 가용분만 반환. 쉼표는 자연어 문장부호일 때만 무시하고(2023-1-001·2023-1-023 같은 인쇄 차이), `code`/`table` 지문의 쉼표와 공백 없이 영숫자에 붙은 코드·수식 쉼표는 보존합니다(`back/app/queries.py` 의 `key_text`·`code_key_text`). 목록·단건 조회는 원본 그대로입니다.
 4. **소스 PDF 자체의 결함**이 있습니다. `2023-1` 은 1번=23번, `2023-2` 는 40번=61번이 같은 문항이고, `2022-2` 5번은 정답표에 정답이 없습니다(그래서 `provenance.answer="derived"`). 고치지 말고 그대로 두세요.
 5. **검증기의 공백 검사는 `isinstance` 로 합니다.** 과거에 `str(None)` 이 `"None"` 이 되어 누락을 통과시킨 버그가 있었습니다(2023-1 3과목 `why` 20건 누락).
 6. **줄바꿈**: 저장소는 `core.autocrlf` 가 켜져 있어 작업 트리는 CRLF 입니다. JSON 패치 시 기존 포맷을 유지하세요.
