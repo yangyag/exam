@@ -3,6 +3,7 @@
 - 세션 모드 계약: exam_practice·exam 은 회차 문항 슬롯을 만들고, subject·review 는 400,
   random 은 슬롯 없이 만든다. 진행 중 세션이 있으면 409 / replaceActive=true 는 중단 후 재생성.
 - 슬롯 조회(세션 단건·문항 단건)와 제출(연습 멱등·409·nextSeq, 모의고사 선택 저장·해제).
+- 모의고사 최종 제출(submit): 모드 400·중단 409·멱등 재제출·미응답 점수 처리·합격 경계.
 - study_state PATCH 는 요청에 담긴 필드만 갱신한다.
 - 목록 필터가 WHERE 절·파라미터로 정확히 반영된다.
 
@@ -14,6 +15,8 @@ from __future__ import annotations
 from datetime import date
 
 import pytest
+
+from app import grading
 
 from sample_data import (
     ANSWERED_AT,
@@ -53,6 +56,14 @@ CYCLE_LOOKUP = "FROM ipe.study_cycle WHERE id"
 CYCLE_OPEN_SESSION = "s.cycle_id = %s AND s.finished_at IS NULL"
 WRONG_SLOTS = "SELECT question_id FROM ipe.study_session_item"
 CHOICES_SELECT = "FROM ipe.question_choice"
+# 모의고사 제출(submit) 경로 — 배치 SQL 이 단건 채점 SQL 과 겹치지 않게 조각을 고른다.
+EXAM_SLOT_ROWS = "JOIN ipe.question q ON q.id = si.question_id"
+EXAM_ANSWERS = "SELECT id, answer FROM ipe.question WHERE id = ANY"
+ATTEMPT_BATCH = "SELECT %s, t.question_id, t.choice_no, t.is_correct"
+STATE_BATCH = "SELECT t.question_id, 1, t.is_correct::int"
+SLOT_GRADE_BATCH = "SET is_correct = t.is_correct"
+SLOT_UNANSWERED = "SET is_correct = FALSE"
+EXAM_FINISH = "end_reason = 'finished' WHERE id = %s AND finished_at IS NULL"
 
 QUESTION_ID = "2022-1-001"
 
@@ -845,3 +856,274 @@ def test_put_last_practice_slot_completes_cycle_without_wrong(client, fake_db):
     assert body["cycle"]["nextSessionId"] is None
     assert "status = 'completed'" in fake.single("SET status = 'completed'")[0]
     assert fake.executed(SESSION_INSERT_ROUND) == []
+
+
+# --- 모의고사 최종 제출(POST /api/sessions/{id}/submit) -------------------------
+
+
+def exam_slot_row(
+    seq: int, question_id: str, *, choice_no: int | None = None,
+    is_correct: bool | None = None, subject_code: int = 1,
+) -> dict:
+    """모의고사 채점 조회(EXAM_SLOT_ROWS) 1행 = 슬롯 + 과목 코드."""
+    return {
+        "seq": seq,
+        "question_id": question_id,
+        "choice_no": choice_no,
+        "is_correct": is_correct,
+        "subject_code": subject_code,
+    }
+
+
+def _exam_session(**overrides) -> dict:
+    """모의고사 세션 1행(기본: 진행 중)."""
+    return session_row(id=7, mode="exam", exam_id="2026-1", **overrides)
+
+
+@pytest.mark.parametrize("mode", ["exam_practice", "random", "subject"])
+def test_submit_exam_rejects_other_modes_with_400(client, fake_db, mode):
+    """submit 은 모의고사(mode=exam) 전용이다 — 다른 모드는 400 이고 아무것도 쓰지 않는다."""
+    fake = fake_db({SESSION_LOOKUP: [session_row(id=7, mode=mode, exam_id="2026-1")]})
+    response = client.post("/api/sessions/7/submit")
+    assert response.status_code == 400, response.text
+    assert "모의고사" in response.json()["detail"]
+    assert fake.executed(ATTEMPT_BATCH) == []
+    assert fake.executed(EXAM_FINISH) == []
+
+
+def test_submit_exam_unknown_session_404(client, fake_db):
+    fake_db({SESSION_LOOKUP: []})
+    response = client.post("/api/sessions/999/submit")
+    assert response.status_code == 404
+    assert "999" in response.json()["detail"]
+
+
+def test_submit_exam_abandoned_session_409(client, fake_db):
+    """replaceActive 로 중단된 모의고사는 제출할 수 없다 — 제출된 적이 없어 결과도 없다."""
+    fake = fake_db(
+        {SESSION_LOOKUP: [_exam_session(finished_at=ANSWERED_AT, end_reason="abandoned")]}
+    )
+    response = client.post("/api/sessions/7/submit")
+    assert response.status_code == 409
+    detail = response.json()["detail"]
+    assert "중단" in detail
+    assert "이미 제출" not in detail
+    assert fake.executed(ATTEMPT_BATCH) == []
+    assert fake.executed(EXAM_FINISH) == []
+
+
+def test_submit_exam_grades_answered_and_scores_unanswered_as_wrong(client, fake_db):
+    """제출: 답한 문항만 원장·누계에 남기고, 미응답은 점수상 오답으로만 센다(원장 미기록)."""
+    slots = [
+        exam_slot_row(1, "2022-1-001", choice_no=2, subject_code=1),  # 정답(2)
+        exam_slot_row(2, "2022-1-002", choice_no=1, subject_code=1),  # 오답(정답 3)
+        exam_slot_row(3, "2022-1-003", subject_code=2),  # 미응답
+    ]
+    written = {"graded": False, "unanswered": False}
+
+    def slot_rows(sql, params):
+        # 채점 배치가 실행된 뒤의 재조회에는 이번 트랜잭션이 쓴 is_correct 가 보인다.
+        if written["graded"]:
+            slots[0]["is_correct"] = True
+            slots[1]["is_correct"] = False
+        if written["unanswered"]:
+            slots[2]["is_correct"] = False
+        return [dict(row) for row in slots]
+
+    def grade_batch(sql, params):
+        written["graded"] = True
+        return []
+
+    def unanswered_update(sql, params):
+        written["unanswered"] = True
+        return []
+
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [_exam_session()],
+            EXAM_SLOT_ROWS: slot_rows,
+            EXAM_ANSWERS: [
+                {"id": "2022-1-001", "answer": 2},
+                {"id": "2022-1-002", "answer": 3},
+                {"id": "2022-1-003", "answer": 4},
+            ],
+            ATTEMPT_BATCH: [],
+            STATE_BATCH: [],
+            SLOT_GRADE_BATCH: grade_batch,
+            SLOT_UNANSWERED: unanswered_update,
+            EXAM_FINISH: [{"finished_at": ANSWERED_AT}],
+        }
+    )
+    response = client.post("/api/sessions/7/submit")
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert {key: value for key, value in body.items() if key != "submittedAt"} == {
+        "sessionId": 7,
+        "itemCount": 3,
+        "answeredCount": 2,
+        "unansweredCount": 1,
+        "correctCount": 1,
+        "wrongCount": 1,
+        "bySubject": [
+            {"subjectCode": 1, "correct": 1, "score": 5, "passed": False},
+            {"subjectCode": 2, "correct": 0, "score": 0, "passed": False},
+        ],
+        "averageScore": 2.5,
+        "passed": False,
+    }
+    assert body["submittedAt"] is not None
+
+    # 원장·누계 배치는 답한 문항만 담는다(미응답 3번은 빠진다).
+    assert fake.single(ATTEMPT_BATCH)[1] == (7, ["2022-1-001", "2022-1-002"], [2, 1], [True, False])
+    assert fake.single(STATE_BATCH)[1] == (["2022-1-001", "2022-1-002"], [2, 1], [True, False])
+    assert fake.single(SLOT_GRADE_BATCH)[1] == ([1, 2], [True, False], 7)
+    assert fake.single(SLOT_UNANSWERED)[1] == (7,)
+
+    # 기록 순서: 원장 → 누계 → 슬롯 채점 → 미응답 표시 → 세션 종료.
+    calls = [sql for sql, _ in fake.calls]
+
+    def at(fragment: str) -> int:
+        return next(i for i, sql in enumerate(calls) if fragment in sql)
+
+    assert at(ATTEMPT_BATCH) < at(STATE_BATCH) < at(SLOT_GRADE_BATCH) < at(SLOT_UNANSWERED)
+    assert at(SLOT_UNANSWERED) < at(EXAM_FINISH)
+
+
+def test_submit_exam_is_idempotent_without_writes(client, fake_db):
+    """이미 제출된 모의고사에 다시 보내면 기록 없이 같은 결과를 돌려준다(멱등)."""
+    slots = [
+        exam_slot_row(1, "2022-1-001", choice_no=2, is_correct=True, subject_code=1),
+        exam_slot_row(2, "2022-1-002", subject_code=1, is_correct=False),
+    ]
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [_exam_session(finished_at=ANSWERED_AT, end_reason="finished")],
+            EXAM_SLOT_ROWS: slots,
+        }
+    )
+    first = client.post("/api/sessions/7/submit")
+    second = client.post("/api/sessions/7/submit")
+    assert first.status_code == 200 and second.status_code == 200, first.text
+    assert first.json() == second.json()
+    body = first.json()
+    assert body["answeredCount"] == 1
+    assert body["unansweredCount"] == 1
+    assert body["correctCount"] == 1
+    assert body["bySubject"] == [{"subjectCode": 1, "correct": 1, "score": 5, "passed": False}]
+
+    # 재제출은 아무것도 쓰지 않는다 — 원장·누계·슬롯·세션 모두 그대로다.
+    assert fake.executed(ATTEMPT_BATCH) == []
+    assert fake.executed(STATE_BATCH) == []
+    assert fake.executed(SLOT_GRADE_BATCH) == []
+    assert fake.executed(SLOT_UNANSWERED) == []
+    assert fake.executed(EXAM_FINISH) == []
+
+
+def test_get_session_detail_exam_result_only_after_finish(client, fake_db):
+    """세션 단건 조회는 제출된 모의고사에만 점수 요약을 싣는다(진행 중이면 null)."""
+    stats = [
+        {"item_count": 1, "answered_count": 1, "next_seq": None, "correct_count": 1, "wrong_count": 0}
+    ]
+    slots = [exam_slot_row(1, "2022-1-001", choice_no=2, is_correct=True, subject_code=1)]
+    submitted = fake_db(
+        {
+            SESSION_SELECT: [
+                _exam_session(finished_at=ANSWERED_AT, end_reason="finished", answered=1, correct=1)
+            ],
+            SLOT_STATS: stats,
+            SLOT_LIST: [],
+            EXAM_SLOT_ROWS: slots,
+        }
+    )
+    body = client.get("/api/sessions/7").json()
+    assert body["examResult"]["correctCount"] == 1
+    assert body["examResult"]["bySubject"] == [
+        {"subjectCode": 1, "correct": 1, "score": 5, "passed": False}
+    ]
+    assert submitted.executed(ATTEMPT_BATCH) == []
+
+    ongoing = fake_db(
+        {
+            SESSION_SELECT: [_exam_session()],
+            SLOT_STATS: stats,
+            SLOT_LIST: [],
+            EXAM_SLOT_ROWS: slots,
+        }
+    )
+    assert client.get("/api/sessions/7").json()["examResult"] is None
+    # 진행 중에는 점수를 계산하지 않는다(슬롯을 읽지도 않는다).
+    assert ongoing.executed(EXAM_SLOT_ROWS) == []
+
+
+def test_get_session_item_shows_unanswered_result_after_submit(client, fake_db):
+    """제출 뒤 미응답 슬롯 조회: choiceNo=null·isCorrect=false 인 채로 해설(result)을 준다."""
+    fake = fake_db(
+        {
+            SESSION_SELECT: [_exam_session(finished_at=ANSWERED_AT, end_reason="finished")],
+            SLOT_ONE: [slot_row(seq=3, question_id=QUESTION_ID, choice_no=None, is_correct=False)],
+            QUESTION_SELECT: [question_row()],
+            ANSWER_SELECT: [{"answer": 2, "explanation": "정답 해설", "key_point": "핵심 개념"}],
+            CHOICES_SELECT: choice_analysis_rows(2),
+            STATE_SELECT_ONE: [],
+        }
+    )
+    response = client.get("/api/sessions/7/items/3")
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["choiceNo"] is None
+    assert body["isCorrect"] is False
+    assert body["result"]["choiceNo"] is None
+    assert body["result"]["isCorrect"] is False
+    assert body["result"]["answer"] == 2
+    assert body["result"]["explanation"] == "정답 해설"
+    assert body["state"] is None
+    assert fake.executed(ATTEMPT_INSERT) == []
+
+
+def exam_rows(pattern: str) -> list[dict]:
+    """과목별 정답 수 패턴('1:8, 2:12' 형식)을 20문항씩 슬롯 행으로 편다.
+
+    각 과목의 앞 n문항은 정답, 나머지는 오답으로 채운다(미응답은 넣지 않는다).
+    """
+    rows = []
+    seq = 0
+    for chunk in pattern.split(","):
+        code, correct = chunk.strip().split(":")
+        for number in range(1, 21):
+            seq += 1
+            rows.append(
+                exam_slot_row(
+                    seq,
+                    f"2022-1-{seq:03d}",
+                    choice_no=1,
+                    is_correct=number <= int(correct),
+                    subject_code=int(code),
+                )
+            )
+    return rows
+
+
+@pytest.mark.parametrize(
+    ("pattern", "passed", "average"),
+    [
+        ("1:8, 2:12, 3:13, 4:13, 5:14", True, 60.0),   # 과목 40점·평균 60점 경계에서 통과
+        ("1:8, 2:12, 3:12, 4:12, 5:15", False, 59.0),  # 매 과목 40점 이상이지만 평균 59점
+        ("1:7, 2:20, 3:20, 4:20, 5:20", False, 87.0),  # 평균은 넘지만 35점 과목이 하나
+    ],
+)
+def test_exam_summary_pass_boundaries(pattern, passed, average):
+    """합격 판정은 매 과목 40점 이상 '이면서' 전 과목 평균 60점 이상이다."""
+    summary = grading.exam_summary(
+        exam_rows(pattern), session_id=7, submitted_at=ANSWERED_AT
+    )
+    assert summary.average_score == average
+    assert summary.passed is passed
+    assert [item.score for item in summary.by_subject] == [
+        int(chunk.split(":")[1]) * 5 for chunk in pattern.split(",")
+    ]
+    assert [item.passed for item in summary.by_subject] == [
+        int(chunk.split(":")[1]) >= 8 for chunk in pattern.split(",")
+    ]
+    assert summary.item_count == 100
+    assert summary.answered_count == 100
+    assert summary.unanswered_count == 0

@@ -111,7 +111,8 @@ class ChoiceAnalysisOut(ApiModel):
 
 class GradeResult(ApiModel):
     question_id: str
-    choice_no: int
+    # 제출된 모의고사의 미응답 문항은 고른 보기가 없다 — choiceNo=null, isCorrect=false 로 온다.
+    choice_no: int | None = None
     is_correct: bool
     answer: int
     explanation: str
@@ -164,6 +165,35 @@ class SessionItemOut(ApiModel):
     is_correct: bool | None = None
 
 
+class ExamSubjectScoreOut(ApiModel):
+    """모의고사 과목별 점수(문항당 5점, 과목 만점 100점)."""
+
+    subject_code: int
+    correct: int
+    score: int
+    passed: bool
+
+
+class ExamResultOut(ApiModel):
+    """모의고사 제출 결과 — 최종 제출·재제출 응답과 세션 조회(`SessionDetailOut.examResult`)가 같은 값을 준다.
+
+    문항당 5점 기준이고 미응답은 오답과 같이 0점이다. 매 과목 40점 이상이면서
+    전 과목 평균 60점 이상일 때만 passed=true 다(정보처리기사 필기 기준).
+    """
+
+    session_id: int
+    item_count: int
+    answered_count: int
+    unanswered_count: int
+    correct_count: int
+    # wrongCount 는 '답했지만 틀린 수'다(미응답 제외) — 점수는 미응답도 오답으로 센다.
+    wrong_count: int
+    by_subject: list[ExamSubjectScoreOut] = Field(default_factory=list)
+    average_score: float
+    passed: bool
+    submitted_at: datetime | None = None
+
+
 class SessionDetailOut(SessionOut):
     """세션 단건 조회. 슬롯 목록과 진행 위치(nextSeq)를 함께 준다."""
 
@@ -171,6 +201,8 @@ class SessionDetailOut(SessionOut):
     answered_count: int = 0
     next_seq: int | None = None
     items: list[SessionItemOut] = Field(default_factory=list)
+    # 제출(end_reason='finished')된 모의고사에만 붙는다. 조회는 기록을 남기지 않는다.
+    exam_result: ExamResultOut | None = None
 
 
 class SessionItemDetail(QuestionOut):

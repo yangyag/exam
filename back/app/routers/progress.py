@@ -11,6 +11,7 @@ from .. import cycles, grading
 from ..deps import Conn, require_token
 from ..queries import STATE_COLUMNS, fetch_questions, question_filters, to_question
 from ..schemas import (
+    ExamResultOut,
     ProgressItem,
     SessionCreate,
     SessionDetailOut,
@@ -196,6 +197,41 @@ def finish_session(session_id: int, conn: Conn):
     return _get_session(conn, session_id)
 
 
+@router.post(
+    "/sessions/{session_id}/submit",
+    response_model=ExamResultOut,
+    summary="모의고사 최종 제출(일괄 채점)",
+    dependencies=[Depends(require_token)],
+)
+def submit_session(session_id: int, conn: Conn):
+    """모의고사(mode=exam)를 한 트랜잭션에서 채점하고 끝낸다(설계 5.3절).
+
+    - 미응답 문항은 점수상 오답(0점)이지만 원장(study_attempt)·누계(study_state)에는 남기지 않는다.
+      슬롯은 `isCorrect=false`·`choiceNo=null` 로 남아 제출 뒤 문항 조회에서 해설을 볼 수 있다.
+    - 이미 제출된 세션에 다시 부르면 아무것도 쓰지 않고 같은 결과를 돌려준다(멱등).
+    - `mode=exam` 이 아니면 400 이다 — 연습은 마지막 문항에서 자동 종료되고 `random` 은 `/finish` 를 쓴다.
+    - `replaceActive` 로 중단(abandoned)된 모의고사는 409 다(제출된 적이 없어 결과도 없다).
+    - 세션 행을 FOR UPDATE 로 먼저 잠가 선택 저장·새로 구성과의 순서를 지킨다(설계 4.6절).
+    """
+    with conn.transaction():
+        session = grading.lock_session(conn, session_id)
+        if session["mode"] != "exam":
+            raise HTTPException(
+                status.HTTP_400_BAD_REQUEST,
+                "POST /api/sessions/{id}/submit 은 모의고사(mode=exam) 전용입니다. "
+                "연습은 마지막 문항에서 자동 종료되고 random 세션은 /finish 를 쓰세요",
+            )
+        if session["finished_at"] is not None:
+            if session["end_reason"] == "abandoned":
+                raise HTTPException(
+                    status.HTTP_409_CONFLICT,
+                    "중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요",
+                )
+            # 이미 제출된 모의고사 — 기록 없이 같은 결과를 돌려준다(멱등).
+            return grading.exam_result(conn, session)
+        return grading.submit_exam(conn, session)
+
+
 def _question_row(conn: Conn, question_id: str) -> dict:
     """슬롯 문항 조회용 행. study_state(state)는 뺀다 — 이전 풀이 결과가 드러나지 않게."""
     where, params = question_filters(question_id=question_id)
@@ -222,6 +258,7 @@ def get_session(session_id: int, conn: Conn):
     """세션 요약 + 슬롯 목록 + 진행 위치(nextSeq). 슬롯이 없는 랜덤 세션이면 items 가 빈 목록이다.
 
     진행 중인 모의고사는 isCorrect 를 null 로 가린다(제출 전 정답 비공개). 조회는 기록을 남기지 않는다.
+    제출(end_reason='finished')된 모의고사는 결과 화면이 쓸 점수 요약을 examResult 에 함께 싣는다.
     """
     session = _get_session(conn, session_id)
     progress = cycles.session_progress(conn, session)
@@ -241,6 +278,11 @@ def get_session(session_id: int, conn: Conn):
         answered_count=progress.answered_count,
         next_seq=progress.next_seq,
         items=items,
+        exam_result=(
+            grading.exam_result(conn, session)
+            if session["mode"] == "exam" and session["end_reason"] == "finished"
+            else None
+        ),
     )
 
 
@@ -253,6 +295,7 @@ def get_session_item(session_id: int, seq: int, conn: Conn):
     """슬롯 문항 1개. 채점된 슬롯이면 result 에 채점 응답과 같은 형식이 붙는다.
 
     채점 전 슬롯은 QuestionOut.state 를 빼서 이전 풀이의 정답 여부가 드러나지 않게 한다.
+    제출된 모의고사의 미응답 문항은 `choiceNo=null`·`isCorrect=false` 인 result 를 준다(해설은 그대로 본다).
     조회는 원장(study_attempt)을 늘리지 않는다.
     """
     _get_session(conn, session_id)

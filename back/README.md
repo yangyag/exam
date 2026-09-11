@@ -52,12 +52,12 @@ curl http://127.0.0.1:8092/api/health
 
 ```bash
 cd back
-.venv/Scripts/python -m pytest                       # 전체 178개 (DB 접속 정보가 없으면 통합 30개는 skip)
-.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 148개
-.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 30개
+.venv/Scripts/python -m pytest                       # 전체 198개 (DB 접속 정보가 없으면 통합 35개는 skip)
+.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 163개
+.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 35개
 ```
 
-`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다. 채점과 종료가 겹칠 때의 잠금 순서(`B-01`)는 실제 DB의 행 잠금을 재현하는 `test_integration_concurrency.py` 가 고정합니다(study_attempt 에 SHARE 잠금을 잠시 걸고, 세션 행 잠금은 `FOR UPDATE NOWAIT` 프로브로 판정). 과목 사이클 계약은 가짜 DB(`test_cycles_api.py`)와 실 DB(`test_integration_cycles.py`) 양쪽에서 고정합니다 — 라운드 자동 전환(전체 정답이면 즉시 완료), 과목당 진행 중 1개, 두 기기 동시 시작, 마지막 슬롯 제출과 새로 구성의 경합, 홈 요약의 고유 문항 수(176·194·194·199·181)를 실제 DB에서 검산합니다.
+`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다. 채점과 종료가 겹칠 때의 잠금 순서(`B-01`)는 실제 DB의 행 잠금을 재현하는 `test_integration_concurrency.py` 가 고정합니다(study_attempt 에 SHARE 잠금을 잠시 걸고, 세션 행 잠금은 `FOR UPDATE NOWAIT` 프로브로 판정). 과목 사이클 계약은 가짜 DB(`test_cycles_api.py`)와 실 DB(`test_integration_cycles.py`) 양쪽에서 고정합니다 — 라운드 자동 전환(전체 정답이면 즉시 완료), 과목당 진행 중 1개, 두 기기 동시 시작, 마지막 슬롯 제출과 새로 구성의 경합, 홈 요약의 고유 문항 수(176·194·194·199·181)를 실제 DB에서 검산합니다. **모의고사 최종 제출**은 가짜 DB(`test_progress_api.py`)로 모드 `400`·중단 `409`·멱등 재제출·합격 경계(과목 40점·평균 60점) 계산을, 실제 DB(`test_integration_db.py`)로 100문항 제출·미응답의 원장 미기록·선택 저장과 새로 구성의 잠금 경합(study_attempt 에 SHARE 잠금을 잠시 걸어 제출을 멈춰 세우는 방식)을 고정합니다.
 
 ## 2. 환경변수
 
@@ -85,7 +85,7 @@ cd back
 
 ## 3. 엔드포인트
 
-25개입니다. 스키마에 나오지 않는 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 위 표 참고.
+26개입니다. 스키마에 나오지 않는 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 위 표 참고.
 
 - **base URL**: 개발 서버는 `http://127.0.0.1:8092` 이고, 모든 JSON 엔드포인트는 `/api` 로 시작합니다.
 - **`{examId}` 형식**: `2026-1` 처럼 `연도-회차` 인 문자열입니다.
@@ -116,8 +116,9 @@ cd back
 |---|---|---|---|---|
 | POST | `/api/sessions` | 세션 시작 (`201`). `mode=exam_practice`·`exam` 은 회차 문항 슬롯까지 만든다 | 본문 `SessionCreate` | `SessionOut` |
 | GET | `/api/sessions` | 세션 목록(최근순) | `mode`, `cycleId`, `limit`(20, 1~200), `offset`(0) | `SessionOut[]` |
-| GET | `/api/sessions/{sessionId}` | 세션 단건 + 슬롯 목록 + 진행(`nextSeq`) | — | `SessionDetailOut` |
+| GET | `/api/sessions/{sessionId}` | 세션 단건 + 슬롯 목록 + 진행(`nextSeq`). 제출된 모의고사는 `examResult` 까지 | — | `SessionDetailOut` |
 | POST | `/api/sessions/{sessionId}/finish` | 세션 종료(멱등). **슬롯이 있는 세션은 `409`** | — | `SessionOut` |
+| POST | `/api/sessions/{sessionId}/submit` | **모의고사 최종 제출** — 일괄 채점 후 종료(멱등). `mode≠exam` 은 `400` | — | `ExamResultOut` |
 | GET | `/api/sessions/{sessionId}/items/{seq}` | 슬롯 문항 단건. 채점 전에는 `state` 를 빼고, 채점된 슬롯은 `result` 를 준다 | — | `SessionItemDetail` |
 | PUT | `/api/sessions/{sessionId}/items/{seq}/answer` | 슬롯 제출 — 연습은 즉시 채점, 모의고사는 선택만 저장 | 본문 `SlotAnswerRequest` | `SlotGradeResult` 또는 `SlotSaveOut` |
 | GET | `/api/progress/questions` | 문항 상태 목록 | `bookmarked`, `wrong`, `unresolved`, `dueOn`, `limit`(50, 1~200), `offset`(0) | `ProgressItem[]` |
@@ -168,7 +169,7 @@ cd back
 
 `QuestionOut` 계열 응답에는 `answer` · `explanation` · 보기별 `correct`/`why` 가 **들어가지 않습니다**. 채점 응답에서만 돌려줍니다. 프론트가 시험 모드에서 정답을 화면에 들고 있을 필요가 없도록 하려는 의도이고, `back/app/queries.py` 의 SELECT 에서 강제됩니다.
 
-예외는 **채점이 끝난 슬롯** 하나입니다. `GET /api/sessions/{sessionId}/items/{seq}` 는 그 슬롯이 이미 채점된 연습(`subject`·`review`·`exam_practice`)일 때만 채점 응답과 같은 형식의 `result`(`GradeResult`)를 함께 줍니다. 이 조회의 `state` 는 **채점 여부와 무관하게 항상 `null`** 입니다(이전 풀이의 정답 여부가 드러나지 않게 — 문항 누계는 채점 응답의 `state` 로만 봅니다). 조회는 원장을 늘리지 않고, 진행 중인 모의고사는 세션 조회에서 `isCorrect` 도 `null` 로 가립니다.
+예외는 **채점이 끝난 슬롯** 하나입니다. `GET /api/sessions/{sessionId}/items/{seq}` 는 그 슬롯이 이미 채점된 연습(`subject`·`review`·`exam_practice`)이거나 **제출이 끝난 모의고사(`exam`)** 일 때만 채점 응답과 같은 형식의 `result`(`GradeResult`)를 함께 줍니다. 제출된 모의고사의 **미응답 문항도 `result` 가 붙습니다** — 이때 `choiceNo` 와 `result.choiceNo` 가 `null`, `isCorrect` 가 `false` 이고 정답·해설은 그대로 봅니다. 이 조회의 `state` 는 **채점 여부와 무관하게 항상 `null`** 입니다(이전 풀이의 정답 여부가 드러나지 않게 — 문항 누계는 채점 응답의 `state` 로만 봅니다). 조회는 원장을 늘리지 않고, 진행 중인 모의고사는 세션 조회에서 `isCorrect` 도 `null` 로 가립니다.
 
 ```json
 {
@@ -213,7 +214,7 @@ cd back
 
 위에서 JSON 예시로 보여주지 않은 스키마들입니다. `*` 는 항상 있는 필드, 나머지는 `null` 이 될 수 있습니다.
 `count` 계열 중 `ExamOut.questionCount`·`ExamOut.figureCount`·`TagOut.questionCount` 는 스키마 기본값이 `0` 이라 **`null` 이 되지 않습니다**(해당하는 문항이 없으면 `0`).
-`QuestionOut` · `ChoiceOut` 은 "조회 응답에는 정답이 없습니다", `StateOut` 은 "채점", `GradeRequest`/`GradeResult`·`StateUpdate` 는 해당 절을, `SessionCreate`/`SessionOut`·`SlotAnswerRequest`/`SlotGradeResult`/`SlotSaveOut` 은 "세션과 슬롯", `CycleCreate`/`CycleOut`/`SubjectOverviewOut` 은 "과목 사이클" 절을 참고하세요.
+`QuestionOut` · `ChoiceOut` 은 "조회 응답에는 정답이 없습니다", `StateOut` 은 "채점", `GradeRequest`/`GradeResult`·`StateUpdate` 는 해당 절을, `SessionCreate`/`SessionOut`·`SlotAnswerRequest`/`SlotGradeResult`/`SlotSaveOut`·`ExamResultOut` 은 "세션과 슬롯", `CycleCreate`/`CycleOut`/`SubjectOverviewOut` 은 "과목 사이클" 절을 참고하세요.
 
 | 스키마 | 필드 |
 |---|---|
@@ -226,12 +227,15 @@ cd back
 | `SubjectStatsOut` | `subjectCode*`, `subjectName*`, `answered*`, `correct*`, `wrong*`, `questionsTotal*`, `questionsSeen*`, `accuracyPct` |
 | `WrongQuestionOut` | `questionId*`, `examId*`, `number*`, `subjectCode*`, `subjectName*`, `stem*`, `attemptCount*`, `wrongCount*`, `lastChoiceNo`, `lastIsCorrect`, `lastAnsweredAt`, `bookmarked`, `note`, `reviewDueOn` |
 | `ReviewDueOut` | `questionId*`, `examId*`, `number*`, `subjectCode*`, `subjectName*`, `stem*`, `reviewDueOn*`, `overdueDays*`, `lastIsCorrect`, `wrongCount*`, `note` |
-| `SessionDetailOut` | `SessionOut` 전부 + `itemCount*`(슬롯 수), `answeredCount*`, `nextSeq`(다음 `seq`, 없으면 `null`), `items*`(`SessionItemOut[]`) |
+| `SessionDetailOut` | `SessionOut` 전부 + `itemCount*`(슬롯 수), `answeredCount*`, `nextSeq`(다음 `seq`, 없으면 `null`), `items*`(`SessionItemOut[]`), `examResult`(`ExamResultOut`\|null — 제출된 모의고사만) |
 | `SessionItemOut` | `seq*`, `questionId*`, `choiceNo`, `isCorrect`(진행 중 모의고사는 `null` 로 가림) |
-| `SessionItemDetail` | `QuestionOut` 전부 + `seq*`, `choiceNo`, `isCorrect`, `answeredAt`, `result`(`GradeResult`\|null — 채점된 슬롯만). `state` 는 항상 `null` |
+| `SessionItemDetail` | `QuestionOut` 전부 + `seq*`, `choiceNo`, `isCorrect`, `answeredAt`, `result`(`GradeResult`\|null — 채점된 슬롯·제출된 모의고사, 미응답은 `choiceNo=null`). `state` 는 항상 `null` |
 | `SlotAnswerRequest` | `choiceNo`(1~4, 선택 — 모의고사는 `null` = 선택 해제), `elapsedMs`(0~2147483647, 선택) |
 | `SlotGradeResult` | `GradeResult` 전부 + `session*`(`SessionProgressOut`), `roundResult`(이 제출로 라운드가 끝났을 때만), `cycle`(사이클 라운드일 때만) |
 | `SlotSaveOut` | `seq*`, `choiceNo`, `answeredAt` — 모의고사 선택 저장 응답(정답·해설 없음) |
+| `GradeResult` | `questionId*`, `choiceNo`(제출된 모의고사의 미응답 문항이면 `null`), `isCorrect*`, `answer*`, `explanation*`, `keyPoint`, `choicesAnalysis*`(4개), `state*` |
+| `ExamResultOut` | `sessionId*`, `itemCount*`, `answeredCount*`, `unansweredCount*`, `correctCount*`, `wrongCount*`(답했지만 틀린 수), `bySubject*`(`ExamSubjectScoreOut[]`), `averageScore*`, `passed*`, `submittedAt`(제출 시각) |
+| `ExamSubjectScoreOut` | `subjectCode*`, `correct*`, `score*`(정답 수 × 5), `passed*`(40점 이상) |
 | `SessionProgressOut` | `id*`, `itemCount*`, `answeredCount*`, `nextSeq`(종료된 세션이면 `null`), `finished*` |
 | `RoundResultOut` | `roundNo`(회차 연습·모의고사면 `null`), `itemCount*`, `correct*`, `wrong*` |
 | `CycleResultOut` | `id*`, `status*`, `nextSessionId`, `nextRoundNo`, `nextItemCount`(다음 라운드가 없으면 셋 다 `null`) |
@@ -313,7 +317,7 @@ curl -i -X POST http://127.0.0.1:8092/api/questions/2026-1-001/answer \
 | `subject` | 과목 사이클 라운드 1. 슬롯 = 과목 문항을 중복 제거·셔플한 목록 | `PUT /api/sessions/{id}/items/{seq}/answer` (문항별 즉시) |
 | `review` | 과목 사이클 라운드 2+. 슬롯 = 직전 라운드 오답 | 위와 같음 |
 | `exam_practice` | 회차별 연습. 슬롯 = 회차 문항 번호 순 | 위와 같음 |
-| `exam` | 회차 모의고사. 슬롯 = 회차 문항 번호 순 | 연습과 달리 제출 전에는 선택만 저장된다 — 최종 일괄 제출 API 는 아직 없다(설계 5단계 예정) |
+| `exam` | 회차 모의고사. 슬롯 = 회차 문항 번호 순 | 연습과 달리 제출 전에는 선택만 저장하고, `POST /api/sessions/{id}/submit` 이 전 문항을 한 번에 채점한다 |
 | `random` | 슬롯 없음 | 기존 `POST /api/questions/{questionId}/answer` |
 
 ```bash
@@ -330,10 +334,10 @@ POST /api/sessions  {"mode": "review"}                              # 400 — �
 - `examId` 의 빈 문자열(`""` 또는 공백뿐인 값)은 **`null` 로 정규화**합니다(B-02). 프론트 선택 입력의 초기값을 그대로 보내도 되도록 한 것이고, 라우터의 존재 검사 기준(`if examId`)과도 맞습니다. 그래서 `mode=exam` + `""` 는 `400`(examId 필요)이고, `mode=random` + `""` 는 회차 없음으로 만들어집니다. `""` 가 그대로 `INSERT` 되어 `500`(외래 키 위반)이 나던 동작은 없어졌습니다.
 - `random` 은 `examId`·`subjectCode` 도 받아 **세션 행에 그대로 저장합니다**(응답 `SessionOut` 에 그대로 실립니다). 랜덤 출제 자체는 `GET /api/questions/random` 이 하므로 세션의 값은 출제에 영향을 주지 않습니다(슬롯이 없음). 없는 회차·과목이면 `404`.
 - 회차 연습·모의고사에 `subjectCode` 를 함께 보내도 **저장하지 않습니다**(항상 `null`) — 그 회차의 과목 구성은 문항에서 나옵니다.
-- `/finish` 는 이미 끝난 세션에 다시 호출해도 현재 상태를 그대로 돌려줍니다(멱등). **슬롯이 있는 세션은 `409`** 입니다 — 연습은 마지막 슬롯을 채점하면 같은 트랜잭션에서 자동으로 끝나고, 모의고사는 최종 제출을 써야 합니다(아직 없음). 슬롯 없는 `random` 세션은 기존대로 `/finish` 로 끝냅니다.
+- `/finish` 는 이미 끝난 세션에 다시 호출해도 현재 상태를 그대로 돌려줍니다(멱등). **슬롯이 있는 세션은 `409`** 입니다 — 연습은 마지막 슬롯을 채점하면 같은 트랜잭션에서 자동으로 끝나고, 모의고사는 최종 제출(`POST …/submit`)을 써야 합니다. 슬롯 없는 `random` 세션은 기존대로 `/finish` 로 끝냅니다.
 - 종료·중단된 슬롯 세션의 **아직 안 푼 슬롯** 제출은 `409` 이고, 메시지는 모드와 `endReason` 으로 갈립니다.
   - 연습(`subject`·`review`·`exam_practice`): `abandoned` → `"중단된 세션입니다. 새로 구성한 세션에서 계속하세요"`, `finished` → `"이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"`. 연습의 `finished` 분기는 정상 흐름에서 나지 않습니다(마지막 슬롯 채점이 곧 종료라 그때는 모든 슬롯이 이미 채점돼 위의 재전송 경로로 갑니다).
-  - 모의고사(`exam`): `abandoned` → `"중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요"`, `finished` → `"이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"`. `finished` 는 최종 제출 API(5단계)가 붙으면 쓰이고, 지금 실제로 나는 것은 `replaceActive` 로 중단된 `abandoned` 쪽입니다.
+  - 모의고사(`exam`): `abandoned` → `"중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요"`, `finished`(최종 제출 완료) → `"이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"`.
 
 `SessionOut`(목록·생성 응답)에는 `cycleId`·`roundNo`·`endReason` 이 더해졌습니다. 모드별로 저장되는 대상 값은 이렇습니다(위 `SessionCreate` 규칙과 같은 내용).
 
@@ -342,7 +346,7 @@ POST /api/sessions  {"mode": "review"}                              # 400 — �
 | `subject`(라운드 1) | `null` | 사이클의 과목 | `cycleId`, `roundNo=1` | 마지막 슬롯 채점 시 `finished` · 새로 구성 시 `abandoned` |
 | `review`(라운드 2+) | `null` | 사이클의 과목 | `cycleId`, `roundNo>=2` | 위와 같음 |
 | `exam_practice` | 회차 | `null`(요청에 있어도 저장 안 함) | `null` | 마지막 슬롯 채점 시 `finished` · 새로 구성 시 `abandoned` (`/finish` 는 `409`) |
-| `exam` | 회차 | `null`(요청에 있어도 저장 안 함) | `null` | 지금은 `abandoned`(새로 구성)만 — `finished` 는 5단계 제출 API |
+| `exam` | 회차 | `null`(요청에 있어도 저장 안 함) | `null` | 최종 제출(`submit`) 시 `finished` · 새로 구성 시 `abandoned` |
 | `random` | 요청값(보통 `null`) | 요청값(보통 `null`) | `null` | `/finish` 로 `finished` |
 
 `roundNo` 만 `null` 이고 `cycleId` 가 있는 조합은 CHECK(`study_session_round_chk`)가 막습니다. `GET /api/sessions?cycleId=<id>` 로 사이클의 라운드만 모아 볼 수 있습니다.
@@ -378,7 +382,8 @@ GET /api/sessions/16/items/1  # SessionItemDetail
 - 슬롯이 없는 `random` 세션은 `itemCount`·`answeredCount` 가 `0`, `items` 가 빈 배열입니다.
 - `items[].isCorrect` 는 **진행 중인 모의고사에서 `null` 로 가려집니다**(제출 전 정답 비공개). 연습과 종료된 모의고사는 실제 값이 옵니다.
 - 조회는 아무것도 기록하지 않습니다(원장이 늘지 않음). 없는 세션은 `404`, 없는 `seq` 는 `404`.
-- `SessionItemDetail` 은 `QuestionOut` 전부 + `seq`·`choiceNo`·`isCorrect`·`answeredAt`·`result` 입니다. `result` 는 **이미 채점된 슬롯에만** 채점 응답과 같은 형식(`GradeResult`)으로 붙고, `state` 는 **채점 여부와 무관하게 항상 `null`** 입니다(이전 풀이의 정답 여부가 드러나지 않게 — 문항 누계는 채점 응답의 `state` 로 봅니다).
+- `examResult` 는 **제출이 끝난 모의고사에만** 실리고(진행 중이면 `null`), 모의고사 최종 제출 응답과 같은 점수 요약입니다 — "모의고사 최종 제출" 절 참고.
+- `SessionItemDetail` 은 `QuestionOut` 전부 + `seq`·`choiceNo`·`isCorrect`·`answeredAt`·`result` 입니다. `result` 는 **이미 채점된 슬롯**(연습 또는 제출된 모의고사)에만 채점 응답과 같은 형식(`GradeResult`)으로 붙고, `state` 는 **채점 여부와 무관하게 항상 `null`** 입니다(이전 풀이의 정답 여부가 드러나지 않게 — 문항 누계는 채점 응답의 `state` 로 봅니다). 제출된 모의고사의 미응답 문항은 `choiceNo`·`result.choiceNo` 가 `null` 이고 `isCorrect` 가 `false` 입니다(해설은 그대로).
 
 #### 슬롯 제출 — `PUT /api/sessions/{sessionId}/items/{seq}/answer`
 
@@ -419,9 +424,41 @@ curl -X PUT http://127.0.0.1:8092/api/sessions/16/items/1/answer \
 ```
 
 - 여러 번 보내도 저장만 덮어씁니다(제출 전 자유 수정). `choiceNo: null` 은 선택 해제.
-- 제출(`finishedAt` 이 있는 세션) 뒤에는 `409` 입니다.
+- `elapsedMs` 는 이 경로에서 저장하지 않습니다 — 모의고사 원장 행의 `elapsedMs` 는 제출 때 `null` 로 들어갑니다.
+- 제출(`finishedAt` 이 있는 세션) 뒤에는 `409` 입니다 — 최종 제출이면 `"이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"`, `replaceActive` 로 중단된 세션이면 `"중단된 모의고사입니다…"`.
 
-> **모의고사 최종 제출(`POST /api/sessions/{id}/submit`)은 아직 없습니다.** 설계(5단계)에만 있고 코드에는 없으므로, `exam` 세션은 현재 선택 저장과 조회까지만 됩니다. 슬롯 채점·원장 기록·결과 조회는 5단계에서 붙습니다.
+#### 모의고사 최종 제출 — `POST /api/sessions/{sessionId}/submit`
+
+한 트랜잭션에서 전 문항을 채점하고 세션을 끝냅니다(설계 5.3절). **`mode=exam` 전용**이고 쓰기 요청이므로 `EXAM_API_TOKEN` 설정 시 `X-Exam-Token` 헤더가 필요합니다.
+
+```bash
+curl -X POST http://127.0.0.1:8092/api/sessions/16/submit
+```
+
+```json
+{
+  "sessionId": 16, "itemCount": 100, "answeredCount": 95, "unansweredCount": 5,
+  "correctCount": 70, "wrongCount": 25,
+  "bySubject": [
+    {"subjectCode": 1, "correct": 14, "score": 70, "passed": true},
+    {"subjectCode": 2, "correct": 11, "score": 55, "passed": true},
+    {"subjectCode": 3, "correct": 17, "score": 85, "passed": true},
+    {"subjectCode": 4, "correct": 12, "score": 60, "passed": true},
+    {"subjectCode": 5, "correct": 16, "score": 80, "passed": true}
+  ],
+  "averageScore": 70.0, "passed": true,
+  "submittedAt": "2026-09-11T05:25:50.581831Z"
+}
+```
+
+- **점수 기준은 정보처리기사 필기입니다** — 과목당 20문항·문항당 5점. `score` = 그 과목 정답 수 × 5(과목 만점 100점), `averageScore` = 세션에 있는 과목 점수의 평균(소수 첫째 자리, 과목이 하나도 없으면 `0.0`), `passed` = **매 과목 40점 이상이면서 전 과목 평균 60점 이상**일 때만 `true`.
+- **미응답은 점수상 오답**(0점)입니다. 다만 원장(`study_attempt`)·누계(`study_state`)에는 **한 행도 남기지 않습니다** — `study_attempt.choice_no` 는 `NOT NULL` 이고, 나중에 답을 채워 점수를 바꾸는 일도 없게 하려는 것입니다. 슬롯은 `isCorrect=false`·`choiceNo=null` 로 남아 결과 화면이 "미응답"으로 구분할 수 있습니다.
+- 집계: `answeredCount` = 선택을 저장한 슬롯 수, `unansweredCount` = 나머지, `correctCount` = 맞힌 수, `wrongCount` = **답했지만 틀린 수**(미응답 제외). 그래서 `itemCount = answeredCount + unansweredCount = correctCount + wrongCount + unansweredCount` 입니다.
+- **재제출은 멱등**입니다 — 이미 제출된 세션에 다시 보내면 아무것도 쓰지 않고 같은 본문(`200`)을 돌려줍니다. 네트워크 오류 뒤 그대로 다시 보내면 됩니다.
+- **결과 재조회**: `GET /api/sessions/{id}` 의 `examResult` 가 같은 점수 요약을 주고(진행 중이면 `null`), 문항별 정답·해설은 `GET /api/sessions/{id}/items/{seq}` 의 `result` 로 봅니다 — 미응답 문항도 `choiceNo=null`·`isCorrect=false` 로 `result` 가 붙습니다. **조회는 원장을 늘리지 않습니다.**
+- 상태 코드: `400` — `mode` 가 `exam` 이 아님(연습은 마지막 문항에서 자동 종료되고 `random` 은 `/finish`), `404` — 없는 세션, `409` — `replaceActive` 로 중단된 모의고사(제출된 적이 없어 결과도 없음).
+- **잠금 순서**(설계 4.6절): 세션 행을 `FOR UPDATE` 로 잡은 뒤 슬롯을 잠급니다. 제출과 선택 저장이 겹치면 세션 잠금이 순서를 정해 **제출 뒤에 도착한 저장은 `409`** 입니다. 제출이 끝난 세션은 '진행 중'이 아니라서 `replaceActive=true` 로 새로 구성해도 중단되지 않습니다(제출 결과 보존). 두 경합 모두 실 DB 통합 테스트(`test_integration_db.py`)가 고정합니다.
+- 세션 요약(`SessionOut.answered`·`correct`)은 기존대로 원장 집계입니다 — 제출 뒤에는 `answered` 가 답한 문항 수가 됩니다. 점수·미응답 수는 `examResult` 쪽을 보세요.
 
 ### 과목 사이클과 홈 요약 — `back/app/routers/subject_cycles.py`
 
@@ -496,10 +533,10 @@ curl -X PATCH http://127.0.0.1:8092/api/progress/questions/2026-1-001 \
 
 | 상태 | 언제 |
 |---|---|
-| `400` | 규칙 위반 — 필드 없는 `PATCH`, `mode=exam_practice`·`exam` 인데 `examId` 없음, `subject`·`review` 세션 생성 시도, 연습 슬롯에 `choiceNo` 없음 |
+| `400` | 규칙 위반 — 필드 없는 `PATCH`, `mode=exam_practice`·`exam` 인데 `examId` 없음, `subject`·`review` 세션 생성 시도, 연습 슬롯에 `choiceNo` 없음, `mode=exam` 이 아닌 세션에 `POST /api/sessions/{id}/submit` |
 | `401` | `EXAM_API_TOKEN` 설정 시 쓰기 요청에 토큰이 없거나 틀림 |
 | `404` | 없는 회차·문항·과목·세션·사이클·슬롯(`seq`) |
-| `409` | 진행 중 세션·사이클과 충돌하거나 이미 끝난 세션에 쓰기 — ① `subject`·`review`·`exam_practice`·`exam` 세션으로 `POST /api/questions/{id}/answer`, ② 슬롯 세션에 `POST /api/sessions/{id}/finish`, ③ `exam_practice`·`exam` 생성 시 같은 모드·회차의 진행 중 세션(→ `replaceActive=true`), ④ `POST /api/subject-cycles` 시 진행 중 사이클(→ `replaceActive=true`), ⑤ 채점된 연습 슬롯에 다른 보기 재전송, ⑥ 종료·중단된 세션의 슬롯 제출 |
+| `409` | 진행 중 세션·사이클과 충돌하거나 이미 끝난 세션에 쓰기 — ① `subject`·`review`·`exam_practice`·`exam` 세션으로 `POST /api/questions/{id}/answer`, ② 슬롯 세션에 `POST /api/sessions/{id}/finish`, ③ `exam_practice`·`exam` 생성 시 같은 모드·회차의 진행 중 세션(→ `replaceActive=true`), ④ `POST /api/subject-cycles` 시 진행 중 사이클(→ `replaceActive=true`), ⑤ 채점된 연습 슬롯에 다른 보기 재전송, ⑥ 종료·중단된 세션의 슬롯 제출, ⑦ 중단(`abandoned`)된 모의고사에 `submit` |
 | `422` | 스키마 위반 — `choiceNo` 가 1~4 밖, `elapsedMs` 가 0~2147483647 밖, `limit` 이 범위 밖 등 |
 | `500` | 그 밖의 서버 오류 |
 | `503` | DB 에 연결할 수 없거나 커넥션 풀이 아직 초기화되지 않음(DB 를 쓰는 엔드포인트) |
@@ -523,7 +560,7 @@ DB 를 쓰는 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다(루�
 
 ## 5. 의존 DB 객체
 
-전부 `app` DB 의 `ipe` 스키마입니다. DDL 은 `db/001_schema.sql`(문항)·`db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클), 컬럼 의미는 `db/README.md`.
+전부 `app` DB 의 `ipe` 스키마입니다. DDL 은 `db/001_schema.sql`(문항)·`db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(study_session 코멘트 정정), 컬럼 의미는 `db/README.md`.
 
 | 객체 | 종류 | 쓰는 곳 |
 |---|---|---|
@@ -550,7 +587,7 @@ API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼�
 ## 6. 프론트에서 붙일 때
 
 - 개발 프론트 오리진은 `http://localhost:8091` 이 기본 허용입니다. 다른 포트·도메인이면 `EXAM_CORS_ORIGINS` 에 쉼표로 추가하세요.
-- 쓰기 요청(`POST /api/sessions`, `/finish`, `/answer`, `POST /api/subject-cycles`, `PUT …/items/{seq}/answer`)과 `PATCH` 는 `EXAM_API_TOKEN` 을 설정한 경우에만 `X-Exam-Token` 헤더가 필요합니다.
+- 쓰기 요청(`POST /api/sessions`, `/finish`, `/submit`, `/answer`, `POST /api/subject-cycles`, `PUT …/items/{seq}/answer`)과 `PATCH` 는 `EXAM_API_TOKEN` 을 설정한 경우에만 `X-Exam-Token` 헤더가 필요합니다.
 - 그림은 `/figures/...` 경로로 옵니다. DB 에는 경로·`alt` 만 있고 바이너리는 없으니 API 오리진 기준으로 해석하세요.
 - 타입이 필요하면 `http://127.0.0.1:8092/openapi.json` 에서 생성하세요.
 - DB 장애는 DB 를 쓰는 엔드포인트가 2초 내 `503`(`{"detail":"DB 에 연결할 수 없습니다"}`)으로 알려줍니다. 상태·사유까지 보려면 `/api/health`(2초 내 `503`, `database: "unavailable"`)를 쓰세요.
@@ -561,5 +598,5 @@ API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼�
 - 쿼리 로그·요청 추적은 넣지 않았습니다. `uvicorn` 기본 로그만 나옵니다.
 - 인증은 단일 사용자 전제의 공유 토큰 하나뿐입니다. 사용자별 계정·권한은 없습니다.
 - `POST /api/questions/{id}/answer` 는 **채점과 진도 기록을 분리할 수 없습니다.** 정답만 확인하고 기록을 남기고 싶지 않은 경우는 지금 지원하지 않습니다(슬롯 세션에는 이 경로를 쓸 수 없습니다 — 슬롯 제출이 기록 경로입니다).
-- **5단계(모의고사 최종 제출)는 아직 구현되지 않았습니다.** `exam` 세션은 선택 저장·조회까지 되고, 제출·일괄 채점·결과 조회 API 는 없습니다. 설계는 `plan/frontend-backend-gap.md` 5.3~5.4절입니다.
+- **모의고사 최종 제출은 `POST /api/sessions/{id}/submit` 입니다**(5단계, 위 "모의고사 최종 제출" 절). 미응답은 점수상 오답이지만 원장·누계에 남기지 않고, 재제출은 멱등입니다.
 - 과목 사이클의 라운드 전환·중단은 `advance_round_if_complete`·`replace_active_cycle`(`back/app/cycles.py`)이 맡고, 조회·집계는 `back/app/cycle_queries.py` 가 **`status='active'` 사이클만 근거로** 합니다.

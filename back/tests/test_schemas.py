@@ -14,10 +14,13 @@ from pydantic import ValidationError
 from app.queries import figure_url, to_question
 from app.schemas import (
     CycleResultOut,
+    ExamResultOut,
+    ExamSubjectScoreOut,
     GradeRequest,
     GradeResult,
     QuestionOut,
     SessionCreate,
+    SessionDetailOut,
     SessionOut,
     SessionProgressOut,
     SlotAnswerRequest,
@@ -260,3 +263,72 @@ def test_slot_save_out_has_no_answer_fields():
     dumped = SlotSaveOut(seq=1, choice_no=None, answered_at=None).model_dump(by_alias=True)
     assert dumped == {"seq": 1, "choiceNo": None, "answeredAt": None}
     assert_no_answer_leak(dumped)
+
+
+def test_grade_result_allows_null_choice_for_unanswered_exam_item():
+    """제출된 모의고사의 미응답 문항 결과는 choiceNo=null·isCorrect=false 로 온다(해설은 그대로)."""
+    result = GradeResult(
+        question_id="2022-1-001",
+        choice_no=None,
+        is_correct=False,
+        answer=2,
+        explanation="정답 해설",
+        choices_analysis=[
+            {"no": row["no"], "correct": row["is_correct"], "why": row["why"]}
+            for row in choice_analysis_rows(2)
+        ],
+        state=state_row(),
+    )
+    dumped = result.model_dump(by_alias=True)
+    assert dumped["choiceNo"] is None
+    assert dumped["isCorrect"] is False
+    assert dumped["answer"] == 2
+
+
+def test_exam_result_serializes_camel_case():
+    """모의고사 점수 요약은 bySubject·averageScore·passed 를 camelCase 로 싣는다."""
+    result = ExamResultOut(
+        session_id=7,
+        item_count=100,
+        answered_count=95,
+        unanswered_count=5,
+        correct_count=60,
+        wrong_count=35,
+        by_subject=[
+            ExamSubjectScoreOut(subject_code=1, correct=8, score=40, passed=True),
+            ExamSubjectScoreOut(subject_code=2, correct=7, score=35, passed=False),
+        ],
+        average_score=60.0,
+        passed=False,
+        submitted_at=ANSWERED_AT,
+    )
+    dumped = result.model_dump(by_alias=True)
+    assert set(dumped) == {
+        "sessionId",
+        "itemCount",
+        "answeredCount",
+        "unansweredCount",
+        "correctCount",
+        "wrongCount",
+        "bySubject",
+        "averageScore",
+        "passed",
+        "submittedAt",
+    }
+    assert dumped["sessionId"] == 7
+    assert dumped["unansweredCount"] == 5
+    assert dumped["bySubject"] == [
+        {"subjectCode": 1, "correct": 8, "score": 40, "passed": True},
+        {"subjectCode": 2, "correct": 7, "score": 35, "passed": False},
+    ]
+    assert dumped["averageScore"] == 60.0
+    assert dumped["submittedAt"] == ANSWERED_AT
+
+
+def test_session_detail_exam_result_is_null_until_submitted():
+    """examResult 는 제출된 모의고사에만 붙는다 — 기본값은 null 이다."""
+    dumped = SessionDetailOut.model_validate(
+        session_row(id=7, mode="exam", exam_id="2026-1")
+    ).model_dump(by_alias=True)
+    assert dumped["examResult"] is None
+    assert set(dumped) >= {"itemCount", "answeredCount", "nextSeq", "items", "examResult"}
