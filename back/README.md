@@ -3,7 +3,7 @@
 `app` DB 의 `ipe` 스키마를 읽어 **문항 조회 · 채점 · 진도** 를 제공하는 HTTP API 입니다.
 프론트(Nuxt)가 이 문서만 보고 붙일 수 있는 수준을 목표로 하고, 더 자세한 내용은 코드와 `/openapi.json` 을 정본으로 봅니다.
 
-전제: `app` DB 의 `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 `/api/health` 가 `503` 을 돌려줍니다.
+전제: `app` DB 의 `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 모든 엔드포인트가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`).
 
 ---
 
@@ -47,6 +47,17 @@ curl http://127.0.0.1:8092/api/health
 | `http://127.0.0.1:8092/figures/<회차>/<번호>.png` | 문항 도식 이미지 정적 서빙 |
 
 `--reload` 는 개발용입니다. **배포 방식(docker · systemd 등)은 아직 미정**이라 이 문서에서는 다루지 않습니다.
+
+### 테스트
+
+```bash
+cd back
+.venv/Scripts/python -m pytest                       # 전체 79개 (DB 접속 정보가 없으면 통합 4개는 skip)
+.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 75개
+.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 4개
+```
+
+`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다.
 
 ## 2. 환경변수
 
@@ -266,19 +277,25 @@ curl -X PATCH http://127.0.0.1:8092/api/progress/questions/2026-1-001 \
 | `401` | `EXAM_API_TOKEN` 설정 시 쓰기 요청에 토큰이 없거나 틀림 |
 | `404` | 없는 회차·문항·과목·세션 |
 | `422` | 스키마 위반 — `choiceNo` 가 1~4 밖, `limit` 이 범위 밖 등 |
-| `500` | DB 에 연결하지 못함(데이터 엔드포인트 — 아래 참고) |
-| `503` | `/api/health` 에서 DB 접속 실패, 또는 커넥션 풀이 아직 초기화되지 않음 |
+| `500` | 그 밖의 서버 오류 |
+| `503` | DB 에 연결할 수 없거나 커넥션 풀이 아직 초기화되지 않음(모든 엔드포인트) |
 
-오류 본문은 FastAPI 표준대로 `{"detail": "..."}` 이고 메시지는 한글입니다. 단 **`500` 은 평문 `Internal Server Error`** 라 `detail` 이 없습니다.
+오류 본문은 FastAPI 표준대로 `{"detail": "..."}` 이고 메시지는 한글입니다. DB 장애일 때는 `{"detail": "DB 에 연결할 수 없습니다"}` 입니다.
 
 ### DB 가 내려가 있을 때 (실측)
 
-| 요청 | 상태 | 걸리는 시간 | 본문 |
-|---|---|---|---|
-| `GET /api/health` | `503` | 약 2초 | `{"status":"degraded","database":"unavailable","dbUrlSource":"..."}` |
-| 그 밖의 데이터 엔드포인트 | `500` | 약 30초 | `Internal Server Error` |
+모든 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다. 커넥션 풀 대기 시간이 `POOL_TIMEOUT`(2초, `back/app/db.py`)이라 요청이 오래 묶이지 않습니다.
 
-데이터 엔드포인트는 커넥션 풀 기본 타임아웃(30초)을 기다린 뒤 처리되지 않은 예외로 500 이 됩니다. 장애를 구분해야 하면 **`/api/health` 를 먼저 확인하세요.** 이 30초 지연과 500 응답은 현재 동작의 한계입니다(503 으로 바꾸는 편이 맞지만 아직 그렇지 않습니다).
+| 요청 | 수정 전 | 지금 |
+|---|---|---|
+| `GET /api/health` | `503` 2.10초 | `503` 2.09초 |
+| `GET /api/exams` | `500` 30.03초 | `503` 2.04초 |
+| `GET /api/stats/subjects` | `500` 30.04초 | `503` 2.02초 |
+| `POST /api/sessions`(쓰기) | `500` 30.02초 | `503` 2.02초 |
+
+수정 전에는 데이터 엔드포인트가 풀 기본 타임아웃(30초)을 기다린 뒤 처리되지 않은 `psycopg_pool.PoolTimeout` 으로 `500 Internal Server Error` 가 되어, 프론트에서 DB 장애가 서버 버그처럼 보였습니다. 지금은 헬스체크와 같은 `503` 이고 본문도 `{"detail": "DB 에 연결할 수 없습니다"}` 로 옵니다. 조회·쓰기 엔드포인트 10개(`/api/exams`·`/api/subjects`·`/api/tags`·`/api/stats/*`·`/api/progress/*`·`/api/sessions`·`/api/questions/*/answer` 등)를 모두 호출해 `503` 과 2.00~2.09초를 확인했습니다. 이 동작은 `back/tests/test_db_unavailable.py` 가 고정합니다.
+
+`/api/health` 는 `ping()` 이 예외를 삼키므로 DB 가 죽어 있어도 `503` + `{"status":"degraded","database":"unavailable"}` 을 돌려줍니다(동작은 수정 전과 같습니다). 커넥션 풀이 아직 만들어지지 않은 시점(앱 기동 전)도 같은 `503` 입니다.
 
 ## 5. 의존 DB 객체
 
@@ -308,7 +325,7 @@ API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼�
 - 쓰기 요청 3종(`POST /api/sessions`, `/finish`, `/answer`)과 `PATCH` 는 `EXAM_API_TOKEN` 을 설정한 경우에만 `X-Exam-Token` 헤더가 필요합니다.
 - 그림은 `/figures/...` 경로로 옵니다. DB 에는 경로·`alt` 만 있고 바이너리는 없으니 API 오리진 기준으로 해석하세요.
 - 타입이 필요하면 `http://127.0.0.1:8092/openapi.json` 에서 생성하세요.
-- DB 장애를 감지하려면 `/api/health` 를 쓰세요(2초 내 `503`). 다른 엔드포인트는 DB 가 죽어 있으면 30초를 기다린 뒤 `500` 을 돌려줍니다.
+- DB 장애는 모든 엔드포인트가 2초 내 `503`(`{"detail":"DB 에 연결할 수 없습니다"}`)으로 알려줍니다. 상태·사유까지 보려면 `/api/health`(2초 내 `503`, `database: "unavailable"`)를 쓰세요.
 
 ## 7. 알아둘 것
 
