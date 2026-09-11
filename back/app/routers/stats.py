@@ -27,6 +27,7 @@ SELECT question_id, exam_id, number, subject_code, subject_name, stem,
  LIMIT %s OFFSET %s
 """
 
+# '오늘' 판정과 overdue_days 계산은 뷰(ipe.v_review_due)가 Asia/Seoul 날짜 기준으로 한다.
 REVIEW_DUE_SQL = """
 SELECT question_id, exam_id, number, subject_code, subject_name, stem,
        review_due_on, overdue_days, last_is_correct, wrong_count, note
@@ -60,5 +61,5 @@ def review_due(
     limit: Annotated[int, Query(ge=1, le=200)] = 50,
     offset: Annotated[int, Query(ge=0)] = 0,
 ):
-    """복습 예정일이 오늘 이하인 문항. overdueDays 0 이면 오늘."""
+    """복습 예정일이 오늘(Asia/Seoul 날짜) 이하인 문항. overdueDays 0 이면 오늘."""
     return conn.execute(REVIEW_DUE_SQL, (limit, offset)).fetchall()
