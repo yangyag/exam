@@ -1,0 +1,119 @@
+# AGENTS.md
+
+정보처리기사 필기 기출문제 데이터셋과 PostgreSQL 적재 파이프라인입니다.
+학습 앱(PC·모바일 하이브리드)의 데이터 계층이며, 앱 코드는 아직 없습니다.
+
+---
+
+## 먼저 읽을 것 (지키지 않으면 사고가 나는 것들)
+
+- **`.env` 와 `aws/` 는 절대 커밋하지 않습니다.** `.gitignore` 에 있습니다.
+  `aws/test-keypair.pem` 은 EC2 개인키입니다. 한 번 커밋되면 히스토리에서 지워도 이미 노출된 것으로 봐야 하므로, push 전에 `git status` 로 확인하세요.
+- **데이터를 고친 뒤에는 반드시 두 검증을 통과시킵니다.**
+  ```bash
+  python tools/validate.py          # 문항 JSON 65파일 / 1,300문항
+  python tools/load_db.py --verify  # DB 정합성
+  ```
+- **문항 JSON 을 손으로 편집하지 않습니다.** python 스크립트로 패치하고 검증기를 돌립니다.
+  기존 포맷 유지: `ensure_ascii=False`, `indent=2`, 키 순서, UTF-8.
+- **적재는 멱등합니다.** `tools/load_db.py` 는 몇 번을 실행해도 같은 결과입니다.
+
+## 구조
+
+```
+data/*.pdf                        원본 기출문제 13회차 (2022-1 ~ 2026-1)
+data/questions/<회차>/<과목>.json   최종 문항 데이터 65파일 / 1,300문항  ← git 추적
+data/figures/<회차>/<번호>.png      순수 도식 24개                      ← git 추적
+data/index.json                   앱 진입점 (회차·과목·파일경로)
+data/raw/<회차>.json              1차 추출 결과 (좌표 포함)
+data/raw/pages/, data/raw/text/   렌더 캐시 (재생성 가능, gitignore)
+db/                               bootstrap.sql · schema.sql · README.md
+tools/                            파이프라인 스크립트 + 스키마 정본
+docs/                             비어 있음
+```
+
+## 파이프라인
+
+```
+data/*.pdf
+  │  python tools/extract.py                    좌표 기반 문항 추출
+  ▼
+data/raw/<회차>.json
+  │  (문항 정리 + 해설 생성 — 서브에이전트 병렬 작업으로 만들어짐)
+  ▼
+data/questions/<회차>/<과목>.json
+  │  python tools/build_index.py                앱 진입점 생성
+  ▼
+data/index.json
+  │  python tools/load_db.py                    DB 적재
+  ▼
+PostgreSQL app.ipe
+```
+
+## 도구
+
+| 명령 | 설명 |
+|---|---|
+| `python tools/extract.py` | PDF → 문항 (좌표 정렬, 2단 레이아웃 대응). `dump`/`render` 서브커맨드로 페이지 텍스트·이미지 확인 |
+| `python tools/validate.py [파일...]` | 문항 JSON 검증 (스키마 + 불변식). 인자 없으면 전체 |
+| `python tools/report.py` | 데이터셋 품질 리포트 (행 수·분포·잔여물) |
+| `python tools/dups.py` | 회차 간·회차 내 중복 문항 행렬 |
+| `python tools/build_index.py` | `data/index.json` 재생성 (자체 검증 포함) |
+| `python tools/crop_figures.py <회차> <번호...>` | 그림 영역 크롭 (200dpi, `--full` 은 문항 전체) |
+| `python tools/scan_figures.py` | 도형/이미지 있는 문항 탐지 |
+| `python tools/load_db.py --init\|--verify` | 스키마 생성 / JSON 적재 / 검증 |
+
+## 문항 JSON 계약
+
+정본: `tools/question.schema.json`. 경로는 모두 **`data/` 기준 상대경로 + 슬래시**입니다.
+
+```json
+{
+  "id": "2026-1-064", "number": 64, "subjectCode": 4,
+  "stem": "질문 문장만",
+  "passage": "코드/표/지문 (없으면 null)", "passageKind": "code|table|text|null",
+  "choices": [{"no":1,"text":"..."}], "answer": 2,
+  "explanation": "해설", "choicesAnalysis": [{"no":1,"correct":false,"why":"..."}],
+  "keyPoint": "핵심 개념", "tags": ["..."], "difficulty": 2,
+  "figure": {"needed":false,"kind":"diagram|screen|null","image":"figures/2026-1/099.png","alt":"...","page":8,"col":1,"box":[57.5,90.5,246.3,213.3]},
+  "source": {"pdf":"...","page":5},
+  "provenance": {"answer":"pdf|derived","explanation":"pdf|generated"}
+}
+```
+
+규칙:
+- 보기·`choicesAnalysis` 는 각각 정확히 4개, `correct` 는 정확히 1개이며 `answer` 와 일치해야 합니다.
+- `passage` 와 `passageKind` 는 둘 다 null 이거나 둘 다 값이 있어야 합니다.
+- 과목은 번호로 고정: 1=소프트웨어 설계(1~20), 2=소프트웨어 개발(21~40), 3=데이터베이스 구축(41~60), 4=프로그래밍 언어 활용(61~80), 5=정보시스템 구축 관리(81~100).
+
+## 자료 처리 정책 (확정 사항)
+
+- **표는 텍스트로 복원합니다.** `passage` + `passageKind:"table"`, 행은 줄바꿈·열은 ` | ` 구분. 보기가 표인 경우도 텍스트로.
+- **코드도 텍스트입니다.** `passage` + `passageKind:"code"`, 줄바꿈·들여쓰기 유지.
+- **이미지는 순수 도식(트리·그래프·순서도·망 구성도·UML·화면 목업)만.** `figure.needed=true`, `kind` 는 `diagram`/`screen`, `alt` 필수.
+- 그림 바이너리는 DB 에 넣지 않습니다. 파일로 서빙하고 DB 에는 경로·alt·좌표만 둡니다.
+- 다크모드 대응은 하지 않습니다(흰 배경 고정).
+
+## DB
+
+- `app` 데이터베이스의 **`ipe` 스키마**. 소유자·접속 계정 모두 **`yangyag`** (기존 앱과 동일 계정).
+- `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
+- **`yangyag` 의 `search_path` 는 `english, public` 입니다.** 역할 전역 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
+  `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정합니다)
+- 접속 정보는 `.env` (gitignore). `tools/load_db.py` 가 `EXAM_DB_URL` → `DATABASE_URL` → libpq `PG*` → 기본값 순으로 찾습니다.
+- EC2 이식: **저장소를 받고 `db/000_bootstrap.sql` → `load_db.py --init` → `load_db.py` 만** 하면 됩니다. PDF 재추출 불필요. 자세한 절차는 `db/README.md`.
+
+## 알아둘 함정
+
+1. **번들된 `pdftotext`(xpdf 4.00)로는 한글이 안 뽑힙니다** — 영문·숫자만 나오고 한글은 공백이 됩니다. PDF 텍스트는 PyMuPDF(`pymupdf`) 로 뽑으세요.
+2. **이 PDF들은 2단 레이아웃이고 텍스트가 그려진 순서가 뒤섞여 있습니다.** `page.get_text()` 를 그대로 쓰면 문항 순서가 깨집니다. `tools/extract.py` 의 좌표 정렬(단 → y → x)을 쓰세요.
+3. **회차 간 중복 문항이 많습니다.** 1,300문항 중 고유 문항은 847개입니다(`tools/dups.py`). 랜덤 출제 기능을 만들 때 중복 방지가 필요합니다.
+4. **소스 PDF 자체의 결함**이 있습니다. `2023-1` 은 1번=23번, `2023-2` 는 40번=61번이 같은 문항이고, `2022-2` 5번은 정답표에 정답이 없습니다(그래서 `provenance.answer="derived"`). 고치지 말고 그대로 두세요.
+5. **검증기의 공백 검사는 `isinstance` 로 합니다.** 과거에 `str(None)` 이 `"None"` 이 되어 누락을 통과시킨 버그가 있었습니다(2023-1 3과목 `why` 20건 누락).
+6. **줄바꿈**: 저장소는 `core.autocrlf` 가 켜져 있어 작업 트리는 CRLF 입니다. JSON 패치 시 기존 포맷을 유지하세요.
+
+## 환경
+
+- Windows + Git Bash. Python 3.14 (`psycopg[binary]`, `pymupdf` 설치됨).
+- PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다. 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
+- 콘솔이 cp949 라 한글 출력이 깨집니다. 스크립트 출력을 확인할 때는 `PYTHONIOENCODING=utf-8` 을 붙이거나 파일로 리다이렉트해 읽으세요.
