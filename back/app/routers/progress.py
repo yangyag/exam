@@ -1,19 +1,35 @@
-"""진도: 세션 시작/종료와 문항별 상태(북마크·메모·복습 예정일)."""
+"""진도: 세션·슬롯(사이클 라운드·회차 연습·모의고사)과 문항별 상태(북마크·메모·복습 예정일)."""
 from __future__ import annotations
 
 from datetime import date
 from typing import Annotated
 
+import psycopg
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
+from .. import cycles, grading
 from ..deps import Conn, require_token
-from ..queries import STATE_COLUMNS
-from ..schemas import ProgressItem, SessionCreate, SessionMode, SessionOut, StateOut, StateUpdate
+from ..queries import STATE_COLUMNS, fetch_questions, question_filters, to_question
+from ..schemas import (
+    ProgressItem,
+    SessionCreate,
+    SessionDetailOut,
+    SessionItemDetail,
+    SessionItemOut,
+    SessionMode,
+    SessionOut,
+    SlotAnswerRequest,
+    SlotGradeResult,
+    SlotSaveOut,
+    StateOut,
+    StateUpdate,
+)
 
 router = APIRouter(prefix="/api", tags=["progress"])
 
 SESSION_SELECT = """
-SELECT s.id, s.mode, s.exam_id, s.subject_code, s.started_at, s.finished_at,
+SELECT s.id, s.mode, s.exam_id, s.subject_code, s.cycle_id, s.round_no, s.end_reason,
+       s.started_at, s.finished_at,
        coalesce(a.answered, 0) AS answered,
        coalesce(a.correct, 0) AS correct
   FROM ipe.study_session s
@@ -63,11 +79,23 @@ def _ensure_question(conn: Conn, question_id: str) -> None:
     dependencies=[Depends(require_token)],
 )
 def create_session(payload: SessionCreate, conn: Conn):
-    """mode: exam(회차 모의고사)·subject(과목 연습)·random(랜덤)·review(오답 복습)."""
-    if payload.mode == "exam" and not payload.exam_id:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "mode=exam 세션에는 examId 가 필요합니다")
-    if payload.mode == "subject" and payload.subject_code is None:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "mode=subject 세션에는 subjectCode 가 필요합니다")
+    """mode: exam_practice(회차 연습)·exam(모의고사)·random(랜덤).
+
+    - exam_practice·exam 은 회차의 문항 번호 순으로 슬롯(study_session_item)을 만든다.
+      같은 모드·회차의 진행 중 세션이 있으면 409 이고, replaceActive=true 면 그 세션을
+      abandoned 로 닫고 같은 트랜잭션에서 새로 만든다(설계 5.3절).
+    - subject·review 는 사이클 API 로만 만들 수 있다(400).
+    - random 은 기존대로 슬롯 없이 만든다.
+    """
+    if payload.mode in ("subject", "review"):
+        raise HTTPException(
+            status.HTTP_400_BAD_REQUEST,
+            f"mode={payload.mode} 세션은 사이클 API(/api/subject-cycles)로만 만들 수 있습니다",
+        )
+    if payload.mode in ("exam", "exam_practice") and not payload.exam_id:
+        raise HTTPException(
+            status.HTTP_400_BAD_REQUEST, f"mode={payload.mode} 세션에는 examId 가 필요합니다"
+        )
     if payload.exam_id and not conn.execute(
         "SELECT 1 FROM ipe.exam WHERE id = %s", (payload.exam_id,)
     ).fetchone():
@@ -76,6 +104,40 @@ def create_session(payload: SessionCreate, conn: Conn):
         "SELECT 1 FROM ipe.subject WHERE code = %s", (payload.subject_code,)
     ).fetchone():
         raise HTTPException(status.HTTP_404_NOT_FOUND, f"과목 {payload.subject_code} 를 찾을 수 없습니다")
+
+    if payload.mode in ("exam", "exam_practice"):
+        question_ids = [
+            row["id"]
+            for row in conn.execute(
+                "SELECT id FROM ipe.question WHERE exam_id = %s ORDER BY number, id",
+                (payload.exam_id,),
+            ).fetchall()
+        ]
+        if not question_ids:
+            raise HTTPException(
+                status.HTTP_400_BAD_REQUEST, f"회차 {payload.exam_id} 에 문항이 없습니다"
+            )
+        try:
+            with conn.transaction():
+                cycles.replace_open_exam_session(
+                    conn,
+                    mode=payload.mode,
+                    exam_id=payload.exam_id,
+                    replace_active=payload.replace_active,
+                )
+                session_id = cycles.create_round_session(
+                    conn,
+                    mode=payload.mode,
+                    exam_id=payload.exam_id,
+                    question_ids=question_ids,
+                )
+        except psycopg.errors.UniqueViolation as exc:
+            # 동시 생성 경합: study_session_exam_open_uk 가 두 번째 INSERT 를 막는다(설계 4.6절).
+            raise HTTPException(
+                status.HTTP_409_CONFLICT,
+                f"이미 진행 중인 {payload.mode} 세션이 있습니다. replaceActive=true 로 새로 구성하세요",
+            ) from exc
+        return _get_session(conn, session_id)
 
     row = conn.execute(
         "INSERT INTO ipe.study_session (mode, exam_id, subject_code) VALUES (%s, %s, %s) RETURNING id",
@@ -88,15 +150,21 @@ def create_session(payload: SessionCreate, conn: Conn):
 def list_sessions(
     conn: Conn,
     mode: Annotated[SessionMode | None, Query()] = None,
+    cycle_id: Annotated[int | None, Query(alias="cycleId")] = None,
     limit: Annotated[int, Query(ge=1, le=200)] = 20,
     offset: Annotated[int, Query(ge=0)] = 0,
 ):
-    sql = SESSION_SELECT
+    """mode·cycleId 로 거를 수 있다(설계 5.4절)."""
+    clauses: list[str] = []
     params: list = []
     if mode:
-        sql += " WHERE s.mode = %s"
+        clauses.append("s.mode = %s")
         params.append(mode)
-    sql += " ORDER BY s.started_at DESC, s.id DESC LIMIT %s OFFSET %s"
+    if cycle_id is not None:
+        clauses.append("s.cycle_id = %s")
+        params.append(cycle_id)
+    where = f" WHERE {' AND '.join(clauses)}" if clauses else ""
+    sql = f"{SESSION_SELECT}{where} ORDER BY s.started_at DESC, s.id DESC LIMIT %s OFFSET %s"
     return conn.execute(sql, [*params, limit, offset]).fetchall()
 
 
@@ -107,17 +175,183 @@ def list_sessions(
     dependencies=[Depends(require_token)],
 )
 def finish_session(session_id: int, conn: Conn):
-    """이미 끝난 세션을 다시 부르면 현재 상태를 그대로 돌려준다(멱등)."""
+    """세션을 끝낸다(end_reason='finished'). 이미 끝난 세션을 다시 부르면 현재 상태를 그대로 돌려준다(멱등).
+
+    슬롯이 있는 세션은 409 다 — 연습은 마지막 문항에서 자동으로 끝나고 모의고사는 최종 제출을 쓴다.
+    세션 행을 FOR UPDATE 로 먼저 잠가 채점과의 순서를 지킨다(B-01).
+    """
     with conn.transaction():
-        updated = conn.execute(
-            "UPDATE ipe.study_session SET finished_at = now() WHERE id = %s AND finished_at IS NULL RETURNING id",
-            (session_id,),
-        ).fetchone()
-        if updated is None and not conn.execute(
-            "SELECT 1 FROM ipe.study_session WHERE id = %s", (session_id,)
-        ).fetchone():
-            raise HTTPException(status.HTTP_404_NOT_FOUND, f"세션 {session_id} 를 찾을 수 없습니다")
+        session = grading.lock_session(conn, session_id)
+        if grading.session_has_slots(conn, session_id):
+            raise HTTPException(
+                status.HTTP_409_CONFLICT,
+                "슬롯 세션은 이 경로로 끝낼 수 없습니다. 연습은 마지막 문항에서 자동 종료되고 모의고사는 최종 제출을 쓰세요",
+            )
+        if session["finished_at"] is None:
+            # finished_at 과 end_reason 을 함께 채워야 새 CHECK 를 통과한다(db/003_study_items.sql).
+            conn.execute(
+                "UPDATE ipe.study_session SET finished_at = now(), end_reason = 'finished' WHERE id = %s",
+                (session_id,),
+            )
     return _get_session(conn, session_id)
+
+
+def _question_row(conn: Conn, question_id: str) -> dict:
+    """슬롯 문항 조회용 행. study_state(state)는 뺀다 — 이전 풀이 결과가 드러나지 않게."""
+    where, params = question_filters(question_id=question_id)
+    rows = fetch_questions(conn, where=where, params=params, limit=1)
+    if not rows:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, f"문항 {question_id} 를 찾을 수 없습니다")
+    row = dict(rows[0])
+    row["state"] = None
+    return row
+
+
+def _slot_grade_response(conn: Conn, session: dict, result) -> SlotGradeResult:
+    """채점 결과에 세션 진행·라운드·사이클 상태를 붙인다(설계 5.3절)."""
+    return SlotGradeResult(
+        **result.model_dump(),
+        session=cycles.session_progress(conn, session),
+        round_result=cycles.round_result(conn, session),
+        cycle=cycles.cycle_result(conn, session),
+    )
+
+
+@router.get("/sessions/{session_id}", response_model=SessionDetailOut, summary="세션 단건(슬롯 목록·진행)")
+def get_session(session_id: int, conn: Conn):
+    """세션 요약 + 슬롯 목록 + 진행 위치(nextSeq). 슬롯이 없는 랜덤 세션이면 items 가 빈 목록이다.
+
+    진행 중인 모의고사는 isCorrect 를 null 로 가린다(제출 전 정답 비공개). 조회는 기록을 남기지 않는다.
+    """
+    session = _get_session(conn, session_id)
+    progress = cycles.session_progress(conn, session)
+    reveal = not (session["mode"] == "exam" and session["finished_at"] is None)
+    items = [
+        SessionItemOut(
+            seq=slot["seq"],
+            question_id=slot["question_id"],
+            choice_no=slot["choice_no"],
+            is_correct=slot["is_correct"] if reveal else None,
+        )
+        for slot in cycles.fetch_slots(conn, session_id)
+    ]
+    return SessionDetailOut(
+        **session,
+        item_count=progress.item_count,
+        answered_count=progress.answered_count,
+        next_seq=progress.next_seq,
+        items=items,
+    )
+
+
+@router.get(
+    "/sessions/{session_id}/items/{seq}",
+    response_model=SessionItemDetail,
+    summary="세션 문항(슬롯) 단건",
+)
+def get_session_item(session_id: int, seq: int, conn: Conn):
+    """슬롯 문항 1개. 채점된 슬롯이면 result 에 채점 응답과 같은 형식이 붙는다.
+
+    채점 전 슬롯은 QuestionOut.state 를 빼서 이전 풀이의 정답 여부가 드러나지 않게 한다.
+    조회는 원장(study_attempt)을 늘리지 않는다.
+    """
+    _get_session(conn, session_id)
+    slot = cycles.fetch_slot(conn, session_id, seq)
+    result = None
+    if slot["is_correct"] is not None:
+        result = grading.build_grade_result(
+            conn,
+            question_id=slot["question_id"],
+            choice_no=slot["choice_no"],
+            is_correct=slot["is_correct"],
+        )
+    question = to_question(_question_row(conn, slot["question_id"]))
+    return SessionItemDetail(
+        **question.model_dump(),
+        seq=slot["seq"],
+        choice_no=slot["choice_no"],
+        is_correct=slot["is_correct"],
+        answered_at=slot["answered_at"],
+        result=result,
+    )
+
+
+@router.put(
+    "/sessions/{session_id}/items/{seq}/answer",
+    response_model=SlotGradeResult | SlotSaveOut,
+    summary="슬롯 답안 제출(연습 즉시 채점·모의고사 선택 저장)",
+    dependencies=[Depends(require_token)],
+)
+def answer_session_item(session_id: int, seq: int, payload: SlotAnswerRequest, conn: Conn):
+    """연습 슬롯은 즉시 채점하고, 모의고사 슬롯은 선택만 저장한다.
+
+    - 연습: 같은 보기 재전송은 기록 없이 저장된 결과로 200, 다른 보기는 409.
+    - 모의고사: choiceNo=null 은 선택 해제. 정답·해설은 최종 제출 전까지 돌려주지 않는다.
+    - 잠금 순서는 세션 → 슬롯 → 사이클이다(설계 4.6절).
+    """
+    with conn.transaction():
+        session = grading.lock_session(conn, session_id)
+        slot = cycles.lock_slot(conn, session_id, seq)
+
+        if session["mode"] == "exam":
+            if session["finished_at"] is not None:
+                if session["end_reason"] == "abandoned":
+                    # replaceActive=true 로 중단된 세션은 제출된 적이 없다 — 결과도 없다.
+                    raise HTTPException(
+                        status.HTTP_409_CONFLICT,
+                        "중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요",
+                    )
+                raise HTTPException(
+                    status.HTTP_409_CONFLICT, "이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"
+                )
+            saved = cycles.save_slot_choice(conn, session_id, seq, payload.choice_no)
+            return SlotSaveOut(
+                seq=seq, choice_no=saved["choice_no"], answered_at=saved["answered_at"]
+            )
+
+        if payload.choice_no is None:
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, "연습 슬롯에는 choiceNo 가 필요합니다")
+        if slot["is_correct"] is not None:
+            if slot["choice_no"] != payload.choice_no:
+                raise HTTPException(
+                    status.HTTP_409_CONFLICT,
+                    "이미 채점된 문항입니다. 같은 보기만 다시 보낼 수 있습니다",
+                )
+            # 같은 보기 재전송: 기록 없이 저장된 결과와 현재 진행 상태를 그대로 돌려준다.
+            return _slot_grade_response(
+                conn,
+                session,
+                grading.build_grade_result(
+                    conn,
+                    question_id=slot["question_id"],
+                    choice_no=slot["choice_no"],
+                    is_correct=slot["is_correct"],
+                ),
+            )
+        if session["finished_at"] is not None:
+            if session["end_reason"] == "abandoned":
+                # 사이클을 새로 구성해 중단된 라운드 — 기록을 더 받지 않는다.
+                raise HTTPException(
+                    status.HTTP_409_CONFLICT, "중단된 세션입니다. 새로 구성한 세션에서 계속하세요"
+                )
+            raise HTTPException(
+                status.HTTP_409_CONFLICT, "이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"
+            )
+
+        result = grading.grade_question(
+            conn,
+            question_id=slot["question_id"],
+            choice_no=payload.choice_no,
+            session_id=session_id,
+            elapsed_ms=payload.elapsed_ms,
+        )
+        cycles.grade_slot(
+            conn, session_id, seq, choice_no=payload.choice_no, is_correct=result.is_correct
+        )
+        # 마지막 슬롯이면 같은 트랜잭션에서 라운드를 닫고 다음 라운드/사이클 완료로 넘긴다.
+        if cycles.advance_round_if_complete(conn, session):
+            session = grading.fetch_session(conn, session_id)
+        return _slot_grade_response(conn, session, result)
 
 
 @router.get("/progress/questions", response_model=list[ProgressItem], summary="문항 상태 목록")

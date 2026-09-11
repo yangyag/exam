@@ -12,10 +12,22 @@ import pytest
 from pydantic import ValidationError
 
 from app.queries import figure_url, to_question
-from app.schemas import GradeRequest, GradeResult, QuestionOut, SessionCreate, StateOut
+from app.schemas import (
+    CycleResultOut,
+    GradeRequest,
+    GradeResult,
+    QuestionOut,
+    SessionCreate,
+    SessionOut,
+    SessionProgressOut,
+    SlotAnswerRequest,
+    SlotGradeResult,
+    SlotSaveOut,
+    StateOut,
+)
 
 from helpers import assert_no_answer_leak
-from sample_data import ANSWERED_AT, choice_analysis_rows, question_row, state_row
+from sample_data import ANSWERED_AT, choice_analysis_rows, question_row, session_row, state_row
 
 
 def test_question_out_has_no_secret_fields():
@@ -172,3 +184,79 @@ def test_session_create_normalizes_blank_exam_id(blank):
 
 def test_session_create_keeps_real_exam_id():
     assert SessionCreate(mode="exam", examId="2026-1").exam_id == "2026-1"
+
+
+def test_session_create_replace_active_defaults_false():
+    """replaceActive 기본값은 false — 진행 중 세션이 있으면 409, true 면 중단 후 재생성."""
+    assert SessionCreate(mode="exam_practice", examId="2026-1").replace_active is False
+    assert SessionCreate(mode="exam_practice", examId="2026-1", replaceActive=True).replace_active is True
+
+
+def test_session_out_carries_cycle_fields():
+    """SessionOut 에 cycleId·roundNo·endReason 이 실린다(설계 5.4절)."""
+    dumped = SessionOut.model_validate(
+        session_row(mode="review", subject_code=1, cycle_id=3, round_no=2, end_reason="finished")
+    ).model_dump(by_alias=True)
+    assert dumped["cycleId"] == 3
+    assert dumped["roundNo"] == 2
+    assert dumped["endReason"] == "finished"
+
+
+@pytest.mark.parametrize("choice_no", [1, 2, 3, 4, None])
+def test_slot_answer_request_accepts_choice_or_null(choice_no):
+    """모의고사 선택 해제(null)를 받아야 하므로 choiceNo 는 null 을 허용한다."""
+    assert SlotAnswerRequest(choiceNo=choice_no).choice_no == choice_no
+
+
+@pytest.mark.parametrize("choice_no", [0, 5, -1])
+def test_slot_answer_request_rejects_out_of_range(choice_no):
+    with pytest.raises(ValidationError):
+        SlotAnswerRequest(choiceNo=choice_no)
+
+
+def test_slot_answer_request_validates_elapsed():
+    assert SlotAnswerRequest(choiceNo=1, elapsedMs=2147483647).elapsed_ms == 2147483647
+    with pytest.raises(ValidationError):
+        SlotAnswerRequest(choiceNo=1, elapsedMs=-1)
+
+
+def test_slot_grade_result_serializes_progress_and_cycle():
+    """슬롯 제출 응답은 GradeResult + session + roundResult + cycle 을 camelCase 로 싣는다."""
+    result = SlotGradeResult(
+        question_id="2022-1-001",
+        choice_no=2,
+        is_correct=True,
+        answer=2,
+        explanation="정답 해설",
+        choices_analysis=[
+            {"no": row["no"], "correct": row["is_correct"], "why": row["why"]}
+            for row in choice_analysis_rows(2)
+        ],
+        state=state_row(last_is_correct=True, last_choice_no=2),
+        session=SessionProgressOut(id=7, item_count=3, answered_count=2, next_seq=3, finished=False),
+        round_result=None,
+        cycle=CycleResultOut(id=3, status="active"),
+    )
+    dumped = result.model_dump(by_alias=True)
+    assert dumped["session"] == {
+        "id": 7,
+        "itemCount": 3,
+        "answeredCount": 2,
+        "nextSeq": 3,
+        "finished": False,
+    }
+    assert dumped["roundResult"] is None
+    assert dumped["cycle"] == {
+        "id": 3,
+        "status": "active",
+        "nextSessionId": None,
+        "nextRoundNo": None,
+        "nextItemCount": None,
+    }
+
+
+def test_slot_save_out_has_no_answer_fields():
+    """모의고사 선택 저장 응답에는 정답·해설이 없어야 한다."""
+    dumped = SlotSaveOut(seq=1, choice_no=None, answered_at=None).model_dump(by_alias=True)
+    assert dumped == {"seq": 1, "choiceNo": None, "answeredAt": None}
+    assert_no_answer_leak(dumped)

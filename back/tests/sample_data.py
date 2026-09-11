@@ -89,10 +89,26 @@ def session_row(**overrides) -> dict:
         "mode": "random",
         "exam_id": None,
         "subject_code": None,
+        "cycle_id": None,
+        "round_no": None,
+        "end_reason": None,
         "started_at": ANSWERED_AT,
         "finished_at": None,
         "answered": 0,
         "correct": 0,
+    }
+    row.update(overrides)
+    return row
+
+
+def slot_row(**overrides) -> dict:
+    """ipe.study_session_item 1행."""
+    row = {
+        "seq": 1,
+        "question_id": "2022-1-001",
+        "choice_no": None,
+        "is_correct": None,
+        "answered_at": None,
     }
     row.update(overrides)
     return row

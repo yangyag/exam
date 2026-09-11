@@ -10,9 +10,11 @@ from __future__ import annotations
 
 import psycopg
 import pytest
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from psycopg.rows import dict_row
 
+from app import cycles
 from app import db as app_db
 from app.config import get_settings
 from app.main import app as fastapi_app
@@ -64,11 +66,16 @@ class ProgressTracker:
     def __init__(self, conn: psycopg.Connection):
         self.conn = conn
         self.sessions: list[int] = []
+        self.cycles: list[int] = []
         # 문항별 테스트 전 study_state 행(None 이면 원래 없던 문항)
         self.states: dict[str, dict | None] = {}
 
     def track_session(self, session_id: int) -> None:
         self.sessions.append(session_id)
+
+    def track_cycle(self, cycle_id: int) -> None:
+        """사이클은 라운드 전환으로 세션을 더 만들 수 있어 사이클째로 추적한다."""
+        self.cycles.append(cycle_id)
 
     def snapshot_state(self, question_id: str) -> dict | None:
         """문항 상태를 건드리기 전에 원래 값을 기억한다."""
@@ -79,6 +86,12 @@ class ProgressTracker:
         return self.states[question_id]
 
     def cleanup(self) -> None:
+        if self.cycles:
+            # 사이클의 모든 라운드 세션을 먼저 지운다 — 슬롯·원장은 연쇄 삭제된다.
+            self.conn.execute(
+                "DELETE FROM ipe.study_session WHERE cycle_id = ANY(%s)", (self.cycles,)
+            )
+            self.conn.execute("DELETE FROM ipe.study_cycle WHERE id = ANY(%s)", (self.cycles,))
         if self.sessions:
             self.conn.execute(
                 "DELETE FROM ipe.study_attempt WHERE session_id = ANY(%s)", (self.sessions,)
@@ -91,6 +104,15 @@ class ProgressTracker:
 
     def verify_restored(self) -> None:
         """이 테스트가 만든 행이 하나도 남지 않았고, 기존 행은 그대로인지 확인한다."""
+        for cycle_id in self.cycles:
+            left = self.conn.execute(
+                "SELECT count(*)::int AS n FROM ipe.study_session WHERE cycle_id = %s", (cycle_id,)
+            ).fetchone()["n"]
+            assert left == 0, f"사이클 {cycle_id} 의 세션이 {left}건 남았다"
+            assert (
+                self.conn.execute("SELECT 1 FROM ipe.study_cycle WHERE id = %s", (cycle_id,)).fetchone()
+                is None
+            ), f"study_cycle {cycle_id} 가 정리되지 않았다"
         for session_id in self.sessions:
             assert (
                 self.conn.execute("SELECT 1 FROM ipe.study_session WHERE id = %s", (session_id,)).fetchone()
@@ -188,6 +210,36 @@ def get_attempts(conn: psycopg.Connection, session_id: int) -> list[dict]:
     return conn.execute(
         "SELECT choice_no, is_correct, elapsed_ms FROM ipe.study_attempt "
         "WHERE session_id = %s ORDER BY id",
+        (session_id,),
+    ).fetchall()
+
+
+def create_slot_session(client: TestClient, mode: str, exam_id: str, **extra) -> int:
+    """회차 슬롯 세션(exam_practice·exam)을 만든다. 201 이 아니면 실패시킨다."""
+    response = client.post(
+        "/api/sessions", json={"mode": mode, "examId": exam_id, **extra}, headers=auth_headers()
+    )
+    assert response.status_code == 201, response.text
+    return response.json()["id"]
+
+
+def put_slot(client: TestClient, session_id: int, seq: int, choice_no: int | None, **extra):
+    """슬롯 제출 응답을 그대로 돌려준다(200·409 판정은 테스트가 한다)."""
+    return client.put(
+        f"/api/sessions/{session_id}/items/{seq}/answer",
+        json={"choiceNo": choice_no, **extra},
+        headers=auth_headers(),
+    )
+
+
+def slot_questions(conn: psycopg.Connection, session_id: int) -> list[dict]:
+    """세션 슬롯 + 문항 정답. seq 오름차순."""
+    return conn.execute(
+        """SELECT si.seq, si.question_id, q.answer, q.subject_code
+             FROM ipe.study_session_item si
+             JOIN ipe.question q ON q.id = si.question_id
+            WHERE si.session_id = %s
+            ORDER BY si.seq""",
         (session_id,),
     ).fetchall()
 
@@ -568,3 +620,379 @@ def test_create_session_with_blank_exam_id_stores_null(live_client, tracker, db_
         "/api/sessions", json={"mode": "exam", "examId": ""}, headers=auth_headers()
     )
     assert refused.status_code == 400, refused.text
+
+
+def _exam_with_questions(conn: psycopg.Connection, exclude: set[str] | None = None) -> str:
+    """문항이 있는 회차 하나. 다른 테스트와 겹치지 않게 exclude 로 뺄 수 있다."""
+    exclude = exclude or set()
+    row = conn.execute(
+        """SELECT e.id FROM ipe.exam e
+            WHERE EXISTS (SELECT 1 FROM ipe.question q WHERE q.exam_id = e.id)
+              AND NOT (e.id = ANY(%s))
+            ORDER BY e.id LIMIT 1""",
+        (list(exclude),),
+    ).fetchone()
+    assert row is not None, "테스트에 쓸 회차가 없다"
+    return row["id"]
+
+
+def test_exam_practice_slots_resume_and_grade(live_client, tracker, db_conn):
+    """회차 연습: 번호 순 슬롯 생성 → 이어풀기(nextSeq) → 재전송 멱등 → 다른 보기 409.
+
+    채점 전 state 비노출과 조회가 원장을 늘리지 않는 것도 실제 DB 로 고정한다.
+    """
+    exam_id = _exam_with_questions(db_conn)
+    session_id = create_slot_session(live_client, "exam_practice", exam_id)
+    tracker.track_session(session_id)
+
+    detail = live_client.get(f"/api/sessions/{session_id}").json()
+    assert detail["mode"] == "exam_practice"
+    assert detail["itemCount"] == 100
+    assert detail["answeredCount"] == 0
+    assert detail["nextSeq"] == 1
+    assert [item["seq"] for item in detail["items"]] == list(range(1, 101))
+    assert detail["items"][0]["choiceNo"] is None
+    assert detail["items"][0]["isCorrect"] is None
+
+    # 회차 문항 번호 순 — 첫 슬롯이 1번 문항이다.
+    number = db_conn.execute(
+        "SELECT number FROM ipe.question WHERE id = %s", (detail["items"][0]["questionId"],)
+    ).fetchone()["number"]
+    assert number == 1
+
+    # 채점 전 문항 조회: state 비노출·result 없음·원장 무기록
+    item = live_client.get(f"/api/sessions/{session_id}/items/1")
+    assert item.status_code == 200
+    item_body = item.json()
+    assert item_body["state"] is None
+    assert item_body["result"] is None
+    assert_no_answer_leak(item_body)
+    assert get_attempts(db_conn, session_id) == []
+
+    question = db_conn.execute(
+        "SELECT id, answer FROM ipe.question WHERE id = %s", (detail["items"][0]["questionId"],)
+    ).fetchone()
+    question_id, answer = question["id"], question["answer"]
+    wrong_choice = 1 if answer != 1 else 2
+    tracker.snapshot_state(question_id)
+
+    graded = put_slot(live_client, session_id, 1, wrong_choice)
+    assert graded.status_code == 200, graded.text
+    graded_body = graded.json()
+    assert graded_body["isCorrect"] is False
+    assert graded_body["answer"] == answer
+    assert graded_body["session"]["answeredCount"] == 1
+    assert graded_body["session"]["nextSeq"] == 2
+    assert graded_body["roundResult"] is None
+    assert graded_body["cycle"] is None
+    assert len(get_attempts(db_conn, session_id)) == 1
+
+    # 같은 보기 재전송: 기록 없이 200
+    again = put_slot(live_client, session_id, 1, wrong_choice)
+    assert again.status_code == 200, again.text
+    assert again.json()["isCorrect"] is False
+    assert len(get_attempts(db_conn, session_id)) == 1
+
+    # 다른 보기: 409, 기록 그대로
+    conflict = put_slot(live_client, session_id, 1, answer)
+    assert conflict.status_code == 409
+    assert "이미 채점된" in conflict.json()["detail"]
+    assert len(get_attempts(db_conn, session_id)) == 1
+
+    # 채점된 슬롯 조회: result 에 정답·해설, 전후로 원장은 그대로다.
+    graded_item = live_client.get(f"/api/sessions/{session_id}/items/1").json()
+    assert graded_item["result"]["answer"] == answer
+    assert graded_item["result"]["explanation"]
+    assert graded_item["state"] is None
+    live_client.get(f"/api/sessions/{session_id}")
+    assert len(get_attempts(db_conn, session_id)) == 1
+
+    # 진도 요약에 슬롯 필드가 실린다.
+    sessions = live_client.get("/api/sessions", params={"mode": "exam_practice", "limit": 50}).json()
+    mine = [row for row in sessions if row["id"] == session_id][0]
+    assert mine["cycleId"] is None and mine["roundNo"] is None and mine["endReason"] is None
+    assert mine["answered"] == 1
+
+
+def test_exam_session_selection_and_replace_active(live_client, tracker, db_conn):
+    """모의고사: 선택 저장(정답 비공개)·선택 해제·진행 중 409·replaceActive 새로 구성을 고정한다."""
+    exam_id = _exam_with_questions(db_conn, exclude={"2026-1"})
+    first = create_slot_session(live_client, "exam", exam_id)
+    tracker.track_session(first)
+
+    # 진행 중인데 한 번 더 만들면 409
+    conflict = live_client.post(
+        "/api/sessions", json={"mode": "exam", "examId": exam_id}, headers=auth_headers()
+    )
+    assert conflict.status_code == 409
+
+    slot = live_client.get(f"/api/sessions/{first}").json()["items"][0]
+    question = db_conn.execute(
+        "SELECT id, answer FROM ipe.question WHERE id = %s", (slot["questionId"],)
+    ).fetchone()
+    tracker.snapshot_state(question["id"])
+    assert get_attempts(db_conn, first) == []
+
+    # 선택 저장: 정답 없이 저장되고 원장·누계는 그대로다.
+    saved = put_slot(live_client, first, 1, 2)
+    assert saved.status_code == 200, saved.text
+    assert saved.json()["choiceNo"] == 2
+    assert "answer" not in saved.json()
+    assert get_attempts(db_conn, first) == []
+    stored = db_conn.execute(
+        "SELECT choice_no, is_correct FROM ipe.study_session_item WHERE session_id = %s AND seq = 1",
+        (first,),
+    ).fetchone()
+    assert stored == {"choice_no": 2, "is_correct": None}
+
+    # 진행 중 모의고사는 슬롯 목록·문항 조회에서 정답을 가리고, nextSeq 는 선택 없는 슬롯이다.
+    detail = live_client.get(f"/api/sessions/{first}").json()
+    assert detail["items"][0]["choiceNo"] == 2
+    assert detail["items"][0]["isCorrect"] is None
+    assert detail["nextSeq"] == 2
+    item = live_client.get(f"/api/sessions/{first}/items/1").json()
+    assert item["result"] is None
+    assert item["state"] is None
+    assert_no_answer_leak(item)
+
+    # 선택 해제(choiceNo=null)와 답안 수정
+    assert put_slot(live_client, first, 1, 3).json()["choiceNo"] == 3
+    cleared = put_slot(live_client, first, 1, None)
+    assert cleared.status_code == 200
+    assert cleared.json()["choiceNo"] is None
+    assert live_client.get(f"/api/sessions/{first}").json()["nextSeq"] == 1
+
+    # 새로 구성: 기존 세션은 abandoned 로 보존, 새 세션이 열린다.
+    replaced = live_client.post(
+        "/api/sessions",
+        json={"mode": "exam", "examId": exam_id, "replaceActive": True},
+        headers=auth_headers(),
+    )
+    assert replaced.status_code == 201, replaced.text
+    second = replaced.json()["id"]
+    tracker.track_session(second)
+    old = db_conn.execute(
+        "SELECT finished_at, end_reason FROM ipe.study_session WHERE id = %s", (first,)
+    ).fetchone()
+    assert old["finished_at"] is not None and old["end_reason"] == "abandoned"
+
+    # 중단된 세션에 슬롯 제출하면 409 — '이미 제출'(사실과 다름)이 아니라 중단 안내가 나간다.
+    rejected = put_slot(live_client, first, 1, 2)
+    assert rejected.status_code == 409
+    detail = rejected.json()["detail"]
+    assert "중단" in detail
+    assert "이미 제출" not in detail
+    assert len(get_attempts(db_conn, first)) == 0
+
+
+def test_last_slot_finishes_exam_practice_session(live_client, tracker, db_conn):
+    """연습 마지막 슬롯을 채점하면 세션이 자동 종료되고, 그 뒤 재전송은 409 가 아니라 200 이다."""
+    picked = db_conn.execute("SELECT id, answer FROM ipe.question ORDER BY id LIMIT 2").fetchall()
+    for row in picked:
+        tracker.snapshot_state(row["id"])
+    session_id = cycles.create_round_session(
+        db_conn, mode="exam_practice", question_ids=[row["id"] for row in picked]
+    )
+    tracker.track_session(session_id)
+
+    first = put_slot(live_client, session_id, 1, picked[0]["answer"])
+    assert first.status_code == 200, first.text
+    assert first.json()["session"]["finished"] is False
+    assert first.json()["roundResult"] is None
+
+    last = put_slot(live_client, session_id, 2, picked[1]["answer"])
+    assert last.status_code == 200, last.text
+    body = last.json()
+    assert body["session"]["finished"] is True
+    assert body["session"]["nextSeq"] is None
+    assert body["roundResult"] == {"roundNo": None, "itemCount": 2, "correct": 2, "wrong": 0}
+    assert body["cycle"] is None
+
+    # 종료 뒤 마지막 슬롯 재전송: 네트워크 재시도가 409 로 새지 않는다.
+    retry = put_slot(live_client, session_id, 2, picked[1]["answer"])
+    assert retry.status_code == 200, retry.text
+    assert retry.json()["roundResult"] == body["roundResult"]
+    assert len(get_attempts(db_conn, session_id)) == 2
+
+    detail = live_client.get(f"/api/sessions/{session_id}").json()
+    assert detail["finishedAt"] is not None and detail["endReason"] == "finished"
+    assert detail["answeredCount"] == 2
+    assert detail["nextSeq"] is None
+
+
+def test_subject_cycle_round_advances_to_review_and_completes(live_client, tracker, db_conn):
+    """과목 사이클: 마지막 슬롯 채점이 라운드를 닫고 review 라운드/완료로 넘어간다(설계 4.5절)."""
+    picked = db_conn.execute(
+        "SELECT id, answer, subject_code FROM ipe.question WHERE subject_code = 2 ORDER BY id LIMIT 3"
+    ).fetchall()
+    subject_code = picked[0]["subject_code"]
+    for row in picked:
+        tracker.snapshot_state(row["id"])
+
+    cycle_id = db_conn.execute(
+        "INSERT INTO ipe.study_cycle (subject_code) VALUES (%s) RETURNING id", (subject_code,)
+    ).fetchone()["id"]
+    tracker.track_cycle(cycle_id)
+    round1_id = cycles.create_round_session(
+        db_conn,
+        mode="subject",
+        question_ids=[row["id"] for row in picked],
+        subject_code=subject_code,
+        cycle_id=cycle_id,
+        round_no=1,
+    )
+    tracker.track_session(round1_id)
+
+    def wrong(row: dict) -> int:
+        return 1 if row["answer"] != 1 else 2
+
+    # 1라운드: 첫 문항 정답, 나머지 오답 → 라운드 종료 + review 라운드 생성
+    first = put_slot(live_client, round1_id, 1, picked[0]["answer"])
+    assert first.status_code == 200, first.text
+    assert first.json()["cycle"]["status"] == "active"
+    assert first.json()["roundResult"] is None
+    assert put_slot(live_client, round1_id, 2, wrong(picked[1])).status_code == 200
+
+    last = put_slot(live_client, round1_id, 3, wrong(picked[2]))
+    assert last.status_code == 200, last.text
+    body = last.json()
+    assert body["session"]["finished"] is True
+    assert body["roundResult"] == {"roundNo": 1, "itemCount": 3, "correct": 1, "wrong": 2}
+    assert body["cycle"]["status"] == "active"
+    assert body["cycle"]["nextRoundNo"] == 2
+    assert body["cycle"]["nextItemCount"] == 2
+    review_id = body["cycle"]["nextSessionId"]
+    assert review_id is not None and review_id != round1_id
+
+    # 라운드 1은 finished 로 닫히고, review 라운드는 오답 문항만 담는다.
+    closed = db_conn.execute(
+        "SELECT finished_at, end_reason FROM ipe.study_session WHERE id = %s", (round1_id,)
+    ).fetchone()
+    assert closed["finished_at"] is not None and closed["end_reason"] == "finished"
+    review = db_conn.execute(
+        "SELECT mode, round_no, cycle_id, subject_code FROM ipe.study_session WHERE id = %s",
+        (review_id,),
+    ).fetchone()
+    assert review == {
+        "mode": "review",
+        "round_no": 2,
+        "cycle_id": cycle_id,
+        "subject_code": subject_code,
+    }
+    review_slots = slot_questions(db_conn, review_id)
+    assert sorted(row["question_id"] for row in review_slots) == sorted(
+        [picked[1]["id"], picked[2]["id"]]
+    )
+
+    # 2라운드: 하나 틀리면 3라운드가 생긴다.
+    assert put_slot(live_client, review_id, review_slots[0]["seq"], wrong(review_slots[0])).status_code == 200
+    second = put_slot(live_client, review_id, review_slots[1]["seq"], review_slots[1]["answer"])
+    assert second.status_code == 200, second.text
+    body2 = second.json()
+    assert body2["roundResult"] == {"roundNo": 2, "itemCount": 2, "correct": 1, "wrong": 1}
+    assert body2["cycle"]["nextRoundNo"] == 3
+    assert body2["cycle"]["nextItemCount"] == 1
+    round3_id = body2["cycle"]["nextSessionId"]
+    assert round3_id is not None
+
+    # 3라운드: 남은 한 문항을 맞히면 사이클이 완료된다.
+    round3_slots = slot_questions(db_conn, round3_id)
+    assert len(round3_slots) == 1
+    final = put_slot(live_client, round3_id, round3_slots[0]["seq"], round3_slots[0]["answer"])
+    assert final.status_code == 200, final.text
+    body3 = final.json()
+    assert body3["roundResult"] == {"roundNo": 3, "itemCount": 1, "correct": 1, "wrong": 0}
+    assert body3["cycle"]["status"] == "completed"
+    assert body3["cycle"]["nextSessionId"] is None
+
+    # 중간 상태 없음: 완료된 사이클에는 열린 라운드가 없고 ended_at 이 채워져 있다.
+    cycle_row = db_conn.execute(
+        "SELECT status, ended_at FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()
+    assert cycle_row["status"] == "completed" and cycle_row["ended_at"] is not None
+    open_rounds = db_conn.execute(
+        "SELECT count(*)::int AS n FROM ipe.study_session WHERE cycle_id = %s AND finished_at IS NULL",
+        (cycle_id,),
+    ).fetchone()["n"]
+    assert open_rounds == 0
+
+
+def _start_cycle_with_round(db_conn: psycopg.Connection, tracker: ProgressTracker, subject_code: int):
+    """과목의 진행 중 사이클 1개 + 라운드 1 세션 1개를 만든다(테스트 준비용)."""
+    question = db_conn.execute(
+        "SELECT id FROM ipe.question WHERE subject_code = %s ORDER BY id LIMIT 1", (subject_code,)
+    ).fetchone()
+    cycle_id = db_conn.execute(
+        "INSERT INTO ipe.study_cycle (subject_code) VALUES (%s) RETURNING id", (subject_code,)
+    ).fetchone()["id"]
+    tracker.track_cycle(cycle_id)
+    session_id = cycles.create_round_session(
+        db_conn,
+        mode="subject",
+        question_ids=[question["id"]],
+        subject_code=subject_code,
+        cycle_id=cycle_id,
+        round_no=1,
+    )
+    tracker.track_session(session_id)
+    return cycle_id, session_id
+
+
+def test_replace_active_cycle_abandons_cycle_and_open_round(tracker, db_conn):
+    """새로 구성 헬퍼: 열린 라운드와 사이클을 함께 abandoned 로 닫고, 없으면 null 을 돌려준다."""
+    cycle_id, session_id = _start_cycle_with_round(db_conn, tracker, subject_code=3)
+
+    # replaceActive=false 는 409 이고 아무것도 바꾸지 않는다.
+    with pytest.raises(HTTPException) as excinfo:
+        cycles.replace_active_cycle(db_conn, subject_code=3, replace_active=False)
+    assert excinfo.value.status_code == 409
+    assert db_conn.execute(
+        "SELECT status FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()["status"] == "active"
+
+    # replaceActive=true 는 세션(먼저)과 사이클을 함께 중단한다.
+    closed = cycles.replace_active_cycle(db_conn, subject_code=3, replace_active=True)
+    assert closed is not None
+    assert closed["id"] == cycle_id and closed["subject_code"] == 3
+    assert closed["status"] == "abandoned" and closed["ended_at"] is not None
+    session_state = db_conn.execute(
+        "SELECT finished_at, end_reason FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()
+    assert session_state["finished_at"] is not None
+    assert session_state["end_reason"] == "abandoned"
+    cycle_state = db_conn.execute(
+        "SELECT status, ended_at FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()
+    assert cycle_state["status"] == "abandoned" and cycle_state["ended_at"] is not None
+
+    # 진행 중 사이클이 없으면 아무것도 하지 않고 null.
+    assert cycles.replace_active_cycle(db_conn, subject_code=3, replace_active=True) is None
+
+
+def test_replace_active_cycle_does_not_commit(tracker, db_conn):
+    """헬퍼는 호출자의 트랜잭션 안에서만 동작한다 — 롤백하면 중단 전 상태로 돌아온다(M2 계약)."""
+    cycle_id, session_id = _start_cycle_with_round(db_conn, tracker, subject_code=4)
+
+    class Rollback(Exception):
+        pass
+
+    try:
+        with db_conn.transaction():
+            closed = cycles.replace_active_cycle(db_conn, subject_code=4, replace_active=True)
+            assert closed["status"] == "abandoned"
+            # 트랜잭션 안에서는 이미 중단된 것으로 보인다(중간에 커밋하지 않는다).
+            inside = db_conn.execute(
+                "SELECT status FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+            ).fetchone()
+            assert inside["status"] == "abandoned"
+            raise Rollback
+    except Rollback:
+        pass
+
+    # 롤백 뒤 원래대로 — 헬퍼가 스스로 커밋하지 않았다는 증거다.
+    assert db_conn.execute(
+        "SELECT status FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()["status"] == "active"
+    assert db_conn.execute(
+        "SELECT finished_at FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()["finished_at"] is None
