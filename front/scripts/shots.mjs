@@ -217,9 +217,12 @@ function focusSpot(page) {
   })
 }
 
-async function save(page, name) {
+async function save(page, name, { fullPage = true } = {}) {
+  // sticky 헤더가 문서 중간에 찍히지 않게 항상 맨 위에서 캡처한다
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await sleep(150)
   const file = path.join(shotsDir, name)
-  await page.screenshot({ path: file, fullPage: true })
+  await page.screenshot({ path: file, fullPage })
   captures.push({ file, bytes: statSync(file).size })
   console.log(`  → ${file}`)
 }
@@ -722,8 +725,8 @@ async function capturePractice(browser) {
   if (await page.locator('[data-testid="passage-code"]').count()) pass('[연습] 코드 지문 고정폭 렌더')
   else fail('[연습] 코드 지문(passage-code)이 없습니다')
   const progressLine = (await page.locator('[data-testid="practice-progress"]').innerText()).replace(/\s+/g, ' ')
-  if (progressLine.includes('문항 1 / 4')) pass(`[연습] 진행 표시: ${progressLine}`)
-  else fail(`[연습] 진행 표시가 다릅니다: ${progressLine}`)
+  if (progressLine.includes('프로그래밍 언어 활용') && progressLine.includes('문항 1 / 4')) pass(`[연습] 진행 표시(데스크톱 한 줄): ${progressLine}`)
+  else fail(`[연습] 데스크톱 진행 표시가 다릅니다: ${progressLine}`)
   await save(page, 'practice-question-code-desktop-1280x900.png')
   await auditLayout(page, '연습 문항 데스크톱 1280')
 
@@ -731,6 +734,29 @@ async function capturePractice(browser) {
   await sleep(300)
   await save(page, 'practice-question-code-mobile-375x812.png')
   await auditLayout(page, '연습 문항 모바일 375')
+  // 좁은 화면에서 진행 표시가 잘리지 않는지(리뷰 P2-1) — 헤더 컷도 따로 남긴다
+  const mobileHeader = await page.evaluate(() => {
+    const progress = document.querySelector('[data-testid="practice-progress-mobile"]')
+    const context = document.querySelector('[data-testid="practice-context-mobile"]')
+    return {
+      progressText: (progress?.textContent || '').trim(),
+      progressWidth: progress?.clientWidth ?? 0,
+      progressScroll: progress?.scrollWidth ?? 0,
+      contextText: (context?.textContent || '').trim(),
+      contextWidth: context?.clientWidth ?? 0,
+      headerScroll: document.querySelector('header')?.scrollWidth ?? 0,
+    }
+  })
+  if (/^문항 \d+ \/ \d+$/.test(mobileHeader.progressText) && mobileHeader.progressScroll <= mobileHeader.progressWidth + 1) {
+    pass(`[연습] 모바일 375 헤더 진행 표시 잘림 없음: "${mobileHeader.progressText}" (client ${mobileHeader.progressWidth} / scroll ${mobileHeader.progressScroll})`)
+  } else {
+    fail(`[연습] 모바일 헤더 진행 표시가 잘리거나 없습니다: ${JSON.stringify(mobileHeader)}`)
+  }
+  if (mobileHeader.contextText && mobileHeader.contextWidth > 0) pass(`[연습] 모바일 과목·라운드 줄 표시: "${mobileHeader.contextText.slice(0, 30)}"`)
+  else fail(`[연습] 모바일 과목·라운드 줄이 없습니다: ${JSON.stringify(mobileHeader)}`)
+  if (mobileHeader.headerScroll <= MOBILE.width) pass(`[연습] 모바일 헤더 가로 넘침 없음(${mobileHeader.headerScroll} ≤ ${MOBILE.width})`)
+  else fail(`[연습] 모바일 헤더가 가로로 넘칩니다: ${mobileHeader.headerScroll}`)
+  await save(page, 'practice-mobile-header-375x812.png', { fullPage: false })
   await page.setViewportSize(DESKTOP)
   await sleep(200)
 

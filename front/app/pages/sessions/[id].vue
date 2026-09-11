@@ -284,13 +284,24 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
           <NuxtLink to="/" class="btn-quiet shrink-0" data-tap>
             ← 홈으로
           </NuxtLink>
-          <p class="min-w-0 flex-1 truncate text-sm text-slate-600" data-testid="practice-progress">
+          <!-- 좁은 화면: 진행(n / m)을 잘리지 않게 앞세우고 과목·라운드는 아래 줄로 내린다 -->
+          <p
+            v-if="itemCount && !closedReason"
+            class="ml-auto shrink-0 text-sm font-semibold text-slate-700 sm:hidden"
+            data-testid="practice-progress-mobile"
+          >
+            문항 {{ currentNo ?? '—' }} / {{ itemCount }}
+          </p>
+          <p class="hidden min-w-0 flex-1 truncate text-sm text-slate-600 sm:block" data-testid="practice-progress">
             {{ subjectLine }} · {{ roundLabel }}<span v-if="itemCount && !closedReason"> · 문항 {{ currentNo ?? '—' }} / {{ itemCount }}</span>
           </p>
           <span v-if="itemCount && !closedReason" class="shrink-0 text-xs text-slate-500">
             남은 {{ remaining }}문항
           </span>
         </div>
+        <p class="mt-0.5 truncate text-xs text-slate-500 sm:hidden" data-testid="practice-context-mobile">
+          {{ subjectLine }} · {{ roundLabel }}
+        </p>
         <div
           v-if="itemCount && !closedReason"
           class="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100"
