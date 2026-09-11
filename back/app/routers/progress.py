@@ -130,16 +130,30 @@ def list_progress_questions(
     limit: Annotated[int, Query(ge=1, le=200)] = 50,
     offset: Annotated[int, Query(ge=0)] = 0,
 ):
-    """bookmarked(북마크), wrong(한 번이라도 틀림), unresolved(마지막도 틀림), dueOn(복습 예정일 이하)."""
+    """진도 목록 필터. 세 플래그 모두 `None`(미지정)이면 조건이 걸리지 않는다.
+
+    - `bookmarked`: true/false 로 북마크 여부를 가른다.
+    - `wrong`: true = 한 번이라도 틀림(`wrong_count > 0`), false = 한 번도 틀린 적 없음(`wrong_count = 0`).
+    - `unresolved`: true = 마지막 응답도 틀림, false = 마지막이 맞았거나 틀린 적 없음.
+    - `dueOn`: 복습 예정일이 그날 이하.
+
+    `wrong`·`unresolved` 의 false 는 `bookmarked` 와 같은 규칙(값을 주면 조건이 된다)이며,
+    `last_is_correct` 가 NULL 인 행(응답 이력 없이 북마크·메모만 남긴 행)도 의도한 쪽에 들어가도록
+    부정형을 `IS NOT FALSE` 가 아니라 `(= 0 OR IS TRUE)` 로 편다.
+    """
     clauses: list[str] = []
     params: list = []
     if bookmarked is not None:
         clauses.append("st.bookmarked = %s")
         params.append(bookmarked)
-    if wrong:
-        clauses.append("st.wrong_count > 0")
-    if unresolved:
-        clauses.append("st.wrong_count > 0 AND st.last_is_correct IS FALSE")
+    if wrong is not None:
+        clauses.append("st.wrong_count > 0" if wrong else "st.wrong_count = 0")
+    if unresolved is not None:
+        clauses.append(
+            "st.wrong_count > 0 AND st.last_is_correct IS FALSE"
+            if unresolved
+            else "(st.wrong_count = 0 OR st.last_is_correct IS TRUE)"
+        )
     if due_on is not None:
         clauses.append("st.review_due_on <= %s")
         params.append(due_on)

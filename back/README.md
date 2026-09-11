@@ -3,7 +3,7 @@
 `app` DB 의 `ipe` 스키마를 읽어 **문항 조회 · 채점 · 진도** 를 제공하는 HTTP API 입니다.
 프론트(Nuxt)가 이 문서만 보고 붙일 수 있는 수준을 목표로 하고, 더 자세한 내용은 코드와 `/openapi.json` 을 정본으로 봅니다.
 
-전제: `app` DB 의 `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 모든 엔드포인트가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`).
+전제: `app` DB 의 `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 **DB 를 쓰는 엔드포인트**가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`). 루트 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 DB 를 쓰지 않으므로 DB 가 없어도 그대로 응답합니다(`/figures` 는 그림 디렉터리가 마운트됐을 때만 생깁니다).
 
 ---
 
@@ -28,7 +28,7 @@ Linux·EC2 는 인터프리터 경로만 `.venv/bin/python` 으로, PowerShell �
 
 ```bash
 curl http://127.0.0.1:8092/api/health
-# {"status":"ok","database":"ok","dbUrlSource":"EXAM_DB_URL"}
+# {"status":"ok","database":"ok","dbUrlSource":"DATABASE_URL (.env)"}
 ```
 
 **저장소 루트에 `.env` 가 없는 곳에서는 2) 를 반드시 하세요** — 새로 clone 한 저장소나 `git worktree` 에는 `.env` 가 따라오지 않습니다(gitignore). 없으면 앱이 조용히 내장 기본값 `postgresql://yangyag@localhost:5432/app`(비밀번호 없음)을 쓰고, `/api/health` 가 이렇게 나옵니다:
@@ -37,7 +37,7 @@ curl http://127.0.0.1:8092/api/health
 {"status":"degraded","database":"unavailable","dbUrlSource":"기본값"}
 ```
 
-`dbUrlSource` 가 어느 출처를 썼는지 알려줍니다. `기본값` 이면 2) 를 빠뜨린 것입니다.
+`dbUrlSource` 가 어느 출처를 썼는지 알려줍니다. `.env` 파일에서 온 값에는 출처 뒤에 ` (.env)` 가 붙으므로, 위 2) 를 건너뛰고 저장소 `.env`(`DATABASE_URL` 를 정의)를 읽은 경우가 `"DATABASE_URL (.env)"` 이고 `EXAM_DB_URL` 을 직접 export 했으면 `"EXAM_DB_URL"` 입니다. `기본값` 이면 2) 를 빠뜨린 것입니다.
 
 | 주소 | 설명 |
 |---|---|
@@ -52,9 +52,9 @@ curl http://127.0.0.1:8092/api/health
 
 ```bash
 cd back
-.venv/Scripts/python -m pytest                       # 전체 79개 (DB 접속 정보가 없으면 통합 4개는 skip)
-.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 75개
-.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 4개
+.venv/Scripts/python -m pytest                       # 전체 85개 (DB 접속 정보가 없으면 통합 5개는 skip)
+.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 80개
+.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 5개
 ```
 
 `pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다.
@@ -141,9 +141,11 @@ cd back
 - `tag` 는 **반복 파라미터**이고, 여러 개를 주면 **OR** 입니다(AND 아님). `?tag=UML&tag=C언어` → UML 29개 + C언어 34개 = 63개(현재 데이터에서 겹치는 문항 없음).
 - `difficulty` 는 **정확히 그 난이도**입니다(범위 아님).
 - `figureOnly=true` → 도식이 있는 문항만.
-- `/api/progress/questions` 의 `wrong` = 한 번이라도 틀림(`wrongCount > 0`), `unresolved` = 마지막 응답도 틀림, `dueOn=2026-09-11` = 복습 예정일이 그날 이하.
-- `/api/stats/wrong-questions` 의 `unresolvedOnly=true` 는 `lastIsCorrect=false` 인 것만.
-- `bookmarked`·`wrong`·`unresolved` 는 값을 주지 않으면 조건이 걸리지 않습니다(전체 조회).
+- `/api/progress/questions` 의 `wrong=true` = 한 번이라도 틀림(`wrongCount > 0`), `wrong=false` = 한 번도 틀린 적 없음(`wrongCount = 0`).
+- 같은 엔드포인트의 `unresolved=true` = 마지막 응답도 틀림, `unresolved=false` = 마지막이 맞았거나 틀린 적 없음(`lastIsCorrect` 가 NULL 인 미응답 행도 여기 들어옵니다). `dueOn=2026-09-11` = 복습 예정일이 그날 이하.
+- `/api/stats/wrong-questions` 의 `unresolvedOnly=true` 는 `lastIsCorrect=false` 인 것만(이쪽은 `false` 를 주는 방향이 없습니다).
+- `bookmarked`·`wrong`·`unresolved` 는 값을 주지 않으면 조건이 걸리지 않습니다(전체 조회). **`false` 도 조건으로 동작합니다.**
+- 이 목록은 `study_state` 행 기준입니다. 응답도 북마크·메모도 없는 문항은 행이 없어 **어느 필터로도 나오지 않습니다**.
 
 ## 4. 응답 규칙
 
@@ -183,14 +185,15 @@ cd back
 ### 응답 스키마 필드
 
 위에서 JSON 예시로 보여주지 않은 스키마들입니다. `*` 는 항상 있는 필드, 나머지는 `null` 이 될 수 있습니다.
+`count` 계열 중 `ExamOut.questionCount`·`ExamOut.figureCount`·`TagOut.questionCount` 는 스키마 기본값이 `0` 이라 **`null` 이 되지 않습니다**(해당하는 문항이 없으면 `0`).
 `QuestionOut` · `ChoiceOut` 은 "조회 응답에는 정답이 없습니다", `StateOut` 은 "채점", `GradeRequest`/`GradeResult`·`SessionCreate`/`SessionOut`·`StateUpdate` 는 각각 해당 절 참고.
 
 | 스키마 | 필드 |
 |---|---|
 | `SubjectOut` | `code*`, `name*`, `fromNo*`, `toNo*`, `questionCount` |
-| `ExamOut` | `id*`, `year*`, `round*`, `title*`, `questionCount`, `figureCount` |
+| `ExamOut` | `id*`, `year*`, `round*`, `title*`, `questionCount*`, `figureCount*` |
 | `ExamDetail` | `ExamOut` 전부 + `sourcePdf`, `subjects`(`SubjectOut[]`, 그 회차 기준 문항 수) |
-| `TagOut` | `id*`, `name*`, `questionCount` |
+| `TagOut` | `id*`, `name*`, `questionCount*` |
 | `FigureOut` | `needed`, `kind`(`diagram`\|`screen`\|null), `imageUrl`, `alt` — 전부 선택 |
 | `ProgressItem` | `StateOut` 전부 + `examId*`, `number*`, `subjectCode*`, `subjectName`, `stem*` |
 | `SubjectStatsOut` | `subjectCode*`, `subjectName*`, `answered*`, `correct*`, `wrong*`, `questionsTotal*`, `questionsSeen*`, `accuracyPct` |
@@ -278,13 +281,13 @@ curl -X PATCH http://127.0.0.1:8092/api/progress/questions/2026-1-001 \
 | `404` | 없는 회차·문항·과목·세션 |
 | `422` | 스키마 위반 — `choiceNo` 가 1~4 밖, `limit` 이 범위 밖 등 |
 | `500` | 그 밖의 서버 오류 |
-| `503` | DB 에 연결할 수 없거나 커넥션 풀이 아직 초기화되지 않음(모든 엔드포인트) |
+| `503` | DB 에 연결할 수 없거나 커넥션 풀이 아직 초기화되지 않음(DB 를 쓰는 엔드포인트) |
 
 오류 본문은 FastAPI 표준대로 `{"detail": "..."}` 이고 메시지는 한글입니다. DB 장애일 때는 `{"detail": "DB 에 연결할 수 없습니다"}` 입니다.
 
 ### DB 가 내려가 있을 때 (실측)
 
-모든 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다. 커넥션 풀 대기 시간이 `POOL_TIMEOUT`(2초, `back/app/db.py`)이라 요청이 오래 묶이지 않습니다.
+DB 를 쓰는 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다(루트 `/` · `/docs` · `/figures` 는 DB 를 쓰지 않아 정상 응답). 커넥션 풀 대기 시간이 `POOL_TIMEOUT`(2초, `back/app/db.py`)이라 요청이 오래 묶이지 않습니다.
 
 | 요청 | 수정 전 | 지금 |
 |---|---|---|
@@ -325,7 +328,7 @@ API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼�
 - 쓰기 요청 3종(`POST /api/sessions`, `/finish`, `/answer`)과 `PATCH` 는 `EXAM_API_TOKEN` 을 설정한 경우에만 `X-Exam-Token` 헤더가 필요합니다.
 - 그림은 `/figures/...` 경로로 옵니다. DB 에는 경로·`alt` 만 있고 바이너리는 없으니 API 오리진 기준으로 해석하세요.
 - 타입이 필요하면 `http://127.0.0.1:8092/openapi.json` 에서 생성하세요.
-- DB 장애는 모든 엔드포인트가 2초 내 `503`(`{"detail":"DB 에 연결할 수 없습니다"}`)으로 알려줍니다. 상태·사유까지 보려면 `/api/health`(2초 내 `503`, `database: "unavailable"`)를 쓰세요.
+- DB 장애는 DB 를 쓰는 엔드포인트가 2초 내 `503`(`{"detail":"DB 에 연결할 수 없습니다"}`)으로 알려줍니다. 상태·사유까지 보려면 `/api/health`(2초 내 `503`, `database: "unavailable"`)를 쓰세요.
 
 ## 7. 알아둘 것
 

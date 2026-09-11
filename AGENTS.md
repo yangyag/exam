@@ -36,7 +36,7 @@ data/raw/pages/, data/raw/text/   렌더 캐시 (재생성 가능, gitignore)
 db/                               000_bootstrap.sql · 001_schema.sql(문항) · 002_progress.sql(진도) · README.md
 tools/                            파이프라인 스크립트 + 스키마 정본
 back/                             조회·채점·진도 API (FastAPI) — 실행법·엔드포인트는 back/README.md
-docs/                             비어 있음
+docs/                             git 에 없음 (빈 디렉터리는 추적되지 않아 clone·worktree 에 생기지 않음)
 ```
 
 ## 파이프라인

@@ -349,3 +349,72 @@ def test_progress_patch_and_stats(live_client, tracker, db_conn):
     assert subject, "과목 통계에 해당 과목 행이 없다"
     assert subject[0]["answered"] >= 1
     assert subject[0]["accuracyPct"] is not None
+
+
+def test_progress_filters_both_directions_on_live_data(live_client, tracker, db_conn):
+    """`wrong`·`unresolved` 의 true/false 양방향을 실제 데이터로 고정한다.
+
+    응답 이력 없이 북마크만 남긴 행(`wrong_count` 0 · `last_is_correct` NULL)이
+    `unresolved=false` 에서 빠지지 않는지, 틀렸다가 맞춘 문항은 `unresolved=false` 로,
+    아직 못 푼 오답은 `unresolved=true` 로 나오는지 확인한다.
+    """
+    picked: list[dict] = []
+    for _ in range(3):
+        picked.append(pick_question(db_conn, exclude={q["id"] for q in picked}))
+    assert len({q["id"] for q in picked}) == 3, "서로 다른 문항 3개를 고르지 못했다"
+    bookmark_only, resolved, unresolved = picked
+
+    session_id = create_session(live_client)
+    tracker.track_session(session_id)
+    for question in picked:
+        tracker.snapshot_state(question["id"])
+        response = live_client.patch(
+            f"/api/progress/questions/{question['id']}",
+            json={"bookmarked": True},
+            headers=auth_headers(),
+        )
+        assert response.status_code == 200, response.text
+
+    def answer_wrong(question: dict) -> None:
+        post_answer(live_client, question["id"], 1 if question["answer"] != 1 else 2, sessionId=session_id)
+
+    answer_wrong(unresolved)
+    answer_wrong(resolved)
+    post_answer(live_client, resolved["id"], resolved["answer"], sessionId=session_id)
+
+    stored = db_conn.execute(
+        "SELECT wrong_count, last_is_correct FROM ipe.study_state WHERE question_id = %s",
+        (bookmark_only["id"],),
+    ).fetchone()
+    assert stored == {"wrong_count": 0, "last_is_correct": None}, f"NULL 케이스가 아니다: {stored}"
+
+    def listed(**flags: str) -> set[str]:
+        response = live_client.get(
+            "/api/progress/questions", params={"bookmarked": "true", "limit": 200, **flags}
+        )
+        assert response.status_code == 200, response.text
+        return {item["questionId"] for item in response.json()}
+
+    # wrong=false = 한 번도 틀린 적 없음. NULL(last_is_correct) 행은 wrong_count 0 이라 여기 들어온다.
+    never_wrong = listed(wrong="false")
+    assert bookmark_only["id"] in never_wrong
+    assert resolved["id"] not in never_wrong, "한 번 틀린 문항이 wrong=false 에 나왔다"
+    assert unresolved["id"] not in never_wrong
+
+    # wrong=true = 한 번이라도 틀림.
+    ever_wrong = listed(wrong="true")
+    assert resolved["id"] in ever_wrong
+    assert unresolved["id"] in ever_wrong
+    assert bookmark_only["id"] not in ever_wrong
+
+    # unresolved=false = 마지막이 맞았거나 틀린 적 없음(NULL 을 FALSE 로 보지 않는다).
+    settled = listed(unresolved="false")
+    assert bookmark_only["id"] in settled, "last_is_correct NULL 행이 unresolved=false 에서 빠졌다"
+    assert resolved["id"] in settled, "틀렸다가 맞춘 문항이 unresolved=false 에서 빠졌다"
+    assert unresolved["id"] not in settled
+
+    # unresolved=true = 마지막 응답도 틀림.
+    still_wrong = listed(unresolved="true")
+    assert unresolved["id"] in still_wrong
+    assert resolved["id"] not in still_wrong
+    assert bookmark_only["id"] not in still_wrong
