@@ -295,6 +295,12 @@ def answer_session_item(session_id: int, seq: int, payload: SlotAnswerRequest, c
 
         if session["mode"] == "exam":
             if session["finished_at"] is not None:
+                if session["end_reason"] == "abandoned":
+                    # replaceActive=true 로 중단된 세션은 제출된 적이 없다 — 결과도 없다.
+                    raise HTTPException(
+                        status.HTTP_409_CONFLICT,
+                        "중단된 모의고사입니다. 새로 구성한 세션에서 계속하세요",
+                    )
                 raise HTTPException(
                     status.HTTP_409_CONFLICT, "이미 제출된 모의고사입니다. 결과는 세션 조회로 확인하세요"
                 )
@@ -323,6 +329,11 @@ def answer_session_item(session_id: int, seq: int, payload: SlotAnswerRequest, c
                 ),
             )
         if session["finished_at"] is not None:
+            if session["end_reason"] == "abandoned":
+                # 사이클을 새로 구성해 중단된 라운드 — 기록을 더 받지 않는다.
+                raise HTTPException(
+                    status.HTTP_409_CONFLICT, "중단된 세션입니다. 새로 구성한 세션에서 계속하세요"
+                )
             raise HTTPException(
                 status.HTTP_409_CONFLICT, "이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"
             )

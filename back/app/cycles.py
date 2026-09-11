@@ -1,7 +1,9 @@
 """사이클 라운드(슬롯 세션)·슬롯 공용 로직.
 
 - create_round_session: 주어진 문항 id 목록으로 세션과 슬롯을 같은 트랜잭션에서 만든다.
-  회차별 연습·모의고사(progress 라우터)와 앞으로의 과목 사이클(4단계)이 함께 쓴다.
+  회차별 연습·모의고사(progress 라우터)와 과목 사이클(subject_cycles 라우터)이 함께 쓴다.
+- replace_active_cycle: 진행 중 사이클을 새로 구성할 때(replaceActive=true) 열린 라운드 세션을
+  잠그고 사이클·세션을 abandoned 로 닫는다. M2 의 POST /api/subject-cycles 가 호출한다.
 - advance_round_if_complete: 마지막 슬롯이 채점되면 라운드를 닫고, 오답이 있으면 다음
   라운드(review)를 만들고 없으면 사이클을 completed 로 바꾼다.
 
@@ -95,6 +97,24 @@ CYCLE_COMPLETE_SQL = """
 UPDATE ipe.study_cycle SET status = 'completed', ended_at = now()
  WHERE id = %s AND status = 'active'
 """
+# 과목의 진행 중 사이클(study_cycle_active_uk 로 최대 1행).
+ACTIVE_CYCLE_SQL = """
+SELECT id, subject_code, status, ended_at FROM ipe.study_cycle
+ WHERE subject_code = %s AND status = 'active'
+"""
+# 새로 구성(replaceActive) 전용: 열린 라운드 세션을 잠근다(세션 → 슬롯 → 사이클, 설계 4.6절).
+# 조회용(cycle_result)은 잠그지 않는 CYCLE_OPEN_SESSION_SQL 을 쓴다 — 보기 경로에서 잠금을 잡지 않는다.
+CYCLE_OPEN_ROUND_LOCK_SQL = """
+SELECT id FROM ipe.study_session
+ WHERE cycle_id = %s AND finished_at IS NULL
+ FOR UPDATE
+"""
+# 사이클 중단. RETURNING 으로 닫힌 행을 그대로 돌려준다(ended_at 포함, 이미 active 가 아니면 0행).
+CYCLE_ABANDON_SQL = """
+UPDATE ipe.study_cycle SET status = 'abandoned', ended_at = now()
+ WHERE id = %s AND status = 'active'
+RETURNING id, subject_code, status, ended_at
+"""
 # 사이클의 열린 라운드(현재 세션 제외). 사이클당 1개라 최대 1행이다.
 CYCLE_OPEN_SESSION_SQL = """
 SELECT s.id, s.round_no,
@@ -156,6 +176,50 @@ def replace_open_exam_session(conn, *, mode: str, exam_id: str, replace_active: 
     conn.execute(SESSION_ABANDON_SQL, (open_ids,))
 
 
+def replace_active_cycle(conn, *, subject_code: int, replace_active: bool) -> dict | None:
+    """과목의 진행 중 사이클을 새로 구성하기 위해 중단(abandoned) 처리한다(설계 5.2·4.6절).
+
+    M2 의 `POST /api/subject-cycles` replaceActive 경로가 이 함수를 그대로 호출한다.
+    계약은 다음과 같고, M2 는 이 파일을 수정할 수 없으므로 시그니처·부수 효과를 바꾸지 않는다.
+
+    - **트랜잭션**: 호출자가 연 트랜잭션 안에서만 실행한다. 이 함수는 커밋하지 않는다 —
+      이어서 새 사이클·라운드 1 세션을 만들고 호출자가 마지막에 한 번 커밋해야
+      "기존 사이클 중단 + 새 사이클 시작"이 한 트랜잭션으로 묶인다.
+    - **잠금 순서**: 세션 → 슬롯 → 사이클(설계 4.6절). 열린 라운드 세션을 먼저 `FOR UPDATE`
+      로 잠그고(이 경로는 슬롯을 건드리지 않는다), 그 뒤 사이클 행을 `FOR UPDATE` 로 잠근다.
+      열린 세션을 잠근 뒤 "아직 열려 있는지"를 다시 확인하고, 그 사이 다른 요청이 닫은
+      세션은 UPDATE 의 `finished_at IS NULL` 조건이 걸러 낸다.
+    - 진행 중(active) 사이클이 없으면 아무것도 하지 않고 `None`.
+    - 진행 중 사이클이 있고 `replace_active=False` 면 409(아무것도 바꾸지 않는다).
+    - `replace_active=True` 면 열린 라운드 세션과 사이클을 모두 `end_reason='abandoned'`·
+      `status='abandoned'`(+`ended_at`)로 닫는다. 열린 라운드가 없어도(비정상 상태) 사이클은 닫는다.
+
+    반환: 중단시킨 사이클 1행 `{id, subject_code, status='abandoned', ended_at}`.
+    잠근 뒤 사이클이 이미 active 가 아니면 `None`(호출자는 새 사이클만 만들면 된다).
+    """
+    cycle = conn.execute(ACTIVE_CYCLE_SQL, (subject_code,)).fetchone()
+    if cycle is None:
+        return None
+    if not replace_active:
+        raise HTTPException(
+            status.HTTP_409_CONFLICT,
+            f"과목 {subject_code} 에 진행 중인 사이클이 있습니다. replaceActive=true 로 새로 구성하세요",
+        )
+
+    # 1) 열린 라운드 세션을 먼저 잠근다(세션 → 슬롯 → 사이클).
+    open_ids = [
+        row["id"] for row in conn.execute(CYCLE_OPEN_ROUND_LOCK_SQL, (cycle["id"],)).fetchall()
+    ]
+    # 2) 잠금 뒤 다시 확인한다 — 그 사이 다른 요청이 사이클을 닫았으면 아무것도 하지 않는다.
+    locked = conn.execute(CYCLE_LOCK_SQL, (cycle["id"],)).fetchone()
+    if locked is None or locked["status"] != "active":
+        return None
+    # 3) 열린 세션(다시 확인: finished_at IS NULL)과 사이클을 함께 중단한다.
+    if open_ids:
+        conn.execute(SESSION_ABANDON_SQL, (open_ids,))
+    return conn.execute(CYCLE_ABANDON_SQL, (cycle["id"],)).fetchone()
+
+
 def fetch_slots(conn, session_id: int) -> list[dict]:
     """세션의 슬롯 목록(seq 오름차순). 조회는 아무것도 기록하지 않는다."""
     return conn.execute(SLOT_SELECT_SQL, (session_id,)).fetchall()
@@ -182,7 +246,12 @@ def lock_slot(conn, session_id: int, seq: int) -> dict:
 
 
 def grade_slot(conn, session_id: int, seq: int, *, choice_no: int, is_correct: bool) -> None:
-    """연습 슬롯에 제출 결과를 기록한다."""
+    """연습 슬롯에 제출 결과를 기록한다.
+
+    호출자 계약: 이미 채점된 슬롯(`is_correct IS NOT NULL`)에는 부르지 않는다 — 이 함수는
+    재채점을 막지 않으므로, 호출자가 슬롯을 잠근 뒤 `is_correct IS NULL` 을 확인해야 한다.
+    `choice_no`·`is_correct` 는 채점 응답과 같은 값이어야 한다.
+    """
     conn.execute(SLOT_GRADE_SQL, (choice_no, is_correct, session_id, seq))
 
 

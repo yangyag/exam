@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import psycopg
 import pytest
+from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from psycopg.rows import dict_row
 
@@ -775,9 +776,12 @@ def test_exam_session_selection_and_replace_active(live_client, tracker, db_conn
     ).fetchone()
     assert old["finished_at"] is not None and old["end_reason"] == "abandoned"
 
-    # 중단된 세션에 슬롯 제출하면 409 이고 아무것도 기록하지 않는다.
+    # 중단된 세션에 슬롯 제출하면 409 — '이미 제출'(사실과 다름)이 아니라 중단 안내가 나간다.
     rejected = put_slot(live_client, first, 1, 2)
     assert rejected.status_code == 409
+    detail = rejected.json()["detail"]
+    assert "중단" in detail
+    assert "이미 제출" not in detail
     assert len(get_attempts(db_conn, first)) == 0
 
 
@@ -911,3 +915,84 @@ def test_subject_cycle_round_advances_to_review_and_completes(live_client, track
         (cycle_id,),
     ).fetchone()["n"]
     assert open_rounds == 0
+
+
+def _start_cycle_with_round(db_conn: psycopg.Connection, tracker: ProgressTracker, subject_code: int):
+    """과목의 진행 중 사이클 1개 + 라운드 1 세션 1개를 만든다(테스트 준비용)."""
+    question = db_conn.execute(
+        "SELECT id FROM ipe.question WHERE subject_code = %s ORDER BY id LIMIT 1", (subject_code,)
+    ).fetchone()
+    cycle_id = db_conn.execute(
+        "INSERT INTO ipe.study_cycle (subject_code) VALUES (%s) RETURNING id", (subject_code,)
+    ).fetchone()["id"]
+    tracker.track_cycle(cycle_id)
+    session_id = cycles.create_round_session(
+        db_conn,
+        mode="subject",
+        question_ids=[question["id"]],
+        subject_code=subject_code,
+        cycle_id=cycle_id,
+        round_no=1,
+    )
+    tracker.track_session(session_id)
+    return cycle_id, session_id
+
+
+def test_replace_active_cycle_abandons_cycle_and_open_round(tracker, db_conn):
+    """새로 구성 헬퍼: 열린 라운드와 사이클을 함께 abandoned 로 닫고, 없으면 null 을 돌려준다."""
+    cycle_id, session_id = _start_cycle_with_round(db_conn, tracker, subject_code=3)
+
+    # replaceActive=false 는 409 이고 아무것도 바꾸지 않는다.
+    with pytest.raises(HTTPException) as excinfo:
+        cycles.replace_active_cycle(db_conn, subject_code=3, replace_active=False)
+    assert excinfo.value.status_code == 409
+    assert db_conn.execute(
+        "SELECT status FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()["status"] == "active"
+
+    # replaceActive=true 는 세션(먼저)과 사이클을 함께 중단한다.
+    closed = cycles.replace_active_cycle(db_conn, subject_code=3, replace_active=True)
+    assert closed is not None
+    assert closed["id"] == cycle_id and closed["subject_code"] == 3
+    assert closed["status"] == "abandoned" and closed["ended_at"] is not None
+    session_state = db_conn.execute(
+        "SELECT finished_at, end_reason FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()
+    assert session_state["finished_at"] is not None
+    assert session_state["end_reason"] == "abandoned"
+    cycle_state = db_conn.execute(
+        "SELECT status, ended_at FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()
+    assert cycle_state["status"] == "abandoned" and cycle_state["ended_at"] is not None
+
+    # 진행 중 사이클이 없으면 아무것도 하지 않고 null.
+    assert cycles.replace_active_cycle(db_conn, subject_code=3, replace_active=True) is None
+
+
+def test_replace_active_cycle_does_not_commit(tracker, db_conn):
+    """헬퍼는 호출자의 트랜잭션 안에서만 동작한다 — 롤백하면 중단 전 상태로 돌아온다(M2 계약)."""
+    cycle_id, session_id = _start_cycle_with_round(db_conn, tracker, subject_code=4)
+
+    class Rollback(Exception):
+        pass
+
+    try:
+        with db_conn.transaction():
+            closed = cycles.replace_active_cycle(db_conn, subject_code=4, replace_active=True)
+            assert closed["status"] == "abandoned"
+            # 트랜잭션 안에서는 이미 중단된 것으로 보인다(중간에 커밋하지 않는다).
+            inside = db_conn.execute(
+                "SELECT status FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+            ).fetchone()
+            assert inside["status"] == "abandoned"
+            raise Rollback
+    except Rollback:
+        pass
+
+    # 롤백 뒤 원래대로 — 헬퍼가 스스로 커밋하지 않았다는 증거다.
+    assert db_conn.execute(
+        "SELECT status FROM ipe.study_cycle WHERE id = %s", (cycle_id,)
+    ).fetchone()["status"] == "active"
+    assert db_conn.execute(
+        "SELECT finished_at FROM ipe.study_session WHERE id = %s", (session_id,)
+    ).fetchone()["finished_at"] is None

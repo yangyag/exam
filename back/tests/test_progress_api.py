@@ -687,6 +687,55 @@ def test_put_exam_slot_null_clears_choice(client, fake_db):
     assert fake.single(SLOT_SAVE)[1] == (None, None, 7, 1)
 
 
+def test_put_exam_slot_on_abandoned_session_409(client, fake_db):
+    """replaceActive 로 중단된 모의고사에는 '이미 제출' 이 아니라 중단 안내가 나간다."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [
+                session_row(
+                    id=7, mode="exam", exam_id="2026-1", finished_at=ANSWERED_AT, end_reason="abandoned"
+                )
+            ],
+            SLOT_ONE: [
+                slot_row(seq=1, question_id=QUESTION_ID, choice_no=2, answered_at=ANSWERED_AT)
+            ],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 2})
+    assert response.status_code == 409
+    detail = response.json()["detail"]
+    assert "중단" in detail
+    assert "제출" not in detail, "제출된 적 없는 세션에 '이미 제출' 안내가 나갔다"
+    assert fake.executed(SLOT_SAVE) == []
+    assert fake.executed(ATTEMPT_INSERT) == []
+
+
+def test_put_practice_slot_on_abandoned_session_409(client, fake_db):
+    """중단된 라운드(사이클 새로 구성)에도 중단 안내가 나가고 기록하지 않는다."""
+    fake = fake_db(
+        {
+            SESSION_LOOKUP: [
+                session_row(
+                    id=7,
+                    mode="subject",
+                    subject_code=1,
+                    cycle_id=3,
+                    round_no=1,
+                    finished_at=ANSWERED_AT,
+                    end_reason="abandoned",
+                )
+            ],
+            SLOT_ONE: [slot_row(seq=1, question_id=QUESTION_ID)],
+        }
+    )
+    response = client.put("/api/sessions/7/items/1/answer", json={"choiceNo": 2})
+    assert response.status_code == 409
+    assert "중단" in response.json()["detail"]
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(STATE_UPSERT) == []
+    assert fake.executed(SLOT_GRADE) == []
+
+
 def test_put_last_practice_slot_advances_cycle_round(client, fake_db):
     """마지막 슬롯 채점은 라운드를 닫고 오답으로 다음 라운드(review)를 만든다(같은 트랜잭션)."""
     cycle = {"id": 3, "subject_code": 1, "status": "active"}

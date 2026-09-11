@@ -303,3 +303,55 @@ def test_concurrent_different_choice_conflicts_without_second_record(live_client
         (session_id,),
     ).fetchone()
     assert stored == {"choice_no": wrong_choice, "is_correct": False}
+
+
+def test_concurrent_session_create_conflicts_with_409(live_client, tracker, db_conn):
+    """다른 트랜잭션이 같은 (mode, 회차) 열린 세션을 만드는 중이면 새 생성은 409 다.
+
+    진행 중 세션 조회(SELECT ... FOR UPDATE)는 상대가 커밋하기 전에는 그 행을 보지 못하므로
+    두 번째 INSERT 가 study_session_exam_open_uk 에 걸린다. 그 UniqueViolation 을 409 로 바꾸는
+    분기(progress.py)를 실제 PostgreSQL 로 고정한다.
+    """
+    exam_id = pick_question(db_conn)["exam_id"]
+    holder = lock_connection(autocommit=False)
+    created: dict = {}
+    thread: threading.Thread | None = None
+    try:
+        # 상대 트랜잭션: 열린 exam_practice 세션을 만들고 커밋하지 않은 채 들고 있는다.
+        row = holder.execute(
+            "INSERT INTO ipe.study_session (mode, exam_id, subject_code) "
+            "VALUES ('exam_practice', %s, NULL) RETURNING id",
+            (exam_id,),
+        ).fetchone()
+        tracker.track_session(row["id"])
+
+        def send_create() -> None:
+            created["response"] = live_client.post(
+                "/api/sessions",
+                json={"mode": "exam_practice", "examId": exam_id},
+                headers=auth_headers(),
+            )
+
+        thread = threading.Thread(target=send_create, name="session-create")
+        thread.start()
+        # 상대가 커밋하기 전에는 API 의 INSERT 가 유니크 인덱스에서 기다린다.
+        time.sleep(0.5)
+        assert thread.is_alive(), "유니크 인덱스 대기 없이 세션 생성이 끝나 버렸다"
+        holder.commit()
+    finally:
+        holder.close()  # 커밋 전에 실패했으면 INSERT 는 롤백된다
+        if thread is not None:
+            thread.join(timeout=10)
+
+    assert thread is not None and not thread.is_alive() and "response" in created, "세션 생성 요청이 끝나지 않았다"
+    response = created["response"]
+    assert response.status_code == 409, response.text
+    assert "replaceActive" in response.json()["detail"]
+
+    # 열린 세션은 상대가 만든 1개뿐이고, 실패한 생성은 아무것도 남기지 않았다.
+    open_sessions = db_conn.execute(
+        "SELECT count(*)::int AS n FROM ipe.study_session "
+        "WHERE mode = 'exam_practice' AND exam_id = %s AND finished_at IS NULL",
+        (exam_id,),
+    ).fetchone()["n"]
+    assert open_sessions == 1
