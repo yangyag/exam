@@ -1,0 +1,29 @@
+{
+  "name": "front",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev --port 8091",
+    "build": "nuxt typecheck && nuxt build",
+    "typecheck": "nuxt typecheck",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "gen:types": "openapi-typescript http://127.0.0.1:8092/openapi.json -o app/types/api.gen.ts",
+    "shots": "node scripts/shots.mjs"
+  },
+  "dependencies": {
+    "nuxt": "^4.5.2",
+    "vue": "^3.5.42",
+    "vue-router": "^5.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.2",
+    "openapi-typescript": "^7.13.0",
+    "playwright": "^1.63.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.3.11"
+  }
+}
