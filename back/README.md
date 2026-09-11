@@ -52,12 +52,12 @@ curl http://127.0.0.1:8092/api/health
 
 ```bash
 cd back
-.venv/Scripts/python -m pytest                       # 전체 85개 (DB 접속 정보가 없으면 통합 5개는 skip)
-.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 80개
-.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 5개
+.venv/Scripts/python -m pytest                       # 전체 89개 (DB 접속 정보가 없으면 통합 6개는 skip)
+.venv/Scripts/python -m pytest -m "not integration"  # DB 없이 83개
+.venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 6개
 ```
 
-`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다.
+`pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다.
 
 ## 2. 환경변수
 
@@ -108,7 +108,7 @@ cd back
 |---|---|---|---|---|
 | GET | `/api/questions/random` | 랜덤 출제 | `examId`, `subjectCode`(1~5), `tag`(반복), `figureOnly`(false), `count`(10, 1~100) | `QuestionOut[]` |
 | GET | `/api/questions/{questionId}` | 문항 단건 | — | `QuestionOut` |
-| POST | `/api/questions/{questionId}/answer` | 채점 + 응시 기록 | 본문 `GradeRequest` | `GradeResult` |
+| POST | `/api/questions/{questionId}/answer` | 채점 + 응시 기록. 종료된 세션(`sessionId`)은 `409` | 본문 `GradeRequest` | `GradeResult` |
 
 ### 진도 — `back/app/routers/progress.py`
 
@@ -221,11 +221,21 @@ curl -X POST http://127.0.0.1:8092/api/sessions \
 curl -X POST http://127.0.0.1:8092/api/questions/2026-1-001/answer \
   -H "Content-Type: application/json" \
   -d '{"choiceNo": 1, "sessionId": 16, "elapsedMs": 1500}'
+
+# 3) 제출(=세션 종료)하면 그 세션으로는 더 채점할 수 없습니다
+curl -X POST http://127.0.0.1:8092/api/sessions/16/finish
+curl -i -X POST http://127.0.0.1:8092/api/questions/2026-1-001/answer \
+  -H "Content-Type: application/json" \
+  -d '{"choiceNo": 1, "sessionId": 16}'
+# HTTP/1.1 409 Conflict
+# {"detail": "이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요"}
 ```
 
 `GradeRequest`: `choiceNo`(필수, 1~4), `sessionId`(선택), `elapsedMs`(선택, 0 이상).
-`sessionId` 는 **이미 존재하는 세션 id 여야 합니다** — 아니면 `404`. 세션 밖 단발 풀이로 기록하려면 필드를 생략하거나 `null` 로 보내세요.
+`sessionId` 는 **이미 존재하는 세션 id 여야 합니다** — 없으면 `404`, **이미 종료된 세션(`finishedAt` 이 있는 세션)이면 `409`** 입니다. 세션 밖 단발 풀이로 기록하려면 필드를 생략하거나 `null` 로 보내세요(이때는 세션을 조회하지 않습니다).
 이 호출은 `study_attempt` 에 1행을 넣고 `study_state` 를 갱신합니다(채점 자체가 진도 기록입니다). 그래서 `state` 가 응답에 함께 실립니다.
+
+**제출이 그 세션의 점수를 확정합니다.** `/api/sessions/{sessionId}/finish` 로 제출한 세션에 채점을 시도하면 `409` 로 거부되고, 세션 요약(`answered`·`correct`)은 제출 시점 그대로입니다(실측 확인). 계속 풀려면 새 세션을 만들거나 `sessionId` 없이 기록하세요. 막히는 것은 **그 세션에 대한 기록**뿐이라, 문항별 누계(`study_state`)와 응시 이력(`study_attempt`)은 다른 세션의 채점으로 계속 쌓입니다.
 
 ```json
 {
@@ -254,6 +264,7 @@ POST /api/sessions  {"mode": "subject", "subjectCode": 3}   # 201
 `mode` 는 `exam`(회차 모의고사) · `subject`(과목 연습) · `random`(랜덤) · `review`(오답 복습) 중 하나입니다.
 `mode=exam` 에 `examId` 가 없거나 `mode=subject` 에 `subjectCode` 가 없으면 `400`, 없는 회차·과목이면 `404`.
 `/finish` 는 이미 끝난 세션에 다시 호출해도 현재 상태를 그대로 돌려줍니다(멱등).
+종료한 세션에는 더 채점할 수 없습니다(`409`) — 제출이 그 세션의 점수를 확정하고, 계속 풀려면 새 세션을 만드세요.
 
 ### 진도 상태 수정
 
@@ -279,6 +290,7 @@ curl -X PATCH http://127.0.0.1:8092/api/progress/questions/2026-1-001 \
 | `400` | 규칙 위반 — 필드 없는 `PATCH`, `mode=exam` 인데 `examId` 없음 등 |
 | `401` | `EXAM_API_TOKEN` 설정 시 쓰기 요청에 토큰이 없거나 틀림 |
 | `404` | 없는 회차·문항·과목·세션 |
+| `409` | 이미 종료된 세션에 채점 시도 — `/api/sessions/{id}/finish` 뒤 같은 `sessionId` 로 `POST /api/questions/{id}/answer` |
 | `422` | 스키마 위반 — `choiceNo` 가 1~4 밖, `limit` 이 범위 밖 등 |
 | `500` | 그 밖의 서버 오류 |
 | `503` | DB 에 연결할 수 없거나 커넥션 풀이 아직 초기화되지 않음(DB 를 쓰는 엔드포인트) |

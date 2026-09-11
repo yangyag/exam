@@ -3,8 +3,11 @@
 - 정답을 고른 경우와 오답을 고른 경우 모두 정답 여부·정답 번호·해설이 정확해야 한다.
 - study_attempt INSERT 와 study_state UPSERT 에 넘어가는 파라미터로 진도 갱신 계획을 검증한다.
   (실제 누계 갱신은 SQL 이 하므로 통합 테스트에서 확인한다.)
+- sessionId 가드(없는 세션 404 · 종료된 세션 409)와 sessionId 없이 채점하는 기존 계약을 고정한다.
 """
 from __future__ import annotations
+
+from datetime import datetime, timezone
 
 import pytest
 
@@ -14,10 +17,11 @@ ANSWER_SELECT = "SELECT answer, explanation, key_point FROM ipe.question"
 ATTEMPT_INSERT = "INSERT INTO ipe.study_attempt"
 STATE_UPSERT = "INSERT INTO ipe.study_state"
 CHOICES_SELECT = "FROM ipe.question_choice"
-SESSION_EXISTS = "SELECT 1 FROM ipe.study_session WHERE id"
+SESSION_LOOKUP = "SELECT finished_at FROM ipe.study_session WHERE id"
 
 QUESTION_ID = "2022-1-001"
 ANSWER = 2
+FINISHED_AT = datetime(2026, 9, 5, 3, 0, tzinfo=timezone.utc)
 
 
 def _answer_rules() -> dict:
@@ -40,7 +44,7 @@ def _answer_rules() -> dict:
         ATTEMPT_INSERT: [],
         STATE_UPSERT: state_from_params,
         CHOICES_SELECT: choice_analysis_rows(ANSWER),
-        SESSION_EXISTS: [{"?column?": 1}],
+        SESSION_LOOKUP: [{"finished_at": None}],
     }
 
 
@@ -97,7 +101,7 @@ def test_wrong_choice_returns_answer_but_marks_incorrect(client, fake):
     _, state_params = fake.single(STATE_UPSERT)
     assert state_params == (QUESTION_ID, 0, 1, False, 1, 0)
     # 세션을 주지 않았으면 세션 조회도 하지 않는다.
-    assert fake.executed(SESSION_EXISTS) == []
+    assert fake.executed(SESSION_LOOKUP) == []
 
 
 @pytest.mark.parametrize("choice_no", [0, 5, -1])
@@ -124,13 +128,44 @@ def test_unknown_question_404_without_writes(client, fake_db):
 
 def test_unknown_session_404_without_writes(client, fake_db):
     rules = _answer_rules()
-    rules[SESSION_EXISTS] = []
+    rules[SESSION_LOOKUP] = []
     fake = fake_db(rules)
     response = grade(client, 2, sessionId=999)
     assert response.status_code == 404
     assert "세션" in response.json()["detail"]
     assert fake.executed(ATTEMPT_INSERT) == []
     assert fake.executed(STATE_UPSERT) == []
+
+
+def test_ongoing_session_grades_and_records(client, fake):
+    """진행 중 세션(finished_at NULL)은 그대로 채점되고 그 세션에 기록된다."""
+    response = grade(client, 2, sessionId=7)
+    assert response.status_code == 200
+    assert fake.single(SESSION_LOOKUP)[1] == (7,)
+    _, attempt_params = fake.single(ATTEMPT_INSERT)
+    assert attempt_params == (7, QUESTION_ID, 2, True, None)
+
+
+def test_finished_session_rejected_with_409_without_writes(client, fake_db):
+    """종료된 세션에 채점하면 409 이고 진도에는 아무것도 쓰지 않는다."""
+    rules = _answer_rules()
+    rules[SESSION_LOOKUP] = [{"finished_at": FINISHED_AT}]
+    fake = fake_db(rules)
+    response = grade(client, 2, sessionId=7)
+    assert response.status_code == 409
+    detail = response.json()["detail"]
+    assert "종료된 세션" in detail and "새 세션" in detail
+    assert fake.executed(ATTEMPT_INSERT) == []
+    assert fake.executed(STATE_UPSERT) == []
+
+
+def test_sessionless_grading_keeps_working(client, fake):
+    """sessionId 를 생략한 채점은 세션을 조회하지 않고 기존 계약대로 동작한다."""
+    response = grade(client, 2)
+    assert response.status_code == 200
+    assert fake.executed(SESSION_LOOKUP) == []
+    _, attempt_params = fake.single(ATTEMPT_INSERT)
+    assert attempt_params[0] is None
 
 
 def test_write_requires_token_when_configured(client, fake, monkeypatch):

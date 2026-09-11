@@ -22,6 +22,9 @@ INSERT INTO ipe.study_attempt (session_id, question_id, choice_no, is_correct, e
 VALUES (%s, %s, %s, %s, %s)
 """
 
+# 세션 존재 확인과 종료(finished_at) 검사를 한 번의 조회로 함께 처리한다.
+SESSION_SQL = "SELECT finished_at FROM ipe.study_session WHERE id = %s"
+
 # 응답마다 누계를 증분 갱신하는 upsert. correct_count + wrong_count = attempt_count 를 유지한다(db/README.md).
 STATE_UPSERT_SQL = f"""
 INSERT INTO ipe.study_state (
@@ -73,17 +76,28 @@ def get_question(question_id: str, conn: Conn):
     dependencies=[Depends(require_token)],
 )
 def answer_question(question_id: str, payload: GradeRequest, conn: Conn):
-    """고른 보기 번호를 받아 정답 여부를 돌려주고 study_attempt/study_state 에 기록한다."""
+    """고른 보기 번호를 받아 정답 여부를 돌려주고 study_attempt/study_state 에 기록한다.
+
+    sessionId 를 주면 그 세션에 귀속시킨다 — 없는 세션이면 404, 이미 종료된 세션이면 409 다.
+    종료된 세션은 기록을 받지 않으므로(제출 = 점수 확정) 계속 풀려면 새 세션을 만들어야 한다.
+    """
     row = conn.execute(ANSWER_SQL, (question_id,)).fetchone()
     if row is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, f"문항 {question_id} 를 찾을 수 없습니다")
-    if payload.session_id is not None and not conn.execute(
-        "SELECT 1 FROM ipe.study_session WHERE id = %s", (payload.session_id,)
-    ).fetchone():
-        raise HTTPException(status.HTTP_404_NOT_FOUND, f"세션 {payload.session_id} 를 찾을 수 없습니다")
 
     is_correct = payload.choice_no == row["answer"]
     with conn.transaction():
+        if payload.session_id is not None:
+            session = conn.execute(SESSION_SQL, (payload.session_id,)).fetchone()
+            if session is None:
+                raise HTTPException(
+                    status.HTTP_404_NOT_FOUND, f"세션 {payload.session_id} 를 찾을 수 없습니다"
+                )
+            if session["finished_at"] is not None:
+                raise HTTPException(
+                    status.HTTP_409_CONFLICT,
+                    "이미 종료된 세션입니다. 계속 풀려면 새 세션을 시작하세요",
+                )
         conn.execute(
             ATTEMPT_SQL,
             (payload.session_id, question_id, payload.choice_no, is_correct, payload.elapsed_ms),
