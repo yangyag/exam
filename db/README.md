@@ -56,7 +56,7 @@
 | `streak` | 연속 정답 수. 틀리면 0으로 되돌림 |
 | `bookmarked` | 북마크 여부 |
 | `note` | 오답 메모(자유 입력) |
-| `review_due_on` | 복습 예정일. NULL 이면 아직 예약 안 함 |
+| `review_due_on` | 복습 예정일(달력 날짜). NULL 이면 아직 예약 안 함. 복습 대상 판정은 한국 날짜(Asia/Seoul) 기준 |
 | `updated_at` | 마지막 갱신 시각 |
 
 원장은 `study_attempt` 이고, 목록·복습 화면은 `study_state` 만 보면 되도록 비정규화해 두었습니다.
@@ -67,7 +67,7 @@
 |---|---|
 | `v_subject_stats` | 과목별 응답 수·정답·오답·정답률(`accuracy_pct`)·학습한 문항 수(`questions_seen`). 응답 0건 과목도 행이 나오고 `accuracy_pct` 는 NULL |
 | `v_wrong_questions` | 한 번이라도 틀린 문항(`wrong_count > 0`). `last_is_correct` 로 미해결 오답만 골라 쓴다 |
-| `v_review_due` | `review_due_on` 이 오늘 이하인 문항. `overdue_days` = 밀린 일수(0=오늘) |
+| `v_review_due` | `review_due_on` 이 오늘(한국 날짜 Asia/Seoul) 이하인 문항. `overdue_days` = 밀린 일수(0=오늘, 클수록 밀림). DB 세션 TimeZone 과 무관하게 Asia/Seoul 날짜로 판정·계산 |
 
 ### 적용
 
@@ -104,7 +104,7 @@ from ipe.v_wrong_questions
 where not last_is_correct
 order by last_answered_at desc nulls last, question_id;
 
--- 3) 오늘까지 복습 예정인 문항
+-- 3) 오늘까지 복습 예정인 문항 (오늘 = 한국 날짜, Asia/Seoul. overdue_days 0=오늘, 1=어제)
 select question_id, exam_id, number, subject_name, review_due_on, overdue_days
 from ipe.v_review_due
 order by review_due_on, question_id;
@@ -146,11 +146,12 @@ on conflict (question_id) do update set
     updated_at       = now();
 ```
 
-`bookmarked`·`note`·`review_due_on` 은 복습 정책에 따라 앱이 정하는 값이라 위 upsert 에서는 건드리지 않습니다(insert 시 `false`/NULL). 필요하면 같은 트랜잭션에서 따로 갱신합니다.
+`bookmarked`·`note`·`review_due_on` 은 복습 정책에 따라 앱이 정하는 값이라 위 upsert 에서는 건드리지 않습니다(insert 시 `false`/NULL). 필요하면 같은 트랜잭션에서 따로 갱신합니다. 복습 예정일은 뷰와 같은 한국 날짜(Asia/Seoul) 기준으로 넣습니다 — 세션 TimeZone(`Etc/UTC` 등)에 따라 `current_date` 가 달라지므로 그 대신 아래 식을 씁니다.
 
 ```sql
 update ipe.study_state
-set bookmarked = true, note = '헷갈림', review_due_on = current_date + 3
+set bookmarked = true, note = '헷갈림',
+    review_due_on = (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Seoul')::date + 3
 where question_id = '2026-1-064';
 ```
 

@@ -117,6 +117,8 @@ ORDER BY st.last_answered_at DESC NULLS LAST, q.id;
 COMMENT ON VIEW ipe.v_wrong_questions IS '한 번이라도 틀린 문항. last_is_correct 로 미해결 오답만 골라 쓸 수 있다';
 
 -- 복습 예정 문항(오늘까지). 모르면 review_due_on 을 채워 넣으면 여기에 뜬다.
+-- '오늘'(비교 날짜)과 overdue_days 는 접속 세션의 TimeZone 이 아니라 한국 날짜(Asia/Seoul) 기준이다.
+-- 시각 응답(timestamptz)은 UTC 그대로 두고, 날짜 비교만 KST 로 고정한다.
 CREATE OR REPLACE VIEW ipe.v_review_due AS
 SELECT q.id            AS question_id,
        q.exam_id,
@@ -126,7 +128,7 @@ SELECT q.id            AS question_id,
        q.stem,
        q.answer,
        st.review_due_on,
-       current_date - st.review_due_on AS overdue_days,
+       (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Seoul')::date - st.review_due_on AS overdue_days,
        st.last_is_correct,
        st.wrong_count,
        st.note
@@ -134,6 +136,6 @@ FROM ipe.study_state st
 JOIN ipe.question q ON q.id = st.question_id
 JOIN ipe.subject sj ON sj.code = q.subject_code
 WHERE st.review_due_on IS NOT NULL
-  AND st.review_due_on <= current_date
+  AND st.review_due_on <= (CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Seoul')::date
 ORDER BY st.review_due_on, q.id;
-COMMENT ON VIEW ipe.v_review_due IS '복습 예정일이 오늘 이하인 문항. overdue_days=0 이면 오늘, 클수록 밀린 것';
+COMMENT ON VIEW ipe.v_review_due IS '복습 예정일이 오늘(한국 날짜 Asia/Seoul) 이하인 문항. overdue_days=0 이면 오늘, 클수록 밀린 것. 세션 TimeZone 과 무관하게 Asia/Seoul 날짜로 판정·계산한다';
