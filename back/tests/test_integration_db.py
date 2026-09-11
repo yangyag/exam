@@ -418,3 +418,59 @@ def test_progress_filters_both_directions_on_live_data(live_client, tracker, db_
     assert unresolved["id"] in still_wrong
     assert resolved["id"] not in still_wrong
     assert bookmark_only["id"] not in still_wrong
+
+
+def test_finished_session_rejects_grading_and_keeps_state_accumulating(live_client, tracker, db_conn):
+    """제출한 세션은 채점을 거부(409)하고 요약이 고정된다. 문항별 누계는 다른 세션으로 계속 쌓인다."""
+    question = pick_question(db_conn)
+    question_id, answer = question["id"], question["answer"]
+    wrong_choice = 1 if answer != 1 else 2
+
+    tracker.snapshot_state(question_id)
+    before = counters(tracker.states[question_id])
+
+    submitted = create_session(live_client)
+    tracker.track_session(submitted)
+    post_answer(live_client, question_id, wrong_choice, sessionId=submitted)
+    finish = live_client.post(f"/api/sessions/{submitted}/finish", headers=auth_headers())
+    assert finish.status_code == 200, finish.text
+    assert finish.json()["finishedAt"] is not None
+    assert finish.json()["answered"] == 1
+    assert finish.json()["correct"] == 0
+
+    # 제출한 세션으로 다시 채점하면 409 — study_attempt 도 study_state 도 늘지 않는다.
+    rejected = live_client.post(
+        f"/api/questions/{question_id}/answer",
+        json={"choiceNo": answer, "sessionId": submitted},
+        headers=auth_headers(),
+    )
+    assert rejected.status_code == 409, rejected.text
+    assert "종료된 세션" in rejected.json()["detail"]
+    assert get_attempts(db_conn, submitted) == [
+        {"choice_no": wrong_choice, "is_correct": False, "elapsed_ms": None}
+    ]
+    state = live_client.get(f"/api/progress/questions/{question_id}").json()
+    assert state["attemptCount"] == before["attempt_count"] + 1
+    assert state["correctCount"] == before["correct_count"]
+
+    def submitted_summary() -> dict:
+        """세션 목록에서 제출한 세션의 요약(answered·correct)만 뽑는다."""
+        sessions = live_client.get("/api/sessions", params={"limit": 50}).json()
+        mine = [item for item in sessions if item["id"] == submitted]
+        assert mine, "방금 만든 세션이 목록에 없다"
+        return mine[0]
+
+    summary = submitted_summary()
+    assert summary["answered"] == 1 and summary["correct"] == 0
+
+    # 계속 풀려면 새 세션 — 문항별 누계는 새 세션의 채점으로 계속 갱신된다.
+    resumed = create_session(live_client)
+    tracker.track_session(resumed)
+    correct = post_answer(live_client, question_id, answer, sessionId=resumed)
+    assert correct["state"]["attemptCount"] == before["attempt_count"] + 2
+    assert correct["state"]["correctCount"] == before["correct_count"] + 1
+    assert correct["state"]["lastIsCorrect"] is True
+
+    # 종료된 세션의 요약은 새 세션의 채점으로도 변하지 않는다.
+    assert submitted_summary()["answered"] == 1
+    assert submitted_summary()["correct"] == 0
