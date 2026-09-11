@@ -51,7 +51,7 @@ mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
 | `exam` | 회차(필수) | NULL(요청에 있어도 저장 안 함) | NULL |
 | `random` | 요청값(보통 NULL) | 요청값(보통 NULL) | NULL |
 
-`end_reason` 은 `random`·연습(`subject`·`review`·`exam_practice`)이 정상 종료되면 `finished`, 새로 구성(`replaceActive`)으로 밀려나면 `abandoned` 다. 모의고사(`exam`)는 지금 `abandoned` 만 실제로 생긴다(최종 제출 API 가 아직 없음).
+`end_reason` 은 정상 종료면 `finished`, 새로 구성(`replaceActive`)으로 밀려나면 `abandoned` 이고 진행 중이면 NULL 이다. `finished` 는 연습(`subject`·`review`·`exam_practice`)이 마지막 문항 채점으로, 모의고사(`exam`)가 `POST /api/sessions/{id}/submit`(최종 일괄 채점)으로, `random` 이 `/finish` 로 생긴다. 중단된 모의고사(`abandoned`)는 제출할 수 없다(409).
 
 **`study_attempt` — 응답 1건 = 1행 (append-only, 수정하지 않음)**
 
@@ -109,7 +109,7 @@ mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
 | `subject` | 과목 사이클 라운드 1 — 과목 전체 풀이 | 과목 문항을 내용 기준 중복 제거·셔플한 목록 | 문항별 즉시 |
 | `review` | 과목 사이클 라운드 2+ — 직전 라운드 오답 복습 | 직전 라운드에서 `is_correct IS FALSE` 인 문항만 다시 섞은 목록 | 문항별 즉시 |
 | `exam_practice` | 회차별 연습 | 회차 문항 번호 순 | 문항별 즉시 |
-| `exam` | 회차 모의고사 | 회차 문항 번호 순 | 제출 전에는 선택만 슬롯에 저장(채점 안 함). 최종 일괄 채점 API 는 아직 없다(설계 5단계 예정) |
+| `exam` | 회차 모의고사 | 회차 문항 번호 순 | 제출 전에는 선택만 슬롯에 저장(채점 안 함). `POST /api/sessions/{id}/submit` 이 한 트랜잭션에서 일괄 채점하고 세션을 `finished` 로 끝낸다(미응답 문항은 0점 처리, 중단된 모의고사는 409) |
 | `random` | 랜덤 출제(설계서에 없는 기존 기능) | 없음 | 기존 `POST /api/questions/{id}/answer` — 호출마다 `study_attempt` 1행 |
 
 ### 라운드와 사이클 흐름
