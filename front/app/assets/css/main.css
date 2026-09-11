@@ -24,8 +24,3 @@ body {
 @utility btn-quiet {
   @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium text-slate-600 transition hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
 }
-
-/* 다음 단계에 연결할 자리 — 눌리지 않는 상태를 시각적으로 분명히 한다 */
-@utility btn-placeholder {
-  @apply inline-flex min-h-11 min-w-11 cursor-not-allowed items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-white px-4 text-sm font-medium text-slate-400;
-}
