@@ -46,10 +46,11 @@ def check_question(q, path, exam_id, errs):
     for i, c in enumerate(ch, 1):
         if c.get("no") != i:
             errs.append(f"{tag}: 보기 번호 불일치 {c.get('no')} (기대 {i})")
-        if not str(c.get("text", "")).strip():
-            errs.append(f"{tag}: 보기 {i} 텍스트 비었음")
-        elif BAD_SPACING.search(str(c.get("text"))):
-            errs.append(f"{tag}: 보기 {i} 에 추출 잔여물 의심 '{c.get('text')[:40]}'")
+        t = c.get("text")
+        if not isinstance(t, str) or not t.strip():
+            errs.append(f"{tag}: 보기 {i} 텍스트 비었음 ({t!r})")
+        elif BAD_SPACING.search(t):
+            errs.append(f"{tag}: 보기 {i} 에 추출 잔여물 의심 '{t[:40]}'")
     a = q.get("answer")
     if not isinstance(a, int) or not 1 <= a <= 4:
         errs.append(f"{tag}: answer 는 1~4 정수 ({a!r})")
@@ -63,12 +64,21 @@ def check_question(q, path, exam_id, errs):
         elif a and correct[0].get("no") != a:
             errs.append(f"{tag}: answer={a} 인데 choicesAnalysis 정답은 {correct[0].get('no')}")
         for c in ca:
-            if not str(c.get("why", "")).strip():
-                errs.append(f"{tag}: 보기 {c.get('no')} 해설 비었음")
+            w = c.get("why")
+            if not isinstance(w, str) or not w.strip():
+                errs.append(f"{tag}: 보기 {c.get('no')} 해설 비었음 ({w!r})")
+        for c in ca:
+            if not isinstance(c.get("correct"), bool):
+                errs.append(f"{tag}: 보기 {c.get('no')} correct 가 bool 이 아님 ({c.get('correct')!r})")
     if not isinstance(q.get("difficulty"), int) or not 1 <= q["difficulty"] <= 5:
         errs.append(f"{tag}: difficulty 는 1~5 정수")
-    if not q.get("tags"):
+    tags = q.get("tags")
+    if not tags:
         errs.append(f"{tag}: tags 비었음")
+    else:
+        for t in tags:
+            if not isinstance(t, str) or not t.strip():
+                errs.append(f"{tag}: 태그가 비었거나 문자열이 아님 ({t!r})")
 
     fig = q.get("figure")
     if not isinstance(fig, dict):
