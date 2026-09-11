@@ -77,7 +77,17 @@ def build():
     }
 
 
+def configure_output():
+    """파이프·리다이렉트(cp949)에서도 출력 때문에 죽지 않게 stdout·stderr 를 UTF-8 로 고정한다."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass
+
+
 def main():
+    configure_output()
     index = build()
     OUT.write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     s = index["stats"]

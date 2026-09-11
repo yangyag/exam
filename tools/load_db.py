@@ -366,7 +366,17 @@ def verify(conn):
     return 0 if ok else 1
 
 
+def configure_output():
+    """파이프·리다이렉트(cp949)에서도 출력 때문에 죽지 않게 stdout·stderr 를 UTF-8 로 고정한다."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError, OSError):
+            pass
+
+
 def main():
+    configure_output()
     ap = argparse.ArgumentParser(description="기출문제 JSON → PostgreSQL(ipe) 적재")
     ap.add_argument("--init", action="store_true", help="db/*.sql 마이그레이션 적용 (000_bootstrap.sql 제외)")
     ap.add_argument("--verify", action="store_true", help="적재 결과 검증")
