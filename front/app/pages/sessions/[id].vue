@@ -239,15 +239,21 @@ function retryLoad() {
 }
 
 // 보기 라벨 색 — 채점 전에는 어떤 보기든 다시 고를 수 있어 선택 여부와 상관없이 hover 색을 주고,
-// 채점 뒤(fieldset 비활성)에는 클릭할 수 없으므로 hover 를 넣지 않는다.
+// 채점 뒤·제출 중(locked, fieldset 비활성)에는 클릭할 수 없으므로 hover 를 넣지 않는다.
 function choiceTone(no: number): string {
   if (result.value) {
     if (no === result.value.answer) return 'border-emerald-300 bg-emerald-50'
     if (no === result.value.choiceNo) return 'border-red-300 bg-red-50'
     return 'border-slate-200 bg-white'
   }
-  if (no === selected.value) return 'border-blue-500 bg-blue-50 ring-1 ring-blue-500 hover:border-blue-600 hover:bg-blue-100'
-  return 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50'
+  if (locked.value) {
+    return no === selected.value
+      ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500'
+      : 'border-slate-200 bg-white'
+  }
+  return no === selected.value
+    ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500 hover:border-blue-600 hover:bg-blue-100'
+    : 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-100'
 }
 
 function analysisFor(no: number) {
@@ -498,8 +504,8 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
                   <label
                     v-for="choice in choices"
                     :key="choice.no"
-                    class="flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border p-3 text-sm transition"
-                    :class="choiceTone(choice.no)"
+                    class="flex min-h-11 items-start gap-3 rounded-xl border p-3 text-sm transition"
+                    :class="[choiceTone(choice.no), locked ? 'cursor-not-allowed' : 'cursor-pointer']"
                     data-tap
                     :data-testid="`practice-choice-${choice.no}`"
                   >
@@ -591,7 +597,7 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
             <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
               <button
                 type="button"
-                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-slate-900"
                 :aria-expanded="showAnalysis"
                 aria-controls="practice-analysis"
                 data-testid="practice-analysis-toggle"

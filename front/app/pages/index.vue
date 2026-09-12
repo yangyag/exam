@@ -304,7 +304,7 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
             role="status"
           >
             회차 진행 상황을 불러오지 못했습니다 — {{ examLoadError.detail }}
-            <button type="button" class="ml-1 font-semibold underline hover:text-blue-700" data-tap @click="refreshExams()">
+            <button type="button" class="ml-1 font-semibold underline hover:text-blue-800" data-tap @click="refreshExams()">
               다시 시도
             </button>
           </p>

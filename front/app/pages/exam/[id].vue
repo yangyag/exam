@@ -169,7 +169,7 @@ function choiceLabelTone(no: number): string {
   }
   return locked
     ? 'border-slate-200 bg-white'
-    : 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50'
+    : 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-100'
 }
 
 // ── 불러오기 ─────────────────────────────────────────────────────────
@@ -623,7 +623,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
             role="status"
           >
             {{ refreshError }}
-            <button type="button" class="ml-2 underline hover:text-blue-700" data-tap @click="refreshSession">다시 불러오기</button>
+            <button type="button" class="ml-2 underline hover:text-blue-800" data-tap @click="refreshSession">다시 불러오기</button>
           </p>
           <ExamQuestionGrid :cells="gridCells" mode="result" :current-seq="explainSeq" @select="openExplanation" />
           <p class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -748,7 +748,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
             <div class="mt-4 overflow-hidden rounded-xl border border-slate-200">
               <button
                 type="button"
-                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
+                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-slate-900"
                 :aria-expanded="showAnalysis"
                 aria-controls="exam-explain-analysis"
                 data-tap
@@ -800,7 +800,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
           <template v-if="saving">선택을 저장하는 중…</template>
           <template v-else-if="saveError">
             선택을 저장하지 못했습니다 — {{ saveError }}
-            <button type="button" class="ml-1 font-semibold underline hover:text-blue-700" data-tap data-testid="exam-save-retry" @click="retrySave">
+            <button type="button" class="ml-1 font-semibold underline hover:text-blue-800" data-tap data-testid="exam-save-retry" @click="retrySave">
               다시 시도
             </button>
           </template>
@@ -893,8 +893,8 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
                 <label
                   v-for="choice in choices"
                   :key="choice.no"
-                  class="flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border p-3 text-sm transition"
-                  :class="choiceLabelTone(choice.no)"
+                  class="flex min-h-11 items-start gap-3 rounded-xl border p-3 text-sm transition"
+                  :class="[choiceLabelTone(choice.no), saving || submitting ? 'cursor-not-allowed' : 'cursor-pointer']"
                   data-tap
                   :data-testid="`exam-choice-${choice.no}`"
                 >
@@ -1000,7 +1000,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
           <section class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6" data-testid="exam-grid-panel">
             <button
               type="button"
-              class="flex min-h-11 w-full items-center justify-between gap-2 text-left transition hover:bg-slate-100"
+              class="flex min-h-11 w-full items-center justify-between gap-2 text-left transition hover:bg-slate-200 hover:text-slate-900"
               :aria-expanded="gridOpen"
               aria-controls="exam-grid"
               data-tap
