@@ -166,15 +166,20 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
             과목별 학습 사이클<span v-if="subjects.length"> · 과목별 고유 문항 합계 {{ totalUnique }}개 (과목마다 중복 제거)</span>
           </p>
         </div>
-        <button
-          type="button"
-          class="btn-quiet shrink-0"
-          data-tap
-          :disabled="pending"
-          @click="refreshAll()"
-        >
-          {{ pending ? '불러오는 중…' : '새로고침' }}
-        </button>
+        <div class="flex shrink-0 items-center gap-1">
+          <NuxtLink to="/history" class="btn-quiet" data-tap data-testid="home-history-link">
+            이전 결과
+          </NuxtLink>
+          <button
+            type="button"
+            class="btn-quiet"
+            data-tap
+            :disabled="pending"
+            @click="refreshAll()"
+          >
+            {{ pending ? '불러오는 중…' : '새로고침' }}
+          </button>
+        </div>
       </div>
     </header>
 

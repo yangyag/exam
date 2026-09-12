@@ -10,11 +10,17 @@
  *      이때 시작하기/새로 구성이 보내는 본문도 검사한다. DB 는 건드리지 않는다(실제 요청 차단).
  *   3) 연습 화면(문항·제출·해설·보기별 해설·라운드 종료·다음 라운드)과 충돌(409·중단) 안내도
  *      대체 응답으로 캡처한다 — 코드·지문·표·도식 네 종류를 지나가며, 보기 선택과 제출은
- *      키보드만으로 되는지 확인한다. 연습 픽스처는 실제 데이터셋 문항이다(scripts/practice-fixtures.mjs).
+ *      키보드만으로 되는지 확인한다. **보기별 해설은 오답이면 자동으로 펼쳐지고 정답이면 접힘을
+ *      유지하는지**(설계 9.1절 2-b), 그 뒤에도 직접 접기·펼치기가 되는지 함께 본다.
+ *      연습 픽스처는 실제 데이터셋 문항이다(scripts/practice-fixtures.mjs).
  *   4) 회차별 연습·모의고사 — 회차 선택(13행·이어풀기·409 대화상자), 모의고사 풀이(정답·해설 미노출,
  *      선택 즉시 저장, 번호 그리드 100칸, 미응답 강조 제출 확인), 결과(요약·과목별 점수·문항 그리드·
  *      해설 재조회)를 대체 응답으로 캡처하고 키보드만으로 보기 선택·문항 이동이 되는지 확인한다.
  *      픽스처는 scripts/exam-fixtures.mjs(실 DB 응답에서 옮긴 회차 13행 + 실제 데이터셋 문항).
+ *   5) 이전 결과 화면(/history) — 과목별 최근 사이클(완료·진행 중·중단)·이어서 풀기 경로·
+ *      회차 세션(응답/문항·제출 시각·합격 여부)·빈 상태를 대체 응답으로 캡처하고,
+ *      실 DB 로도 한 번 열어 홈의 '이전 결과' 링크부터 화면 값까지 확인한다
+ *      (전부 조회라 진도 테이블은 그대로다).
  *
  * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) 로 바꿀 수 있다.
  */
@@ -40,6 +46,12 @@ import {
   TABLE_QUESTION,
   TEXT_QUESTION,
 } from './practice-fixtures.mjs'
+import {
+  CYCLES_BY_SUBJECT,
+  HISTORY_SESSIONS,
+  HISTORY_SUBJECTS,
+  historySessionDetail,
+} from './history-fixtures.mjs'
 
 const frontDir = path.resolve(fileURLToPath(new URL('..', import.meta.url)))
 const repoRoot = path.resolve(frontDir, '..')
@@ -348,6 +360,78 @@ async function captureRealData(browser) {
   await auditLayout(page, '회차 선택 실제 데이터 375')
   if (problems.length === beforeExamsChecks) pass('실제 데이터 회차 목록 13행·제목·문항 수 확인')
   await page.setViewportSize(DESKTOP)
+  await sleep(200)
+
+  // 이전 결과 화면도 실 데이터로 — 홈의 '이전 결과' 링크로 들어가 화면 값을 API 값과 맞춰 본다(조회만)
+  await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+  await page.waitForSelector('[data-testid="subject-card"]', { timeout: 60000 })
+  const historyHref = await page.locator('[data-testid="home-history-link"]').getAttribute('href')
+  if (historyHref === '/history') pass(`홈 헤더 이전 결과 링크 → ${historyHref}`)
+  else fail(`홈의 이전 결과 링크가 예상과 다릅니다: ${historyHref}`)
+  await page.locator('[data-testid="home-history-link"]').click()
+  await page.waitForURL('**/history', { timeout: 15000 })
+    .then(() => pass('홈의 이전 결과 링크로 /history 이동'))
+    .catch(() => fail('이전 결과 링크가 /history 로 이동하지 않았습니다'))
+  await page.waitForSelector('[data-testid="history-cycles"]', { timeout: 60000 })
+  await sleep(400)
+
+  const beforeHistoryChecks = problems.length
+  const apiJson = (path) => fetch(`${apiOrigin}${path}`).then(response => response.json())
+  const [realExams, realSessions, ...realCycles] = await Promise.all([
+    apiJson('/api/exams'),
+    apiJson('/api/sessions?limit=50'),
+    ...[1, 2, 3, 4, 5].map(code => apiJson(`/api/subject-cycles?subjectCode=${code}&limit=1`)),
+  ])
+
+  const statusLabels = { active: '진행 중', completed: '완료', abandoned: '중단' }
+  for (const [index, code] of [1, 2, 3, 4, 5].entries()) {
+    const cycle = (realCycles[index] ?? [])[0] ?? null
+    const where = `[이력] ${code}과목`
+    if (!cycle) {
+      const none = await page.locator(`[data-testid="history-cycle-none-${code}"]`).count()
+      if (none === 1) pass(`${where} 사이클 없음 안내(실 데이터)`)
+      else fail(`${where} 에 사이클이 없는데 '없음' 안내가 ${none}개입니다`)
+      continue
+    }
+    const badge = (await page.locator(`[data-testid="history-cycle-status-${code}"]`).innerText()).trim()
+    const rounds = await page.locator(`[data-testid^="history-cycle-round-${code}-"]`).count()
+    if (badge === statusLabels[cycle.status] && rounds === (cycle.rounds ?? []).length) {
+      pass(`${where} 최근 사이클 #${cycle.id} ${badge} · 라운드 ${rounds}개(실 데이터)`)
+    } else {
+      fail(`${where} 사이클 표시가 API 와 다릅니다: 배지 ${badge}(${statusLabels[cycle.status]}) · 라운드 ${rounds}(${(cycle.rounds ?? []).length})`)
+    }
+    const openRound = (cycle.rounds ?? []).find(round => !round.finishedAt)
+    if (cycle.status === 'active' && openRound) {
+      const href = await page.locator(`[data-testid="history-cycle-resume-${code}"]`).getAttribute('href')
+      if (href === `/sessions/${openRound.sessionId}`) pass(`${where} 이어서 풀기 → ${href}(실 데이터)`)
+      else fail(`${where} 이어서 풀기 경로가 다릅니다: ${href}`)
+    }
+  }
+
+  const realHistorySessions = realSessions.filter(session => session.examId && (session.mode === 'exam' || session.mode === 'exam_practice'))
+  const cards = await countHistorySessionCards(page)
+  if (cards === realHistorySessions.length) pass(`[이력] 회차 세션 ${cards}건 표시(API ${realHistorySessions.length}건, 실 데이터)`)
+  else fail(`[이력] 회차 세션 카드 ${cards}건이 API ${realHistorySessions.length}건과 다릅니다`)
+  const emptyNote = await page.locator('[data-testid="history-sessions-empty"]').count()
+  if (emptyNote === (realHistorySessions.length === 0 ? 1 : 0)) pass(`[이력] 회차 세션 빈 상태 안내 ${emptyNote}개(실 데이터)`)
+  else fail(`[이력] 회차 세션 빈 상태 안내가 ${emptyNote}개입니다`)
+  const answeredLine = realHistorySessions[0]
+    ? `응답 ${realHistorySessions[0].answered}`
+    : ''
+  if (!answeredLine || (await page.locator(`[data-testid="history-session-${realHistorySessions[0].id}"]`).innerText()).includes(answeredLine)) {
+    pass(`[이력] 실 데이터 회차 세션 값 일치${answeredLine ? ` (${answeredLine})` : ''}`)
+  } else {
+    fail('[이력] 실 데이터 회차 세션 값이 API 와 다릅니다')
+  }
+  if (problems.length === beforeHistoryChecks) pass(`[이력] 실 데이터 ${realExams.length}회차·사이클 ${realCycles.flat().length}건으로 화면 값 확인`)
+
+  await save(page, 'history-real-desktop-1280x900.png')
+  await auditLayout(page, '이전 결과 실제 데이터 1280')
+  await page.setViewportSize(MOBILE)
+  await sleep(300)
+  await save(page, 'history-real-mobile-375x812.png')
+  await auditLayout(page, '이전 결과 실제 데이터 375')
+  await page.setViewportSize(DESKTOP)
 
   if (errors.length === 0) pass('브라우저 콘솔 오류 0')
   else for (const message of errors) fail(`[실제 데이터] ${message}`)
@@ -599,6 +683,7 @@ async function captureEmpty(browser) {
  * 연습 화면 전용 대체 API — 세션·슬롯·제출 응답만 만든다(DB 무변경).
  * 실제 API 처럼 조회 응답에는 정답·해설을 넣지 않고, 채점 응답(PUT)에만 싣는다.
  *  7001 라운드1(코드·지문·표·도식 4문항) → 7002 오답 복습(표 1문항) → 사이클 완료
+ *  7003 오답 복습 라운드(코드 1문항, 틀려서 다음 라운드로 이어짐)
  *  7101 제출 충돌(첫 제출 응답 유실 → 다른 보기 재제출 409)
  *  7102 중단된 세션(안내 + 홈으로)
  */
@@ -606,6 +691,7 @@ async function stubPracticeApi(context, { conflict = false } = {}) {
   const sessions = {
     7001: { mode: 'subject', roundNo: 1, subjectCode: 4, questions: ROUND1_QUESTIONS, cycleId: 9001 },
     7002: { mode: 'review', roundNo: 2, subjectCode: 4, questions: ROUND2_QUESTIONS, cycleId: 9001 },
+    7003: { mode: 'review', roundNo: 2, subjectCode: 4, questions: [TABLE_QUESTION], cycleId: 9003 },
     7101: { mode: 'exam_practice', roundNo: null, subjectCode: null, questions: [CODE_QUESTION, TEXT_QUESTION], cycleId: null },
     7102: { mode: 'subject', roundNo: 1, subjectCode: 4, questions: ROUND1_QUESTIONS, cycleId: 9001, abandoned: true },
     7103: { mode: 'subject', roundNo: 1, subjectCode: 4, questions: [], cycleId: 9002 },
@@ -737,6 +823,11 @@ async function stubPracticeApi(context, { conflict = false } = {}) {
         result.roundResult = { roundNo: 2, itemCount: count, correct: count, wrong: 0 }
         result.cycle = { id: 9001, status: 'completed', nextSessionId: null, nextRoundNo: null, nextItemCount: null }
       }
+      if (finished && id === '7003') {
+        // 오답이 남아 다음 복습 라운드로 이어진다(화면은 다음 라운드 버튼까지만 확인한다)
+        result.roundResult = { roundNo: 2, itemCount: count, correct: correctOf(id), wrong: count - correctOf(id) }
+        result.cycle = { id: 9003, status: 'active', nextSessionId: 7004, nextRoundNo: 3, nextItemCount: 1 }
+      }
       return route.fulfill(json(result))
     }
 
@@ -837,14 +928,24 @@ async function capturePractice(browser) {
   await save(page, 'practice-graded-desktop-1280x900.png')
   await auditLayout(page, '연습 채점 데스크톱 1280')
 
-  if (await page.locator('[data-testid="practice-analysis"]').count() === 0) pass('[연습] 보기별 해설 기본 접힘')
-  else fail('[연습] 보기별 해설이 기본으로 펼쳐져 있습니다')
+  // 정답 → 보기별 해설은 접힘 유지, 그 뒤 직접 접기·펼치기는 그대로 동작한다(설계 9.1절 2-b)
+  if (await page.locator('[data-testid="practice-analysis"]').count() === 0) pass('[연습] 정답 제출 → 보기별 해설 접힘 유지')
+  else fail('[연습] 정답인데 보기별 해설이 자동으로 펼쳐졌습니다')
+  if (await page.locator('[data-testid="practice-analysis-toggle"]').getAttribute('aria-expanded') === 'false') {
+    pass('[연습] 접힘 상태의 토글 aria-expanded=false')
+  } else {
+    fail('[연습] 접힘 상태인데 토글이 aria-expanded=false 가 아닙니다')
+  }
   await page.locator('[data-testid="practice-analysis-toggle"]').click()
   await page.waitForSelector('[data-testid="practice-analysis"]', { timeout: 10000 })
   const analysisRows = await page.locator('[data-testid="practice-analysis"] li').count()
-  if (analysisRows === 4) pass('[연습] 보기별 해설 펼치기 → 4개 확인')
+  if (analysisRows === 4) pass('[연습] 보기별 해설 직접 펼치기 → 4개 확인')
   else fail(`[연습] 보기별 해설 항목이 4개가 아닙니다: ${analysisRows}`)
   await save(page, 'practice-graded-analysis-desktop-1280x900.png')
+  await page.locator('[data-testid="practice-analysis-toggle"]').click()
+  await page.waitForSelector('[data-testid="practice-analysis"]', { state: 'detached', timeout: 10000 })
+    .then(() => pass('[연습] 보기별 해설 직접 접기 동작'))
+    .catch(() => fail('[연습] 보기별 해설을 직접 접지 못했습니다'))
 
   await page.setViewportSize(MOBILE)
   await sleep(300)
@@ -871,7 +972,30 @@ async function capturePractice(browser) {
   const wrongVerdict = (await page.locator('[data-testid="practice-verdict"]').innerText()).trim()
   if (wrongVerdict.includes('오답')) pass(`[연습] 오답 표시: ${wrongVerdict}`)
   else fail(`[연습] 오답 문항이 오답으로 표시되지 않았습니다: ${wrongVerdict}`)
+  // 오답이면 보기별 해설이 저절로 펼쳐진다(설계 9.1절 2-b)
+  const wrongToggle = await page.locator('[data-testid="practice-analysis-toggle"]').getAttribute('aria-expanded')
+  const wrongRows = await page.locator('[data-testid="practice-analysis"] li').count()
+  if (wrongToggle === 'true' && wrongRows === 4) pass(`[연습] 오답 제출 → 보기별 해설 자동 펼침(${wrongRows}개)`)
+  else fail(`[연습] 오답인데 보기별 해설이 자동으로 펼쳐지지 않았습니다: aria-expanded=${wrongToggle} rows=${wrongRows}`)
   await save(page, 'practice-graded-wrong-desktop-1280x900.png')
+
+  await page.setViewportSize(MOBILE)
+  await sleep(300)
+  await save(page, 'practice-wrong-analysis-open-mobile-375x812.png')
+  await auditLayout(page, '연습 오답 자동 펼침 모바일 375')
+  await page.setViewportSize(DESKTOP)
+  await sleep(200)
+
+  // 자동 펼침 뒤에도 직접 접기·다시 펼치기가 그대로 동작한다
+  await page.locator('[data-testid="practice-analysis-toggle"]').click()
+  await page.waitForSelector('[data-testid="practice-analysis"]', { state: 'detached', timeout: 10000 })
+    .then(() => pass('[연습] 자동 펼친 보기별 해설을 직접 접기'))
+    .catch(() => fail('[연습] 자동 펼친 보기별 해설을 접지 못했습니다'))
+  await save(page, 'practice-wrong-analysis-closed-desktop-1280x900.png')
+  await page.locator('[data-testid="practice-analysis-toggle"]').click()
+  await page.waitForSelector('[data-testid="practice-analysis"]', { timeout: 10000 })
+    .then(() => pass('[연습] 접은 보기별 해설을 다시 직접 펼치기'))
+    .catch(() => fail('[연습] 접은 보기별 해설을 다시 펼치지 못했습니다'))
 
   await page.locator('[data-testid="practice-next"]').click()
   await page.waitForSelector('[data-testid="practice-figure"]', { timeout: 30000 })
@@ -894,9 +1018,13 @@ async function capturePractice(browser) {
     tinted: Array.from(document.querySelectorAll('[data-testid^="practice-choice-"]'))
       .filter((el) => /emerald|red-/.test(el.className)).length,
     resultPanels: document.querySelectorAll('[data-testid="practice-result"]').length,
+    analysis: document.querySelectorAll('[data-testid="practice-analysis"]').length,
   }))
-  if (stale.tinted === 0 && stale.resultPanels === 0) pass('[연습] 다음 문항에서 정오답 색·해설 패널이 초기화됨')
-  else fail(`[연습] 앞 문항 채점 상태가 남았습니다: ${JSON.stringify(stale)}`)
+  if (stale.tinted === 0 && stale.resultPanels === 0 && stale.analysis === 0) {
+    pass('[연습] 다음 문항에서 정오답 색·해설 패널·보기별 해설이 초기화됨')
+  } else {
+    fail(`[연습] 앞 문항 채점 상태가 남았습니다: ${JSON.stringify(stale)}`)
+  }
   await save(page, 'practice-question-figure-desktop-1280x900.png')
 
   // 마지막 문항 제출 → 라운드 종료 요약
@@ -927,7 +1055,25 @@ async function capturePractice(browser) {
   await page.locator('[data-testid="practice-submit"]').click()
   await page.waitForSelector('[data-testid="practice-cycle-completed"]', { timeout: 30000 })
   pass('[연습] 오답이 없어 사이클 완료 안내 표시')
+  // 복습 라운드도 정답이면 접힘을 유지한다(같은 규칙)
+  if (await page.locator('[data-testid="practice-analysis"]').count() === 0) pass('[연습] 복습 라운드 정답 → 보기별 해설 접힘 유지')
+  else fail('[연습] 복습 라운드 정답인데 보기별 해설이 펼쳐졌습니다')
   await save(page, 'practice-cycle-completed-desktop-1280x900.png')
+
+  // 복습 라운드에서 틀리면 같은 규칙으로 자동 펼침
+  await page.goto(`${baseUrl}/sessions/7003`, { waitUntil: 'domcontentloaded', timeout: 60000 })
+  await page.waitForSelector('[data-testid="practice-item"]', { timeout: 60000 })
+  await page.locator('[data-testid="practice-choice-4"]').click()
+  await page.locator('[data-testid="practice-submit"]').click()
+  await page.waitForSelector('[data-testid="practice-round-end"]', { timeout: 30000 })
+  const reviewToggle = await page.locator('[data-testid="practice-analysis-toggle"]').getAttribute('aria-expanded')
+  const reviewRows = await page.locator('[data-testid="practice-analysis"] li').count()
+  const reviewRound = (await page.locator('[data-testid="practice-round-end"]').innerText()).replace(/\s+/g, ' ')
+  if (reviewToggle === 'true' && reviewRows === 4) pass(`[연습] 복습 라운드 오답 → 보기별 해설 자동 펼침(${reviewRows}개)`)
+  else fail(`[연습] 복습 라운드 오답이 자동으로 펼쳐지지 않았습니다: aria-expanded=${reviewToggle} rows=${reviewRows}`)
+  if (/오답 1/.test(reviewRound) && /정답 0/.test(reviewRound)) pass(`[연습] 복습 라운드 결과 요약: ${reviewRound.slice(0, 40)}`)
+  else fail(`[연습] 복습 라운드 결과 요약이 다릅니다: ${reviewRound.slice(0, 80)}`)
+  await save(page, 'practice-review-wrong-analysis-desktop-1280x900.png')
 
   if (errors.length === 0) pass('[연습] 브라우저 콘솔 오류 0')
   else for (const message of errors) fail(`[연습] ${message}`)
@@ -1644,6 +1790,171 @@ async function captureExamClosed(browser) {
   }
 }
 
+/**
+ * 이전 결과 화면(/history) 전용 대체 API — 조회(GET)만 있는 화면이라 쓰기 경로는 흉내 내지 않는다.
+ * GET /api/sessions/{id} 는 제출이 끝난 모의고사의 합격 여부(examResult)를 주는 경로라, 어느 세션을
+ * 조회했는지(details)를 모아 두고 확인한다 — 중단·연습 세션은 결과가 없어 조회하지 않아야 한다.
+ *   empty=true 면 사이클도 회차 세션도 없는 상태(빈 상태 화면)를 만든다.
+ */
+async function stubHistoryApi(context, { empty = false, sessions = HISTORY_SESSIONS, cycles = CYCLES_BY_SUBJECT } = {}) {
+  const details = []
+  const json = (data, status = 200) => ({
+    status,
+    headers: { 'content-type': 'application/json', 'access-control-allow-origin': '*' },
+    body: JSON.stringify(data),
+  })
+
+  await context.route(`${apiOrigin}/**`, async (route) => {
+    const request = route.request()
+    const url = new URL(request.url())
+    const pathname = url.pathname
+    if (pathname.startsWith('/figures/')) return route.continue()
+
+    if (pathname === '/api/subjects') return route.fulfill(json(HISTORY_SUBJECTS))
+    if (pathname === '/api/subject-cycles') {
+      if (request.method() !== 'GET') return route.fulfill(json({ detail: '이 화면은 조회만 합니다' }, 405))
+      const subjectCode = Number(url.searchParams.get('subjectCode'))
+      return route.fulfill(json(empty ? [] : (cycles[subjectCode] ?? [])))
+    }
+    if (pathname === '/api/exams') return route.fulfill(json(EXAM_LIST))
+    if (pathname === '/api/sessions') return route.fulfill(json(empty ? [] : sessions))
+
+    const detailMatch = pathname.match(/^\/api\/sessions\/(\d+)$/)
+    if (detailMatch) {
+      const id = Number(detailMatch[1])
+      details.push(id)
+      const session = sessions.find(entry => entry.id === id)
+      if (!session) return route.fulfill(json({ detail: `세션 ${id} 를 찾을 수 없습니다` }, 404))
+      return route.fulfill(json(historySessionDetail(session)))
+    }
+
+    return route.fulfill(json({ detail: `stub 이력: 정의되지 않은 경로 ${pathname}` }, 404))
+  })
+
+  return { details }
+}
+
+/** 회차 세션 카드 수 — 상태·합격 배지·링크도 같은 접두사를 쓰므로 숫자로 끝나는 testid 만 센다 */
+function countHistorySessionCards(page) {
+  return page.evaluate(() => Array.from(document.querySelectorAll('[data-testid^="history-session-"]'))
+    .filter(el => /^history-session-\d+$/.test(el.getAttribute('data-testid') || '')).length)
+}
+
+/** 이전 결과 화면 — 과목별 최근 사이클(완료·진행 중·중단)·회차 세션·합격 여부·빈 상태 */
+async function captureHistory(browser) {
+  console.log('\n[11] 이전 결과 — 과목별 사이클·회차 세션·빈 상태 (API 대체, DB 무변경)')
+  const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
+  const { details } = await stubHistoryApi(context)
+  const page = await context.newPage()
+  const errors = watchConsole(page)
+  const before = problems.length
+
+  await page.setViewportSize(DESKTOP)
+  await page.goto(`${baseUrl}/history`, { waitUntil: 'domcontentloaded', timeout: 120000 })
+  await page.waitForSelector('[data-testid="history-cycles"]', { timeout: 90000 })
+  // 합격 여부는 목록 뒤에 도착한다 — 배지가 뜰 때까지 기다린다
+  await page.waitForSelector('[data-testid="history-session-result-7301"]', { timeout: 30000 })
+
+  const statusOf = async (code) => (await page.locator(`[data-testid="history-cycle-status-${code}"]`).innerText()).trim()
+  const statuses = [await statusOf(1), await statusOf(2), await statusOf(3)]
+  if (statuses.join('/') === '완료/진행 중/중단') pass(`[이력] 과목별 사이클 상태: 1과목 ${statuses[0]} · 2과목 ${statuses[1]} · 3과목 ${statuses[2]}`)
+  else fail(`[이력] 사이클 상태 표시가 다릅니다: ${statuses.join(' / ')}`)
+
+  const rounds1 = await page.locator('[data-testid^="history-cycle-round-1-"]').count()
+  const rounds2 = await page.locator('[data-testid^="history-cycle-round-2-"]').count()
+  if (rounds1 === 2 && rounds2 === 2) pass(`[이력] 라운드별 줄 표시(1과목 ${rounds1}개 · 2과목 ${rounds2}개)`)
+  else fail(`[이력] 라운드 줄 수가 예상과 다릅니다: 1과목 ${rounds1} · 2과목 ${rounds2}`)
+
+  const round1 = (await page.locator('[data-testid="history-cycle-round-1-1"]').innerText()).replace(/\s+/g, ' ')
+  if (round1.includes('푼 문항 176 / 176') && round1.includes('정답 150')) pass(`[이력] 라운드 문항/정답 수: ${round1.slice(0, 50)}`)
+  else fail(`[이력] 라운드 문항·정답 수가 예상과 다릅니다: ${round1.slice(0, 92)}`)
+
+  const resumeHref = await page.locator('[data-testid="history-cycle-resume-2"]').getAttribute('href')
+  if (resumeHref === '/sessions/7321') pass(`[이력] 진행 중 사이클 이어서 풀기 → ${resumeHref}`)
+  else fail(`[이력] 이어서 풀기 경로가 예상과 다릅니다: ${resumeHref}`)
+  if (await page.locator('[data-testid="history-cycle-resume-1"]').count() === 0) pass('[이력] 끝난 사이클에는 이어서 풀기가 없음')
+  else fail('[이력] 완료 사이클에 이어서 풀기가 붙었습니다')
+  const noneNotes = await page.locator('[data-testid="history-cycle-none-4"]').count() + await page.locator('[data-testid="history-cycle-none-5"]').count()
+  if (noneNotes === 2) pass('[이력] 사이클이 없는 과목은 안내 문구로 대체')
+  else fail(`[이력] 사이클 없는 과목 안내가 ${noneNotes}개입니다(기대 2개)`)
+
+  await save(page, 'history-desktop-1280x900.png')
+  await auditLayout(page, '이전 결과 데스크톱 1280')
+  await page.setViewportSize(MOBILE)
+  await sleep(300)
+  await save(page, 'history-mobile-375x812.png')
+  await auditLayout(page, '이전 결과 모바일 375')
+  await page.setViewportSize(DESKTOP)
+  await sleep(200)
+
+  // ② 회차 세션 — 사이클 라운드(examId 없음, 7320)는 빠지고 회차 5건만 남아야 한다
+  const cards = await countHistorySessionCards(page)
+  if (cards === 5) pass('[이력] 회차 세션 5건만 표시(사이클 라운드 7320 제외)')
+  else fail(`[이력] 회차 세션 카드가 ${cards}건입니다(기대 5건)`)
+  if (await page.locator('[data-testid="history-session-7320"]').count() === 0) pass('[이력] examId 없는 사이클 라운드는 목록에서 제외')
+  else fail('[이력] 사이클 라운드가 회차 세션 목록에 섞였습니다')
+
+  const examRow = (await page.locator('[data-testid="history-session-7301"]').innerText()).replace(/\s+/g, ' ')
+  if (examRow.includes('2026년 1회 정보처리기사 필기') && examRow.includes('응답 92 / 100문항') && examRow.includes('제출')) {
+    pass(`[이력] 회차·응답/문항·제출 시각: ${examRow.slice(0, 62)}`)
+  } else {
+    fail(`[이력] 회차 세션 문구가 예상과 다릅니다: ${examRow.slice(0, 110)}`)
+  }
+
+  const passBadge = (await page.locator('[data-testid="history-session-result-7301"]').innerText()).replace(/\s+/g, ' ')
+  const failBadge = (await page.locator('[data-testid="history-session-result-7302"]').innerText()).replace(/\s+/g, ' ')
+  if (/^합격 · 평균 87점 · 미응답 8$/.test(passBadge) && /^불합격 · 평균 55점 · 미응답 0$/.test(failBadge)) {
+    pass(`[이력] 합격 여부: ${passBadge} / ${failBadge}`)
+  } else {
+    fail(`[이력] 합격 여부 표시가 예상과 다릅니다: ${passBadge} / ${failBadge}`)
+  }
+
+  if (await page.locator('[data-testid="history-session-result-7303"]').count() === 0) pass('[이력] 중단된 모의고사에는 결과 배지 없음')
+  else fail('[이력] 중단된 모의고사에 결과 배지가 붙었습니다')
+
+  const examLink = await page.locator('[data-testid="history-session-link-7301"]').getAttribute('href')
+  const practiceLink = await page.locator('[data-testid="history-session-link-7304"]').getAttribute('href')
+  const openLink = await page.locator('[data-testid="history-session-link-7305"]').getAttribute('href')
+  const openLabel = (await page.locator('[data-testid="history-session-link-7305"]').innerText()).trim()
+  if (examLink === '/exam/7301' && practiceLink === '/sessions/7304' && openLink === '/sessions/7305' && openLabel === '이어서 풀기') {
+    pass(`[이력] 이동 경로 — 모의고사 ${examLink} · 회차 연습 ${practiceLink} · 열린 연습 ${openLink}(${openLabel})`)
+  } else {
+    fail(`[이력] 이동 경로가 예상과 다릅니다: ${examLink} / ${practiceLink} / ${openLink}(${openLabel})`)
+  }
+
+  if (details.includes(7301) && details.includes(7302) && !details.includes(7303) && !details.includes(7304) && !details.includes(7305)) {
+    pass(`[이력] 합격 여부는 제출한 모의고사만 조회(조회한 세션 ${details.join(', ')})`)
+  } else {
+    fail(`[이력] 결과 조회 대상이 예상과 다릅니다: ${details.join(', ')}`)
+  }
+
+  if (errors.length === 0) pass('[이력] 브라우저 콘솔 오류 0')
+  else for (const message of errors) fail(`[이력] ${message}`)
+  await context.close()
+
+  // 빈 상태 — 사이클도 회차 세션도 없을 때
+  const emptyContext = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
+  await stubHistoryApi(emptyContext, { empty: true })
+  const emptyPage = await emptyContext.newPage()
+  const emptyErrors = watchConsole(emptyPage)
+  await emptyPage.setViewportSize(DESKTOP)
+  await emptyPage.goto(`${baseUrl}/history`, { waitUntil: 'domcontentloaded', timeout: 120000 })
+  await emptyPage.waitForSelector('[data-testid="history-empty"]', { timeout: 60000 })
+  const emptyText = (await emptyPage.locator('[data-testid="history-empty"]').innerText()).replace(/\s+/g, ' ')
+  if (emptyText.includes('아직 기록이 없습니다') && emptyText.includes('홈에서 시작하기')) {
+    pass(`[이력] 빈 상태 안내: ${emptyText.slice(0, 46)}`)
+  } else {
+    fail(`[이력] 빈 상태 안내가 예상과 다릅니다: ${emptyText.slice(0, 90)}`)
+  }
+  await save(emptyPage, 'history-empty-desktop-1280x900.png')
+  await auditLayout(emptyPage, '이전 결과 빈 상태 데스크톱 1280')
+  if (emptyErrors.length === 0) pass('[이력] 빈 상태 브라우저 콘솔 오류 0')
+  else for (const message of emptyErrors) fail(`[이력] 빈 상태 ${message}`)
+  await emptyContext.close()
+
+  return problems.length - before
+}
+
 async function main() {
   mkdirSync(shotsDir, { recursive: true })
 
@@ -1666,6 +1977,7 @@ async function main() {
     await captureExamsList(browser)
     await captureExamTaking(browser)
     await captureExamClosed(browser)
+    await captureHistory(browser)
   } finally {
     await browser.close()
     stopDevServer(devServer)

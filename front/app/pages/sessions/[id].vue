@@ -40,8 +40,16 @@ const result = ref<GradeResult | null>(null)
 const nextSeq = ref<number | null>(null)
 const roundResult = ref<RoundResult | null>(null)
 const cycle = ref<CycleResult | null>(null)
-/** 보기별 해설 접기·펼치기 — 기본은 접힘(기본안) */
+/** 보기별 해설 접기·펼치기 — 채점 결과가 오답이면 자동으로 펼치고 정답이면 접는다(설계 9.1절 2-b) */
 const showAnalysis = ref(false)
+
+/**
+ * 보기별 해설 초기 상태 — 오답일 때만 펼치고 정답·미채점은 접는다.
+ * 사용자가 그 뒤에 직접 토글한 결과를 덮어쓰지 않도록 채점 응답·슬롯 복원 시점에만 부른다.
+ */
+function showAnalysisFor(grade: GradeResult | null) {
+  showAnalysis.value = Boolean(grade && !grade.isCorrect)
+}
 
 // ── 진행 표시 ────────────────────────────────────────────────────────
 const progress = ref({ itemCount: 0, answeredCount: 0 })
@@ -144,8 +152,9 @@ async function loadItem(target: number): Promise<SessionItemDetail | null> {
     if (token !== itemToken) return null
     item.value = data
     selected.value = data.choiceNo ?? null
-    // 이미 채점된 슬롯이면 저장된 결과를 그대로 보여준다(다시 제출하지 않는다)
+    // 이미 채점된 슬롯이면 저장된 결과를 그대로 보여준다(다시 제출하지 않는다) — 접기 상태도 그 정오답을 따른다
     result.value = data.result ?? null
+    showAnalysisFor(data.result ?? null)
     itemShownAt = Date.now()
     return data
   } catch (caught) {
@@ -162,7 +171,7 @@ function applyGrade(data: SlotGradeResult) {
   nextSeq.value = data.session?.nextSeq ?? null
   roundResult.value = data.roundResult ?? null
   cycle.value = data.cycle ?? null
-  showAnalysis.value = false
+  showAnalysisFor(data)
   resumed.value = false
   progress.value = {
     itemCount: data.session?.itemCount ?? progress.value.itemCount,
@@ -213,6 +222,7 @@ function goNext() {
   selected.value = null
   submitError.value = null
   conflictNote.value = null
+  // 다음 슬롯을 불러오면서 그 슬롯의 정오답에 맞는 상태로 다시 정해진다(loadItem)
   showAnalysis.value = false
   seq.value = target
 }
@@ -568,7 +578,7 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
               <span class="font-semibold text-slate-900">핵심 개념</span> — {{ result.keyPoint }}
             </p>
 
-            <!-- 보기별 해설: 기본은 접힘(기본안), 펼치면 4개 보기 전부 -->
+            <!-- 보기별 해설: 오답이면 자동 펼침·정답이면 접힘, 펼치면 4개 보기 전부(직접 토글 가능) -->
             <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
               <button
                 type="button"
