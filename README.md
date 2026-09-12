@@ -16,7 +16,7 @@
 | 백엔드 | FastAPI + PostgreSQL(`app` DB 의 `ipe` 스키마). 엔드포인트 26개(경로 23개) — 조회 · 채점 · 진도 · 세션 · 과목 사이클 |
 | 프론트 | Nuxt 4 + TypeScript + Tailwind CSS v4 (SPA, `ssr:false`) — 홈 · 연습 · 회차 선택 · 모의고사 · 이전 결과 |
 | 파이프라인 | PDF → 1차 추출(`data/raw`) → 문항 JSON(`data/questions`) → 앱 진입점(`data/index.json`) → DB |
-| 검증 | 문항 JSON 스키마 검증 · DB 정합성 검증 · 백엔드 테스트 198개 · Playwright 화면 점검 57컷 |
+| 검증 | 문항 JSON 스키마 검증 · DB 정합성 검증 · 백엔드 테스트 198개 · Playwright 화면 점검 62컷 |
 | 배포 | 로컬에서 linux/amd64 이미지 2종 빌드 → tar 전송 → EC2 `docker load` → compose 재기동 |
 
 ### 고유 문항 수
@@ -195,7 +195,7 @@ cd back && .venv/Scripts/python -m pytest -q
 .venv/Scripts/python -m pytest -q -m "not integration"
 .venv/Scripts/python -m pytest -q -m integration      # .env 의 TEST_DB_URL 사용 권장
 
-# 프론트 (타입 검사 + 빌드, 화면 점검 + 스크린샷 57컷 → tmp/shots/)
+# 프론트 (타입 검사 + 빌드, 화면 점검 + 스크린샷 62컷 → tmp/shots/)
 cd front && npm run build
 npm run shots                                          # 백엔드(8092)가 떠 있어야 함
 ```

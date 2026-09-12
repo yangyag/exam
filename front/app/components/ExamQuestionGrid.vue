@@ -48,8 +48,8 @@ function cellState(cell: GridCell): CellState {
 const stateClasses: Record<CellState, string> = {
   unanswered: 'border-2 border-dashed border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:bg-slate-50',
   chosen: 'border-2 border-blue-600 bg-blue-600 font-bold text-white hover:bg-blue-700',
-  correct: 'border-2 border-emerald-600 bg-emerald-600 font-bold text-white',
-  wrong: 'border-2 border-red-600 bg-red-600 font-bold text-white',
+  correct: 'border-2 border-emerald-600 bg-emerald-600 font-bold text-white hover:bg-emerald-700',
+  wrong: 'border-2 border-red-600 bg-red-600 font-bold text-white hover:bg-red-700',
 }
 
 const stateLabels: Record<CellState, string> = {

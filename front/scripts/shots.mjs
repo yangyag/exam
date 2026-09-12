@@ -15,6 +15,8 @@
  *      키보드만으로 되는지 확인한다. **보기별 해설은 오답이면 자동으로 펼쳐지고 정답이면 접힘을
  *      유지하는지**(설계 9.1절 2-b), 그 뒤에도 직접 접기·펼치기가 되는지 함께 본다.
  *      연습 픽스처는 실제 데이터셋 문항이다(scripts/practice-fixtures.mjs).
+ *      복사 버튼도 같은 흐름에서 확인한다 — 클립보드에 실제로 담긴 문자열을 읽어 문제·지문·보기가
+ *      순서대로 들어가고 정답·해설은 빠졌는지, 도식 문항은 클립보드를 바꾸지 않고 안내만 하는지 본다.
  *   4) 회차별 연습·모의고사 — 회차 선택(13행·이어풀기·409 대화상자), 모의고사 풀이(정답·해설 미노출,
  *      선택 즉시 저장, 번호 그리드 100칸, 미응답 강조 제출 확인), 결과(요약·과목별 점수·문항 그리드·
  *      해설 재조회)를 대체 응답으로 캡처하고 키보드만으로 보기 선택·문항 이동이 되는지 확인한다.
@@ -23,6 +25,10 @@
  *      회차 세션(응답/문항·제출 시각·합격 여부)·빈 상태를 대체 응답으로 캡처하고,
  *      실 DB 로도 한 번 열어 홈의 '이전 결과' 링크부터 화면 값까지 확인한다
  *      (전부 조회라 진도 테이블은 그대로다).
+ *   6) 클릭 가능 요소의 마우스오버 반응 — 화면(홈·회차 선택·연습·모의고사·이력)마다 보이는 클릭 요소
+ *      하나하나에 실제 마우스를 올려 배경색·글자색·테두리색·그림자·이동·투명도 중 하나라도 계산값이
+ *      바뀌는지 본다. 비활성(disabled 속성·disabled 필드셋 안)·pointer-events:none·aria-disabled=true·
+ *      숨김 요소는 제외한다. 그림자·1px 이동은 main.css 공통 규칙 담당이라 값이 바뀌는지만 본다.
  *
  * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) 로 바꿀 수 있다.
  */
@@ -2050,6 +2056,407 @@ async function captureHistory(browser) {
   return problems.length - before
 }
 
+/**
+ * 복사 버튼 — 문제·보기가 클립보드에 그대로 들어가고, 그림 문항은 복사하지 않고 안내만 한다.
+ * 판정은 화면 문구가 아니라 클립보드에 **실제로 담긴 문자열**을 읽어서 한다(권한을 준 컨텍스트).
+ * 연습 화면(연습 세션)과 모의고사 화면을 각각 확인한다 — 두 화면이 같은 컴포넌트를 쓴다.
+ */
+async function captureCopyButton(browser) {
+  console.log('\n[12] 문항 복사 버튼 — 클립보드 실제 내용 확인 (API 대체, DB 무변경)')
+  const permissions = ['clipboard-read', 'clipboard-write']
+
+  const practiceContext = await browser.newContext({
+    locale: 'ko-KR',
+    timezoneId: 'Asia/Seoul',
+    deviceScaleFactor: 1,
+    colorScheme: 'light',
+    permissions,
+  })
+  await stubPracticeApi(practiceContext)
+  const page = await practiceContext.newPage()
+  const errors = watchConsole(page)
+  const readClipboard = () => page.evaluate(() => navigator.clipboard.readText())
+
+  await page.setViewportSize(DESKTOP)
+  await page.goto(`${baseUrl}/sessions/7001`, { waitUntil: 'domcontentloaded', timeout: 120000 })
+  await page.waitForSelector('[data-testid="practice-item"]', { timeout: 90000 })
+  await sleep(300)
+
+  // 1) 코드 문항 — 키보드만으로 도달(Tab)하고 실행(Enter)한다
+  let focusedCopy = false
+  for (let i = 0; i < 15 && !focusedCopy; i++) {
+    await page.keyboard.press('Tab')
+    focusedCopy = await page.evaluate(() => document.activeElement?.getAttribute('data-testid') === 'question-copy')
+  }
+  if (focusedCopy) {
+    pass('[복사] Tab 으로 복사 버튼 포커스')
+    await page.keyboard.press('Enter')
+  } else {
+    fail('[복사] Tab 으로 복사 버튼에 포커스가 가지 않습니다')
+    await page.locator('[data-testid="question-copy"]').click()
+  }
+  await sleep(250)
+  const codeText = await readClipboard()
+  const codeExpect = [
+    CODE_QUESTION.item.stem,
+    '#include <stdio.h>',
+    'printf("%d", sum);',
+    '1. 20',
+    '2. 25',
+    '3. 30',
+    '4. 55',
+  ]
+  const codeMissing = codeExpect.filter((fragment) => !codeText.includes(fragment))
+  const codeLeak = [
+    CODE_QUESTION.explanation.slice(0, 24),
+    CODE_QUESTION.keyPoint,
+    CODE_QUESTION.choicesAnalysis[1].why.slice(0, 16),
+  ].filter((fragment) => codeText.includes(fragment))
+  if (codeMissing.length) fail(`[복사] 코드 문항 복사본에 빠진 내용: ${codeMissing.join(' / ')}`)
+  else if (codeLeak.length) fail(`[복사] 코드 문항 복사본에 정답·해설이 섞였습니다: ${codeLeak.join(' / ')}`)
+  else pass(`[복사] 코드 문항 복사(키보드): 문제·코드·보기 4개 ${codeText.length}자, 정답·해설 없음`)
+  const codeNote = (await page.locator('[data-testid="question-copy-note"]').innerText()).trim()
+  if (codeNote === '복사됨') pass('[복사] 버튼 옆 "복사됨" 표시')
+  else fail(`[복사] 복사 후 안내가 다릅니다: "${codeNote}"`)
+  await save(page, 'copy-code-desktop-1280x900.png')
+  await auditLayout(page, '복사 버튼 코드 문항 데스크톱 1280')
+
+  await page.setViewportSize(MOBILE)
+  await sleep(300)
+  await auditLayout(page, '복사 버튼 코드 문항 모바일 375')
+  await save(page, 'copy-code-mobile-375x812.png', { fullPage: false })
+  await page.setViewportSize(DESKTOP)
+  await sleep(200)
+
+  // 2) 표 문항(3번째) — 마우스로 눌러도 같은 내용이 들어간다. 표 본문도 그대로 복사된다
+  await page.locator('[data-testid="practice-choice-1"]').click()
+  await page.locator('[data-testid="practice-submit"]').click()
+  await page.waitForSelector('[data-testid="practice-result"]', { timeout: 30000 })
+  await page.locator('[data-testid="practice-next"]').click()
+  await page.waitForSelector('[data-testid="passage-text"]', { timeout: 30000 })
+  await page.locator('[data-testid="practice-choice-1"]').click()
+  await page.locator('[data-testid="practice-submit"]').click()
+  await page.waitForSelector('[data-testid="practice-result"]', { timeout: 30000 })
+  await page.locator('[data-testid="practice-next"]').click()
+  await page.waitForSelector('[data-testid="passage-table"]', { timeout: 30000 })
+  await page.locator('[data-testid="question-copy"]').click()
+  await sleep(250)
+  const tableText = await readClipboard()
+  const tableExpect = [
+    TABLE_QUESTION.item.stem,
+    '세그먼트번호 | 시작주소 | 길이(바이트)',
+    '2 | 222 | 198',
+    '1. 398',
+    '4. 1930',
+  ]
+  const tableMissing = tableExpect.filter((fragment) => !tableText.includes(fragment))
+  const tableLeak = [TABLE_QUESTION.explanation.slice(0, 20), TABLE_QUESTION.keyPoint]
+    .filter((fragment) => tableText.includes(fragment))
+  if (tableMissing.length) fail(`[복사] 표 문항 복사본에 빠진 내용: ${tableMissing.join(' / ')}`)
+  else if (tableLeak.length) fail(`[복사] 표 문항 복사본에 정답·해설이 섞였습니다: ${tableLeak.join(' / ')}`)
+  else pass(`[복사] 표 문항 복사(클릭): 표 지문·보기 ${tableText.length}자, 정답·해설 없음`)
+
+  // 3) 도식 문항(4번째) — 복사하지 않고 안내만. 클립보드는 앞 복사본 그대로여야 한다
+  await page.locator('[data-testid="practice-choice-1"]').click()
+  await page.locator('[data-testid="practice-submit"]').click()
+  await page.waitForSelector('[data-testid="practice-result"]', { timeout: 30000 })
+  await page.locator('[data-testid="practice-next"]').click()
+  await page.waitForSelector('[data-testid="practice-figure"]', { timeout: 30000 })
+  await page.locator('[data-testid="question-copy"]').click()
+  await sleep(250)
+  const figureNote = (await page.locator('[data-testid="question-copy-note"]').innerText()).trim()
+  const afterFigure = await readClipboard()
+  if (figureNote.includes('그림') && figureNote.includes('복사할 수 없습니다')) pass(`[복사] 도식 문항 안내: ${figureNote}`)
+  else fail(`[복사] 도식 문항 안내가 다릅니다: "${figureNote}"`)
+  if (afterFigure === tableText) pass('[복사] 도식 문항은 클립보드를 바꾸지 않음')
+  else fail(`[복사] 도식 문항인데 클립보드가 바뀌었습니다: "${afterFigure.slice(0, 30)}…"`)
+  await save(page, 'copy-figure-blocked-desktop-1280x900.png')
+  await auditLayout(page, '복사 버튼 도식 문항 데스크톱 1280')
+
+  if (errors.length === 0) pass('[복사] 연습 화면 브라우저 콘솔 오류 0')
+  else for (const message of errors) fail(`[복사] ${message}`)
+  await practiceContext.close()
+
+  // 4) 모의고사 화면 — 제출 전이라도 정답·해설은 복사되지 않는다
+  const examContext = await browser.newContext({
+    locale: 'ko-KR',
+    timezoneId: 'Asia/Seoul',
+    deviceScaleFactor: 1,
+    colorScheme: 'light',
+    permissions,
+  })
+  await stubExamApi(examContext)
+  const examPage = await examContext.newPage()
+  const examErrors = watchConsole(examPage)
+  const readExamClipboard = () => examPage.evaluate(() => navigator.clipboard.readText())
+
+  await examPage.setViewportSize(DESKTOP)
+  await examPage.goto(`${baseUrl}/exam/7201`, { waitUntil: 'domcontentloaded', timeout: 120000 })
+  await examPage.waitForSelector('[data-testid="exam-item"]', { timeout: 90000 })
+  await sleep(300)
+
+  await examPage.locator('[data-testid="question-copy"]').click()
+  await sleep(250)
+  const examText = await readExamClipboard()
+  const examExpect = [CODE_QUESTION.item.stem, '#include <stdio.h>', '1. 20', '4. 55']
+  const examMissing = examExpect.filter((fragment) => !examText.includes(fragment))
+  const examLeak = [CODE_QUESTION.explanation.slice(0, 24), CODE_QUESTION.keyPoint]
+    .filter((fragment) => examText.includes(fragment))
+  if (examMissing.length) fail(`[복사] 모의고사 복사본에 빠진 내용: ${examMissing.join(' / ')}`)
+  else if (examLeak.length) fail(`[복사] 모의고사 복사본에 정답·해설이 섞였습니다: ${examLeak.join(' / ')}`)
+  else pass(`[복사] 모의고사 문항 복사(제출 전): 문제·코드·보기 ${examText.length}자, 정답·해설 없음`)
+  await save(examPage, 'copy-exam-desktop-1280x900.png')
+  await auditLayout(examPage, '복사 버튼 모의고사 데스크톱 1280')
+
+  await examPage.locator('[data-testid="exam-grid-4"]').click()
+  await examPage.waitForSelector('[data-testid="exam-figure"]', { timeout: 30000 })
+  await examPage.locator('[data-testid="question-copy"]').click()
+  await sleep(250)
+  const examFigureNote = (await examPage.locator('[data-testid="question-copy-note"]').innerText()).trim()
+  const examAfterFigure = await readExamClipboard()
+  if (examFigureNote.includes('복사할 수 없습니다')) pass(`[복사] 모의고사 도식 문항 안내: ${examFigureNote}`)
+  else fail(`[복사] 모의고사 도식 문항 안내가 다릅니다: "${examFigureNote}"`)
+  if (examAfterFigure === examText) pass('[복사] 모의고사 도식 문항은 클립보드를 바꾸지 않음')
+  else fail('[복사] 모의고사 도식 문항인데 클립보드가 바뀌었습니다')
+  await save(examPage, 'copy-exam-figure-desktop-1280x900.png')
+  if (examErrors.length === 0) pass('[복사] 모의고사 화면 브라우저 콘솔 오류 0')
+  else for (const message of examErrors) fail(`[복사] 모의고사 ${message}`)
+  await examContext.close()
+}
+
+/**
+ * hover 반응 판정에 쓰는 계산값 — 색(배경·글자·테두리 4방향)·그림자·이동·투명도.
+ * 어느 하나라도 값이 달라지면 마우스를 올렸을 때 화면이 반응한 것으로 본다.
+ */
+const HOVER_PROPS = [
+  'backgroundColor', 'color',
+  'borderTopColor', 'borderRightColor', 'borderBottomColor', 'borderLeftColor',
+  'boxShadow', 'transform', 'opacity',
+]
+
+/** 요소 하나의 hover 판정용 계산값 — 값 묶음을 문자열로 만들어 그대로 비교한다 */
+function hoverStyle(element) {
+  return element.evaluate(
+    (el, props) => {
+      const style = getComputedStyle(el)
+      return props.map(key => style[key]).join(' | ')
+    },
+    HOVER_PROPS,
+  )
+}
+
+/**
+ * 지금 화면에서 hover 를 재 볼 클릭 요소를 모은다.
+ * 화면 밖(아래쪽)에 있는 요소는 마우스를 올릴 때 스크롤해서 보므로 제외하지 않고,
+ * 클릭할 수 없는 요소(disabled 속성·disabled 필드셋 안·pointer-events:none·aria-disabled=true·숨김)만 뺀다.
+ * scope 를 주면 그 안만 본다 — 대화상자가 열린 화면은 뒤 요소에 마우스가 닿지 않는다.
+ * 모은 요소는 페이지 안(window.__hoverTargets)에 두고 index 로 다시 찾는다.
+ */
+function hoverTargets(page, scope) {
+  return page.evaluate((scopeSelector) => {
+    const selector = 'button, a[href], [data-tap], [role="button"]'
+    const root = scopeSelector ? document.querySelector(scopeSelector) : document
+    if (!root) return { names: [], excluded: [], missing: true }
+    const nameOf = (el) => {
+      const testid = el.getAttribute('data-testid')
+      const text = (el.textContent || '').trim().replace(/\s+/g, ' ')
+      return `${testid ? `[${testid}]` : el.tagName.toLowerCase()}${text ? ` "${text.slice(0, 20)}"` : ''}`
+    }
+    const excludeReason = (el) => {
+      if (el.disabled) return 'disabled 속성'
+      if (el.closest('fieldset[disabled]')) return 'disabled 필드셋 안'
+      if (el.getAttribute('aria-disabled') === 'true') return 'aria-disabled=true'
+      const style = getComputedStyle(el)
+      if (style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity) === 0) return '숨김'
+      for (let node = el; node; node = node.parentElement) {
+        if (getComputedStyle(node).pointerEvents === 'none') return 'pointer-events:none'
+      }
+      const rect = el.getBoundingClientRect()
+      if (rect.width < 1 || rect.height < 1) return '크기 0'
+      return null
+    }
+
+    const targets = []
+    const excluded = []
+    for (const el of root.querySelectorAll(selector)) {
+      const reason = excludeReason(el)
+      if (reason) excluded.push(`${nameOf(el)} — ${reason}`)
+      else targets.push(el)
+    }
+    window.__hoverTargets = targets
+    return { names: targets.map(nameOf), excluded, missing: false }
+  }, scope)
+}
+
+/**
+ * 요소에 실제 마우스를 올려 본다(성공하면 true).
+ * 요소를 화면 가운데로 끌어온 뒤 그 안의 보이는 점으로 마우스를 옮기고, `:hover` 가 걸렸는지로 판정한다.
+ * sticky 헤더에 가리거나 화면 밖으로 잘릴 수 있어 스크롤 위치를 바꿔 가며 몇 번 시도한다.
+ */
+async function hoverElement(page, element) {
+  const viewport = page.viewportSize() ?? DESKTOP
+  for (const block of ['center', 'end', 'nearest', 'start']) {
+    await element.evaluate((el, where) => el.scrollIntoView({ block: where, inline: 'center' }), block).catch(() => {})
+    const box = await element.boundingBox()
+    if (!box) continue
+    // 화면보다 큰 요소는 보이는 부분의 가운데를 찍는다
+    const left = Math.max(box.x, 0)
+    const right = Math.min(box.x + box.width, viewport.width)
+    const top = Math.max(box.y, 0)
+    const bottom = Math.min(box.y + box.height, viewport.height)
+    if (right - left < 2 || bottom - top < 2) continue
+    await page.mouse.move((left + right) / 2, (top + bottom) / 2)
+    if (await element.evaluate(el => el.matches(':hover'))) return true
+  }
+  return false
+}
+
+/** 화면 하나의 클릭 요소를 하나씩 실제 마우스로 올려 보고 반응 없는 요소 목록을 돌려준다 */
+async function probeHover(page, scope) {
+  const { names, excluded, missing } = await hoverTargets(page, scope)
+  if (missing) throw new Error(`hover 점검 범위(${scope})를 찾지 못했습니다`)
+  const failures = []
+  const unreached = []
+
+  for (const [index, name] of names.entries()) {
+    const element = (await page.evaluateHandle((at) => window.__hoverTargets[at], index)).asElement()
+    if (!element) {
+      unreached.push(name)
+      continue
+    }
+    // 앞 요소의 hover 가 남아 있으면 비교가 흔들린다 — 마우스를 화면 구석으로 옮긴 뒤 기준값을 잰다
+    await page.mouse.move(1, 1)
+    const before = await hoverStyle(element)
+
+    if (!(await hoverElement(page, element))) {
+      unreached.push(name)
+      continue
+    }
+
+    await sleep(60)
+    if (before === await hoverStyle(element)) failures.push(name)
+  }
+
+  return { total: names.length, failures, unreached, excluded }
+}
+
+/** 화면 하나의 hover 점검 결과를 보고한다 */
+async function checkHover(page, label, scope) {
+  const { total, failures, unreached, excluded } = await probeHover(page, scope)
+  if (failures.length === 0) {
+    pass(`[${label}] 클릭 요소 ${total}개 모두 hover 반응(색·테두리·그림자·이동·투명도) 확인`)
+  } else {
+    const shown = failures.slice(0, 12).join(' · ')
+    fail(`[${label}] hover 반응 없는 요소 ${failures.length}/${total}개: ${shown}${failures.length > 12 ? ` 외 ${failures.length - 12}개` : ''}`)
+  }
+  if (excluded.length) console.log(`  - [${label}] 제외 ${excluded.length}개(비활성·숨김 등): ${excluded.slice(0, 5).join(' · ')}`)
+  if (unreached.length) console.log(`  - [${label}] 마우스를 올려 보지 못한 요소 ${unreached.length}개: ${unreached.slice(0, 5).join(' · ')}`)
+  return failures.length
+}
+
+/**
+ * [13] 클릭 가능 요소의 마우스오버 반응.
+ *
+ * 화면마다 보이는 클릭 요소(button·a[href]·[data-tap]·[role=button])를 하나씩 실제 마우스로 올려
+ * backgroundColor·color·borderColor·boxShadow·transform·opacity 중 하나라도 계산값이 바뀌는지 본다.
+ * 홈(상태 4종·실 데이터)·회차 선택·연습(제출 전·채점 뒤 해설 펼침)·모의고사(풀이·결과 해설)·이전 결과를
+ * 대체 API 와 실 데이터로 열어 본다. 그림자·1px 이동은 main.css 공통 규칙이 맡으므로 여기서는 그 값을
+ * 다시 넣지 않고 "값이 바뀌는지"만 판정한다.
+ */
+async function captureHover(browser) {
+  console.log('\n[13] 클릭 요소 마우스오버 반응 (API 대체/실 데이터, DB 무변경)')
+  const before = problems.length
+
+  const screens = [
+    { label: '홈 상태 4종', stub: (context) => stubApi(context), path: '/', ready: '[data-testid="subject-card"]' },
+    { label: '홈 실 데이터', stub: null, path: '/', ready: '[data-testid="subject-card"]' },
+    { label: '회차 선택', stub: (context) => stubExamApi(context), path: '/exams', ready: '[data-testid="exam-row-2026-1"]' },
+    { label: '연습 문항', stub: (context) => stubPracticeApi(context), path: '/sessions/7001', ready: '[data-testid="practice-item"]' },
+    {
+      label: '연습 채점·해설',
+      stub: (context) => stubPracticeApi(context),
+      path: '/sessions/7001',
+      ready: '[data-testid="practice-item"]',
+      // 채점 뒤 화면 — 보기 선택 라벨은 필드셋 비활성이라 제외되고, 토글은 펼친 상태로 본다.
+      // 정답(2번)을 골라야 해설이 접힌 채로 남는다 — 오답이면 저절로 펼쳐져 토글 클릭이 도로 접는다.
+      prepare: async (page) => {
+        await page.locator('[data-testid="practice-choice-2"]').click()
+        await page.locator('[data-testid="practice-submit"]').click()
+        await page.waitForSelector('[data-testid="practice-result"]', { timeout: 30000 })
+        await page.locator('[data-testid="practice-analysis-toggle"]').click()
+        await page.waitForSelector('[data-testid="practice-analysis"]', { timeout: 10000 })
+      },
+    },
+    // 안내 화면 — 밑줄 링크형 버튼('다시 시도'·'홈으로')이 여기에만 있어 따로 본다
+    { label: '연습 404 안내', stub: (context) => stubPracticeApi(context), path: '/sessions/9999', ready: '[data-testid="practice-error"]' },
+    { label: '연습 중단 안내', stub: (context) => stubPracticeApi(context), path: '/sessions/7102', ready: '[data-testid="practice-closed"]' },
+    { label: '모의고사 풀이', stub: (context) => stubExamApi(context), path: '/exam/7201', ready: '[data-testid="exam-item"]' },
+    {
+      label: '모의고사 풀이 모바일',
+      stub: (context) => stubExamApi(context),
+      path: '/exam/7201',
+      ready: '[data-testid="exam-item"]',
+      viewport: MOBILE,
+    },
+    {
+      label: '모의고사 결과·해설',
+      stub: (context) => stubExamApi(context),
+      path: '/exam/7201',
+      ready: '[data-testid="exam-item"]',
+      // 결과 화면 — 결과 그리드(정답·오답)와 문항 해설 패널을 함께 본다
+      prepare: async (page) => {
+        await page.locator('[data-testid="exam-submit"]').click()
+        await page.waitForSelector('[data-testid="confirm-dialog"]', { timeout: 15000 })
+        await page.getByTestId('confirm-dialog').getByRole('button', { name: '제출하기' }).click()
+        await page.waitForSelector('[data-testid="exam-result-summary"]', { timeout: 30000 })
+        await page.locator('[data-testid="exam-grid-1"]').click()
+        await page.waitForSelector('[data-testid="exam-explain-text"]', { timeout: 30000 })
+        await page.locator('[data-testid="exam-explain-analysis-toggle"]').click()
+        await page.waitForSelector('[data-testid="exam-explain-analysis"]', { timeout: 10000 })
+      },
+    },
+    {
+      label: '모의고사 제출 확인 대화상자',
+      stub: (context) => stubExamApi(context),
+      path: '/exam/7201',
+      ready: '[data-testid="exam-item"]',
+      // 대화상자 안 버튼만 본다 — 뒤 화면은 어두운 배경에 막혀 마우스를 받지 못한다.
+      // 어두운 배경(div)은 data-tap·role 이 없어 판정 대상 밖이다.
+      scope: '[data-testid="confirm-dialog"]',
+      prepare: async (page) => {
+        await page.locator('[data-testid="exam-submit"]').click()
+        await page.waitForSelector('[data-testid="confirm-dialog"]', { timeout: 15000 })
+      },
+    },
+    { label: '모의고사 404 안내', stub: (context) => stubExamApi(context), path: '/exam/9999', ready: '[data-testid="exam-error"]' },
+    { label: '이전 결과', stub: (context) => stubHistoryApi(context), path: '/history', ready: '[data-testid="history-cycles"]' },
+  ]
+
+  for (const screen of screens) {
+    const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
+    try {
+      if (screen.stub) await screen.stub(context)
+      const page = await context.newPage()
+      watchConsole(page)
+      await page.setViewportSize(screen.viewport ?? DESKTOP)
+      await page.goto(`${baseUrl}${screen.path}`, { waitUntil: 'domcontentloaded', timeout: 120000 })
+      await page.waitForSelector(screen.ready, { timeout: 90000 })
+      if (screen.prepare) await screen.prepare(page)
+      // 전환(transition)이 걸려 있으면 값이 서서히 변해 before/after 비교가 흔들린다 — 판정 동안만 끈다
+      await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; animation: none !important; }' })
+      await sleep(120)
+      await checkHover(page, screen.label, screen.scope)
+    } catch (error) {
+      // 한 화면이 안 열린다고 나머지 화면 점검까지 멈추지 않는다(다른 화면이 고치는 중일 수 있다)
+      fail(`[${screen.label}] 화면을 열지 못해 hover 점검을 건너뜁니다: ${String(error.message).split('\n')[0]}`)
+    } finally {
+      await context.close()
+    }
+  }
+
+  return problems.length - before
+}
+
 async function main() {
   mkdirSync(shotsDir, { recursive: true })
 
@@ -2073,6 +2480,8 @@ async function main() {
     await captureExamTaking(browser)
     await captureExamClosed(browser)
     await captureHistory(browser)
+    await captureCopyButton(browser)
+    await captureHover(browser)
   } finally {
     await browser.close()
     stopDevServer(devServer)

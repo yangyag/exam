@@ -159,6 +159,19 @@ function explainChoiceTone(no: number): string {
   return 'border-slate-200 bg-white'
 }
 
+/** 풀이 화면 보기 라벨의 색 — 저장·제출 중에는 disabled 필드셋 안이라 클릭할 수 없으므로 hover 를 붙이지 않는다 */
+function choiceLabelTone(no: number): string {
+  const locked = saving.value || submitting.value
+  if (currentChoice.value === no) {
+    return locked
+      ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500'
+      : 'border-blue-500 bg-blue-50 ring-1 ring-blue-500 hover:border-blue-600 hover:bg-blue-100'
+  }
+  return locked
+    ? 'border-slate-200 bg-white'
+    : 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50'
+}
+
 // ── 불러오기 ─────────────────────────────────────────────────────────
 function resetState() {
   session.value = null
@@ -610,7 +623,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
             role="status"
           >
             {{ refreshError }}
-            <button type="button" class="ml-2 underline" data-tap @click="refreshSession">다시 불러오기</button>
+            <button type="button" class="ml-2 underline hover:text-blue-700" data-tap @click="refreshSession">다시 불러오기</button>
           </p>
           <ExamQuestionGrid :cells="gridCells" mode="result" :current-seq="explainSeq" @select="openExplanation" />
           <p class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -735,7 +748,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
             <div class="mt-4 overflow-hidden rounded-xl border border-slate-200">
               <button
                 type="button"
-                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800"
+                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
                 :aria-expanded="showAnalysis"
                 aria-controls="exam-explain-analysis"
                 data-tap
@@ -787,7 +800,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
           <template v-if="saving">선택을 저장하는 중…</template>
           <template v-else-if="saveError">
             선택을 저장하지 못했습니다 — {{ saveError }}
-            <button type="button" class="ml-1 font-semibold underline" data-tap data-testid="exam-save-retry" @click="retrySave">
+            <button type="button" class="ml-1 font-semibold underline hover:text-blue-700" data-tap data-testid="exam-save-retry" @click="retrySave">
               다시 시도
             </button>
           </template>
@@ -839,6 +852,13 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
               <span v-if="item.subjectName" class="rounded-full bg-slate-100 px-2.5 py-1">{{ item.subjectName }}</span>
               <span v-if="item.difficulty" class="rounded-full bg-slate-100 px-2.5 py-1">난이도 {{ item.difficulty }}</span>
               <span v-for="tag in item.tags" :key="tag" class="rounded-full bg-slate-100 px-2.5 py-1">{{ tag }}</span>
+              <QuestionCopyButton
+                class="ml-auto"
+                :stem="item.stem"
+                :passage="item.passage"
+                :choices="item.choices"
+                :figure-needed="Boolean(item.figure?.needed)"
+              />
             </div>
 
             <h1 class="mt-4 text-lg leading-relaxed font-semibold text-slate-900 sm:text-xl" data-testid="exam-stem">
@@ -874,9 +894,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
                   v-for="choice in choices"
                   :key="choice.no"
                   class="flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border p-3 text-sm transition"
-                  :class="currentChoice === choice.no
-                    ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500'
-                    : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'"
+                  :class="choiceLabelTone(choice.no)"
                   data-tap
                   :data-testid="`exam-choice-${choice.no}`"
                 >
@@ -982,7 +1000,7 @@ useHead({ title: () => `${title.value} 모의고사 — 정보처리기사 필�
           <section class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6" data-testid="exam-grid-panel">
             <button
               type="button"
-              class="flex min-h-11 w-full items-center justify-between gap-2 text-left"
+              class="flex min-h-11 w-full items-center justify-between gap-2 text-left transition hover:bg-slate-100"
               :aria-expanded="gridOpen"
               aria-controls="exam-grid"
               data-tap

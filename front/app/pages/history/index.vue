@@ -265,7 +265,7 @@ function finishLine(cycle: HistoryCycle): string {
 
               <p v-else class="mt-1 text-sm leading-relaxed text-slate-600" :data-testid="`history-cycle-none-${row.code}`">
                 아직 사이클이 없습니다.
-                <NuxtLink to="/" class="font-semibold text-blue-700 underline">홈</NuxtLink>에서 시작하면 이 자리에 기록이 남습니다.
+                <NuxtLink to="/" class="font-semibold text-blue-700 underline hover:text-blue-800">홈</NuxtLink>에서 시작하면 이 자리에 기록이 남습니다.
               </p>
             </li>
           </ul>
@@ -348,7 +348,7 @@ function finishLine(cycle: HistoryCycle): string {
             data-testid="history-sessions-empty"
           >
             아직 회차 세션이 없습니다.
-            <NuxtLink to="/exams" class="font-semibold text-blue-700 underline">회차를 골라</NuxtLink> 연습이나 모의고사를 시작해 보세요.
+            <NuxtLink to="/exams" class="font-semibold text-blue-700 underline hover:text-blue-800">회차를 골라</NuxtLink> 연습이나 모의고사를 시작해 보세요.
           </p>
         </section>
       </template>

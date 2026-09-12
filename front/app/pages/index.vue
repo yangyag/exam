@@ -295,7 +295,7 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
             data-testid="home-exam-idle"
           >
             진행 중인 회차 세션이 없습니다.
-            <NuxtLink to="/exams" class="font-semibold text-blue-700 underline">회차를 골라 시작</NuxtLink>해 보세요.
+            <NuxtLink to="/exams" class="font-semibold text-blue-700 underline hover:text-blue-800">회차를 골라 시작</NuxtLink>해 보세요.
           </p>
           <p
             v-else
@@ -304,7 +304,7 @@ onBeforeUnmount(() => { if (noticeTimer) clearTimeout(noticeTimer) })
             role="status"
           >
             회차 진행 상황을 불러오지 못했습니다 — {{ examLoadError.detail }}
-            <button type="button" class="ml-1 font-semibold underline" data-tap @click="refreshExams()">
+            <button type="button" class="ml-1 font-semibold underline hover:text-blue-700" data-tap @click="refreshExams()">
               다시 시도
             </button>
           </p>

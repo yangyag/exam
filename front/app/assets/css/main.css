@@ -12,15 +12,38 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* 버튼 공통 — 최소 클릭 영역 44px(모바일 조작), 키보드 포커스 링 유지 */
+/* 클릭 가능한 요소 공통 hover — "살짝 떠오름"(그림자 + 1px 이동).
+   왜 필요한가: 색·테두리 hover 는 화면마다 따로 넣어도 되지만 그림자·이동까지 파일마다 넣으면
+   세기와 방향이 제각각이 되고, 클릭할 수 없는 상태에까지 hover 가 붙는 실수도 생긴다.
+   그래서 그림자·이동은 이 파일에서 한 번만 정의하고, 개별 화면은 색·테두리 hover 만 얹는다.
+   제외 대상은 클릭이 불가능한 요소 — disabled 속성, disabled 필드셋 안(채점이 끝난 보기 라벨 등),
+   pointer-events-none, aria-disabled="true". 그림자·이동은 레이아웃을 흔들지 않는다.
+   @layer components 라서 focus-visible:ring-*·ring-2 같은 유틸리티가 언제나 우선한다.
+   떠오름은 hover: 변형과 같은 기준(@media (hover: hover))에서만 켠다 — 터치 기기에서 hover 가
+   누른 뒤에도 남는 것을 막는다. */
+@layer components {
+  :is(button:not(:disabled), a[href], [data-tap]):not(:is(fieldset[disabled] *, .pointer-events-none, [aria-disabled="true"])) {
+    @apply transition;
+  }
+
+  @media (hover: hover) {
+    :is(button:not(:disabled), a[href], [data-tap]):not(:is(fieldset[disabled] *, .pointer-events-none, [aria-disabled="true"])):hover {
+      @apply shadow-md -translate-y-px;
+    }
+  }
+}
+
+/* 버튼 공통 — 최소 클릭 영역 44px(모바일 조작), 키보드 포커스 링 유지
+   hover(색 + 떠오름)에는 not-disabled: 를 붙인다 — 비활성 버튼은 cursor:not-allowed 만 유지한다.
+   (:disabled 는 disabled 필드셋 안의 폼 컨트롤도 잡으므로 그때도 hover 가 붙지 않는다.) */
 @utility btn-primary {
-  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white transition hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-sm font-semibold text-white transition not-disabled:hover:bg-blue-700 not-disabled:hover:shadow-md not-disabled:hover:-translate-y-px focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
 }
 
 @utility btn-secondary {
-  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 text-sm font-semibold text-slate-700 transition not-disabled:hover:border-slate-400 not-disabled:hover:bg-slate-50 not-disabled:hover:shadow-md not-disabled:hover:-translate-y-px focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
 }
 
 @utility btn-quiet {
-  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium text-slate-600 transition hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+  @apply inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-xl px-3 text-sm font-medium text-slate-600 transition not-disabled:hover:bg-slate-100 not-disabled:hover:shadow-md not-disabled:hover:-translate-y-px focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
 }

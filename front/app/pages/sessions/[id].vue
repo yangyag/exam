@@ -238,14 +238,16 @@ function retryLoad() {
   else if (seq.value !== null) loadItem(seq.value)
 }
 
+// 보기 라벨 색 — 채점 전에는 어떤 보기든 다시 고를 수 있어 선택 여부와 상관없이 hover 색을 주고,
+// 채점 뒤(fieldset 비활성)에는 클릭할 수 없으므로 hover 를 넣지 않는다.
 function choiceTone(no: number): string {
   if (result.value) {
     if (no === result.value.answer) return 'border-emerald-300 bg-emerald-50'
     if (no === result.value.choiceNo) return 'border-red-300 bg-red-50'
     return 'border-slate-200 bg-white'
   }
-  if (no === selected.value) return 'border-blue-500 bg-blue-50 ring-1 ring-blue-500'
-  return 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'
+  if (no === selected.value) return 'border-blue-500 bg-blue-50 ring-1 ring-blue-500 hover:border-blue-600 hover:bg-blue-100'
+  return 'border-slate-200 bg-white hover:border-slate-400 hover:bg-slate-50'
 }
 
 function analysisFor(no: number) {
@@ -454,6 +456,13 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
               <span v-for="tag in item.tags" :key="tag" class="rounded-full bg-slate-100 px-2.5 py-1">
                 {{ tag }}
               </span>
+              <QuestionCopyButton
+                class="ml-auto"
+                :stem="item.stem"
+                :passage="item.passage"
+                :choices="item.choices"
+                :figure-needed="Boolean(item.figure?.needed)"
+              />
             </div>
 
             <h1 class="mt-4 text-lg leading-relaxed font-semibold text-slate-900 sm:text-xl" data-testid="practice-stem">
@@ -582,7 +591,7 @@ useHead({ title: () => `${subjectLine.value} ${roundLabel.value} — 정보처�
             <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
               <button
                 type="button"
-                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800"
+                class="flex min-h-11 w-full items-center justify-between gap-2 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
                 :aria-expanded="showAnalysis"
                 aria-controls="practice-analysis"
                 data-testid="practice-analysis-toggle"
