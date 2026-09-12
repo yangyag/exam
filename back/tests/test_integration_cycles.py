@@ -5,6 +5,9 @@
 - 과목당 진행 중 1개·두 기기 동시 시작·마지막 문항 제출과 새로 구성의 경합은 가짜 DB 로
   검출할 수 없어 실제 행 잠금으로 재현한다.
 - 테스트가 만든 사이클·세션·슬롯·원장·상태 행은 끝나면 되돌린다(ProgressTracker).
+- 사이클이 하나도 없는 상태를 전제로 하므로, 진행 중이거나 이미 끝난 사이클 기록이 있는 과목은
+  require_free_subject 가 이유를 남기고 건너뛴다(앱 DB 로 돌려도 사용자 기록을 건드리지 않는다).
+  통합 테스트는 `TEST_DB_URL`(없으면 EXAM_DB_URL/DATABASE_URL) DB 로 붙는다 — tests/conftest.py.
 """
 from __future__ import annotations
 
@@ -128,7 +131,12 @@ def post_cycle(client: TestClient, subject_code: int, **extra):
 def create_cycle(client: TestClient, tracker: ProgressTracker, subject_code: int, **extra) -> dict:
     """201 을 기대하는 사이클 생성. 테스트 끝에 지우도록 사이클을 추적한다."""
     response = post_cycle(client, subject_code, **extra)
-    assert response.status_code == 201, response.text
+    if response.status_code == 409:
+        # 사용자 DB 로 돌릴 때 이미 진행 중인 사이클이 있으면 여기로 온다 — 이유를 남기고 건너뛴다.
+        require_free_subject(client, subject_code)
+    assert response.status_code == 201, (
+        f"과목 {subject_code} 사이클 생성이 201 이 아니다: {response.status_code} {response.text}"
+    )
     body = response.json()
     tracker.track_cycle(body["id"])
     return body
@@ -141,6 +149,25 @@ def subject_overview(client: TestClient, subject_code: int) -> dict:
     items = response.json()
     assert len(items) == 5, items
     return next(item for item in items if item["subjectCode"] == subject_code)
+
+
+def require_free_subject(client: TestClient, subject_code: int) -> dict:
+    """그 과목에 아직 사이클 기록이 없는지 확인한다(맞으면 홈 요약 1행을 돌려준다).
+
+    TEST_DB_URL 로 테스트 전용 DB를 쓰지 않고 앱 DB 에 붙으면, 사용자가 만든 진행 중 사이클이나
+    끝난 사이클 기록이 있어 이 테스트의 전제(과목 상태 not_started)가 깨진다. 그때는 그 상태를
+    바꾸려 들지 않고 **건너뛰면서** 원인과 해결 방법을 메시지에 남긴다(사용자 진도 데이터 보호).
+    """
+    overview = subject_overview(client, subject_code)
+    if overview["status"] == "not_started":
+        return overview
+    cycle = overview.get("cycle") or {}
+    cycle_info = f", cycle #{cycle['id']}({cycle.get('status')})" if cycle.get("id") else ""
+    pytest.skip(
+        f"과목 {subject_code} 에 이미 사이클이 있다(status={overview['status']}{cycle_info}) — "
+        "사용자 진도 데이터를 건드리지 않도록 건너뛴다. 테스트 전용 DB 로 돌리려면 저장소 루트 "
+        ".env 의 TEST_DB_URL 을 app_test 로 두고 back/README.md 의 '테스트' 절을 따른다."
+    )
 
 
 def content_groups(conn: psycopg.Connection, subject_code: int) -> dict[str, list[str]]:
@@ -220,7 +247,7 @@ def test_cycle_from_api_runs_review_rounds_then_completes(live_client, tracker, 
     subject_code = 1
     expected_items = UNIQUE_QUESTION_COUNTS[subject_code]
     groups = content_groups(db_conn, subject_code)
-    assert subject_overview(live_client, subject_code)["status"] == "not_started"
+    require_free_subject(live_client, subject_code)
 
     created = create_cycle(live_client, tracker, subject_code)
     cycle_id = created["id"]
@@ -353,7 +380,7 @@ def test_cycle_all_correct_first_round_completes_immediately(live_client, tracke
     """라운드 1을 전부 맞히면 다음 라운드 없이 곧바로 완료된다(설계 4.5절 5번)."""
     subject_code = 2
     expected_items = UNIQUE_QUESTION_COUNTS[subject_code]
-    assert subject_overview(live_client, subject_code)["status"] == "not_started"
+    require_free_subject(live_client, subject_code)
 
     created = create_cycle(live_client, tracker, subject_code)
     cycle_id = created["id"]
@@ -458,6 +485,7 @@ def test_cycle_conflict_then_replace_active_starts_new_cycle(live_client, tracke
 def test_two_devices_starting_at_once_only_one_wins(live_client, tracker, db_conn):
     """두 기기에서 동시에 시작하면 study_cycle_active_uk 가 막아 하나만 201 이 된다(설계 4.6절)."""
     subject_code = 4
+    require_free_subject(live_client, subject_code)
     results: dict[str, object] = {}
 
     def start(name: str) -> None:
@@ -502,6 +530,7 @@ def test_last_slot_grade_races_replace_active(live_client, tracker, db_conn):
     `advance_round_if_complete` 가 라운드만 닫고 새 라운드를 만들지 않아 스스로 회복한다.
     """
     subject_code = 5
+    require_free_subject(live_client, subject_code)
     picked = db_conn.execute(
         "SELECT id, answer FROM ipe.question WHERE subject_code = %s ORDER BY id LIMIT 2",
         (subject_code,),

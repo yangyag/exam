@@ -57,6 +57,30 @@ cd back
 .venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 35개
 ```
 
+**통합 테스트에는 테스트 전용 DB 를 쓰세요.** 접속 대상은 `TEST_DB_URL`(환경변수 또는 저장소 루트 `.env`)이 있으면 그 DB, 없으면 앱과 같은 `EXAM_DB_URL`/`DATABASE_URL` 입니다(우선순위는 `back/tests/conftest.py`). 실행 첫 줄에 `통합 테스트 DB: postgresql://... (출처: TEST_DB_URL)` 처럼 어느 DB 에 붙는지 찍습니다(비밀번호는 가림).
+
+앱 DB 로 돌리면 사이클 통합 테스트가 위험합니다 — 그 테스트들은 문항을 풀어 사이클·세션·슬롯·원장을 만들고 `과목에 사이클 기록 없음`을 전제로 하기 때문에, 앱에서 이미 쓰고 있는 과목에서는 409(진행 중 사이클)로 깨집니다. 그래서 이제는 그런 과목을 만나면 **사용자 기록을 건드리지 않고 테스트를 건너뛰면서** 이유(`require_free_subject`: 과목 상태·사이클 번호 + 해결 방법)를 남깁니다. 형님의 진도 데이터를 지키려면 테스트 전용 DB 를 두는 편이 가장 깔끔합니다.
+
+준비(로컬 docker 기준 — 최초 1회, 문항 데이터가 바뀌면 3)만 다시):
+
+```bash
+# 1) 테스트 DB(app_test)와 ipe 스키마. superuser 로 한 번.
+docker exec -i postgres psql -U postgres -d postgres -c "CREATE DATABASE app_test OWNER yangyag"
+docker exec -i postgres psql -U postgres -d app_test -c \
+  "CREATE SCHEMA IF NOT EXISTS ipe AUTHORIZATION yangyag; CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
+
+# 2) 저장소 루트 .env 에 TEST_DB_URL 한 줄 (DB 이름만 app_test 로)
+#    TEST_DB_URL=postgresql://yangyag:<비번>@127.0.0.1:5432/app_test?options=-csearch_path%3Dipe,public
+
+# 3) 저장소 루트에서: 문항 스키마·진도 테이블과 1,300문항 적재 (멱등)
+set -a; . ./.env; set +a
+: "${TEST_DB_URL:?.env 에 TEST_DB_URL 을 먼저 추가하세요}"   # 실수로 앱 DB 에 적재하지 않게 막는 안전선
+EXAM_DB_URL="$TEST_DB_URL" python tools/load_db.py --init
+EXAM_DB_URL="$TEST_DB_URL" python tools/load_db.py          # 적재 + 검증(전부 통과)
+```
+
+`TEST_DB_URL` 을 두지 않으면 지금까지처럼 앱 DB 로 돌아갑니다(통합 테스트는 자기 행만 만들고 끝나면 지우며, 남의 사이클과 겹치는 과목은 건너뜁니다).
+
 `pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다. 채점과 종료가 겹칠 때의 잠금 순서(`B-01`)는 실제 DB의 행 잠금을 재현하는 `test_integration_concurrency.py` 가 고정합니다(study_attempt 에 SHARE 잠금을 잠시 걸고, 세션 행 잠금은 `FOR UPDATE NOWAIT` 프로브로 판정). 과목 사이클 계약은 가짜 DB(`test_cycles_api.py`)와 실 DB(`test_integration_cycles.py`) 양쪽에서 고정합니다 — 라운드 자동 전환(전체 정답이면 즉시 완료), 과목당 진행 중 1개, 두 기기 동시 시작, 마지막 슬롯 제출과 새로 구성의 경합, 홈 요약의 고유 문항 수(176·194·194·199·181)를 실제 DB에서 검산합니다. **모의고사 최종 제출**은 가짜 DB(`test_progress_api.py`)로 모드 `400`·중단 `409`·멱등 재제출·합격 경계(과목 40점·평균 60점) 계산을, 실제 DB(`test_integration_db.py`)로 100문항 제출·미응답의 원장 미기록·선택 저장과 새로 구성의 잠금 경합(study_attempt 에 SHARE 잠금을 잠시 걸어 제출을 멈춰 세우는 방식)을 고정합니다.
 
 ## 2. 환경변수
@@ -70,6 +94,7 @@ cd back
 | `PGHOST` `PGPORT` `PGUSER` `PGPASSWORD` `PGDATABASE` | 아니오 | — | 위 둘 다 없을 때 libpq 방식으로 사용 |
 | *(위가 모두 없을 때)* | — | `postgresql://yangyag@localhost:5432/app` | 내장 기본값 |
 | `EXAM_API_TOKEN` | 아니오 | 없음(빈 값) | 설정하면 **쓰기(POST·PATCH) 요청에 `X-Exam-Token` 헤더 필수**. 비어 있으면 인증 없음 |
+| `TEST_DB_URL` | 아니오 | — | **테스트 전용**. 통합 테스트가 붙을 DB. 있으면 `EXAM_DB_URL`/`DATABASE_URL` 보다 우선하며, 앱 자체는 이 값을 보지 않습니다(`back/tests/conftest.py` 만 읽음) |
 | `EXAM_CORS_ORIGINS` | 아니오 | — | 쉼표 구분 추가 오리진. 기본 허용 오리진 `http://localhost:8091` 는 값을 넣어도 유지됩니다 |
 
 접속을 열 때 세션 `search_path` 를 `ipe,public` 으로 고정하므로 `yangyag` 역할의 전역 설정을 바꾸지 않습니다(기존 영어 앱에 영향 없음).
