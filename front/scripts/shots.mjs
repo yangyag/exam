@@ -34,7 +34,8 @@
  *      (all=판정값 전부 · color=색만) 점검이 전 요소를 실패로 잡는지 확인한다.
  *
  * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) ·
- * SHOTS_ONLY(쉼표로 고른 단계만 — 예 `hover`) · SHOTS_HOVER_FREEZE(대조군) 로 바꿀 수 있다.
+ * SHOTS_ONLY(쉼표로 고른 단계만 — 예 `hover`. 모르는 단계 이름이면 사용 가능한 목록을 찍고 exit 1) ·
+ * SHOTS_HOVER_FREEZE(대조군) 로 바꿀 수 있다.
  */
 import { spawn, spawnSync } from 'node:child_process'
 import { mkdirSync, statSync } from 'node:fs'
@@ -2547,16 +2548,6 @@ async function captureHover(browser) {
 async function main() {
   mkdirSync(shotsDir, { recursive: true })
 
-  if (!(await isServerUp(apiOrigin))) {
-    console.error(`백엔드(${apiOrigin})가 응답하지 않습니다. 먼저 기동하세요:
-  cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 8092`)
-    process.exit(1)
-  }
-
-  const devServer = (await isServerUp(baseUrl)) ? null : await startDevServer()
-  const browser = await chromium.launch()
-  // SHOTS_ONLY=hover 처럼 단계 이름을 쉼표로 골라 돌린다(기본은 전부) — 대조군 재확인용
-  const only = process.env.SHOTS_ONLY ? process.env.SHOTS_ONLY.split(',').map((name) => name.trim()).filter(Boolean) : null
   const stages = [
     ['real-data', captureRealData],
     ['states', captureStatesAndActions],
@@ -2572,9 +2563,34 @@ async function main() {
     ['copy-button', captureCopyButton],
     ['hover', captureHover],
   ]
+  const stageNames = stages.map(([name]) => name)
+
+  // SHOTS_ONLY=hover 처럼 단계 이름을 쉼표로 골라 돌린다(기본은 전부) — 대조군 재확인용.
+  // 모르는 이름(오타)이나 빈 값을 그대로 두면 0단계로 조용히 '모든 점검 통과' 가 나오므로, 서버를 띄우기 전에 멈춘다.
+  const only = process.env.SHOTS_ONLY
+    ? process.env.SHOTS_ONLY.split(',').map((name) => name.trim()).filter(Boolean)
+    : null
+  if (only && (only.length === 0 || only.some((name) => !stageNames.includes(name)))) {
+    const unknown = only.filter((name) => !stageNames.includes(name))
+    const reason = unknown.length ? `모르는 단계 이름: ${unknown.join(', ')}` : '단계 이름이 없습니다(쉼표만 있는 값)'
+    console.error(`SHOTS_ONLY 값이 잘못됐습니다: ${JSON.stringify(process.env.SHOTS_ONLY)} — ${reason}`)
+    console.error(`  사용 가능한 단계: ${stageNames.join(', ')}`)
+    process.exit(1)
+  }
+
+  if (!(await isServerUp(apiOrigin))) {
+    console.error(`백엔드(${apiOrigin})가 응답하지 않습니다. 먼저 기동하세요:
+  cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 8092`)
+    process.exit(1)
+  }
+
+  const devServer = (await isServerUp(baseUrl)) ? null : await startDevServer()
+  const browser = await chromium.launch()
+  const ran = []
   try {
     for (const [name, capture] of stages) {
       if (only && !only.includes(name)) continue
+      ran.push(name)
       await capture(browser)
     }
   } finally {
@@ -2585,6 +2601,13 @@ async function main() {
   console.log(`\n저장 위치: ${shotsDir}`)
   for (const { file, bytes } of captures) {
     console.log(`  ${path.basename(file)} (${Math.round(bytes / 1024)}KB)`)
+  }
+
+  // 요약에 실제로 돈 단계·컷 수를 남긴다 — '0단계 통과' 는 정상 종료가 아니다
+  console.log(`\n단계 ${ran.length}개 실행(전체 ${stages.length}개) · 스크린샷 ${captures.length}컷${only ? ` · SHOTS_ONLY=${only.join(',')}` : ''}`)
+  if (ran.length === 0) {
+    console.error('실행한 단계가 0개입니다 — SHOTS_ONLY 값을 확인하세요')
+    process.exit(1)
   }
 
   if (problems.length) {
