@@ -1,5 +1,5 @@
 -- 슬롯 기반 세션(study_session_item)과 과목 사이클(study_cycle) DDL. db/002_progress.sql 다음에 실행한다.
--- 설계 정본: plan/frontend-backend-gap.md 4.2~4.4절.
+-- 세션의 고정 문항 목록(답안 슬롯)과 과목 학습 사이클을 도입한다.
 -- 적용: python tools/load_db.py --init  (db/*.sql 을 파일명 순서로 매번 전부 실행)
 -- 재실행 안전: IF NOT EXISTS / DROP CONSTRAINT IF EXISTS / CREATE UNIQUE INDEX IF NOT EXISTS.
 -- 되돌리기:

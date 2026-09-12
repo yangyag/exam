@@ -22,7 +22,7 @@
 
 로그인 없는 단일 사용자 기준의 최소 구조입니다(기존 영어 앱의 `study_session`/`word_result`/`study_state` 와 같은 결). 응시·풀이 기록을 쌓고, 오답 복습 화면이 쓸 상태를 문항당 1행으로 유지합니다.
 
-`003_study_items.sql` 이 **세션의 고정 문항 목록(답안 슬롯)** 과 **과목 학습 사이클** 을 더합니다. 풀이 방식 세 가지(과목 사이클·회차 연습·모의고사)가 모두 "문항 목록을 가진 세션"으로 표현되고, 과목 사이클은 그런 세션의 연쇄(라운드)입니다. 설계 정본은 `plan/frontend-backend-gap.md` 4.2~4.6절입니다.
+`003_study_items.sql` 이 **세션의 고정 문항 목록(답안 슬롯)** 과 **과목 학습 사이클** 을 더합니다. 풀이 방식 세 가지(과목 사이클·회차 연습·모의고사)가 모두 "문항 목록을 가진 세션"으로 표현되고, 과목 사이클은 그런 세션의 연쇄(라운드)입니다. 구조·의미의 정본은 `db/003_study_items.sql` 주석과 `back/README.md` 입니다.
 
 `004_session_comments.sql` 은 구조를 바꾸지 않고 `study_session` 의 테이블·컬럼 COMMENT 만 다시 찍습니다. `002_progress.sql` 이 옛 4모드(`exam`·`subject`·`random`·`review`) 기준으로 찍어 둔 의미를 지금의 **mode 5종** 에 맞추고, 코멘트가 없던 `mode` 컬럼에 처음 붙입니다(`exam_id`·`subject_code`·`end_reason` 도 함께 다시 찍습니다). `003` 이 찍은 `cycle_id`·`round_no` 와 `study_cycle`·`study_session_item` 코멘트는 그대로 두며, `COMMENT` 는 값을 덮어쓸 뿐이라 **몇 번 실행해도 결과가 같습니다**(멱등).
 

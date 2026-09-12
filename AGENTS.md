@@ -37,7 +37,7 @@ db/                               000_bootstrap.sql · 001_schema.sql(문항) ·
 tools/                            파이프라인 스크립트 + 스키마 정본
 back/                             조회·채점·진도·과목 사이클 API (FastAPI) — 실행법·엔드포인트는 back/README.md
 front/                            학습 앱 화면 (Nuxt 4 + TypeScript + Tailwind CSS v4, SPA) — 실행법은 front/README.md
-plan/                             설계·검증 문서 (frontend-design.md · frontend-backend-gap.md · test-cases.md)
+plan/                             검증 문서 (test-cases.md — 테스트 케이스·실행 기록)
 deploy/                           운영 배포 (Dockerfile 2종 · docker-compose.yml · nginx 설정 · deploy.sh) — 절차·운영 주소는 deploy/README.md
 docs/                             git 에 없음 (빈 디렉터리는 추적되지 않아 clone·worktree 에 생기지 않음)
 ```
