@@ -30,16 +30,22 @@
  *      그림자·이동·투명도만 바뀌는 요소는 실패로 남기고 무엇이 바뀌었는지 함께 적는다 — 사용자 눈에
  *      "hover 가 없는" 요소가 그림자·1px 이동만으로 통과하던 것을 막는다. 비활성(disabled 속성·disabled
  *      필드셋 안)·pointer-events:none·aria-disabled=true·숨김 요소는 제외하되 사유를 함께 남긴다.
- *      `SHOTS_HOVER_FREEZE=all|color|block` 은 대조군 — all·color 는 클릭 요소의 hover 를 인라인 !important 로
- *      못박아(all=판정값 전부 · color=색만) 점검이 전 요소를 실패로 잡는지 확인하고, block 은 화면 전체를 투명한
- *      덮개로 막아 전 요소가 `마우스를 올려 보지 못함(unreached)` 으로 실패하는지 확인한다. **못 본 요소도 실패로
+ *      같은 화면에서 **커서 모양**도 판정한다 — 활성 클릭 요소는 `cursor: pointer`(손가락), 비활성은 pointer 가
+ *      아니어야 한다(main.css 커서 정책대로 `not-allowed`). 사용자 신고가 "hover 색" 이 아니라 **"새로고침
+ *      버튼이 손가락 모양이 아니다"(모든 버튼이 손가락이길 원함)** 였으므로, 색 점검과 같은 단계에서 커서도
+ *      함께 본다. 어긋난 요소는 계산된 cursor 값과 사유(활성인데 pointer 아님 / 비활성인데 pointer)를 남긴다.
+ *      `SHOTS_HOVER_FREEZE=all|color|block|cursor-auto|cursor-pointer` 은 대조군 — all·color 는 클릭 요소의
+ *      hover 를 인라인 !important 로 못박아(all=판정값 전부 · color=색만) 점검이 전 요소를 실패로 잡는지 확인하고,
+ *      block 은 화면 전체를 투명한 덮개로 막아 전 요소가 `마우스를 올려 보지 못함(unreached)` 으로 실패하는지
+ *      확인한다. cursor-auto 는 커서 정책 이전 상태(전부 `cursor:auto`), cursor-pointer 는 전부 손가락인 상태를
+ *      만들어 커서 판정이 각각 활성 요소·비활성 요소를 실패로 잡는지 확인한다. **못 본 요소도 실패로
  *      센다** — 확인하지 못한 것을 통과로 넘기면 "점검이 못 돈 초록" 이 된다.
  *
  * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) ·
  * SHOTS_ONLY(쉼표로 고른 단계만 — 예 `hover`. 아예 빈 값이면 변수를 주지 않은 것으로 보고 전체를 돌고,
  *   모르는 단계 이름이거나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 exit 1) ·
  * SHOTS_FAULT(대조군 — `states`. 그 단계 화면에 콘솔 오류와 JS 예외를 일부러 심는다) ·
- * SHOTS_HOVER_FREEZE(대조군 — `all`·`color`·`block`) 로 바꿀 수 있다.
+ * SHOTS_HOVER_FREEZE(대조군 — `all`·`color`·`block`·`cursor-auto`·`cursor-pointer`) 로 바꿀 수 있다.
  *
  * 콘솔 오류 정책: 대체 API 가 **일부러** 4xx·차단으로 답한 네트워크 로그만 봐주고, 그 밖의 콘솔 오류와
  * JS 예외(`pageerror`)는 어떤 단계에서도 실패로 남긴다. 봐준 건수는 실행 끝 요약에 찍는다 —
@@ -2431,9 +2437,13 @@ async function hoverElement(page, element) {
  *          강화 기준에서 실패로 잡히는지 본다
  *   block  못박는 대신 화면 전체를 투명한 덮개로 막아 마우스가 닿지 않게 한다 — 이때는 요소마다
  *          '마우스를 올려 보지 못함(unreached)' 으로 실패해야 한다(못 본 것을 통과로 세지 않는지 확인)
+ *   cursor-auto    커서 정책을 되돌린 사본 — 클릭 요소 전부에 `cursor: auto !important` 를 씌워 **활성 요소가
+ *                  pointer 가 아니게** 만들고, 커서 판정이 그 활성 요소를 실패로 잡는지 본다
+ *   cursor-pointer 거꾸로 전부 `cursor: pointer !important` — **비활성 요소에도 손가락이 붙어**, 커서 판정이
+ *                  비활성 요소를 실패로 잡는지 본다
  */
 const HOVER_FREEZE = process.env.SHOTS_HOVER_FREEZE || ''
-const HOVER_FREEZE_MODES = ['all', 'color', 'block']
+const HOVER_FREEZE_MODES = ['all', 'color', 'block', 'cursor-auto', 'cursor-pointer']
 const HOVER_FREEZE_PROPS = {
   all: [...HOVER_PROPS],
   color: [...HOVER_COLOR_PROPS],
@@ -2469,6 +2479,19 @@ function blockHover(page) {
     document.body.appendChild(cover)
     return true
   })
+}
+
+/**
+ * 대조군(cursor-auto·cursor-pointer) — 커서 정책을 되돌리거나 뒤집는다(`SHOTS_HOVER_FREEZE`).
+ * cursor-auto    클릭 요소 전부에 `cursor: auto !important` — 커서 정책 이전 상태의 재현이라 활성 요소가
+ *                pointer 가 아니게 되고, 커서 판정이 그 요소들을 실패로 잡아야 한다(사용자 신고 재현).
+ * cursor-pointer 전부 `cursor: pointer !important` — 비활성 요소에도 손가락이 붙어 커서 판정이 실패해야 한다.
+ * 주입한 규칙은 레이어 밖 + !important 라 `@layer components` 의 커서 규칙과 화면별 유틸리티
+ * (`cursor-pointer`·`cursor-not-allowed`)를 이긴다 — 그래서 "정책이 없으면/뒤집히면 잡히는가" 를 볼 수 있다.
+ */
+function controlCursor(page) {
+  const cursor = HOVER_FREEZE === 'cursor-pointer' ? 'pointer' : 'auto'
+  return page.addStyleTag({ content: `${CURSOR_TARGET_SELECTOR} { cursor: ${cursor} !important; }` })
 }
 
 /** 화면 하나의 클릭 요소를 하나씩 실제 마우스로 올려 보고 '색 변화가 없는' 요소 목록을 돌려준다 */
@@ -2536,6 +2559,113 @@ async function checkHover(page, label, scope) {
 }
 
 /**
+ * 커서 점검 대상 — main.css 커서 정책(`front/app/assets/css/main.css` 의 클릭 요소 목록)과 같은 선택자.
+ * hover 점검 목록(button·a[href]·[data-tap]·[role=button])에 summary·체크박스·라디오를 더한다 —
+ * 그 셋도 커서 정책이 pointer/not-allowed 를 정하는 클릭 요소라, 목록이 갈라지면 정책과 점검이 어긋난다.
+ */
+const CURSOR_TARGET_SELECTOR = 'button, a[href], [data-tap], [role="button"], summary, input[type="checkbox"], input[type="radio"]'
+
+/**
+ * 지금 화면에서 커서를 재 볼 클릭 요소를 모은다.
+ * hover 점검(`hoverTargets`)과 달리 **비활성 요소도 판정 대상**이다(비활성이면 pointer 가 아니어야 한다) —
+ * 활성이면 `inactive: null`, 비활성이면 사유(disabled 속성·disabled 필드셋 안·aria-disabled=true·
+ * pointer-events:none)를 함께 돌려주고, 계산된 cursor 값도 같이 담는다.
+ * 화면에 보이지 않는 요소(숨김·크기 0)만 빼고 사유를 남긴다 — 커서는 눈에 보이는 요소에만 의미가 있다.
+ */
+function cursorTargets(page, scope) {
+  return page.evaluate(({ scopeSelector, selector }) => {
+    const root = scopeSelector ? document.querySelector(scopeSelector) : document
+    if (!root) return { entries: [], excluded: [], missing: true }
+    const nameOf = (el) => {
+      const testid = el.getAttribute('data-testid')
+      const text = (el.textContent || '').trim().replace(/\s+/g, ' ')
+      return `${testid ? `[${testid}]` : el.tagName.toLowerCase()}${text ? ` "${text.slice(0, 20)}"` : ''}`
+    }
+    // 비활성 기준·사유 문구는 hover 점검의 제외 사유와 같은 목록·같은 순서를 쓴다(main.css 커서 정책과 동일).
+    const inactiveReason = (el) => {
+      if (el.disabled) return 'disabled 속성'
+      if (el.closest('fieldset[disabled]')) return 'disabled 필드셋 안'
+      if (el.getAttribute('aria-disabled') === 'true') return 'aria-disabled=true'
+      for (let node = el; node; node = node.parentElement) {
+        if (getComputedStyle(node).pointerEvents === 'none') return 'pointer-events:none'
+      }
+      return null
+    }
+
+    const entries = []
+    const excluded = []
+    for (const el of root.querySelectorAll(selector)) {
+      const name = nameOf(el)
+      const style = getComputedStyle(el)
+      if (style.display === 'none' || style.visibility === 'hidden' || Number(style.opacity) === 0) {
+        excluded.push(`${name} — 숨김`)
+        continue
+      }
+      const rect = el.getBoundingClientRect()
+      if (rect.width < 1 || rect.height < 1) {
+        excluded.push(`${name} — 크기 0`)
+        continue
+      }
+      entries.push({ name, cursor: style.cursor, inactive: inactiveReason(el) })
+    }
+    return { entries, excluded, missing: false }
+  }, { scopeSelector: scope ?? null, selector: CURSOR_TARGET_SELECTOR })
+}
+
+/**
+ * 화면 하나의 클릭 요소 커서를 판정한다 — 활성이면 `pointer`(손가락), 비활성이면 `pointer` 가 아니어야 한다.
+ * 비활성 쪽 권장값은 `not-allowed` 라 몇 개가 그 값인지도 세어 통과 줄에 남긴다(정책이 흔들리면 눈에 띄게).
+ */
+async function probeCursor(page, scope) {
+  const { entries, excluded, missing } = await cursorTargets(page, scope)
+  if (missing) throw new Error(`커서 점검 범위(${scope})를 찾지 못했습니다`)
+  const failures = []
+  let active = 0
+  let inactive = 0
+  let notAllowed = 0
+
+  for (const entry of entries) {
+    if (entry.inactive) {
+      inactive += 1
+      if (entry.cursor === 'not-allowed') notAllowed += 1
+      if (entry.cursor === 'pointer') {
+        failures.push({ ...entry, reason: `비활성(${entry.inactive})인데 cursor:pointer — 클릭할 수 없는데 손가락이 뜬다` })
+      }
+    } else {
+      active += 1
+      if (entry.cursor !== 'pointer') failures.push({ ...entry, reason: `활성인데 cursor:${entry.cursor} — 손가락이 아니다` })
+    }
+  }
+  return { total: entries.length, active, inactive, notAllowed, failures, excluded }
+}
+
+/**
+ * 화면 하나의 커서 점검 결과를 보고한다 — 실패는 요소별 한 줄(계산된 cursor 값 + 사유), 제외는 사유와 함께.
+ * 기존 hover 점검과 같은 형식(`[label] …`, `  - [label] …`)이라 두 점검의 로그를 나란히 읽을 수 있다.
+ */
+async function checkCursor(page, label, scope) {
+  const { total, active, inactive, notAllowed, failures, excluded } = await probeCursor(page, scope)
+  const excludedNote = excluded.length ? ` · 제외 ${excluded.length}개(아래 사유)` : ''
+  if (failures.length === 0) {
+    const activeNote = active ? ` · 활성 ${active}개는 cursor:pointer` : ''
+    const inactiveNote = inactive ? ` · 비활성 ${inactive}개는 pointer 아님(not-allowed ${notAllowed}개)` : ''
+    pass(`[${label}] 클릭 요소 ${total}개 커서 정상${activeNote}${inactiveNote}${excludedNote}`)
+  } else {
+    const notPointer = failures.filter((failure) => !failure.inactive).length
+    const clicked = failures.length - notPointer
+    const mix = [
+      notPointer ? `활성인데 pointer 아님 ${notPointer}` : null,
+      clicked ? `비활성인데 pointer ${clicked}` : null,
+    ].filter(Boolean).join(' · ')
+    fail(`[${label}] 커서가 어긋난 클릭 요소 ${failures.length}/${total}개(${mix})${excludedNote}`)
+    for (const failure of failures.slice(0, 40)) console.log(`  - [${label}] ${failure.name} — ${failure.reason}`)
+    if (failures.length > 40) console.log(`  - [${label}] … 외 ${failures.length - 40}개`)
+  }
+  for (const item of excluded) console.log(`  - [${label}] 커서 점검 제외: ${item}`)
+  return failures.length
+}
+
+/**
  * [13] 클릭 가능 요소의 마우스오버 반응.
  *
  * 화면마다 보이는 클릭 요소(button·a[href]·[data-tap]·[role=button])를 하나씩 실제 마우스로 올려
@@ -2543,16 +2673,27 @@ async function checkHover(page, label, scope) {
  * 통과로 치지 않고 실패로 남긴다(무엇이 바뀌었는지 함께 남긴다) — 그림자나 1px 이동만 있는 요소는
  * 사용자 눈에는 "hover 가 없는" 요소로 보였다. 그림자·1px 이동은 main.css 공통 규칙이 맡으므로
  * 색은 화면·컴포넌트별로 얹어야 하고, 그 색이 실제로 바뀌는지가 이 점검의 판정 기준이다.
+ * **커서 모양도 같은 화면·같은 단계에서 판정한다** — 사용자가 원한 것은 hover 색만이 아니라
+ * "모든 버튼에 손가락 모양" 이었다. 활성 클릭 요소는 `cursor: pointer`, 비활성(disabled 속성·disabled
+ * 필드셋 안·aria-disabled·pointer-events:none)은 pointer 가 아니어야 하며(권장 `not-allowed`, main.css 커서
+ * 정책과 같은 기준) 어긋난 요소는 계산된 cursor 값과 사유를 남긴다. 커서 대상은 커서 정책의 목록
+ * (button·a[href]·[data-tap]·[role=button]·summary·체크박스·라디오)이라 hover 목록보다 넓다.
  * 홈(상태 4종·실 데이터)·회차 선택·연습(제출 전·채점 뒤 해설 펼침)·모의고사(풀이·결과 해설)·이전 결과를
  * 대체 API 와 실 데이터로 열어 본다.
  * `SHOTS_HOVER_FREEZE=all|color` 로 돌리면 클릭 요소의 hover 를 인라인 !important 로 무력화하고, `block` 은
  * 화면 전체를 덮개로 막아 마우스가 닿지 않게 한다(대조군) — 이때는 전 요소가 실패로 잡혀야 하며,
  * 그래야 이 점검이 헛통과하지 않는다고 볼 수 있다. 마우스를 올려 보지 못한 요소(unreached)도 실패로 센다.
+ * `cursor-auto` 는 커서 정책 이전 상태(전부 `cursor:auto`), `cursor-pointer` 는 전부 손가락인 상태를 만들어
+ * 커서 판정이 활성 요소·비활성 요소를 각각 실패로 잡는지 확인한다(hover 판정은 그대로라 커서 판정만 반응한다).
  */
 async function captureHover(browser) {
-  console.log('\n[13] 클릭 요소 마우스오버 반응 (API 대체/실 데이터, DB 무변경)')
+  console.log('\n[13] 클릭 요소 마우스오버 반응·커서 (API 대체/실 데이터, DB 무변경)')
   if (HOVER_FREEZE === 'block') {
     console.log('  ! 대조군 모드(SHOTS_HOVER_FREEZE=block) — 화면 전체를 투명한 덮개로 막았으므로 클릭 요소마다 "마우스를 올려 보지 못함" 으로 실패해야 정상입니다.')
+  } else if (HOVER_FREEZE === 'cursor-auto') {
+    console.log('  ! 대조군 모드(SHOTS_HOVER_FREEZE=cursor-auto) — 클릭 요소 커서를 전부 auto 로 못박았으므로(커서 정책 이전 상태) 활성 요소가 커서 판정에서 실패해야 정상입니다.')
+  } else if (HOVER_FREEZE === 'cursor-pointer') {
+    console.log('  ! 대조군 모드(SHOTS_HOVER_FREEZE=cursor-pointer) — 클릭 요소 커서를 전부 pointer 로 못박았으므로 비활성 요소가 커서 판정에서 실패해야 정상입니다.')
   } else if (HOVER_FREEZE) {
     console.log(`  ! 대조군 모드(SHOTS_HOVER_FREEZE=${HOVER_FREEZE}) — 클릭 요소의 hover 반응을 인라인 !important 로 못박았으므로 전 요소가 실패로 잡혀야 정상입니다.`)
   }
@@ -2639,13 +2780,15 @@ async function captureHover(browser) {
       await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; animation: none !important; }' })
       // 대조군 모드면 마우스를 올리기 전에 손을 쓴다 — 못박으면(전 요소 실패) 덮개면(전 요소 unreached) 전부 실패해야 정상이다
       if (HOVER_FREEZE === 'block') await blockHover(page)
+      else if (HOVER_FREEZE === 'cursor-auto' || HOVER_FREEZE === 'cursor-pointer') await controlCursor(page)
       else if (HOVER_FREEZE) await freezeHover(page, screen.scope)
       await sleep(120)
       await checkHover(page, screen.label, screen.scope)
-      noteIgnoredConsoleErrors(consoleLogs, screen.label, 'hover 단계의 판정 대상은 hover 반응이라 부수 요청(대체 API 의 404·409·차단) 네트워크 로그는 봐준다')
+      await checkCursor(page, screen.label, screen.scope)
+      noteIgnoredConsoleErrors(consoleLogs, screen.label, 'hover 단계의 판정 대상은 hover 반응·커서라 부수 요청(대체 API 의 404·409·차단) 네트워크 로그는 봐준다')
     } catch (error) {
       // 한 화면이 안 열린다고 나머지 화면 점검까지 멈추지 않는다(다른 화면이 고치는 중일 수 있다)
-      fail(`[${screen.label}] 화면을 열지 못해 hover 점검을 건너뜁니다: ${String(error.message).split('\n')[0]}`)
+      fail(`[${screen.label}] 화면을 열지 못해 hover·커서 점검을 건너뜁니다: ${String(error.message).split('\n')[0]}`)
     } finally {
       await context.close()
     }

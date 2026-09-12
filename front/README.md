@@ -37,7 +37,7 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
 | `npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. **타입 오류가 있으면 실패합니다** |
 | `npm run typecheck` | 타입 검사만 (`vue-tsc`) |
 | `npm run gen:types` | `app/types/api.gen.ts` 재생성 — 백엔드 `/openapi.json` 에서 뽑습니다(백엔드가 떠 있어야 함). 산출물은 커밋합니다 |
-| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). **`SHOTS_ONLY=`(완전히 빈 값)는 변수를 주지 않은 것으로 보고 전체 13단계를 돌립니다**(무엇을 했는지 로그에도 남깁니다). 대조군은 `SHOTS_FAULT=states`(그 단계 화면에 콘솔 오류·JS 예외를 일부러 심음) · `SHOTS_HOVER_FREEZE=all\|color\|block`, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약과 실패로 세지 않은 콘솔 로그 건수를 남깁니다 |
+| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). **`SHOTS_ONLY=`(완전히 빈 값)는 변수를 주지 않은 것으로 보고 전체 13단계를 돌립니다**(무엇을 했는지 로그에도 남깁니다). 대조군은 `SHOTS_FAULT=states`(그 단계 화면에 콘솔 오류·JS 예외를 일부러 심음) · `SHOTS_HOVER_FREEZE=all\|color\|block\|cursor-auto\|cursor-pointer`, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약과 실패로 세지 않은 콘솔 로그 건수를 남깁니다 |
 
 `npm run shots` 가 확인하는 것:
 
@@ -68,8 +68,17 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
   `app/assets/css/main.css` 의 클릭 요소 공통 규칙이 보장한다**(`:disabled`·`disabled` 필드셋 안·`.pointer-events-none`·`[aria-disabled="true"]` 를 제외하고,
   버튼 hover 색은 `not-disabled:` 접두로만 켠다) — 점검은 그런 요소를 대상에서 빼고 사유만 남기므로, 비활성 가드는 CSS 를 보고 확인한다.
   떠오름(그림자 + 1px)은 같은 공통 규칙 한 곳에서, 색·테두리는 화면·컴포넌트별로 얹는다.
-- hover 점검 대조군 — `SHOTS_HOVER_FREEZE=all`(판정값 전부)·`color`(색만)은 클릭 요소의 hover 를 인라인 `!important` 로 못박고, `block` 은 화면 전체를 투명한 덮개로 막아 마우스가 닿지 않게 한다.
+- 커서 모양 — 같은 13화면·같은 단계에서 **보이는 클릭 요소의 계산된 `cursor` 값**도 판정한다. 사용자가 원한 것은 hover 색만이 아니라
+  **모든 버튼이 손가락 모양(신고: `이전 결과` 옆 `새로고침` 버튼이 손가락이 아님)** 이었으므로, **활성 요소는 `cursor: pointer`**,
+  **비활성 요소(`disabled` 속성·`disabled` 필드셋 안·`pointer-events:none`·`aria-disabled`)는 `pointer` 가 아니어야 한다**
+  (권장값은 `app/assets/css/main.css` 커서 정책과 같은 `not-allowed`). 커서 대상은 커서 정책과 같은 선택자(버튼·링크·`data-tap`·`role=button`·`summary`·체크박스·라디오)라
+  hover 목록보다 넓고, 비활성 쪽은 hover 점검과 달리 **제외하지 않고 판정한다**. 어긋난 요소는 `[label] 요소 — 활성인데 cursor:auto — 손가락이 아니다` /
+  `비활성(disabled 속성)인데 cursor:pointer — 클릭할 수 없는데 손가락이 뜬다` 처럼 **계산된 cursor 값과 사유를 요소마다 한 줄씩** 남기고,
+  통과 줄에도 활성 개수·비활성 개수·`not-allowed` 개수를 함께 찍는다(목록은 `main.css` 커서 정책 한 곳과 같은 기준).
+- hover·커서 점검 대조군 — `SHOTS_HOVER_FREEZE=all`(판정값 전부)·`color`(색만)은 클릭 요소의 hover 를 인라인 `!important` 로 못박고, `block` 은 화면 전체를 투명한 덮개로 막아 마우스가 닿지 않게 한다.
   이때 점검이 **모든 요소를 실패로 잡아야** 헛통과가 없다고 본다(`SHOTS_ONLY=hover` 로 이 단계만 빠르게 돌릴 수 있다).
+  커서는 `cursor-auto`(커서 정책을 되돌려 클릭 요소 전부 `cursor:auto` — **활성 요소가 커서 판정에서 실패해야 정상**)와
+  `cursor-pointer`(전부 `cursor:pointer` — **비활성 요소가 커서 판정에서 실패해야 정상**)로 검출력을 확인한다. 두 모드 모두 hover 판정은 그대로 두므로 커서 판정만 반응해야 한다.
   **마우스를 올려 보지 못한 요소(unreached)도 실패로 센다** — '확인하지 못했다' 를 통과로 넘기면 점검이 못 돈 화면이 초록에 섞이므로, 통과 문구(`클릭 요소 N개 모두 …`)도 전 요소를 실제로 확인했을 때만 찍는다(`block` 대조군은 화면마다 `N/N개` 점검 불가로 실패해야 정상).
 - 회차 선택·모의고사 — 회차 13행·이어풀기 표시·시작 본문(`{mode, examId, replaceActive:false}`)·409 중단 확인 대화상자,
   모의고사 풀이(**풀이 중 정답·해설 문장이 화면에 없는지**·이어풀기 13번 위치·번호 그리드 100칸의 선택/미응답 구분),
@@ -260,3 +269,10 @@ API 응답과 같은지까지 확인했습니다. 이 화면은 GET 만 쓰므�
 hover 못 본 요소 — `SHOTS_HOVER_FREEZE=block SHOTS_ONLY=hover`(화면 전체를 투명한 덮개로 막음)는 13화면 전부 `N/N개` 점검 불가(`12/12`·`10/10`·`30/30`·`110/110`·`102/102` … 합계 305개)로 **13건 실패, exit 1**, 정상 `SHOTS_ONLY=hover` 는 **exit 0** 으로 305개가 모두 색 변화로 통과했습니다(점검 불가 0건 — M16 실행과 같은 수). 못 본 요소가 있으면 `클릭 요소 N개 모두 …` 통과 문구도 찍지 않습니다.
 `SHOTS_ONLY=`(완전히 빈 값)는 `SHOTS_ONLY 가 빈 값이라 변수를 주지 않은 것으로 보고 전체 단계를 돌립니다` 를 남기고 **13단계·62컷** 을 돌며(exit 0), `SHOTS_ONLY=,`·`SHOTS_ONLY=hove`·`SHOTS_FAULT=nope`·`SHOTS_HOVER_FREEZE=nope` 는 각각 사용 가능한 값을 찍고 **exit 1** 입니다.
 이 검증은 화면·앱 코드를 바꾸지 않았습니다(하네스 판정만 정리) — 실행 뒤 진도 테이블 행 수는 사이클 1·세션 1·슬롯 176·원장 2·누계 2 로, 위 2026-09-12 기록과 같습니다.
+
+검증(2026-09-13, 커서 점검 추가 — "모든 버튼이 손가락 모양"): 커서 CSS 만 넣고 hover 색 점검만 돌리던 자리에 **커서 판정**을 추가했습니다(사용자 신고: `이전 결과` 옆 `새로고침` 버튼도 손가락이길 원함 — hover 색과 커서는 다른 얘기였습니다).
+`SHOTS_ONLY=hover` 는 **exit 0** 으로 13화면 클릭 요소 **326개(활성 317 · 비활성 9)** 의 계산된 `cursor` 를 확인했습니다 — 활성 317개는 모두 `cursor:pointer`, 비활성 9개는 모두 pointer 가 아니었고 그중 9개가 `not-allowed` 였습니다(내역: `[practice-submit] "제출하기"` disabled 속성 1 + 채점 뒤 보기 라벨 4 `disabled 필드셋 안` + 그 안의 라디오 4 `disabled 속성`). 숨김·크기 0 으로 뺀 요소는 0개였습니다.
+기본 `npm run shots` 는 **13단계·62컷, 실패 0건(exit 0)** 이고 기존 hover 판정(305개)도 그대로입니다.
+대조군 확인 — `SHOTS_HOVER_FREEZE=cursor-auto`(클릭 요소 전부 `cursor:auto` — 커서 정책 이전 상태)로 `SHOTS_ONLY=hover` 를 돌려 **활성 317개가 13건 실패(exit 1)** 로 잡혔습니다: `[home-history-link] "이전 결과" — 활성인데 cursor:auto — 손가락이 아니다`, `button "새로고침" — 활성인데 cursor:auto — 손가락이 아니다` 처럼 요소별로 계산값·사유가 찍힙니다.
+`SHOTS_HOVER_FREEZE=cursor-pointer`(전부 손가락)는 반대로 **비활성 9개가 2건 실패(exit 1)** 로 잡혔습니다: `[practice-submit] "제출하기" — 비활성(disabled 속성)인데 cursor:pointer — 클릭할 수 없는데 손가락이 뜬다`, `[practice-choice-1~4]`·라디오 4개도 같은 사유입니다.
+두 대조군 모두 hover 판정 13줄은 통과해 **커서 판정만 반응**했고(모드는 커서만 못박습니다), 같은 실행이 정상 트리에서는 exit 0 이므로 커서 판정이 실패를 정확히 잡습니다(헛통과 없음).
