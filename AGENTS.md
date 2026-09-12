@@ -37,6 +37,8 @@ db/                               000_bootstrap.sql · 001_schema.sql(문항) ·
 tools/                            파이프라인 스크립트 + 스키마 정본
 back/                             조회·채점·진도·과목 사이클 API (FastAPI) — 실행법·엔드포인트는 back/README.md
 front/                            학습 앱 화면 (Nuxt 4 + TypeScript + Tailwind CSS v4, SPA) — 실행법은 front/README.md
+plan/                             설계·검증 문서 (frontend-design.md · frontend-backend-gap.md · test-cases.md)
+deploy/                           운영 배포 (Dockerfile 2종 · docker-compose.yml · nginx 설정 · deploy.sh) — 절차·운영 주소는 deploy/README.md
 docs/                             git 에 없음 (빈 디렉터리는 추적되지 않아 clone·worktree 에 생기지 않음)
 ```
 
@@ -75,6 +77,8 @@ PostgreSQL app.ipe
 | `cd front && npm run dev` | 학습 앱 dev 서버 (SPA, 8091). 접속은 `http://localhost:8091`(127.0.0.1 은 CORS 오리진이 달라 차단), 백엔드(8092)가 먼저 떠 있어야 함 |
 | `cd front && npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. 타입 오류가 있으면 실패 |
 | `cd front && npm run shots` | Playwright 스크린샷 + 화면 자체 점검(콘솔 오류·가로 잘림·클릭 영역 44px). dev 서버가 없으면 자동 기동·종료, 결과는 `<저장소 루트>/tmp/shots/` |
+| `./deploy/deploy.sh` | 운영 배포: 이미지 2종(`exam-back`·`exam-front`) 빌드(linux/amd64) → tar → EC2 전송 → `docker load` → compose 재기동. 최초 준비·DB·롤백은 `deploy/README.md`. 운영 주소 `https://yangyag5.duckdns.org` |
+| `./aws/connect.sh "명령"` | EC2 SSH(`43.202.113.123`). 운영 확인 예: `./aws/connect.sh "cd /home/ubuntu/exam && docker compose ps"` |
 
 ## 문항 JSON 계약
 

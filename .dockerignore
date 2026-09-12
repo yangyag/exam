@@ -1,0 +1,19 @@
+# 도커 빌드 컨텍스트에서 제외 (로컬 산출물·비밀·대용량)
+.git
+.tower/
+tmp/
+aws/
+.env
+.env.*
+
+**/node_modules/
+**/.nuxt/
+**/.output/
+**/__pycache__/
+**/*.pyc
+**/.venv/
+**/.pytest_cache/
+
+# data/raw 는 PDF 재추출 캐시라 이미지에 넣지 않는다 (data/figures 는 백엔드 이미지에 필요)
+data/raw/
+data/*.pdf
