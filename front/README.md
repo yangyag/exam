@@ -37,7 +37,7 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
 | `npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. **타입 오류가 있으면 실패합니다** |
 | `npm run typecheck` | 타입 검사만 (`vue-tsc`) |
 | `npm run gen:types` | `app/types/api.gen.ts` 재생성 — 백엔드 `/openapi.json` 에서 뽑습니다(백엔드가 떠 있어야 함). 산출물은 커밋합니다 |
-| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore) |
+| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=hover` 로 단계 선택, `SHOTS_HOVER_FREEZE=all`(또는 `color`)은 hover 대조군 |
 
 `npm run shots` 가 확인하는 것:
 
@@ -57,9 +57,16 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
   **어느 경우에도 정답·해설·보기별 해설은 들어가지 않는다**(모의고사는 제출 전 상태로 확인).
   도식 문항은 안내 문구가 뜨고 **클립보드가 앞 복사본 그대로**인지 본다(`scripts/practice-fixtures.mjs`·`exam-fixtures.mjs`).
 - 마우스오버 반응 — 화면 13상태(홈 4종·홈 실데이터·회차 선택·연습 3종·모의고사 4종·이전 결과)에서 **보이는 클릭 요소를 하나씩
-  실제 마우스로 올려** `backgroundColor`·`color`·`borderColor`·`boxShadow`·`transform`·`opacity` 중 하나라도 계산값이 바뀌는지 본다.
-  클릭할 수 없는 요소(`disabled` 속성·`disabled` 필드셋 안·`pointer-events:none`·`aria-disabled`)는 제외하며, **변화 없는 요소가 0개**여야 통과한다.
-  떠오름(그림자 + 1px)은 `app/assets/css/main.css` 의 클릭 요소 공통 규칙 한 곳에서, 색·테두리는 화면·컴포넌트별로 얹는다.
+  실제 마우스로 올려** **배경색·글자색·테두리색 중 하나라도 계산값이 바뀌는지** 본다. 그림자·이동·투명도만 바뀌는 요소는
+  **실패로 기록하고 어떤 속성만 바뀌었는지 요소마다 남긴다**(예: `색(배경·글자·테두리) 변화 없이 그림자·이동만 바뀜(boxShadow, transform)`) —
+  그림자·1px 이동만으로는 hover 가 있는지 알 수 없어(사용자 신고: `이전 결과`는 반응이 있고 `새로고침`은 없음) **색 변화가 통과 조건**이다.
+  클릭할 수 없는 요소(`disabled` 속성·`disabled` 필드셋 안·`pointer-events:none`·`aria-disabled`)·숨김 요소는 제외하되
+  **개수와 사유를 요소마다 계속 남긴다**(조용히 빼지 않는다). **비활성 요소에 hover 가 붙지 않는 것 자체는 이 점검이 아니라
+  `app/assets/css/main.css` 의 클릭 요소 공통 규칙이 보장한다**(`:disabled`·`disabled` 필드셋 안·`.pointer-events-none`·`[aria-disabled="true"]` 를 제외하고,
+  버튼 hover 색은 `not-disabled:` 접두로만 켠다) — 점검은 그런 요소를 대상에서 빼고 사유만 남기므로, 비활성 가드는 CSS 를 보고 확인한다.
+  떠오름(그림자 + 1px)은 같은 공통 규칙 한 곳에서, 색·테두리는 화면·컴포넌트별로 얹는다.
+- hover 점검 대조군 — `SHOTS_HOVER_FREEZE=all`(판정값 전부) 또는 `color`(색만)로 클릭 요소의 hover 를 인라인 `!important` 로 못박아 돌린다.
+  이때 점검이 **모든 요소를 실패로 잡아야** 헛통과가 없다고 본다(`SHOTS_ONLY=hover` 로 이 단계만 빠르게 돌릴 수 있다).
 - 회차 선택·모의고사 — 회차 13행·이어풀기 표시·시작 본문(`{mode, examId, replaceActive:false}`)·409 중단 확인 대화상자,
   모의고사 풀이(**풀이 중 정답·해설 문장이 화면에 없는지**·이어풀기 13번 위치·번호 그리드 100칸의 선택/미응답 구분),
   선택 즉시 저장(`{choiceNo}` 만 — 정답·시간 없음)·선택 해제(`choiceNo:null`), **방향키로 문항 이동·보기 선택**,
@@ -231,3 +238,12 @@ API 응답과 같은지까지 확인했습니다. 이 화면은 GET 만 쓰므�
 떠오름(그림자 + 1px 이동)은 `app/assets/css/main.css` 의 공통 규칙 한 곳에서 `@media (hover: hover)` 로만 켜고, 색·테두리는 화면·컴포넌트별로 얹었습니다.
 그림자·이동은 레이아웃을 흔들지 않아 클릭 영역 44px·375px 잘림 점검은 그대로 통과합니다.
 변이 확인: 모든 버튼·링크에 `!important` 고정색을 임시로 씌워 hover 를 무력화한 사본으로 돌려 **9건이 실패**(요소별 목록까지 표시)하는 것까지 봤습니다.
+검증(2026-09-12, hover 점검 강화 — 색 변화 필수): 위 판정이 느슨했다는 신고("`이전 결과` 는 hover 가 있고 `새로고침` 은 없다")를 받아 `scripts/shots.mjs` 의 `[13]` 기준을
+**배경색·글자색·테두리색 중 하나는 반드시 계산값이 바뀌어야 통과**로 강화했습니다(예전에는 그림자·1px 이동만 바뀌어도 통과였다). 그림자·이동·투명도만 바뀌는 요소는
+실패로 남기고 요소마다 `색(배경·글자·테두리) 변화 없이 그림자만 바뀜(boxShadow)` 처럼 원인을 함께 적으며, 비활성·숨김으로 뺀 요소도 개수와 사유를 요소마다 한 줄씩 계속 남깁니다(조용히 빼지 않음).
+`npm run shots` 전체 실행(**62컷**, 실패 0건)에서 13화면 **클릭 요소 305개가 모두 색 변화로 통과**했고, 제외 5개는 `disabled` 속성·`disabled` 필드셋 안의 보기 라벨로 사유가 그대로 찍혔습니다
+(`[practice-submit] "제출하기" — disabled 속성`, `[practice-choice-1~4] — disabled 필드셋 안`).
+대조군 확인 — `SHOTS_HOVER_FREEZE=all|color` 로 클릭 요소의 hover 를 인라인 `!important` 로 못박아 `SHOTS_ONLY=hover` 로 돌렸습니다:
+`all`(판정값 전부 못박음)은 **305/305 실패(전부 변화 없음)**, `color`(색만 못박고 그림자·이동 hover 는 그대로)도 **305/305 실패(전부 `그림자만 바뀜(boxShadow)`)** —
+즉 화면의 클릭 요소 전부가 그림자 hover 를 갖고 있어 **예전 기준이라면 305개 모두 통과**했을 요소들이고, 강화 기준은 그중 색 변화가 없는 요소를 정확히 실패로 잡습니다.
+같은 305개가 정상 실행에서는 색 변화를 내며 통과하므로, 두 실행이 서로 대조되어 헛통과가 없음을 확인했습니다.
