@@ -37,7 +37,7 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
 | `npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. **타입 오류가 있으면 실패합니다** |
 | `npm run typecheck` | 타입 검사만 (`vue-tsc`) |
 | `npm run gen:types` | `app/types/api.gen.ts` 재생성 — 백엔드 `/openapi.json` 에서 뽑습니다(백엔드가 떠 있어야 함). 산출물은 커밋합니다 |
-| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 빈 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). `SHOTS_HOVER_FREEZE=all`(또는 `color`)은 hover 대조군, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약을 남깁니다 |
+| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). **`SHOTS_ONLY=`(완전히 빈 값)는 변수를 주지 않은 것으로 보고 전체 13단계를 돌립니다**(무엇을 했는지 로그에도 남깁니다). 대조군은 `SHOTS_FAULT=states`(그 단계 화면에 콘솔 오류·JS 예외를 일부러 심음) · `SHOTS_HOVER_FREEZE=all\|color\|block`, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약과 실패로 세지 않은 콘솔 로그 건수를 남깁니다 |
 
 `npm run shots` 가 확인하는 것:
 
@@ -45,7 +45,10 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
   전역 내용키 그룹 수 938 과는 다른 기준이다), 헤더의 기준 표기, 회차 13행(제목·문항 수).
   **카드의 진행도(`n / m`)·정답 수·정답 패널 라벨·보조 줄은 `GET /api/subject-cycles/overview` 응답에서 기대값을 유도해 화면 값과 맞춘다 —
   사용자 진행 기록이 있어도 통과한다**(`0 / N`·정답 `0` 을 가정하지 않는다). 값이 아예 그려지지 않거나 API 와 다르면 실패한다.
-- 브라우저 콘솔 오류 0, 가로 잘림 0, 클릭 영역(`data-tap` 요소) 44px 이상
+- 브라우저 콘솔 오류 0, 가로 잘림 0, 클릭 영역(`data-tap` 요소) 44px 이상.
+  **콘솔 오류는 모든 단계에서 판정합니다**(`scripts/shots.mjs` 의 `judgeConsoleErrors` 한 곳) — 대체 API 가 일부러 409·404 로 답하는 화면은 그 네트워크 로그만 봐주고(몇 건을 봐줬는지 통과 줄에 함께 찍습니다) JS 예외(`pageerror`)와 그 밖의 콘솔 오류는 실패입니다.
+  요청을 끊거나 4xx 로 답하는 것이 그 화면의 주제인 경우(`backend-down`·`practice-conflicts`)와 hover 단계의 부수 요청만 `noteIgnoredConsoleErrors` 로 **사유·실제 메시지·건수를 남기고** 봐주되, **JS 예외는 그 화면에서도 실패**입니다.
+  오류를 모아 두고 단언하지 않는 단계는 없습니다 — [2] 상태 4종이 그렇게 새고 있었고(수집한 오류를 그대로 버림) 지금은 네트워크 로그 외에는 그대로 실패로 끝납니다. 실행 끝 요약에 `콘솔 로그 N건은 의도된 경로로 보고 실패로 세지 않았습니다` 로 총계를 남깁니다.
 - 상태별 동작이 보내는 본문 — 시작하기 `{subjectCode, replaceActive:false}` / 새로 구성 `{subjectCode, replaceActive:true}`(확인 대화상자를 거침), 409(이미 진행 중) 안내 문구
 - 상태 4종·확인 대화상자·백엔드 다운·로딩·빈 목록 화면 — 이 컷들은 **브라우저에서 API 응답을 대체**해 찍습니다(실제 요청을 차단하므로 DB 는 그대로).
 - 연습 화면 — 코드·지문·표·도식 네 종류를 지나가며 문항·해설·라운드 종료·오답 복습 라운드·사이클 완료를 캡처한다.
@@ -65,8 +68,9 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
   `app/assets/css/main.css` 의 클릭 요소 공통 규칙이 보장한다**(`:disabled`·`disabled` 필드셋 안·`.pointer-events-none`·`[aria-disabled="true"]` 를 제외하고,
   버튼 hover 색은 `not-disabled:` 접두로만 켠다) — 점검은 그런 요소를 대상에서 빼고 사유만 남기므로, 비활성 가드는 CSS 를 보고 확인한다.
   떠오름(그림자 + 1px)은 같은 공통 규칙 한 곳에서, 색·테두리는 화면·컴포넌트별로 얹는다.
-- hover 점검 대조군 — `SHOTS_HOVER_FREEZE=all`(판정값 전부) 또는 `color`(색만)로 클릭 요소의 hover 를 인라인 `!important` 로 못박아 돌린다.
+- hover 점검 대조군 — `SHOTS_HOVER_FREEZE=all`(판정값 전부)·`color`(색만)은 클릭 요소의 hover 를 인라인 `!important` 로 못박고, `block` 은 화면 전체를 투명한 덮개로 막아 마우스가 닿지 않게 한다.
   이때 점검이 **모든 요소를 실패로 잡아야** 헛통과가 없다고 본다(`SHOTS_ONLY=hover` 로 이 단계만 빠르게 돌릴 수 있다).
+  **마우스를 올려 보지 못한 요소(unreached)도 실패로 센다** — '확인하지 못했다' 를 통과로 넘기면 점검이 못 돈 화면이 초록에 섞이므로, 통과 문구(`클릭 요소 N개 모두 …`)도 전 요소를 실제로 확인했을 때만 찍는다(`block` 대조군은 화면마다 `N/N개` 점검 불가로 실패해야 정상).
 - 회차 선택·모의고사 — 회차 13행·이어풀기 표시·시작 본문(`{mode, examId, replaceActive:false}`)·409 중단 확인 대화상자,
   모의고사 풀이(**풀이 중 정답·해설 문장이 화면에 없는지**·이어풀기 13번 위치·번호 그리드 100칸의 선택/미응답 구분),
   선택 즉시 저장(`{choiceNo}` 만 — 정답·시간 없음)·선택 해제(`choiceNo:null`), **방향키로 문항 이동·보기 선택**,
@@ -247,3 +251,12 @@ API 응답과 같은지까지 확인했습니다. 이 화면은 GET 만 쓰므�
 `all`(판정값 전부 못박음)은 **305/305 실패(전부 변화 없음)**, `color`(색만 못박고 그림자·이동 hover 는 그대로)도 **305/305 실패(전부 `그림자만 바뀜(boxShadow)`)** —
 즉 화면의 클릭 요소 전부가 그림자 hover 를 갖고 있어 **예전 기준이라면 305개 모두 통과**했을 요소들이고, 강화 기준은 그중 색 변화가 없는 요소를 정확히 실패로 잡습니다.
 같은 305개가 정상 실행에서는 색 변화를 내며 통과하므로, 두 실행이 서로 대조되어 헛통과가 없음을 확인했습니다.
+
+검증(2026-09-13, 남은 조용한 초록 정리 — 상태 4종 콘솔 오류·hover 못 본 요소·`SHOTS_ONLY` 빈 값): `npm run shots` 전체 실행이 **13단계·62컷, 실패 0건(exit 0)** 이고, 콘솔 오류 판정은 `scripts/shots.mjs` 의 `judgeConsoleErrors` 한 곳으로 모였습니다.
+[2] 상태 4종은 이제 `[상태 4종] 브라우저 콘솔 오류 0(의도한 409 네트워크 로그 1건 제외)` 를 찍습니다(허용 목록은 실행 로그로 확인한 409 하나뿐 — 넓게 잡으면 엉뚱한 요청도 조용히 넘어갑니다) — 그전에는 모아 둔 오류를 `return` 만 하고 버려서 이 화면의 JS 예외가 나도 '모든 점검 통과' 로 끝났습니다.
+콘솔 메시지에는 출처 URL 을 함께 남기고(`@ http://127.0.0.1:8092/api/subject-cycles`) 봐준 로그의 실제 메시지도 한 줄 찍습니다 — 건수만 있으면 어느 요청이었는지 확인할 수 없습니다. 덕분에 허용 목록도 실행에서 실제로 나온 것만 남길 수 있었습니다([2] 상태 4종 `409`, 모의고사 안내 `404` — 처음에 넓게 잡았던 `400·404·409` 는 근거 없는 추정이었고, 넓은 허용은 엉뚱한 요청을 조용히 넘기는 통로가 됩니다).
+의도적으로 봐주는 화면은 사유·실제 메시지·건수를 한 줄씩 남기고(`백엔드 다운` 4건 `net::ERR_CONNECTION_REFUSED`, `연습 제출 충돌` 3건 `ERR_FAILED`+409+404, hover 부수 요청 404 2건), 실행 끝 요약에 `콘솔 로그 14건은 의도된 경로로 보고 실패로 세지 않았습니다` 로 총계가 찍힙니다. **JS 예외(`pageerror`)는 어떤 화면에서도 봐주지 않습니다.**
+대조군(오류·예외 주입) — `SHOTS_FAULT=states SHOTS_ONLY=states` 는 주입한 콘솔 오류·JS 예외 **2건이 실패로 잡혀 exit 1**(스크린샷 5컷은 정상 생성 — 오류가 나도 단계는 끝까지 돌고 마지막 단언에서 실패로 끝납니다). 이 주입은 수정 전 코드에서는 조용히 통과하던 경로입니다.
+hover 못 본 요소 — `SHOTS_HOVER_FREEZE=block SHOTS_ONLY=hover`(화면 전체를 투명한 덮개로 막음)는 13화면 전부 `N/N개` 점검 불가(`12/12`·`10/10`·`30/30`·`110/110`·`102/102` … 합계 305개)로 **13건 실패, exit 1**, 정상 `SHOTS_ONLY=hover` 는 **exit 0** 으로 305개가 모두 색 변화로 통과했습니다(점검 불가 0건 — M16 실행과 같은 수). 못 본 요소가 있으면 `클릭 요소 N개 모두 …` 통과 문구도 찍지 않습니다.
+`SHOTS_ONLY=`(완전히 빈 값)는 `SHOTS_ONLY 가 빈 값이라 변수를 주지 않은 것으로 보고 전체 단계를 돌립니다` 를 남기고 **13단계·62컷** 을 돌며(exit 0), `SHOTS_ONLY=,`·`SHOTS_ONLY=hove`·`SHOTS_FAULT=nope`·`SHOTS_HOVER_FREEZE=nope` 는 각각 사용 가능한 값을 찍고 **exit 1** 입니다.
+이 검증은 화면·앱 코드를 바꾸지 않았습니다(하네스 판정만 정리) — 실행 뒤 진도 테이블 행 수는 사이클 1·세션 1·슬롯 176·원장 2·누계 2 로, 위 2026-09-12 기록과 같습니다.
