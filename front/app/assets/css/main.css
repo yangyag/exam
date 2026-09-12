@@ -46,6 +46,33 @@ body {
   }
 }
 
+/* 클릭 요소 커서 정책 — 손가락(pointer)과 못 누름(not-allowed)을 이 파일 한 곳에서 정한다.
+   왜 필요한가: 커서 기본값이 태그마다 다르다 — <a href>(NuxtLink)는 손가락, <button> 은 화살표다.
+   그래서 "이전 결과"(NuxtLink)는 손가락인데 그 옆의 "새로고침"(button)은 화살표로 보였다.
+   화면마다 cursor-* 클래스를 붙이면 빠뜨린 요소가 생기므로(모의고사 번호 그리드 칸, "보기별 해설"·
+   "문항 번호" 토글, 밑줄 링크형 버튼) 정책을 여기 한 곳에 모은다.
+   클릭 가능: button, a[href], [data-tap](보기 선택 라벨·번호 그리드 칸 등), [role="button"],
+   summary(접기/펼치기), 체크박스·라디오. 라벨이 라디오를 감싼 경우처럼 감싼 요소를 잡으면
+   cursor 는 상속되므로 안쪽 컨트롤·글자까지 함께 손가락이 된다.
+   텍스트 입력·textarea 는 손가락이 아니라 텍스트 커서(I빔)가 맞으므로 목록에서 뺀다.
+   클릭 불가: :disabled, disabled 필드셋 안(fieldset[disabled] *), .pointer-events-none 과 그 자손,
+   [aria-disabled="true"] — 위 hover 공통 규칙과 같은 제외 목록을 쓴다. 목록이 갈라지면
+   "hover 는 되는데 커서는 손가락이 아닌" 요소나 그 반대가 생긴다. 로딩 중 "새로고침"(disabled)과
+   채점 뒤 보기 라벨(disabled 필드셋 안)이 이 경로로 not-allowed 가 된다.
+   이 규칙도 @layer components 라서 화면별 조건부 유틸리티(cursor-pointer·cursor-not-allowed)가
+   언제나 이긴다 — M13 이 보기 라벨에 붙인 조건부 클래스와 결론이 같아 충돌하지 않고, 그 클래스가
+   빠진 자리에서도 같은 커서가 나온다. hover 색·그림자·1px 이동은 위 규칙 그대로다(커서만 추가). */
+@layer components {
+  :is(button, a[href], [data-tap], [role="button"], summary, input[type="checkbox"], input[type="radio"]) {
+    cursor: pointer;
+  }
+
+  /* 못 누르는 상태는 기본 화살표가 아니라 not-allowed(금지 표시)로 통일한다. */
+  :is(button, a[href], [data-tap], [role="button"], summary, input[type="checkbox"], input[type="radio"]):is(:disabled, fieldset[disabled] *, .pointer-events-none, .pointer-events-none *, [aria-disabled="true"]) {
+    cursor: not-allowed;
+  }
+}
+
 /* 버튼 공통 — 최소 클릭 영역 44px(모바일 조작), 키보드 포커스 링 유지
    hover(색 + 떠오름)에는 not-disabled: 를 붙인다 — 비활성 버튼은 cursor:not-allowed 만 유지한다.
    (:disabled 는 disabled 필드셋 안의 폼 컨트롤도 잡으므로 그때도 hover 가 붙지 않는다.)
