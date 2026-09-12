@@ -81,7 +81,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 <template>
   <Teleport to="body">
     <div v-if="open" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div class="absolute inset-0 bg-slate-900/40" @click="emit('cancel')" />
+      <div class="absolute inset-0 bg-slate-900/40 transition hover:bg-slate-900/50" @click="emit('cancel')" />
       <div
         ref="dialog"
         role="dialog"
