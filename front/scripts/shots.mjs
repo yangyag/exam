@@ -291,7 +291,10 @@ function stopDevServer(child) {
 function watchConsole(page) {
   const errors = []
   page.on('console', (message) => {
-    if (message.type() === 'error') errors.push(`console: ${message.text()}`)
+    // 리소스 404·409 로그는 어느 요청이었는지가 없으면 확인할 수 없다 — 콘솔 메시지의 출처 URL 을 함께 남긴다
+    const source = message.location()?.url
+    const where = source && !source.startsWith('console.') ? ` @ ${source}` : ''
+    if (message.type() === 'error') errors.push(`console: ${message.text()}${where}`)
   })
   page.on('pageerror', (error) => errors.push(`pageerror: ${error.message}`))
   return errors
@@ -315,6 +318,8 @@ function judgeConsoleErrors(errors, label, { allow = [] } = {}) {
   if (real.length === 0) {
     const note = relaxed.length ? `(의도한 ${allow.join('·')} 네트워크 로그 ${relaxed.length}건 제외)` : ''
     pass(`[${label}] 브라우저 콘솔 오류 0${note}`)
+    // 무엇을 봐줬는지도 한 줄 남긴다 — 건수만 있으면 '어느 요청이었나' 를 로그에서 확인할 수 없다
+    if (relaxed.length) console.log(`  · [${label}] 봐준 로그: ${relaxed.slice(0, 2).join(' / ')}`)
   } else {
     for (const message of real) fail(`[${label}] ${message}`)
   }
@@ -785,10 +790,11 @@ async function captureStatesAndActions(browser) {
   await sleep(200)
   await save(page, 'action-conflict-simulated-desktop-1280x900.png')
 
-  // 이 단계는 대체 API 로 409(이미 진행 중)·404(정의되지 않은 경로)를 일부러 지나간다 — 그 네트워크 로그만 봐주고,
-  // JS 예외를 포함한 나머지 콘솔 오류는 전부 실패로 남긴다.
+  // 이 단계가 일부러 지나가는 4xx 는 5과목 '시작하기' 의 409(이미 진행 중) 하나뿐이다(실행 로그로 확인) —
+  // 그 네트워크 로그만 봐주고, JS 예외를 포함한 나머지 콘솔 오류는 전부 실패로 남긴다.
+  // 목록을 넓게 잡으면(예: 404 까지) 나중에 이 화면이 엉뚱한 주소를 불러도 조용히 넘어간다.
   // M17 이전에는 여기서 모은 errors 를 return 만 하고 main 이 버려서, 이 화면의 JS 예외가 '모든 점검 통과' 로 끝났다.
-  judgeConsoleErrors(errors, '상태 4종', { allow: [400, 404, 409] })
+  judgeConsoleErrors(errors, '상태 4종', { allow: [409] })
 
   await context.close()
 }
@@ -1922,8 +1928,9 @@ async function captureExamClosed(browser) {
   }
   await save(page, 'exam-404-desktop-1280x900.png')
 
-  // 안내 화면으로 오는 4xx 는 의도한 경로다 — 그 네트워크 로그만 봐주고 JS 오류는 문제로 본다
-  judgeConsoleErrors(consoleErrors, '모의고사 안내', { allow: [400, 404, 409] })
+  // 여기서 실제로 나오는 4xx 는 없는 세션(/exam/9999)의 404 하나뿐이다(제출 400·409 는 아래에서 따로 본다) —
+  // 그 로그만 봐주고 JS 오류는 문제로 본다. 목록을 넓게 잡으면 의도하지 않은 400·409 도 조용히 넘어간다.
+  judgeConsoleErrors(consoleErrors, '모의고사 안내', { allow: [404] })
 
   await context.close()
 
