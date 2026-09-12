@@ -7,6 +7,8 @@
   없으면 지금까지처럼 `EXAM_DB_URL` → `DATABASE_URL` 순서를 그대로 쓴다.
   앱에서 쓰는 DB 로 돌더라도 테스트는 자기 행만 만들고 끝나면 지우며, 이미 진행 중인
   사이클이 있으면 그 사실을 알려 건너뛴다(test_integration_cycles 의 require_free_subject).
+- 접속할 수 없는 DB 는 `PGCONNECT_TIMEOUT`(5초) 안에 포기하고 skip 한다. 없으면 localhost 의
+  IPv6 주소(::1) 같은 죽은 주소마다 OS 기본 타임아웃(약 2분)을 기다려 통합 35건이 한 시간 넘게 걸린다.
 """
 from __future__ import annotations
 
@@ -23,6 +25,9 @@ from app.main import create_app
 from fake_db import FakeConnection
 
 TEST_DB_ENV = "TEST_DB_URL"
+# libpq 의 기본 접속 타임아웃(초). 이 프로세스가 만드는 커넥션(앱 풀 포함)에 모두 적용된다.
+CONNECT_TIMEOUT_SECONDS = 5
+os.environ.setdefault("PGCONNECT_TIMEOUT", str(CONNECT_TIMEOUT_SECONDS))
 # 접속 문자열에서 비밀번호를 가린다(tools/load_db.py 의 redact 와 같은 규칙).
 _CREDENTIALS_RE = re.compile(r"://([^:/@]+):[^@]*@")
 

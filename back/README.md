@@ -81,6 +81,8 @@ EXAM_DB_URL="$TEST_DB_URL" python tools/load_db.py          # 적재 + 검증(�
 
 `TEST_DB_URL` 을 두지 않으면 지금까지처럼 앱 DB 로 돌아갑니다(통합 테스트는 자기 행만 만들고 끝나면 지우며, 남의 사이클과 겹치는 과목은 건너뜁니다).
 
+접속 정보가 없어 통합 테스트를 건너뛸 때는 `PGCONNECT_TIMEOUT`(5초)을 걸어 둡니다(`back/tests/conftest.py`). 없으면 `localhost` 가 IPv6(`::1`)부터 시도하면서 죽은 주소마다 OS 기본 타임아웃(약 2분)을 기다려, 통합 35건이 전부 skip 이어도 한 시간 넘게 걸립니다. 지금은 전체 실행이 **163 passed / 35 skipped / 약 1분** 입니다.
+
 `pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다. 채점과 종료가 겹칠 때의 잠금 순서(`B-01`)는 실제 DB의 행 잠금을 재현하는 `test_integration_concurrency.py` 가 고정합니다(study_attempt 에 SHARE 잠금을 잠시 걸고, 세션 행 잠금은 `FOR UPDATE NOWAIT` 프로브로 판정). 과목 사이클 계약은 가짜 DB(`test_cycles_api.py`)와 실 DB(`test_integration_cycles.py`) 양쪽에서 고정합니다 — 라운드 자동 전환(전체 정답이면 즉시 완료), 과목당 진행 중 1개, 두 기기 동시 시작, 마지막 슬롯 제출과 새로 구성의 경합, 홈 요약의 고유 문항 수(176·194·194·199·181)를 실제 DB에서 검산합니다. **모의고사 최종 제출**은 가짜 DB(`test_progress_api.py`)로 모드 `400`·중단 `409`·멱등 재제출·합격 경계(과목 40점·평균 60점) 계산을, 실제 DB(`test_integration_db.py`)로 100문항 제출·미응답의 원장 미기록·선택 저장과 새로 구성의 잠금 경합(study_attempt 에 SHARE 잠금을 잠시 걸어 제출을 멈춰 세우는 방식)을 고정합니다.
 
 ## 2. 환경변수
