@@ -26,11 +26,15 @@
  *      실 DB 로도 한 번 열어 홈의 '이전 결과' 링크부터 화면 값까지 확인한다
  *      (전부 조회라 진도 테이블은 그대로다).
  *   6) 클릭 가능 요소의 마우스오버 반응 — 화면(홈·회차 선택·연습·모의고사·이력)마다 보이는 클릭 요소
- *      하나하나에 실제 마우스를 올려 배경색·글자색·테두리색·그림자·이동·투명도 중 하나라도 계산값이
- *      바뀌는지 본다. 비활성(disabled 속성·disabled 필드셋 안)·pointer-events:none·aria-disabled=true·
- *      숨김 요소는 제외한다. 그림자·1px 이동은 main.css 공통 규칙 담당이라 값이 바뀌는지만 본다.
+ *      하나하나에 실제 마우스를 올려 **배경색·글자색·테두리색 중 하나라도 계산값이 바뀌는지** 본다.
+ *      그림자·이동·투명도만 바뀌는 요소는 실패로 남기고 무엇이 바뀌었는지 함께 적는다 — 사용자 눈에
+ *      "hover 가 없는" 요소가 그림자·1px 이동만으로 통과하던 것을 막는다. 비활성(disabled 속성·disabled
+ *      필드셋 안)·pointer-events:none·aria-disabled=true·숨김 요소는 제외하되 사유를 함께 남긴다.
+ *      `SHOTS_HOVER_FREEZE=all|color` 는 대조군 — 클릭 요소의 hover 를 인라인 !important 로 못박아
+ *      (all=판정값 전부 · color=색만) 점검이 전 요소를 실패로 잡는지 확인한다.
  *
- * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) 로 바꿀 수 있다.
+ * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) ·
+ * SHOTS_ONLY(쉼표로 고른 단계만 — 예 `hover`) · SHOTS_HOVER_FREEZE(대조군) 로 바꿀 수 있다.
  */
 import { spawn, spawnSync } from 'node:child_process'
 import { mkdirSync, statSync } from 'node:fs'
@@ -2226,24 +2230,52 @@ async function captureCopyButton(browser) {
 
 /**
  * hover 반응 판정에 쓰는 계산값 — 색(배경·글자·테두리 4방향)·그림자·이동·투명도.
- * 어느 하나라도 값이 달라지면 마우스를 올렸을 때 화면이 반응한 것으로 본다.
+ * **색 계열(배경·글자·테두리) 중 하나라도 값이 달라져야 통과**이고, 그림자·이동·투명도만 달라지는 것은
+ * 통과로 치지 않는다 — 그림자나 1px 이동만 있는 요소는 사용자 눈에는 "hover 가 없는" 요소로 보였다.
+ * 그림자·이동·투명도는 실패한 요소가 무엇을 바꿨는지 로그에 남기려고 함께 잰다.
  */
-const HOVER_PROPS = [
+const HOVER_COLOR_PROPS = [
   'backgroundColor', 'color',
   'borderTopColor', 'borderRightColor', 'borderBottomColor', 'borderLeftColor',
-  'boxShadow', 'transform', 'opacity',
 ]
+const HOVER_EXTRA_PROPS = ['boxShadow', 'transform', 'opacity']
+const HOVER_PROPS = [...HOVER_COLOR_PROPS, ...HOVER_EXTRA_PROPS]
 
-/** 요소 하나의 hover 판정용 계산값 — 값 묶음을 문자열로 만들어 그대로 비교한다 */
+/** 실패 메시지에 사람이 읽는 이름으로 남기기 위한 속성 이름표 */
+const HOVER_PROP_LABELS = {
+  backgroundColor: '배경색',
+  color: '글자색',
+  borderTopColor: '테두리색',
+  borderRightColor: '테두리색',
+  borderBottomColor: '테두리색',
+  borderLeftColor: '테두리색',
+  boxShadow: '그림자',
+  transform: '이동',
+  opacity: '투명도',
+}
+
+/** 요소 하나의 hover 판정용 계산값 — 속성별 값 묶음으로 돌려준다 */
 function hoverStyle(element) {
   return element.evaluate(
-    (el, props) => {
-      const style = getComputedStyle(el)
-      return props.map(key => style[key]).join(' | ')
-    },
+    (el, props) => Object.fromEntries(props.map(key => [key, getComputedStyle(el)[key]])),
     HOVER_PROPS,
   )
 }
+
+/** 마우스를 올리기 전/후 계산값에서 실제로 달라진 속성만 추린다 */
+function hoverChangedProps(before, after) {
+  return HOVER_PROPS.filter(prop => before[prop] !== after[prop])
+}
+
+/** 실패한 요소 하나를 한 줄로 — 어떤 속성이 바뀌었(거나 하나도 안 바뀌었)는지 밝힌다 */
+function describeHoverFailure({ name, changed }) {
+  if (!changed.length) return `${name} — hover 해도 계산값 그대로(색·그림자·이동 모두 변화 없음)`
+  const labels = [...new Set(changed.map(prop => HOVER_PROP_LABELS[prop] ?? prop))]
+  return `${name} — 색(배경·글자·테두리) 변화 없이 ${labels.join('·')}만 바뀜(${changed.join(', ')})`
+}
+
+/** hover 점검 대상 클릭 요소 — 대조군(무력화)도 같은 목록을 봐야 하므로 선택자는 한 곳에 둔다 */
+const HOVER_TARGET_SELECTOR = 'button, a[href], [data-tap], [role="button"]'
 
 /**
  * 지금 화면에서 hover 를 재 볼 클릭 요소를 모은다.
@@ -2253,8 +2285,7 @@ function hoverStyle(element) {
  * 모은 요소는 페이지 안(window.__hoverTargets)에 두고 index 로 다시 찾는다.
  */
 function hoverTargets(page, scope) {
-  return page.evaluate((scopeSelector) => {
-    const selector = 'button, a[href], [data-tap], [role="button"]'
+  return page.evaluate(({ scopeSelector, selector }) => {
     const root = scopeSelector ? document.querySelector(scopeSelector) : document
     if (!root) return { names: [], excluded: [], missing: true }
     const nameOf = (el) => {
@@ -2285,7 +2316,7 @@ function hoverTargets(page, scope) {
     }
     window.__hoverTargets = targets
     return { names: targets.map(nameOf), excluded, missing: false }
-  }, scope)
+  }, { scopeSelector: scope ?? null, selector: HOVER_TARGET_SELECTOR })
 }
 
 /**
@@ -2311,7 +2342,39 @@ async function hoverElement(page, element) {
   return false
 }
 
-/** 화면 하나의 클릭 요소를 하나씩 실제 마우스로 올려 보고 반응 없는 요소 목록을 돌려준다 */
+/**
+ * 대조군 — 클릭 요소의 hover 반응을 인라인 `!important` 로 무력화한다(`SHOTS_HOVER_FREEZE`).
+ * 지금(마우스를 올리기 전) 계산값을 그대로 못박아 두면 `:hover` 규칙이 값을 바꿔도 인라인 !important 가 이겨
+ * hover 전후 계산값이 같아진다 — 이 상태에서 점검은 **모든 요소를 실패로** 잡아야 한다(하나라도 통과하면 헛통과).
+ *   all    판정값 전부(배경·글자·테두리색 + 그림자·이동·투명도)를 못박는다
+ *   color  색만 못박고 그림자·이동은 그대로 둔다 — 예전 기준이라면 통과했을 "그림자만 바뀌는 요소"가
+ *          강화 기준에서 실패로 잡히는지 본다
+ */
+const HOVER_FREEZE = process.env.SHOTS_HOVER_FREEZE || ''
+const HOVER_FREEZE_PROPS = {
+  all: [...HOVER_PROPS],
+  color: [...HOVER_COLOR_PROPS],
+}
+
+/** 요소들의 hover 반응을 인라인 !important 로 못박는다 — 대조군에서만 쓴다(돌려주는 값은 못박은 요소 수) */
+function freezeHover(page, scope) {
+  const computedProps = HOVER_FREEZE_PROPS[HOVER_FREEZE] ?? HOVER_FREEZE_PROPS.all
+  return page.evaluate(({ scopeSelector, selector, props }) => {
+    const root = scopeSelector ? document.querySelector(scopeSelector) : document
+    if (!root) return 0
+    const targets = [...root.querySelectorAll(selector)]
+    for (const el of targets) {
+      const style = getComputedStyle(el)
+      for (const prop of props) {
+        const css = prop.replace(/[A-Z]/g, (ch) => `-${ch.toLowerCase()}`)
+        el.style.setProperty(css, style[prop], 'important')
+      }
+    }
+    return targets.length
+  }, { scopeSelector: scope ?? null, selector: HOVER_TARGET_SELECTOR, props: computedProps })
+}
+
+/** 화면 하나의 클릭 요소를 하나씩 실제 마우스로 올려 보고 '색 변화가 없는' 요소 목록을 돌려준다 */
 async function probeHover(page, scope) {
   const { names, excluded, missing } = await hoverTargets(page, scope)
   if (missing) throw new Error(`hover 점검 범위(${scope})를 찾지 못했습니다`)
@@ -2334,22 +2397,36 @@ async function probeHover(page, scope) {
     }
 
     await sleep(60)
-    if (before === await hoverStyle(element)) failures.push(name)
+    const changed = hoverChangedProps(before, await hoverStyle(element))
+    // 색(배경·글자·테두리)이 하나도 안 바뀌면 통과로 치지 않는다 — 그림자·이동만 바뀌는 요소는 눈에 덜 띈다
+    if (!changed.some(prop => HOVER_COLOR_PROPS.includes(prop))) failures.push({ name, changed })
   }
 
   return { total: names.length, failures, unreached, excluded }
 }
 
-/** 화면 하나의 hover 점검 결과를 보고한다 */
+/**
+ * 화면 하나의 hover 점검 결과를 보고한다.
+ * 실패한 요소는 무엇이(색이 안 바뀌었는지, 그림자·이동만 바뀌었는지)까지 한 줄씩 남긴다.
+ * 비활성·숨김으로 뺀 요소도 사유와 함께 계속 보고한다 — 조용히 빼면 "왜 안 봤는지"를 알 수 없다.
+ */
 async function checkHover(page, label, scope) {
   const { total, failures, unreached, excluded } = await probeHover(page, scope)
+  const excludedNote = excluded.length ? ` · 제외 ${excluded.length}개(아래 사유)` : ''
   if (failures.length === 0) {
-    pass(`[${label}] 클릭 요소 ${total}개 모두 hover 반응(색·테두리·그림자·이동·투명도) 확인`)
+    pass(`[${label}] 클릭 요소 ${total}개 모두 hover 때 배경·글자·테두리색이 바뀜${excludedNote}`)
   } else {
-    const shown = failures.slice(0, 12).join(' · ')
-    fail(`[${label}] hover 반응 없는 요소 ${failures.length}/${total}개: ${shown}${failures.length > 12 ? ` 외 ${failures.length - 12}개` : ''}`)
+    const onlyOther = failures.filter((failure) => failure.changed.length).length
+    const none = failures.length - onlyOther
+    const mix = [
+      onlyOther ? `그림자·이동·투명도만 바뀜 ${onlyOther}` : null,
+      none ? `변화 없음 ${none}` : null,
+    ].filter(Boolean).join(' · ')
+    fail(`[${label}] hover 때 색(배경·글자·테두리)이 안 바뀌는 요소 ${failures.length}/${total}개(${mix})${excludedNote}`)
+    for (const failure of failures.slice(0, 40)) console.log(`  - [${label}] ${describeHoverFailure(failure)}`)
+    if (failures.length > 40) console.log(`  - [${label}] … 외 ${failures.length - 40}개`)
   }
-  if (excluded.length) console.log(`  - [${label}] 제외 ${excluded.length}개(비활성·숨김 등): ${excluded.slice(0, 5).join(' · ')}`)
+  for (const item of excluded) console.log(`  - [${label}] hover 점검 제외: ${item}`)
   if (unreached.length) console.log(`  - [${label}] 마우스를 올려 보지 못한 요소 ${unreached.length}개: ${unreached.slice(0, 5).join(' · ')}`)
   return failures.length
 }
@@ -2358,13 +2435,21 @@ async function checkHover(page, label, scope) {
  * [13] 클릭 가능 요소의 마우스오버 반응.
  *
  * 화면마다 보이는 클릭 요소(button·a[href]·[data-tap]·[role=button])를 하나씩 실제 마우스로 올려
- * backgroundColor·color·borderColor·boxShadow·transform·opacity 중 하나라도 계산값이 바뀌는지 본다.
+ * **배경색·글자색·테두리색 중 하나라도 계산값이 바뀌는지** 본다. 그림자·이동·투명도만 바뀌는 요소는
+ * 통과로 치지 않고 실패로 남긴다(무엇이 바뀌었는지 함께 남긴다) — 그림자나 1px 이동만 있는 요소는
+ * 사용자 눈에는 "hover 가 없는" 요소로 보였다. 그림자·1px 이동은 main.css 공통 규칙이 맡으므로
+ * 색은 화면·컴포넌트별로 얹어야 하고, 그 색이 실제로 바뀌는지가 이 점검의 판정 기준이다.
  * 홈(상태 4종·실 데이터)·회차 선택·연습(제출 전·채점 뒤 해설 펼침)·모의고사(풀이·결과 해설)·이전 결과를
- * 대체 API 와 실 데이터로 열어 본다. 그림자·1px 이동은 main.css 공통 규칙이 맡으므로 여기서는 그 값을
- * 다시 넣지 않고 "값이 바뀌는지"만 판정한다.
+ * 대체 API 와 실 데이터로 열어 본다.
+ * `SHOTS_HOVER_FREEZE=all|color` 로 돌리면 클릭 요소의 hover 를 인라인 !important 로 무력화한다(대조군) —
+ * 이때는 전 요소가 실패로 잡혀야 하며, 그래야 이 점검이 헛통과하지 않는다고 볼 수 있다.
  */
 async function captureHover(browser) {
   console.log('\n[13] 클릭 요소 마우스오버 반응 (API 대체/실 데이터, DB 무변경)')
+  if (HOVER_FREEZE && !HOVER_FREEZE_PROPS[HOVER_FREEZE]) {
+    throw new Error(`SHOTS_HOVER_FREEZE 값이 잘못됐습니다: ${HOVER_FREEZE} (all · color 중 하나)`)
+  }
+  if (HOVER_FREEZE) console.log(`  ! 대조군 모드(SHOTS_HOVER_FREEZE=${HOVER_FREEZE}) — 클릭 요소의 hover 반응을 인라인 !important 로 못박았으므로 전 요소가 실패로 잡혀야 정상입니다.`)
   const before = problems.length
 
   const screens = [
@@ -2444,6 +2529,8 @@ async function captureHover(browser) {
       if (screen.prepare) await screen.prepare(page)
       // 전환(transition)이 걸려 있으면 값이 서서히 변해 before/after 비교가 흔들린다 — 판정 동안만 끈다
       await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; animation: none !important; }' })
+      // 대조군 모드면 마우스를 올리기 전에 hover 반응을 못박아 둔다 — 전 요소가 실패로 잡혀야 정상이다
+      if (HOVER_FREEZE) await freezeHover(page, screen.scope)
       await sleep(120)
       await checkHover(page, screen.label, screen.scope)
     } catch (error) {
@@ -2468,20 +2555,28 @@ async function main() {
 
   const devServer = (await isServerUp(baseUrl)) ? null : await startDevServer()
   const browser = await chromium.launch()
+  // SHOTS_ONLY=hover 처럼 단계 이름을 쉼표로 골라 돌린다(기본은 전부) — 대조군 재확인용
+  const only = process.env.SHOTS_ONLY ? process.env.SHOTS_ONLY.split(',').map((name) => name.trim()).filter(Boolean) : null
+  const stages = [
+    ['real-data', captureRealData],
+    ['states', captureStatesAndActions],
+    ['backend-down', captureBackendDown],
+    ['loading', captureLoading],
+    ['empty', captureEmpty],
+    ['practice', capturePractice],
+    ['practice-conflicts', capturePracticeConflicts],
+    ['exams-list', captureExamsList],
+    ['exam-taking', captureExamTaking],
+    ['exam-closed', captureExamClosed],
+    ['history', captureHistory],
+    ['copy-button', captureCopyButton],
+    ['hover', captureHover],
+  ]
   try {
-    await captureRealData(browser)
-    await captureStatesAndActions(browser)
-    await captureBackendDown(browser)
-    await captureLoading(browser)
-    await captureEmpty(browser)
-    await capturePractice(browser)
-    await capturePracticeConflicts(browser)
-    await captureExamsList(browser)
-    await captureExamTaking(browser)
-    await captureExamClosed(browser)
-    await captureHistory(browser)
-    await captureCopyButton(browser)
-    await captureHover(browser)
+    for (const [name, capture] of stages) {
+      if (only && !only.includes(name)) continue
+      await capture(browser)
+    }
   } finally {
     await browser.close()
     stopDevServer(devServer)
