@@ -30,12 +30,20 @@
  *      그림자·이동·투명도만 바뀌는 요소는 실패로 남기고 무엇이 바뀌었는지 함께 적는다 — 사용자 눈에
  *      "hover 가 없는" 요소가 그림자·1px 이동만으로 통과하던 것을 막는다. 비활성(disabled 속성·disabled
  *      필드셋 안)·pointer-events:none·aria-disabled=true·숨김 요소는 제외하되 사유를 함께 남긴다.
- *      `SHOTS_HOVER_FREEZE=all|color` 는 대조군 — 클릭 요소의 hover 를 인라인 !important 로 못박아
- *      (all=판정값 전부 · color=색만) 점검이 전 요소를 실패로 잡는지 확인한다.
+ *      `SHOTS_HOVER_FREEZE=all|color|block` 은 대조군 — all·color 는 클릭 요소의 hover 를 인라인 !important 로
+ *      못박아(all=판정값 전부 · color=색만) 점검이 전 요소를 실패로 잡는지 확인하고, block 은 화면 전체를 투명한
+ *      덮개로 막아 전 요소가 `마우스를 올려 보지 못함(unreached)` 으로 실패하는지 확인한다. **못 본 요소도 실패로
+ *      센다** — 확인하지 못한 것을 통과로 넘기면 "점검이 못 돈 초록" 이 된다.
  *
  * SHOTS_DIR(기본 <저장소 루트>/tmp/shots) · SHOTS_BASE_URL(기본 http://localhost:8091) ·
- * SHOTS_ONLY(쉼표로 고른 단계만 — 예 `hover`. 모르는 단계 이름이면 사용 가능한 목록을 찍고 exit 1) ·
- * SHOTS_HOVER_FREEZE(대조군) 로 바꿀 수 있다.
+ * SHOTS_ONLY(쉼표로 고른 단계만 — 예 `hover`. 아예 빈 값이면 변수를 주지 않은 것으로 보고 전체를 돌고,
+ *   모르는 단계 이름이거나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 exit 1) ·
+ * SHOTS_FAULT(대조군 — `states`. 그 단계 화면에 콘솔 오류와 JS 예외를 일부러 심는다) ·
+ * SHOTS_HOVER_FREEZE(대조군 — `all`·`color`·`block`) 로 바꿀 수 있다.
+ *
+ * 콘솔 오류 정책: 대체 API 가 **일부러** 4xx·차단으로 답한 네트워크 로그만 봐주고, 그 밖의 콘솔 오류와
+ * JS 예외(`pageerror`)는 어떤 단계에서도 실패로 남긴다. 봐준 건수는 실행 끝 요약에 찍는다 —
+ * 수집만 하고 버리는 단계를 만들지 않는다(그게 '조용한 초록' 이었다).
  */
 import { spawn, spawnSync } from 'node:child_process'
 import { mkdirSync, statSync } from 'node:fs'
@@ -289,6 +297,67 @@ function watchConsole(page) {
   return errors
 }
 
+/** 콘솔 오류를 실패로 세지 않고 봐준 건수 — 실행 끝 요약에 남긴다(무엇을 봐줬는지 조용히 사라지지 않게) */
+let relaxedConsoleLogs = 0
+
+/**
+ * 한 화면에서 모은 콘솔 오류를 판정한다 — 이 하네스가 '초록' 이라고 부르는 기준을 한 곳에 모아 둔다.
+ *   - `allow` 에 준 상태 코드의 네트워크 로그(브라우저가 4xx 를 자동으로 남기는 'Failed to load resource')는
+ *     그 화면이 일부러 지나가는 경로라 봐준다. 몇 건을 봐줬는지 통과 줄에 함께 찍는다.
+ *   - 그 밖의 콘솔 오류와 JS 예외(`pageerror`)는 전부 실패다 — 예외가 나도 화면 절반은 그려지고 스크린샷은 남으므로,
+ *     여기서 봐주면 '오류가 났는데 안 잡히는' 경로가 된다.
+ * `errors` 는 watchConsole() 이 돌려준 배열이고 페이지마다 따로 만든다(컨텍스트가 아니라 페이지 단위).
+ */
+function judgeConsoleErrors(errors, label, { allow = [] } = {}) {
+  const relaxed = errors.filter((message) => isExpectedResourceLog(message, allow))
+  const real = errors.filter((message) => !isExpectedResourceLog(message, allow))
+  relaxedConsoleLogs += relaxed.length
+  if (real.length === 0) {
+    const note = relaxed.length ? `(의도한 ${allow.join('·')} 네트워크 로그 ${relaxed.length}건 제외)` : ''
+    pass(`[${label}] 브라우저 콘솔 오류 0${note}`)
+  } else {
+    for (const message of real) fail(`[${label}] ${message}`)
+  }
+  return real.length
+}
+
+/**
+ * 콘솔 오류를 **일부러 단언하지 않는** 화면의 기록 — 왜 봐주는지와 몇 건이었는지를 남긴다.
+ * 요청을 끊거나 4xx 로 답하는 것이 그 화면의 주제인 경우(백엔드 다운·제출 응답 유실·hover 중 부수 요청)에만 쓴다.
+ * 다만 JS 예외(`pageerror`)는 이런 화면에서도 봐주지 않는다 — 네트워크 로그와 달리 예외가 의도일 수는 없다.
+ */
+function noteIgnoredConsoleErrors(errors, label, reason) {
+  const exceptions = errors.filter((message) => message.startsWith('pageerror:'))
+  const logs = errors.filter((message) => !message.startsWith('pageerror:'))
+  relaxedConsoleLogs += logs.length
+  // 봐줄 네트워크 로그가 있을 때만 한 줄 남긴다 — 0건인 화면까지 찍으면 로그가 사유 문구로 덮인다.
+  if (logs.length) {
+    const more = logs.length > 3 ? ` … 외 ${logs.length - 3}건` : ''
+    console.log(`  · [${label}] 콘솔 로그 ${logs.length}건은 실패로 세지 않음 — ${reason} (${logs.slice(0, 3).join(' / ')}${more})`)
+  }
+  for (const message of exceptions) fail(`[${label}] ${message}`)
+  return exceptions.length
+}
+
+/**
+ * 대조군 — 단계 화면에 일부러 브라우저 오류를 심는다(`SHOTS_FAULT=<단계 이름>`).
+ * "그 단계가 정말 그 오류를 실패로 잡는가"를 확인하는 용도이므로, 오류를 심은 뒤에도 단계는 끝까지 돌고
+ * 마지막 단언에서 실패로 끝나야 한다. 심는 것은 두 갈래 다 — 콘솔 오류 한 건과 잡히지 않은 JS 예외 한 건.
+ * 지금은 콘솔 오류 단언을 새로 붙인 [2] 상태 4종(`states`)만 지원한다.
+ */
+const FAULT = process.env.SHOTS_FAULT || ''
+const FAULT_STAGES = ['states']
+
+async function injectFault(page, stage) {
+  if (FAULT !== stage) return
+  console.log(`  ! 대조군 모드(SHOTS_FAULT=${FAULT}) — 일부러 심은 콘솔 오류·JS 예외가 실패로 잡혀야 정상입니다.`)
+  await page.evaluate(() => {
+    console.error('[대조군] 일부러 낸 콘솔 오류')
+    setTimeout(() => { throw new Error('[대조군] 일부러 낸 JS 예외') }, 0)
+  })
+  await sleep(200)
+}
+
 /** 현재 포커스가 대화상자 안인지 밖인지 + 어떤 요소인지 — 포커스 트랩 점검용 */
 function focusSpot(page) {
   return page.evaluate(() => {
@@ -539,8 +608,7 @@ async function captureRealData(browser) {
   await auditLayout(page, '이전 결과 실제 데이터 375')
   await page.setViewportSize(DESKTOP)
 
-  if (errors.length === 0) pass('브라우저 콘솔 오류 0')
-  else for (const message of errors) fail(`[실제 데이터] ${message}`)
+  judgeConsoleErrors(errors, '실제 데이터')
 
   await context.close()
 }
@@ -603,6 +671,7 @@ async function captureStatesAndActions(browser) {
   await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 120000 })
   await page.waitForSelector('[data-testid="subject-card"]', { timeout: 90000 })
   await sleep(300)
+  await injectFault(page, 'states')
   await save(page, 'states-simulated-desktop-1280x900.png')
   await auditLayout(page, '상태 4종 데스크톱')
 
@@ -716,8 +785,12 @@ async function captureStatesAndActions(browser) {
   await sleep(200)
   await save(page, 'action-conflict-simulated-desktop-1280x900.png')
 
+  // 이 단계는 대체 API 로 409(이미 진행 중)·404(정의되지 않은 경로)를 일부러 지나간다 — 그 네트워크 로그만 봐주고,
+  // JS 예외를 포함한 나머지 콘솔 오류는 전부 실패로 남긴다.
+  // M17 이전에는 여기서 모은 errors 를 return 만 하고 main 이 버려서, 이 화면의 JS 예외가 '모든 점검 통과' 로 끝났다.
+  judgeConsoleErrors(errors, '상태 4종', { allow: [400, 404, 409] })
+
   await context.close()
-  return errors
 }
 
 /** 백엔드가 꺼져 있을 때의 안내 화면 */
@@ -726,7 +799,9 @@ async function captureBackendDown(browser) {
   const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
   await stubApi(context, { abort: true })
   const page = await context.newPage()
-  watchConsole(page)
+  // 이 화면의 주제가 '요청을 끊었을 때의 안내' 라 연결 실패 콘솔 로그(net::ERR_…·Failed to load resource)가 정상이다 —
+  // 네트워크 로그는 봐주되 JS 예외는 그대로 실패로 남긴다(무엇을 몇 건 봐줬는지는 noteIgnoredConsoleErrors 가 찍는다).
+  const errors = watchConsole(page)
   await page.setViewportSize(DESKTOP)
   await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 120000 })
   await page.waitForSelector('[data-testid="home-error"]', { timeout: 60000 })
@@ -750,6 +825,7 @@ async function captureBackendDown(browser) {
   }
   await sleep(200)
   await save(page, 'practice-backend-down-simulated-desktop-1280x900.png')
+  noteIgnoredConsoleErrors(errors, '백엔드 다운', '요청을 일부러 끊은 화면이라 연결 실패 네트워크 로그가 정상')
   await context.close()
 }
 
@@ -759,7 +835,8 @@ async function captureLoading(browser) {
   const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
   const { releaseOverview } = await stubApi(context, { holdOverview: true })
   const page = await context.newPage()
-  watchConsole(page)
+  // 대체 응답을 일부러 붙잡아 둔 화면 — 콘솔 오류·JS 예외가 날 이유가 없으므로 봐주지 않고 단언한다.
+  const errors = watchConsole(page)
   await page.setViewportSize(DESKTOP)
   await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 120000 })
   await page.waitForSelector('[data-testid="home-loading"]', { timeout: 30000 })
@@ -767,6 +844,8 @@ async function captureLoading(browser) {
   await save(page, 'loading-simulated-desktop-1280x900.png')
   pass('로딩 중 스켈레톤 카드 표시')
   releaseOverview?.()
+  await sleep(400)
+  judgeConsoleErrors(errors, '로딩 화면')
   await context.close()
 }
 
@@ -776,12 +855,14 @@ async function captureEmpty(browser) {
   const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
   await stubApi(context, { overview: [] })
   const page = await context.newPage()
-  watchConsole(page)
+  // 과목 0행 안내도 대체 응답만 받는 화면이다 — 콘솔 오류·JS 예외가 나면 실패로 남긴다.
+  const errors = watchConsole(page)
   await page.setViewportSize(DESKTOP)
   await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded', timeout: 120000 })
   await page.waitForSelector('[data-testid="home-empty"]', { timeout: 60000 })
   pass('과목 0행일 때 빈 목록 안내 표시')
   await save(page, 'empty-simulated-desktop-1280x900.png')
+  judgeConsoleErrors(errors, '빈 목록')
   await context.close()
 }
 
@@ -1181,8 +1262,7 @@ async function capturePractice(browser) {
   else fail(`[연습] 복습 라운드 결과 요약이 다릅니다: ${reviewRound.slice(0, 80)}`)
   await save(page, 'practice-review-wrong-analysis-desktop-1280x900.png')
 
-  if (errors.length === 0) pass('[연습] 브라우저 콘솔 오류 0')
-  else for (const message of errors) fail(`[연습] ${message}`)
+  judgeConsoleErrors(errors, '연습')
 
   await context.close()
   return problems.length - before
@@ -1194,7 +1274,9 @@ async function capturePracticeConflicts(browser) {
   const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
   await stubPracticeApi(context, { conflict: true })
   const page = await context.newPage()
-  watchConsole(page)
+  // 이 화면은 첫 제출의 응답을 일부러 잃고(abort) 그 뒤 409 로 답하는 경로를 지나간다 — 그 네트워크 로그는 봐주되
+  // JS 예외는 그대로 실패로 남긴다.
+  const errors = watchConsole(page)
   await page.setViewportSize(DESKTOP)
 
   await page.goto(`${baseUrl}/sessions/7101`, { waitUntil: 'domcontentloaded', timeout: 120000 })
@@ -1249,6 +1331,7 @@ async function capturePracticeConflicts(browser) {
   }
   await save(page, 'practice-404-desktop-1280x900.png')
 
+  noteIgnoredConsoleErrors(errors, '연습 제출 충돌', '제출 응답 유실(abort)과 409 가 이 화면의 주제라 네트워크 로그가 정상')
   await context.close()
 }
 
@@ -1537,10 +1620,8 @@ async function captureExamsList(browser) {
     .then(() => pass('[회차] 모의고사 시작은 모의고사 화면(/exam/{id})으로 이동'))
     .catch(() => fail('[회차] 모의고사 시작 뒤 모의고사 화면으로 이동하지 않았습니다'))
 
-  // 409 응답 자체는 브라우저가 네트워크 로그로 남긴다 — JS 오류만 문제로 본다
-  const unexpectedErrors = errors.filter(message => !isExpectedResourceLog(message, [409]))
-  if (unexpectedErrors.length === 0) pass(`[회차] 브라우저 콘솔 오류 0(의도한 409 네트워크 로그 ${errors.length - unexpectedErrors.length}건 제외)`)
-  else for (const message of unexpectedErrors) fail(`[회차] ${message}`)
+  // 409 응답 자체는 브라우저가 네트워크 로그로 남긴다 — 그 로그만 봐주고 JS 오류는 문제로 본다
+  judgeConsoleErrors(errors, '회차', { allow: [409] })
 
   await context.close()
   return problems.length - before
@@ -1780,8 +1861,7 @@ async function captureExamTaking(browser) {
   if (puts.length === putsBeforeSubmit) pass(`[모의고사] 해설 조회는 PUT 을 보내지 않음(제출 전 ${putsBeforeSubmit}건 그대로)`)
   else fail(`[모의고사] 결과 화면에서 PUT 이 ${puts.length - putsBeforeSubmit}건 더 나갔습니다`)
 
-  if (errors.length === 0) pass('[모의고사] 브라우저 콘솔 오류 0')
-  else for (const message of errors) fail(`[모의고사] ${message}`)
+  judgeConsoleErrors(errors, '모의고사')
 
   await context.close()
   return problems.length - before
@@ -1842,10 +1922,8 @@ async function captureExamClosed(browser) {
   }
   await save(page, 'exam-404-desktop-1280x900.png')
 
-  // 안내 화면으로 오는 4xx 는 의도한 경로다 — JS 오류만 문제로 본다
-  const closedErrors = consoleErrors.filter(message => !isExpectedResourceLog(message, [400, 404, 409]))
-  if (closedErrors.length === 0) pass('[모의고사 안내] 브라우저 콘솔 오류 0(의도한 4xx 네트워크 로그 제외)')
-  else for (const message of closedErrors) fail(`[모의고사 안내] ${message}`)
+  // 안내 화면으로 오는 4xx 는 의도한 경로다 — 그 네트워크 로그만 봐주고 JS 오류는 문제로 본다
+  judgeConsoleErrors(consoleErrors, '모의고사 안내', { allow: [400, 404, 409] })
 
   await context.close()
 
@@ -1889,9 +1967,7 @@ async function captureExamClosed(browser) {
       fail(`[모의고사 안내] ${item.label} 안내가 예상과 다릅니다: 제목=${title} 본문=${body.slice(0, 90)}`)
     }
     await save(submitPage, item.file)
-    const jsErrors = submitErrors.filter(message => !isExpectedResourceLog(message, [400, 409]))
-    if (jsErrors.length === 0) pass(`[모의고사 안내] ${item.label} 브라우저 콘솔 JS 오류 0`)
-    else for (const message of jsErrors) fail(`[모의고사 안내] ${item.label} ${message}`)
+    judgeConsoleErrors(submitErrors, `모의고사 안내 ${item.label}`, { allow: [400, 409] })
     await submitContext.close()
   }
 }
@@ -2034,8 +2110,7 @@ async function captureHistory(browser) {
     fail(`[이력] 결과 조회 대상이 예상과 다릅니다: ${details.join(', ')}`)
   }
 
-  if (errors.length === 0) pass('[이력] 브라우저 콘솔 오류 0')
-  else for (const message of errors) fail(`[이력] ${message}`)
+  judgeConsoleErrors(errors, '이력')
   await context.close()
 
   // 빈 상태 — 사이클도 회차 세션도 없을 때
@@ -2054,8 +2129,7 @@ async function captureHistory(browser) {
   }
   await save(emptyPage, 'history-empty-desktop-1280x900.png')
   await auditLayout(emptyPage, '이전 결과 빈 상태 데스크톱 1280')
-  if (emptyErrors.length === 0) pass('[이력] 빈 상태 브라우저 콘솔 오류 0')
-  else for (const message of emptyErrors) fail(`[이력] 빈 상태 ${message}`)
+  judgeConsoleErrors(emptyErrors, '이력 빈 상태')
   await emptyContext.close()
 
   return problems.length - before
@@ -2178,8 +2252,7 @@ async function captureCopyButton(browser) {
   await save(page, 'copy-figure-blocked-desktop-1280x900.png')
   await auditLayout(page, '복사 버튼 도식 문항 데스크톱 1280')
 
-  if (errors.length === 0) pass('[복사] 연습 화면 브라우저 콘솔 오류 0')
-  else for (const message of errors) fail(`[복사] ${message}`)
+  judgeConsoleErrors(errors, '복사')
   await practiceContext.close()
 
   // 4) 모의고사 화면 — 제출 전이라도 정답·해설은 복사되지 않는다
@@ -2224,8 +2297,7 @@ async function captureCopyButton(browser) {
   if (examAfterFigure === examText) pass('[복사] 모의고사 도식 문항은 클립보드를 바꾸지 않음')
   else fail('[복사] 모의고사 도식 문항인데 클립보드가 바뀌었습니다')
   await save(examPage, 'copy-exam-figure-desktop-1280x900.png')
-  if (examErrors.length === 0) pass('[복사] 모의고사 화면 브라우저 콘솔 오류 0')
-  else for (const message of examErrors) fail(`[복사] 모의고사 ${message}`)
+  judgeConsoleErrors(examErrors, '복사 모의고사')
   await examContext.close()
 }
 
@@ -2350,8 +2422,11 @@ async function hoverElement(page, element) {
  *   all    판정값 전부(배경·글자·테두리색 + 그림자·이동·투명도)를 못박는다
  *   color  색만 못박고 그림자·이동은 그대로 둔다 — 예전 기준이라면 통과했을 "그림자만 바뀌는 요소"가
  *          강화 기준에서 실패로 잡히는지 본다
+ *   block  못박는 대신 화면 전체를 투명한 덮개로 막아 마우스가 닿지 않게 한다 — 이때는 요소마다
+ *          '마우스를 올려 보지 못함(unreached)' 으로 실패해야 한다(못 본 것을 통과로 세지 않는지 확인)
  */
 const HOVER_FREEZE = process.env.SHOTS_HOVER_FREEZE || ''
+const HOVER_FREEZE_MODES = ['all', 'color', 'block']
 const HOVER_FREEZE_PROPS = {
   all: [...HOVER_PROPS],
   color: [...HOVER_COLOR_PROPS],
@@ -2373,6 +2448,20 @@ function freezeHover(page, scope) {
     }
     return targets.length
   }, { scopeSelector: scope ?? null, selector: HOVER_TARGET_SELECTOR, props: computedProps })
+}
+
+/**
+ * 대조군(block) — 화면 전체를 투명한 덮개로 덮어 클릭 요소가 마우스를 받지 못하게 한다.
+ * 덮개 자체는 클릭 요소가 아니라서(button·a[href]·[data-tap]·[role=button] 가 아니다) 점검 대상에 끼지 않는다.
+ */
+function blockHover(page) {
+  return page.evaluate(() => {
+    const cover = document.createElement('div')
+    cover.setAttribute('data-testid', 'hover-blocker')
+    cover.style.cssText = 'position:fixed;inset:0;z-index:2147483647;background:transparent'
+    document.body.appendChild(cover)
+    return true
+  })
 }
 
 /** 화면 하나의 클릭 요소를 하나씩 실제 마우스로 올려 보고 '색 변화가 없는' 요소 목록을 돌려준다 */
@@ -2414,9 +2503,10 @@ async function probeHover(page, scope) {
 async function checkHover(page, label, scope) {
   const { total, failures, unreached, excluded } = await probeHover(page, scope)
   const excludedNote = excluded.length ? ` · 제외 ${excluded.length}개(아래 사유)` : ''
-  if (failures.length === 0) {
+  // 마우스를 못 올린 요소가 하나라도 있으면 '전부 바뀜' 이라고 말할 수 없다 — 통과 문구는 확인한 화면에만 붙인다
+  if (failures.length === 0 && unreached.length === 0) {
     pass(`[${label}] 클릭 요소 ${total}개 모두 hover 때 배경·글자·테두리색이 바뀜${excludedNote}`)
-  } else {
+  } else if (failures.length) {
     const onlyOther = failures.filter((failure) => failure.changed.length).length
     const none = failures.length - onlyOther
     const mix = [
@@ -2428,7 +2518,13 @@ async function checkHover(page, label, scope) {
     if (failures.length > 40) console.log(`  - [${label}] … 외 ${failures.length - 40}개`)
   }
   for (const item of excluded) console.log(`  - [${label}] hover 점검 제외: ${item}`)
-  if (unreached.length) console.log(`  - [${label}] 마우스를 올려 보지 못한 요소 ${unreached.length}개: ${unreached.slice(0, 5).join(' · ')}`)
+  // 못 본 요소를 초록으로 넘기지 않는다: '마우스를 올리지 못했다' 는 'hover 가 없다' 가 아니라 '확인하지 못했다' 이고,
+  // 그대로 두면 점검이 못 돈 화면이 통과에 섞인다(M16 실행 305개에서는 0건 — 정상 실행은 이 단언을 그대로 통과한다).
+  if (unreached.length) {
+    fail(`[${label}] 마우스를 올려 보지 못한 클릭 요소 ${unreached.length}/${total}개 — hover 를 확인하지 못했습니다(대조군 SHOTS_HOVER_FREEZE=block 으로 이 판정이 잡히는지 확인)`)
+    for (const name of unreached.slice(0, 40)) console.log(`  - [${label}] 점검 못 함: ${name}`)
+    if (unreached.length > 40) console.log(`  - [${label}] … 외 ${unreached.length - 40}개`)
+  }
   return failures.length
 }
 
@@ -2442,15 +2538,17 @@ async function checkHover(page, label, scope) {
  * 색은 화면·컴포넌트별로 얹어야 하고, 그 색이 실제로 바뀌는지가 이 점검의 판정 기준이다.
  * 홈(상태 4종·실 데이터)·회차 선택·연습(제출 전·채점 뒤 해설 펼침)·모의고사(풀이·결과 해설)·이전 결과를
  * 대체 API 와 실 데이터로 열어 본다.
- * `SHOTS_HOVER_FREEZE=all|color` 로 돌리면 클릭 요소의 hover 를 인라인 !important 로 무력화한다(대조군) —
- * 이때는 전 요소가 실패로 잡혀야 하며, 그래야 이 점검이 헛통과하지 않는다고 볼 수 있다.
+ * `SHOTS_HOVER_FREEZE=all|color` 로 돌리면 클릭 요소의 hover 를 인라인 !important 로 무력화하고, `block` 은
+ * 화면 전체를 덮개로 막아 마우스가 닿지 않게 한다(대조군) — 이때는 전 요소가 실패로 잡혀야 하며,
+ * 그래야 이 점검이 헛통과하지 않는다고 볼 수 있다. 마우스를 올려 보지 못한 요소(unreached)도 실패로 센다.
  */
 async function captureHover(browser) {
   console.log('\n[13] 클릭 요소 마우스오버 반응 (API 대체/실 데이터, DB 무변경)')
-  if (HOVER_FREEZE && !HOVER_FREEZE_PROPS[HOVER_FREEZE]) {
-    throw new Error(`SHOTS_HOVER_FREEZE 값이 잘못됐습니다: ${HOVER_FREEZE} (all · color 중 하나)`)
+  if (HOVER_FREEZE === 'block') {
+    console.log('  ! 대조군 모드(SHOTS_HOVER_FREEZE=block) — 화면 전체를 투명한 덮개로 막았으므로 클릭 요소마다 "마우스를 올려 보지 못함" 으로 실패해야 정상입니다.')
+  } else if (HOVER_FREEZE) {
+    console.log(`  ! 대조군 모드(SHOTS_HOVER_FREEZE=${HOVER_FREEZE}) — 클릭 요소의 hover 반응을 인라인 !important 로 못박았으므로 전 요소가 실패로 잡혀야 정상입니다.`)
   }
-  if (HOVER_FREEZE) console.log(`  ! 대조군 모드(SHOTS_HOVER_FREEZE=${HOVER_FREEZE}) — 클릭 요소의 hover 반응을 인라인 !important 로 못박았으므로 전 요소가 실패로 잡혀야 정상입니다.`)
   const before = problems.length
 
   const screens = [
@@ -2523,17 +2621,21 @@ async function captureHover(browser) {
     try {
       if (screen.stub) await screen.stub(context)
       const page = await context.newPage()
-      watchConsole(page)
+      // 이 단계의 판정 대상은 hover 반응이다 — 대체 API 의 404·409·차단이 만드는 네트워크 로그는 실패로 세지 않되,
+      // JS 예외는 그대로 실패로 남긴다(noteIgnoredConsoleErrors 가 건수와 사유를 찍는다).
+      const consoleLogs = watchConsole(page)
       await page.setViewportSize(screen.viewport ?? DESKTOP)
       await page.goto(`${baseUrl}${screen.path}`, { waitUntil: 'domcontentloaded', timeout: 120000 })
       await page.waitForSelector(screen.ready, { timeout: 90000 })
       if (screen.prepare) await screen.prepare(page)
       // 전환(transition)이 걸려 있으면 값이 서서히 변해 before/after 비교가 흔들린다 — 판정 동안만 끈다
       await page.addStyleTag({ content: '*, *::before, *::after { transition: none !important; animation: none !important; }' })
-      // 대조군 모드면 마우스를 올리기 전에 hover 반응을 못박아 둔다 — 전 요소가 실패로 잡혀야 정상이다
-      if (HOVER_FREEZE) await freezeHover(page, screen.scope)
+      // 대조군 모드면 마우스를 올리기 전에 손을 쓴다 — 못박으면(전 요소 실패) 덮개면(전 요소 unreached) 전부 실패해야 정상이다
+      if (HOVER_FREEZE === 'block') await blockHover(page)
+      else if (HOVER_FREEZE) await freezeHover(page, screen.scope)
       await sleep(120)
       await checkHover(page, screen.label, screen.scope)
+      noteIgnoredConsoleErrors(consoleLogs, screen.label, 'hover 단계의 판정 대상은 hover 반응이라 부수 요청(대체 API 의 404·409·차단) 네트워크 로그는 봐준다')
     } catch (error) {
       // 한 화면이 안 열린다고 나머지 화면 점검까지 멈추지 않는다(다른 화면이 고치는 중일 수 있다)
       fail(`[${screen.label}] 화면을 열지 못해 hover 점검을 건너뜁니다: ${String(error.message).split('\n')[0]}`)
@@ -2566,15 +2668,31 @@ async function main() {
   const stageNames = stages.map(([name]) => name)
 
   // SHOTS_ONLY=hover 처럼 단계 이름을 쉼표로 골라 돌린다(기본은 전부) — 대조군 재확인용.
-  // 모르는 이름(오타)이나 빈 값을 그대로 두면 0단계로 조용히 '모든 점검 통과' 가 나오므로, 서버를 띄우기 전에 멈춘다.
-  const only = process.env.SHOTS_ONLY
-    ? process.env.SHOTS_ONLY.split(',').map((name) => name.trim()).filter(Boolean)
-    : null
+  // 완전히 빈 문자열(`SHOTS_ONLY=`)은 변수를 주지 않은 것과 같게 본다 — 셸에서 빈 값이 '기본값' 을 뜻하는 관례를 따르고,
+  // (문자열이 falsy 라 우연히 그렇게 되던 것을 여기서 못박는다) 어차피 전체 13단계를 돌아 조용한 초록이 될 수 없다.
+  // 반면 쉼표·공백만 있는 값은 '단계를 고르려다 만 것' 이라 전체 실행으로 넘기지 않고 서버를 띄우기 전에 멈춘다.
+  const onlyRaw = process.env.SHOTS_ONLY
+  const only = onlyRaw === undefined || onlyRaw === ''
+    ? null
+    : onlyRaw.split(',').map((name) => name.trim()).filter(Boolean)
+  // 빈 값 폴백은 로그에도 남긴다 — '왜 13단계가 다 돌았지' 를 로그만 보고 알 수 있게
+  if (onlyRaw === '') console.log('SHOTS_ONLY 가 빈 값이라 변수를 주지 않은 것으로 보고 전체 단계를 돌립니다.')
   if (only && (only.length === 0 || only.some((name) => !stageNames.includes(name)))) {
     const unknown = only.filter((name) => !stageNames.includes(name))
-    const reason = unknown.length ? `모르는 단계 이름: ${unknown.join(', ')}` : '단계 이름이 없습니다(쉼표만 있는 값)'
-    console.error(`SHOTS_ONLY 값이 잘못됐습니다: ${JSON.stringify(process.env.SHOTS_ONLY)} — ${reason}`)
+    const reason = unknown.length ? `모르는 단계 이름: ${unknown.join(', ')}` : '단계 이름이 없습니다(쉼표·공백만 있는 값)'
+    console.error(`SHOTS_ONLY 값이 잘못됐습니다: ${JSON.stringify(onlyRaw)} — ${reason}`)
     console.error(`  사용 가능한 단계: ${stageNames.join(', ')}`)
+    process.exit(1)
+  }
+
+  // 대조군(SHOTS_FAULT) 오타도 조용히 넘기지 않는다 — 아무 데도 안 심기면 대조군이 아니다
+  if (FAULT && !FAULT_STAGES.includes(FAULT)) {
+    console.error(`SHOTS_FAULT 값이 잘못됐습니다: ${JSON.stringify(FAULT)} — 지원하는 단계: ${FAULT_STAGES.join(', ')}`)
+    process.exit(1)
+  }
+  // hover 대조군 값도 서버를 띄우기 전에 본다 — 오타를 단계 안에서 던지면 스택만 남는다
+  if (HOVER_FREEZE && !HOVER_FREEZE_MODES.includes(HOVER_FREEZE)) {
+    console.error(`SHOTS_HOVER_FREEZE 값이 잘못됐습니다: ${JSON.stringify(HOVER_FREEZE)} — ${HOVER_FREEZE_MODES.join(' · ')} 중 하나`)
     process.exit(1)
   }
 
@@ -2605,6 +2723,9 @@ async function main() {
 
   // 요약에 실제로 돈 단계·컷 수를 남긴다 — '0단계 통과' 는 정상 종료가 아니다
   console.log(`\n단계 ${ran.length}개 실행(전체 ${stages.length}개) · 스크린샷 ${captures.length}컷${only ? ` · SHOTS_ONLY=${only.join(',')}` : ''}`)
+  if (relaxedConsoleLogs) {
+    console.log(`  (콘솔 로그 ${relaxedConsoleLogs}건은 의도된 경로로 보고 실패로 세지 않았습니다 — 사유는 각 단계 로그)`)
+  }
   if (ran.length === 0) {
     console.error('실행한 단계가 0개입니다 — SHOTS_ONLY 값을 확인하세요')
     process.exit(1)
