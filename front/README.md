@@ -37,7 +37,7 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
 | `npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. **타입 오류가 있으면 실패합니다** |
 | `npm run typecheck` | 타입 검사만 (`vue-tsc`) |
 | `npm run gen:types` | `app/types/api.gen.ts` 재생성 — 백엔드 `/openapi.json` 에서 뽑습니다(백엔드가 떠 있어야 함). 산출물은 커밋합니다 |
-| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=hover` 로 단계 선택, `SHOTS_HOVER_FREEZE=all`(또는 `color`)은 hover 대조군 |
+| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 빈 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). `SHOTS_HOVER_FREEZE=all`(또는 `color`)은 hover 대조군, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약을 남깁니다 |
 
 `npm run shots` 가 확인하는 것:
 
