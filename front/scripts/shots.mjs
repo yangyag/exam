@@ -6,6 +6,8 @@
  * 하는 일:
  *   1) 실제 DB 데이터로 홈과 회차 선택 화면을 캡처한다(모바일 375x812 · 데스크톱 1280x900) —
  *      콘솔 오류 0, 가로 잘림 0, 클릭 영역 44px 이상, 과목 5개·고유 문항 수·회차 13행을 확인한다.
+ *      카드의 진행도·정답 수·라벨·보조 줄은 `GET /api/subject-cycles/overview` 응답에서 기대값을
+ *      유도해 화면 값과 맞춘다 — 사용자 진행 기록이 쌓여 있어도 통과해야 한다(0/N·0 을 가정하지 않는다).
  *   2) 상태 4종·확인 대화상자·백엔드 다운·로딩 화면은 브라우저에서 API 응답을 대체해 캡처한다.
  *      이때 시작하기/새로 구성이 보내는 본문도 검사한다. DB 는 건드리지 않는다(실제 요청 차단).
  *   3) 연습 화면(문항·제출·해설·보기별 해설·라운드 종료·다음 라운드)과 충돌(409·중단) 안내도
@@ -62,14 +64,58 @@ const apiOrigin = process.env.SHOTS_API_ORIGIN || 'http://127.0.0.1:8092'
 const MOBILE = { width: 375, height: 812 }
 const DESKTOP = { width: 1280, height: 900 }
 
-// 실제 DB 기준값(중복 제거 고유 문항) — 1:176 2:194 3:194 4:199 5:181
+// 데이터셋 기준값(과목별 중복 제거 고유 문항) — 1:176 2:194 3:194 4:199 5:181
+// 사용자 진행 기록과 무관한 값이라 그대로 단언한다. 진행도·정답 수처럼 진행 기록에 따라 달라지는 값은
+// 아래 expectedCard() 로 API 응답에서 유도한다 — 0/N·0 을 하드코딩하면 사용자가 푼 만큼 항상 실패한다.
 const EXPECTED = [
-  { name: '소프트웨어 설계', count: 176 },
-  { name: '소프트웨어 개발', count: 194 },
-  { name: '데이터베이스 구축', count: 194 },
-  { name: '프로그래밍 언어 활용', count: 199 },
-  { name: '정보시스템 구축 관리', count: 181 },
+  { code: 1, name: '소프트웨어 설계', count: 176 },
+  { code: 2, name: '소프트웨어 개발', count: 194 },
+  { code: 3, name: '데이터베이스 구축', count: 194 },
+  { code: 4, name: '프로그래밍 언어 활용', count: 199 },
+  { code: 5, name: '정보시스템 구축 관리', count: 181 },
 ]
+
+/** 백엔드 API 를 그대로 읽는다 — 실 데이터 컷의 기대값은 이 응답에서 유도해 화면 값과 맞춘다 */
+const apiJson = (path) => fetch(`${apiOrigin}${path}`).then((response) => response.json())
+
+/**
+ * 홈 카드가 보여야 하는 값 — `GET /api/subject-cycles/overview` 한 행에서 유도한다.
+ * 규칙은 화면과 같다(app/utils/subjects.ts 의 toSubjectCardView):
+ *   시작 전 0 / 고유 문항 · 정답 0, 진행 중 열린 라운드(currentRound, 없으면 1차 라운드), 완료 1차(전체) 라운드.
+ * `detail` 은 보조 줄(`card-detail`)이 있으면 `must` 를 포함해야 하고, `needsDate` 면 완료일도 있어야 한다.
+ */
+function expectedCard(subject) {
+  const status = subject.status
+  const first = subject.cycle?.firstRound ?? null
+  const current = subject.cycle?.currentRound ?? null
+  const labels = { not_started: '정답 수', first_pass: '1차 정답', reviewing: '복습 정답', completed: '1차 정답' }
+  const card = {
+    correctLabel: labels[status] ?? '',
+    answered: 0,
+    total: subject.uniqueQuestionCount,
+    correct: 0,
+    detail: null,
+  }
+
+  if (status === 'completed') {
+    card.total = first?.itemCount ?? subject.uniqueQuestionCount
+    card.answered = first?.answered ?? subject.uniqueQuestionCount
+    card.correct = first?.correct ?? 0
+    card.detail = {
+      must: `1차(전체) 풀이 정답 ${card.correct}/${card.total}`,
+      needsDate: Boolean(subject.cycle?.endedAt),
+    }
+  } else if (status !== 'not_started') {
+    const round = current ?? first
+    card.total = round?.itemCount ?? subject.uniqueQuestionCount
+    card.answered = round?.answered ?? 0
+    card.correct = round?.correct ?? 0
+    card.detail = status === 'reviewing' && first
+      ? { must: `1차 풀이 정답 ${first.correct}/${first.itemCount}`, needsDate: false }
+      : null
+  }
+  return card
+}
 
 // 상태 4종을 한 화면에서 보기 위한 대체 응답(과목명·고유 문항 수는 실제 값 그대로)
 const stubOverview = [
@@ -281,7 +327,7 @@ async function auditLayout(page, label) {
   return result
 }
 
-/** 실제 데이터 컷 — 콘솔 오류 0 과 값 일치까지 확인한다 */
+/** 실제 데이터 컷 — 콘솔 오류 0 과 값 일치(화면 값 = API 응답)까지 확인한다 */
 async function captureRealData(browser) {
   console.log('\n[1] 실제 DB 데이터 홈')
   const context = await browser.newContext({ locale: 'ko-KR', timezoneId: 'Asia/Seoul', deviceScaleFactor: 1, colorScheme: 'light' })
@@ -294,27 +340,77 @@ async function captureRealData(browser) {
   await sleep(400)
 
   const beforeDataChecks = problems.length
-  if (await page.locator('[data-testid="subject-card"]').count() !== 5) {
-    fail(`[모바일] 과목 카드가 5개가 아닙니다: ${await page.locator('[data-testid="subject-card"]').count()}`)
-  }
+  // 기대값은 API 응답에서 유도한다 — 사용자 진행 기록(푼 문항·정답 수)이 있어도 통과해야 한다
+  const overview = await apiJson('/api/subject-cycles/overview')
+  const cardCount = await page.locator('[data-testid="subject-card"]').count()
+  if (cardCount !== overview.length) fail(`[모바일] 과목 카드가 ${cardCount}개입니다(API ${overview.length}행)`)
   // 라벨과 숫자를 함께 본다 — 부분 문자열만 보면 라벨이 틀린 숫자를 보여도 통과한다(리뷰 P2-4)
   for (const [index, expected] of EXPECTED.entries()) {
     const card = page.locator('[data-testid="subject-card"]').nth(index)
     const where = `[모바일] ${index + 1}번 카드`
+    const subject = overview.find(row => row.subjectCode === expected.code)
+    if (!subject) {
+      fail(`${where}의 과목(${expected.code})이 overview 응답에 없습니다`)
+      continue
+    }
+    const beforeCardChecks = problems.length
+    if (subject.subjectName !== expected.name) fail(`${where}의 과목명이 다릅니다: ${subject.subjectName}(기대 ${expected.name})`)
+    if (subject.uniqueQuestionCount !== expected.count) {
+      fail(`${where}의 고유 문항이 API 에서 ${subject.uniqueQuestionCount}개입니다(데이터셋 기준 ${expected.count}개)`)
+    }
+    // 이 카드가 보여야 하는 진행도·정답 수·라벨·보조 줄(화면 계약은 app/utils/subjects.ts)
+    const derived = expectedCard(subject)
+
     const text = (await card.innerText()).replace(/\s+/g, ' ')
     if (!text.includes(expected.name)) fail(`${where}에 과목명이 없습니다: ${expected.name}`)
 
     const unique = (await card.locator('[data-testid="card-unique"]').innerText()).replace(/\s+/g, ' ')
-    const uniqueMatch = unique.match(/^고유 문항 (\d+)개/)
-    if (!uniqueMatch) fail(`${where}의 고유 문항 줄이 '고유 문항 N개' 형식이 아닙니다: ${unique}`)
-    else if (Number(uniqueMatch[1]) !== expected.count) fail(`${where}의 고유 문항이 ${uniqueMatch[1]}개 입니다(기대 ${expected.count}개)`)
+    const uniqueMatch = unique.match(/^고유 문항 (\d+)개( · 이번 라운드 (\d+)문항)?$/)
+    if (!uniqueMatch) {
+      fail(`${where}의 고유 문항 줄이 '고유 문항 N개' 형식이 아닙니다: ${unique}`)
+    } else {
+      if (Number(uniqueMatch[1]) !== subject.uniqueQuestionCount) {
+        fail(`${where}의 고유 문항이 ${uniqueMatch[1]}개 입니다(API ${subject.uniqueQuestionCount}개)`)
+      }
+      // '이번 라운드 N문항' 은 라운드 크기가 고유 문항 수와 다를 때만 붙는다 — 그 값도 API 기준으로 본다
+      if (derived.total === subject.uniqueQuestionCount && uniqueMatch[2]) {
+        fail(`${where}에 '이번 라운드 N문항' 이 붙었습니다(라운드 = 고유 문항 ${derived.total}개): ${unique}`)
+      }
+      if (derived.total !== subject.uniqueQuestionCount && Number(uniqueMatch[2]) !== derived.total) {
+        fail(`${where}의 이번 라운드 문항 수가 API 와 다릅니다: ${unique}(API 라운드 ${derived.total}문항)`)
+      }
+    }
 
-    // 표시는 '0 / 176' 이지만 DOM 텍스트는 '0/ 176' 이라 공백을 지우고 비교한다
-    const progress = (await card.locator('[data-testid="card-progress"]').innerText()).replace(/\s+/g, '')
-    if (progress !== `0/${expected.count}`) fail(`${where}의 진행도가 '0 / ${expected.count}' 가 아닙니다: ${progress}`)
+    // 표시는 'n / m' 이지만 DOM 텍스트는 'n/ m' 이라 공백을 지우고 비교한다. 값이 안 그려지면 빈 문자열이라 실패한다.
+    const progressText = await card.locator('[data-testid="card-progress"]').innerText({ timeout: 3000 }).catch(() => '')
+    const progress = progressText.replace(/\s+/g, '')
+    if (progress !== `${derived.answered}/${derived.total}`) {
+      fail(`${where}의 진행도가 API 와 다릅니다: ${progress}(API ${derived.answered} / ${derived.total})`)
+    }
 
-    const correct = (await card.locator('[data-testid="card-correct"]').innerText()).trim()
-    if (correct !== '0') fail(`${where}의 정답 수가 '0' 이 아닙니다: ${correct}`)
+    const correctLabel = (await card.locator('[data-testid="card-correct-label"]').innerText({ timeout: 3000 }).catch(() => '')).trim()
+    if (correctLabel !== derived.correctLabel) {
+      fail(`${where}의 정답 패널 라벨이 다릅니다: ${correctLabel}(기대 ${derived.correctLabel})`)
+    }
+    const correct = (await card.locator('[data-testid="card-correct"]').innerText({ timeout: 3000 }).catch(() => '')).trim()
+    if (correct !== `${derived.correct}`) {
+      fail(`${where}의 정답 수가 API 와 다릅니다: ${correct}(API ${derived.correct})`)
+    }
+
+    // 보조 줄(완료 카드의 1차(전체) 요약·복습 카드의 1차 정답)도 API 값과 맞아야 한다
+    const detailCount = await card.locator('[data-testid="card-detail"]').count()
+    const detail = detailCount ? (await card.locator('[data-testid="card-detail"]').innerText()).replace(/\s+/g, ' ') : null
+    if (derived.detail === null) {
+      if (detailCount !== 0) fail(`${where}에 보조 줄이 있으면 안 됩니다: ${detail}`)
+    } else if (!detail?.includes(derived.detail.must)) {
+      fail(`${where}의 보조 줄이 API 와 다릅니다: ${detail}(API 기준 '${derived.detail.must}' 포함 필요)`)
+    } else if (derived.detail.needsDate && !detail.includes('완료일')) {
+      fail(`${where}의 보조 줄에 완료일이 없습니다: ${detail}`)
+    }
+
+    if (problems.length === beforeCardChecks) {
+      pass(`${where} 진행도 ${derived.answered} / ${derived.total} · ${derived.correctLabel} ${derived.correct} — API 응답과 일치`)
+    }
   }
   const header = await page.locator('header').first().innerText()
   const totalUnique = EXPECTED.reduce((sum, item) => sum + item.count, 0)
@@ -331,7 +427,7 @@ async function captureRealData(browser) {
   await auditLayout(page, '데스크톱 1280')
 
   if (problems.length === beforeDataChecks) {
-    pass('실제 데이터로 과목 5개·고유 문항 176/194/194/199/181 렌더링 확인')
+    pass(`실제 데이터로 과목 ${overview.length}개·고유 문항 ${EXPECTED.map(item => item.count).join('/')} 렌더링 확인`)
   }
 
   // 회차 선택 화면도 실 데이터로 한 번 — 13회차 목록·문항 수가 그대로 나오는지(DB 무변경: 조회만)
@@ -376,7 +472,6 @@ async function captureRealData(browser) {
   await sleep(400)
 
   const beforeHistoryChecks = problems.length
-  const apiJson = (path) => fetch(`${apiOrigin}${path}`).then(response => response.json())
   const [realExams, realSessions, ...realCycles] = await Promise.all([
     apiJson('/api/exams'),
     apiJson('/api/sessions?limit=50'),
