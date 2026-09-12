@@ -45,11 +45,13 @@ function cellState(cell: GridCell): CellState {
   return cell.choiceNo === null ? 'unanswered' : 'chosen'
 }
 
+// 네 상태 모두 hover 에서 색 계열(배경·글자·테두리)이 바뀐다.
+// 채운 칸은 테두리와 배경을 같은 진한 색으로 함께 내려야 hover 때 테두리만 옅게 남지 않는다.
 const stateClasses: Record<CellState, string> = {
-  unanswered: 'border-2 border-dashed border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:bg-slate-50',
-  chosen: 'border-2 border-blue-600 bg-blue-600 font-bold text-white hover:bg-blue-700',
-  correct: 'border-2 border-emerald-600 bg-emerald-600 font-bold text-white hover:bg-emerald-700',
-  wrong: 'border-2 border-red-600 bg-red-600 font-bold text-white hover:bg-red-700',
+  unanswered: 'border-2 border-dashed border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900',
+  chosen: 'border-2 border-blue-600 bg-blue-600 font-bold text-white hover:border-blue-700 hover:bg-blue-700',
+  correct: 'border-2 border-emerald-600 bg-emerald-600 font-bold text-white hover:border-emerald-700 hover:bg-emerald-700',
+  wrong: 'border-2 border-red-600 bg-red-600 font-bold text-white hover:border-red-700 hover:bg-red-700',
 }
 
 const stateLabels: Record<CellState, string> = {

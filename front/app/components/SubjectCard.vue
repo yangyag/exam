@@ -51,7 +51,7 @@ function onPrimary() {
 
 <template>
   <article
-    class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+    class="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md"
     data-testid="subject-card"
     :aria-busy="busy ? 'true' : undefined"
   >

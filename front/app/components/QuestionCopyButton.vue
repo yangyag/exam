@@ -58,7 +58,7 @@ onBeforeUnmount(() => {
   <div class="flex flex-wrap items-center gap-2">
     <button
       type="button"
-      class="btn-quiet border border-slate-300"
+      class="btn-quiet border border-slate-300 hover:border-slate-400"
       data-testid="question-copy"
       data-tap
       @click="copy"
