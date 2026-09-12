@@ -40,14 +40,23 @@ chmod 600 "$KEY"
 scp -i "$KEY" -o StrictHostKeyChecking=accept-new "$TAR" "$USER_NAME@$HOST:$REMOTE_DIR/"
 
 echo "== 4) EC2 에서 로드·재기동 =="
+STAMP="$(date +%Y%m%d-%H%M)"
 ssh -i "$KEY" -o StrictHostKeyChecking=accept-new "$USER_NAME@$HOST" bash -s <<EOF
 set -euo pipefail
 cd "$REMOTE_DIR"
+# 덮어쓰기 전에 직전 이미지를 롤백용 태그로 보존한다
+for name in exam-back exam-front; do
+    if docker image inspect "\$name:1.0" >/dev/null 2>&1; then
+        docker tag "\$name:1.0" "\$name:before-$STAMP"
+    fi
+done
 gzip -dc exam-images.tar.gz | docker load
 rm -f exam-images.tar.gz
 docker compose up -d --force-recreate
 sleep 5
 docker compose ps
+echo '--- 롤백 태그 ---'
+docker images --format '{{.Repository}}:{{.Tag}}' | grep '^exam-' | sort
 EOF
 
 echo "== 5) 확인 =="

@@ -83,14 +83,20 @@ sudo certbot --nginx -d yangyag5.duckdns.org     # yangyag4 와 같은 방식
 
 ## 재배포 · 롤백
 
-- 재배포: `./deploy/deploy.sh` 한 번이면 된다(같은 태그를 덮어쓰고 컨테이너를 재생성).
-- 롤백: 배포 전 이미지를 태그로 보존해 두고 되돌린다.
+- 재배포: `./deploy/deploy.sh` 한 번이면 된다. 스크립트가 **덮어쓰기 전에 직전 이미지를 `before-<타임스탬프>` 태그로 자동 보존**한다(롤백 지점).
+- 롤백: 보존 태그를 `1.0` 으로 되돌리고 컨테이너를 재생성한다.
 
 ```bash
-# EC2 — 직전 이미지 보존 예시
-docker tag exam-front:1.0 exam-front:before-20260912
-docker tag exam-back:1.0  exam-back:before-20260912
-# 되돌릴 때: docker-compose.yml 의 태그를 before-… 로 바꾸고 docker compose up -d
+# EC2 — 보존 태그 확인
+docker images --format '{{.Repository}}:{{.Tag}}' | grep '^exam-' | sort
+
+# 되돌리기(예: before-20260912-1500 로 복귀)
+docker tag exam-front:before-20260912-1500 exam-front:1.0
+docker tag exam-back:before-20260912-1500  exam-back:1.0
+cd /home/ubuntu/exam && docker compose up -d --force-recreate
+
+# 오래된 태그 정리(디스크 절약)
+docker rmi exam-front:before-<오래된> exam-back:before-<오래된>
 ```
 
 - DB 는 덤프로만 바꾸므로, 스키마 변경이 있으면 배포 전에 `pg_dump` 로 백업한다.
