@@ -173,6 +173,39 @@
 - 프론트 `shots`: 실데이터 값은 API 와 대조하므로 사용자 진행 기록이 있어도 통과한다. 단 백엔드(8092)가 떠 있어야 한다.
 - 운영 검증은 `./aws/connect.sh` 와 `curl` 로. 롤백 태그가 쌓이면 오래된 것부터 `docker rmi` 로 정리한다.
 
+## 7. 재실행 검증 (2026-09-12 · 리비전 `d10f905`)
+
+같은 케이스를 다시 처음부터 돌린 2회차 결과. 로컬은 Windows + Git Bash + 도커 `postgres`(5432), 운영은 EC2 `43.202.113.123`(`https://yangyag5.duckdns.org`).
+
+| 그룹 | 실행 | 결과 |
+|---|---|---|
+| 1-1 · 1-3 · 1-5 | `validate` · `--verify` · `report` | **통과** — 65파일/1,300문항 오류 0, 진도 테이블 "전부 통과", 잔여물 0, 그림 24/24 |
+| 1-2 · 1-7 | `--init` ×2, `PYTHONIOENCODING` 없이 `--init` | **통과** — 두 번 모두 rc=0(001~004 적용), cp949 콘솔에서 UnicodeEncodeError 없음 |
+| 1-4 | `build_index` | 통과("이상 없음") + `git checkout -- data/index.json` 으로 되돌림 |
+| 1-6 | `dups` | 통과 — 1,298문항 / 고유 847(도구 기준) |
+| 1-8 | PDF 도구 | **skip** — `pymupdf` 미설치 |
+| 2-1 | `pytest -q` / `-m integration` / `-m "not integration"` | **198 / 35 / 163 passed** (수정 후 18.8초) |
+| 2-1-4 | `.env` 없는 사본에서 `pytest -q` | **163 passed / 35 skipped / 78초** — 아래 발견·수정 1 |
+| 2-2 · 2-3 | 실서버 HTTP 계약 검증(`app_test` DB · 8093) | **35건 전부 통과** — 슬롯·사이클·모의고사 제출·경합 5종 포함 |
+| 3-1 · 3-2 | `npm ci && npm run build` / `npm run shots` | 타입 오류 0 · 빌드 성공 / **모든 점검 통과**(rc=0, 57컷) |
+| 3-3 | 스크린샷 육안 | 홈·연습(코드·표·도식)·모의고사 그리드·제출 대화상자(미응답 88 강조)·결과·이력·모바일 375px 모두 정상, 오답 자동 펼침/정답 접힘 확인 |
+| 4-1~4-6 · 4-8~4-10 · 4-12 · 4-14 | 운영 정상 경로 | 통과 — 헬스 200(DB ok `EXAM_DB_URL`), `/`·`/history/` 200 + title, overview·도식 200, `/exams` 301→`/exams/`, 인증서 VALID 89일 + `certbot.timer`, 컨테이너 healthy, DB 1,300, 롤백 태그 2개 보존 |
+| 4-7 | `docker restart exam-back` | 통과 — **3초** 만에 health 200, healthy 복귀 |
+| 4-11 | `./deploy/deploy.sh` | 통과 — rc=0, `before-20260912-1702` 태그 보존, 재기동 후 4-1~4-3 재통과 |
+| 4-13 | `docker stop exam-back` | 기록 — SPA `/` 는 **200 유지**, `/api/*` 는 즉시 502 가 아니라 nginx 프록시가 `proxy_read_timeout 30s` 동안 대기(직접 curl 은 10초에서 포기). 프론트는 모든 API 호출에 10초 자체 타임아웃(`retry: 0, timeout: 10000`)이 있어 안내 화면으로 넘어간다. `docker start` 후 4초 만에 정상 |
+| 5 | 릴리스 체크리스트 | 위 항목으로 실행 완료. 진도 테이블은 검증 전 상태로 복원(로컬 `app` 은 사용자 기록 1사이클/176슬롯 그대로, `app_test` 는 0행) |
+
+**이 실행에서 발견해 고친 것**
+
+| 발견 | 조치 |
+|---|---|
+| `.env` 없이 돌리면(2-1-4) 통합 테스트가 skip 될 때마다 **약 2분**을 기다렸다 — `localhost` 가 IPv6(`::1`)부터 시도하는데 `psycopg.connect` 에 타임아웃이 없어 죽은 주소마다 OS 기본값을 채웠다. 통합 35건이면 한 시간을 넘겨, 케이스가 사실상 못 쓰는 상태였다 | `back/tests/conftest.py` 에 `PGCONNECT_TIMEOUT=5` 를 걸어(`CONNECT_TIMEOUT_SECONDS`) **163 passed / 35 skipped / 78초** 로 단축. `back/README.md` 테스트 절에 이유·수치 기록 |
+
+**재실행 시 주의(2회차에서 추가)**
+- 2-2·2-3 은 `TEST_DB_URL` 의 `app_test` DB 로 서버를 하나 더 띄워 확인하면 사용자 진도와 완전히 분리된다(끝나면 그 DB 의 `study_*` 를 TRUNCATE). 검증 스크립트는 `tmp/`(gitignore)에 두었다.
+- 4-13 의 실제 동작은 "502 즉시" 가 아니라 **프록시 대기 → 프론트 자체 타임아웃 → 안내 화면** 이다. 즉시 502 를 원하면 `deploy/front-nginx.conf` 의 `/api/` 에 `proxy_connect_timeout` 을 추가하면 된다(선택).
+- `pytest` 는 표준출력을 파일로 넘기면 블록 버퍼링 때문에 진행 상황이 늦게 보인다 — 멈춘 것으로 오해하지 말 것.
+
 ## 부록 A. 이 문서가 다루지 않는 것
 
 - **사람이 판단하는 것**: 디자인 선호, 문구 톤, 정보 밀도 → 스크린샷으로 확인
