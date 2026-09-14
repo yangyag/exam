@@ -11,8 +11,8 @@
     3) libpq PG* 환경변수 (PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE)
     4) 기본값 postgresql://yangyag@localhost:5432/app
 
-EC2 등 다른 서버에서 실행할 때:
-    EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/app' python tools/load_db.py
+EC2 등 다른 서버에서 실행할 때(서버 안에서 실행 — DB는 yangyag-postgres 컨테이너의 exam DB):
+    EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/exam' python tools/load_db.py
 """
 import argparse
 import json
