@@ -1,7 +1,7 @@
 # ipe 스키마 (정보처리기사 필기 기출문제 데이터셋)
 
-`app` 데이터베이스 안에 `ipe` 스키마로 들어갑니다. **소유자와 접속 계정은 기존 앱과 동일한 `yangyag`** 입니다.
-기존 `english` / `english_test` 스키마는 건드리지 않습니다.
+`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB** 이고, **소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다. DDL(`db/*.sql`)과 적용 방법(`--init`)은 두 환경이 같습니다.
+로컬 `app` DB 의 기존 `english` / `english_test` 스키마는 건드리지 않습니다.
 
 ## 무엇이 들어가나
 
@@ -182,11 +182,13 @@ docker exec -i postgres psql -U yangyag -d app -f - < db/003_study_items.sql
 docker exec -i postgres psql -U yangyag -d app -f - < db/004_session_comments.sql
 ```
 
-되돌리려면 뷰 → 테이블 순서로 지웁니다. 문항 테이블은 그대로 둡니다.
+운영(EC2)에 적용할 때는 컨테이너·DB 이름만 다릅니다(공용 컨테이너 `yangyag-postgres`·`exam` DB) — 절차는 `deploy/README.md`.
+
+되돌리려면 뷰 → 테이블 순서로 지웁니다. 문항 테이블은 그대로 둡니다. `study_cycle` 은 `study_session.cycle_id` 외래 키(`study_session_cycle_id_fkey`)가 가리키므로 **`cycle_id` 컬럼을 지운 뒤에** 떼어내야 합니다(`db/003_study_items.sql` 첫머리 주석과 같은 순서).
 
 ```sql
 DROP VIEW  IF EXISTS ipe.v_review_due, ipe.v_wrong_questions, ipe.v_subject_stats;
-DROP TABLE IF EXISTS ipe.study_session_item, ipe.study_cycle;   -- 003
+DROP TABLE IF EXISTS ipe.study_session_item;                    -- 003. 답안 슬롯
 DELETE FROM ipe.study_session;                                  -- 003 의 CHECK·컬럼을 남기고 행만 비울 때
 ALTER TABLE ipe.study_session
     DROP CONSTRAINT IF EXISTS study_session_end_reason_chk,
@@ -195,6 +197,7 @@ ALTER TABLE ipe.study_session
     DROP COLUMN IF EXISTS end_reason,
     DROP COLUMN IF EXISTS round_no,
     DROP COLUMN IF EXISTS cycle_id;                             -- mode CHECK 는 002 정의로 다시 만든다
+DROP TABLE IF EXISTS ipe.study_cycle;                           -- 003. cycle_id 를 지운 뒤에만 삭제된다
 DROP TABLE IF EXISTS ipe.study_attempt, ipe.study_state, ipe.study_session;
 ```
 
@@ -331,7 +334,7 @@ commit;
 
 ## ⚠ search_path 주의
 
-`yangyag` 역할의 `search_path` 는 `english, public` 입니다(기존 영어 앱이 쓰고 있음). **이 역할 전역 설정은 바꾸지 않았습니다** — 바꾸면 기존 앱이 영향을 받습니다.
+`yangyag` 는 로컬 `app` DB 에서 `search_path=english, public` 로 돕니다(기존 영어 앱이 쓰고 있음). 역할 속성에는 값이 없고 `ALTER ROLE yangyag IN DATABASE app SET search_path ...` 로 **DB 하나에만** 걸려 있습니다 — 이 설정을 바꾸면 기존 앱이 영향을 받습니다.
 
 따라서 `ipe` 테이블을 쓸 때는 다음 중 하나로 접근하세요.
 
@@ -357,14 +360,16 @@ cp .env.example .env      # 그리고 EXAM_DB_URL 값에 비밀번호를 채웁�
 ### 1) 스키마·역할 준비 (superuser, 최초 1회)
 
 ```bash
-# 로컬(docker)
+# 로컬(docker) — 컨테이너 postgres 의 app DB
 docker exec -i postgres psql -U postgres -d app -f - < db/000_bootstrap.sql
 
-# EC2 등 psql 이 직접 있는 서버
+# psql 이 직접 있고 데이터베이스 이름이 app 인 서버
 psql -U postgres -d app -f db/000_bootstrap.sql
 ```
 
 `yangyag` 역할이 없으면 만들고(비밀번호는 실행 후 교체), `ipe` 스키마를 `yangyag` 소유로 만들고, `pg_trgm` 확장을 설치합니다. **이미 있으면 아무것도 바꾸지 않습니다.**
+
+운영(EC2)은 컨테이너·DB 이름이 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 이고, 최초 구축은 덤프 복원 절차(`deploy/README.md`)로 합니다. 이 파일에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, 대상 DB 이름이 다르면 그 줄을 맞춰 실행하세요.
 
 ### 2) 테이블 생성 + 데이터 적재
 
@@ -396,9 +401,10 @@ python tools/load_db.py --verify
 3. libpq `PG*` 환경변수 (`PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD`/`PGDATABASE`)
 4. 기본값 `postgresql://yangyag@localhost:5432/app` (비밀번호 없음 → `.env` 나 환경변수를 쓰세요)
 
+운영(EC2)의 `EXAM_DB_URL` 은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 를 가리킵니다 — 접속 문자열(계정·비밀번호)은 EC2 의 `/home/ubuntu/exam/.env` 에만 두고 `deploy/README.md` 절차로 넣습니다. 로컬에서 확인만 할 때는 아래처럼 실행합니다.
+
 ```bash
-# EC2 예시
-EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/app' python tools/load_db.py
+python tools/load_db.py --verify   # 저장소 루트 .env 의 EXAM_DB_URL 을 쓴다
 ```
 
 ## 처음부터 다시 만들기 (개발용)
@@ -410,7 +416,7 @@ DROP SCHEMA ipe CASCADE;   -- 데이터만 지움. 역할은 그대로 둔다
 그 뒤 `000_bootstrap.sql` → `--init` → 적재 순서로 다시 만들면 됩니다.
 (실제로 이 순서로 처음부터 재구축해서 검증했습니다.)
 
-`app` 데이터베이스의 다른 스키마(`english`, `english_test`, `public`)에는 영향이 없습니다.
+로컬 `app` 데이터베이스의 다른 스키마(`english`, `english_test`, `public`)에는 영향이 없습니다.
 
 ## 전체 파이프라인
 
@@ -427,10 +433,10 @@ data/questions/<회차>/<과목>.json    최종 문항 데이터 (git 에 들어
 data/index.json
    │  python tools/load_db.py          DB 적재
    ▼
-PostgreSQL app.ipe
+PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 ```
 
-**EC2 에서는 PDF 부터 다시 돌릴 필요가 없습니다.** `data/questions/`, `data/figures/`, `data/index.json` 이 저장소에 있으므로 저장소를 받은 뒤 1) 부트스트랩 → 2) 적재만 하면 됩니다.
+**EC2 에서는 PDF 부터 다시 돌릴 필요가 없습니다.** `data/questions/`, `data/figures/`, `data/index.json` 이 저장소에 있으므로 저장소를 받은 뒤 1) 스키마 준비(부트스트랩 또는 덤프 복원) → 2) 적재만 하면 됩니다.
 
 ## 관련 도구
 

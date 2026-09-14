@@ -33,10 +33,10 @@ scp -i aws/test-keypair.pem /tmp/exam-ipe.dump ubuntu@43.202.113.123:/home/ubunt
 ```
 
 ```bash
-# EC2 — 역할·DB 생성 후 복원 (비밀번호는 여기서 정해 .env 에만 적는다)
-docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE ROLE exam LOGIN PASSWORD '<비번>'"
-docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE DATABASE exam OWNER exam"
-docker exec -i yangyag-postgres pg_restore -U auto -d exam --no-owner --role=exam < /home/ubuntu/exam/exam-ipe.dump
+# EC2 — DB 생성 후 복원. 계정·소유자는 기존 앱과 같은 yangyag 다(비밀번호는 .env 에만 적는다).
+#   역할이 없을 때만 만든다: CREATE ROLE yangyag LOGIN PASSWORD '<비번>'
+docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE DATABASE exam OWNER yangyag"
+docker exec -i yangyag-postgres pg_restore -U auto -d exam --no-owner --role=yangyag < /home/ubuntu/exam/exam-ipe.dump
 # 주의: 덤프에 CREATE EXTENSION 이 없어 trgm 인덱스 2개가 실패한다(경고 2건, 나머지는 정상).
 #       확장을 만든 뒤 그 두 인덱스만 다시 만들면 된다.
 docker exec yangyag-postgres psql -U auto -d exam -c "CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
@@ -44,6 +44,8 @@ docker exec yangyag-postgres psql -U auto -d exam -c "CREATE INDEX IF NOT EXISTS
 docker exec yangyag-postgres psql -U auto -d exam -c "CREATE INDEX IF NOT EXISTS question_expl_trgm_idx ON ipe.question USING gin (explanation ipe.gin_trgm_ops)"
 rm -f /home/ubuntu/exam/exam-ipe.dump
 ```
+
+운영 `exam` DB 의 소유자·접속 계정은 기존 앱과 같은 `yangyag` 다. 초기에는 전용 `exam` 역할을 썼지만 제거하고 `yangyag` 로 통일했다(옛 `exam` 역할은 더 이상 존재하지 않는다). 예전 덤프를 `--role=exam` 으로 복원해 둔 DB 가 있다면 `REASSIGN OWNED BY exam TO yangyag; ALTER DATABASE exam OWNER TO yangyag; DROP ROLE exam;` 로 이관한다.
 
 덤프에는 진도 테이블(`study_*`)도 들어간다 — 로컬에서 눌러본 기록까지 운영으로 넘어가므로, 깨끗한 상태로 시작하려면 복원 후 비운다.
 
@@ -60,7 +62,7 @@ docker exec yangyag-postgres psql -U auto -d exam -c "TRUNCATE ipe.study_session
 cd /home/ubuntu/exam
 # 이 저장소의 deploy/docker-compose.yml, deploy/nginx-yangyag5-exam.conf 를 여기로 올린다
 cat > .env <<'EOF'
-EXAM_DB_URL=postgresql://exam:<비번>@yangyag-postgres:5432/exam?options=-csearch_path%3Dipe,public
+EXAM_DB_URL=postgresql://yangyag:<비번>@yangyag-postgres:5432/exam?options=-csearch_path%3Dipe,public
 EOF
 chmod 600 .env
 ```

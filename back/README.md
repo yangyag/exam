@@ -1,9 +1,9 @@
 # back/ — 정보처리기사 필기 API (FastAPI)
 
-`app` DB 의 `ipe` 스키마를 읽어 **문항 조회 · 채점 · 진도 · 과목 사이클** 을 제공하는 HTTP API 입니다.
+`ipe` 스키마(로컬 `app` DB, 운영 EC2 는 공용 컨테이너 `yangyag-postgres` 의 `exam` DB)를 읽어 **문항 조회 · 채점 · 진도 · 과목 사이클** 을 제공하는 HTTP API 입니다.
 프론트(Nuxt)가 이 문서만 보고 붙일 수 있는 수준을 목표로 하고, 더 자세한 내용은 코드와 `/openapi.json` 을 정본으로 봅니다.
 
-전제: `app` DB 의 `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 **DB 를 쓰는 엔드포인트**가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`). 루트 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 DB 를 쓰지 않으므로 DB 가 없어도 그대로 응답합니다(`/figures` 는 그림 디렉터리가 마운트됐을 때만 생깁니다).
+전제: `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 **DB 를 쓰는 엔드포인트**가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`). 루트 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 DB 를 쓰지 않으므로 DB 가 없어도 그대로 응답합니다(`/figures` 는 그림 디렉터리가 마운트됐을 때만 생깁니다).
 
 ---
 
@@ -46,7 +46,7 @@ curl http://127.0.0.1:8092/api/health
 | `http://127.0.0.1:8092/api/health` | 헬스체크 |
 | `http://127.0.0.1:8092/figures/<회차>/<번호>.png` | 문항 도식 이미지 정적 서빙 |
 
-`--reload` 는 개발용입니다. **배포 방식(docker · systemd 등)은 아직 미정**이라 이 문서에서는 다루지 않습니다.
+`--reload` 는 개발용입니다. **배포는 docker 이미지(`deploy/`, EC2)로 하며** 이 문서에서는 다루지 않습니다 — 절차는 `deploy/README.md`.
 
 ### 테스트
 
@@ -587,7 +587,7 @@ DB 를 쓰는 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다(루�
 
 ## 5. 의존 DB 객체
 
-전부 `app` DB 의 `ipe` 스키마입니다. DDL 은 `db/001_schema.sql`(문항)·`db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(study_session 코멘트 정정), 컬럼 의미는 `db/README.md`.
+전부 `ipe` 스키마입니다(로컬 `app` DB · 운영 EC2 `exam` DB). DDL 은 `db/001_schema.sql`(문항)·`db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(study_session 코멘트 정정), 컬럼 의미는 `db/README.md`.
 
 | 객체 | 종류 | 쓰는 곳 |
 |---|---|---|
@@ -621,7 +621,7 @@ API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼�
 
 ## 7. 알아둘 것
 
-- **배포 방식은 미정입니다.** docker·systemd 어느 쪽으로 갈지 정해지지 않아, 이 문서는 로컬 실행만 다룹니다. 설정을 전부 환경변수로 받으므로 어느 쪽이든 그대로 쓸 수 있습니다.
+- **배포는 docker 이미지 2종(`exam-back`·`exam-front`) + compose(`deploy/`)로 합니다** — 절차는 `deploy/README.md`. 이 문서는 로컬 실행만 다룹니다. 설정을 전부 환경변수로 받으므로 로컬·운영 어디서든 그대로 쓸 수 있습니다.
 - 쿼리 로그·요청 추적은 넣지 않았습니다. `uvicorn` 기본 로그만 나옵니다.
 - 인증은 단일 사용자 전제의 공유 토큰 하나뿐입니다. 사용자별 계정·권한은 없습니다.
 - `POST /api/questions/{id}/answer` 는 **채점과 진도 기록을 분리할 수 없습니다.** 정답만 확인하고 기록을 남기고 싶지 않은 경우는 지금 지원하지 않습니다(슬롯 세션에는 이 경로를 쓸 수 없습니다 — 슬롯 제출이 기록 경로입니다).
