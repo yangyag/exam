@@ -1,9 +1,9 @@
 # back/ — 정보처리기사 필기 API (FastAPI)
 
-`app` DB 의 `ipe` 스키마를 읽어 **문항 조회 · 채점 · 진도 · 과목 사이클** 을 제공하는 HTTP API 입니다.
+`ipe` 스키마(로컬 `app` DB, 운영 EC2 는 공용 컨테이너 `yangyag-postgres` 의 `exam` DB)를 읽어 **문항 조회 · 채점 · 진도 · 과목 사이클** 을 제공하는 HTTP API 입니다.
 프론트(Nuxt)가 이 문서만 보고 붙일 수 있는 수준을 목표로 하고, 더 자세한 내용은 코드와 `/openapi.json` 을 정본으로 봅니다.
 
-전제: `app` DB 의 `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 **DB 를 쓰는 엔드포인트**가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`). 루트 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 DB 를 쓰지 않으므로 DB 가 없어도 그대로 응답합니다(`/figures` 는 그림 디렉터리가 마운트됐을 때만 생깁니다).
+전제: `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 **DB 를 쓰는 엔드포인트**가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`). 루트 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 DB 를 쓰지 않으므로 DB 가 없어도 그대로 응답합니다(`/figures` 는 그림 디렉터리가 마운트됐을 때만 생깁니다).
 
 ---
 
@@ -587,7 +587,7 @@ DB 를 쓰는 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다(루�
 
 ## 5. 의존 DB 객체
 
-전부 `app` DB 의 `ipe` 스키마입니다. DDL 은 `db/001_schema.sql`(문항)·`db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(study_session 코멘트 정정), 컬럼 의미는 `db/README.md`.
+전부 `ipe` 스키마입니다(로컬 `app` DB · 운영 EC2 `exam` DB). DDL 은 `db/001_schema.sql`(문항)·`db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(study_session 코멘트 정정), 컬럼 의미는 `db/README.md`.
 
 | 객체 | 종류 | 쓰는 곳 |
 |---|---|---|

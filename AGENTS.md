@@ -57,7 +57,7 @@ data/questions/<회차>/<과목>.json
 data/index.json
   │  python tools/load_db.py                    DB 적재
   ▼
-PostgreSQL app.ipe
+PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 ```
 
 ## 도구
@@ -113,14 +113,14 @@ PostgreSQL app.ipe
 
 ## DB
 
-- `app` 데이터베이스의 **`ipe` 스키마**. 소유자·접속 계정 모두 **`yangyag`** (기존 앱과 동일 계정).
+- **`ipe` 스키마** — 로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB. 소유자·접속 계정은 두 환경 모두 **`yangyag`** (기존 앱과 동일 계정).
 - **진도 관리 테이블이 있습니다.** `study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(`study_session` COMMENT 를 5모드 의미로 재기록, 멱등).
   적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). **`--init` 은 전체가 한 트랜잭션이라 중간 실패 시 전부 롤백됩니다** — 기록이 있는 DB에 처음 적용할 때의 주의사항은 `db/README.md` 의 경고 1. 컬럼 의미·조회 예시는 `db/README.md`.
-- `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
-- **`yangyag` 의 `search_path` 는 `english, public` 입니다.** 역할 전역 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
+- 로컬 `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
+- **`yangyag` 의 `search_path` 는 로컬 `app` DB 한정으로 `english, public` 입니다**(역할 속성에는 값이 없고 `ALTER ROLE ... IN DATABASE app` 설정입니다). 이 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
   `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정합니다)
 - 접속 정보는 `.env` (gitignore). `tools/load_db.py` 가 `EXAM_DB_URL` → `DATABASE_URL` → libpq `PG*` → 기본값 순으로 찾습니다.
-- EC2 이식: **저장소를 받고 `db/000_bootstrap.sql` → `load_db.py --init` → `load_db.py` 만** 하면 됩니다. PDF 재추출 불필요. 자세한 절차는 `db/README.md`.
+- EC2 이식: **저장소를 받고 `db/000_bootstrap.sql` → `load_db.py --init` → `load_db.py` 만** 하면 됩니다(PDF 재추출 불필요). 운영 DB 는 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 라 컨테이너·DB 이름이 로컬과 다릅니다 — 최초 구축·접속 정보는 `deploy/README.md`, 스키마는 `db/README.md`.
 
 ## 알아둘 함정
 
@@ -135,7 +135,7 @@ PostgreSQL app.ipe
 
 - Windows + Git Bash. 시스템 Python 은 **3.13.4** 이고 `psycopg[binary]`(3.3.5)는 설치돼 있지만 **`pymupdf` 는 없습니다** — PDF 를 다루는 `tools/extract.py`·`tools/crop_figures.py`·`tools/scan_figures.py` 를 쓰기 전에 `python -m pip install pymupdf` 로 설치하세요.
 - **`back/` 은 저장소 자체 venv(`back/.venv`)에서 돕니다.** 백엔드 실행·테스트는 `.venv/Scripts/python` 을 쓰고, `psycopg` 를 포함한 의존성은 그 venv 에 `requirements.txt`(`psycopg[binary,pool]==3.3.5`)로 넣습니다 — 설치·실행법은 `back/README.md`.
-- PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다. 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
+- PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다(로컬 개발 기준 — 운영은 EC2 의 공용 컨테이너 `yangyag-postgres`, `exam` DB). 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
 - **프론트(`front/`)는 Nuxt 4 + TypeScript + Tailwind CSS v4 SPA(`ssr:false`)입니다.** 패키지 매니저는 npm(`package-lock.json`)이고 pnpm 은 쓰지 않습니다.
 - **프론트 dev 서버는 8091, 접속 주소는 `http://localhost:8091` 입니다.** 백엔드 기본 CORS 허용 오리진이 이 값이라 `127.0.0.1:8091` 은 오리진 문자열이 달라 API 가 막힙니다. API 오리진은 `NUXT_PUBLIC_API_BASE`(기본 `http://127.0.0.1:8092`)로 바꿉니다.
 - 콘솔이 cp949 라 한글 출력이 깨집니다. 스크립트 출력을 확인할 때는 `PYTHONIOENCODING=utf-8` 을 붙이거나 파일로 리다이렉트해 읽으세요.
