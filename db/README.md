@@ -1,7 +1,28 @@
 # ipe 스키마 (정보처리기사 필기 기출문제 데이터셋)
 
-`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB** 이고, **소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다. DDL(`db/*.sql`)과 적용 방법(`--init`)은 두 환경이 같습니다.
+`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB** 이고, **소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다. **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, DDL(`db/*.sql`)과 `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.
 로컬 `app` DB 의 기존 `english` / `english_test` 스키마는 건드리지 않습니다.
+
+**설치 3단계** — ① 부트스트랩(superuser, 최초 1회) → ② `--init`(마이그레이션) → ③ 적재 + 검증. `--init` 은 마이그레이션만 하고 적재하지는 않습니다.
+
+```bash
+docker exec -i postgres psql -U postgres -d app -f - < db/000_bootstrap.sql   # 1) 역할·ipe 스키마·pg_trgm (superuser, 최초 1회)
+python tools/load_db.py --init                                               # 2) db/*.sql 마이그레이션 (적재는 하지 않음)
+python tools/load_db.py                                                      # 3) 문항 적재 + 검증 (검증만 하려면 --verify)
+```
+
+운영(EC2) DB 스키마 변경·최초 구축은 이 경로 대신 **덤프 복원(`deploy/README.md` §1)이 표준**입니다. 자세한 절차는 아래 **실행 순서**.
+
+## 목차
+
+- [무엇이 들어가나](#무엇이-들어가나)
+- [진도 관리 — 테이블 5종·뷰 3종·mode 5종·주요 제약·경고 1·2](#진도-관리-db002_progresssql--db003_study_itemssql--db004_session_commentssql)
+- [⚠ search_path 주의](#-search_path-주의)
+- [실행 순서](#실행-순서) — 0) 접속 정보 → 1) 부트스트랩 → 2) 마이그레이션 + 적재 → 3) 검증만
+- [접속 문자열](#접속-문자열)
+- [처음부터 다시 만들기 (개발용)](#처음부터-다시-만들기-개발용)
+- [전체 파이프라인](#전체-파이프라인)
+- [관련 도구](#관련-도구)
 
 ## 무엇이 들어가나
 
@@ -14,15 +35,15 @@
 | `tag` | 1,281 | 복습용 키워드 |
 | `question_tag` | 3,347 | 문항–태그 연결 |
 
-그림은 파일로 서빙합니다. DB에는 `question.figure_image` 경로(`figures/2026-1/099.png`, `data/` 기준 상대경로)와 `figure_alt` 만 들어갑니다.
+그림은 파일로 서빙합니다. **그림 바이너리는 DB에 없고** `question.figure_image`(경로 — `figures/2026-1/099.png`, `data/` 기준 상대경로)·`figure_alt`·`figure_page`·`figure_col`·`figure_box`(좌표)만 둡니다(`db/001_schema.sql`).
 
-학습 기록(진도) 테이블 5종(`study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state`)과 통계 뷰 3종은 아래 **진도 관리** 섹션에 따로 정리했습니다. 지금은 0행입니다(앱이 쓰는 데이터).
+학습 기록(진도) 테이블 5종(`study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state`)과 통계 뷰 3종은 아래 **진도 관리** 섹션에 따로 정리했습니다. 보통 0행에서 시작합니다(앱이 쓰는 데이터).
 
 ## 진도 관리 (db/002_progress.sql · db/003_study_items.sql · db/004_session_comments.sql)
 
 로그인 없는 단일 사용자 기준의 최소 구조입니다(기존 영어 앱의 `study_session`/`word_result`/`study_state` 와 같은 결). 응시·풀이 기록을 쌓고, 오답 복습 화면이 쓸 상태를 문항당 1행으로 유지합니다.
 
-`003_study_items.sql` 이 **세션의 고정 문항 목록(답안 슬롯)** 과 **과목 학습 사이클** 을 더합니다. 풀이 방식 세 가지(과목 사이클·회차 연습·모의고사)가 모두 "문항 목록을 가진 세션"으로 표현되고, 과목 사이클은 그런 세션의 연쇄(라운드)입니다. 구조·의미의 정본은 `db/003_study_items.sql` 주석과 `back/README.md` 입니다.
+`003_study_items.sql` 이 **세션의 고정 문항 목록(답안 슬롯)** 과 **과목 학습 사이클** 을 더합니다. 풀이 방식 세 가지(과목 사이클·회차 연습·모의고사)가 모두 "문항 목록을 가진 세션"으로 표현되고, 과목 사이클은 그런 세션의 연쇄(라운드)입니다. **구조·의미의 정본은 `db/003_study_items.sql` 주석**입니다 — 이 문서의 표와 `back/README.md` 의 mode 표는 그 요약입니다.
 
 `004_session_comments.sql` 은 구조를 바꾸지 않고 `study_session` 의 테이블·컬럼 COMMENT 만 다시 찍습니다. `002_progress.sql` 이 옛 4모드(`exam`·`subject`·`random`·`review`) 기준으로 찍어 둔 의미를 지금의 **mode 5종** 에 맞추고, 코멘트가 없던 `mode` 컬럼에 처음 붙입니다(`exam_id`·`subject_code`·`end_reason` 도 함께 다시 찍습니다). `003` 이 찍은 `cycle_id`·`round_no` 와 `study_cycle`·`study_session_item` 코멘트는 그대로 두며, `COMMENT` 는 값을 덮어쓸 뿐이라 **몇 번 실행해도 결과가 같습니다**(멱등).
 
@@ -110,7 +131,7 @@ mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
 | `review` | 과목 사이클 라운드 2+ — 직전 라운드 오답 복습 | 직전 라운드에서 `is_correct IS FALSE` 인 문항만 다시 섞은 목록 | 문항별 즉시 |
 | `exam_practice` | 회차별 연습 | 회차 문항 번호 순 | 문항별 즉시 |
 | `exam` | 회차 모의고사 | 회차 문항 번호 순 | 제출 전에는 선택만 슬롯에 저장(채점 안 함). `POST /api/sessions/{id}/submit` 이 한 트랜잭션에서 일괄 채점하고 세션을 `finished` 로 끝낸다(미응답 문항은 0점 처리, 중단된 모의고사는 409) |
-| `random` | 랜덤 출제(설계서에 없는 기존 기능) | 없음 | 기존 `POST /api/questions/{id}/answer` — 호출마다 `study_attempt` 1행 |
+| `random` | 랜덤 출제(슬롯 도입 전부터 있던 기존 기능) | 없음 | 기존 `POST /api/questions/{id}/answer` — 호출마다 `study_attempt` 1행 |
 
 ### 라운드와 사이클 흐름
 
@@ -124,7 +145,7 @@ mode 별로 어떤 값이 들어가는지(API 가 만드는 세션 기준):
 
 `finished_at` 은 계속 "더 이상 기록을 받지 않음"이고, `end_reason` 이 정상 종료(`finished`)와 중단(`abandoned`)을 가릅니다. `study_session_end_reason_chk` 가 둘을 동치로 묶어(`finished_at IS NULL` = `end_reason IS NULL`) 한쪽만 채우는 것을 막습니다.
 
-### 제약·인덱스 (db/003_study_items.sql)
+### 주요 제약·인덱스 (db/003_study_items.sql)
 
 | 이름 | 종류 | 뜻 |
 |---|---|---|
@@ -152,7 +173,7 @@ having count(*) > 1;
 
 ### ⚠ 2) 'abandoned 사이클 = 열린 세션 없음' 을 가정하면 안 된다
 
-진행 중 사이클을 `replaceActive=true` 로 새로 구성할 때, 열린 라운드 세션을 잠그는 사이에 다른 요청이 마지막 슬롯을 채점해 **새 라운드(review)** 를 커밋하면 그 라운드는 중단된 사이클에 `finished_at IS NULL` 로 남을 수 있습니다(그 창을 잠금 순서를 뒤집어 없애려 하면 `advance_round_if_complete` 와 ABBA 데드락이 나므로 그대로 둔다 — 설계 4.6절). 데이터 손상은 아니고, 남은 라운드의 마지막 슬롯을 채점하면 라운드만 닫히고 새 라운드는 만들어지지 않아 스스로 회복합니다.
+진행 중 사이클을 `replaceActive=true` 로 새로 구성할 때, 열린 라운드 세션을 잠그는 사이에 다른 요청이 마지막 슬롯을 채점해 **새 라운드(review)** 를 커밋하면 그 라운드는 중단된 사이클에 `finished_at IS NULL` 로 남을 수 있습니다(그 창을 잠금 순서를 뒤집어 없애려 하면 `advance_round_if_complete` 와 ABBA 데드락이 나므로 그대로 둔다 — 잠금 순서는 세션 → 슬롯 → 사이클이고, 이 경합 계약은 `back/app/cycles.py` 의 `replace_active_cycle` docstring("경합 시 남는 열린 라운드(계약)")에 정리돼 있다). 데이터 손상은 아니고, 남은 라운드의 마지막 슬롯을 채점하면 라운드만 닫히고 새 라운드는 만들어지지 않아 스스로 회복합니다.
 
 따라서 **홈·사이클 조회·집계는 `status='active'` 사이클만 근거로 삼습니다.** 중단된 사이클에 남은 열린 세션을 세션·슬롯 API 로 계속 푸는 것 자체는 가능하지만(마지막 슬롯 채점이 회복 경로), 그 세션을 '진행 중인 사이클의 라운드' 로 해석하면 안 됩니다.
 
@@ -164,7 +185,7 @@ having count(*) > 1;
 | `v_wrong_questions` | 한 번이라도 틀린 문항(`wrong_count > 0`). `last_is_correct` 로 미해결 오답만 골라 쓴다 |
 | `v_review_due` | `review_due_on` 이 오늘(한국 날짜 Asia/Seoul) 이하인 문항. `overdue_days` = 밀린 일수(0=오늘, 클수록 밀림). DB 세션 TimeZone 과 무관하게 Asia/Seoul 날짜로 판정·계산 |
 
-세 뷰는 모두 **전체 기간 누계**(`study_state`·`study_attempt`) 기준이라 사이클·라운드와 무관합니다. 이번 사이클의 오답만 보려면 `study_session_item` 을 쓰세요(아래 5~7번 조회).
+세 뷰는 모두 **전체 기간 누계**(`study_state`·`study_attempt`) 기준이라 사이클·라운드와 무관합니다. 이번 사이클의 오답만 보려면 `study_session_item` 을 쓰세요(아래 7번 조회).
 
 ### 적용
 
@@ -182,7 +203,7 @@ docker exec -i postgres psql -U yangyag -d app -f - < db/003_study_items.sql
 docker exec -i postgres psql -U yangyag -d app -f - < db/004_session_comments.sql
 ```
 
-운영(EC2)에 적용할 때는 컨테이너·DB 이름만 다릅니다(공용 컨테이너 `yangyag-postgres`·`exam` DB) — 절차는 `deploy/README.md`.
+운영(EC2)에 적용할 때는 컨테이너·DB 이름만 다릅니다(공용 컨테이너 `yangyag-postgres`·`exam` DB). 운영 DB 스키마 변경·최초 구축은 `--init` 대신 **덤프 복원(`deploy/README.md` §1)이 표준**입니다.
 
 되돌리려면 뷰 → 테이블 순서로 지웁니다. 문항 테이블은 그대로 둡니다. `study_cycle` 은 `study_session.cycle_id` 외래 키(`study_session_cycle_id_fkey`)가 가리키므로 **`cycle_id` 컬럼을 지운 뒤에** 떼어내야 합니다(`db/003_study_items.sql` 첫머리 주석과 같은 순서).
 
@@ -196,7 +217,11 @@ ALTER TABLE ipe.study_session
     DROP CONSTRAINT IF EXISTS study_session_mode_chk,
     DROP COLUMN IF EXISTS end_reason,
     DROP COLUMN IF EXISTS round_no,
-    DROP COLUMN IF EXISTS cycle_id;                             -- mode CHECK 는 002 정의로 다시 만든다
+    DROP COLUMN IF EXISTS cycle_id;
+-- mode CHECK 는 002 정의로 다시 만든다 (ADD CONSTRAINT 에는 IF NOT EXISTS 가 없다)
+ALTER TABLE ipe.study_session
+    ADD CONSTRAINT study_session_mode_chk
+    CHECK (mode IN ('exam', 'subject', 'random', 'review'));
 DROP TABLE IF EXISTS ipe.study_cycle;                           -- 003. cycle_id 를 지운 뒤에만 삭제된다
 DROP TABLE IF EXISTS ipe.study_attempt, ipe.study_state, ipe.study_session;
 ```
@@ -369,7 +394,7 @@ psql -U postgres -d app -f db/000_bootstrap.sql
 
 `yangyag` 역할이 없으면 만들고(비밀번호는 실행 후 교체), `ipe` 스키마를 `yangyag` 소유로 만들고, `pg_trgm` 확장을 설치합니다. **이미 있으면 아무것도 바꾸지 않습니다.**
 
-운영(EC2)은 컨테이너·DB 이름이 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 이고, 최초 구축은 덤프 복원 절차(`deploy/README.md`)로 합니다. 이 파일에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, 대상 DB 이름이 다르면 그 줄을 맞춰 실행하세요.
+운영(EC2)은 컨테이너·DB 이름이 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 입니다. **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, 이 1) 단계(부트스트랩)와 2) 단계의 `--init` 은 로컬·신규 구축 경로입니다. `db/000_bootstrap.sql` 에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, 대상 DB 이름이 다르면 그 줄을 맞춰 실행하세요(`exam` DB 에 그대로 쓰면 실패).
 
 ### 2) 테이블 생성 + 데이터 적재
 
@@ -436,7 +461,7 @@ data/index.json
 PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 ```
 
-**EC2 에서는 PDF 부터 다시 돌릴 필요가 없습니다.** `data/questions/`, `data/figures/`, `data/index.json` 이 저장소에 있으므로 저장소를 받은 뒤 1) 스키마 준비(부트스트랩 또는 덤프 복원) → 2) 적재만 하면 됩니다.
+**EC2 에서는 PDF 부터 다시 돌릴 필요가 없습니다.** `data/questions/`, `data/figures/`, `data/index.json` 이 저장소에 있으므로 저장소를 받은 뒤 적재(`python tools/load_db.py`)만 하면 됩니다. 운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준이고, `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.
 
 ## 관련 도구
 

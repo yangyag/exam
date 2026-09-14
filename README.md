@@ -14,9 +14,9 @@
 |---|---|
 | 데이터 | 회차 13 · 문항 1,300 · 보기 5,200 · 태그 1,281 · 문항-태그 3,347 · 그림 24 |
 | 백엔드 | FastAPI + PostgreSQL(`app` DB 의 `ipe` 스키마). 엔드포인트 26개(경로 23개) — 조회 · 채점 · 진도 · 세션 · 과목 사이클 |
-| 프론트 | Nuxt 4 + TypeScript + Tailwind CSS v4 (SPA, `ssr:false`) — 홈 · 연습 · 회차 선택 · 모의고사 · 이전 결과 |
+| 프론트 | Nuxt 4 + TypeScript + Tailwind CSS v4 (SPA, `ssr:false`) — 라우트 5개: 홈 · 연습 · 회차 선택 · 모의고사 · 이전 결과 |
 | 파이프라인 | PDF → 1차 추출(`data/raw`) → 문항 JSON(`data/questions`) → 앱 진입점(`data/index.json`) → DB |
-| 검증 | 문항 JSON 스키마 검증 · DB 정합성 검증 · 백엔드 테스트 198개 · Playwright 화면 점검 62컷 |
+| 검증 | 문항 JSON 스키마 검증 · DB 정합성 검증 · 백엔드 테스트 198개 · Playwright 화면 점검 13단계·62컷 (2026-09-14 기준, 정본 `plan/test-cases.md`) |
 | 배포 | 로컬에서 linux/amd64 이미지 2종 빌드 → tar 전송 → EC2 `docker load` → compose 재기동 |
 
 ### 고유 문항 수
@@ -37,6 +37,7 @@ data/*.pdf  (기출문제 원본 13개)
    │  tools/extract.py                 좌표 정렬 추출 (2단 레이아웃 대응)
    ▼
 data/raw/<회차>.json                    1차 추출 결과 (좌표 포함)
+data/raw/_figures.json                  도형/이미지 탐지 결과 (tools/scan_figures.py)
    │  문항 정리 + 해설 생성
    ▼
 data/questions/<회차>/<과목>.json        65파일 / 1,300문항  ← git 추적
@@ -48,7 +49,7 @@ data/index.json                         앱 진입점 (회차·과목·파일경
 PostgreSQL  app DB → ipe 스키마 (문항 · 보기 · 태그 · 진도)
    │
    ├── back/   FastAPI  :8092   조회 · 채점 · 진도 · 세션 · 과목 사이클
-   └── front/  Nuxt SPA :8091   화면 5개 → back 호출 (SPA 는 API 만 본다)
+   └── front/  Nuxt SPA :8091   화면 5개(라우트 기준, 점검 스크린샷 상태 13종) → back 호출 (SPA 는 API 만 본다)
                                   │
                             deploy/  EC2 도커 (호스트 nginx TLS → exam-front → exam-back → 공용 postgres)
 ```
@@ -59,17 +60,17 @@ PostgreSQL  app DB → ipe 스키마 (문항 · 보기 · 태그 · 진도)
 
 | 구분 | 사용 |
 |---|---|
-| 백엔드 | Python 3.13, FastAPI 0.141, uvicorn, psycopg 3.3(`[binary,pool]`), pydantic 2.13 |
+| 백엔드 | Python 3.13 이상(로컬 3.14.7 확인, 도커 이미지는 `python:3.13-slim`), FastAPI 0.141, uvicorn, psycopg 3.3(`[binary,pool]`), pydantic 2.13 |
 | 프론트 | Node 22(도커 이미지)·24(로컬), Nuxt 4.5, Vue 3.5, TypeScript 5.9, Tailwind CSS 4.3, Playwright 1.63 |
 | DB | PostgreSQL 17 (로컬은 도커 컨테이너 `postgres`, 운영은 공용 `yangyag-postgres`) |
-| 데이터 도구 | Python + PyMuPDF(`pymupdf`), 표준 라이브러리 |
+| 데이터 도구 | Python + PyMuPDF(`pymupdf` 1.28.2 설치됨), 표준 라이브러리 |
 | 실행 환경 | Windows + Git Bash (개발), Ubuntu EC2 (운영) |
 
 ```bash
 # 의존성
 cd back && python -m venv .venv && .venv/Scripts/python -m pip install -r requirements.txt
 cd front && npm ci
-python -m pip install pymupdf      # PDF 를 다루는 tools/*.py 를 쓸 때만
+python -m pip install pymupdf      # 미설치일 때만 (현재 1.28.2 설치돼 있음)
 ```
 
 ---
@@ -87,13 +88,14 @@ python -m pip install pymupdf      # PDF 를 다루는 tools/*.py 를 쓸 때만
 | `plan/` | `test-cases.md` — 릴리스 전후에 돌리는 테스트 케이스와 실행 기록 |
 | `aws/` | EC2 접속 스크립트와 개인키 (**커밋 금지**, gitignore) |
 | `tmp/` | 스크린샷·로그 등 임시 산출물 (gitignore) |
+| `docs/` | 설계 문서 자리 — git 미추적 빈 디렉터리(clone·worktree 에는 생기지 않음) |
 | `AGENTS.md` | 저장소 작업 규칙(코딩 규칙 · 자료 처리 정책 · 함정) |
 
 ---
 
 ## 5. 빠른 시작 (로컬)
 
-전제: `git clone git@github.com:yangyag/exam.git`, Docker(로컬 `postgres` 컨테이너 17), Python 3.13, Node 22 이상. 아래 명령은 저장소 루트에서 실행합니다.
+전제: `git clone git@github.com:yangyag/exam.git`, Docker(로컬 `postgres` 컨테이너 17), Python 3.13 이상(로컬 3.14.7 확인, 도커 이미지는 `python:3.13-slim`), Node 22 이상. 아래 명령은 저장소 루트에서 실행합니다.
 
 ### 1) DB 준비
 
@@ -103,10 +105,13 @@ python -m pip install pymupdf      # PDF 를 다루는 tools/*.py 를 쓸 때만
 docker exec -i postgres psql -U postgres -d app -f - < db/000_bootstrap.sql
 
 # 2) 저장소 루트 .env (gitignore) — 템플릿은 .env.example
-#   EXAM_DB_URL=postgresql://yangyag:<비밀번호>@127.0.0.1:5432/app?options=-csearch_path%3Dipe,public
+#   EXAM_DB_URL=postgresql://yangyag:<비밀번호>@localhost:5432/app
+#   (.env.example 과 같은 형식. `?options=-csearch_path%3Dipe,public` 는 없어도 됩니다 —
+#    back/ 앱과 tools/load_db.py 가 접속 세션의 search_path 를 ipe,public 으로 스스로 고정)
 
 # 3) 마이그레이션 → 적재 → 검증 (멱등, 몇 번을 실행해도 같은 결과)
-python tools/load_db.py --init     # db/001_schema → 002_progress → 003_study_items → 004_session_comments
+python tools/load_db.py --init     # db/001_schema → 002_progress → 003_study_items → 004_session_comments 적용 (적재 없음)
+python tools/load_db.py            # data/questions 적재 (멱등)
 python tools/load_db.py --verify   # 문항·보기·태그·그림 수와 정합성 확인
 ```
 
@@ -155,7 +160,9 @@ python tools/dups.py               # 회차 간·회차 내 중복 문항 행렬
 python tools/build_index.py        # data/index.json 재생성 (자체 검증 포함)
 python tools/crop_figures.py <회차> <번호...>   # 그림 영역 크롭 (200dpi, --full 은 문항 전체)
 python tools/scan_figures.py       # 도형/이미지가 있는 문항 탐지
-python tools/load_db.py --init|--verify        # 마이그레이션 적용 · 적재 · 검증
+python tools/load_db.py --init     # db/*.sql 마이그레이션 적용 (000_bootstrap.sql 제외, 적재 없음)
+python tools/load_db.py            # data/questions 적재 + 검증 (멱등)
+python tools/load_db.py --verify   # 적재 결과 검증만
 ```
 
 문항 JSON 계약(정본 `tools/question.schema.json`)과 자료 처리 정책은 `AGENTS.md` 에 정리돼 있습니다. 요점:
@@ -190,12 +197,12 @@ python tools/load_db.py --init|--verify        # 마이그레이션 적용 · �
 # 데이터
 python tools/validate.py && python tools/load_db.py --verify
 
-# 백엔드 (198개 = DB 없이 163 + 실제 DB 35)
+# 백엔드 (198개 = DB 없이 163 + 실제 DB 35, 2026-09-14 기준 — 정본은 plan/test-cases.md)
 cd back && .venv/Scripts/python -m pytest -q
 .venv/Scripts/python -m pytest -q -m "not integration"
 .venv/Scripts/python -m pytest -q -m integration      # .env 의 TEST_DB_URL 사용 권장
 
-# 프론트 (타입 검사 + 빌드, 화면 점검 + 스크린샷 62컷 → tmp/shots/)
+# 프론트 (타입 검사 + 빌드, 화면 점검 13단계 + 스크린샷 62컷(2026-09-14 기준) → tmp/shots/)
 cd front && npm run build
 npm run shots                                          # 백엔드(8092)가 떠 있어야 함
 ```
@@ -223,6 +230,7 @@ npm run shots                                          # 백엔드(8092)가 떠 
 - 같은 오리진 구성이라 **CORS 설정과 쓰기 토큰이 필요 없습니다.**
 - 재배포는 덮어쓰기 전에 직전 이미지를 `before-<타임스탬프>` 태그로 보존합니다(롤백 지점). 절차는 `deploy/README.md`.
 - 운영 DB 는 공용 컨테이너 안의 `exam` 데이터베이스입니다. 문항 데이터에 `TRUNCATE/DROP` 금지(진도 테이블만 초기화 가능).
+- **운영 DB 최초 구축·스키마 변경은 덤프 복원이 표준**입니다(절차는 `deploy/README.md` §1). `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `app` DB명이 하드코딩돼 있어(30행 `GRANT CONNECT ON DATABASE app`) `exam` DB에 그대로 쓰면 실패하므로 대상 DB명으로 바꿔야 합니다.
 
 ---
 
@@ -244,7 +252,7 @@ npm run shots                                          # 백엔드(8092)가 떠 
 
 - **로그인 없음** — 이 앱에는 인증이 없습니다. 주소를 아는 사람은 누구나 쓸 수 있으므로 필요하면 호스트 nginx 에 Basic Auth 를 추가합니다.
 - **`.env` 와 `aws/` 는 절대 커밋하지 않습니다.** `aws/test-keypair.pem` 은 EC2 개인키입니다.
-- `app` DB 안의 `english` / `english_test` 스키마는 다른 앱(영어) 것이므로 **건드리지 않습니다.** `yangyag` 역할의 `search_path` 전역 설정도 바꾸지 않습니다(앱이 세션 단위로 `ipe,public` 을 지정).
+- `app` DB 안의 `english` / `english_test` 스키마는 다른 앱(영어) 것이므로 **건드리지 않습니다.** `yangyag` 역할의 `search_path` 도 로컬 `app` DB 한정 설정(`ALTER ROLE ... IN DATABASE app`, 값은 `english, public`)이라 바꾸지 않습니다 — 앱은 접속할 때 세션 단위로 `ipe,public` 을 지정합니다.
 - 이 저장소의 PDF 는 2단 레이아웃이고 텍스트가 그려진 순서가 뒤섞여 있어, `page.get_text()` 를 그대로 쓰면 문항 순서가 깨집니다. `tools/extract.py` 의 좌표 정렬을 쓰세요.
 - 콘솔이 cp949 인 Windows 에서 한글 출력이 깨지면 `PYTHONIOENCODING=utf-8` 을 붙이거나 파일로 넘겨 읽습니다.
 - 다크모드 대응은 하지 않습니다(흰 배경 고정).

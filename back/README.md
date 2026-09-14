@@ -5,6 +5,8 @@
 
 전제: `ipe` 스키마에 문항이 적재돼 있어야 합니다(`db/README.md`). 접속 정보가 없거나 DB 가 내려가 있으면 **DB 를 쓰는 엔드포인트**가 2초 안에 `503` 을 돌려줍니다(`/api/health` 는 `{"status":"degraded","database":"unavailable"}`). 루트 `/` · `/docs` · `/openapi.json` · `/figures/*` 는 DB 를 쓰지 않으므로 DB 가 없어도 그대로 응답합니다(`/figures` 는 그림 디렉터리가 마운트됐을 때만 생깁니다).
 
+**목차** — [1. 로컬 실행](#1-로컬-실행) · [테스트](#테스트) / [2. 환경변수](#2-환경변수) / [3. 엔드포인트](#3-엔드포인트) / [4. 응답 규칙](#4-응답-규칙) — [조회 응답](#조회-응답에는-정답이-없습니다) · [랜덤 중복 제거](#랜덤-출제의-중복-제거-i-01) · [응답 스키마](#응답-스키마-필드) · [채점](#채점) · [세션과 슬롯](#세션과-슬롯) · [진도 수정](#진도-상태-수정) · [오류 규약](#오류-규약) / [5. 의존 DB 객체](#5-의존-db-객체) / [6. 프론트에서 붙일 때](#6-프론트에서-붙일-때) / [7. 알아둘 것](#7-알아둘-것)
+
 ---
 
 ## 1. 로컬 실행
@@ -22,13 +24,14 @@ export EXAM_DB_URL='postgresql://yangyag:<비밀번호>@localhost:5432/app'
 .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 8092 --reload
 ```
 
-Linux·EC2 는 인터프리터 경로만 `.venv/bin/python` 으로, PowerShell 은 2) 를 `$env:EXAM_DB_URL='...'` 로 바꾸면 됩니다.
+Linux 는 인터프리터 경로만 `.venv/bin/python` 으로, PowerShell 은 2) 를 `$env:EXAM_DB_URL='...'` 로 바꾸면 됩니다. **운영(EC2) 기동은 docker 이미지(`deploy/README.md`)** 로 하고, 다른 기기에서 접속해야 하는 개발 서버라면 `--host 0.0.0.0` 을 붙이세요(기본 예시는 `127.0.0.1`).
 
 기동 확인:
 
 ```bash
 curl http://127.0.0.1:8092/api/health
-# {"status":"ok","database":"ok","dbUrlSource":"DATABASE_URL (.env)"}
+# {"status":"ok","database":"ok","dbUrlSource":"EXAM_DB_URL (.env)"}
+# {"status":"ok","database":"ok","dbUrlSource":"DATABASE_URL (.env)"}   ← .env 가 DATABASE_URL 을 정의한 경우
 ```
 
 **저장소 루트에 `.env` 가 없는 곳에서는 2) 를 반드시 하세요** — 새로 clone 한 저장소나 `git worktree` 에는 `.env` 가 따라오지 않습니다(gitignore). 없으면 앱이 조용히 내장 기본값 `postgresql://yangyag@localhost:5432/app`(비밀번호 없음)을 쓰고, `/api/health` 가 이렇게 나옵니다:
@@ -37,7 +40,7 @@ curl http://127.0.0.1:8092/api/health
 {"status":"degraded","database":"unavailable","dbUrlSource":"기본값"}
 ```
 
-`dbUrlSource` 가 어느 출처를 썼는지 알려줍니다. `.env` 파일에서 온 값에는 출처 뒤에 ` (.env)` 가 붙으므로, 위 2) 를 건너뛰고 저장소 `.env`(`DATABASE_URL` 를 정의)를 읽은 경우가 `"DATABASE_URL (.env)"` 이고 `EXAM_DB_URL` 을 직접 export 했으면 `"EXAM_DB_URL"` 입니다. `기본값` 이면 2) 를 빠뜨린 것입니다.
+`dbUrlSource` 가 어느 출처를 썼는지 알려줍니다(`back/app/config.py`). `.env` 파일에서 온 값에는 출처 뒤에 ` (.env)` 가 붙으므로, 저장소 `.env` 가 `EXAM_DB_URL` 을 정의했으면 `"EXAM_DB_URL (.env)"`, `DATABASE_URL` 을 정의했으면 `"DATABASE_URL (.env)"` 이고, 셸에서 `EXAM_DB_URL` 을 직접 export 했으면 `"EXAM_DB_URL"` 입니다(`EXAM_DB_URL` → `DATABASE_URL` 순으로 먼저 있는 값을 씁니다). `기본값` 이면 2) 를 빠뜨린 것입니다.
 
 | 주소 | 설명 |
 |---|---|
@@ -52,14 +55,14 @@ curl http://127.0.0.1:8092/api/health
 
 ```bash
 cd back
-.venv/Scripts/python -m pytest                       # 전체 198개 (DB 접속 정보가 없으면 통합 35개는 skip)
+.venv/Scripts/python -m pytest                       # 전체 198개 = 163 + 35 (2026-09-14 기준, 정본은 plan/test-cases.md. DB 접속 정보가 없으면 통합 35개는 skip)
 .venv/Scripts/python -m pytest -m "not integration"  # DB 없이 163개
 .venv/Scripts/python -m pytest -m integration        # 실제 ipe DB 가 있어야 도는 35개
 ```
 
 **통합 테스트에는 테스트 전용 DB 를 쓰세요.** 접속 대상은 `TEST_DB_URL`(환경변수 또는 저장소 루트 `.env`)이 있으면 그 DB, 없으면 앱과 같은 `EXAM_DB_URL`/`DATABASE_URL` 입니다(우선순위는 `back/tests/conftest.py`). 실행 첫 줄에 `통합 테스트 DB: postgresql://... (출처: TEST_DB_URL)` 처럼 어느 DB 에 붙는지 찍습니다(비밀번호는 가림).
 
-앱 DB 로 돌리면 사이클 통합 테스트가 위험합니다 — 그 테스트들은 문항을 풀어 사이클·세션·슬롯·원장을 만들고 `과목에 사이클 기록 없음`을 전제로 하기 때문에, 앱에서 이미 쓰고 있는 과목에서는 409(진행 중 사이클)로 깨집니다. 그래서 이제는 그런 과목을 만나면 **사용자 기록을 건드리지 않고 테스트를 건너뛰면서** 이유(`require_free_subject`: 과목 상태·사이클 번호 + 해결 방법)를 남깁니다. 형님의 진도 데이터를 지키려면 테스트 전용 DB 를 두는 편이 가장 깔끔합니다.
+앱 DB 로 돌리면 사이클 통합 테스트가 위험합니다 — 그 테스트들은 문항을 풀어 사이클·세션·슬롯·원장을 만들고 `과목에 사이클 기록 없음`을 전제로 하기 때문에, 앱에서 이미 쓰고 있는 과목에서는 409(진행 중 사이클)로 깨집니다. 그래서 이제는 그런 과목을 만나면 **사용자 기록을 건드리지 않고 테스트를 건너뛰면서** 이유(`require_free_subject`: 과목 상태·사이클 번호 + 해결 방법)를 남깁니다. 사용자의 진도 데이터를 지키려면 테스트 전용 DB 를 두는 편이 가장 깔끔합니다.
 
 준비(로컬 docker 기준 — 최초 1회, 문항 데이터가 바뀌면 3)만 다시):
 
@@ -81,7 +84,7 @@ EXAM_DB_URL="$TEST_DB_URL" python tools/load_db.py          # 적재 + 검증(�
 
 `TEST_DB_URL` 을 두지 않으면 지금까지처럼 앱 DB 로 돌아갑니다(통합 테스트는 자기 행만 만들고 끝나면 지우며, 남의 사이클과 겹치는 과목은 건너뜁니다).
 
-접속 정보가 없어 통합 테스트를 건너뛸 때는 `PGCONNECT_TIMEOUT`(5초)을 걸어 둡니다(`back/tests/conftest.py`). 없으면 `localhost` 가 IPv6(`::1`)부터 시도하면서 죽은 주소마다 OS 기본 타임아웃(약 2분)을 기다려, 통합 35건이 전부 skip 이어도 한 시간 넘게 걸립니다. 지금은 전체 실행이 **163 passed / 35 skipped / 약 1분** 입니다.
+접속 정보가 없어 통합 테스트를 건너뛸 때는 `PGCONNECT_TIMEOUT`(5초)을 걸어 둡니다(`back/tests/conftest.py`). 없으면 `localhost` 가 IPv6(`::1`)부터 시도하면서 죽은 주소마다 OS 기본 타임아웃(약 2분)을 기다려, 통합 35건이 전부 skip 이어도 한 시간 넘게 걸립니다. 지금은 전체 실행이 **163 passed / 35 skipped / 약 78초(1분 20초)** 입니다(2026-09-14 기준, 정본은 `plan/test-cases.md`).
 
 `pytest`·`httpx` 는 `requirements.txt` 에 들어 있어 1) 의 설치만으로 돌아갑니다. 진도 행을 만드는 통합 테스트는 끝나면 스스로 되돌리고, DB 없이 503 을 확인하는 `test_db_unavailable.py` 는 접속할 수 없는 주소(127.0.0.1:1)만 씁니다. 종료된 세션 채점 거부(`409`)는 단위(`test_grading_api.py`)와 실 DB(`test_integration_db.py`) 양쪽에서 확인합니다. 채점과 종료가 겹칠 때의 잠금 순서(`B-01`)는 실제 DB의 행 잠금을 재현하는 `test_integration_concurrency.py` 가 고정합니다(study_attempt 에 SHARE 잠금을 잠시 걸고, 세션 행 잠금은 `FOR UPDATE NOWAIT` 프로브로 판정). 과목 사이클 계약은 가짜 DB(`test_cycles_api.py`)와 실 DB(`test_integration_cycles.py`) 양쪽에서 고정합니다 — 라운드 자동 전환(전체 정답이면 즉시 완료), 과목당 진행 중 1개, 두 기기 동시 시작, 마지막 슬롯 제출과 새로 구성의 경합, 홈 요약의 고유 문항 수(176·194·194·199·181)를 실제 DB에서 검산합니다. **모의고사 최종 제출**은 가짜 DB(`test_progress_api.py`)로 모드 `400`·중단 `409`·멱등 재제출·합격 경계(과목 40점·평균 60점) 계산을, 실제 DB(`test_integration_db.py`)로 100문항 제출·미응답의 원장 미기록·선택 저장과 새로 구성의 잠금 경합(study_attempt 에 SHARE 잠금을 잠시 걸어 제출을 멈춰 세우는 방식)을 고정합니다.
 
@@ -337,7 +340,7 @@ curl -i -X POST http://127.0.0.1:8092/api/questions/2026-1-001/answer \
 
 `SessionCreate`: `mode`(필수), `examId`, `subjectCode`(1~5), `replaceActive`(기본 `false`).
 
-**`mode` 5종** — 표는 `db/README.md` 의 "mode 5종"과 같습니다.
+**`mode` 5종** — 정본은 `db/003_study_items.sql` 주석(`study_session_mode_chk`)이고, 표는 요약만 여기 기재합니다.
 
 | mode | 세션 모양 | 채점 경로 |
 |---|---|---|
@@ -410,7 +413,7 @@ GET /api/sessions/16/items/1  # SessionItemDetail
 - `items[].isCorrect` 는 **진행 중인 모의고사에서 `null` 로 가려집니다**(제출 전 정답 비공개). 연습과 종료된 모의고사는 실제 값이 옵니다.
 - 조회는 아무것도 기록하지 않습니다(원장이 늘지 않음). 없는 세션은 `404`, 없는 `seq` 는 `404`.
 - `examResult` 는 **제출이 끝난 모의고사에만** 실리고(진행 중이면 `null`), 모의고사 최종 제출 응답과 같은 점수 요약입니다 — "모의고사 최종 제출" 절 참고.
-- `SessionItemDetail` 은 `QuestionOut` 전부 + `seq`·`choiceNo`·`isCorrect`·`answeredAt`·`result` 입니다. `result` 는 **이미 채점된 슬롯**(연습 또는 제출된 모의고사)에만 채점 응답과 같은 형식(`GradeResult`)으로 붙고, `state` 는 **채점 여부와 무관하게 항상 `null`** 입니다(이전 풀이의 정답 여부가 드러나지 않게 — 문항 누계는 채점 응답의 `state` 로 봅니다). 제출된 모의고사의 미응답 문항은 `choiceNo`·`result.choiceNo` 가 `null` 이고 `isCorrect` 가 `false` 입니다(해설은 그대로).
+- `SessionItemDetail` 은 `QuestionOut` 전부 + `seq`·`choiceNo`·`isCorrect`·`answeredAt`·`result` 입니다. `result`·`state` 와 제출된 모의고사의 미응답 문항 규칙은 위 **"조회 응답에는 정답이 없습니다"** 절을 참고하세요.
 
 #### 슬롯 제출 — `PUT /api/sessions/{sessionId}/items/{seq}/answer`
 
@@ -456,7 +459,7 @@ curl -X PUT http://127.0.0.1:8092/api/sessions/16/items/1/answer \
 
 #### 모의고사 최종 제출 — `POST /api/sessions/{sessionId}/submit`
 
-한 트랜잭션에서 전 문항을 채점하고 세션을 끝냅니다(설계 5.3절). **`mode=exam` 전용**이고 쓰기 요청이므로 `EXAM_API_TOKEN` 설정 시 `X-Exam-Token` 헤더가 필요합니다.
+한 트랜잭션에서 전 문항을 채점하고 세션을 끝냅니다(`back/app/routers/progress.py` 의 `submit_session`). **`mode=exam` 전용**이고 쓰기 요청이므로 `EXAM_API_TOKEN` 설정 시 `X-Exam-Token` 헤더가 필요합니다.
 
 ```bash
 curl -X POST http://127.0.0.1:8092/api/sessions/16/submit
@@ -484,12 +487,12 @@ curl -X POST http://127.0.0.1:8092/api/sessions/16/submit
 - **재제출은 멱등**입니다 — 이미 제출된 세션에 다시 보내면 아무것도 쓰지 않고 같은 본문(`200`)을 돌려줍니다. 네트워크 오류 뒤 그대로 다시 보내면 됩니다.
 - **결과 재조회**: `GET /api/sessions/{id}` 의 `examResult` 가 같은 점수 요약을 주고(진행 중이면 `null`), 문항별 정답·해설은 `GET /api/sessions/{id}/items/{seq}` 의 `result` 로 봅니다 — 미응답 문항도 `choiceNo=null`·`isCorrect=false` 로 `result` 가 붙습니다. **조회는 원장을 늘리지 않습니다.**
 - 상태 코드: `400` — `mode` 가 `exam` 이 아님(연습은 마지막 문항에서 자동 종료되고 `random` 은 `/finish`), `404` — 없는 세션, `409` — `replaceActive` 로 중단된 모의고사(제출된 적이 없어 결과도 없음).
-- **잠금 순서**(설계 4.6절): 세션 행을 `FOR UPDATE` 로 잡은 뒤 슬롯을 잠급니다. 제출과 선택 저장이 겹치면 세션 잠금이 순서를 정해 **제출 뒤에 도착한 저장은 `409`** 입니다. 제출이 끝난 세션은 '진행 중'이 아니라서 `replaceActive=true` 로 새로 구성해도 중단되지 않습니다(제출 결과 보존). 두 경합 모두 실 DB 통합 테스트(`test_integration_db.py`)가 고정합니다.
+- **잠금 순서**(`back/app/routers/progress.py` 의 `submit_session` docstring): 세션 행을 `FOR UPDATE` 로 잡은 뒤 슬롯을 잠급니다. 제출과 선택 저장이 겹치면 세션 잠금이 순서를 정해 **제출 뒤에 도착한 저장은 `409`** 입니다. 제출이 끝난 세션은 '진행 중'이 아니라서 `replaceActive=true` 로 새로 구성해도 중단되지 않습니다(제출 결과 보존). 두 경합 모두 실 DB 통합 테스트(`test_integration_db.py`)가 고정합니다.
 - 세션 요약(`SessionOut.answered`·`correct`)은 기존대로 원장 집계입니다 — 제출 뒤에는 `answered` 가 답한 문항 수가 됩니다. 점수·미응답 수는 `examResult` 쪽을 보세요.
 
 ### 과목 사이클과 홈 요약 — `back/app/routers/subject_cycles.py`
 
-`POST /api/subject-cycles` 는 과목 문항 전체로 목록을 구성하고 라운드 1 세션까지 만듭니다(설계 4.5·5.2절).
+`POST /api/subject-cycles` 는 과목 문항 전체로 목록을 구성하고 라운드 1 세션까지 만듭니다(`back/app/routers/subject_cycles.py` 의 `create_subject_cycle`).
 
 ```bash
 curl -X POST http://127.0.0.1:8092/api/subject-cycles \
@@ -526,7 +529,7 @@ curl -X POST http://127.0.0.1:8092/api/subject-cycles \
 }]
 ```
 
-| `status` | 조건 | 홈 동작(설계 5.1절) |
+| `status` | 조건 | 홈 동작(`subject_cycle_overview`) |
 |---|---|---|
 | `not_started` | 진행 중·완료 사이클이 없음(중단(`abandoned`)만 있는 과목도 여기) | 시작하기 |
 | `first_pass` | 진행 중 사이클의 열린 라운드가 1 | 이어서 풀기·새로 구성하기 |
@@ -537,7 +540,7 @@ curl -X POST http://127.0.0.1:8092/api/subject-cycles \
 - `uniqueQuestionCount` 는 요청할 때마다 계산하는 중복 제거 문항 수(176·194·194·199·181)입니다.
 - `currentRound` 는 진행 중 사이클의 **열린 라운드**입니다. 경합 뒤 열린 라운드가 없으면(아래 경고) `null` 이고, 상태는 그 사이클의 마지막 라운드 번호로 판정합니다.
 
-> **⚠ 홈·사이클 조회는 `status='active'` 사이클만 근거로 삼습니다.** `replaceActive=true` 가 열린 라운드를 잠그고 사이클을 중단시키는 사이, 다른 요청이 마지막 슬롯을 채점해 새 라운드를 커밋하면 그 라운드는 중단된 사이클에 `finishedAt` 없이 남을 수 있습니다(설계 4.6절 — 잠금 순서를 뒤집으면 ABBA 데드락). 'abandoned 사이클 = 열린 세션 없음' 을 가정하면 안 되고, 남은 라운드의 마지막 슬롯을 채점하면 라운드만 닫히며 자동으로 회복합니다. 같은 경고가 `db/README.md` 경고 2에 있습니다.
+> **⚠ 홈·사이클 조회는 `status='active'` 사이클만 근거로 삼습니다.** `replaceActive=true` 가 열린 라운드를 잠그고 사이클을 중단시키는 사이, 다른 요청이 마지막 슬롯을 채점해 새 라운드를 커밋하면 그 라운드는 중단된 사이클에 `finishedAt` 없이 남을 수 있습니다(`back/app/cycles.py` 의 `replace_active_cycle` docstring — 잠금 순서를 뒤집으면 ABBA 데드락). 'abandoned 사이클 = 열린 세션 없음' 을 가정하면 안 되고, 남은 라운드의 마지막 슬롯을 채점하면 라운드만 닫히며 자동으로 회복합니다. 같은 경고가 `db/README.md` 경고 2에 있습니다.
 
 ### 진도 상태 수정
 
@@ -581,7 +584,7 @@ DB 를 쓰는 엔드포인트가 **2초 안에 `503`** 을 돌려줍니다(루�
 | `GET /api/stats/subjects` | `500` 30.04초 | `503` 2.02초 |
 | `POST /api/sessions`(쓰기) | `500` 30.02초 | `503` 2.02초 |
 
-수정 전에는 데이터 엔드포인트가 풀 기본 타임아웃(30초)을 기다린 뒤 처리되지 않은 `psycopg_pool.PoolTimeout` 으로 `500 Internal Server Error` 가 되어, 프론트에서 DB 장애가 서버 버그처럼 보였습니다. 지금은 헬스체크와 같은 `503` 이고 본문도 `{"detail": "DB 에 연결할 수 없습니다"}` 로 옵니다. 조회·쓰기 엔드포인트 10개(`/api/exams`·`/api/subjects`·`/api/tags`·`/api/stats/*`·`/api/progress/*`·`/api/sessions`·`/api/questions/*/answer` 등)를 모두 호출해 `503` 과 2.00~2.09초를 확인했습니다. 이 동작은 `back/tests/test_db_unavailable.py` 가 고정합니다.
+수정 전에는 데이터 엔드포인트가 풀 기본 타임아웃(30초)을 기다린 뒤 처리되지 않은 `psycopg_pool.PoolTimeout` 으로 `500 Internal Server Error` 가 되어, 프론트에서 DB 장애가 서버 버그처럼 보였습니다. 지금은 헬스체크와 같은 `503` 이고 본문도 `{"detail": "DB 에 연결할 수 없습니다"}` 로 옵니다. 조회·쓰기 엔드포인트 10개(`/api/exams`·`/api/subjects`·`/api/tags`·`/api/stats/*`·`/api/progress/*`·`/api/sessions`·`/api/questions/*/answer` 등)를 모두 호출해 `503` 과 2.00~2.09초를 확인했습니다(**수동 실측**). 자동 테스트(`back/tests/test_db_unavailable.py`)는 `/api/exams`·`/api/sessions`·`/api/health` 3개 경로만 고정합니다.
 
 `/api/health` 는 `ping()` 이 예외를 삼키므로 DB 가 죽어 있어도 `503` + `{"status":"degraded","database":"unavailable"}` 을 돌려줍니다(동작은 수정 전과 같습니다). 커넥션 풀이 아직 만들어지지 않은 시점(앱 기동 전)도 같은 `503` 입니다.
 
@@ -621,9 +624,9 @@ API 는 `v_wrong_questions` · `v_review_due` 에 들어 있는 `answer` 컬럼�
 
 ## 7. 알아둘 것
 
-- **배포는 docker 이미지 2종(`exam-back`·`exam-front`) + compose(`deploy/`)로 합니다** — 절차는 `deploy/README.md`. 이 문서는 로컬 실행만 다룹니다. 설정을 전부 환경변수로 받으므로 로컬·운영 어디서든 그대로 쓸 수 있습니다.
-- 쿼리 로그·요청 추적은 넣지 않았습니다. `uvicorn` 기본 로그만 나옵니다.
+- **배포는 docker 이미지 2종(`exam-back`·`exam-front`) + compose(`deploy/`)로 합니다** — 절차는 `deploy/README.md`. 이 문서는 로컬 실행만 다룹니다. DB 접속·토큰(`EXAM_API_TOKEN`)·CORS 는 환경변수로 받고, 그림 디렉터리는 **고정 경로**(`FIGURES_DIR` = `data/figures`, `back/app/main.py` 가 `/figures` 로 마운트)입니다.
+- 쿼리 로그·요청 추적은 넣지 않았습니다. `uvicorn` 로그 + 앱 경고 1줄(DB 실패·그림 디렉터리)뿐입니다.
 - 인증은 단일 사용자 전제의 공유 토큰 하나뿐입니다. 사용자별 계정·권한은 없습니다.
 - `POST /api/questions/{id}/answer` 는 **채점과 진도 기록을 분리할 수 없습니다.** 정답만 확인하고 기록을 남기고 싶지 않은 경우는 지금 지원하지 않습니다(슬롯 세션에는 이 경로를 쓸 수 없습니다 — 슬롯 제출이 기록 경로입니다).
-- **모의고사 최종 제출은 `POST /api/sessions/{id}/submit` 입니다**(5단계, 위 "모의고사 최종 제출" 절). 미응답은 점수상 오답이지만 원장·누계에 남기지 않고, 재제출은 멱등입니다.
+- **모의고사 최종 제출은 `POST /api/sessions/{id}/submit` 입니다**(`back/app/routers/progress.py` 의 `submit_session`, 위 "모의고사 최종 제출" 절). 미응답은 점수상 오답이지만 원장·누계에 남기지 않고, 재제출은 멱등입니다.
 - 과목 사이클의 라운드 전환·중단은 `advance_round_if_complete`·`replace_active_cycle`(`back/app/cycles.py`)이 맡고, 조회·집계는 `back/app/cycle_queries.py` 가 **`status='active'` 사이클만 근거로** 합니다.

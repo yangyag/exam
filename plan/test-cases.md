@@ -11,10 +11,12 @@
 |---|---|
 | 백엔드(로컬) | `cd back && ./.venv/Scripts/python -m uvicorn app.main:app --port 8092` |
 | 프론트(로컬) | `cd front && npm run dev` → `http://localhost:8091` (CORS 는 `localhost:8091` 만 허용) |
+| 프론트 점검 전제 | `npm run shots` 는 **백엔드(8092)가 떠 있어야 한다** — 없으면 `isServerUp` 검사에서 기동 안내 후 exit 1 |
+| 통합 테스트 전제 | `TEST_DB_URL`(전용 `app_test`) 준비 필요 — 만드는 절차는 `back/README.md` §1 「테스트」 |
 | 로컬 DB | `docker exec -i postgres psql -U yangyag -d app` |
 | EC2 DB | `docker exec -i yangyag-postgres psql -U auto -d exam` (SSH: `./aws/connect.sh`) |
 | 운영 | `https://yangyag5.duckdns.org` |
-| 스크린샷 | `tmp/shots*/` (gitignore) — Playwright 캡처는 `npx playwright screenshot` |
+| 스크린샷 | `tmp/shots/` (기본 경로, `SHOTS_DIR` 로 변경 가능 · gitignore) — Playwright 캡처는 `npx playwright screenshot` |
 
 **공통 원칙**
 - 검증이 만든 진도 행(`study_*`)은 **끝나고 지워 0행으로 복원**한다. 사용자가 만든 행은 건드리지 않는다.
@@ -26,13 +28,13 @@
 | # | 케이스 | 명령 | 기대 |
 |---|---|---|---|
 | 1-1 | 문항 JSON 검증 | `python tools/validate.py` | 65파일 / 1,300문항 / **오류 0** |
-| 1-2 | 적재 멱등 | `python tools/load_db.py --init` ×2 | 두 번 모두 exit 0, 오류 없음(000 제외 001~004 적용) |
-| 1-3 | 적재 정합 | `python tools/load_db.py --verify` | 전부 통과(exam 13·subject 5·question 1,300·choice 5,200·tag 1,281·trgm 2·그림 24/24) |
+| 1-2 | 마이그레이션 멱등 | `python tools/load_db.py --init` ×2 | 두 번 모두 exit 0, 오류 없음(000 제외 001~004 적용). **`--init` 은 적재를 하지 않는다** — 적재는 `python tools/load_db.py`(적재+검증)가 한다 |
+| 1-3 | 적재 정합 | `python tools/load_db.py`(적재+검증) → `python tools/load_db.py --verify` | **도구가 단언하는 값**: 회차 13 · 과목 5 · 문항 1,300 · 보기 5,200(문항×4) · 그림 24/24 + 정합성 검사 7종 0건. **눈으로 확인하는 값**: 태그 1,281(출력만, 단언 없음) · trgm 인덱스 2개(`pg_indexes` 직접 조회) |
 | 1-4 | 인덱스 재생성 | `python tools/build_index.py` | "이상 없음" rc=0. **실행 후 `git checkout -- data/index.json`**(generatedAt churn) |
 | 1-5 | 품질 리포트 | `python tools/report.py` | 잔여물 0, 분포 출력에 오류 없음 |
 | 1-6 | 중복 분석 | `python tools/dups.py` | 고유 문항 수 리포트(도구 기준 847) |
 | 1-7 | cp949 방어 | `PYTHONIOENCODING` 없이 `python tools/load_db.py --init 2>&1 \| tail -3` | UnicodeEncodeError 없이 rc=0 (2026-09-12 수정) |
-| 1-8 | PDF 도구(선택) | `python -c "import fitz"` 후 `python tools/scan_figures.py` | pymupdf 미설치면 **skip** 으로 표시(설치 시 실행) |
+| 1-8 | PDF 도구 | `python -c "import fitz"` 후 `python tools/scan_figures.py` | pymupdf 1.28.2 설치됨 — 실행해 결과 확인(없을 때만 `python -m pip install pymupdf`) |
 
 ## 2. 백엔드 (`back/`)
 
@@ -40,7 +42,7 @@
 
 | # | 명령 | 기대 |
 |---|---|---|
-| 2-1-1 | `pytest -q` | **198 passed** |
+| 2-1-1 | `pytest -q` | **198 passed**(= 163 단위 + 35 통합, 2026-09-14 기준) |
 | 2-1-2 | `pytest -q -m integration` | 35 passed(실 PostgreSQL `ipe`) |
 | 2-1-3 | `pytest -q -m "not integration"` | 163 passed |
 | 2-1-4 | `.env` 없이 `pytest -q` | 통합은 skip, 나머지 통과(접속 정보 부재 처리) |
@@ -49,7 +51,7 @@
 
 | # | 케이스 | 호출 | 기대 |
 |---|---|---|---|
-| 2-2-1 | 헬스 | `GET /api/health` | 200 `{"status":"ok","database":"ok"}` |
+| 2-2-1 | 헬스 | `GET /api/health` | 200 `{"status":"ok","database":"ok","dbUrlSource":"EXAM_DB_URL (.env)"}` (3키) |
 | 2-2-2 | 과목·회차 | `GET /api/subjects`, `/api/exams`, `/api/exams/2026-1` | 5과목 / 13회차(연도·회차 내림차순) / 과목 5 |
 | 2-2-3 | 회차 문항 | `GET /api/exams/2026-1/questions?limit=200` | 100문항, 번호 오름차순 |
 | 2-2-4 | 단발 채점 | `POST /api/questions/2026-1-001/answer {choiceNo}` | 200 `answer·explanation·keyPoint·choicesAnalysis` |
@@ -97,8 +99,8 @@
 | # | 케이스 | 명령 | 기대 |
 |---|---|---|---|
 | 3-1 | 타입·빌드 | `npm ci && npm run build` | 타입 오류 0 + 빌드 성공 |
-| 3-2 | 자체 점검·캡처 | `npm run shots` | **모든 점검 통과**: 콘솔 오류 0 · 가로 잘림 0 · 클릭 영역 44px · 키보드 조작 · 409 안내 · 정답 비노출 |
-| 3-3 | 스크린샷 육안 | `tmp/shots*/` | 홈 · 연습(코드·표·도식) · 모의고사(그리드·제출 대화상자) · 결과 · 이력 · 오류 4종 · 모바일 375px |
+| 3-2 | 자체 점검·캡처 | `npm run shots` | **모든 점검 통과**(2026-09-14 기준 13단계·62컷·exit 0 — 컷 수는 실행 시점 값): 콘솔 오류 0 · 가로 잘림 0 · 클릭 영역 44px · 키보드 조작 · 409 안내 · 정답 비노출 |
+| 3-3 | 스크린샷 육안 | `tmp/shots/`(기본, `SHOTS_DIR` 로 변경 가능) | 홈 · 연습(코드·표·도식) · 모의고사(그리드·제출 대화상자) · 결과 · 이력 · 오류 4종 · 모바일 375px |
 | 3-4 | 과목 연습 흐름 | 홈 `시작하기` → 연습 화면 → 3문항 제출 | 채점·해설 표시, 진행도 갱신 |
 | 3-5 | 오답 자동 펼침 | 오답 제출 / 정답 제출 | 오답이면 보기별 해설 **펼쳐짐**, 정답이면 접힘(토글 유지) |
 | 3-6 | 이어풀기 복원 | 새로고침·재접속 | `nextSeq` 위치로 복원, "이어서 풀기" 배너 |
@@ -116,7 +118,7 @@
 | 4-1 | 헬스 | `curl -s .../api/health` | 200 `database: ok`, `dbUrlSource: EXAM_DB_URL` |
 | 4-2 | 홈·SPA 경로 | `curl -sI .../`, `.../exams`, `.../history/` | 200, title `정보처리기사 필기` |
 | 4-3 | API·도식 프록시 | `.../api/subject-cycles/overview`, `.../figures/2026-1/099.png` | 200 실데이터 / 200 이미지 |
-| 4-4 | HTTP 리다이렉트 | `curl -sI http://yangyag5.duckdns.org/` | 301 → https |
+| 4-4 | HTTP 리다이렉트 | `curl -sI http://yangyag5.duckdns.org/` | 301 → https. 301 은 EC2 호스트 nginx 에 certbot 이 넣은 설정 — 저장소 `deploy/nginx-yangyag5-exam.conf` 는 80 만 열려 있어 **리포 파일만으로는 재현되지 않는다** |
 | 4-5 | 인증서 | SSH `sudo certbot certificates` | `yangyag5.duckdns.org` 유효(자동 갱신 등록) |
 | 4-6 | 컨테이너 상태 | SSH `cd /home/ubuntu/exam && docker compose ps` | `exam-back` healthy, `exam-front` healthy, 포트 `127.0.0.1:8091` |
 | 4-7 | 자동 복구 | SSH `docker restart exam-back` | 30초 내 healthy 복귀, 사이트 정상 |
@@ -131,8 +133,8 @@
 ## 5. 릴리스 체크리스트 (순서)
 
 1. `tools/validate.py` + `load_db.py --verify`
-2. `pytest -q`(198) — 실패 0
-3. `npm ci && npm run build && npm run shots`
+2. `pytest -q`(198 = 163 + 35, 2026-09-14 기준) — 실패 0
+3. `npm ci && npm run build && npm run shots`(2026-09-14 기준 13단계·62컷·exit 0)
 4. 스크린샷 육안(홈·연습·모의고사·결과·이력·모바일)
 5. 운영 배포: `./deploy/deploy.sh`
 6. 운영 검증 표(4-1~4-6) + 재배포 후 재확인
@@ -148,10 +150,10 @@
 | 1-1~1-3 · 1-5 | `validate` · `--init` ×2 · `--verify` · `report` | **통과** — 65파일/1,300문항 오류 0, 멱등(2회 무오류), 진도 0행 복원, 잔여물 0. `--init` 은 `PYTHONIOENCODING` 없이 실행(= cp949 방어 확인) |
 | 1-4 | `build_index` | 통과("이상 없음") + `data/index.json` 되돌림 확인 |
 | 1-6 | `dups` | 통과(회차별 신규/중복 리포트) |
-| 1-8 | PDF 도구 | **skip** — pymupdf 미설치(설치 시 실행) |
+| 1-8 | PDF 도구 | **skip** — 실행 당시 pymupdf 미설치(지금은 1.28.2 설치됨이라 실행 가능) |
 | 2-1 | `pytest -q` / `-m integration` | **198 passed / 35 passed** (`TEST_DB_URL` = 전용 `app_test` 로 격리) |
 | 2-2 · 2-3 | API 계약 · 동시성 | 위 통합 35건에 포함(슬롯·사이클·모의고사·경합 5종) |
-| 3-1 · 3-2 | `build` + `shots` | **전 항목 통과 · 57컷**(실데이터 단언을 API 값에서 유도하도록 고친 뒤) |
+| 3-1 · 3-2 | `build` + `shots` | **전 항목 통과 · 57컷**(실행 시점 값 — 현재 기준 13단계·62컷. 실데이터 단언을 API 값에서 유도하도록 고친 뒤) |
 | 3-3~3-12 | 화면 흐름·접근성·반응형 | `shots` 자체 점검 + 스크린샷 육안 점검(홈·연습·모의고사·결과·이력·모바일) |
 | 4-1~4-6 · 4-8~4-10 · 4-14 | 운영 정상 경로 | 통과 — 헬스 200(DB ok), `/`·`/exams`(301→`/exams/`)·`/history/`·overview·도식 200, 인증서 유효, 컨테이너 healthy, 로그 예외 없음, 리소스 여유 |
 | 4-7 | 백엔드 재시작 | 통과 — `docker restart exam-back` 후 12초 내 health 200 |
@@ -183,11 +185,11 @@
 | 1-2 · 1-7 | `--init` ×2, `PYTHONIOENCODING` 없이 `--init` | **통과** — 두 번 모두 rc=0(001~004 적용), cp949 콘솔에서 UnicodeEncodeError 없음 |
 | 1-4 | `build_index` | 통과("이상 없음") + `git checkout -- data/index.json` 으로 되돌림 |
 | 1-6 | `dups` | 통과 — 1,298문항 / 고유 847(도구 기준) |
-| 1-8 | PDF 도구 | **skip** — `pymupdf` 미설치 |
+| 1-8 | PDF 도구 | **skip** — 실행 당시 `pymupdf` 미설치(지금은 1.28.2 설치됨) |
 | 2-1 | `pytest -q` / `-m integration` / `-m "not integration"` | **198 / 35 / 163 passed** (수정 후 18.8초) |
 | 2-1-4 | `.env` 없는 사본에서 `pytest -q` | **163 passed / 35 skipped / 78초** — 아래 발견·수정 1 |
 | 2-2 · 2-3 | 실서버 HTTP 계약 검증(`app_test` DB · 8093) | **35건 전부 통과** — 슬롯·사이클·모의고사 제출·경합 5종 포함 |
-| 3-1 · 3-2 | `npm ci && npm run build` / `npm run shots` | 타입 오류 0 · 빌드 성공 / **모든 점검 통과**(rc=0, 57컷) |
+| 3-1 · 3-2 | `npm ci && npm run build` / `npm run shots` | 타입 오류 0 · 빌드 성공 / **모든 점검 통과**(rc=0, 57컷 — **실행 시점 값**, 현재 기준 13단계·62컷) |
 | 3-3 | 스크린샷 육안 | 홈·연습(코드·표·도식)·모의고사 그리드·제출 대화상자(미응답 88 강조)·결과·이력·모바일 375px 모두 정상, 오답 자동 펼침/정답 접힘 확인 |
 | 4-1~4-6 · 4-8~4-10 · 4-12 · 4-14 | 운영 정상 경로 | 통과 — 헬스 200(DB ok `EXAM_DB_URL`), `/`·`/history/` 200 + title, overview·도식 200, `/exams` 301→`/exams/`, 인증서 VALID 89일 + `certbot.timer`, 컨테이너 healthy, DB 1,300, 롤백 태그 2개 보존 |
 | 4-7 | `docker restart exam-back` | 통과 — **3초** 만에 health 200, healthy 복귀 |
@@ -210,7 +212,7 @@
 
 - **사람이 판단하는 것**: 디자인 선호, 문구 톤, 정보 밀도 → 스크린샷으로 확인
 - **부하·보안 테스트**: 단일 사용자 앱이고 별도 인증을 걸지 않았다(운영 정책 결정 필요)
-- **PDF 파이프라인**: `pymupdf` 미설치 환경에서는 `extract.py`·`crop_figures.py`·`scan_figures.py` 실행 불가 → 설치 후 별도 확인
+- **PDF 파이프라인**: `pymupdf` 1.28.2 설치됨(없을 때만 `python -m pip install pymupdf`) — `extract.py`·`crop_figures.py`·`scan_figures.py` 로 PDF 재추출·재크롭하는 일은 이 문서의 케이스 범위 밖
 - **브라우저 실사용 검증**: 실제 휴대폰·PC 에서의 체감(통신 지연, 터치) → 사용자 확인
 
 ## 부록 B. 자주 쓰는 명령 모음

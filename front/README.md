@@ -10,11 +10,15 @@
 
 문항 화면(연습·모의고사)의 문항 헤더에는 **`복사` 버튼**(`QuestionCopyButton.vue`)이 있습니다 — 문제 문장·지문(코드·표·본문)·보기 4개를 화면에 보이는 순서대로 클립보드에 넣고 버튼 옆에 잠깐 `복사됨` 을 표시합니다. **정답·해설·보기별 해설은 복사하지 않습니다**(모의고사 진행 중 정답 비노출 규칙과 같습니다). 그림이 있는 문항은 텍스트만 복사하면 뜻이 달라지므로 복사하지 않고 `그림이 있는 문항은 복사할 수 없습니다.` 안내만 보여줍니다.
 
+> 각주 — "설계 3.1절"·"설계 9.1절" 참조는 **저장소 밖 설계 문서**를 가리킵니다(저장소에는 없습니다). 화면 계약의 실물 정본은 이 문서의 계약 절과 코드(`app/pages/sessions/[id].vue`·`app/pages/exam/[id].vue`·`app/pages/history/index.vue`)입니다.
+
 ## 실행
+
+Node 22 이상에서 실행합니다(`npm ci` 로 `package-lock.json` 고정 설치 — 운영 이미지도 `node:22-alpine` 기반입니다: `deploy/Dockerfile.front`).
 
 ```bash
 cd front
-npm install
+npm ci
 npm run dev        # http://localhost:8091 (SPA)
 ```
 
@@ -29,7 +33,7 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
 - API 오리진은 `NUXT_PUBLIC_API_BASE`(기본 `http://127.0.0.1:8092`)로 바꿉니다.
 - `ssr: false`(SPA) 이고 다크모드 대응은 없습니다(흰 배경 고정 — `AGENTS.md` 자료 처리 정책).
 
-## 스크립트
+## 주요 스크립트
 
 | 명령 | 설명 |
 |---|---|
@@ -37,7 +41,9 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
 | `npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. **타입 오류가 있으면 실패합니다** |
 | `npm run typecheck` | 타입 검사만 (`vue-tsc`) |
 | `npm run gen:types` | `app/types/api.gen.ts` 재생성 — 백엔드 `/openapi.json` 에서 뽑습니다(백엔드가 떠 있어야 함). 산출물은 커밋합니다 |
-| `npm run shots` | Playwright 스크린샷 + 화면 점검. dev 서버가 없으면 자동 기동·종료하고 `<저장소 루트>/tmp/shots/` 에 저장(gitignore). `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). **`SHOTS_ONLY=`(완전히 빈 값)는 변수를 주지 않은 것으로 보고 전체 13단계를 돌립니다**(무엇을 했는지 로그에도 남깁니다). 대조군은 `SHOTS_FAULT=states`(그 단계 화면에 콘솔 오류·JS 예외를 일부러 심음) · `SHOTS_HOVER_FREEZE=all\|color\|block\|cursor-auto\|cursor-pointer`, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약과 실패로 세지 않은 콘솔 로그 건수를 남깁니다 |
+| `npm run shots` | Playwright 스크린샷 + 화면 점검. **백엔드(8092)가 먼저 떠 있어야 합니다 — 없으면 dev 서버를 띄우기 전에 즉시 실패(exit 1)합니다**(`scripts/shots.mjs` 가 기동 명령을 안내합니다). dev 서버가 없으면 자동 기동·종료하고 기본 저장 위치는 `<저장소 루트>/tmp/shots/`(`SHOTS_DIR` 로 변경 가능, gitignore)입니다. `SHOTS_ONLY=<단계>` 로 단계 선택 — 이름은 `real-data`·`states`·`backend-down`·`loading`·`empty`·`practice`·`practice-conflicts`·`exams-list`·`exam-taking`·`exam-closed`·`history`·`copy-button`·`hover` 이고, 모르는 이름(오타)이나 쉼표·공백만 있는 값이면 사용 가능한 목록을 찍고 **exit 1** 로 멈춥니다(0단계 조용한 통과 없음). **`SHOTS_ONLY=`(완전히 빈 값)는 변수를 주지 않은 것으로 보고 전체 13단계를 돌립니다**(무엇을 했는지 로그에도 남깁니다). 대조군은 `SHOTS_FAULT=states`(그 단계 화면에 콘솔 오류·JS 예외를 일부러 심음) · `SHOTS_HOVER_FREEZE=all\|color\|block\|cursor-auto\|cursor-pointer`, 실행 끝에 `단계 N개 실행 · 스크린샷 M컷` 요약과 실패로 세지 않은 콘솔 로그 건수를 남깁니다 |
+
+표 밖 스크립트 — `generate`(`npm run generate`)는 운영 이미지 빌드에서 씁니다(`deploy/Dockerfile.front`), `preview` 는 정적 산출물 로컬 확인용, `postinstall`(`nuxt prepare`)은 `npm ci` 가 자동 실행합니다.
 
 `npm run shots` 가 확인하는 것:
 
@@ -59,7 +65,7 @@ cd back && .venv/Scripts/python -m uvicorn app.main:app --host 127.0.0.1 --port 
   코드 문항은 문제·코드·보기 4개가 들어가고(키보드 Tab·Enter 로도 동작), 표 문항은 표 지문까지 들어가며,
   **어느 경우에도 정답·해설·보기별 해설은 들어가지 않는다**(모의고사는 제출 전 상태로 확인).
   도식 문항은 안내 문구가 뜨고 **클립보드가 앞 복사본 그대로**인지 본다(`scripts/practice-fixtures.mjs`·`exam-fixtures.mjs`).
-- 마우스오버 반응 — 화면 13상태(홈 4종·홈 실데이터·회차 선택·연습 3종·모의고사 4종·이전 결과)에서 **보이는 클릭 요소를 하나씩
+- 마우스오버 반응 — 화면 13종(홈 상태 4종·홈 실데이터·회차 선택·연습 4종(문항·채점해설·404·중단)·모의고사 5종(풀이·풀이 모바일·결과해설·제출 대화상자·404)·이전 결과)에서 **보이는 클릭 요소를 하나씩
   실제 마우스로 올려** **배경색·글자색·테두리색 중 하나라도 계산값이 바뀌는지** 본다. 그림자·이동·투명도만 바뀌는 요소는
   **실패로 기록하고 어떤 속성만 바뀌었는지 요소마다 남긴다**(예: `색(배경·글자·테두리) 변화 없이 그림자·이동만 바뀜(boxShadow, transform)`) —
   그림자·1px 이동만으로는 hover 가 있는지 알 수 없어(사용자 신고: `이전 결과`는 반응이 있고 `새로고침`은 없음) **색 변화가 통과 조건**이다.
@@ -103,6 +109,7 @@ front/
       SubjectCard.vue        과목 카드 — 상태 배지·진행도·정답 수·상태별 동작
       AppConfirmDialog.vue   확인 대화상자 — 새로 구성·모의고사 제출 전 한 번 묻는다(본문 슬롯 지원)
       QuestionPassage.vue    지문 렌더 — code(고정폭)·table(고정폭)·text(문단)
+      QuestionCopyButton.vue 문항 복사 버튼 — 문제·지문·보기 4개를 클립보드로(정답·해설 제외)
       ExamQuestionGrid.vue   모의고사 번호 그리드 — 선택/미응답·정답/오답 원, 방향키 이동
     composables/useApi.ts    API 주소 헬퍼 (/api , /figures)
     pages/index.vue          홈 — 5과목 카드 + 회차 진입점·진행 중 회차 세션
@@ -112,7 +119,7 @@ front/
     pages/history/index.vue  이전 결과 — 과목별 최근 사이클·회차 세션(합격 여부)·빈 상태
     types/api.gen.ts         /openapi.json 생성물 (직접 수정 금지)
     types/api.ts             화면용 타입 별칭
-    utils/                   상태→표시 모델 변환 · API 오류 문구 · 세션 모드/이동 헬퍼(sessions.ts) · 이력 표시 모델(history.ts)
+    utils/                   상태→표시 모델 변환(subjects.ts·history.ts) · API 오류 문구(apiError.ts) · 세션 모드/이동 헬퍼(sessions.ts)
   scripts/shots.mjs          Playwright 캡처·점검
   scripts/practice-fixtures.mjs 연습 화면 점검용 고정 문항(실제 데이터셋에서 가져옴)
   scripts/exam-fixtures.mjs  회차·모의고사 점검용 고정 데이터(실 DB 응답 + 실제 데이터셋 문항)

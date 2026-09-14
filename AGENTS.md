@@ -32,6 +32,7 @@ data/questions/<회차>/<과목>.json   최종 문항 데이터 65파일 / 1,300
 data/figures/<회차>/<번호>.png      순수 도식 24개                      ← git 추적
 data/index.json                   앱 진입점 (회차·과목·파일경로)
 data/raw/<회차>.json              1차 추출 결과 (좌표 포함)
+data/raw/_figures.json            도형/이미지 탐지 결과 (scan_figures.py 산출)
 data/raw/pages/, data/raw/text/   렌더 캐시 (재생성 가능, gitignore)
 db/                               000_bootstrap.sql · 001_schema.sql(문항) · 002_progress.sql(진도) · 003_study_items.sql(세션 슬롯·과목 사이클) · 004_session_comments.sql(study_session COMMENT 재기록) · README.md
 tools/                            파이프라인 스크립트 + 스키마 정본
@@ -40,6 +41,8 @@ front/                            학습 앱 화면 (Nuxt 4 + TypeScript + Tailw
 plan/                             검증 문서 (test-cases.md — 테스트 케이스·실행 기록)
 deploy/                           운영 배포 (Dockerfile 2종 · docker-compose.yml · nginx 설정 · deploy.sh) — 절차·운영 주소는 deploy/README.md
 docs/                             git 에 없음 (빈 디렉터리는 추적되지 않아 clone·worktree 에 생기지 않음)
+tmp/                              생성물·캐시 (검증 로그·스크린샷 등, gitignore)
+aws/                              EC2 접속 스크립트·키페어 (gitignore — clone·worktree 에 없고 이 머신에만 있음)
 ```
 
 ## 파이프라인
@@ -68,17 +71,17 @@ PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 | `python tools/validate.py [파일...]` | 문항 JSON 검증 (스키마 + 불변식). 인자 없으면 전체 |
 | `python tools/report.py` | 데이터셋 품질 리포트 (행 수·분포·잔여물) |
 | `python tools/dups.py` | 회차 간·회차 내 중복 문항 행렬 |
-| `python tools/build_index.py` | `data/index.json` 재생성 (자체 검증 포함) |
+| `python tools/build_index.py` | `data/index.json` 재생성 (자체 검증 포함). 실행하면 `generatedAt` 이 바뀌므로 커밋 전 `git checkout -- data/index.json` 으로 되돌리기 |
 | `python tools/crop_figures.py <회차> <번호...>` | 그림 영역 크롭 (200dpi, `--full` 은 문항 전체) |
 | `python tools/scan_figures.py` | 도형/이미지 있는 문항 탐지 |
-| `python tools/load_db.py --init\|--verify` | `db/*.sql` 마이그레이션 파일명 순서로 적용(`000_bootstrap.sql` 은 superuser 전용이라 제외) / JSON 적재 / 검증 |
+| `python tools/load_db.py [--init\|--verify]` | `--init`=마이그레이션(`db/*.sql` 파일명 순서, `000_bootstrap.sql` 은 superuser 전용이라 제외) · **무옵션=적재+검증** · `--verify`=검증만. `--init` 은 적재를 하지 않음 |
 | `cd back && .venv/Scripts/python -m uvicorn app.main:app --port 8092` | FastAPI API 서버 기동. 최초 1회 `python -m venv .venv && .venv/Scripts/python -m pip install -r requirements.txt`. 엔드포인트·환경변수는 `back/README.md` |
 | `cd front && npm ci` | 프론트 의존성 설치 (npm, `package-lock.json` 고정). 최초 1회·lock 변경 시 |
 | `cd front && npm run dev` | 학습 앱 dev 서버 (SPA, 8091). 접속은 `http://localhost:8091`(127.0.0.1 은 CORS 오리진이 달라 차단), 백엔드(8092)가 먼저 떠 있어야 함 |
 | `cd front && npm run build` | 타입 검사(`nuxt typecheck`) + 프로덕션 빌드. 타입 오류가 있으면 실패 |
 | `cd front && npm run shots` | Playwright 스크린샷 + 화면 자체 점검(콘솔 오류·가로 잘림·클릭 영역 44px). dev 서버가 없으면 자동 기동·종료, 결과는 `<저장소 루트>/tmp/shots/` |
 | `./deploy/deploy.sh` | 운영 배포: 이미지 2종(`exam-back`·`exam-front`) 빌드(linux/amd64) → tar → EC2 전송 → `docker load` → compose 재기동. 최초 준비·DB·롤백은 `deploy/README.md`. 운영 주소 `https://yangyag5.duckdns.org` |
-| `./aws/connect.sh "명령"` | EC2 SSH(`43.202.113.123`). 운영 확인 예: `./aws/connect.sh "cd /home/ubuntu/exam && docker compose ps"` |
+| `./aws/connect.sh "명령"` | EC2 SSH(`43.202.113.123`). 운영 확인 예: `./aws/connect.sh "cd /home/ubuntu/exam && docker compose ps"`. `aws/` 는 gitignore 라 clone·worktree 에 없습니다(이 머신에만 있음) |
 
 ## 문항 JSON 계약
 
@@ -115,12 +118,13 @@ PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 
 - **`ipe` 스키마** — 로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB. 소유자·접속 계정은 두 환경 모두 **`yangyag`** (기존 앱과 동일 계정).
 - **진도 관리 테이블이 있습니다.** `study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(`study_session` COMMENT 를 5모드 의미로 재기록, 멱등).
-  적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). **`--init` 은 전체가 한 트랜잭션이라 중간 실패 시 전부 롤백됩니다** — 기록이 있는 DB에 처음 적용할 때의 주의사항은 `db/README.md` 의 경고 1. 컬럼 의미·조회 예시는 `db/README.md`.
+  적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). **`--init` 은 전체가 한 트랜잭션이라 중간 실패 시 전부 롤백됩니다** — 기록이 있는 DB에 처음 적용할 때의 주의사항은 `db/README.md` 의 경고 1. 컬럼 의미·조회 예시는 `db/README.md`. **`--init` 은 DDL(마이그레이션)만 적용하고 적재는 하지 않습니다** — 적재 절차는 `--init` → `python tools/load_db.py`(적재+검증) → `python tools/load_db.py --verify`(검증만) 순서입니다.
 - 로컬 `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
 - **`yangyag` 의 `search_path` 는 로컬 `app` DB 한정으로 `english, public` 입니다**(역할 속성에는 값이 없고 `ALTER ROLE ... IN DATABASE app` 설정입니다). 이 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
   `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정합니다)
 - 접속 정보는 `.env` (gitignore). `tools/load_db.py` 가 `EXAM_DB_URL` → `DATABASE_URL` → libpq `PG*` → 기본값 순으로 찾습니다.
-- EC2 이식: **저장소를 받고 `db/000_bootstrap.sql` → `load_db.py --init` → `load_db.py` 만** 하면 됩니다(PDF 재추출 불필요). 운영 DB 는 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 라 컨테이너·DB 이름이 로컬과 다릅니다 — 최초 구축·접속 정보는 `deploy/README.md`, 스키마는 `db/README.md`.
+- **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준입니다.** `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `GRANT CONNECT ON DATABASE app`(30행)처럼 **DB명이 하드코딩**되어 있어 `exam` DB 에 그대로 쓰면 실패하므로 대상 DB명으로 바꿔야 합니다.
+  운영 DB 는 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 라 컨테이너·DB 이름이 로컬과 다릅니다 — 접속 정보는 `deploy/README.md`, 스키마는 `db/README.md`. 적재는 PDF 재추출 없이 저장소의 문항 JSON 으로 하면 됩니다.
 
 ## 알아둘 함정
 
@@ -133,7 +137,7 @@ PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 
 ## 환경
 
-- Windows + Git Bash. 시스템 Python 은 **3.13.4** 이고 `psycopg[binary]`(3.3.5)는 설치돼 있지만 **`pymupdf` 는 없습니다** — PDF 를 다루는 `tools/extract.py`·`tools/crop_figures.py`·`tools/scan_figures.py` 를 쓰기 전에 `python -m pip install pymupdf` 로 설치하세요.
+- Windows + Git Bash. **Python 3.13 이상**(로컬 3.14.7 확인, 도커 이미지는 `python:3.13-slim`)이고 `psycopg[binary]`(3.3.5)·**`pymupdf` 1.28.2 가 설치되어 있습니다**(없을 때만 `python -m pip install pymupdf`) — PDF 를 다루는 `tools/extract.py`·`tools/crop_figures.py`·`tools/scan_figures.py` 가 pymupdf 를 씁니다.
 - **`back/` 은 저장소 자체 venv(`back/.venv`)에서 돕니다.** 백엔드 실행·테스트는 `.venv/Scripts/python` 을 쓰고, `psycopg` 를 포함한 의존성은 그 venv 에 `requirements.txt`(`psycopg[binary,pool]==3.3.5`)로 넣습니다 — 설치·실행법은 `back/README.md`.
 - PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다(로컬 개발 기준 — 운영은 EC2 의 공용 컨테이너 `yangyag-postgres`, `exam` DB). 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
 - **프론트(`front/`)는 Nuxt 4 + TypeScript + Tailwind CSS v4 SPA(`ssr:false`)입니다.** 패키지 매니저는 npm(`package-lock.json`)이고 pnpm 은 쓰지 않습니다.

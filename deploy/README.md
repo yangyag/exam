@@ -17,11 +17,20 @@
 - 같은 오리진 구성이라 **CORS 설정과 쓰기 토큰(`EXAM_API_TOKEN`)이 필요 없다**
 - 로컬 개발은 기존대로 프론트 8091 / 백엔드 8092 를 쓴다(이 구성과 무관)
 
+## 전제
+
+- 로컬(배포 스크립트 실행)에 **도커**와 EC2 키 `aws/test-keypair.pem` 이 있어야 한다.
+- EC2 에 공용 컨테이너 **`yangyag-postgres`** 와 external 네트워크 **`auto_default`** 가 이미 있어야 한다(이 앱은 기존 앱 네트워크에 함께 붙는다).
+- EC2 호스트에 **nginx + certbot** 이 준비돼 있어야 한다(`yangyag4` 와 같은 방식).
+- DB 역할 **`yangyag`** 은 없을 때만 만든다(절차·주의는 §1).
+
 ## 최초 배포 절차
 
 ### 1) DB 준비 (한 번만)
 
 로컬에서 `ipe` 스키마를 덤프해 EC2 의 기존 postgres 컨테이너에 새 데이터베이스로 복원한다.
+
+**운영 DB 스키마 변경·최초 구축은 이 덤프 복원이 표준이다.** `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `app` DB명이 하드코딩(`GRANT CONNECT ON DATABASE app`, 30행)이라 `exam` DB 에 그대로 쓰면 실패하므로 대상 DB명으로 바꿔야 한다.
 
 ```bash
 # 로컬(저장소 루트) — 구조+데이터 (그림은 파일 서빙이라 DB에 없다)
@@ -33,8 +42,11 @@ scp -i aws/test-keypair.pem /tmp/exam-ipe.dump ubuntu@43.202.113.123:/home/ubunt
 ```
 
 ```bash
-# EC2 — DB 생성 후 복원. 계정·소유자는 기존 앱과 같은 yangyag 다(비밀번호는 .env 에만 적는다).
-#   역할이 없을 때만 만든다: CREATE ROLE yangyag LOGIN PASSWORD '<비번>'
+# EC2 — 계정·소유자는 기존 앱과 같은 yangyag 다(비밀번호는 .env 에만 적는다).
+#   역할이 없을 때만 만든다(이미 있으면 건너뛴다 — db/000_bootstrap.sql 14~24행과 같은 판단).
+docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE ROLE yangyag LOGIN PASSWORD '<비번>'"
+
+# EC2 — DB 생성 후 복원
 docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE DATABASE exam OWNER yangyag"
 docker exec -i yangyag-postgres pg_restore -U auto -d exam --no-owner --role=yangyag < /home/ubuntu/exam/exam-ipe.dump
 # 주의: 덤프에 CREATE EXTENSION 이 없어 trgm 인덱스 2개가 실패한다(경고 2건, 나머지는 정상).
@@ -42,6 +54,10 @@ docker exec -i yangyag-postgres pg_restore -U auto -d exam --no-owner --role=yan
 docker exec yangyag-postgres psql -U auto -d exam -c "CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
 docker exec yangyag-postgres psql -U auto -d exam -c "CREATE INDEX IF NOT EXISTS question_stem_trgm_idx ON ipe.question USING gin (stem ipe.gin_trgm_ops)"
 docker exec yangyag-postgres psql -U auto -d exam -c "CREATE INDEX IF NOT EXISTS question_expl_trgm_idx ON ipe.question USING gin (explanation ipe.gin_trgm_ops)"
+#   방금 만든 인덱스는 superuser(auto) 소유가 되므로 yangyag 로 맞춘다.
+#   (psql 세션에서 SET ROLE yangyag; 후 만들었다면 이 두 줄은 필요 없다)
+docker exec yangyag-postgres psql -U auto -d exam -c "ALTER INDEX ipe.question_stem_trgm_idx OWNER TO yangyag"
+docker exec yangyag-postgres psql -U auto -d exam -c "ALTER INDEX ipe.question_expl_trgm_idx OWNER TO yangyag"
 rm -f /home/ubuntu/exam/exam-ipe.dump
 ```
 
@@ -62,6 +78,8 @@ docker exec yangyag-postgres psql -U auto -d exam -c "TRUNCATE ipe.study_session
 cd /home/ubuntu/exam
 # 이 저장소의 deploy/docker-compose.yml, deploy/nginx-yangyag5-exam.conf 를 여기로 올린다
 cat > .env <<'EOF'
+# 컨테이너(exam-back)가 쓰는 값이라 호스트명이 서비스명 yangyag-postgres 다.
+# 호스트 도구(load_db.py 등)에서 직접 쓸 때는 127.0.0.1 로 바꾼다(명령행 EXAM_DB_URL 이 .env 보다 우선).
 EXAM_DB_URL=postgresql://yangyag:<비번>@yangyag-postgres:5432/exam?options=-csearch_path%3Dipe,public
 EOF
 chmod 600 .env
@@ -86,6 +104,7 @@ sudo certbot --nginx -d yangyag5.duckdns.org     # yangyag4 와 같은 방식
 ## 재배포 · 롤백
 
 - 재배포: `./deploy/deploy.sh` 한 번이면 된다. 스크립트가 **덮어쓰기 전에 직전 이미지를 `before-<타임스탬프>` 태그로 자동 보존**한다(롤백 지점).
+- `deploy/docker-compose.yml` 이나 호스트 nginx 설정(`deploy/nginx-yangyag5-exam.conf`)을 바꿨으면 먼저 §2처럼 EC2 로 다시 올리고(호스트 반영은 §4의 `cp`+`reload`), 그 뒤 `deploy.sh` 를 돌린다. 프론트 컨테이너 nginx(`deploy/front-nginx.conf`)는 이미지에 함께 구워지므로 `deploy.sh` 만으로 반영된다.
 - 롤백: 보존 태그를 `1.0` 으로 되돌리고 컨테이너를 재생성한다.
 
 ```bash
@@ -101,7 +120,26 @@ cd /home/ubuntu/exam && docker compose up -d --force-recreate
 docker rmi exam-front:before-<오래된> exam-back:before-<오래된>
 ```
 
-- DB 는 덤프로만 바꾸므로, 스키마 변경이 있으면 배포 전에 `pg_dump` 로 백업한다.
+- DB 스키마 변경은 §1 덤프 복원으로 하므로, 스키마 변경이 있으면 배포 전에 `pg_dump` 로 백업한다. 문항 데이터만 다시 적재하는 길은 아래 데이터 갱신 절을 본다.
+
+## 데이터 갱신 (문항 데이터만)
+
+문항 JSON(`data/questions`)을 고쳐 반영할 때는 이미지 재배포 없이 EC2 저장소에서 적재만 다시 돌린다. 단 **그림 파일(`data/figures`)을 바꿨으면 백엔드 이미지에 구워지므로 `deploy.sh` 로 다시 올려야 한다**(`deploy/Dockerfile.back` 16행).
+
+```bash
+# EC2 — 저장소를 최신으로 맞춘 뒤(git pull 또는 로컬에서 scp)
+cd /home/ubuntu/exam
+# .env 의 EXAM_DB_URL 은 컨테이너용(호스트명 yangyag-postgres)이라 호스트에서는 127.0.0.1 로 바꿔 넘긴다.
+# 명령행에서 준 EXAM_DB_URL 이 .env 값보다 우선한다(tools/load_db.py 의 resolve_url).
+# psycopg 가 없으면: python3 -m pip install 'psycopg[binary]'
+export EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/exam?options=-csearch_path%3Dipe,public'
+python3 tools/load_db.py            # 적재 + 검증 (멱등)
+python3 tools/load_db.py --verify   # 검증만
+```
+
+- 적재는 멱등이고 `study_*`(진도) 테이블은 직접 건드리지 않는다. 다만 **적재 중 삭제된 문항을 참조하던 진도 행은 외래키(`ON DELETE CASCADE`, `db/002_progress.sql`)로 함께 지워진다** — 문항 번호를 바꾸는 갱신은 피한다.
+- 스키마 변경이 있으면 같은 접속 문자열로 `python3 tools/load_db.py --init` 을 먼저 돌린다(마이그레이션만 적용하고 적재는 하지 않는다).
+- **§1 덤프 복원을 다시 돌리는 것은 진도와 충돌한다.** 덤프에 든 로컬 `study_*` 가 운영 기록과 섞이거나 키 중복으로 복원이 실패한다. 진도까지 되돌릴 게 아니면 복원 대신 위 적재만 하고, 정말 필요하면 §1 의 `TRUNCATE` 로 진도를 정리한다.
 
 ## 주의
 
