@@ -44,19 +44,19 @@ scp -i aws/test-keypair.pem /tmp/exam-ipe.dump ubuntu@43.202.113.123:/home/ubunt
 ```bash
 # EC2 — 계정·ipe 스키마 소유자는 기존 앱과 같은 yangyag 다(비밀번호는 .env 에만 적는다).
 #   역할이 없을 때만 만든다(이미 있으면 건너뛴다 — db/000_bootstrap.sql 14~24행과 같은 판단).
+#   이 한 줄만 부트스트랩 superuser(auto)로 실행한다 — yangyag 역할이 아직 없는 최초 1회용이라.
 docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE ROLE yangyag LOGIN PASSWORD '<비번>'"
 
 # EC2 — 복원. `app` DB 는 기존 앱과 공유하므로 새로 만들지 않고 그 안의 `ipe` 스키마에 넣는다.
-docker exec -i yangyag-postgres pg_restore -U auto -d app --no-owner --role=yangyag < /home/ubuntu/exam/exam-ipe.dump
+docker exec -i yangyag-postgres pg_restore -U yangyag -d app --no-owner --role=yangyag < /home/ubuntu/exam/exam-ipe.dump
 # 주의: 덤프에 CREATE EXTENSION 이 없어 trgm 인덱스 2개가 실패한다(경고 2건, 나머지는 정상).
 #       확장을 만든 뒤 그 두 인덱스만 다시 만들면 된다.
-docker exec yangyag-postgres psql -U auto -d app -c "CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
-docker exec yangyag-postgres psql -U auto -d app -c "CREATE INDEX IF NOT EXISTS question_stem_trgm_idx ON ipe.question USING gin (stem ipe.gin_trgm_ops)"
-docker exec yangyag-postgres psql -U auto -d app -c "CREATE INDEX IF NOT EXISTS question_expl_trgm_idx ON ipe.question USING gin (explanation ipe.gin_trgm_ops)"
-#   방금 만든 인덱스는 superuser(auto) 소유가 되므로 yangyag 로 맞춘다.
-#   (psql 세션에서 SET ROLE yangyag; 후 만들었다면 이 두 줄은 필요 없다)
-docker exec yangyag-postgres psql -U auto -d app -c "ALTER INDEX ipe.question_stem_trgm_idx OWNER TO yangyag"
-docker exec yangyag-postgres psql -U auto -d app -c "ALTER INDEX ipe.question_expl_trgm_idx OWNER TO yangyag"
+docker exec yangyag-postgres psql -U yangyag -d app -c "CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
+docker exec yangyag-postgres psql -U yangyag -d app -c "CREATE INDEX IF NOT EXISTS question_stem_trgm_idx ON ipe.question USING gin (stem ipe.gin_trgm_ops)"
+docker exec yangyag-postgres psql -U yangyag -d app -c "CREATE INDEX IF NOT EXISTS question_expl_trgm_idx ON ipe.question USING gin (explanation ipe.gin_trgm_ops)"
+#   인덱스를 다른 계정으로 만들었던 경우를 대비해 소유자를 yangyag 로 맞춘다(이미 yangyag 소유면 무해).
+docker exec yangyag-postgres psql -U yangyag -d app -c "ALTER INDEX ipe.question_stem_trgm_idx OWNER TO yangyag"
+docker exec yangyag-postgres psql -U yangyag -d app -c "ALTER INDEX ipe.question_expl_trgm_idx OWNER TO yangyag"
 rm -f /home/ubuntu/exam/exam-ipe.dump
 ```
 
@@ -66,7 +66,7 @@ rm -f /home/ubuntu/exam/exam-ipe.dump
 
 ```bash
 # EC2 — 진도만 초기화(문항·태그는 유지)
-docker exec yangyag-postgres psql -U auto -d app -c "TRUNCATE ipe.study_session_item, ipe.study_attempt, ipe.study_state, ipe.study_session, ipe.study_cycle RESTART IDENTITY"
+docker exec yangyag-postgres psql -U yangyag -d app -c "TRUNCATE ipe.study_session_item, ipe.study_attempt, ipe.study_state, ipe.study_session, ipe.study_cycle RESTART IDENTITY"
 ```
 
 

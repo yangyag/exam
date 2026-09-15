@@ -14,7 +14,7 @@
 | 프론트 점검 전제 | `npm run shots` 는 **백엔드(8092)가 떠 있어야 한다** — 없으면 `isServerUp` 검사에서 기동 안내 후 exit 1 |
 | 통합 테스트 전제 | `TEST_DB_URL`(전용 `app_test`) 준비 필요 — 만드는 절차는 `back/README.md` §1 「테스트」 |
 | 로컬 DB | `docker exec -i postgres psql -U yangyag -d app` |
-| EC2 DB | `docker exec -i yangyag-postgres psql -U auto -d app` (SSH: `./aws/connect.sh`) |
+| EC2 DB | `docker exec -i yangyag-postgres psql -U yangyag -d app` (SSH: `./aws/connect.sh`) |
 | 운영 | `https://yangyag5.duckdns.org` |
 | 스크린샷 | `tmp/shots/` (기본 경로, `SHOTS_DIR` 로 변경 가능 · gitignore) — Playwright 캡처는 `npx playwright screenshot` |
 
@@ -123,7 +123,7 @@
 | 4-6 | 컨테이너 상태 | SSH `cd /home/ubuntu/exam && docker compose ps` | `exam-back` healthy, `exam-front` healthy, 포트 `127.0.0.1:8091` |
 | 4-7 | 자동 복구 | SSH `docker restart exam-back` | 30초 내 healthy 복귀, 사이트 정상 |
 | 4-8 | 로그 | SSH `docker logs --tail 50 exam-back` | 기동 로그·요청 로그에 예외 없음 |
-| 4-9 | DB | SSH `docker exec yangyag-postgres psql -U auto -d app -c "select count(*) from ipe.question"` | 1,300 (진도 테이블은 사용 상태에 따름) |
+| 4-9 | DB | SSH `docker exec yangyag-postgres psql -U yangyag -d app -c "select count(*) from ipe.question"` | 1,300 (진도 테이블은 사용 상태에 따름) |
 | 4-10 | 리소스 | SSH `free -m`, `df -h /`, `docker stats --no-stream` | 메모리 여유·디스크 여유, 컨테이너가 mem_limit 내 |
 | 4-11 | 재배포 | 로컬 `./deploy/deploy.sh` | 이미지 load·재기동 후 4-1~4-3 재통과 |
 | 4-12 | 롤백 준비 | SSH `docker images \| grep exam-` | 직전 태그 보존 확인(롤백 절차는 `deploy/README.md`) |
