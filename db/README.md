@@ -1,6 +1,6 @@
 # ipe 스키마 (정보처리기사 필기 기출문제 데이터셋)
 
-`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)도 공용 컨테이너 `yangyag-postgres` 의 `app` DB** 이고, **`ipe` 스키마 소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다(DB 소유자는 로컬 `postgres`·운영 `auto`). **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, DDL(`db/*.sql`)과 `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.
+`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)도 공용 컨테이너 `yangyag-postgres` 의 `app` DB** 이고, **`ipe` 스키마 소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다(DB 소유자는 로컬 `postgres`·운영 `yangyag`). **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, DDL(`db/*.sql`)과 `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.
 `app` DB 에 함께 있는 기존 앱 스키마(로컬 `english` / `english_test`, 운영 `english`·`house`)는 건드리지 않습니다.
 
 **설치 3단계** — ① 부트스트랩(superuser, 최초 1회) → ② `--init`(마이그레이션) → ③ 적재 + 검증. `--init` 은 마이그레이션만 하고 적재하지는 않습니다.
@@ -394,7 +394,7 @@ psql -U postgres -d app -f db/000_bootstrap.sql
 
 `yangyag` 역할이 없으면 만들고(비밀번호는 실행 후 교체), `ipe` 스키마를 `yangyag` 소유로 만들고, `pg_trgm` 확장을 설치합니다. **이미 있으면 아무것도 바꾸지 않습니다.**
 
-운영(EC2)은 컨테이너가 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `app` DB 입니다(소유자는 `auto`, 기존 앱과 공유). **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, 이 1) 단계(부트스트랩)와 2) 단계의 `--init` 은 로컬·신규 구축 경로입니다. `db/000_bootstrap.sql` 에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, DB 이름이 `app` 이 아닌 곳에 쓸 때는 그 줄을 대상 DB명으로 맞춰 실행하세요.
+운영(EC2)은 컨테이너가 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `app` DB 입니다(소유자는 `yangyag`, 기존 앱과 공유). **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, 이 1) 단계(부트스트랩)와 2) 단계의 `--init` 은 로컬·신규 구축 경로입니다. `db/000_bootstrap.sql` 에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, DB 이름이 `app` 이 아닌 곳에 쓸 때는 그 줄을 대상 DB명으로 맞춰 실행하세요.
 
 ### 2) 테이블 생성 + 데이터 적재
 

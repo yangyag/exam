@@ -60,7 +60,7 @@ docker exec yangyag-postgres psql -U auto -d app -c "ALTER INDEX ipe.question_ex
 rm -f /home/ubuntu/exam/exam-ipe.dump
 ```
 
-운영 `app` DB 의 소유자는 `auto`, `ipe` 스키마 소유자·접속 계정은 기존 앱과 같은 `yangyag` 다. 초기에는 전용 `exam` 역할을 썼지만 제거하고 `yangyag` 로 통일했다(옛 `exam` 역할은 더 이상 존재하지 않는다). 예전 덤프를 `--role=exam` 으로 복원해 둔 DB 가 있다면 `REASSIGN OWNED BY exam TO yangyag; ALTER DATABASE exam OWNER TO yangyag; DROP ROLE exam;` 로 이관한다. 옛 `exam` DB 는 이전 완료(2026-09) 후 삭제했고, 이전 시점의 덤프(`ipe-exam-to-app.dump`)만 EC2 `/home/ubuntu/exam/` 에 보관돼 있다.
+운영 `app` DB 와 `ipe` 스키마 소유자·접속 계정은 기존 앱과 같은 `yangyag` 다. 초기에는 전용 `exam` 역할을 썼지만 제거하고 `yangyag` 로 통일했다(옛 `exam` 역할은 더 이상 존재하지 않는다). 예전 덤프를 `--role=exam` 으로 복원해 둔 DB 가 있다면 `REASSIGN OWNED BY exam TO yangyag; ALTER DATABASE exam OWNER TO yangyag; DROP ROLE exam;` 로 이관한다. 옛 `exam` DB 는 이전 완료(2026-09) 후 삭제했고, 이전 시점의 덤프(`ipe-exam-to-app.dump`)만 EC2 `/home/ubuntu/exam/` 에 보관돼 있다.
 
 덤프에는 진도 테이블(`study_*`)도 들어간다 — 로컬에서 눌러본 기록까지 운영으로 넘어가므로, 깨끗한 상태로 시작하려면 복원 후 비운다.
 

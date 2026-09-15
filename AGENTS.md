@@ -116,7 +116,7 @@ PostgreSQL `ipe` (로컬·운영 모두 `app` DB)
 
 ## DB
 
-- **`ipe` 스키마** — 로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)도 공용 컨테이너 `yangyag-postgres` 의 `app` DB. `ipe` 스키마 소유자·접속 계정은 두 환경 모두 **`yangyag`** (기존 앱과 동일 계정) 이고, DB 소유자는 로컬 `postgres`·운영 `auto` 입니다.
+- **`ipe` 스키마** — 로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)도 공용 컨테이너 `yangyag-postgres` 의 `app` DB. `ipe` 스키마 소유자·접속 계정은 두 환경 모두 **`yangyag`** (기존 앱과 동일 계정) 이고, DB 소유자는 로컬 `postgres`·운영 `yangyag` 입니다.
 - **진도 관리 테이블이 있습니다.** `study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(`study_session` COMMENT 를 5모드 의미로 재기록, 멱등).
   적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). **`--init` 은 전체가 한 트랜잭션이라 중간 실패 시 전부 롤백됩니다** — 기록이 있는 DB에 처음 적용할 때의 주의사항은 `db/README.md` 의 경고 1. 컬럼 의미·조회 예시는 `db/README.md`. **`--init` 은 DDL(마이그레이션)만 적용하고 적재는 하지 않습니다** — 적재 절차는 `--init` → `python tools/load_db.py`(적재+검증) → `python tools/load_db.py --verify`(검증만) 순서입니다.
 - 로컬 `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다(운영 `app` DB 에도 `english`·`house` 스키마가 함께 있습니다). **절대 건드리지 않습니다.**
