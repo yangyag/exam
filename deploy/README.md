@@ -9,7 +9,7 @@
           └→ exam-front 컨테이너 (nginx, 127.0.0.1:8091)
                ├ 정적 파일: Nuxt SPA (nuxt generate 결과)
                └ /api·/figures → exam-back 컨테이너 (uvicorn 8092)
-                                   └→ yangyag-postgres (공용, exam DB · 네트워크 auto_default)
+                                   └→ yangyag-postgres (공용, app DB 의 ipe 스키마 · 네트워크 auto_default)
 ```
 
 - EC2: `43.202.113.123` (ubuntu), 앱 디렉터리 `/home/ubuntu/exam`
@@ -28,9 +28,9 @@
 
 ### 1) DB 준비 (한 번만)
 
-로컬에서 `ipe` 스키마를 덤프해 EC2 의 기존 postgres 컨테이너에 새 데이터베이스로 복원한다.
+로컬에서 `ipe` 스키마를 덤프해 EC2 의 기존 postgres 컨테이너가 쓰는 `app` DB 의 `ipe` 스키마로 복원한다.
 
-**운영 DB 스키마 변경·최초 구축은 이 덤프 복원이 표준이다.** `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `app` DB명이 하드코딩(`GRANT CONNECT ON DATABASE app`, 30행)이라 `exam` DB 에 그대로 쓰면 실패하므로 대상 DB명으로 바꿔야 한다.
+**운영 DB 스키마 변경·최초 구축은 이 덤프 복원이 표준이다.** `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `app` DB명이 하드코딩(`GRANT CONNECT ON DATABASE app`, 30행)되어 있어 로컬·운영(`app` DB)에는 그대로 맞지만, DB 이름이 다른 곳에 쓸 때는 그 줄을 대상 DB명으로 바꿔야 한다.
 
 ```bash
 # 로컬(저장소 루트) — 구조+데이터 (그림은 파일 서빙이라 DB에 없다)
@@ -42,32 +42,31 @@ scp -i aws/test-keypair.pem /tmp/exam-ipe.dump ubuntu@43.202.113.123:/home/ubunt
 ```
 
 ```bash
-# EC2 — 계정·소유자는 기존 앱과 같은 yangyag 다(비밀번호는 .env 에만 적는다).
+# EC2 — 계정·ipe 스키마 소유자는 기존 앱과 같은 yangyag 다(비밀번호는 .env 에만 적는다).
 #   역할이 없을 때만 만든다(이미 있으면 건너뛴다 — db/000_bootstrap.sql 14~24행과 같은 판단).
 docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE ROLE yangyag LOGIN PASSWORD '<비번>'"
 
-# EC2 — DB 생성 후 복원
-docker exec yangyag-postgres psql -U auto -d postgres -c "CREATE DATABASE exam OWNER yangyag"
-docker exec -i yangyag-postgres pg_restore -U auto -d exam --no-owner --role=yangyag < /home/ubuntu/exam/exam-ipe.dump
+# EC2 — 복원. `app` DB 는 기존 앱과 공유하므로 새로 만들지 않고 그 안의 `ipe` 스키마에 넣는다.
+docker exec -i yangyag-postgres pg_restore -U auto -d app --no-owner --role=yangyag < /home/ubuntu/exam/exam-ipe.dump
 # 주의: 덤프에 CREATE EXTENSION 이 없어 trgm 인덱스 2개가 실패한다(경고 2건, 나머지는 정상).
 #       확장을 만든 뒤 그 두 인덱스만 다시 만들면 된다.
-docker exec yangyag-postgres psql -U auto -d exam -c "CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
-docker exec yangyag-postgres psql -U auto -d exam -c "CREATE INDEX IF NOT EXISTS question_stem_trgm_idx ON ipe.question USING gin (stem ipe.gin_trgm_ops)"
-docker exec yangyag-postgres psql -U auto -d exam -c "CREATE INDEX IF NOT EXISTS question_expl_trgm_idx ON ipe.question USING gin (explanation ipe.gin_trgm_ops)"
+docker exec yangyag-postgres psql -U auto -d app -c "CREATE EXTENSION IF NOT EXISTS pg_trgm SCHEMA ipe"
+docker exec yangyag-postgres psql -U auto -d app -c "CREATE INDEX IF NOT EXISTS question_stem_trgm_idx ON ipe.question USING gin (stem ipe.gin_trgm_ops)"
+docker exec yangyag-postgres psql -U auto -d app -c "CREATE INDEX IF NOT EXISTS question_expl_trgm_idx ON ipe.question USING gin (explanation ipe.gin_trgm_ops)"
 #   방금 만든 인덱스는 superuser(auto) 소유가 되므로 yangyag 로 맞춘다.
 #   (psql 세션에서 SET ROLE yangyag; 후 만들었다면 이 두 줄은 필요 없다)
-docker exec yangyag-postgres psql -U auto -d exam -c "ALTER INDEX ipe.question_stem_trgm_idx OWNER TO yangyag"
-docker exec yangyag-postgres psql -U auto -d exam -c "ALTER INDEX ipe.question_expl_trgm_idx OWNER TO yangyag"
+docker exec yangyag-postgres psql -U auto -d app -c "ALTER INDEX ipe.question_stem_trgm_idx OWNER TO yangyag"
+docker exec yangyag-postgres psql -U auto -d app -c "ALTER INDEX ipe.question_expl_trgm_idx OWNER TO yangyag"
 rm -f /home/ubuntu/exam/exam-ipe.dump
 ```
 
-운영 `exam` DB 의 소유자·접속 계정은 기존 앱과 같은 `yangyag` 다. 초기에는 전용 `exam` 역할을 썼지만 제거하고 `yangyag` 로 통일했다(옛 `exam` 역할은 더 이상 존재하지 않는다). 예전 덤프를 `--role=exam` 으로 복원해 둔 DB 가 있다면 `REASSIGN OWNED BY exam TO yangyag; ALTER DATABASE exam OWNER TO yangyag; DROP ROLE exam;` 로 이관한다.
+운영 `app` DB 의 소유자는 `auto`, `ipe` 스키마 소유자·접속 계정은 기존 앱과 같은 `yangyag` 다. 초기에는 전용 `exam` 역할을 썼지만 제거하고 `yangyag` 로 통일했다(옛 `exam` 역할은 더 이상 존재하지 않는다). 예전 덤프를 `--role=exam` 으로 복원해 둔 DB 가 있다면 `REASSIGN OWNED BY exam TO yangyag; ALTER DATABASE exam OWNER TO yangyag; DROP ROLE exam;` 로 이관한다. 옛 `exam` DB 는 이전 완료(2026-09) 후 삭제했고, 이전 시점의 덤프(`ipe-exam-to-app.dump`)만 EC2 `/home/ubuntu/exam/` 에 보관돼 있다.
 
 덤프에는 진도 테이블(`study_*`)도 들어간다 — 로컬에서 눌러본 기록까지 운영으로 넘어가므로, 깨끗한 상태로 시작하려면 복원 후 비운다.
 
 ```bash
 # EC2 — 진도만 초기화(문항·태그는 유지)
-docker exec yangyag-postgres psql -U auto -d exam -c "TRUNCATE ipe.study_session_item, ipe.study_attempt, ipe.study_state, ipe.study_session, ipe.study_cycle RESTART IDENTITY"
+docker exec yangyag-postgres psql -U auto -d app -c "TRUNCATE ipe.study_session_item, ipe.study_attempt, ipe.study_state, ipe.study_session, ipe.study_cycle RESTART IDENTITY"
 ```
 
 
@@ -80,7 +79,7 @@ cd /home/ubuntu/exam
 cat > .env <<'EOF'
 # 컨테이너(exam-back)가 쓰는 값이라 호스트명이 서비스명 yangyag-postgres 다.
 # 호스트 도구(load_db.py 등)에서 직접 쓸 때는 127.0.0.1 로 바꾼다(명령행 EXAM_DB_URL 이 .env 보다 우선).
-EXAM_DB_URL=postgresql://yangyag:<비번>@yangyag-postgres:5432/exam?options=-csearch_path%3Dipe,public
+EXAM_DB_URL=postgresql://yangyag:<비번>@yangyag-postgres:5432/app?options=-csearch_path%3Dipe,public
 EOF
 chmod 600 .env
 ```
@@ -132,7 +131,7 @@ cd /home/ubuntu/exam
 # .env 의 EXAM_DB_URL 은 컨테이너용(호스트명 yangyag-postgres)이라 호스트에서는 127.0.0.1 로 바꿔 넘긴다.
 # 명령행에서 준 EXAM_DB_URL 이 .env 값보다 우선한다(tools/load_db.py 의 resolve_url).
 # psycopg 가 없으면: python3 -m pip install 'psycopg[binary]'
-export EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/exam?options=-csearch_path%3Dipe,public'
+export EXAM_DB_URL='postgresql://yangyag:<비번>@127.0.0.1:5432/app?options=-csearch_path%3Dipe,public'
 python3 tools/load_db.py            # 적재 + 검증 (멱등)
 python3 tools/load_db.py --verify   # 검증만
 ```
@@ -145,4 +144,4 @@ python3 tools/load_db.py --verify   # 검증만
 
 - `aws/`(키)·`.env`(DB 암호)는 **커밋하지 않는다**. 이미지에도 굽지 않는다(런타임 env 로만).
 - 이 배포는 별도 인증을 걸지 않는다(주소를 아는 사람은 사용할 수 있다). 필요하면 호스트 nginx 에 Basic Auth 를 추가한다.
-- 앱 데이터 초기화가 필요하면 EC2 에서 `exam` DB 의 `study_*` 테이블만 비우면 된다(문항 데이터는 유지).
+- 앱 데이터 초기화가 필요하면 EC2 에서 `app` DB 의 `ipe.study_*` 테이블만 비우면 된다(문항 데이터는 유지).

@@ -1,7 +1,7 @@
 # ipe 스키마 (정보처리기사 필기 기출문제 데이터셋)
 
-`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB** 이고, **소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다. **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, DDL(`db/*.sql`)과 `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.
-로컬 `app` DB 의 기존 `english` / `english_test` 스키마는 건드리지 않습니다.
+`ipe` 스키마는 데이터베이스 하나 안에 들어갑니다. **로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)도 공용 컨테이너 `yangyag-postgres` 의 `app` DB** 이고, **`ipe` 스키마 소유자와 접속 계정은 두 환경 모두 기존 앱과 동일한 `yangyag`** 입니다(DB 소유자는 로컬 `postgres`·운영 `auto`). **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, DDL(`db/*.sql`)과 `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.
+`app` DB 에 함께 있는 기존 앱 스키마(로컬 `english` / `english_test`, 운영 `english`·`house`)는 건드리지 않습니다.
 
 **설치 3단계** — ① 부트스트랩(superuser, 최초 1회) → ② `--init`(마이그레이션) → ③ 적재 + 검증. `--init` 은 마이그레이션만 하고 적재하지는 않습니다.
 
@@ -203,7 +203,7 @@ docker exec -i postgres psql -U yangyag -d app -f - < db/003_study_items.sql
 docker exec -i postgres psql -U yangyag -d app -f - < db/004_session_comments.sql
 ```
 
-운영(EC2)에 적용할 때는 컨테이너·DB 이름만 다릅니다(공용 컨테이너 `yangyag-postgres`·`exam` DB). 운영 DB 스키마 변경·최초 구축은 `--init` 대신 **덤프 복원(`deploy/README.md` §1)이 표준**입니다.
+운영(EC2)에 적용할 때는 컨테이너만 다릅니다(공용 컨테이너 `yangyag-postgres` 의 `app` DB). 운영 DB 스키마 변경·최초 구축은 `--init` 대신 **덤프 복원(`deploy/README.md` §1)이 표준**입니다.
 
 되돌리려면 뷰 → 테이블 순서로 지웁니다. 문항 테이블은 그대로 둡니다. `study_cycle` 은 `study_session.cycle_id` 외래 키(`study_session_cycle_id_fkey`)가 가리키므로 **`cycle_id` 컬럼을 지운 뒤에** 떼어내야 합니다(`db/003_study_items.sql` 첫머리 주석과 같은 순서).
 
@@ -359,7 +359,7 @@ commit;
 
 ## ⚠ search_path 주의
 
-`yangyag` 는 로컬 `app` DB 에서 `search_path=english, public` 로 돕니다(기존 영어 앱이 쓰고 있음). 역할 속성에는 값이 없고 `ALTER ROLE yangyag IN DATABASE app SET search_path ...` 로 **DB 하나에만** 걸려 있습니다 — 이 설정을 바꾸면 기존 앱이 영향을 받습니다.
+`yangyag` 는 `app` DB 에서 `search_path=english, public` 로 돕니다(기존 영어 앱이 쓰고 있음 — 로컬·운영 모두 이 설정이 걸려 있습니다). 역할 속성에는 값이 없고 `ALTER ROLE yangyag IN DATABASE app SET search_path ...` 로 **DB 하나에만** 걸려 있습니다 — 이 설정을 바꾸면 기존 앱이 영향을 받습니다.
 
 따라서 `ipe` 테이블을 쓸 때는 다음 중 하나로 접근하세요.
 
@@ -372,7 +372,7 @@ select * from ipe.question;
 --   또는 접속 직후:  SET search_path = ipe, public;
 ```
 
-`tools/load_db.py` 는 접속할 때 세션 `search_path` 를 `ipe,public` 으로 고정하므로 역할 설정과 무관하게 동작합니다.
+`tools/load_db.py` 는 접속할 때 세션 `search_path` 를 `ipe,public` 으로 고정하므로 역할 설정과 무관하게 동작합니다. 운영 `exam-back` 도 접속 URL 의 `options` 로 같은 값을 지정해 들어갑니다.
 
 ## 실행 순서
 
@@ -394,7 +394,7 @@ psql -U postgres -d app -f db/000_bootstrap.sql
 
 `yangyag` 역할이 없으면 만들고(비밀번호는 실행 후 교체), `ipe` 스키마를 `yangyag` 소유로 만들고, `pg_trgm` 확장을 설치합니다. **이미 있으면 아무것도 바꾸지 않습니다.**
 
-운영(EC2)은 컨테이너·DB 이름이 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 입니다. **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, 이 1) 단계(부트스트랩)와 2) 단계의 `--init` 은 로컬·신규 구축 경로입니다. `db/000_bootstrap.sql` 에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, 대상 DB 이름이 다르면 그 줄을 맞춰 실행하세요(`exam` DB 에 그대로 쓰면 실패).
+운영(EC2)은 컨테이너가 다릅니다 — 공용 컨테이너 `yangyag-postgres` 의 `app` DB 입니다(소유자는 `auto`, 기존 앱과 공유). **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준**이고, 이 1) 단계(부트스트랩)와 2) 단계의 `--init` 은 로컬·신규 구축 경로입니다. `db/000_bootstrap.sql` 에는 `GRANT CONNECT ON DATABASE app` 처럼 DB 이름이 박힌 줄이 있으니, DB 이름이 `app` 이 아닌 곳에 쓸 때는 그 줄을 대상 DB명으로 맞춰 실행하세요.
 
 ### 2) 테이블 생성 + 데이터 적재
 
@@ -426,7 +426,7 @@ python tools/load_db.py --verify
 3. libpq `PG*` 환경변수 (`PGHOST`/`PGPORT`/`PGUSER`/`PGPASSWORD`/`PGDATABASE`)
 4. 기본값 `postgresql://yangyag@localhost:5432/app` (비밀번호 없음 → `.env` 나 환경변수를 쓰세요)
 
-운영(EC2)의 `EXAM_DB_URL` 은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 를 가리킵니다 — 접속 문자열(계정·비밀번호)은 EC2 의 `/home/ubuntu/exam/.env` 에만 두고 `deploy/README.md` 절차로 넣습니다. 로컬에서 확인만 할 때는 아래처럼 실행합니다.
+운영(EC2)의 `EXAM_DB_URL` 은 공용 컨테이너 `yangyag-postgres` 의 `app` DB 를 가리킵니다(접속 URL 의 `options` 로 `search_path` 를 `ipe,public` 으로 지정) — 접속 문자열(계정·비밀번호)은 EC2 의 `/home/ubuntu/exam/.env` 에만 두고 `deploy/README.md` 절차로 넣습니다. 로컬에서 확인만 할 때는 아래처럼 실행합니다.
 
 ```bash
 python tools/load_db.py --verify   # 저장소 루트 .env 의 EXAM_DB_URL 을 쓴다
@@ -458,7 +458,7 @@ data/questions/<회차>/<과목>.json    최종 문항 데이터 (git 에 들어
 data/index.json
    │  python tools/load_db.py          DB 적재
    ▼
-PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
+PostgreSQL `ipe` (로컬·운영 모두 `app` DB)
 ```
 
 **EC2 에서는 PDF 부터 다시 돌릴 필요가 없습니다.** `data/questions/`, `data/figures/`, `data/index.json` 이 저장소에 있으므로 저장소를 받은 뒤 적재(`python tools/load_db.py`)만 하면 됩니다. 운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준이고, `tools/load_db.py --init` 은 로컬·신규 구축 경로입니다.

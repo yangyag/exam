@@ -14,13 +14,13 @@
 | 프론트 점검 전제 | `npm run shots` 는 **백엔드(8092)가 떠 있어야 한다** — 없으면 `isServerUp` 검사에서 기동 안내 후 exit 1 |
 | 통합 테스트 전제 | `TEST_DB_URL`(전용 `app_test`) 준비 필요 — 만드는 절차는 `back/README.md` §1 「테스트」 |
 | 로컬 DB | `docker exec -i postgres psql -U yangyag -d app` |
-| EC2 DB | `docker exec -i yangyag-postgres psql -U auto -d exam` (SSH: `./aws/connect.sh`) |
+| EC2 DB | `docker exec -i yangyag-postgres psql -U auto -d app` (SSH: `./aws/connect.sh`) |
 | 운영 | `https://yangyag5.duckdns.org` |
 | 스크린샷 | `tmp/shots/` (기본 경로, `SHOTS_DIR` 로 변경 가능 · gitignore) — Playwright 캡처는 `npx playwright screenshot` |
 
 **공통 원칙**
 - 검증이 만든 진도 행(`study_*`)은 **끝나고 지워 0행으로 복원**한다. 사용자가 만든 행은 건드리지 않는다.
-- 운영 DB 는 공용 컨테이너 안의 `exam` 데이터베이스다 — `TRUNCATE/DROP` 은 진도 테이블에만, 문항 데이터에는 금지.
+- 운영 DB 는 공용 컨테이너 안 `app` 데이터베이스의 `ipe` 스키마다 — `TRUNCATE/DROP` 은 진도 테이블(`ipe.study_*`)에만, 문항 데이터에는 금지.
 - 실패를 발견하면 케이스 번호·명령·기대값·실제값을 그대로 기록한다.
 
 ## 1. 데이터·도구 (`tools/`)
@@ -123,7 +123,7 @@
 | 4-6 | 컨테이너 상태 | SSH `cd /home/ubuntu/exam && docker compose ps` | `exam-back` healthy, `exam-front` healthy, 포트 `127.0.0.1:8091` |
 | 4-7 | 자동 복구 | SSH `docker restart exam-back` | 30초 내 healthy 복귀, 사이트 정상 |
 | 4-8 | 로그 | SSH `docker logs --tail 50 exam-back` | 기동 로그·요청 로그에 예외 없음 |
-| 4-9 | DB | SSH `docker exec yangyag-postgres psql -U auto -d exam -c "select count(*) from ipe.question"` | 1,300 (진도 테이블은 사용 상태에 따름) |
+| 4-9 | DB | SSH `docker exec yangyag-postgres psql -U auto -d app -c "select count(*) from ipe.question"` | 1,300 (진도 테이블은 사용 상태에 따름) |
 | 4-10 | 리소스 | SSH `free -m`, `df -h /`, `docker stats --no-stream` | 메모리 여유·디스크 여유, 컨테이너가 mem_limit 내 |
 | 4-11 | 재배포 | 로컬 `./deploy/deploy.sh` | 이미지 load·재기동 후 4-1~4-3 재통과 |
 | 4-12 | 롤백 준비 | SSH `docker images \| grep exam-` | 직전 태그 보존 확인(롤백 절차는 `deploy/README.md`) |

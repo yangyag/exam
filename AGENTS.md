@@ -60,7 +60,7 @@ data/questions/<회차>/<과목>.json
 data/index.json
   │  python tools/load_db.py                    DB 적재
   ▼
-PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
+PostgreSQL `ipe` (로컬·운영 모두 `app` DB)
 ```
 
 ## 도구
@@ -116,15 +116,15 @@ PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 
 ## DB
 
-- **`ipe` 스키마** — 로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)은 공용 컨테이너 `yangyag-postgres` 의 `exam` DB. 소유자·접속 계정은 두 환경 모두 **`yangyag`** (기존 앱과 동일 계정).
+- **`ipe` 스키마** — 로컬은 `app` DB(도커 컨테이너 `postgres`), 운영(EC2)도 공용 컨테이너 `yangyag-postgres` 의 `app` DB. `ipe` 스키마 소유자·접속 계정은 두 환경 모두 **`yangyag`** (기존 앱과 동일 계정) 이고, DB 소유자는 로컬 `postgres`·운영 `auto` 입니다.
 - **진도 관리 테이블이 있습니다.** `study_session`·`study_cycle`·`study_session_item`·`study_attempt`·`study_state` + 통계 뷰 3종(`v_subject_stats`·`v_wrong_questions`·`v_review_due`), DDL 은 `db/002_progress.sql`(진도)·`db/003_study_items.sql`(세션 슬롯·과목 사이클)·`db/004_session_comments.sql`(`study_session` COMMENT 를 5모드 의미로 재기록, 멱등).
   적용은 별도 명령 없이 `python tools/load_db.py --init` 이 `db/*.sql` 을 파일명 순서로 전부 실행합니다(`000_bootstrap.sql` 은 superuser 전용이라 제외). **`--init` 은 전체가 한 트랜잭션이라 중간 실패 시 전부 롤백됩니다** — 기록이 있는 DB에 처음 적용할 때의 주의사항은 `db/README.md` 의 경고 1. 컬럼 의미·조회 예시는 `db/README.md`. **`--init` 은 DDL(마이그레이션)만 적용하고 적재는 하지 않습니다** — 적재 절차는 `--init` → `python tools/load_db.py`(적재+검증) → `python tools/load_db.py --verify`(검증만) 순서입니다.
-- 로컬 `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다. **절대 건드리지 않습니다.**
-- **`yangyag` 의 `search_path` 는 로컬 `app` DB 한정으로 `english, public` 입니다**(역할 속성에는 값이 없고 `ALTER ROLE ... IN DATABASE app` 설정입니다). 이 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
-  `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정합니다)
+- 로컬 `app` 안의 `english` / `english_test` 스키마는 기존 영어 앱 것입니다(운영 `app` DB 에도 `english`·`house` 스키마가 함께 있습니다). **절대 건드리지 않습니다.**
+- **`yangyag` 의 `search_path` 는 `app` DB 한정으로 `english, public` 입니다**(역할 속성에는 값이 없고 `ALTER ROLE ... IN DATABASE app` 설정이며, 로컬·운영 모두 같습니다). 이 설정을 바꾸면 기존 앱이 영향받으므로 건드리지 마세요. `ipe` 를 쓰려면 스키마를 한정하거나(`ipe.question`) 접속 시 지정합니다:
+  `?options=-csearch_path%3Dipe,public` (`tools/load_db.py` 는 세션 search_path 를 스스로 고정하고, 운영 `exam-back` 도 접속 URL 의 이 옵션으로 들어갑니다)
 - 접속 정보는 `.env` (gitignore). `tools/load_db.py` 가 `EXAM_DB_URL` → `DATABASE_URL` → libpq `PG*` → 기본값 순으로 찾습니다.
-- **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준입니다.** `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `GRANT CONNECT ON DATABASE app`(30행)처럼 **DB명이 하드코딩**되어 있어 `exam` DB 에 그대로 쓰면 실패하므로 대상 DB명으로 바꿔야 합니다.
-  운영 DB 는 공용 컨테이너 `yangyag-postgres` 의 `exam` DB 라 컨테이너·DB 이름이 로컬과 다릅니다 — 접속 정보는 `deploy/README.md`, 스키마는 `db/README.md`. 적재는 PDF 재추출 없이 저장소의 문항 JSON 으로 하면 됩니다.
+- **운영 DB 스키마 변경·최초 구축은 덤프 복원(`deploy/README.md` §1)이 표준입니다.** `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `GRANT CONNECT ON DATABASE app`(30행)처럼 **DB명이 하드코딩**되어 있습니다 — 로컬·운영 모두 DB 이름이 `app` 이라 그대로 맞지만, 다른 이름의 DB에 쓸 때는 대상 DB명으로 바꿔야 합니다.
+  운영 DB 는 공용 컨테이너 `yangyag-postgres` 의 `app` DB 라 컨테이너 이름만 로컬과 다릅니다 — 접속 정보는 `deploy/README.md`, 스키마는 `db/README.md`. 적재는 PDF 재추출 없이 저장소의 문항 JSON 으로 하면 됩니다.
 
 ## 알아둘 함정
 
@@ -139,7 +139,7 @@ PostgreSQL `ipe` (로컬 `app` DB · 운영 EC2 `exam` DB)
 
 - Windows + Git Bash. **Python 3.13 이상**(로컬 3.14.7 확인, 도커 이미지는 `python:3.13-slim`)이고 `psycopg[binary]`(3.3.5)·**`pymupdf` 1.28.2 가 설치되어 있습니다**(없을 때만 `python -m pip install pymupdf`) — PDF 를 다루는 `tools/extract.py`·`tools/crop_figures.py`·`tools/scan_figures.py` 가 pymupdf 를 씁니다.
 - **`back/` 은 저장소 자체 venv(`back/.venv`)에서 돕니다.** 백엔드 실행·테스트는 `.venv/Scripts/python` 을 쓰고, `psycopg` 를 포함한 의존성은 그 venv 에 `requirements.txt`(`psycopg[binary,pool]==3.3.5`)로 넣습니다 — 설치·실행법은 `back/README.md`.
-- PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다(로컬 개발 기준 — 운영은 EC2 의 공용 컨테이너 `yangyag-postgres`, `exam` DB). 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
+- PostgreSQL 은 docker 컨테이너 `postgres` (17.10) 로 5432 에 떠 있습니다(로컬 개발 기준 — 운영은 EC2 의 공용 컨테이너 `yangyag-postgres` 의 `app` DB). 호스트에 `psql` 이 없어서 관리 명령은 `docker exec -i postgres psql -U postgres -d app` 로 실행합니다.
 - **프론트(`front/`)는 Nuxt 4 + TypeScript + Tailwind CSS v4 SPA(`ssr:false`)입니다.** 패키지 매니저는 npm(`package-lock.json`)이고 pnpm 은 쓰지 않습니다.
 - **프론트 dev 서버는 8091, 접속 주소는 `http://localhost:8091` 입니다.** 백엔드 기본 CORS 허용 오리진이 이 값이라 `127.0.0.1:8091` 은 오리진 문자열이 달라 API 가 막힙니다. API 오리진은 `NUXT_PUBLIC_API_BASE`(기본 `http://127.0.0.1:8092`)로 바꿉니다.
 - 콘솔이 cp949 라 한글 출력이 깨집니다. 스크립트 출력을 확인할 때는 `PYTHONIOENCODING=utf-8` 을 붙이거나 파일로 리다이렉트해 읽으세요.

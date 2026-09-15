@@ -219,7 +219,7 @@ npm run shots                                          # 백엔드(8092)가 떠 
           └→ exam-front 컨테이너 (nginx, 127.0.0.1:8091)
                ├ 정적 파일: Nuxt SPA
                └ /api · /figures → exam-back 컨테이너 (uvicorn 8092)
-                                       └→ yangyag-postgres (공용, exam DB)
+                                       └→ yangyag-postgres (공용, app DB 의 ipe 스키마)
 ```
 
 ```bash
@@ -229,8 +229,8 @@ npm run shots                                          # 백엔드(8092)가 떠 
 
 - 같은 오리진 구성이라 **CORS 설정과 쓰기 토큰이 필요 없습니다.**
 - 재배포는 덮어쓰기 전에 직전 이미지를 `before-<타임스탬프>` 태그로 보존합니다(롤백 지점). 절차는 `deploy/README.md`.
-- 운영 DB 는 공용 컨테이너 안의 `exam` 데이터베이스입니다. 문항 데이터에 `TRUNCATE/DROP` 금지(진도 테이블만 초기화 가능).
-- **운영 DB 최초 구축·스키마 변경은 덤프 복원이 표준**입니다(절차는 `deploy/README.md` §1). `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `app` DB명이 하드코딩돼 있어(30행 `GRANT CONNECT ON DATABASE app`) `exam` DB에 그대로 쓰면 실패하므로 대상 DB명으로 바꿔야 합니다.
+- 운영 DB 는 공용 컨테이너 안 `app` 데이터베이스의 `ipe` 스키마입니다(기존 앱 스키마와 공존). 문항 데이터에 `TRUNCATE/DROP` 금지(진도 테이블만 초기화 가능).
+- **운영 DB 최초 구축·스키마 변경은 덤프 복원이 표준**입니다(절차는 `deploy/README.md` §1). `tools/load_db.py --init` 은 로컬·신규 구축 경로이고, `db/000_bootstrap.sql` 은 `app` DB명이 하드코딩돼 있어(30행 `GRANT CONNECT ON DATABASE app`) DB 이름이 `app` 이 아닌 곳에 쓸 때는 대상 DB명으로 바꿔야 합니다.
 
 ---
 
@@ -252,7 +252,7 @@ npm run shots                                          # 백엔드(8092)가 떠 
 
 - **로그인 없음** — 이 앱에는 인증이 없습니다. 주소를 아는 사람은 누구나 쓸 수 있으므로 필요하면 호스트 nginx 에 Basic Auth 를 추가합니다.
 - **`.env` 와 `aws/` 는 절대 커밋하지 않습니다.** `aws/test-keypair.pem` 은 EC2 개인키입니다.
-- `app` DB 안의 `english` / `english_test` 스키마는 다른 앱(영어) 것이므로 **건드리지 않습니다.** `yangyag` 역할의 `search_path` 도 로컬 `app` DB 한정 설정(`ALTER ROLE ... IN DATABASE app`, 값은 `english, public`)이라 바꾸지 않습니다 — 앱은 접속할 때 세션 단위로 `ipe,public` 을 지정합니다.
+- `app` DB 안의 다른 앱 스키마(로컬 `english` / `english_test`, 운영 `english`·`house`)는 **건드리지 않습니다.** `yangyag` 역할의 `search_path` 도 `app` DB 한정 설정(`ALTER ROLE ... IN DATABASE app`, 값은 `english, public` — 로컬·운영 모두)이라 바꾸지 않습니다 — 앱은 접속할 때 세션 단위로 `ipe,public` 을 지정합니다.
 - 이 저장소의 PDF 는 2단 레이아웃이고 텍스트가 그려진 순서가 뒤섞여 있어, `page.get_text()` 를 그대로 쓰면 문항 순서가 깨집니다. `tools/extract.py` 의 좌표 정렬을 쓰세요.
 - 콘솔이 cp949 인 Windows 에서 한글 출력이 깨지면 `PYTHONIOENCODING=utf-8` 을 붙이거나 파일로 넘겨 읽습니다.
 - 다크모드 대응은 하지 않습니다(흰 배경 고정).
